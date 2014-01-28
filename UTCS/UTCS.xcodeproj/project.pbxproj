@@ -18,6 +18,7 @@
 		0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A26581891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
+		DDEFABD41897518900DAB5D7 /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEFABD31897518900DAB5D7 /* UTCSEventsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		0B9A26571891D5E30032DA03 /* UTCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCSTests-Info.plist"; sourceTree = "<group>"; };
 		0B9A26591891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
+		DDEFABD21897518900DAB5D7 /* UTCSEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsViewController.h; path = ViewControllers/UTCSEventsViewController.h; sourceTree = "<group>"; };
+		DDEFABD31897518900DAB5D7 /* UTCSEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsViewController.m; path = ViewControllers/UTCSEventsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				0B9A263C1891D5E30032DA03 /* UTCS */,
+				0B9A263D1891D5E30032DA03 /* Supporting Files */,
 				0B9A26551891D5E30032DA03 /* UTCSTests */,
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
@@ -105,9 +109,10 @@
 		0B9A263C1891D5E30032DA03 /* UTCS */ = {
 			isa = PBXGroup;
 			children = (
-				0B9A26451891D5E30032DA03 /* UTCSAppDelegate.h */,
-				0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */,
-				0B9A263D1891D5E30032DA03 /* Supporting Files */,
+				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
+				DDEFABD11897516E00DAB5D7 /* Model */,
+				DDEFABD01897516900DAB5D7 /* Views */,
+				DDEFABCF1897516400DAB5D7 /* ViewControllers */,
 			);
 			path = UTCS;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = UTCS;
 			sourceTree = "<group>";
 		};
 		0B9A26551891D5E30032DA03 /* UTCSTests */ = {
@@ -139,6 +145,38 @@
 				0B9A26581891D5E30032DA03 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDEFABCE1897515800DAB5D7 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				0B9A26451891D5E30032DA03 /* UTCSAppDelegate.h */,
+				0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		DDEFABCF1897516400DAB5D7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DDEFABD21897518900DAB5D7 /* UTCSEventsViewController.h */,
+				DDEFABD31897518900DAB5D7 /* UTCSEventsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DDEFABD01897516900DAB5D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DDEFABD11897516E00DAB5D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEFABD41897518900DAB5D7 /* UTCSEventsViewController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 			);
@@ -440,6 +479,7 @@
 				0B9A26611891D5E30032DA03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B9A26621891D5E30032DA03 /* Build configuration list for PBXNativeTarget "UTCSTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +488,7 @@
 				0B9A26641891D5E30032DA03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
