@@ -18,7 +18,11 @@
 		0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A26581891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
+		DDDF8A1318A6671A006DD1D4 /* UTCSMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8A1218A6671A006DD1D4 /* UTCSMoreViewController.m */; };
+		DDDF8A1618A66877006DD1D4 /* UTCSLabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8A1518A66877006DD1D4 /* UTCSLabsViewController.m */; };
+		DDDF8A1918A668CE006DD1D4 /* UTCSDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8A1818A668CE006DD1D4 /* UTCSDirectoryViewController.m */; };
 		DDEFABD41897518900DAB5D7 /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEFABD31897518900DAB5D7 /* UTCSEventsViewController.m */; };
+		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +51,16 @@
 		0B9A26571891D5E30032DA03 /* UTCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCSTests-Info.plist"; sourceTree = "<group>"; };
 		0B9A26591891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
+		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
+		DDDF8A1118A6671A006DD1D4 /* UTCSMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSMoreViewController.h; path = ViewControllers/UTCSMoreViewController.h; sourceTree = "<group>"; };
+		DDDF8A1218A6671A006DD1D4 /* UTCSMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSMoreViewController.m; path = ViewControllers/UTCSMoreViewController.m; sourceTree = "<group>"; };
+		DDDF8A1418A66877006DD1D4 /* UTCSLabsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsViewController.h; path = ViewControllers/UTCSLabsViewController.h; sourceTree = "<group>"; };
+		DDDF8A1518A66877006DD1D4 /* UTCSLabsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsViewController.m; path = ViewControllers/UTCSLabsViewController.m; sourceTree = "<group>"; };
+		DDDF8A1718A668CE006DD1D4 /* UTCSDirectoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryViewController.h; path = ViewControllers/UTCSDirectoryViewController.h; sourceTree = "<group>"; };
+		DDDF8A1818A668CE006DD1D4 /* UTCSDirectoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryViewController.m; path = ViewControllers/UTCSDirectoryViewController.m; sourceTree = "<group>"; };
 		DDEFABD21897518900DAB5D7 /* UTCSEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsViewController.h; path = ViewControllers/UTCSEventsViewController.h; sourceTree = "<group>"; };
 		DDEFABD31897518900DAB5D7 /* UTCSEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsViewController.m; path = ViewControllers/UTCSEventsViewController.m; sourceTree = "<group>"; };
+		DDFD7DD618AA049A008F5A47 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 		0B9A262A1891D5E30032DA03 = {
 			isa = PBXGroup;
 			children = (
+				DDFD7DD618AA049A008F5A47 /* Resources.xcassets */,
 				0B9A263C1891D5E30032DA03 /* UTCS */,
 				0B9A263D1891D5E30032DA03 /* Supporting Files */,
 				0B9A26551891D5E30032DA03 /* UTCSTests */,
@@ -109,6 +122,7 @@
 		0B9A263C1891D5E30032DA03 /* UTCS */ = {
 			isa = PBXGroup;
 			children = (
+				DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */,
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDEFABD11897516E00DAB5D7 /* Model */,
 				DDEFABD01897516900DAB5D7 /* Views */,
@@ -161,6 +175,12 @@
 			children = (
 				DDEFABD21897518900DAB5D7 /* UTCSEventsViewController.h */,
 				DDEFABD31897518900DAB5D7 /* UTCSEventsViewController.m */,
+				DDDF8A1118A6671A006DD1D4 /* UTCSMoreViewController.h */,
+				DDDF8A1218A6671A006DD1D4 /* UTCSMoreViewController.m */,
+				DDDF8A1418A66877006DD1D4 /* UTCSLabsViewController.h */,
+				DDDF8A1518A66877006DD1D4 /* UTCSLabsViewController.m */,
+				DDDF8A1718A668CE006DD1D4 /* UTCSDirectoryViewController.h */,
+				DDDF8A1818A668CE006DD1D4 /* UTCSDirectoryViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -256,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
+				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDDF8A1318A6671A006DD1D4 /* UTCSMoreViewController.m in Sources */,
 				DDEFABD41897518900DAB5D7 /* UTCSEventsViewController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
+				DDDF8A1618A66877006DD1D4 /* UTCSLabsViewController.m in Sources */,
+				DDDF8A1918A668CE006DD1D4 /* UTCSDirectoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
