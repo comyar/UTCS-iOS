@@ -7,14 +7,12 @@
 //
 
 #import "UTCSAppDelegate.h"
-#import "UTCSEventsViewController.h"
-#import "UTCSLabsViewController.h"
-#import "UTCSDirectoryViewController.h"
-#import "UTCSMoreViewController.h"
+#import "UTCSSideMenuViewController.h"
 
 @interface UTCSAppDelegate ()
-@property (strong, nonatomic) UITabBarController        *tabBarController;
-@property (strong, nonatomic) UINavigationController    *eventsNavigationController;
+@property (strong, nonatomic) UITableViewController         *menuViewController;
+@property (strong, nonatomic) UINavigationController        *contentViewController;
+@property (strong, nonatomic) UTCSSideMenuViewController    *sideMenuViewController;
 @end
 
 @implementation UTCSAppDelegate
@@ -22,13 +20,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.tabBarController = [UITabBarController new];
-    self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    self.tabBarController.viewControllers = @[self.eventsNavigationController,
-                                              [UTCSLabsViewController new],
-                                              [UTCSDirectoryViewController new],
-                                              [UTCSMoreViewController new]];
-    self.window.rootViewController = self.tabBarController;
+   
+    self.menuViewController = [[UITableViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UIViewController new]];
+    self.contentViewController.view.backgroundColor = [UIColor redColor];
+    self.menuViewController.view.backgroundColor = [UIColor clearColor];
+    self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentController:self.contentViewController
+                                                                                menuController:self.menuViewController];
+    self.window.rootViewController = self.sideMenuViewController;
+    
     [self.window makeKeyAndVisible];
     [self configureAppearance];
     return YES;
