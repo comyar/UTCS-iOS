@@ -20,6 +20,7 @@
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
 		DDD764FE18B3E85900FB0170 /* UTCSSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD764FA18B3E85900FB0170 /* UTCSSideMenuController.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
+		DDD7650718B3F68F00FB0170 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650618B3F68F00FB0170 /* UTCSNewsViewController.m */; };
 		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		DDD764FA18B3E85900FB0170 /* UTCSSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSideMenuController.m; sourceTree = "<group>"; };
 		DDD7650118B3EE1300FB0170 /* UTCSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewController.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSMenuViewController.m; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.m; sourceTree = "<group>"; };
+		DDD7650518B3F68F00FB0170 /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
+		DDD7650618B3F68F00FB0170 /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
 		DDFD7DD618AA049A008F5A47 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +180,8 @@
 		DDD7650418B3F56C00FB0170 /* NewsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DDD7650518B3F68F00FB0170 /* UTCSNewsViewController.h */,
+				DDD7650618B3F68F00FB0170 /* UTCSNewsViewController.m */,
 			);
 			name = NewsViewController;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDD7650718B3F68F00FB0170 /* UTCSNewsViewController.m in Sources */,
 				DDD764FE18B3E85900FB0170 /* UTCSSideMenuController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */,
