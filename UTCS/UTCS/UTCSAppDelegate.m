@@ -7,12 +7,12 @@
 //
 
 #import "UTCSAppDelegate.h"
-#import "UTCSSideMenuViewController.h"
+#import "UTCSSideMenuController.h"
+#import "UTCSMenuViewController.h"
 
 @interface UTCSAppDelegate ()
-@property (strong, nonatomic) UITableViewController         *menuViewController;
+@property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
 @property (strong, nonatomic) UINavigationController        *contentViewController;
-@property (strong, nonatomic) UTCSSideMenuViewController    *sideMenuViewController;
 @end
 
 @implementation UTCSAppDelegate
@@ -21,13 +21,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
    
-    self.menuViewController = [[UITableViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.menuViewController = [UTCSMenuViewController new];
     self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UIViewController new]];
-    self.contentViewController.view.backgroundColor = [UIColor redColor];
-    self.menuViewController.view.backgroundColor = [UIColor clearColor];
-    self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentController:self.contentViewController
-                                                                                menuController:self.menuViewController];
-    self.window.rootViewController = self.sideMenuViewController;
+    self.contentViewController.view.backgroundColor = [UIColor whiteColor];
+
+    UTCSSideMenuController *sideMenuViewController = [[UTCSSideMenuController alloc]initWithContentViewController:self.contentViewController menuViewController:self.menuViewController];
+    self.window.rootViewController = sideMenuViewController;
     
     [self.window makeKeyAndVisible];
     [self configureAppearance];
