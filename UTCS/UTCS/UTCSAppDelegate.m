@@ -26,6 +26,7 @@
     self.contentViewController.view.backgroundColor = [UIColor whiteColor];
 
     UTCSSideMenuController *sideMenuViewController = [[UTCSSideMenuController alloc]initWithContentViewController:self.contentViewController menuViewController:self.menuViewController];
+    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"menuBackgroundBlurred"];
     self.window.rootViewController = sideMenuViewController;
     
     [self.window makeKeyAndVisible];
