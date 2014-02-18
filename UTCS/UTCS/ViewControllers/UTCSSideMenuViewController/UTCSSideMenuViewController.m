@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSSideMenuController.h"
+#import "UTCSSideMenuViewController.h"
 
-@interface UTCSSideMenuController ()
+@interface UTCSSideMenuViewController ()
 
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL visible;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation UTCSSideMenuController
+@implementation UTCSSideMenuViewController
 
 - (id)init
 {

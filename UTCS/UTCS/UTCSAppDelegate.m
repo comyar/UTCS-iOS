@@ -7,7 +7,7 @@
 //
 
 #import "UTCSAppDelegate.h"
-#import "UTCSSideMenuController.h"
+#import "UTCSSideMenuViewController.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSMenuViewController.h"
 
@@ -25,7 +25,7 @@
     self.menuViewController = [UTCSMenuViewController new];
     self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
 
-    UTCSSideMenuController *sideMenuViewController = [[UTCSSideMenuController alloc]initWithContentViewController:self.contentViewController menuViewController:self.menuViewController];
+    UTCSSideMenuViewController *sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.contentViewController menuViewController:self.menuViewController];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"menuBackgroundBlurred"];
     self.window.rootViewController = sideMenuViewController;
     
