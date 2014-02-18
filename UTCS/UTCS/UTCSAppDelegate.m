@@ -7,14 +7,12 @@
 //
 
 #import "UTCSAppDelegate.h"
-#import "UTCSEventsViewController.h"
-#import "UTCSLabsViewController.h"
-#import "UTCSDirectoryViewController.h"
-#import "UTCSMoreViewController.h"
+#import "UTCSSideMenuController.h"
+#import "UTCSMenuViewController.h"
 
 @interface UTCSAppDelegate ()
-@property (strong, nonatomic) UITabBarController        *tabBarController;
-@property (strong, nonatomic) UINavigationController    *eventsNavigationController;
+@property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
+@property (strong, nonatomic) UINavigationController        *contentViewController;
 @end
 
 @implementation UTCSAppDelegate
@@ -22,13 +20,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.tabBarController = [UITabBarController new];
-    self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    self.tabBarController.viewControllers = @[self.eventsNavigationController,
-                                              [UTCSLabsViewController new],
-                                              [UTCSDirectoryViewController new],
-                                              [UTCSMoreViewController new]];
-    self.window.rootViewController = self.tabBarController;
+   
+    self.menuViewController = [UTCSMenuViewController new];
+    self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UIViewController new]];
+    self.contentViewController.view.backgroundColor = [UIColor whiteColor];
+
+    UTCSSideMenuController *sideMenuViewController = [[UTCSSideMenuController alloc]initWithContentViewController:self.contentViewController menuViewController:self.menuViewController];
+    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"menuBackgroundBlurred"];
+    self.window.rootViewController = sideMenuViewController;
+    
     [self.window makeKeyAndVisible];
     [self configureAppearance];
     return YES;
