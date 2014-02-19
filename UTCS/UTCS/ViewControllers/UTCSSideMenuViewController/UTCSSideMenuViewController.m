@@ -8,60 +8,62 @@
 
 #import "UTCSSideMenuViewController.h"
 
+
+#pragma mark - UTCSSideMenuViewController Class Extension
+
 @interface UTCSSideMenuViewController ()
 
-@property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
-@property (assign, readwrite, nonatomic) BOOL visible;
-@property (assign, readwrite, nonatomic) CGPoint originalPoint;
-@property (strong, readwrite, nonatomic) UIButton *contentButton;
+//
+@property (assign, nonatomic) BOOL menuVisible;
+
+//
+@property (assign, nonatomic) CGPoint originalPoint;
+
+//
+@property (strong, nonatomic) UIImageView *backgroundImageView;
 
 @end
 
+
+#pragma mark - UTCSSideMenuViewController Implementation
+
 @implementation UTCSSideMenuViewController
+
+#pragma mark Creating a UTCSSideMenuViewController
 
 - (id)init
 {
     return [self initWithContentViewController:nil menuViewController:nil];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    if (self = [super initWithCoder:decoder]) {
-        [self initializeSideMenuViewController];
-    }
-    return self;
-}
-
-- (void)initializeSideMenuViewController
-{
-    _animationDuration = 0.35f;
-    _panGestureEnabled = YES;
-    _interactivePopGestureRecognizerEnabled = YES;
-  
-    _scaleContentView      = YES;
-    _contentViewScaleValue = 0.7f;
-    
-    _scaleBackgroundImageView = YES;
-  
-    _parallaxEnabled = YES;
-    _parallaxMenuMinimumRelativeValue = @(-15);
-    _parallaxMenuMaximumRelativeValue = @(15);
-    
-    _parallaxContentMinimumRelativeValue = @(-25);
-    _parallaxContentMaximumRelativeValue = @(25);
-
-    _bouncesHorizontally = YES;
-}
-
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
 {
     if (self = [super initWithNibName:nil bundle:nil]) {
-        _contentViewController = contentViewController;
-        _menuViewController = menuViewController;
-        [self initializeSideMenuViewController];
+        _contentViewController  = contentViewController;
+        _menuViewController     = menuViewController;
+        
+        _animationDuration = 0.30f;
+        _panGestureEnabled = YES;
+        _interactivePopGestureRecognizerEnabled = YES;
+        
+        _scaleContentView = YES;
+        _contentViewScaleValue = 0.7f;
+        
+        _scaleBackgroundImageView = YES;
+        
+        _parallaxEnabled = YES;
+        _parallaxMenuMinimumRelativeValue = @(-15);
+        _parallaxMenuMaximumRelativeValue = @(15);
+        
+        _parallaxContentMinimumRelativeValue = @(-25);
+        _parallaxContentMaximumRelativeValue = @(25);
+        
+        _bouncesHorizontally = YES;
     }
     return self;
 }
+
+#pragma mark UIViewController Methods
 
 - (void)viewDidLoad
 {
@@ -74,39 +76,39 @@
         _contentViewInPortraitOffsetCenterX  = CGRectGetWidth(self.view.frame) + 30.f;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.backgroundImageView = ({
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        imageView.image = self.backgroundImage;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        imageView;
-    });
-    self.contentButton = ({
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectNull];
-        [button addTarget:self action:@selector(hideMenuViewController) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
     
+    // Initialize background image view
+    self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    self.backgroundImageView.image = self.backgroundImage;
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.backgroundImageView];
+    
+    // Configure view controllers
+    self.menuViewController.view.alpha = 0;
     [self configureDisplayController:self.menuViewController frame:self.view.bounds];
     [self configureDisplayController:self.contentViewController frame:self.view.bounds];
-    self.menuViewController.view.alpha = 0;
-    if (self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
-    
     [self addMenuViewControllerMotionEffects];
     
+    // Scale background image view
+    if(self.scaleBackgroundImageView)
+        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    
+    // Add pan gesture recognizer
     if (self.panGestureEnabled) {
-        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
+                                                                                              action:@selector(panGestureRecognized:)];
         panGestureRecognizer.delegate = self;
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
 }
 
+#pragma mark Configuring Child View Controllers
+
 - (void)configureDisplayController:(UIViewController *)controller frame:(CGRect)frame
 {
-    [self addChildViewController:controller];
     controller.view.frame = frame;
+    [self addChildViewController:controller];
     [self.view addSubview:controller.view];
     [controller didMoveToParentViewController:self];
 }
@@ -118,21 +120,24 @@
     [controller removeFromParentViewController];
 }
 
-#pragma mark -
+#pragma mark Using a UTCSSideMenuViewController
 
 - (void)presentMenuViewController
 {
-    self.menuViewController.view.transform = CGAffineTransformIdentity;
+    // Prepare background image view for presentation
     if (self.scaleBackgroundImageView) {
         self.backgroundImageView.transform = CGAffineTransformIdentity;
         self.backgroundImageView.frame = self.view.bounds;
+        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
+    
+    // Prepare menu view controller for presentation
+    self.menuViewController.view.transform = CGAffineTransformIdentity;
     self.menuViewController.view.frame = self.view.bounds;
     self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
     self.menuViewController.view.alpha = 0;
-    if (self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
+    // Delegate callback
     if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:willShowMenuViewController:)]) {
         [self.delegate sideMenuViewController:self willShowMenuViewController:self.menuViewController];
     }
@@ -142,80 +147,102 @@
 
 - (void)showMenuViewController
 {
+    // Ensure subviews resign first responder
     [self.view.window endEditing:YES];
-    [self addContentButton];
     
-    [UIView animateWithDuration:self.animationDuration animations:^{
+    // Ignore touch events during animation
+    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
+    
+    [UIView animateWithDuration:self.animationDuration animations: ^ {
+        
+        // Scale content view
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         }
+        
+        // Set content view's center based on device orientation
         self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
 
+        // Configure menu view controller
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
-        if (self.scaleBackgroundImageView)
+        
+        // Scale the background image view
+        if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformIdentity;
-            
+        }
+        
     } completion:^(BOOL finished) {
+        
+        // Restore touch events
+        [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+        
+        // Add motion effects to content view controller
         [self addContentViewControllerMotionEffects];
         
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:didShowMenuViewController:)]) {
+        // Delegate callback
+        if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:didShowMenuViewController:)]) {
             [self.delegate sideMenuViewController:self didShowMenuViewController:self.menuViewController];
         }
         
-        self.visible = YES;
+        self.menuVisible = YES;
+        
+        // Update the status bar style
+        [self updateStatusBar];
     }];
-    
-    [self updateStatusBar];
 }
 
 - (void)hideMenuViewController
 {
+    // Delegate callback
     if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:willHideMenuViewController:)]) {
         [self.delegate sideMenuViewController:self willHideMenuViewController:self.menuViewController];
     }
     
-    [self.contentButton removeFromSuperview];
+    // Ignore touch events during animation
+    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
+        
+        // Restore the content view's transform and frame
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
-        self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+        
+        // Restore the menu view's hidden state
         self.menuViewController.view.alpha = 0;
+        self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+        
+        // Scale background image view
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
+        
+        // Remove any motion effects on the content view controller
         if (self.parallaxEnabled) {
             for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
                 [self.contentViewController.view removeMotionEffect:effect];
             }
         }
-    } completion:^(BOOL finished) {
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] &&
+    } completion:^(BOOL finished) {
+        
+        // Restore touch events
+        [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+        
+        // Delegate callback
+        if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] &&
             [self.delegate respondsToSelector:@selector(sideMenuViewController:didHideMenuViewController:)]) {
             [self.delegate sideMenuViewController:self didHideMenuViewController:self.menuViewController];
         }
+        
+        self.menuVisible = NO;
+        
+        // Update the status bar style
+        [self updateStatusBar];
     }];
-    self.visible = NO;
-    [self updateStatusBar];
 }
 
-- (void)addContentButton
-{
-    if (self.contentButton.superview)
-        return;
-
-    self.contentButton.autoresizingMask = UIViewAutoresizingNone;
-    self.contentButton.frame = self.contentViewController.view.bounds;
-    self.contentButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentViewController.view addSubview:self.contentButton];
-}
-
-#pragma mark -
-#pragma mark Motion effects
+#pragma mark Adding Motion Effects
 
 - (void)addMenuViewControllerMotionEffects
 {
@@ -257,8 +284,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark Gesture recognizer
+#pragma mark Gesture Recognizer Methods
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
@@ -269,7 +295,7 @@
         }
     }
   
-    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.menuVisible) {
         CGPoint point = [touch locationInView:gestureRecognizer.view];
         if (point.x < 30) {
             return YES;
@@ -293,7 +319,7 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:willShowMenuViewController:)]) {
+        if (!self.menuVisible && [self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:willShowMenuViewController:)]) {
             [self.delegate sideMenuViewController:self willShowMenuViewController:self.menuViewController];
         }
         
@@ -305,12 +331,11 @@
             self.backgroundImageView.frame = self.view.bounds;
         }
         self.menuViewController.view.frame = self.view.bounds;
-        [self addContentButton];
         [self.view.window endEditing:YES];
     }
     
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
-        CGFloat delta = self.visible ? (point.x + self.originalPoint.x) / self.originalPoint.x : point.x / self.view.frame.size.width;
+        CGFloat delta = self.menuVisible ? (point.x + self.originalPoint.x) / self.originalPoint.x : point.x / self.view.frame.size.width;
         
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
@@ -335,12 +360,12 @@
         }
         
         if (contentViewScale > 1) {
-            if (!self.visible) {
+            if (!self.menuVisible) {
                 self.contentViewController.view.transform = CGAffineTransformIdentity;
             }
             self.contentViewController.view.frame = self.view.bounds;
         } else {
-            if (!_bouncesHorizontally && self.visible) {
+            if (!_bouncesHorizontally && self.menuVisible) {
                 point.x = MIN(0.0, point.x);
                 [recognizer setTranslation:point inView:self.view];
             }
@@ -360,8 +385,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark Setters
+#pragma mark Overridden Setters
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
@@ -384,7 +408,7 @@
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
     
-    if(self.visible) {
+    if(self.menuVisible) {
         [self addContentViewControllerMotionEffects];
     }
 }
@@ -420,8 +444,7 @@
     [self.view bringSubviewToFront:self.contentViewController.view];
 }
 
-#pragma mark -
-#pragma mark Rotation handler
+#pragma mark Orientation Handling
 
 - (BOOL)shouldAutorotate
 {
@@ -430,7 +453,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (self.visible) {
+    if (self.menuVisible) {
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
@@ -438,23 +461,20 @@
     }
 }
 
-#pragma mark -
-#pragma mark Status bar appearance management
+#pragma mark Status Bar Appearance
 
 - (void)updateStatusBar
 {
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [UIView animateWithDuration:0.3f animations:^{
-            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-        }];
-    }
+    [UIView animateWithDuration:0.3f animations: ^ {
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
-    statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
-    if (self.contentViewController.view.frame.origin.y > 10) {
+    statusBarStyle = self.menuVisible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+    if (self.contentViewController.view.frame.origin.x > 10) {
         statusBarStyle = self.menuViewController.preferredStatusBarStyle;
     } else {
         statusBarStyle = self.contentViewController.preferredStatusBarStyle;
@@ -465,8 +485,8 @@
 - (BOOL)prefersStatusBarHidden
 {
     BOOL statusBarHidden = NO;
-    statusBarHidden = self.visible ? self.menuViewController.prefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
-    if (self.contentViewController.view.frame.origin.y > 10) {
+    statusBarHidden = self.menuVisible ? self.menuViewController.prefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
+    if(self.contentViewController.view.frame.origin.x > 10) {
         statusBarHidden = self.menuViewController.prefersStatusBarHidden;
     } else {
         statusBarHidden = self.contentViewController.prefersStatusBarHidden;
@@ -477,8 +497,8 @@
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
     UIStatusBarAnimation statusBarAnimation = UIStatusBarAnimationNone;
-    statusBarAnimation = self.visible ? self.menuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
-    if (self.contentViewController.view.frame.origin.y > 10) {
+    statusBarAnimation = self.menuVisible ? self.menuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
+    if (self.contentViewController.view.frame.origin.x > 10) {
         statusBarAnimation = self.menuViewController.preferredStatusBarUpdateAnimation;
     } else {
         statusBarAnimation = self.contentViewController.preferredStatusBarUpdateAnimation;

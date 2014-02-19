@@ -50,6 +50,7 @@
 		0B9A26571891D5E30032DA03 /* UTCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCSTests-Info.plist"; sourceTree = "<group>"; };
 		0B9A26591891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
+		DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DDD7650118B3EE1300FB0170 /* UTCSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewController.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSMenuViewController.m; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.m; sourceTree = "<group>"; };
 		DDD7650518B3F68F00FB0170 /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		DDD7650918B4269400FB0170 /* UTCSSideMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */,
 				DDD7650A18B4269400FB0170 /* UTCSSideMenuViewController.h */,
 				DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */,
 			);
