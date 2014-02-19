@@ -46,6 +46,10 @@
 // @name Properties
 // --------------------------------------------------------------------------------------
 
+
+//
+@property (weak, nonatomic)     id<UTCSSideMenuViewControllerDelegate> delegate;
+
 //
 @property (strong, nonatomic)   UIViewController    *contentViewController;
 
@@ -56,7 +60,19 @@
 @property (assign, nonatomic)   UIImage             *backgroundImage;
 
 //
-@property (weak, nonatomic)     id<UTCSSideMenuViewControllerDelegate> delegate;
+@property (assign, nonatomic)   UIImage             *blurredBackgroundImage;
+
+//
+@property (strong, nonatomic)   NSNumber *parallaxMenuMinimumRelativeValue;
+
+//
+@property (strong, nonatomic)   NSNumber *parallaxMenuMaximumRelativeValue;
+
+//
+@property (strong, nonatomic)   NSNumber *parallaxContentMinimumRelativeValue;
+
+//
+@property (strong, nonatomic)   NSNumber *parallaxContentMaximumRelativeValue;
 
 //
 @property (assign, nonatomic)   NSTimeInterval animationDuration;
@@ -90,17 +106,5 @@
 
 //
 @property (assign, nonatomic)   CGFloat contentViewInPortraitOffsetCenterX;
-
-//
-@property (strong, nonatomic)   id parallaxMenuMinimumRelativeValue;
-
-//
-@property (strong, nonatomic)   id parallaxMenuMaximumRelativeValue;
-
-//
-@property (strong, nonatomic)   id parallaxContentMinimumRelativeValue;
-
-//
-@property (strong, nonatomic)   id parallaxContentMaximumRelativeValue;
 
 @end

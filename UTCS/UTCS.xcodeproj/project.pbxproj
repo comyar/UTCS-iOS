@@ -18,8 +18,8 @@
 		0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A26581891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
+		DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
-		DDD7650718B3F68F00FB0170 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650618B3F68F00FB0170 /* UTCSNewsViewController.m */; };
 		DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */; };
 		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
 /* End PBXBuildFile section */
@@ -51,10 +51,10 @@
 		0B9A26591891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
 		DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
+		DD9DF73E18B4A1B200DDC1DB /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
+		DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DDD7650118B3EE1300FB0170 /* UTCSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewController.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSMenuViewController.m; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.m; sourceTree = "<group>"; };
-		DDD7650518B3F68F00FB0170 /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
-		DDD7650618B3F68F00FB0170 /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DDD7650A18B4269400FB0170 /* UTCSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSideMenuViewController.m; sourceTree = "<group>"; };
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
@@ -123,6 +123,7 @@
 				DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */,
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDEFABD11897516E00DAB5D7 /* Model */,
+				DD9DF74118B4ADE400DDC1DB /* Services */,
 				DDEFABD01897516900DAB5D7 /* Views */,
 				DDEFABCF1897516400DAB5D7 /* ViewControllers */,
 			);
@@ -159,6 +160,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DD9DF74118B4ADE400DDC1DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		DDD7650018B3ECC200FB0170 /* MenuViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,20 +179,20 @@
 		DDD7650418B3F56C00FB0170 /* NewsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DDD7650518B3F68F00FB0170 /* UTCSNewsViewController.h */,
-				DDD7650618B3F68F00FB0170 /* UTCSNewsViewController.m */,
+				DD9DF73E18B4A1B200DDC1DB /* UTCSNewsViewController.h */,
+				DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */,
 			);
 			name = NewsViewController;
 			sourceTree = "<group>";
 		};
-		DDD7650918B4269400FB0170 /* UTCSSideMenuViewController */ = {
+		DDD7650918B4269400FB0170 /* SideMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
 				DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */,
 				DDD7650A18B4269400FB0170 /* UTCSSideMenuViewController.h */,
 				DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */,
 			);
-			name = UTCSSideMenuViewController;
+			name = SideMenuViewController;
 			path = ViewControllers/UTCSSideMenuViewController;
 			sourceTree = "<group>";
 		};
@@ -200,7 +208,7 @@
 		DDEFABCF1897516400DAB5D7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DDD7650918B4269400FB0170 /* UTCSSideMenuViewController */,
+				DDD7650918B4269400FB0170 /* SideMenuViewController */,
 				DDD7650418B3F56C00FB0170 /* NewsViewController */,
 				DDD7650018B3ECC200FB0170 /* MenuViewController */,
 			);
@@ -317,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDD7650718B3F68F00FB0170 /* UTCSNewsViewController.m in Sources */,
+				DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,

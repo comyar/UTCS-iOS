@@ -11,10 +11,24 @@
 #import "UTCSNewsViewController.h"
 #import "UTCSMenuViewController.h"
 
+
+#pragma mark - UTCSAppDelegate Class Extension
+
 @interface UTCSAppDelegate ()
+
+//
+@property (strong, nonatomic) UTCSSideMenuViewController    *sideMenuViewController;
+
+//
 @property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
+
+//
 @property (strong, nonatomic) UINavigationController        *contentViewController;
+
 @end
+
+
+#pragma mark - UTCSAppDelegate Implementation
 
 @implementation UTCSAppDelegate
 
@@ -25,9 +39,11 @@
     self.menuViewController = [UTCSMenuViewController new];
     self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
 
-    UTCSSideMenuViewController *sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.contentViewController menuViewController:self.menuViewController];
-    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"menuBackgroundBlurred"];
-    self.window.rootViewController = sideMenuViewController;
+    self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.contentViewController
+                                                                                menuViewController:self.menuViewController];
+    self.sideMenuViewController.backgroundImage         = [UIImage imageNamed:@"menuBackground"];
+    self.sideMenuViewController.blurredBackgroundImage  = [UIImage imageNamed:@"menuBackgroundBlurred"];
+    self.window.rootViewController = self.sideMenuViewController;
     
     [self.window makeKeyAndVisible];
     [self configureAppearance];
@@ -37,7 +53,6 @@
 - (void)configureAppearance
 {
     [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance]setTintColor:BURNT_ORANGE_COLOR];
 }
 
 @end

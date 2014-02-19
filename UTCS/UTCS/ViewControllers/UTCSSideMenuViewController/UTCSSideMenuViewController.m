@@ -8,19 +8,27 @@
 
 #import "UTCSSideMenuViewController.h"
 
-
 #pragma mark - UTCSSideMenuViewController Class Extension
 
 @interface UTCSSideMenuViewController ()
 
 //
-@property (assign, nonatomic) BOOL menuVisible;
+@property (assign, nonatomic) BOOL          menuVisible;
 
 //
-@property (assign, nonatomic) CGPoint originalPoint;
+@property (assign, nonatomic) CGPoint       originalPoint;
 
 //
-@property (strong, nonatomic) UIImageView *backgroundImageView;
+@property (assign, nonatomic) CGFloat       animationVelocity;
+
+//
+@property (strong, nonatomic) UIView        *backgroundImageViewContainer;
+
+//
+@property (strong, nonatomic) UIImageView   *backgroundImageView;
+
+//
+@property (strong, nonatomic) UIImageView   *blurredBackgroundImageView;
 
 @end
 
@@ -42,21 +50,21 @@
         _contentViewController  = contentViewController;
         _menuViewController     = menuViewController;
         
-        _animationDuration = 0.30f;
+        _animationDuration = 0.25f;
         _panGestureEnabled = YES;
         _interactivePopGestureRecognizerEnabled = YES;
         
         _scaleContentView = YES;
         _contentViewScaleValue = 0.7f;
         
-        _scaleBackgroundImageView = YES;
+        _scaleBackgroundImageView = NO;
         
         _parallaxEnabled = YES;
-        _parallaxMenuMinimumRelativeValue = @(-15);
-        _parallaxMenuMaximumRelativeValue = @(15);
+        _parallaxMenuMinimumRelativeValue = @(-25);
+        _parallaxMenuMaximumRelativeValue = @(25);
         
-        _parallaxContentMinimumRelativeValue = @(-25);
-        _parallaxContentMaximumRelativeValue = @(25);
+        _parallaxContentMinimumRelativeValue = @(-50);
+        _parallaxContentMaximumRelativeValue = @(50);
         
         _bouncesHorizontally = YES;
     }
@@ -77,22 +85,35 @@
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
+    // Initialize background image view container
+    self.backgroundImageViewContainer = [[UIView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.backgroundImageViewContainer];
+    
     // Initialize background image view
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     self.backgroundImageView.image = self.backgroundImage;
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.backgroundImageView];
+    [self.backgroundImageViewContainer addSubview:self.backgroundImageView];
+    
+    // Initialize blurred background image view
+    self.blurredBackgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    self.blurredBackgroundImageView.alpha = 0.0;
+    self.blurredBackgroundImageView.image = self.blurredBackgroundImage;
+    self.blurredBackgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.blurredBackgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.backgroundImageViewContainer addSubview:self.blurredBackgroundImageView];
     
     // Configure view controllers
-    self.menuViewController.view.alpha = 0;
+    self.menuViewController.view.alpha = 0.0;
     [self configureDisplayController:self.menuViewController frame:self.view.bounds];
     [self configureDisplayController:self.contentViewController frame:self.view.bounds];
     [self addMenuViewControllerMotionEffects];
     
     // Scale background image view
-    if(self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    if(self.scaleBackgroundImageView) {
+        self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    }
     
     // Add pan gesture recognizer
     if (self.panGestureEnabled) {
@@ -126,9 +147,9 @@
 {
     // Prepare background image view for presentation
     if (self.scaleBackgroundImageView) {
-        self.backgroundImageView.transform = CGAffineTransformIdentity;
-        self.backgroundImageView.frame = self.view.bounds;
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
+        self.backgroundImageViewContainer.frame = self.view.bounds;
+        self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
     
     // Prepare menu view controller for presentation
@@ -147,13 +168,20 @@
 
 - (void)showMenuViewController
 {
+    [self showMenuViewControllerWithVelocity:self.animationVelocity];
+}
+
+- (void)showMenuViewControllerWithVelocity:(CGFloat)velocity
+{
     // Ensure subviews resign first responder
     [self.view.window endEditing:YES];
     
     // Ignore touch events during animation
     [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     
-    [UIView animateWithDuration:self.animationDuration animations: ^ {
+    CGFloat deltaOffset = (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX) - self.menuViewController.view.frame.origin.x;
+    CGFloat duration = MIN(self.animationDuration, fabs(deltaOffset / velocity));
+    [UIView animateWithDuration:duration animations: ^ {
         
         // Scale content view
         if (self.scaleContentView) {
@@ -162,15 +190,17 @@
         
         // Set content view's center based on device orientation
         self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
-
+        
         // Configure menu view controller
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         
         // Scale the background image view
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageView.transform = CGAffineTransformIdentity;
+            self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
         }
+        
+        self.blurredBackgroundImageView.alpha = 1.0;
         
     } completion:^(BOOL finished) {
         
@@ -194,6 +224,11 @@
 
 - (void)hideMenuViewController
 {
+    [self hideMenuViewControllerWithVelocity:self.animationVelocity];
+}
+
+- (void)hideMenuViewControllerWithVelocity:(CGFloat)velocity
+{
     // Delegate callback
     if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:willHideMenuViewController:)]) {
         [self.delegate sideMenuViewController:self willHideMenuViewController:self.menuViewController];
@@ -202,7 +237,9 @@
     // Ignore touch events during animation
     [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     
-    [UIView animateWithDuration:self.animationDuration animations:^{
+    CGFloat deltaOffset = (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX) - self.menuViewController.view.frame.origin.x;
+    CGFloat duration = MIN(self.animationDuration, fabs(deltaOffset / velocity));
+    [UIView animateWithDuration:duration animations:^{
         
         // Restore the content view's transform and frame
         self.contentViewController.view.transform = CGAffineTransformIdentity;
@@ -214,8 +251,10 @@
         
         // Scale background image view
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+            self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
+        
+        self.blurredBackgroundImageView.alpha = 0.0;
         
         // Remove any motion effects on the content view controller
         if (self.parallaxEnabled) {
@@ -327,8 +366,8 @@
                                          self.contentViewController.view.center.y - CGRectGetHeight(self.contentViewController.view.bounds) / 2.0);
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageView.transform = CGAffineTransformIdentity;
-            self.backgroundImageView.frame = self.view.bounds;
+            self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
+            self.backgroundImageViewContainer.frame = self.view.bounds;
         }
         self.menuViewController.view.frame = self.view.bounds;
         [self.view.window endEditing:YES];
@@ -348,16 +387,15 @@
         }
         
         self.menuViewController.view.alpha = delta;
-        if (self.scaleBackgroundImageView) {
-            self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
-        }
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
         if (self.scaleBackgroundImageView) {
-            if (backgroundViewScale < 1) {
-                self.backgroundImageView.transform = CGAffineTransformIdentity;
+            self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
+            if (backgroundViewScale < 1.0) {
+                self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
             }
         }
+        self.blurredBackgroundImageView.alpha = delta;
         
         if (contentViewScale > 1) {
             if (!self.menuVisible) {
@@ -371,16 +409,22 @@
             }
             self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
             self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, point.x, 0);
+            
         }
         
         [self updateStatusBar];
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if ([recognizer velocityInView:self.view].x > 0) {
-            [self showMenuViewController];
+        if (self.contentViewController.view.frame.origin.x < -512) {
+            // ee here
         } else {
-            [self hideMenuViewController];
+            CGPoint velocity = [recognizer velocityInView:self.view];
+            if (velocity.x > 0) {
+                [self showMenuViewControllerWithVelocity:velocity.x];
+            } else {
+                [self hideMenuViewControllerWithVelocity:velocity.x];
+            }
         }
     }
 }
@@ -390,8 +434,9 @@
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
     _backgroundImage = backgroundImage;
-    if (self.backgroundImageView)
+    if (self.backgroundImageView) {
         self.backgroundImageView.image = backgroundImage;
+    }
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
@@ -458,6 +503,8 @@
         self.contentViewController.view.frame = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
+        CGFloat offset = (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX);
+        self.animationVelocity = offset / self.animationDuration;
     }
 }
 
