@@ -35,6 +35,7 @@
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
 		DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */; };
+		DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */; };
 		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		DDD7650A18B4269400FB0170 /* UTCSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSideMenuViewController.m; sourceTree = "<group>"; };
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
+		DDF3652818B69FFA00306069 /* UTCSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventDetailViewController.h; path = ViewControllers/UTCSEventDetailViewController/UTCSEventDetailViewController.h; sourceTree = "<group>"; };
+		DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventDetailViewController.m; path = ViewControllers/UTCSEventDetailViewController/UTCSEventDetailViewController.m; sourceTree = "<group>"; };
 		DDFD7DD618AA049A008F5A47 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,6 +254,7 @@
 		DD79690F18B60ED0009ADE2A /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				DDF3652718B69FD800306069 /* EventDetailViewController */,
 				DD79691018B60ED6009ADE2A /* DirectoryViewController */,
 				DD7968F218B5B2CF009ADE2A /* EventsViewController */,
 				DDD7650418B3F56C00FB0170 /* NewsViewController */,
@@ -343,6 +347,15 @@
 			children = (
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DDF3652718B69FD800306069 /* EventDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDF3652818B69FFA00306069 /* UTCSEventDetailViewController.h */,
+				DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */,
+			);
+			name = EventDetailViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +463,7 @@
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */,
 				DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */,
+				DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
