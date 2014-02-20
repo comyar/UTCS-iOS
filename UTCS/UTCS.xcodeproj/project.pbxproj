@@ -20,6 +20,7 @@
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
 		DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7968F418B5B54E009ADE2A /* UTCSEventsViewController.m */; };
 		DD7968FA18B5EB11009ADE2A /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */; };
+		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
@@ -57,6 +58,8 @@
 		DD7968F418B5B54E009ADE2A /* UTCSEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsViewController.m; path = ViewControllers/UTCSEventsViewController/UTCSEventsViewController.m; sourceTree = "<group>"; };
 		DD7968F818B5EB11009ADE2A /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Libraries/UIImageEffects/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Libraries/UIImageEffects/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		DD7968FB18B5FED3009ADE2A /* UTCSMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewControllerDelegate.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewControllerDelegate.h; sourceTree = "<group>"; };
+		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD9DF73E18B4A1B200DDC1DB /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
 				0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */,
 				0B9A26371891D5E30032DA03 /* Foundation.framework in Frameworks */,
+				DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +122,7 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD7968FC18B60AE7009ADE2A /* Parse.framework */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
 				0B9A26381891D5E30032DA03 /* CoreGraphics.framework */,
@@ -207,6 +212,7 @@
 		DDD7650018B3ECC200FB0170 /* MenuViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DD7968FB18B5FED3009ADE2A /* UTCSMenuViewControllerDelegate.h */,
 				DDD7650118B3EE1300FB0170 /* UTCSMenuViewController.h */,
 				DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */,
 			);
@@ -490,6 +496,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
 				INFOPLIST_FILE = "UTCS/UTCS-Info.plist";
@@ -503,6 +513,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
 				INFOPLIST_FILE = "UTCS/UTCS-Info.plist";

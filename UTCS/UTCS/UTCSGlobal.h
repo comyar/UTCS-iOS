@@ -19,4 +19,14 @@
 #define COLOR_GRAY          [UIColor colorWithRed:RGB(153) green:RGB(153) blue:RGB(153) alpha:1.0]
 #define COLOR_DARK_GRAY     [UIColor colorWithRed:RGB(51) green:RGB(51) blue:RGB(51) alpha:1.0]
 
+
+// ------------
+// @name Types
+// -------------
+
+typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
+    UTCSMenuOptionNews = 0,
+    UTCSMenuOptionEvents
+};
+
 #endif

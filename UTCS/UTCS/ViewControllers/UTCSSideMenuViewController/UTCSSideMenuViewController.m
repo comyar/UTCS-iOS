@@ -23,13 +23,10 @@
 @property (assign, nonatomic) CGFloat       animationVelocity;
 
 //
-@property (strong, nonatomic) UIView        *backgroundImageViewContainer;
+@property (strong, nonatomic) UIImageView       *backgroundImageView;
 
 //
-@property (strong, nonatomic) UIImageView   *backgroundImageView;
-
-//
-@property (strong, nonatomic) UIImageView   *blurredBackgroundImageView;
+@property (strong, nonatomic) UIBarButtonItem   *menuBarButtonItem;
 
 @end
 
@@ -86,25 +83,12 @@
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    // Initialize background image view container
-    self.backgroundImageViewContainer = [[UIView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.backgroundImageViewContainer];
-    
     // Initialize background image view
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     self.backgroundImageView.image = self.backgroundImage;
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.backgroundImageViewContainer addSubview:self.backgroundImageView];
-    self.backgroundImageViewContainer.alpha = 0.0;
-    
-    // Initialize blurred background image view
-    self.blurredBackgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    self.blurredBackgroundImageView.alpha = 0.0;
-    self.blurredBackgroundImageView.image = self.blurredBackgroundImage;
-    self.blurredBackgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.blurredBackgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.backgroundImageViewContainer addSubview:self.blurredBackgroundImageView];
+    [self.view addSubview:self.backgroundImageView];
     
     // Configure view controllers
     self.menuViewController.view.alpha = 0.0;
@@ -112,9 +96,16 @@
     [self configureDisplayController:self.contentViewController frame:self.view.bounds];
     [self addMenuViewControllerMotionEffects];
     
+    // Initialize menu bar button item
+    self.menuBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(didTouchUpInsideBarButtonItem:)];
+    if([self.contentViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)self.contentViewController;
+        navigationController.navigationBar.topItem.leftBarButtonItem = self.menuBarButtonItem;
+    }
+    
     // Scale background image view
     if(self.scaleBackgroundImageView) {
-        self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
     
     // Add pan gesture recognizer
@@ -149,12 +140,12 @@
 {
     // Prepare background image view for presentation
     if (self.scaleBackgroundImageView) {
-        self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
-        self.backgroundImageViewContainer.frame = self.view.bounds;
-        self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        self.backgroundImageView.transform = CGAffineTransformIdentity;
+        self.backgroundImageView.frame = self.view.bounds;
+        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
     
-    self.backgroundImageViewContainer.alpha = 1.0;
+    self.backgroundImageView.alpha = 1.0;
     
     // Prepare menu view controller for presentation
     self.menuViewController.view.transform = CGAffineTransformIdentity;
@@ -201,10 +192,8 @@
         
         // Scale the background image view
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
+            self.backgroundImageView.transform = CGAffineTransformIdentity;
         }
-        
-        self.blurredBackgroundImageView.alpha = 1.0;
         
     } completion:^(BOOL finished) {
         
@@ -218,8 +207,11 @@
         if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:didShowMenuViewController:)]) {
             [self.delegate sideMenuViewController:self didShowMenuViewController:self.menuViewController];
         }
-        self.contentViewController.view.userInteractionEnabled = NO;
-        self.contentViewController.navigationController.navigationBar.userInteractionEnabled = YES;
+        
+        for(UIViewController *viewController in self.contentViewController.childViewControllers) {
+            viewController.view.userInteractionEnabled = NO;
+        }
+        
         self.menuVisible = YES;
         
         // Update the status bar style
@@ -256,10 +248,8 @@
         
         // Scale background image view
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+            self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
-        
-        self.blurredBackgroundImageView.alpha = 0.0;
         
         // Remove any motion effects on the content view controller
         if (self.parallaxEnabled) {
@@ -280,11 +270,13 @@
         }
         
         self.menuVisible = NO;
-        self.contentViewController.view.userInteractionEnabled = YES;
+        for(UIViewController *viewController in self.contentViewController.childViewControllers) {
+            viewController.view.userInteractionEnabled = YES;
+        }
         
         // Fade out the background image so it's not visible around the content view's rounded edges
         [UIView animateWithDuration:1.0 animations: ^ {
-            self.backgroundImageViewContainer.alpha = 0.0;
+            self.backgroundImageView.alpha = 0.0;
         }];
         
         // Update the status bar style
@@ -329,6 +321,17 @@
 
         [self.contentViewController.view addMotionEffect:interpolationHorizontal];
         [self.contentViewController.view addMotionEffect:interpolationVertical];
+    }
+}
+
+#pragma mark Bar Button Item Methods
+
+- (void)didTouchUpInsideBarButtonItem:(UIBarButtonItem *)item
+{
+    if(self.menuVisible) {
+        [self hideMenuViewController];
+    } else {
+        [self presentMenuViewController];
     }
 }
 
@@ -377,11 +380,11 @@
         self.menuViewController.view.frame = self.view.bounds;
         
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
-            self.backgroundImageViewContainer.frame = self.view.bounds;
+            self.backgroundImageView.transform = CGAffineTransformIdentity;
+            self.backgroundImageView.frame = self.view.bounds;
         }
         
-        self.backgroundImageViewContainer.alpha = 1.0;
+        self.backgroundImageView.alpha = 1.0;
         
         [self.view.window endEditing:YES];
     }
@@ -403,14 +406,12 @@
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
         if (self.scaleBackgroundImageView) {
-            self.backgroundImageViewContainer.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
+            self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
             if (backgroundViewScale < 1.0) {
-                self.backgroundImageViewContainer.transform = CGAffineTransformIdentity;
+                self.backgroundImageView.transform = CGAffineTransformIdentity;
             }
         }
-        self.blurredBackgroundImageView.alpha = delta;
         
-        NSLog(@"%f", contentViewScale);
         if (contentViewScale > 1.0) {
             if (!self.menuVisible) {
                 self.contentViewController.view.transform = CGAffineTransformIdentity;
@@ -469,6 +470,11 @@
     
     if(self.menuVisible) {
         [self addContentViewControllerMotionEffects];
+    }
+    
+    if([_contentViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)_contentViewController;
+        navigationController.navigationBar.topItem.leftBarButtonItem = self.menuBarButtonItem;
     }
 }
 

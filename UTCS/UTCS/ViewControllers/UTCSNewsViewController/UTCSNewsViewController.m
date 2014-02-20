@@ -11,7 +11,7 @@
 static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 
 @interface UTCSNewsViewController ()
-
+@property (strong, nonatomic) NSArray   *newsArticles;
 @end
 
 @implementation UTCSNewsViewController
@@ -27,23 +27,41 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Adjust edges so tableview extends beneath navigation bar
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
+    
+    // Regist tableview cell class
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    
+    // Initialize refresh control
+    self.refreshControl = [UIRefreshControl new];
+    self.refreshControl.tintColor = COLOR_GRAY;
+    [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
 }
 
-#pragma mark - Table view data source
+#pragma mark Refresh Control
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)didRefresh:(UIRefreshControl *)refreshControl
 {
-    return 1;
+    NSLog(@"Did refresh table view");
 }
+
+#pragma mark Updating News Articles
+
+- (void)updateNewsArticles
+{
+    
+}
+
+#pragma mark UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [self.newsArticles count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,7 +71,6 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
     if(!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = @"yolo";
     
     return cell;
 }

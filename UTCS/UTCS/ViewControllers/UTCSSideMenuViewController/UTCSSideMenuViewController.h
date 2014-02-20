@@ -60,9 +60,6 @@
 @property (assign, nonatomic)   UIImage             *backgroundImage;
 
 //
-@property (assign, nonatomic)   UIImage             *blurredBackgroundImage;
-
-//
 @property (strong, nonatomic)   NSNumber *parallaxMenuMinimumRelativeValue;
 
 //

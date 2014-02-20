@@ -8,16 +8,38 @@
 
 #import "UTCSMenuViewController.h"
 
+#pragma mark - UTCSMenuViewController Class Extension
+
+@interface UTCSMenuViewController ()
+
+//
+@property (strong, nonatomic) NSArray   *menuOptionNames;
+
+//
+@property (strong, nonatomic) NSArray   *menuOptionIconNames;
+
+@property (strong, nonatomic) NSArray   *menuOptionSectionTitles;
+
+@end
+
+
+#pragma mark - UTCSMenuViewController Implementation
 
 @implementation UTCSMenuViewController
+
+#pragma mark Initialization
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
+        self.menuOptionNames = @[@[@"News", @"Events"], @[@"Labs", @"Directory", @"Disk Quota"], @[@"Settings", @"About"]];
+        self.menuOptionIconNames = @[@[@"news", @"events"], @[@"labs", @"directory", @"diskquota"], @[@"settings", @"about"]];
+        self.menuOptionSectionTitles = @[@"", @"", @""];
     }
     return self;
 }
+
+#pragma mark UIViewController Methods
 
 - (void)viewDidLoad
 {
@@ -31,42 +53,48 @@
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark UITableViewDataSource Methods
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuTableViewCell"];
     if(!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MenuTableViewCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
-        cell.imageView.tintColor = [UIColor whiteColor];
-        cell.textLabel.highlightedTextColor = [UIColor darkGrayColor];
+        cell.selectionStyle         = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor        = [UIColor clearColor];
+        cell.imageView.tintColor    = [UIColor whiteColor];
     }
     
-    if(indexPath.section == 0) {
-        cell.textLabel.text = @"News";
-        cell.imageView.image = [[UIImage imageNamed:@"news"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        
-    } else if(indexPath.section == 1) {
-        cell.textLabel.text = @"Events";
-        cell.imageView.image = [[UIImage imageNamed:@"events"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    } else if(indexPath.section == 2) {
-        if(indexPath.row == 0) {
-            cell.textLabel.text = @"Labs";
-            cell.imageView.image = [[UIImage imageNamed:@"labs"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        } else if(indexPath.row == 1) {
-            cell.textLabel.text = @"Directory";
-        } else if(indexPath.row == 2) {
-            cell.textLabel.text = @"Disk Quota";
-        }
-    }
-    cell.textLabel.textColor = [UIColor whiteColor];
+    NSString *text              = self.menuOptionNames[indexPath.section][indexPath.row];
+    NSString *imageName         = self.menuOptionIconNames[indexPath.section][indexPath.row];
+    
+    cell.textLabel.text         = text;
+    cell.imageView.image        = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    cell.textLabel.textColor    = [UIColor whiteColor];
     return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.menuOptionNames[section] count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.menuOptionNames count];
+}
+
+#pragma mark UITableViewDelegate Methods
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return self.menuOptionSectionTitles[section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
-        return 0.25 * CGRectGetHeight(self.view.bounds);
+        return 0.15 * CGRectGetHeight(self.view.bounds);
     return 0.0;
 }
 
@@ -76,31 +104,12 @@
     headerView.textLabel.textColor = [UIColor whiteColor];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(section == 0) {
-        return 1;
-    } else if(section == 1) {
-        return 1;
-    } else if(section == 2) {
-        return 2;
-    } else if(section == 3) {
-        return 1;
+    if(self.delegate && [self.delegate conformsToProtocol:@protocol(UTCSMenuViewControllerDelegate)] &&
+       [self.delegate respondsToSelector:@selector(didSelectMenuOption:)]) {
+        
     }
-    return 0;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if(section == 2) {
-        return @"Tools";
-    }
-    return nil;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 4;
 }
 
 @end

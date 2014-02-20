@@ -8,6 +8,7 @@
 
 #import "UTCSAppDelegate.h"
 #import "UTCSNewsViewController.h"
+#import "UTCSEventsViewController.h"
 #import "UTCSMenuViewController.h"
 
 
@@ -19,7 +20,10 @@
 @property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
 
 //
-@property (strong, nonatomic) UINavigationController        *contentViewController;
+@property (strong, nonatomic) UINavigationController        *newsNavigationController;
+
+//
+@property (strong, nonatomic) UINavigationController        *eventsNavigationController;
 
 @end
 
@@ -33,26 +37,40 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor blackColor];
    
+    // Initialize menu view controller
     self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStyleGrouped];
-    self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
-    self.contentViewController.view.layer.cornerRadius = 4.0;
-    self.contentViewController.view.layer.masksToBounds = YES;
-
-    self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.contentViewController
+    
+    // Initialize main view controllers
+    self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    
+    // Initialize side menu view controller
+    self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.newsNavigationController
                                                                                 menuViewController:self.menuViewController];
-    self.sideMenuViewController.backgroundImage         = [UIImage imageNamed:@"menuBackground"];
-//    self.sideMenuViewController.blurredBackgroundImage  = [UIImage imageNamed:@"menuBackgroundBlurred"];
+    self.sideMenuViewController.backgroundImage = [UIImage imageNamed:@"menuBackground"];
     
     self.window.rootViewController = self.sideMenuViewController;
-    
     [self.window makeKeyAndVisible];
     [self configureAppearance];
     return YES;
 }
 
+#pragma mark Configure Appearance
+
 - (void)configureAppearance
 {
     [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setTintColor:COLOR_BURNT_ORANGE];
+    [self roundCornersOfView:self.newsNavigationController.view];
+    [self roundCornersOfView:self.eventsNavigationController.view];
 }
+
+- (void)roundCornersOfView:(UIView *)view
+{
+    view.layer.cornerRadius = 4.0;
+    view.layer.masksToBounds = YES;
+}
+
+
 
 @end

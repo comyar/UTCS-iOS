@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UTCSMenuViewControllerDelegate.h"
 
+
+/**
+ */
 @interface UTCSMenuViewController : UITableViewController
+
+//
+@property (weak, nonatomic) id<UTCSMenuViewControllerDelegate> delegate;
 
 @end
