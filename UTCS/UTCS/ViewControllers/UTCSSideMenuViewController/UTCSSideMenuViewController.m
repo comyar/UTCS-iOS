@@ -58,11 +58,11 @@
         _scaleBackgroundImageView = NO;
         
         _parallaxEnabled = YES;
-        _parallaxMenuMinimumRelativeValue = @(-25);
-        _parallaxMenuMaximumRelativeValue = @(25);
+        _parallaxMenuMinimumRelativeValue = @(-15);
+        _parallaxMenuMaximumRelativeValue = @(15);
         
-        _parallaxContentMinimumRelativeValue = @(-50);
-        _parallaxContentMaximumRelativeValue = @(50);
+        _parallaxContentMinimumRelativeValue = @(-25);
+        _parallaxContentMaximumRelativeValue = @(25);
         
         _bouncesHorizontally = YES;
     }
@@ -231,6 +231,11 @@
         [self.delegate sideMenuViewController:self willHideMenuViewController:self.menuViewController];
     }
     
+    // Remove any motion effects on the content view controller
+    for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
+        [self.contentViewController.view removeMotionEffect:effect];
+    }
+    
     // Ignore touch events during animation
     [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     
@@ -251,13 +256,6 @@
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
         
-        // Remove any motion effects on the content view controller
-        if (self.parallaxEnabled) {
-            for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
-                [self.contentViewController.view removeMotionEffect:effect];
-            }
-        }
-        
     } completion:^(BOOL finished) {
         
         // Restore touch events
@@ -267,6 +265,11 @@
         if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] &&
             [self.delegate respondsToSelector:@selector(sideMenuViewController:didHideMenuViewController:)]) {
             [self.delegate sideMenuViewController:self didHideMenuViewController:self.menuViewController];
+        }
+        
+        // Remove any motion effects on the content view controller
+        for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
+            [self.contentViewController.view removeMotionEffect:effect];
         }
         
         self.menuVisible = NO;
@@ -348,7 +351,7 @@
   
     if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.menuVisible) {
         CGPoint point = [touch locationInView:gestureRecognizer.view];
-        if (point.x < 30) {
+        if (point.x < 64.0) {
             return YES;
         } else {
             return NO;

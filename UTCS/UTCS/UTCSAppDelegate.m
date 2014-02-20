@@ -44,7 +44,7 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor blackColor];
+    self.window.backgroundColor = [UIColor whiteColor];
    
     // Initialize menu view controller
     self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStyleGrouped];
@@ -81,8 +81,12 @@
 
 - (void)configureAppearance
 {
-    [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setBackgroundImage:[[UIImage imageNamed:@"navbarBackground"]resizableImageWithCapInsets:UIEdgeInsetsZero]
+                                      forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance]setShadowImage:[[UIImage imageNamed:@"navbarShadow"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
     [[UINavigationBar appearance]setTintColor:COLOR_BURNT_ORANGE];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: COLOR_DARK_GRAY,
+                                                          NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:22]}];
     [self roundCornersOfView:self.newsNavigationController.view];
     [self roundCornersOfView:self.eventsNavigationController.view];
 }

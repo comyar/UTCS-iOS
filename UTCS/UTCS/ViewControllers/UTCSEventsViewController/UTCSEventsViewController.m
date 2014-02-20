@@ -7,16 +7,23 @@
 //
 
 #import "UTCSEventsViewController.h"
+#import "UTCSEventsTableViewCell.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
+const CGFloat kEventsTableViewCellHeight            = 75.0;
+const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
+
 
 #pragma mark - UTCSEventsViewController Class Extension
 
 @interface UTCSEventsViewController ()
 
 //
-@property (strong, nonatomic) NSArray   *events;
+@property (strong, nonatomic) NSArray       *events;
+
+//
+@property (strong, nonatomic) NSDate        *updateDate;
 
 @end
 
@@ -29,6 +36,7 @@ static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
 {
     if (self = [super initWithStyle:style]) {
         self.title = @"Events";
+        [self updateEventData];
     }
     return self;
 }
@@ -40,11 +48,13 @@ static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
     // Adjust edges so tableview extends beneath navigation bar
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    // Configure table view
+    [self.tableView registerNib:[UINib nibWithNibName:@"UTCSEventsTableViewCell" bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:cellIdentifier];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
-    
-    // Register tableview cell class
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    self.tableView.showsVerticalScrollIndicator = NO;
     
     // Initialize refresh control
     self.refreshControl = [UIRefreshControl new];
@@ -64,7 +74,13 @@ static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
 
 - (void)updateEventData
 {
+    if(self.updateDate && [[NSDate date]timeIntervalSinceDate:self.updateDate] < kMinTimeIntervalBetweenUpdates) {
+        [self.refreshControl endRefreshing];
+        return;
+    }
+    
     PFQuery *query = [PFQuery queryWithClassName:PARSE_EVENT_CLASS];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
     [query whereKey:PARSE_EVENT_DATE_END greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:-3000000]];
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         if(objects) {
@@ -78,6 +94,7 @@ static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
                 }
                 return NSOrderedSame;
             }];
+            self.updateDate = [NSDate date];
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.description);
@@ -93,10 +110,15 @@ static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
     return [self.events count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return kEventsTableViewCellHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = self.events[indexPath.row][PARSE_EVENT_NAME];
+    UTCSEventsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.nameLabel.text = self.events[indexPath.row][PARSE_EVENT_NAME];
     return cell;
 }
 

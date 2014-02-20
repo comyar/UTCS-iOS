@@ -29,6 +29,8 @@
 		DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690818B60D81009ADE2A /* MobileCoreServices.framework */; };
 		DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690A18B60D8D009ADE2A /* StoreKit.framework */; };
 		DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */; };
+		DD91DF0318B627140046B09C /* UTCSEventsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD91DF0218B627140046B09C /* UTCSEventsTableViewCell.m */; };
+		DD91DF0518B627290046B09C /* UTCSEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD91DF0418B627290046B09C /* UTCSEventsTableViewCell.xib */; };
 		DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
@@ -76,6 +78,9 @@
 		DD79690818B60D81009ADE2A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DD79690A18B60D8D009ADE2A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DD91DF0118B627140046B09C /* UTCSEventsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsTableViewCell.h; path = Views/UTCSEventsTableViewCell/UTCSEventsTableViewCell.h; sourceTree = "<group>"; };
+		DD91DF0218B627140046B09C /* UTCSEventsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsTableViewCell.m; path = Views/UTCSEventsTableViewCell/UTCSEventsTableViewCell.m; sourceTree = "<group>"; };
+		DD91DF0418B627290046B09C /* UTCSEventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UTCSEventsTableViewCell.xib; path = Views/UTCSEventsTableViewCell/UTCSEventsTableViewCell.xib; sourceTree = "<group>"; };
 		DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD9DF73E18B4A1B200DDC1DB /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
@@ -260,6 +265,16 @@
 			name = DirectoryViewController;
 			sourceTree = "<group>";
 		};
+		DD91DF0018B626F30046B09C /* UTCSEventsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DD91DF0118B627140046B09C /* UTCSEventsTableViewCell.h */,
+				DD91DF0218B627140046B09C /* UTCSEventsTableViewCell.m */,
+				DD91DF0418B627290046B09C /* UTCSEventsTableViewCell.xib */,
+			);
+			name = UTCSEventsTableViewCell;
+			sourceTree = "<group>";
+		};
 		DD9DF74118B4ADE400DDC1DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +333,7 @@
 		DDEFABD01897516900DAB5D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD91DF0018B626F30046B09C /* UTCSEventsTableViewCell */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -407,6 +423,7 @@
 			files = (
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
+				DD91DF0518B627290046B09C /* UTCSEventsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +445,7 @@
 				DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DD7968FA18B5EB11009ADE2A /* UIImage+ImageEffects.m in Sources */,
+				DD91DF0318B627140046B09C /* UTCSEventsTableViewCell.m in Sources */,
 				DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */,

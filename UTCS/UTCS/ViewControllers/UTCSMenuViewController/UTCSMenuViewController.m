@@ -94,7 +94,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
-        return 0.15 * CGRectGetHeight(self.view.bounds);
+        return 0.1 * CGRectGetHeight(self.view.bounds);
     return 0.0;
 }
 

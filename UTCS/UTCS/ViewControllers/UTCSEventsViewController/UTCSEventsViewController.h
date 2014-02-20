@@ -10,4 +10,8 @@
 
 @interface UTCSEventsViewController : UITableViewController
 
+/**
+ */
+- (void)updateEventData;
+
 @end
