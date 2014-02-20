@@ -21,6 +21,14 @@
 		DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7968F418B5B54E009ADE2A /* UTCSEventsViewController.m */; };
 		DD7968FA18B5EB11009ADE2A /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
+		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
+		DD79690118B60D57009ADE2A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690018B60D57009ADE2A /* AudioToolbox.framework */; };
+		DD79690318B60D60009ADE2A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690218B60D60009ADE2A /* CFNetwork.framework */; };
+		DD79690518B60D69009ADE2A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690418B60D69009ADE2A /* CoreLocation.framework */; };
+		DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690618B60D78009ADE2A /* libz.dylib */; };
+		DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690818B60D81009ADE2A /* MobileCoreServices.framework */; };
+		DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690A18B60D8D009ADE2A /* StoreKit.framework */; };
+		DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */; };
 		DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
@@ -60,6 +68,14 @@
 		DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Libraries/UIImageEffects/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DD7968FB18B5FED3009ADE2A /* UTCSMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewControllerDelegate.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		DD7968FE18B60D1F009ADE2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DD79690018B60D57009ADE2A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DD79690218B60D60009ADE2A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DD79690418B60D69009ADE2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DD79690618B60D78009ADE2A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DD79690818B60D81009ADE2A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DD79690A18B60D8D009ADE2A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD9DF73918B4856F00DDC1DB /* UTCSSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD9DF73E18B4A1B200DDC1DB /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
@@ -77,6 +93,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */,
+				DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */,
+				DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */,
+				DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */,
+				DD79690518B60D69009ADE2A /* CoreLocation.framework in Frameworks */,
+				DD79690318B60D60009ADE2A /* CFNetwork.framework in Frameworks */,
+				DD79690118B60D57009ADE2A /* AudioToolbox.framework in Frameworks */,
+				DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */,
 				DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */,
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
 				0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */,
@@ -122,6 +146,14 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */,
+				DD79690A18B60D8D009ADE2A /* StoreKit.framework */,
+				DD79690818B60D81009ADE2A /* MobileCoreServices.framework */,
+				DD79690618B60D78009ADE2A /* libz.dylib */,
+				DD79690418B60D69009ADE2A /* CoreLocation.framework */,
+				DD79690218B60D60009ADE2A /* CFNetwork.framework */,
+				DD79690018B60D57009ADE2A /* AudioToolbox.framework */,
+				DD7968FE18B60D1F009ADE2A /* Security.framework */,
 				DD7968FC18B60AE7009ADE2A /* Parse.framework */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
@@ -202,6 +234,32 @@
 			name = UIImageEffects;
 			sourceTree = "<group>";
 		};
+		DD79690E18B60EC8009ADE2A /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				DDD7650018B3ECC200FB0170 /* MenuViewController */,
+				DDD7650918B4269400FB0170 /* SideMenuViewController */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		DD79690F18B60ED0009ADE2A /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				DD79691018B60ED6009ADE2A /* DirectoryViewController */,
+				DD7968F218B5B2CF009ADE2A /* EventsViewController */,
+				DDD7650418B3F56C00FB0170 /* NewsViewController */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
+		DD79691018B60ED6009ADE2A /* DirectoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DirectoryViewController;
+			sourceTree = "<group>";
+		};
 		DD9DF74118B4ADE400DDC1DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,10 +309,8 @@
 		DDEFABCF1897516400DAB5D7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DD7968F218B5B2CF009ADE2A /* EventsViewController */,
-				DDD7650918B4269400FB0170 /* SideMenuViewController */,
-				DDD7650418B3F56C00FB0170 /* NewsViewController */,
-				DDD7650018B3ECC200FB0170 /* MenuViewController */,
+				DD79690F18B60ED0009ADE2A /* Content */,
+				DD79690E18B60EC8009ADE2A /* Navigation */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -108,7 +108,19 @@
 {
     if(self.delegate && [self.delegate conformsToProtocol:@protocol(UTCSMenuViewControllerDelegate)] &&
        [self.delegate respondsToSelector:@selector(didSelectMenuOption:)]) {
-        
+        UTCSMenuOptions option = -1;
+        if(indexPath.section == 0) {
+            if(indexPath.row == 0) {
+                option = UTCSMenuOptionNews;
+            } else if(indexPath.row == 1) {
+                option = UTCSMenuOptionEvents;
+            }
+        } else if(indexPath.section == 1) {
+            
+        } else if(indexPath.section == 2) {
+            
+        }
+        [self.delegate didSelectMenuOption:option];
     }
 }
 

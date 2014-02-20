@@ -8,17 +8,27 @@
 
 #import "UTCSEventsViewController.h"
 
+// Constants
+static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
+
+#pragma mark - UTCSEventsViewController Class Extension
+
 @interface UTCSEventsViewController ()
 
+//
+@property (strong, nonatomic) NSArray   *events;
+
 @end
+
+
+#pragma mark - UTCSEventsViewController Implementation
 
 @implementation UTCSEventsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if (self = [super initWithStyle:style]) {
+        self.title = @"Events";
     }
     return self;
 }
@@ -27,94 +37,67 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Adjust edges so tableview extends beneath navigation bar
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
+    
+    // Register tableview cell class
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    
+    // Initialize refresh control
+    self.refreshControl = [UIRefreshControl new];
+    self.refreshControl.tintColor = COLOR_GRAY;
+    [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
+    
+    // Update data
+    [self updateEventData];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark Refresh Control
+
+- (void)didRefresh:(UIRefreshControl *)refreshControl
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self updateEventData];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)updateEventData
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_EVENT_CLASS];
+    [query whereKey:PARSE_EVENT_DATE_END greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:-3000000]];
+    [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
+        if(objects) {
+            self.events = [objects sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
+                PFObject *p_obj1 = (PFObject *)obj1;
+                PFObject *p_obj2 = (PFObject *)obj2;
+                if(p_obj1[PARSE_EVENT_DATE_END] > p_obj2[PARSE_EVENT_DATE_END]) {
+                    return NSOrderedAscending;
+                } else if(p_obj1[PARSE_EVENT_DATE_END] < p_obj2[PARSE_EVENT_DATE_END]) {
+                    return NSOrderedDescending;
+                }
+                return NSOrderedSame;
+            }];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.description);
+        }
+        [self.refreshControl endRefreshing];
+    }];
 }
+
+#pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.events count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.textLabel.text = self.events[indexPath.row][PARSE_EVENT_NAME];
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

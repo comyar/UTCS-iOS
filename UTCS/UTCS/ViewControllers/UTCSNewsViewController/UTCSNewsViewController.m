@@ -8,18 +8,28 @@
 
 #import "UTCSNewsViewController.h"
 
+// Constants
 static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 
+
+#pragma mark - UTCSNewsViewController Class Extension
+
 @interface UTCSNewsViewController ()
-@property (strong, nonatomic) NSArray   *newsArticles;
+
+//
+@property (strong, nonatomic) NSArray   *newsStories;
+
 @end
+
+
+#pragma mark - UTCSNewsViewController Implementation
 
 @implementation UTCSNewsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        
+        self.title = @"News";
     }
     return self;
 }
@@ -61,17 +71,13 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.newsArticles count];
+    return [self.newsStories count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
     return cell;
 }
 

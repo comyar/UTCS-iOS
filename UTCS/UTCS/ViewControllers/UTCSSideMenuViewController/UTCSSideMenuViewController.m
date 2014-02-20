@@ -456,10 +456,15 @@
 
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
+    if(self.contentViewController == contentViewController) {
+        return;
+    }
+    
     if (!_contentViewController) {
         _contentViewController = contentViewController;
         return;
     }
+    
     CGRect frame = _contentViewController.view.frame;
     CGAffineTransform transform = _contentViewController.view.transform;
     [self configureHideController:_contentViewController];
@@ -480,6 +485,10 @@
 
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
 {
+    if(self.contentViewController == contentViewController) {
+        return;
+    }
+    
     if (!animated) {
         [self setContentViewController:contentViewController];
     } else {

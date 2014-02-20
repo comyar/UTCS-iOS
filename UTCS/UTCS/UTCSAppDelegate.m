@@ -7,9 +7,10 @@
 //
 
 #import "UTCSAppDelegate.h"
+#import "UTCSMenuViewController.h"
+#import "UTCSSideMenuViewController.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
-#import "UTCSMenuViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -25,6 +26,9 @@
 //
 @property (strong, nonatomic) UINavigationController        *eventsNavigationController;
 
+//
+@property (strong, nonatomic) UINavigationController        *directoryNavigationController;
+
 @end
 
 
@@ -34,11 +38,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Initialize Parse
+    [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
+                  clientKey:@"JJf7dzHkAaawjGMSLPN7N2HXzfII3svZoCIqxx8V"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor blackColor];
    
     // Initialize menu view controller
     self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    self.menuViewController.delegate = self;
     
     // Initialize main view controllers
     self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
@@ -54,6 +64,18 @@
     [self configureAppearance];
     return YES;
 }
+
+#pragma mark UTCSMenuViewControllerDelegate Methods
+
+- (void)didSelectMenuOption:(UTCSMenuOptions)option
+{
+    if(option == UTCSMenuOptionNews) {
+        [self.sideMenuViewController setContentViewController:self.newsNavigationController animated:YES];
+    } else if(option == UTCSMenuOptionEvents) {
+        [self.sideMenuViewController setContentViewController:self.eventsNavigationController animated:YES];
+    }
+    [self.sideMenuViewController hideMenuViewController];
+ }
 
 #pragma mark Configure Appearance
 
