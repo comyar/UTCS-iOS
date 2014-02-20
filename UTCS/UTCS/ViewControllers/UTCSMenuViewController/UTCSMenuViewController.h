@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSMenuViewController : UIViewController <UITableViewDataSource>
+@interface UTCSMenuViewController : UITableViewController
 
 @end

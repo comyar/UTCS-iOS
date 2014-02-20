@@ -7,7 +7,6 @@
 //
 
 #import "UTCSAppDelegate.h"
-#import "UTCSSideMenuViewController.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSMenuViewController.h"
 
@@ -15,9 +14,6 @@
 #pragma mark - UTCSAppDelegate Class Extension
 
 @interface UTCSAppDelegate ()
-
-//
-@property (strong, nonatomic) UTCSSideMenuViewController    *sideMenuViewController;
 
 //
 @property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
@@ -35,14 +31,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor blackColor];
    
-    self.menuViewController = [UTCSMenuViewController new];
+    self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStyleGrouped];
     self.contentViewController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    self.contentViewController.view.layer.cornerRadius = 4.0;
+    self.contentViewController.view.layer.masksToBounds = YES;
 
     self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.contentViewController
                                                                                 menuViewController:self.menuViewController];
     self.sideMenuViewController.backgroundImage         = [UIImage imageNamed:@"menuBackground"];
-    self.sideMenuViewController.blurredBackgroundImage  = [UIImage imageNamed:@"menuBackgroundBlurred"];
+//    self.sideMenuViewController.blurredBackgroundImage  = [UIImage imageNamed:@"menuBackgroundBlurred"];
+    
     self.window.rootViewController = self.sideMenuViewController;
     
     [self.window makeKeyAndVisible];

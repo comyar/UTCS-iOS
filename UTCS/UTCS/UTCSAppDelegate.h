@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <QuartzCore/QuartzCore.h>
+#import "UTCSSideMenuViewController.h"
 
 /**
  */
 @interface UTCSAppDelegate : UIResponder <UIApplicationDelegate>
 
 //
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow                      *window;
+
+//
+@property (strong, nonatomic) UTCSSideMenuViewController    *sideMenuViewController;
 
 @end
