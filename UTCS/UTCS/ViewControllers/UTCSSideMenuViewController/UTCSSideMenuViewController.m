@@ -14,13 +14,13 @@
 @interface UTCSSideMenuViewController ()
 
 //
-@property (assign, nonatomic) BOOL          menuVisible;
+@property (assign, nonatomic) BOOL              menuVisible;
 
 //
-@property (assign, nonatomic) CGPoint       originalPoint;
+@property (assign, nonatomic) CGPoint           originalPoint;
 
 //
-@property (assign, nonatomic) CGFloat       animationVelocity;
+@property (assign, nonatomic) CGFloat           animationVelocity;
 
 //
 @property (strong, nonatomic) UIImageView       *backgroundImageView;
@@ -362,12 +362,12 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
-    if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:didRecognizePanGesture:)])
-        [self.delegate sideMenuViewController:self didRecognizePanGesture:recognizer];
-    
     if (!self.panGestureEnabled) {
         return;
     }
+    
+    if ([self.delegate conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(sideMenuViewController:didRecognizePanGesture:)])
+        [self.delegate sideMenuViewController:self didRecognizePanGesture:recognizer];
     
     CGPoint point = [recognizer translationInView:self.view];
     
@@ -394,7 +394,6 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
         CGFloat delta = self.menuVisible ? (point.x + self.originalPoint.x) / self.originalPoint.x : point.x / self.view.frame.size.width;
-        
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
@@ -403,6 +402,13 @@
             contentViewScale = MAX(contentViewScale, self.contentViewScaleValue);
             backgroundViewScale = MAX(backgroundViewScale, 1.0);
             menuViewScale = MAX(menuViewScale, 1.0);
+        }
+        
+        CGFloat contentOffset = point.x;
+        if(delta >= 1.0) {
+            menuViewScale = 1.0f - ((0.1f / delta) * (delta - 1.0));
+            contentOffset =  point.x / (point.x * delta);
+            contentViewScale = (1 - (1 - self.contentViewScaleValue)) - ((0.1f / delta) * (delta - 1.0));
         }
         
         self.menuViewController.view.alpha = delta;
@@ -427,7 +433,7 @@
             }
             
             self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
-            self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, point.x, 0);
+            self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, contentOffset, 0);
         }
         
         [self updateStatusBar];
@@ -472,6 +478,7 @@
     CGAffineTransform transform = _contentViewController.view.transform;
     [self configureHideController:_contentViewController];
     _contentViewController = contentViewController;
+    
     [self configureDisplayController:contentViewController frame:self.view.bounds];
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
@@ -504,6 +511,10 @@
             [contentViewController.view removeFromSuperview];
             [self setContentViewController:contentViewController];
         }];
+    }
+    
+    if([contentViewController conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)]) {
+        self.delegate = (id<UTCSSideMenuViewControllerDelegate>)contentViewController;
     }
 }
 
