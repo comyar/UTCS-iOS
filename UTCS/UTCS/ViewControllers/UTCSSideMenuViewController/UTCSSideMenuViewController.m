@@ -55,7 +55,7 @@
         _scaleContentView = YES;
         _contentViewScaleValue = 0.7f;
         
-        _scaleBackgroundImageView = NO;
+        _scaleBackgroundImageView = YES;
         
         _parallaxEnabled = YES;
         _parallaxMenuMinimumRelativeValue = @(-15);

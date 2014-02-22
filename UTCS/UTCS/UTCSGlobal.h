@@ -38,7 +38,8 @@
 typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
     UTCSMenuOptionNews = 0,
     UTCSMenuOptionEvents,
-    UTCSMenuOptionLabs
+    UTCSMenuOptionLabs,
+    UTCSMenuOptionDirectory
 };
 
 #endif

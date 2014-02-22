@@ -12,6 +12,7 @@
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
+#import "UTCSDirectoryViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -55,7 +56,10 @@
     
     // Initialize main view controllers
     self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    [self roundCornersOfView:self.newsNavigationController.view];
+    
     self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    [self roundCornersOfView:self.eventsNavigationController.view];
     
     // Initialize side menu view controller
     self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.newsNavigationController
@@ -79,8 +83,15 @@
     } else if(option == UTCSMenuOptionLabs) {
         if(!self.labsViewController) {
             self.labsViewController = [UTCSLabsViewController new];
+            [self roundCornersOfView:self.labsViewController.view];
         }
         [self.sideMenuViewController setContentViewController:self.labsViewController animated:YES];
+    } else if(option == UTCSMenuOptionDirectory) {
+        if(!self.directoryNavigationController) {
+            self.directoryNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+            [self roundCornersOfView:self.directoryNavigationController.view];
+        }
+        [self.sideMenuViewController setContentViewController:self.directoryNavigationController animated:YES];
     }
     [self.sideMenuViewController hideMenuViewController];
  }
@@ -95,8 +106,6 @@
     [[UINavigationBar appearance]setTintColor:COLOR_BURNT_ORANGE];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: COLOR_DARK_GRAY,
                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:22]}];
-    [self roundCornersOfView:self.newsNavigationController.view];
-    [self roundCornersOfView:self.eventsNavigationController.view];
 }
 
 - (void)roundCornersOfView:(UIView *)view

@@ -8,17 +8,24 @@
 
 #import "UTCSLabsViewController.h"
 
+#pragma mark - UTCSLabsViewController Class Extension
+
 @interface UTCSLabsViewController ()
 
+//
+@property (strong, nonatomic) UIScrollView  *scrollView;
+
 @end
+
+
+#pragma mark - UTCSLabsViewController Implementation
 
 @implementation UTCSLabsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -26,13 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
 }
 
 @end
