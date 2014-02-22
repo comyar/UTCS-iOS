@@ -11,6 +11,7 @@
 #import "UTCSSideMenuViewController.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
+#import "UTCSLabsViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -25,6 +26,8 @@
 
 //
 @property (strong, nonatomic) UINavigationController        *eventsNavigationController;
+
+@property (strong, nonatomic) UTCSLabsViewController        *labsViewController;
 
 //
 @property (strong, nonatomic) UINavigationController        *directoryNavigationController;
@@ -73,6 +76,11 @@
         [self.sideMenuViewController setContentViewController:self.newsNavigationController animated:YES];
     } else if(option == UTCSMenuOptionEvents) {
         [self.sideMenuViewController setContentViewController:self.eventsNavigationController animated:YES];
+    } else if(option == UTCSMenuOptionLabs) {
+        if(!self.labsViewController) {
+            self.labsViewController = [UTCSLabsViewController new];
+        }
+        [self.sideMenuViewController setContentViewController:self.labsViewController animated:YES];
     }
     [self.sideMenuViewController hideMenuViewController];
  }

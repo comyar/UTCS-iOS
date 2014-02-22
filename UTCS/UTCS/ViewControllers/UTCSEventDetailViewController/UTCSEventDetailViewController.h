@@ -10,4 +10,6 @@
 
 @interface UTCSEventDetailViewController : UIViewController
 
+@property (strong, nonatomic) PFObject *event;
+
 @end

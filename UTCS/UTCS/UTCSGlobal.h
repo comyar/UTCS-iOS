@@ -25,6 +25,7 @@
 
 #define PARSE_EVENT_CLASS           @"Event"
 #define PARSE_EVENT_NAME            @"name"
+#define PARSE_EVENT_DESCRIPTION     @"cleanedDescription"
 #define PARSE_EVENT_LOCATION        @"location"
 #define PARSE_EVENT_DATE_START      @"dateStart"
 #define PARSE_EVENT_DATE_END        @"dateEnd"
@@ -36,7 +37,8 @@
 
 typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
     UTCSMenuOptionNews = 0,
-    UTCSMenuOptionEvents
+    UTCSMenuOptionEvents,
+    UTCSMenuOptionLabs
 };
 
 #endif

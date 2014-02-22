@@ -8,6 +8,7 @@
 
 #import "UTCSEventsViewController.h"
 #import "UTCSEventsTableViewCell.h"
+#import "UTCSEventDetailViewController.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
@@ -19,15 +20,19 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 @interface UTCSEventsViewController ()
 
-@property (strong, nonatomic) NSDateFormatter   *monthDateFormatter;
-
-@property (strong, nonatomic) NSDateFormatter   *dayDateFormatter;
+//
+@property (strong, nonatomic) NSArray                       *events;
 
 //
-@property (strong, nonatomic) NSArray           *events;
+@property (strong, nonatomic) NSDate                        *updateDate;
 
 //
-@property (strong, nonatomic) NSDate            *updateDate;
+@property (strong, nonatomic) NSDateFormatter               *dayDateFormatter;
+
+//
+@property (strong, nonatomic) NSDateFormatter               *monthDateFormatter;
+
+@property (strong, nonatomic) UTCSEventDetailViewController *eventDetailViewController;
 
 @end
 
@@ -119,7 +124,18 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     }];
 }
 
-#pragma mark - UITableViewDataSource Methods
+#pragma mark UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(!self.eventDetailViewController) {
+        self.eventDetailViewController = [UTCSEventDetailViewController new];
+    }
+    self.eventDetailViewController.event = self.events[indexPath.row];
+    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
+}
+
+#pragma mark UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
