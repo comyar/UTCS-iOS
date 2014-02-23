@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSLabsViewController : UIViewController
+@interface UTCSLabsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
 @end
