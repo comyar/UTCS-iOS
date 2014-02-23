@@ -7,7 +7,6 @@
 //
 
 #import "UTCSLabsViewController.h"
-#import "UTCSLabsCollectionViewCell.h"
 
 // Constants
 static NSString *cellIdentifier = @"LabsCollectionViewCell";
@@ -53,14 +52,14 @@ static NSString *cellIdentifier = @"LabsCollectionViewCell";
     [super viewDidLoad];
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
 	self.thirdFloorCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0.0, 60.0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - 60.0) collectionViewLayout:layout];
-    [self.thirdFloorCollectionView registerNib:[UINib nibWithNibName:@"UTCSLabsCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellIdentifier];
+    [self.thirdFloorCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
     self.thirdFloorCollectionView.backgroundColor = [UIColor whiteColor];
     self.thirdFloorCollectionView.dataSource = self;
     self.thirdFloorCollectionView.delegate = self;
     [self.view addSubview:self.thirdFloorCollectionView];
     
     self.basementCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0.0, 60.0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - 60.0) collectionViewLayout:layout];
-    [self.basementCollectionView registerNib:[UINib nibWithNibName:@"UTCSLabsCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellIdentifier];
+    [self.basementCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
     self.basementCollectionView.backgroundColor = [UIColor whiteColor];
     self.basementCollectionView.dataSource = self;
     self.basementCollectionView.delegate = self;
@@ -102,10 +101,21 @@ static NSString *cellIdentifier = @"LabsCollectionViewCell";
     return 50;
 }
 
-- (UTCSLabsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSLabsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.imageView.image = self.workstationImage;
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    if(collectionView == self.thirdFloorCollectionView) {
+        cell.contentView.layer.borderColor = [UIColor redColor].CGColor;
+        cell.contentView.layer.borderWidth = 1.0;
+        cell.contentView.layer.cornerRadius = 6.0;
+        cell.contentView.layer.masksToBounds = YES;
+    } else if(collectionView == self.basementCollectionView) {
+        cell.contentView.layer.borderColor = [UIColor greenColor].CGColor;
+        cell.contentView.layer.borderWidth = 1.0;
+        cell.contentView.layer.cornerRadius = 6.0;
+        cell.contentView.layer.masksToBounds = YES;
+    }
+    
     return cell;
 }
 

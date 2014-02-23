@@ -405,7 +405,7 @@
         }
         
         CGFloat contentOffset = point.x;
-        if(delta >= 1.0) {
+        if(delta > 1.0) {
             menuViewScale = 1.0f - ((0.1f / delta) * (delta - 1.0));
             contentOffset =  point.x / (point.x * delta);
             contentViewScale = (1 - (1 - self.contentViewScaleValue)) - ((0.1f / delta) * (delta - 1.0));
@@ -440,15 +440,11 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (self.contentViewController.view.frame.origin.x < -512) {
-            // ee here
+        CGPoint velocity = [recognizer velocityInView:self.view];
+        if (velocity.x > 0) {
+            [self showMenuViewControllerWithVelocity:velocity.x];
         } else {
-            CGPoint velocity = [recognizer velocityInView:self.view];
-            if (velocity.x > 0) {
-                [self showMenuViewControllerWithVelocity:velocity.x];
-            } else {
-                [self hideMenuViewControllerWithVelocity:velocity.x];
-            }
+            [self hideMenuViewControllerWithVelocity:velocity.x];
         }
     }
 }
@@ -487,9 +483,9 @@
         [self addContentViewControllerMotionEffects];
     }
     
-    if([_contentViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *navigationController = (UINavigationController *)_contentViewController;
-        navigationController.navigationBar.topItem.leftBarButtonItem = self.menuBarButtonItem;
+    if([_contentViewController respondsToSelector:@selector(navigationBar)]) {
+        UINavigationBar *navigationBar = [_contentViewController performSelector:@selector(navigationBar)];
+        navigationBar.topItem.leftBarButtonItem = self.menuBarButtonItem;
     }
 }
 

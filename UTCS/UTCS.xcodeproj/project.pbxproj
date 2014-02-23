@@ -38,8 +38,6 @@
 		DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */; };
 		DDF3656918B829BF00306069 /* UTCSLabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3656818B829BF00306069 /* UTCSLabsViewController.m */; };
 		DDF3657018B82AF100306069 /* UTCSDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3656F18B82AF100306069 /* UTCSDirectoryViewController.m */; };
-		DDF3657418B9CF9900306069 /* UTCSLabsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3657318B9CF9900306069 /* UTCSLabsCollectionViewCell.m */; };
-		DDF3657618B9CFAE00306069 /* UTCSLabsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF3657518B9CFAE00306069 /* UTCSLabsCollectionViewCell.xib */; };
 		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -101,9 +99,6 @@
 		DDF3656818B829BF00306069 /* UTCSLabsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsViewController.m; path = ViewControllers/UTCSLabsViewController/UTCSLabsViewController.m; sourceTree = "<group>"; };
 		DDF3656E18B82AF100306069 /* UTCSDirectoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryViewController.h; path = ViewControllers/UTCSDirectoryViewController/UTCSDirectoryViewController.h; sourceTree = "<group>"; };
 		DDF3656F18B82AF100306069 /* UTCSDirectoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryViewController.m; path = ViewControllers/UTCSDirectoryViewController/UTCSDirectoryViewController.m; sourceTree = "<group>"; };
-		DDF3657218B9CF9900306069 /* UTCSLabsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsCollectionViewCell.h; path = Views/UTCSLabsCollectionViewCell/UTCSLabsCollectionViewCell.h; sourceTree = "<group>"; };
-		DDF3657318B9CF9900306069 /* UTCSLabsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsCollectionViewCell.m; path = Views/UTCSLabsCollectionViewCell/UTCSLabsCollectionViewCell.m; sourceTree = "<group>"; };
-		DDF3657518B9CFAE00306069 /* UTCSLabsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UTCSLabsCollectionViewCell.xib; path = Views/UTCSLabsCollectionViewCell/UTCSLabsCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFD7DD618AA049A008F5A47 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,7 +260,6 @@
 		DD79690F18B60ED0009ADE2A /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				DDF3656A18B82AC600306069 /* New Group */,
 				DDF3656618B829A700306069 /* LabsViewController */,
 				DDF3652718B69FD800306069 /* EventDetailViewController */,
 				DD79691018B60ED6009ADE2A /* DirectoryViewController */,
@@ -352,7 +346,6 @@
 		DDEFABD01897516900DAB5D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DDF3657118B9CF7000306069 /* LabsCollectionViewCell */,
 				DD91DF0018B626F30046B09C /* EventsTableViewCell */,
 			);
 			name = Views;
@@ -381,23 +374,6 @@
 				DDF3656818B829BF00306069 /* UTCSLabsViewController.m */,
 			);
 			name = LabsViewController;
-			sourceTree = "<group>";
-		};
-		DDF3656A18B82AC600306069 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
-		DDF3657118B9CF7000306069 /* LabsCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				DDF3657218B9CF9900306069 /* UTCSLabsCollectionViewCell.h */,
-				DDF3657318B9CF9900306069 /* UTCSLabsCollectionViewCell.m */,
-				DDF3657518B9CFAE00306069 /* UTCSLabsCollectionViewCell.xib */,
-			);
-			name = LabsCollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,7 +453,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
-				DDF3657618B9CFAE00306069 /* UTCSLabsCollectionViewCell.xib in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
 				DD91DF0518B627290046B09C /* UTCSEventsTableViewCell.xib in Resources */,
 			);
@@ -505,7 +480,6 @@
 				DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DDF3657018B82AF100306069 /* UTCSDirectoryViewController.m in Sources */,
-				DDF3657418B9CF9900306069 /* UTCSLabsCollectionViewCell.m in Sources */,
 				DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */,
 				DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */,
 				DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */,
