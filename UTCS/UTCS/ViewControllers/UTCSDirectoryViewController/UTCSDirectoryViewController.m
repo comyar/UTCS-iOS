@@ -10,8 +10,10 @@
 
 @interface UTCSDirectoryViewController ()
 
-@property (strong, nonatomic) UISearchBar               *directorySearchBar;
-@property (strong, nonatomic) UISearchDisplayController *directorySearchDisplayController;
+@property (strong, nonatomic) UISearchBar                   *directorySearchBar;
+
+@property (strong, nonatomic) UISearchDisplayController     *directorySearchDisplayController;
+
 @end
 
 @implementation UTCSDirectoryViewController
@@ -27,16 +29,24 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.directorySearchBar becomeFirstResponder];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.directorySearchBar = [[UISearchBar alloc]initWithFrame:CGRectZero];
+	self.directorySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44)];
     self.directorySearchBar.placeholder = @"Search UTCS Directory";
     self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.directorySearchBar contentsController:self];
     self.directorySearchDisplayController.displaysSearchBarInNavigationBar = YES;
+    self.directorySearchBar.tintColor = [UIColor redColor];
+}
+
+#pragma mark UTCSSideMenuViewControllerDelegate Methods
+
+- (void)sideMenuViewController:(UTCSSideMenuViewController *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
+{
+    [self.directorySearchBar becomeFirstResponder];
+    NSLog(@"yolo");
 }
 
 @end

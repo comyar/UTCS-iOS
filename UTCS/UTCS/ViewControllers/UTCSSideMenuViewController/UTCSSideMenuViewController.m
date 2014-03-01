@@ -112,6 +112,7 @@
     if (self.panGestureEnabled) {
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
                                                                                               action:@selector(panGestureRecognized:)];
+        panGestureRecognizer.maximumNumberOfTouches = 1;
         panGestureRecognizer.delegate = self;
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
@@ -278,7 +279,7 @@
         }
         
         // Fade out the background image so it's not visible around the content view's rounded edges
-        [UIView animateWithDuration:1.0 animations: ^ {
+        [UIView animateWithDuration:0.3 animations: ^ {
             self.backgroundImageView.alpha = 0.0;
         }];
         
@@ -399,16 +400,14 @@
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
         if (!_bouncesHorizontally) {
-            contentViewScale = MAX(contentViewScale, self.contentViewScaleValue);
+            contentViewScale = (delta > 1.0)? self.contentViewScaleValue - ((0.1f / delta) * (delta - 1.0)) : MAX(contentViewScale, self.contentViewScaleValue);
             backgroundViewScale = MAX(backgroundViewScale, 1.0);
             menuViewScale = MAX(menuViewScale, 1.0);
         }
         
-        CGFloat contentOffset = point.x;
         if(delta > 1.0) {
             menuViewScale = 1.0f - ((0.1f / delta) * (delta - 1.0));
-            contentOffset =  point.x / (point.x * delta);
-            contentViewScale = (1 - (1 - self.contentViewScaleValue)) - ((0.1f / delta) * (delta - 1.0));
+            contentViewScale = self.contentViewScaleValue - ((0.1f / delta) * (delta - 1.0));
         }
         
         self.menuViewController.view.alpha = delta;
@@ -431,7 +430,7 @@
                 point.x = MIN(0.0, point.x);
                 [recognizer setTranslation:point inView:self.view];
             }
-            
+            CGFloat contentOffset = (delta > 1.0)? point.x / (point.x * delta) : point.x;
             self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
             self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, contentOffset, 0);
         }
@@ -454,9 +453,7 @@
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
     _backgroundImage = [backgroundImage applyDarkEffect];
-    if (self.backgroundImageView) {
-        self.backgroundImageView.image = _backgroundImage;
-    }
+    self.backgroundImageView.image = _backgroundImage;
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
@@ -465,22 +462,23 @@
         return;
     }
     
-    if (!_contentViewController) {
-        _contentViewController = contentViewController;
-        return;
-    }
-    
-    CGRect frame = _contentViewController.view.frame;
+    CGRect frame                = _contentViewController.view.frame;
     CGAffineTransform transform = _contentViewController.view.transform;
     [self configureHideController:_contentViewController];
-    _contentViewController = contentViewController;
     
+    _contentViewController = contentViewController;
     [self configureDisplayController:contentViewController frame:self.view.bounds];
-    contentViewController.view.transform = transform;
-    contentViewController.view.frame = frame;
+    contentViewController.view.frame        = frame;
+    contentViewController.view.transform    = transform;
     
     if(self.menuVisible) {
         [self addContentViewControllerMotionEffects];
+    }
+    
+    if([contentViewController conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)]) {
+        self.delegate = (id<UTCSSideMenuViewControllerDelegate>)contentViewController;
+    } else {
+        self.delegate = nil;
     }
     
     if([_contentViewController respondsToSelector:@selector(navigationBar)]) {
@@ -507,10 +505,6 @@
             [contentViewController.view removeFromSuperview];
             [self setContentViewController:contentViewController];
         }];
-    }
-    
-    if([contentViewController conformsToProtocol:@protocol(UTCSSideMenuViewControllerDelegate)]) {
-        self.delegate = (id<UTCSSideMenuViewControllerDelegate>)contentViewController;
     }
 }
 

@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UTCSMenuViewControllerDelegate.h"
 
+/**
+ */
 @interface UTCSLabsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
+
+//
 @property (strong, nonatomic, readonly) UINavigationBar *navigationBar;
+
 @end

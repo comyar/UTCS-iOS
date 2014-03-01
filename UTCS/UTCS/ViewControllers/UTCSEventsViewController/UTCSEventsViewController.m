@@ -9,6 +9,7 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSEventsTableViewCell.h"
 #import "UTCSEventDetailViewController.h"
+#import "UIColor+UTCSColors.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
@@ -32,6 +33,10 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 //
 @property (strong, nonatomic) NSDateFormatter               *monthDateFormatter;
 
+//
+@property (strong, nonatomic) UISegmentedControl            *eventsSegementedControl;
+
+//
 @property (strong, nonatomic) UTCSEventDetailViewController *eventDetailViewController;
 
 @end
@@ -75,12 +80,19 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.separatorColor = COLOR_GRAY;
+    self.tableView.separatorColor = [UIColor utcsTableViewSeparatorColor];
     
     // Initialize refresh control
     self.refreshControl = [UIRefreshControl new];
-    self.refreshControl.tintColor = COLOR_GRAY;
+    self.refreshControl.tintColor = [UIColor utcsRefreshControlColor];
     [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
+    
+    // Initialize segmented control
+    
+    self.eventsSegementedControl = [[UISegmentedControl alloc]initWithItems:@[@"All",@"Academic", @"Careers"]];
+    self.eventsSegementedControl.tintColor = [UIColor utcsBurntOrangeColor];
+    self.eventsSegementedControl.selectedSegmentIndex = 0;
+//    [self.navigationController.navigationBar.topItem setTitleView:self.eventsSegementedControl];
     
     // Update data
     [self updateEventData];
@@ -101,11 +113,12 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     }
     
     PFQuery *query = [PFQuery queryWithClassName:PARSE_EVENT_CLASS];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:PARSE_EVENT_DATE_END greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:-3000000]];
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         if(objects) {
-            self.events = [objects sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
+            self.events = objects;
+            self.events = [self.events sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
                 PFObject *p_obj1 = (PFObject *)obj1;
                 PFObject *p_obj2 = (PFObject *)obj2;
                 if(p_obj1[PARSE_EVENT_DATE_START] > p_obj2[PARSE_EVENT_DATE_START]) {
@@ -128,6 +141,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
     if(!self.eventDetailViewController) {
         self.eventDetailViewController = [UTCSEventDetailViewController new];
     }

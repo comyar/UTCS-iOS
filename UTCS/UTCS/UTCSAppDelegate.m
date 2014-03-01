@@ -13,6 +13,7 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
+#import "UIColor+UTCSColors.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -103,9 +104,11 @@
     [[UINavigationBar appearance]setBackgroundImage:[[UIImage imageNamed:@"navbarBackground"]resizableImageWithCapInsets:UIEdgeInsetsZero]
                                       forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance]setShadowImage:[[UIImage imageNamed:@"navbarShadow"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
-    [[UINavigationBar appearance]setTintColor:COLOR_BURNT_ORANGE];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: COLOR_DARK_GRAY,
-                                                          NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:22]}];
+    [[UINavigationBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor utcsDarkGrayColor],
+                                                          NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:22]}];
+    
+    [[UITextField appearanceWhenContainedIn:[UIView class], [UISearchBar class], nil]setTextAlignment:NSTextAlignmentLeft];
 }
 
 - (void)roundCornersOfView:(UIView *)view

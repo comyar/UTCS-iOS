@@ -19,7 +19,6 @@
 		0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A26581891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
 		DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7968F418B5B54E009ADE2A /* UTCSEventsViewController.m */; };
-		DD7968FA18B5EB11009ADE2A /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
 		DD79690118B60D57009ADE2A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690018B60D57009ADE2A /* AudioToolbox.framework */; };
@@ -33,6 +32,10 @@
 		DD91DF0518B627290046B09C /* UTCSEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD91DF0418B627290046B09C /* UTCSEventsTableViewCell.xib */; };
 		DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
+		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
+		DDA94B8018C1FD9F00DDF949 /* UIView+FrameBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+FrameBounds.m */; };
+		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
+		DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
 		DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */; };
 		DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */; };
@@ -69,8 +72,6 @@
 		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
 		DD7968F318B5B54E009ADE2A /* UTCSEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsViewController.h; path = ViewControllers/UTCSEventsViewController/UTCSEventsViewController.h; sourceTree = "<group>"; };
 		DD7968F418B5B54E009ADE2A /* UTCSEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsViewController.m; path = ViewControllers/UTCSEventsViewController/UTCSEventsViewController.m; sourceTree = "<group>"; };
-		DD7968F818B5EB11009ADE2A /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Libraries/UIImageEffects/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Libraries/UIImageEffects/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DD7968FB18B5FED3009ADE2A /* UTCSMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewControllerDelegate.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DD7968FE18B60D1F009ADE2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -88,6 +89,14 @@
 		DD9DF73E18B4A1B200DDC1DB /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController/UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
+		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
+		DDA94B7E18C1FD9F00DDF949 /* UIView+FrameBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FrameBounds.h"; path = "Categories/UIView+FrameBounds.h"; sourceTree = "<group>"; };
+		DDA94B7F18C1FD9F00DDF949 /* UIView+FrameBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FrameBounds.m"; path = "Categories/UIView+FrameBounds.m"; sourceTree = "<group>"; };
+		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
+		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
+		DDCA58E918BE64DB001F543D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Categories/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Categories/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DDD7650118B3EE1300FB0170 /* UTCSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSMenuViewController.h; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSMenuViewController.m; path = ViewControllers/UTCSMenuViewController/UTCSMenuViewController.m; sourceTree = "<group>"; };
 		DDD7650A18B4269400FB0170 /* UTCSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewController.h; sourceTree = "<group>"; };
@@ -182,10 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */,
-				DD7968F618B5EAD5009ADE2A /* Libraries */,
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDEFABD11897516E00DAB5D7 /* Model */,
-				DD9DF74118B4ADE400DDC1DB /* Services */,
 				DDEFABD01897516900DAB5D7 /* Views */,
 				DDEFABCF1897516400DAB5D7 /* ViewControllers */,
 			);
@@ -231,19 +238,11 @@
 			name = EventsViewController;
 			sourceTree = "<group>";
 		};
-		DD7968F618B5EAD5009ADE2A /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				DD7968F718B5EB03009ADE2A /* UIImageEffects */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
 		DD7968F718B5EB03009ADE2A /* UIImageEffects */ = {
 			isa = PBXGroup;
 			children = (
-				DD7968F818B5EB11009ADE2A /* UIImage+ImageEffects.h */,
-				DD7968F918B5EB11009ADE2A /* UIImage+ImageEffects.m */,
+				DDCA58E918BE64DB001F543D /* UIImage+ImageEffects.h */,
+				DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */,
 			);
 			name = UIImageEffects;
 			sourceTree = "<group>";
@@ -288,11 +287,42 @@
 			name = EventsTableViewCell;
 			sourceTree = "<group>";
 		};
-		DD9DF74118B4ADE400DDC1DB /* Services */ = {
+		DDA94B6418C1D1A000DDF949 /* UTCSColors */ = {
 			isa = PBXGroup;
 			children = (
+				DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */,
+				DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */,
 			);
-			name = Services;
+			name = UTCSColors;
+			sourceTree = "<group>";
+		};
+		DDA94B6818C1D1C600DDF949 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DDA94B7D18C1FD8700DDF949 /* FrameBounds */,
+				DDA94B6418C1D1A000DDF949 /* UTCSColors */,
+				DDCA58E518BE4BA5001F543D /* CZTextViewHeight */,
+				DD7968F718B5EB03009ADE2A /* UIImageEffects */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		DDA94B7D18C1FD8700DDF949 /* FrameBounds */ = {
+			isa = PBXGroup;
+			children = (
+				DDA94B7E18C1FD9F00DDF949 /* UIView+FrameBounds.h */,
+				DDA94B7F18C1FD9F00DDF949 /* UIView+FrameBounds.m */,
+			);
+			name = FrameBounds;
+			sourceTree = "<group>";
+		};
+		DDCA58E518BE4BA5001F543D /* CZTextViewHeight */ = {
+			isa = PBXGroup;
+			children = (
+				DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */,
+				DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */,
+			);
+			name = CZTextViewHeight;
 			sourceTree = "<group>";
 		};
 		DDD7650018B3ECC200FB0170 /* MenuViewController */ = {
@@ -354,6 +384,7 @@
 		DDEFABD11897516E00DAB5D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DDA94B6818C1D1C600DDF949 /* Categories */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -424,6 +455,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = UTCS;
 				TargetAttributes = {
+					0B9A26321891D5E30032DA03 = {
+						DevelopmentTeam = TRMC2X2YJ7;
+					};
 					0B9A264D1891D5E30032DA03 = {
 						TestTargetID = 0B9A26321891D5E30032DA03;
 					};
@@ -475,12 +509,15 @@
 			files = (
 				DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
-				DD7968FA18B5EB11009ADE2A /* UIImage+ImageEffects.m in Sources */,
+				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
+				DDA94B8018C1FD9F00DDF949 /* UIView+FrameBounds.m in Sources */,
+				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD91DF0318B627140046B09C /* UTCSEventsTableViewCell.m in Sources */,
 				DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DDF3657018B82AF100306069 /* UTCSDirectoryViewController.m in Sources */,
 				DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */,
+				DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */,
 				DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */,
 				DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */,
 				DDF3656918B829BF00306069 /* UTCSLabsViewController.m in Sources */,
@@ -604,6 +641,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
@@ -612,6 +651,7 @@
 				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
 				INFOPLIST_FILE = "UTCS/UTCS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -621,6 +661,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
@@ -629,6 +671,7 @@
 				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
 				INFOPLIST_FILE = "UTCS/UTCS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

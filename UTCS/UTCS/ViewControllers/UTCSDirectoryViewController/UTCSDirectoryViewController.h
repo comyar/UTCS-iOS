@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UTCSSideMenuViewControllerDelegate.h"
 
-@interface UTCSDirectoryViewController : UIViewController
+@interface UTCSDirectoryViewController : UIViewController <UTCSSideMenuViewControllerDelegate>
 
 @end

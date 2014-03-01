@@ -32,8 +32,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.menuOptionNames = @[@[@"News", @"Events"], @[@"Labs", @"Directory", @"Disk Quota"], @[@"Settings", @"About"]];
-        self.menuOptionIconNames = @[@[@"news", @"events"], @[@"labs", @"directory", @"diskquota"], @[@"settings", @"about"]];
+        self.menuOptionNames = @[@[@"News", @"Events"], @[@"Labs", @"Directory"], @[@"Settings", @"About"]];
+        self.menuOptionIconNames = @[@[@"news", @"events"], @[@"labs", @"directory"], @[@"settings", @"about"]];
         self.menuOptionSectionTitles = @[@"", @"", @""];
     }
     return self;
@@ -129,6 +129,18 @@
         }
         [self.delegate didSelectMenuOption:option];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 0.25;
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 1.0;
 }
 
 @end

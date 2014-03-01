@@ -7,6 +7,7 @@
 //
 
 #import "UTCSNewsViewController.h"
+#import "UIColor+UTCSColors.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
@@ -43,13 +44,14 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
+    self.tableView.separatorColor = [UIColor utcsTableViewSeparatorColor];
     
-    // Regist tableview cell class
+    // Register tableview cell class
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     
     // Initialize refresh control
     self.refreshControl = [UIRefreshControl new];
-    self.refreshControl.tintColor = COLOR_GRAY;
+    self.refreshControl.tintColor = [UIColor utcsRefreshControlColor];
     [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -58,13 +60,15 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 - (void)didRefresh:(UIRefreshControl *)refreshControl
 {
     NSLog(@"Did refresh table view");
+    [self updateNewsArticles];
 }
 
 #pragma mark Updating News Articles
 
 - (void)updateNewsArticles
 {
-    
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 #pragma mark UITableViewDataSource Methods
@@ -76,7 +80,6 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     return cell;
 }
