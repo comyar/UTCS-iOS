@@ -16,6 +16,10 @@
 
 /**
  */
++ (UIColor *)utcsBarTintColor;
+
+/**
+ */
 + (UIColor *)utcsYellowColor;
 
 /**

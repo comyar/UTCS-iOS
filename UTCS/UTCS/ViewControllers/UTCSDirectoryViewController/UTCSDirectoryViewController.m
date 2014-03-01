@@ -38,7 +38,6 @@
     self.directorySearchBar.placeholder = @"Search UTCS Directory";
     self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.directorySearchBar contentsController:self];
     self.directorySearchDisplayController.displaysSearchBarInNavigationBar = YES;
-    self.directorySearchBar.tintColor = [UIColor redColor];
 }
 
 #pragma mark UTCSSideMenuViewControllerDelegate Methods

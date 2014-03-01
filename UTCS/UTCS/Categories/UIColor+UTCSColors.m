@@ -46,5 +46,10 @@
     return [UIColor colorWithRed:RGB(200) green:RGB(200) blue:RGB(200) alpha:1.0];
 }
 
++ (UIColor *)utcsBarTintColor
+{
+    return [UIColor colorWithRed:RGB(250) green:RGB(250) blue:RGB(250) alpha:1.0];
+}
+
 
 @end

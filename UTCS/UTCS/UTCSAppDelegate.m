@@ -101,11 +101,12 @@
 
 - (void)configureAppearance
 {
-    [[UINavigationBar appearance]setBackgroundImage:[[UIImage imageNamed:@"navbarBackground"]resizableImageWithCapInsets:UIEdgeInsetsZero]
-                                      forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setShadowImage:[[UIImage imageNamed:@"navbarShadow"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
+//    [[UINavigationBar appearance]setBackgroundImage:[[UIImage imageNamed:@"navbarBackground"]resizableImageWithCapInsets:UIEdgeInsetsZero]
+//                                      forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance]setShadowImage:[[UIImage imageNamed:@"navbarShadow"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
+    [[UINavigationBar appearance]setBarTintColor:[UIColor utcsBarTintColor]];
     [[UINavigationBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor utcsDarkGrayColor],
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],
                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:22]}];
     
     [[UITextField appearanceWhenContainedIn:[UIView class], [UISearchBar class], nil]setTextAlignment:NSTextAlignmentLeft];

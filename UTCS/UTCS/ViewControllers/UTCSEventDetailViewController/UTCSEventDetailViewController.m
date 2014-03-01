@@ -37,6 +37,8 @@
 //
 @property (strong, nonatomic) UIScrollView      *scrollView;
 
+@property (strong, nonatomic) NSCalendar        *currentCalendar;
+
 @end
 
 
@@ -52,7 +54,7 @@
         self.title = @"Event";
         self.dateFormatter = ({
             NSDateFormatter *dateFormatter = [NSDateFormatter new];
-            dateFormatter.dateFormat = @"MMM d";
+            dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
             dateFormatter;
         });
     }
@@ -77,7 +79,7 @@
 
 - (void)updateWithEvent:(PFObject *)event
 {
-    self.title = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END]];
+    self.title = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END] title:YES];
     
     if(!self.scrollView) {
         self.scrollView = ({
@@ -110,14 +112,14 @@
         self.dateLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(21.5, self.titleTextView.frameY + self.titleTextView.height,
                                                                       self.view.width - 43.0, 16.0)];
-            label.font              = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
+            label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
             label.textColor         = [UIColor utcsLightGrayColor];
             label.backgroundColor   = [UIColor clearColor];
             label;
         });
         [self.scrollView addSubview:self.dateLabel];
     }
-    self.dateLabel.text     = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END]];
+    self.dateLabel.text     = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END] title:NO];
     CGRect dateLabelFrame   = self.dateLabel.frame;
     dateLabelFrame.origin.y = self.titleTextView.frameY + self.titleTextView.height + 4.0;
     self.dateLabel.frame    = dateLabelFrame;
@@ -126,7 +128,7 @@
         self.locationLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(21.5, self.dateLabel.frameY + self.dateLabel.height,
                                                                       self.view.width - 43.0, 32.0)];
-            label.font              = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
+            label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
             label.textColor         = [UIColor utcsLightGrayColor];
             label.backgroundColor   = [UIColor clearColor];
             label.numberOfLines     = 0;
@@ -155,9 +157,27 @@
         [self.scrollView addSubview:self.descriptionTextView];
     }
     
-    self.descriptionTextView.text = self.event[PARSE_EVENT_DESCRIPTION];
+    NSMutableAttributedString *attributedEventDescription = [[NSMutableAttributedString alloc]initWithData:[self.event[PARSE_EVENT_DESCRIPTION] dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
+                                                                          documentAttributes:nil error:nil];
+    [attributedEventDescription enumerateAttributesInRange:NSMakeRange(0, [attributedEventDescription length]) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock: ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
+        UIFont *font = attrs[NSFontAttributeName];
+        NSString *fontName = [font.fontName lowercaseString];
+        if([fontName rangeOfString:@"bold"].location != NSNotFound) {
+            [attributedEventDescription addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
+            [attributedEventDescription addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue" size:16] range:range];
+        } else {
+            [attributedEventDescription addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:range];
+            [attributedEventDescription addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:16] range:range];
+        }
+    }];
+    self.descriptionTextView.attributedText = attributedEventDescription;
+    
     if([self.descriptionTextView.text length] == 0) {
-        self.descriptionTextView.text = @"No Description Available";
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"Description Unavailable"];
+        NSRange range = NSMakeRange(0, [attributedText length]);
+        [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
+        [attributedText addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue" size:16] range:range];
+        self.descriptionTextView.attributedText = attributedText;
     }
     CGRect descriptionTextViewFrame         = self.descriptionTextView.frame;
     descriptionTextViewFrame.origin.y       = self.locationLabel.frameY + self.locationLabel.height + 24.0;
@@ -174,7 +194,9 @@
         });
         [self.scrollView addSubview:self.contactLabel];
     }
-    self.contactLabel.text      = [NSString stringWithFormat:@"Contact: %@ - %@", @"CONTACT NAME", @"CONTACT EMAIL"];
+    self.contactLabel.text      = [NSString stringWithFormat:@"Contact: %@ - %@",
+                                   self.event[PARSE_EVENT_CONTACT_NAME],
+                                   self.event[PARSE_EVENT_CONTACT_EMAIL]];
     CGRect contactLabelFrame    = self.contactLabel.frame;
     contactLabelFrame.origin.y  = MAX(self.descriptionTextView.frameY + self.descriptionTextView.height + 8.0,
                                       self.view.height - self.contactLabel.height - 68.0);
@@ -185,11 +207,38 @@
 
 #pragma mark Private Methods
 
-- (NSString *)dateStringWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
+- (NSString *)dateStringWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate title:(BOOL)title
 {
-    NSString *startDateString = [self.dateFormatter stringFromDate:startDate];
-    NSString *endDateString = [self.dateFormatter stringFromDate:endDate];
-    return [NSString stringWithFormat:@"%@ - %@", startDateString, endDateString];
+    if(!self.currentCalendar) {
+        // This call is slow, so let's cache it
+        self.currentCalendar = [NSCalendar currentCalendar];
+    }
+    
+    NSDateComponents *componentsForFirstDate = [self.currentCalendar components:NSCalendarUnitMinute|NSCalendarUnitHour|NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:startDate];
+    NSDateComponents *componentsForSecondDate = [self.currentCalendar components:NSCalendarUnitMinute|NSCalendarUnitHour|NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:endDate];
+    
+    if([componentsForFirstDate day] == [componentsForSecondDate day] &&
+       [componentsForFirstDate month] == [componentsForSecondDate month] &&
+       [componentsForFirstDate year] == [componentsForSecondDate year]) {
+        if(title) {
+            self.dateFormatter.dateFormat = @"MMM d";
+            return [self.dateFormatter stringFromDate:startDate];
+        }
+        self.dateFormatter.dateFormat = @"EEE MMM d, h:mm a";
+        NSString *startTime = [self.dateFormatter stringFromDate:startDate];
+        self.dateFormatter.dateFormat = @"h:mm a";
+        NSString *endTime = [self.dateFormatter stringFromDate:endDate];
+        return [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    } else {
+        if(title) {
+            self.dateFormatter.dateFormat = @"MMM d";
+        } else {
+            self.dateFormatter.dateFormat = @"MMM d, h:mm a";
+        }
+        NSString *startTime = [self.dateFormatter stringFromDate:startDate];
+        NSString *endTime = [self.dateFormatter stringFromDate:endDate];
+        return [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    }
 }
 
 #pragma mark Overridden Setters
