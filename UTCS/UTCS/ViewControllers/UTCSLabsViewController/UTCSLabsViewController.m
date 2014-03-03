@@ -17,19 +17,19 @@ static NSString *cellIdentifier = @"LabsCollectionViewCell";
 @interface UTCSLabsViewController ()
 
 //
-@property (strong, nonatomic) UINavigationBar   *navigationBar;
+@property (strong, nonatomic) UINavigationBar       *navigationBar;
 
 //
-@property (strong, nonatomic) UISegmentedControl *labSegmentedControl;
+@property (strong, nonatomic) UISegmentedControl    *labSegmentedControl;
 
 //
-@property (strong, nonatomic) UICollectionView  *thirdFloorCollectionView;
+@property (strong, nonatomic) UICollectionView      *thirdFloorCollectionView;
 
 //
-@property (strong, nonatomic) UICollectionView  *basementCollectionView;
+@property (strong, nonatomic) UICollectionView      *basementCollectionView;
 
 //
-@property (strong, nonatomic) UIImage           *workstationImage;
+@property (strong, nonatomic) UIImage               *workstationImage;
 
 @end
 

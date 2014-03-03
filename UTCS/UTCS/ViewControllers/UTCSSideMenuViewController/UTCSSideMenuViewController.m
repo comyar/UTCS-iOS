@@ -205,7 +205,8 @@
             self.backgroundImageView.transform = CGAffineTransformIdentity;
         }
         
-        [self blurBackgroundImageWithDuration:duration];
+        CGFloat blurFrameDuration = duration / ([self.blurredBackgroundImages count] - 1 - self.blurredImageIndex);
+        [self blurBackgroundImageWithFrameDuration:blurFrameDuration];
         
     } completion:^(BOOL finished) {
         
@@ -268,7 +269,8 @@
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
         
-        [self unblurBackgroundImageWithDuration:duration];
+        CGFloat unblurFrameDuration = duration / self.blurredImageIndex;
+        [self unblurBackgroundImageWithFrameDuration:unblurFrameDuration];
         
     } completion:^(BOOL finished) {
         
@@ -301,28 +303,26 @@
     }];
 }
 
-- (void)blurBackgroundImageWithDuration:(CGFloat)duration
+- (void)blurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
 {
     if(self.blurredImageIndex < [self.blurredBackgroundImages count] - 1) {
-        CGFloat delay = duration / ([self.blurredBackgroundImages count] - self.blurredImageIndex);
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
             self.blurredImageIndex++;
-            [self blurBackgroundImageWithDuration:duration - delay];
+            [self blurBackgroundImageWithFrameDuration:frameDuration];
         });
     }
 }
 
-- (void)unblurBackgroundImageWithDuration:(CGFloat)duration
+- (void)unblurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
 {
     if(self.blurredImageIndex > 0) {
-        CGFloat delay = duration / ([self.blurredBackgroundImages count] - self.blurredImageIndex);
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
             self.blurredImageIndex--;
-            [self blurBackgroundImageWithDuration:duration - delay];
+            [self blurBackgroundImageWithFrameDuration:frameDuration];
         });
     }
 }
@@ -448,6 +448,7 @@
             menuViewScale = 1.0f - ((0.1f / delta) * (delta - 1.0));
             contentViewScale = self.contentViewScaleValue - ((0.1f / delta) * (delta - 1.0));
         }
+        delta = MAX(0.0, delta);
         
         self.blurredImageIndex = MIN(MAX(0.0, ([self.blurredBackgroundImages count] -1) * delta),
                                           [self.blurredBackgroundImages count] - 1);
@@ -495,24 +496,26 @@
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    if(backgroundImage == _backgroundImage) {
+    if(!backgroundImage || backgroundImage == _backgroundImage) {
         return;
     }
+    
     [self.blurredBackgroundImages removeAllObjects];
     
     UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.5];
     
-    _backgroundImage = [backgroundImage applyBlurWithRadius:0.1 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
-    self.backgroundImageView.image = _backgroundImage;
-    
-    [_blurredBackgroundImages addObject:_backgroundImage];
-    
-    CGFloat blurFactor = 0.01;
+    CGFloat blurFactor = 0.1;
     for(int i = 0; i < 20; ++i) {
-        UIImage *blurredImage = [_backgroundImage applyBlurWithRadius:blurFactor tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
-        [_blurredBackgroundImages addObject:blurredImage];
+        UIImage *blurredImage = [backgroundImage applyBlurWithRadius:blurFactor
+                                                            tintColor:tintColor
+                                                saturationDeltaFactor:1.8
+                                                            maskImage:nil];
+        [self.blurredBackgroundImages addObject:blurredImage];
         blurFactor = MIN(blurFactor * 1.5, blurFactor + 1.0);
     }
+    
+    _backgroundImage = self.blurredBackgroundImages[0];
+    self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
@@ -558,9 +561,9 @@
         contentViewController.view.alpha = 0.0;
         contentViewController.view.frame = self.contentViewController.view.bounds;
         [self.contentViewController.view addSubview:contentViewController.view];
-        [UIView animateWithDuration:self.animationDuration animations:^{
+        [UIView animateWithDuration:self.animationDuration animations: ^ {
             contentViewController.view.alpha = 1.0;
-        } completion:^(BOOL finished) {
+        } completion: ^ (BOOL finished) {
             [contentViewController.view removeFromSuperview];
             [self setContentViewController:contentViewController];
         }];

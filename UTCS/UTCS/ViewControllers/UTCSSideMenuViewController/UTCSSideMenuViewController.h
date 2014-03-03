@@ -46,7 +46,6 @@
 // @name Properties
 // --------------------------------------------------------------------------------------
 
-
 //
 @property (weak, nonatomic)     id<UTCSSideMenuViewControllerDelegate> delegate;
 
@@ -60,48 +59,48 @@
 @property (assign, nonatomic)   UIImage             *backgroundImage;
 
 //
-@property (strong, nonatomic)   NSNumber *parallaxMenuMinimumRelativeValue;
+@property (strong, nonatomic)   NSNumber            *parallaxMenuMinimumRelativeValue;
 
 //
-@property (strong, nonatomic)   NSNumber *parallaxMenuMaximumRelativeValue;
+@property (strong, nonatomic)   NSNumber            *parallaxMenuMaximumRelativeValue;
 
 //
-@property (strong, nonatomic)   NSNumber *parallaxContentMinimumRelativeValue;
+@property (strong, nonatomic)   NSNumber            *parallaxContentMinimumRelativeValue;
 
 //
-@property (strong, nonatomic)   NSNumber *parallaxContentMaximumRelativeValue;
+@property (strong, nonatomic)   NSNumber            *parallaxContentMaximumRelativeValue;
 
 //
-@property (assign, nonatomic)   NSTimeInterval animationDuration;
+@property (assign, nonatomic)   NSTimeInterval      animationDuration;
 
 //
-@property (assign, nonatomic)   BOOL scaleContentView;
+@property (assign, nonatomic)   BOOL                scaleContentView;
 
 //
-@property (assign, nonatomic)   BOOL scaleBackgroundImageView;
+@property (assign, nonatomic)   BOOL                scaleBackgroundImageView;
 
 //
-@property (assign, nonatomic)   BOOL panFromEdge;
+@property (assign, nonatomic)   BOOL                panFromEdge;
 
 //
-@property (assign, nonatomic)   BOOL panGestureEnabled;
+@property (assign, nonatomic)   BOOL                panGestureEnabled;
 
 //
-@property (assign, nonatomic)   BOOL parallaxEnabled;
+@property (assign, nonatomic)   BOOL                parallaxEnabled;
 
 //
-@property (assign, nonatomic)   BOOL bouncesHorizontally;
+@property (assign, nonatomic)   BOOL                bouncesHorizontally;
 
 //
-@property (assign, nonatomic)   BOOL interactivePopGestureRecognizerEnabled;
+@property (assign, nonatomic)   BOOL                interactivePopGestureRecognizerEnabled;
 
 //
-@property (assign, nonatomic)   CGFloat contentViewScaleValue;
+@property (assign, nonatomic)   CGFloat             contentViewScaleValue;
 
 //
-@property (assign, nonatomic)   CGFloat contentViewInLandscapeOffsetCenterX;
+@property (assign, nonatomic)   CGFloat             contentViewInLandscapeOffsetCenterX;
 
 //
-@property (assign, nonatomic)   CGFloat contentViewInPortraitOffsetCenterX;
+@property (assign, nonatomic)   CGFloat             contentViewInPortraitOffsetCenterX;
 
 @end
