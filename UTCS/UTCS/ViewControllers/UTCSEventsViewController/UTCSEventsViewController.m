@@ -114,7 +114,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     
     PFQuery *query = [PFQuery queryWithClassName:PARSE_EVENT_CLASS];
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [query whereKey:PARSE_EVENT_DATE_END greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:-3000000]];
+    [query whereKey:PARSE_EVENT_DATE_END greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:0.0]];
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         if(objects) {
             self.events = objects;
@@ -122,9 +122,9 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
                 PFObject *p_obj1 = (PFObject *)obj1;
                 PFObject *p_obj2 = (PFObject *)obj2;
                 if(p_obj1[PARSE_EVENT_DATE_START] > p_obj2[PARSE_EVENT_DATE_START]) {
-                    return NSOrderedAscending;
-                } else if(p_obj1[PARSE_EVENT_DATE_START] < p_obj2[PARSE_EVENT_DATE_START]) {
                     return NSOrderedDescending;
+                } else if(p_obj1[PARSE_EVENT_DATE_START] < p_obj2[PARSE_EVENT_DATE_START]) {
+                    return NSOrderedAscending;
                 }
                 return NSOrderedSame;
             }];
@@ -166,7 +166,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 {
     UTCSEventsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.nameLabel.text = self.events[indexPath.row][PARSE_EVENT_NAME];
-    cell.dayLabel.text = [self.dayDateFormatter stringFromDate:self.events[indexPath.row][PARSE_EVENT_DATE_START]];
+    cell.dayLabel.text = [[self.dayDateFormatter stringFromDate:self.events[indexPath.row][PARSE_EVENT_DATE_START]]uppercaseString];
     cell.monthLabel.text = [self.monthDateFormatter stringFromDate:self.events[indexPath.row][PARSE_EVENT_DATE_START]];
     cell.locationLabel.text = self.events[indexPath.row][PARSE_EVENT_LOCATION];
     return cell;

@@ -33,7 +33,7 @@
 		DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9DF73F18B4A1B200DDC1DB /* UTCSNewsViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
-		DDA94B8018C1FD9F00DDF949 /* UIView+FrameBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+FrameBounds.m */; };
+		DDA94B8018C1FD9F00DDF949 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
@@ -91,8 +91,8 @@
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
-		DDA94B7E18C1FD9F00DDF949 /* UIView+FrameBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FrameBounds.h"; path = "Categories/UIView+FrameBounds.h"; sourceTree = "<group>"; };
-		DDA94B7F18C1FD9F00DDF949 /* UIView+FrameBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FrameBounds.m"; path = "Categories/UIView+FrameBounds.m"; sourceTree = "<group>"; };
+		DDA94B7E18C1FD9F00DDF949 /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Positioning.h"; path = "Categories/UIView+Positioning.h"; sourceTree = "<group>"; };
+		DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Positioning.m"; path = "Categories/UIView+Positioning.m"; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDCA58E918BE64DB001F543D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Categories/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -310,8 +310,8 @@
 		DDA94B7D18C1FD8700DDF949 /* FrameBounds */ = {
 			isa = PBXGroup;
 			children = (
-				DDA94B7E18C1FD9F00DDF949 /* UIView+FrameBounds.h */,
-				DDA94B7F18C1FD9F00DDF949 /* UIView+FrameBounds.m */,
+				DDA94B7E18C1FD9F00DDF949 /* UIView+Positioning.h */,
+				DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */,
 			);
 			name = FrameBounds;
 			sourceTree = "<group>";
@@ -510,7 +510,7 @@
 				DD9DF74018B4A1B200DDC1DB /* UTCSNewsViewController.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
-				DDA94B8018C1FD9F00DDF949 /* UIView+FrameBounds.m in Sources */,
+				DDA94B8018C1FD9F00DDF949 /* UIView+Positioning.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD91DF0318B627140046B09C /* UTCSEventsTableViewCell.m in Sources */,
 				DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */,

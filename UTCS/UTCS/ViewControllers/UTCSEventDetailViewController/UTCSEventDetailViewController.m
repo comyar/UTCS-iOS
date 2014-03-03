@@ -9,7 +9,7 @@
 #import "UTCSEventDetailViewController.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UIColor+UTCSColors.h"
-#import "UIView+FrameBounds.h"
+#import "UIView+Positioning.h"
 
 
 #pragma mark UTCSEventDetailViewController Class Extension
@@ -57,6 +57,7 @@
             dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
             dateFormatter;
         });
+        [self initializeSubviews];
     }
     return self;
 }
@@ -67,6 +68,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,12 +77,19 @@
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.view.width, 1) animated:NO];
 }
 
-#pragma mark Updating UI
-
-- (void)updateWithEvent:(PFObject *)event
+- (void)viewWillLayoutSubviews
 {
-    self.title = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END] title:YES];
-    
+    [super viewWillLayoutSubviews];
+    self.titleTextView.height = [self.titleTextView heightForText];
+    self.dateLabel.y = self.titleTextView.y + self.titleTextView.height + 4.0;
+    self.locationLabel.y = self.dateLabel.y + self.dateLabel.height;
+    self.contactLabel.y  = MAX(self.descriptionTextView.y + self.descriptionTextView.height + 8.0,
+                               self.view.height - self.contactLabel.height - 68.0);
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), self.contactLabel.y + self.contactLabel.height + 4.0);
+}
+
+- (void)initializeSubviews
+{
     if(!self.scrollView) {
         self.scrollView = ({
             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
@@ -92,7 +101,7 @@
     
     if(!self.titleTextView) {
         self.titleTextView = ({
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(16.0, 0.0, self.view.width - 32.0, 0.0)];
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(16.0, 0.0, self.view.width, 0.0)];
             textView.textColor = [UIColor utcsDarkGrayColor];
             textView.editable = NO;
             textView.scrollEnabled = NO;
@@ -103,15 +112,13 @@
         });
         [self.scrollView addSubview:self.titleTextView];
     }
-    self.titleTextView.text         = self.event[PARSE_EVENT_NAME];
-    CGRect titleTextViewFrame       = self.titleTextView.frame;
-    titleTextViewFrame.size.height  = [self.titleTextView heightForText];
-    self.titleTextView.frame        = titleTextViewFrame;
     
     if(!self.dateLabel) {
         self.dateLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(21.5, self.titleTextView.frameY + self.titleTextView.height,
-                                                                      self.view.width - 43.0, 16.0)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(21.5,
+                                                                      self.titleTextView.y + self.titleTextView.height,
+                                                                      self.view.width - 43.0,
+                                                                      16.0)];
             label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
             label.textColor         = [UIColor utcsLightGrayColor];
             label.backgroundColor   = [UIColor clearColor];
@@ -119,14 +126,10 @@
         });
         [self.scrollView addSubview:self.dateLabel];
     }
-    self.dateLabel.text     = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END] title:NO];
-    CGRect dateLabelFrame   = self.dateLabel.frame;
-    dateLabelFrame.origin.y = self.titleTextView.frameY + self.titleTextView.height + 4.0;
-    self.dateLabel.frame    = dateLabelFrame;
-    
+
     if(!self.locationLabel) {
         self.locationLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(21.5, self.dateLabel.frameY + self.dateLabel.height,
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(21.5, self.dateLabel.y + self.dateLabel.height,
                                                                       self.view.width - 43.0, 32.0)];
             label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
             label.textColor         = [UIColor utcsLightGrayColor];
@@ -136,15 +139,10 @@
         });
         [self.scrollView addSubview:self.locationLabel];
     }
-    self.locationLabel.text     = self.event[PARSE_EVENT_LOCATION];
-    CGRect locationLabelFrame   = self.locationLabel.frame;
-    locationLabelFrame.origin.y = self.dateLabel.frameY + self.dateLabel.height;
-    self.locationLabel.frame    = locationLabelFrame;
-    
-    
+
     if(!self.descriptionTextView) {
         self.descriptionTextView = ({
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(16.0, self.locationLabel.frameY + self.locationLabel.height + 24.0, self.view.width - 32.0, 0.0)];
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(16.0, self.locationLabel.y + self.locationLabel.height + 24.0, self.view.width - 32.0, 0.0)];
             textView.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0];
             textView.editable = NO;
             textView.scrollEnabled = NO;
@@ -156,6 +154,34 @@
         });
         [self.scrollView addSubview:self.descriptionTextView];
     }
+    
+    if(!self.contactLabel) {
+        self.contactLabel = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, self.descriptionTextView.y + self.descriptionTextView.height + 8.0, self.view.width, 16.0)];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor utcsLightGrayColor];
+            label;
+        });
+        [self.scrollView addSubview:self.contactLabel];
+    }
+
+}
+
+#pragma mark Updating UI
+
+- (void)updateWithEvent:(PFObject *)event
+{
+    self.title = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START] endDate:self.event[PARSE_EVENT_DATE_END] title:YES];
+    
+    self.titleTextView.text = self.event[PARSE_EVENT_NAME];
+    
+    self.dateLabel.text = [self dateStringWithStartDate:self.event[PARSE_EVENT_DATE_START]
+                                                endDate:self.event[PARSE_EVENT_DATE_END]
+                                                  title:NO];
+    
+    
+    self.locationLabel.text     = self.event[PARSE_EVENT_LOCATION];
     
     NSMutableAttributedString *attributedEventDescription = [[NSMutableAttributedString alloc]initWithData:[self.event[PARSE_EVENT_DESCRIPTION] dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
                                                                           documentAttributes:nil error:nil];
@@ -170,6 +196,7 @@
             [attributedEventDescription addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:16] range:range];
         }
     }];
+    
     self.descriptionTextView.attributedText = attributedEventDescription;
     
     if([self.descriptionTextView.text length] == 0) {
@@ -180,29 +207,15 @@
         self.descriptionTextView.attributedText = attributedText;
     }
     CGRect descriptionTextViewFrame         = self.descriptionTextView.frame;
-    descriptionTextViewFrame.origin.y       = self.locationLabel.frameY + self.locationLabel.height + 24.0;
+    descriptionTextViewFrame.origin.y       = self.locationLabel.y + self.locationLabel.height + 24.0;
     descriptionTextViewFrame.size.height    = [self.descriptionTextView heightForText];
     self.descriptionTextView.frame          = descriptionTextViewFrame;
     
-    if(!self.contactLabel) {
-        self.contactLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, self.descriptionTextView.frameY + self.descriptionTextView.height + 8.0, self.view.width, 16.0)];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor utcsLightGrayColor];
-            label;
-        });
-        [self.scrollView addSubview:self.contactLabel];
-    }
+    
     self.contactLabel.text      = [NSString stringWithFormat:@"Contact: %@ - %@",
                                    self.event[PARSE_EVENT_CONTACT_NAME],
                                    self.event[PARSE_EVENT_CONTACT_EMAIL]];
-    CGRect contactLabelFrame    = self.contactLabel.frame;
-    contactLabelFrame.origin.y  = MAX(self.descriptionTextView.frameY + self.descriptionTextView.height + 8.0,
-                                      self.view.height - self.contactLabel.height - 68.0);
-    self.contactLabel.frame     = contactLabelFrame;
-    
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), self.contactLabel.frameY + self.contactLabel.height + 4.0);
+    [self viewWillLayoutSubviews];
 }
 
 #pragma mark Private Methods

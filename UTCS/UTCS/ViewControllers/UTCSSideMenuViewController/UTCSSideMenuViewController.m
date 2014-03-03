@@ -26,6 +26,12 @@
 @property (strong, nonatomic) UIImageView       *backgroundImageView;
 
 //
+@property (strong, nonatomic) NSMutableArray    *blurredBackgroundImages;
+
+//
+@property (assign, nonatomic) NSInteger         blurredImageIndex;
+
+//
 @property (strong, nonatomic) UIBarButtonItem   *menuBarButtonItem;
 
 @end
@@ -65,6 +71,9 @@
         _parallaxContentMaximumRelativeValue = @(25);
         
         _bouncesHorizontally = YES;
+        
+        _blurredBackgroundImages = [NSMutableArray new];
+        _blurredImageIndex = 0;
     }
     return self;
 }
@@ -196,6 +205,8 @@
             self.backgroundImageView.transform = CGAffineTransformIdentity;
         }
         
+        [self blurBackgroundImageWithDuration:duration];
+        
     } completion:^(BOOL finished) {
         
         // Restore touch events
@@ -257,6 +268,8 @@
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
         
+        [self unblurBackgroundImageWithDuration:duration];
+        
     } completion:^(BOOL finished) {
         
         // Restore touch events
@@ -286,6 +299,32 @@
         // Update the status bar style
         [self updateStatusBar];
     }];
+}
+
+- (void)blurBackgroundImageWithDuration:(CGFloat)duration
+{
+    if(self.blurredImageIndex < [self.blurredBackgroundImages count] - 1) {
+        CGFloat delay = duration / ([self.blurredBackgroundImages count] - self.blurredImageIndex);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
+            self.blurredImageIndex++;
+            [self blurBackgroundImageWithDuration:duration - delay];
+        });
+    }
+}
+
+- (void)unblurBackgroundImageWithDuration:(CGFloat)duration
+{
+    if(self.blurredImageIndex > 0) {
+        CGFloat delay = duration / ([self.blurredBackgroundImages count] - self.blurredImageIndex);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
+            self.blurredImageIndex--;
+            [self blurBackgroundImageWithDuration:duration - delay];
+        });
+    }
 }
 
 #pragma mark Adding Motion Effects
@@ -410,6 +449,10 @@
             contentViewScale = self.contentViewScaleValue - ((0.1f / delta) * (delta - 1.0));
         }
         
+        self.blurredImageIndex = MIN(MAX(0.0, ([self.blurredBackgroundImages count] -1) * delta),
+                                          [self.blurredBackgroundImages count] - 1);
+        self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
+        
         self.menuViewController.view.alpha = delta;
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
@@ -452,8 +495,24 @@
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    _backgroundImage = [backgroundImage applyDarkEffect];
+    if(backgroundImage == _backgroundImage) {
+        return;
+    }
+    [self.blurredBackgroundImages removeAllObjects];
+    
+    UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.5];
+    
+    _backgroundImage = [backgroundImage applyBlurWithRadius:0.1 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
     self.backgroundImageView.image = _backgroundImage;
+    
+    [_blurredBackgroundImages addObject:_backgroundImage];
+    
+    CGFloat blurFactor = 0.01;
+    for(int i = 0; i < 20; ++i) {
+        UIImage *blurredImage = [_backgroundImage applyBlurWithRadius:blurFactor tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
+        [_blurredBackgroundImages addObject:blurredImage];
+        blurFactor = MIN(blurFactor * 1.5, blurFactor + 1.0);
+    }
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
