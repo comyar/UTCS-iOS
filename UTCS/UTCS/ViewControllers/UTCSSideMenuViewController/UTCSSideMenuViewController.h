@@ -14,6 +14,7 @@
  */
 @interface UTCSSideMenuViewController : UIViewController <UIGestureRecognizerDelegate>
 
+
 // --------------------------------------------------------------------------------------
 // @name Creating a UTCSSideMenuViewController
 // --------------------------------------------------------------------------------------
@@ -31,6 +32,7 @@
  */
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 
+
 // --------------------------------------------------------------------------------------
 // @name Using a UTCSSideMenuViewController
 // --------------------------------------------------------------------------------------
@@ -42,6 +44,7 @@
 /**
  */
 - (void)hideMenuViewController;
+
 
 // --------------------------------------------------------------------------------------
 // @name Properties
