@@ -9,7 +9,10 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSEventsTableViewCell.h"
 #import "UTCSEventDetailViewController.h"
+#import "UTCSEvent.h"
 #import "UIColor+UTCSColors.h"
+#import "UIView+Positioning.h"
+
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
@@ -61,7 +64,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
             dateFormatter.dateFormat = @"MMM";
             dateFormatter;
         });
-        [self updateEventData];
     }
     return self;
 }
@@ -69,16 +71,11 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Adjust edges so tableview extends beneath navigation bar
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Configure table view
     [self.tableView registerNib:[UINib nibWithNibName:@"UTCSEventsTableViewCell" bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:cellIdentifier];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorColor = [UIColor utcsTableViewSeparatorColor];
     
@@ -93,7 +90,10 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.eventsSegementedControl.tintColor = [UIColor utcsBurntOrangeColor];
     self.eventsSegementedControl.selectedSegmentIndex = 0;
 //    [self.navigationController.navigationBar.topItem setTitleView:self.eventsSegementedControl];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     // Update data
     [self updateEventData];
 }
@@ -114,24 +114,28 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     
     PFQuery *query = [PFQuery queryWithClassName:PARSE_EVENT_CLASS];
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [query whereKey:PARSE_EVENT_DATE_END greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+    [query whereKey:UTCSParseEventStartDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:0.0]];
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         if(objects) {
-            self.events = objects;
-            self.events = [self.events sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
-                PFObject *p_obj1 = (PFObject *)obj1;
-                PFObject *p_obj2 = (PFObject *)obj2;
-                if(p_obj1[PARSE_EVENT_DATE_START] > p_obj2[PARSE_EVENT_DATE_START]) {
+            NSMutableArray *events = [NSMutableArray new];
+            for(PFObject *object in objects) {
+                UTCSEvent *event = [UTCSEvent eventWithParseObject:object];
+                [event initializeAttributedDescriptionWithBoldFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
+                                                              font:[UIFont fontWithName:@"HelveticaNeue" size:16]];
+                [events addObject:event];
+            }
+            self.events = [events sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
+                UTCSEvent *event1 = (UTCSEvent *)obj1;
+                UTCSEvent *event2 = (UTCSEvent *)obj2;
+                if(event1.startDate > event2.startDate) {
                     return NSOrderedDescending;
-                } else if(p_obj1[PARSE_EVENT_DATE_START] < p_obj2[PARSE_EVENT_DATE_START]) {
+                } else if(event1.startDate < event2.startDate) {
                     return NSOrderedAscending;
                 }
                 return NSOrderedSame;
             }];
             self.updateDate = [NSDate date];
             [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.description);
         }
         [self.refreshControl endRefreshing];
     }];
@@ -165,10 +169,11 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UTCSEventsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.nameLabel.text = self.events[indexPath.row][PARSE_EVENT_NAME];
-    cell.dayLabel.text = [[self.dayDateFormatter stringFromDate:self.events[indexPath.row][PARSE_EVENT_DATE_START]]uppercaseString];
-    cell.monthLabel.text = [self.monthDateFormatter stringFromDate:self.events[indexPath.row][PARSE_EVENT_DATE_START]];
-    cell.locationLabel.text = self.events[indexPath.row][PARSE_EVENT_LOCATION];
+    UTCSEvent *event = self.events[indexPath.row];
+    cell.nameLabel.text = event.name;
+    cell.dayLabel.text = [[self.dayDateFormatter stringFromDate:event.startDate]uppercaseString];
+    cell.monthLabel.text = [self.monthDateFormatter stringFromDate:event.startDate];
+    cell.locationLabel.text = event.location;
     return cell;
 }
 

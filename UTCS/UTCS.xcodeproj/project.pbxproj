@@ -34,6 +34,7 @@
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */; };
+		DDBF734D18C5EC6F000B1299 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF734C18C5EC6F000B1299 /* UTCSEvent.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
@@ -93,6 +94,8 @@
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Positioning.h"; path = "Categories/UIView+Positioning.h"; sourceTree = "<group>"; };
 		DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Positioning.m"; path = "Categories/UIView+Positioning.m"; sourceTree = "<group>"; };
+		DDBF734B18C5EC6F000B1299 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEvent.h; path = Model/UTCSEvent.h; sourceTree = "<group>"; };
+		DDBF734C18C5EC6F000B1299 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEvent.m; path = Model/UTCSEvent.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDCA58E918BE64DB001F543D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Categories/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				DDA94B6818C1D1C600DDF949 /* Categories */,
+				DDBF734B18C5EC6F000B1299 /* UTCSEvent.h */,
+				DDBF734C18C5EC6F000B1299 /* UTCSEvent.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DDF3657018B82AF100306069 /* UTCSDirectoryViewController.m in Sources */,
 				DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */,
+				DDBF734D18C5EC6F000B1299 /* UTCSEvent.m in Sources */,
 				DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */,
 				DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */,
 				DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */,

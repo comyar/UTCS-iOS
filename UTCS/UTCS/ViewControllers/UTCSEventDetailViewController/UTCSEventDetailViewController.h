@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class UTCSEvent;
+
 @interface UTCSEventDetailViewController : UIViewController
 
-@property (strong, nonatomic) PFObject *event;
+@property (strong, nonatomic) UTCSEvent *event;
 
 @end

@@ -214,6 +214,8 @@
             self.backgroundImageView.transform = CGAffineTransformIdentity;
         }
         
+        [self blurBackgroundImageWithFrameDuration:duration / ([self.blurredBackgroundImages count] - self.blurredImageIndex)];
+        
     } completion:^(BOOL finished) {
         
         // Restore touch events
@@ -275,6 +277,8 @@
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
         
+        [self unblurBackgroundImageWithFrameDuration:duration / self.blurredImageIndex];
+        
     } completion:^(BOOL finished) {
         
         // Restore touch events
@@ -306,29 +310,29 @@
     }];
 }
 
-//- (void)blurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
-//{
-//    if(self.blurredImageIndex < [self.blurredBackgroundImages count] - 1) {
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
-//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
-//            self.blurredImageIndex++;
-//            [self blurBackgroundImageWithFrameDuration:frameDuration];
-//        });
-//    }
-//}
-//
-//- (void)unblurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
-//{
-//    if(self.blurredImageIndex > 0) {
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
-//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
-//            self.blurredImageIndex--;
-//            [self blurBackgroundImageWithFrameDuration:frameDuration];
-//        });
-//    }
-//}
+- (void)blurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
+{
+    if(self.blurredImageIndex < [self.blurredBackgroundImages count] - 1) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
+            self.blurredImageIndex++;
+            [self blurBackgroundImageWithFrameDuration:frameDuration];
+        });
+    }
+}
+
+- (void)unblurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
+{
+    if(self.blurredImageIndex > 0) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
+            self.blurredImageIndex--;
+            [self blurBackgroundImageWithFrameDuration:frameDuration];
+        });
+    }
+}
 
 #pragma mark Adding Motion Effects
 
@@ -449,6 +453,7 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
+        
         // Determine the delta between the original point and the current point
         CGFloat delta = self.menuVisible ? (point.x + self.originalPoint.x) / self.originalPoint.x :
                                             point.x / CGRectGetWidth(self.view.bounds);
@@ -462,14 +467,10 @@
         
         // Determine the scale of the background view
         CGFloat backgroundViewScale = MAX(1.7f - (0.7f * delta), 1.0);
-        
-        
-        
-        
+    
         // Determine index of blurred background image to use
         self.blurredImageIndex = MIN(MAX(0.0, ([self.blurredBackgroundImages count] -1) * delta),
                                           [self.blurredBackgroundImages count] - 1);
-        
         self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
         
         // Update menu view alpha and scale
@@ -493,6 +494,7 @@
             if (self.menuVisible) {
                 [recognizer setTranslation:point inView:self.view];
             }
+            // Translate and scale content view based on delta
             CGFloat contentOffset = (delta > 1.0 && point.x != 0.0)? point.x / (point.x * delta) : point.x;
             self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
             self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform,
@@ -503,6 +505,8 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        // Determine the velocity of the pan and hide/show the menu accordingly
         CGPoint velocity = [recognizer velocityInView:self.view];
         if (velocity.x > 0) {
             [self showMenuViewControllerWithVelocity:velocity.x];
@@ -510,6 +514,7 @@
             [self hideMenuViewControllerWithVelocity:velocity.x];
         }
     }
+    
 }
 
 #pragma mark Overridden Setters

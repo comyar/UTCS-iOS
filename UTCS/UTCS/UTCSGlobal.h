@@ -20,13 +20,6 @@
 // -------------
 
 #define PARSE_EVENT_CLASS           @"Event"
-#define PARSE_EVENT_NAME            @"name"
-#define PARSE_EVENT_DESCRIPTION     @"description"
-#define PARSE_EVENT_LOCATION        @"location"
-#define PARSE_EVENT_CONTACT_EMAIL   @"contactEmail"
-#define PARSE_EVENT_CONTACT_NAME    @"contactName"
-#define PARSE_EVENT_DATE_START      @"dateStart"
-#define PARSE_EVENT_DATE_END        @"dateEnd"
 
 
 // ------------
