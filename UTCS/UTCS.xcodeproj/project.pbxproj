@@ -302,7 +302,7 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				DDA94B7D18C1FD8700DDF949 /* FrameBounds */,
+				DDA94B7D18C1FD8700DDF949 /* Positioning */,
 				DDA94B6418C1D1A000DDF949 /* UTCSColors */,
 				DDCA58E518BE4BA5001F543D /* CZTextViewHeight */,
 				DD7968F718B5EB03009ADE2A /* UIImageEffects */,
@@ -310,13 +310,13 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		DDA94B7D18C1FD8700DDF949 /* FrameBounds */ = {
+		DDA94B7D18C1FD8700DDF949 /* Positioning */ = {
 			isa = PBXGroup;
 			children = (
 				DDA94B7E18C1FD9F00DDF949 /* UIView+Positioning.h */,
 				DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */,
 			);
-			name = FrameBounds;
+			name = Positioning;
 			sourceTree = "<group>";
 		};
 		DDCA58E518BE4BA5001F543D /* CZTextViewHeight */ = {

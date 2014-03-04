@@ -28,6 +28,10 @@
 
 /**
  */
++ (UIColor *)utcsRedColor;
+
+/**
+ */
 + (UIColor *)utcsGrayColor;
 
 /**

@@ -26,6 +26,11 @@
     return [UIColor colorWithRed:RGB(51) green:RGB(51) blue:RGB(51) alpha:1.0];
 }
 
++ (UIColor *)utcsRedColor
+{
+    return [UIColor colorWithRed:RGB(204) green:RGB(0) blue:RGB(17) alpha:1.0];
+}
+
 + (UIColor *)utcsGrayColor
 {
     return [UIColor colorWithRed:RGB(102) green:RGB(102) blue:RGB(102) alpha:1.0];

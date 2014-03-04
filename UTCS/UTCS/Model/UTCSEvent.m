@@ -27,13 +27,13 @@ NSString * const UTCSParseEventEndDate          = @"dateEnd";
 - (instancetype)initWithParseObject:(PFObject *)object
 {
     if(self = [super init]) {
-        _name           = object[UTCSParseEventName];
-        _contactName    = object[UTCSParseEventContactName];
-        _contactEmail   = object[UTCSParseEventContactEmail];
-        _location       = object[UTCSParseEventLocation];
-        _startDate      = object[UTCSParseEventStartDate];
-        _endDate        = object[UTCSParseEventEndDate];
-        _HTMLDescription = object[UTCSParseEventHTMLDescription];
+        _name               = object[UTCSParseEventName];
+        _contactName        = object[UTCSParseEventContactName];
+        _contactEmail       = object[UTCSParseEventContactEmail];
+        _location           = object[UTCSParseEventLocation];
+        _startDate          = object[UTCSParseEventStartDate];
+        _endDate            = object[UTCSParseEventEndDate];
+        _HTMLDescription    = object[UTCSParseEventHTMLDescription];
     }
     return self;
 }
@@ -41,12 +41,7 @@ NSString * const UTCSParseEventEndDate          = @"dateEnd";
 - (void)initializeAttributedDescriptionWithBoldFont:(UIFont *)boldFont font:(UIFont *)font
 {
     if([_HTMLDescription length] == 0) {
-        NSMutableAttributedString *attributedDescription = [[NSMutableAttributedString alloc]initWithString:@"Description Unavailable"];
-        NSRange range = NSMakeRange(0, [attributedDescription length]);
-        [attributedDescription addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-        [attributedDescription addAttribute:NSFontAttributeName value:font range:range];
-        _attributedDescription = attributedDescription;
-        
+        _attributedDescription = [NSAttributedString new];
     } else {
         
         NSData *descriptionData = [_HTMLDescription dataUsingEncoding:NSUTF8StringEncoding];

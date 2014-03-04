@@ -36,34 +36,34 @@ extern NSString * const UTCSParseEventEndDate;
 
 /**
  */
-@property (copy, nonatomic) NSString            *name;
+@property (strong, nonatomic, readonly) NSString            *name;
 
 /**
  */
-@property (copy, nonatomic) NSString            *contactName;
+@property (strong, nonatomic, readonly) NSString            *contactName;
 
 /**
  */
-@property (copy, nonatomic) NSString            *contactEmail;
+@property (strong, nonatomic, readonly) NSString            *contactEmail;
 
 /**
  */
-@property (copy, nonatomic) NSString            *location;
+@property (strong, nonatomic, readonly) NSString            *location;
 
 /**
  */
-@property (copy, nonatomic) NSString            *HTMLDescription;
+@property (strong, nonatomic, readonly) NSString            *HTMLDescription;
 
 /**
  */
-@property (strong, nonatomic) NSDate            *startDate;
+@property (strong, nonatomic, readonly) NSDate            *startDate;
 
 /**
  */
-@property (strong, nonatomic) NSDate            *endDate;
+@property (strong, nonatomic, readonly) NSDate            *endDate;
 
 /**
  */
-@property (copy, nonatomic, readonly) NSAttributedString  *attributedDescription;
+@property (strong, nonatomic, readonly) NSAttributedString  *attributedDescription;
 
 @end

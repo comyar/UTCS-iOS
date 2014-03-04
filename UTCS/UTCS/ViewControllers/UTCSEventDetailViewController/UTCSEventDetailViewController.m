@@ -38,7 +38,8 @@
 //
 @property (strong, nonatomic) UIScrollView      *scrollView;
 
-@property (strong, nonatomic) NSCalendar        *currentCalendar;
+//
+@property (strong, nonatomic) UIButton          *addToCalendarButton;
 
 @end
 
@@ -85,76 +86,83 @@
 
 - (void)initializeSubviews
 {
-    if(!self.scrollView) {
-        self.scrollView = ({
-            UIScrollView *scrollView        = [[UIScrollView alloc]initWithFrame:CGRectZero];
-            scrollView.alwaysBounceVertical = YES;
-            scrollView;
-        });
-        [self.view addSubview:self.scrollView];
-    }
+    // Scroll view
+    self.scrollView = ({
+        UIScrollView *scrollView        = [[UIScrollView alloc]initWithFrame:CGRectZero];
+        scrollView.alwaysBounceVertical = YES;
+        scrollView;
+    });
+    [self.view addSubview:self.scrollView];
     
-    if(!self.titleTextView) {
-        self.titleTextView = ({
-            UITextView *textView        = [[UITextView alloc]initWithFrame:CGRectZero];
-            textView.textColor          = [UIColor utcsDarkGrayColor];
-            textView.editable           = NO;
-            textView.scrollEnabled      = NO;
-            textView.font               = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.0];
-            textView.textAlignment      = NSTextAlignmentLeft;
-            textView.backgroundColor    = [UIColor clearColor];
-            textView;
-        });
-        [self.scrollView addSubview:self.titleTextView];
-    }
+    // Title text view
+    self.titleTextView = ({
+        UITextView *textView        = [[UITextView alloc]initWithFrame:CGRectZero];
+        textView.textColor          = [UIColor utcsDarkGrayColor];
+        textView.editable           = NO;
+        textView.scrollEnabled      = NO;
+        textView.font               = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.0];
+        textView.textAlignment      = NSTextAlignmentLeft;
+        textView.backgroundColor    = [UIColor clearColor];
+        textView;
+    });
+    [self.scrollView addSubview:self.titleTextView];
     
-    if(!self.dateLabel) {
-        self.dateLabel = ({
-            UILabel *label          = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
-            label.textColor         = [UIColor utcsLightGrayColor];
-            label.backgroundColor   = [UIColor clearColor];
-            label;
-        });
-        [self.scrollView addSubview:self.dateLabel];
-    }
+    // Date label
+    self.dateLabel = ({
+        UILabel *label          = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
+        label.textColor         = [UIColor utcsLightGrayColor];
+        label.backgroundColor   = [UIColor clearColor];
+        label;
+    });
+    [self.scrollView addSubview:self.dateLabel];
 
-    if(!self.locationLabel) {
-        self.locationLabel = ({
-            UILabel *label          = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
-            label.textColor         = [UIColor utcsLightGrayColor];
-            label.backgroundColor   = [UIColor clearColor];
-            label.numberOfLines     = 0;
-            label;
-        });
-        [self.scrollView addSubview:self.locationLabel];
-    }
-
-    if(!self.descriptionTextView) {
-        self.descriptionTextView = ({
-            UITextView *textView        = [[UITextView alloc]initWithFrame:CGRectZero];
-            textView.font               = [UIFont fontWithName:@"HelveticaNeue" size:16.0];
-            textView.editable           = NO;
-            textView.scrollEnabled      = NO;
-            textView.textAlignment      = NSTextAlignmentLeft;
-            textView.textColor          = [UIColor utcsGrayColor];
-            textView.backgroundColor    = [UIColor clearColor];
-            textView;
-        });
-        [self.scrollView addSubview:self.descriptionTextView];
-    }
+    // Location label
+    self.locationLabel = ({
+        UILabel *label          = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font              = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
+        label.textColor         = [UIColor utcsLightGrayColor];
+        label.backgroundColor   = [UIColor clearColor];
+        label.numberOfLines     = 0;
+        label;
+    });
+    [self.scrollView addSubview:self.locationLabel];
     
-    if(!self.contactLabel) {
-        self.contactLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor utcsLightGrayColor];
-            label;
-        });
-        [self.scrollView addSubview:self.contactLabel];
-    }
+    // Add to calendar button
+    self.addToCalendarButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.layer.cornerRadius = 6.0;
+        button.layer.masksToBounds = YES;
+        button.layer.borderColor = [UIColor utcsBurntOrangeColor].CGColor;
+        button.layer.borderWidth = 1.0;
+        button.tintColor = [UIColor utcsBurntOrangeColor];
+        [button setTitle:@"Add to Calendar" forState:UIControlStateNormal];
+        button;
+    });
+    [self.scrollView addSubview:self.addToCalendarButton];
+    
+    // Description text view
+    self.descriptionTextView = ({
+        UITextView *textView        = [[UITextView alloc]initWithFrame:CGRectZero];
+        textView.font               = [UIFont fontWithName:@"HelveticaNeue" size:16.0];
+        textView.editable           = NO;
+        textView.scrollEnabled      = NO;
+        textView.textAlignment      = NSTextAlignmentLeft;
+        textView.textColor          = [UIColor utcsGrayColor];
+        textView.backgroundColor    = [UIColor clearColor];
+        textView;
+    });
+    [self.scrollView addSubview:self.descriptionTextView];
+    
+    // Contact label
+    self.contactLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor utcsLightGrayColor];
+        label;
+    });
+    [self.scrollView addSubview:self.contactLabel];
 }
 
 #pragma mark Updating UI
@@ -177,11 +185,12 @@
     self.dateLabel.frame            = CGRectMake(21.5, self.titleTextView.y + self.titleTextView.height + 4.0,
                                                  self.view.width - 43.0, self.dateLabel.font.pointSize);
     self.locationLabel.frame        = CGRectMake(21.5, self.dateLabel.y + self.dateLabel.height, self.view.width - 43.0, 32.0);
-    self.descriptionTextView.frame  = CGRectMake(16.0, self.locationLabel.y + self.locationLabel.height + 24.0,
+    self.addToCalendarButton.frame  = CGRectMake(16.0, self.locationLabel.y + self.locationLabel.height + 8.0, self.view.width - 32.0, 50.0);
+    self.descriptionTextView.frame  = CGRectMake(16.0, self.addToCalendarButton.y + self.addToCalendarButton.height + 8.0,
                                                  self.view.width - 32.0, [self.descriptionTextView heightForText]);
-    self.contactLabel.frame         = CGRectMake(0, MAX(self.descriptionTextView.y + self.descriptionTextView.height + 8.0,
-                                                        self.view.height - 2.0 * self.contactLabel.font.pointSize),
-                                                 self.view.width, self.contactLabel.font.pointSize);
+    self.contactLabel.frame         = CGRectMake(0.0, MAX(self.descriptionTextView.y + self.descriptionTextView.height + 8.0,
+                                                          self.view.height - 2.0 * self.contactLabel.font.pointSize),
+                                                 self.view.width, 1.5 * self.contactLabel.font.pointSize);
     self.scrollView.contentSize     = CGSizeMake(self.view.width, self.contactLabel.y + 2.0 * self.contactLabel.height);
 }
 
