@@ -53,7 +53,7 @@ NSString * const UTCSParseEventEndDate          = @"dateEnd";
             NSString *fontName  = [currentFont.fontName lowercaseString];
             
             if([fontName rangeOfString:@"bold"].location != NSNotFound) {
-                [attributedDescription addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:range];
+                [attributedDescription addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
                 [attributedDescription addAttribute:NSFontAttributeName value:boldFont range:range];
             } else {
                 [attributedDescription addAttribute:NSForegroundColorAttributeName

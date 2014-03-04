@@ -120,8 +120,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
             NSMutableArray *events = [NSMutableArray new];
             for(PFObject *object in objects) {
                 UTCSEvent *event = [UTCSEvent eventWithParseObject:object];
-                [event initializeAttributedDescriptionWithBoldFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16]
-                                                              font:[UIFont fontWithName:@"HelveticaNeue" size:16]];
+                [event initializeAttributedDescriptionWithBoldFont:[UIFont fontWithName:@"HelveticaNeue" size:16]
+                                                              font:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
                 [events addObject:event];
             }
             self.events = [events sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {

@@ -45,9 +45,11 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
     self.tableView.separatorColor = [UIColor utcsTableViewSeparatorColor];
+    self.tableView.rowHeight = 90.0;
     
     // Register tableview cell class
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UTCSNewTableViewCell" bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:cellIdentifier];
     
     // Initialize refresh control
     self.refreshControl = [UIRefreshControl new];
@@ -83,5 +85,7 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     return cell;
 }
+
+
 
 @end
