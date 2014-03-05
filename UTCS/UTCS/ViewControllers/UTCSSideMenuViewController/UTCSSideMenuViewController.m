@@ -441,6 +441,7 @@
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         self.menuViewController.view.frame = self.view.bounds;
         
+        
         // Reset background image view
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformIdentity;
