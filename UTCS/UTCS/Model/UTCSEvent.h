@@ -17,6 +17,11 @@ extern NSString * const UTCSParseEventHTMLDescription;
 extern NSString * const UTCSParseEventStartDate;
 extern NSString * const UTCSParseEventEndDate;
 
+extern NSString *const UTCSEventDetailBoldFont;
+extern NSString *const UTCSEventDetailBoldColor;
+extern NSString *const UTCSEventDetailNormalFont;
+extern NSString *const UTCSEventDetailNormalColor;
+
 
 /**
  */
@@ -32,7 +37,7 @@ extern NSString * const UTCSParseEventEndDate;
 
 /**
  */
-- (void)initializeAttributedDescriptionWithBoldFont:(UIFont *)boldFont font:(UIFont *)font;
+- (void)initializeAttributedDescriptionWithAttributes:(NSDictionary *)attributes;
 
 /**
  */

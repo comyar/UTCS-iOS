@@ -7,18 +7,25 @@
 //
 
 #import "UTCSNewsViewController.h"
+#import "UTCSNewsStory.h"
 #import "UIColor+UTCSColors.h"
 
 // Constants
-static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
-
+static NSString     *cellIdentifier = @"UTCSNewsTableViewCell";
+const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
+const NSTimeInterval kEarliestTimeIntervalForNews = -5184000;
 
 #pragma mark - UTCSNewsViewController Class Extension
 
 @interface UTCSNewsViewController ()
 
 //
-@property (strong, nonatomic) NSArray   *newsStories;
+@property (strong, nonatomic) NSArray           *newsStories;
+
+//
+@property (strong, nonatomic) NSDate            *updateDate;
+
+@property (strong, nonatomic) NSDateFormatter   *dateFormatter;
 
 @end
 
@@ -31,6 +38,9 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 {
     if (self = [super initWithStyle:style]) {
         self.title = @"News";
+        self.dateFormatter = [NSDateFormatter new];
+        self.dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+        self.dateFormatter.dateFormat = @"MMMM d, yyy";
     }
     return self;
 }
@@ -48,7 +58,7 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
     self.tableView.rowHeight = 90.0;
     
     // Register tableview cell class
-    [self.tableView registerNib:[UINib nibWithNibName:@"UTCSNewTableViewCell" bundle:[NSBundle mainBundle]]
+    [self.tableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:cellIdentifier];
     
     // Initialize refresh control
@@ -57,20 +67,53 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
     [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateNewStories];
+}
+
 #pragma mark Refresh Control
 
 - (void)didRefresh:(UIRefreshControl *)refreshControl
 {
-    NSLog(@"Did refresh table view");
-    [self updateNewsArticles];
+    [self updateNewStories];
 }
 
 #pragma mark Updating News Articles
 
-- (void)updateNewsArticles
+- (void)updateNewStories
 {
-    [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
+    if(self.updateDate && [[NSDate date]timeIntervalSinceDate:self.updateDate] < kMinTimeIntervalBetweenUpdates) {
+        [self.refreshControl endRefreshing];
+        return;
+    }
+    
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_NEWSSTORY_CLASS];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    [query whereKey:UTCSParseNewsStoryDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:kEarliestTimeIntervalForNews]];
+    [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
+        if(objects) {
+            NSMutableArray *newStories = [NSMutableArray new];
+            for(PFObject *object in objects) {
+                UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
+                [newsStory initializeAttributedTextWithAttributes:@{UTCSNewsStoryDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue-Light"
+                                                                                                                   size:16],
+                                                                    UTCSNewsStoryDetailNormalColor: [UIColor utcsDarkGrayColor],
+                                                                    UTCSNewsStoryDetailBoldFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
+                                                                    UTCSNewsStoryDetailBoldColor: [UIColor blackColor]}];
+                [newStories addObject:newsStory];
+            }
+            self.newsStories = [newStories sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
+                UTCSNewsStory *story1 = (UTCSNewsStory *)obj1;
+                UTCSNewsStory *story2 = (UTCSNewsStory *)obj2;
+                return [story2.date compare:story1.date];
+            }];
+            self.updateDate = [NSDate date];
+            [self.tableView reloadData];
+        }
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 #pragma mark UITableViewDataSource Methods
@@ -83,7 +126,16 @@ static NSString *cellIdentifier = @"UTCSNewsTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
+    cell.textLabel.text = newsStory.title;
+    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:newsStory.date];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
 }
 
 

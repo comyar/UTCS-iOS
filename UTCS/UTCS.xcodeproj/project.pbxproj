@@ -36,7 +36,7 @@
 		DDA94B8018C1FD9F00DDF949 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+Positioning.m */; };
 		DDBF734D18C5EC6F000B1299 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF734C18C5EC6F000B1299 /* UTCSEvent.m */; };
 		DDBF735318C60EF6000B1299 /* UTCSNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBF735218C60EF6000B1299 /* UTCSNewsTableViewCell.xib */; };
-		DDBF735618C61162000B1299 /* UTCSNewsArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF735518C61162000B1299 /* UTCSNewsArticle.m */; };
+		DDBF735618C61162000B1299 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF735518C61162000B1299 /* UTCSNewsStory.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
@@ -99,8 +99,8 @@
 		DDBF734B18C5EC6F000B1299 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEvent.h; path = Model/UTCSEvent.h; sourceTree = "<group>"; };
 		DDBF734C18C5EC6F000B1299 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEvent.m; path = Model/UTCSEvent.m; sourceTree = "<group>"; };
 		DDBF735218C60EF6000B1299 /* UTCSNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UTCSNewsTableViewCell.xib; path = Views/UTCSNewsTableViewCell/UTCSNewsTableViewCell.xib; sourceTree = "<group>"; };
-		DDBF735418C61162000B1299 /* UTCSNewsArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsArticle.h; path = Model/UTCSNewsArticle.h; sourceTree = "<group>"; };
-		DDBF735518C61162000B1299 /* UTCSNewsArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsArticle.m; path = Model/UTCSNewsArticle.m; sourceTree = "<group>"; };
+		DDBF735418C61162000B1299 /* UTCSNewsStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsStory.h; path = Model/UTCSNewsStory.h; sourceTree = "<group>"; };
+		DDBF735518C61162000B1299 /* UTCSNewsStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsStory.m; path = Model/UTCSNewsStory.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDCA58E918BE64DB001F543D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Categories/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -404,8 +404,8 @@
 				DDA94B6818C1D1C600DDF949 /* Categories */,
 				DDBF734B18C5EC6F000B1299 /* UTCSEvent.h */,
 				DDBF734C18C5EC6F000B1299 /* UTCSEvent.m */,
-				DDBF735418C61162000B1299 /* UTCSNewsArticle.h */,
-				DDBF735518C61162000B1299 /* UTCSNewsArticle.m */,
+				DDBF735418C61162000B1299 /* UTCSNewsStory.h */,
+				DDBF735518C61162000B1299 /* UTCSNewsStory.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -541,7 +541,7 @@
 				DD7968F518B5B54E009ADE2A /* UTCSEventsViewController.m in Sources */,
 				DDBF734D18C5EC6F000B1299 /* UTCSEvent.m in Sources */,
 				DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */,
-				DDBF735618C61162000B1299 /* UTCSNewsArticle.m in Sources */,
+				DDBF735618C61162000B1299 /* UTCSNewsStory.m in Sources */,
 				DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */,
 				DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */,
 				DDF3656918B829BF00306069 /* UTCSLabsViewController.m in Sources */,

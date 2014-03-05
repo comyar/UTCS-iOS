@@ -13,11 +13,12 @@
 #import "UIColor+UTCSColors.h"
 #import "UIView+Positioning.h"
 
-
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
 const CGFloat kEventsTableViewCellHeight            = 75.0;
 const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
+
+
 
 
 #pragma mark - UTCSEventsViewController Class Extension
@@ -94,6 +95,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     // Update data
     [self updateEventData];
 }
@@ -120,19 +122,17 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
             NSMutableArray *events = [NSMutableArray new];
             for(PFObject *object in objects) {
                 UTCSEvent *event = [UTCSEvent eventWithParseObject:object];
-                [event initializeAttributedDescriptionWithBoldFont:[UIFont fontWithName:@"HelveticaNeue" size:16]
-                                                              font:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
+                [event initializeAttributedDescriptionWithAttributes:@{UTCSEventDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue-Light"
+                                                                                                                  size:16],
+                                                                       UTCSEventDetailNormalColor: [UIColor utcsDarkGrayColor],
+                                                                       UTCSEventDetailBoldFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
+                                                                       UTCSEventDetailBoldColor: [UIColor blackColor]}];
                 [events addObject:event];
             }
             self.events = [events sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
                 UTCSEvent *event1 = (UTCSEvent *)obj1;
                 UTCSEvent *event2 = (UTCSEvent *)obj2;
-                if(event1.startDate > event2.startDate) {
-                    return NSOrderedDescending;
-                } else if(event1.startDate < event2.startDate) {
-                    return NSOrderedAscending;
-                }
-                return NSOrderedSame;
+                return [event1.startDate compare:event2.startDate];
             }];
             self.updateDate = [NSDate date];
             [self.tableView reloadData];

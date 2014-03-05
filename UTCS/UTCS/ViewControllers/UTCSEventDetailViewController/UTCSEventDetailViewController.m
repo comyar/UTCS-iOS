@@ -221,7 +221,7 @@
             self.dateFormatter.dateFormat = @"MMM d, h:mm a";
         }
         NSString *startTime = [self.dateFormatter stringFromDate:startDate];
-        NSString *endTime = [self.dateFormatter stringFromDate:endDate];
+        NSString *endTime   = [self.dateFormatter stringFromDate:endDate];
         return [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
     }
 }
