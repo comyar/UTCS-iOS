@@ -7,25 +7,31 @@
 //
 
 #import "UTCSNewsViewController.h"
+#import "UTCSNewsDetailViewController.h"
 #import "UTCSNewsStory.h"
 #import "UIColor+UTCSColors.h"
 
 // Constants
 static NSString     *cellIdentifier = @"UTCSNewsTableViewCell";
 const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
-const NSTimeInterval kEarliestTimeIntervalForNews = -5184000;
+const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
+
 
 #pragma mark - UTCSNewsViewController Class Extension
 
 @interface UTCSNewsViewController ()
 
 //
-@property (strong, nonatomic) NSArray           *newsStories;
+@property (strong, nonatomic) NSArray                       *newsStories;
 
 //
-@property (strong, nonatomic) NSDate            *updateDate;
+@property (strong, nonatomic) NSDate                        *updateDate;
 
-@property (strong, nonatomic) NSDateFormatter   *dateFormatter;
+//
+@property (strong, nonatomic) NSDateFormatter               *dateFormatter;
+
+//
+@property (strong, nonatomic) UTCSNewsDetailViewController  *newsStorydetailViewController;
 
 @end
 
@@ -40,7 +46,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews = -5184000;
         self.title = @"News";
         self.dateFormatter = [NSDateFormatter new];
         self.dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-        self.dateFormatter.dateFormat = @"MMMM d, yyy";
+        self.dateFormatter.dateFormat = @"MMMM d, yyyy";
     }
     return self;
 }
@@ -97,7 +103,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews = -5184000;
             NSMutableArray *newStories = [NSMutableArray new];
             for(PFObject *object in objects) {
                 UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
-                [newsStory initializeAttributedTextWithAttributes:@{UTCSNewsStoryDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue-Light"
+                [newsStory initializeAttributedTextWithAttributes:@{UTCSNewsStoryDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue"
                                                                                                                    size:16],
                                                                     UTCSNewsStoryDetailNormalColor: [UIColor utcsDarkGrayColor],
                                                                     UTCSNewsStoryDetailBoldFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
@@ -136,6 +142,11 @@ const NSTimeInterval kEarliestTimeIntervalForNews = -5184000;
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
+    if(!self.newsStorydetailViewController) {
+        self.newsStorydetailViewController = [UTCSNewsDetailViewController new];
+    }
+    self.newsStorydetailViewController.newsStory = self.newsStories[indexPath.row];
+    [self.navigationController pushViewController:self.newsStorydetailViewController animated:YES];
 }
 
 

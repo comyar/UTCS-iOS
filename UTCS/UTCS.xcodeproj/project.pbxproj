@@ -41,6 +41,7 @@
 		DDCA58EB18BE64DB001F543D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58EA18BE64DB001F543D /* UIImage+ImageEffects.m */; };
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
 		DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */; };
+		DDF02AA318C74EA600C7D012 /* UTCSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF02AA218C74EA600C7D012 /* UTCSNewsDetailViewController.m */; };
 		DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */; };
 		DDF3656918B829BF00306069 /* UTCSLabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3656818B829BF00306069 /* UTCSLabsViewController.m */; };
 		DDF3657018B82AF100306069 /* UTCSDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3656F18B82AF100306069 /* UTCSDirectoryViewController.m */; };
@@ -110,6 +111,8 @@
 		DDD7650A18B4269400FB0170 /* UTCSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSideMenuViewController.h; sourceTree = "<group>"; };
 		DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSideMenuViewController.m; sourceTree = "<group>"; };
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
+		DDF02AA118C74EA600C7D012 /* UTCSNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDetailViewController.h; path = ViewControllers/UTCSNewsDetailViewController/UTCSNewsDetailViewController.h; sourceTree = "<group>"; };
+		DDF02AA218C74EA600C7D012 /* UTCSNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsDetailViewController.m; path = ViewControllers/UTCSNewsDetailViewController/UTCSNewsDetailViewController.m; sourceTree = "<group>"; };
 		DDF3652818B69FFA00306069 /* UTCSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventDetailViewController.h; path = ViewControllers/UTCSEventDetailViewController/UTCSEventDetailViewController.h; sourceTree = "<group>"; };
 		DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventDetailViewController.m; path = ViewControllers/UTCSEventDetailViewController/UTCSEventDetailViewController.m; sourceTree = "<group>"; };
 		DDF3656718B829BF00306069 /* UTCSLabsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsViewController.h; path = ViewControllers/UTCSLabsViewController/UTCSLabsViewController.h; sourceTree = "<group>"; };
@@ -267,11 +270,12 @@
 		DD79690F18B60ED0009ADE2A /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				DDF3656618B829A700306069 /* LabsViewController */,
-				DDF3652718B69FD800306069 /* EventDetailViewController */,
-				DD79691018B60ED6009ADE2A /* DirectoryViewController */,
-				DD7968F218B5B2CF009ADE2A /* EventsViewController */,
 				DDD7650418B3F56C00FB0170 /* NewsViewController */,
+				DDF02AA018C74E8800C7D012 /* NewsDetailViewController */,
+				DD7968F218B5B2CF009ADE2A /* EventsViewController */,
+				DDF3652718B69FD800306069 /* EventDetailViewController */,
+				DDF3656618B829A700306069 /* LabsViewController */,
+				DD79691018B60ED6009ADE2A /* DirectoryViewController */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -410,6 +414,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		DDF02AA018C74E8800C7D012 /* NewsDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDF02AA118C74EA600C7D012 /* UTCSNewsDetailViewController.h */,
+				DDF02AA218C74EA600C7D012 /* UTCSNewsDetailViewController.m */,
+			);
+			name = NewsDetailViewController;
+			sourceTree = "<group>";
+		};
 		DDF3652718B69FD800306069 /* EventDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +558,7 @@
 				DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */,
 				DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */,
 				DDF3656918B829BF00306069 /* UTCSLabsViewController.m in Sources */,
+				DDF02AA318C74EA600C7D012 /* UTCSNewsDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
