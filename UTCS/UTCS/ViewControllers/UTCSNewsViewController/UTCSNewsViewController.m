@@ -10,7 +10,6 @@
 #import "UTCSNewsDetailViewController.h"
 #import "UTCSNewsStory.h"
 #import "UIColor+UTCSColors.h"
-#import "FBShimmeringView.h"
 #import "UIView+Positioning.h"
 
 // Constants
