@@ -1,0 +1,6 @@
+[submodule "GPUImage"]
+	path = GPUImage
+	url = https://github.com/BradLarson/GPUImage.git
+[submodule "Shimmer"]
+	path = Shimmer
+	url = https://github.com/facebook/Shimmer.git
