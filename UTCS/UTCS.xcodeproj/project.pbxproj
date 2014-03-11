@@ -42,6 +42,10 @@
 		DDD7650318B3EE1300FB0170 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650218B3EE1300FB0170 /* UTCSMenuViewController.m */; };
 		DDD7650C18B4269400FB0170 /* UTCSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7650B18B4269400FB0170 /* UTCSSideMenuViewController.m */; };
 		DDF02AA318C74EA600C7D012 /* UTCSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF02AA218C74EA600C7D012 /* UTCSNewsDetailViewController.m */; };
+		DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */; };
+		DDF02B4518CE8C3800C7D012 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */; };
+		DDF02B4718CE8C4000C7D012 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4618CE8C4000C7D012 /* OpenGLES.framework */; };
+		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
 		DDF3652A18B69FFA00306069 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */; };
 		DDF3656918B829BF00306069 /* UTCSLabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3656818B829BF00306069 /* UTCSLabsViewController.m */; };
 		DDF3657018B82AF100306069 /* UTCSDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3656F18B82AF100306069 /* UTCSDirectoryViewController.m */; };
@@ -55,6 +59,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0B9A26321891D5E30032DA03;
 			remoteInfo = UTCS;
+		};
+		DDF02B4F18CE8F5700C7D012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF02B4A18CE8F5700C7D012 /* FBShimmering.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ECEA60FE18A49C620064AFF4;
+			remoteInfo = FBShimmering;
+		};
+		DDF02B5118CE8F6F00C7D012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF02B4A18CE8F5700C7D012 /* FBShimmering.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = ECEA60FD18A49C620064AFF4;
+			remoteInfo = FBShimmering;
+		};
+		DDF02B6318CE8F8900C7D012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF02B5D18CE8F8900C7D012 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		DDF02B6518CE8F8900C7D012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF02B5D18CE8F8900C7D012 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A34414DDB1EC00852800;
+			remoteInfo = GPUImageTests;
+		};
+		DDF02B6718CE8F9200C7D012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF02B5D18CE8F8900C7D012 /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCF1A33314DDB1EC00852800;
+			remoteInfo = GPUImage;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -113,6 +152,12 @@
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
 		DDF02AA118C74EA600C7D012 /* UTCSNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDetailViewController.h; path = ViewControllers/UTCSNewsDetailViewController/UTCSNewsDetailViewController.h; sourceTree = "<group>"; };
 		DDF02AA218C74EA600C7D012 /* UTCSNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsDetailViewController.m; path = ViewControllers/UTCSNewsDetailViewController/UTCSNewsDetailViewController.m; sourceTree = "<group>"; };
+		DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		DDF02B4618CE8C4000C7D012 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DDF02B4A18CE8F5700C7D012 /* FBShimmering.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBShimmering.xcodeproj; path = ../Shimmer/FBShimmering.xcodeproj; sourceTree = "<group>"; };
+		DDF02B5D18CE8F8900C7D012 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ../GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		DDF3652818B69FFA00306069 /* UTCSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventDetailViewController.h; path = ViewControllers/UTCSEventDetailViewController/UTCSEventDetailViewController.h; sourceTree = "<group>"; };
 		DDF3652918B69FFA00306069 /* UTCSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventDetailViewController.m; path = ViewControllers/UTCSEventDetailViewController/UTCSEventDetailViewController.m; sourceTree = "<group>"; };
 		DDF3656718B829BF00306069 /* UTCSLabsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsViewController.h; path = ViewControllers/UTCSLabsViewController/UTCSLabsViewController.h; sourceTree = "<group>"; };
@@ -127,6 +172,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */,
+				DDF02B4718CE8C4000C7D012 /* OpenGLES.framework in Frameworks */,
+				DDF02B4518CE8C3800C7D012 /* CoreVideo.framework in Frameworks */,
+				DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */,
 				DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */,
 				DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */,
 				DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */,
@@ -159,6 +208,8 @@
 		0B9A262A1891D5E30032DA03 = {
 			isa = PBXGroup;
 			children = (
+				DDF02B5D18CE8F8900C7D012 /* GPUImage.xcodeproj */,
+				DDF02B4A18CE8F5700C7D012 /* FBShimmering.xcodeproj */,
 				DDFD7DD618AA049A008F5A47 /* Resources.xcassets */,
 				0B9A263C1891D5E30032DA03 /* UTCS */,
 				0B9A263D1891D5E30032DA03 /* Supporting Files */,
@@ -180,6 +231,10 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */,
+				DDF02B4618CE8C4000C7D012 /* OpenGLES.framework */,
+				DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */,
+				DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */,
 				DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */,
 				DD79690A18B60D8D009ADE2A /* StoreKit.framework */,
 				DD79690818B60D81009ADE2A /* MobileCoreServices.framework */,
@@ -423,6 +478,23 @@
 			name = NewsDetailViewController;
 			sourceTree = "<group>";
 		};
+		DDF02B4B18CE8F5700C7D012 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDF02B5018CE8F5700C7D012 /* libFBShimmering.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDF02B5E18CE8F8900C7D012 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDF02B6418CE8F8900C7D012 /* libGPUImage.a */,
+				DDF02B6618CE8F8900C7D012 /* GPUImageTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DDF3652718B69FD800306069 /* EventDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +527,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				DDF02B6818CE8F9200C7D012 /* PBXTargetDependency */,
+				DDF02B5218CE8F6F00C7D012 /* PBXTargetDependency */,
 			);
 			name = UTCS;
 			productName = UTCS;
@@ -507,6 +581,16 @@
 			mainGroup = 0B9A262A1891D5E30032DA03;
 			productRefGroup = 0B9A26341891D5E30032DA03 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DDF02B4B18CE8F5700C7D012 /* Products */;
+					ProjectRef = DDF02B4A18CE8F5700C7D012 /* FBShimmering.xcodeproj */;
+				},
+				{
+					ProductGroup = DDF02B5E18CE8F8900C7D012 /* Products */;
+					ProjectRef = DDF02B5D18CE8F8900C7D012 /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0B9A26321891D5E30032DA03 /* UTCS */,
@@ -514,6 +598,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DDF02B5018CE8F5700C7D012 /* libFBShimmering.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFBShimmering.a;
+			remoteRef = DDF02B4F18CE8F5700C7D012 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DDF02B6418CE8F8900C7D012 /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = DDF02B6318CE8F8900C7D012 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DDF02B6618CE8F8900C7D012 /* GPUImageTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests.octest;
+			remoteRef = DDF02B6518CE8F8900C7D012 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0B9A26311891D5E30032DA03 /* Resources */ = {
@@ -577,6 +685,16 @@
 			isa = PBXTargetDependency;
 			target = 0B9A26321891D5E30032DA03 /* UTCS */;
 			targetProxy = 0B9A26531891D5E30032DA03 /* PBXContainerItemProxy */;
+		};
+		DDF02B5218CE8F6F00C7D012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBShimmering;
+			targetProxy = DDF02B5118CE8F6F00C7D012 /* PBXContainerItemProxy */;
+		};
+		DDF02B6818CE8F9200C7D012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage;
+			targetProxy = DDF02B6718CE8F9200C7D012 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -684,6 +802,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
+					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS/UTCS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
@@ -710,6 +829,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
+					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS/UTCS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";

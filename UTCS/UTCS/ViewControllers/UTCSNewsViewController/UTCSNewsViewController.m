@@ -10,6 +10,8 @@
 #import "UTCSNewsDetailViewController.h"
 #import "UTCSNewsStory.h"
 #import "UIColor+UTCSColors.h"
+#import "FBShimmeringView.h"
+#import "UIView+Positioning.h"
 
 // Constants
 static NSString     *cellIdentifier = @"UTCSNewsTableViewCell";
@@ -20,6 +22,12 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
 #pragma mark - UTCSNewsViewController Class Extension
 
 @interface UTCSNewsViewController ()
+
+//
+@property (strong, nonatomic) FBShimmeringView              *shimmeringView;
+
+//
+@property (strong, nonatomic) UILabel                       *navigationTitleLabel;
 
 //
 @property (strong, nonatomic) NSArray                       *newsStories;
@@ -44,9 +52,12 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
 {
     if (self = [super initWithStyle:style]) {
         self.title = @"News";
-        self.dateFormatter = [NSDateFormatter new];
-        self.dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-        self.dateFormatter.dateFormat = @"MMMM d, yyyy";
+        _dateFormatter = ({
+            NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            self.dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+            self.dateFormatter.dateFormat = @"MMMM d, yyyy";
+            dateFormatter;
+        });
     }
     return self;
 }
@@ -71,6 +82,14 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
     self.refreshControl = [UIRefreshControl new];
     self.refreshControl.tintColor = [UIColor utcsRefreshControlColor];
     [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
+    
+    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, 0.5 * self.view.width, 60)];
+    self.navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
+    self.navigationTitleLabel.text = @"News";
+    self.navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
+    self.shimmeringView.contentView = self.navigationTitleLabel;
+    self.navigationItem.titleView = self.shimmeringView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -90,7 +109,9 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
 
 - (void)updateNewStories
 {
+    self.shimmeringView.shimmering = YES;
     if(self.updateDate && [[NSDate date]timeIntervalSinceDate:self.updateDate] < kMinTimeIntervalBetweenUpdates) {
+        self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
         return;
     }
@@ -103,8 +124,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
             NSMutableArray *newStories = [NSMutableArray new];
             for(PFObject *object in objects) {
                 UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
-                [newsStory initializeAttributedTextWithAttributes:@{UTCSNewsStoryDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue"
-                                                                                                                   size:16],
+                [newsStory initializeAttributedTextWithAttributes:@{UTCSNewsStoryDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
                                                                     UTCSNewsStoryDetailNormalColor: [UIColor utcsDarkGrayColor],
                                                                     UTCSNewsStoryDetailBoldFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
                                                                     UTCSNewsStoryDetailBoldColor: [UIColor blackColor]}];
@@ -118,6 +138,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
             self.updateDate = [NSDate date];
             [self.tableView reloadData];
         }
+        self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
     }];
 }
@@ -148,7 +169,5 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
     self.newsStorydetailViewController.newsStory = self.newsStories[indexPath.row];
     [self.navigationController pushViewController:self.newsStorydetailViewController animated:YES];
 }
-
-
 
 @end

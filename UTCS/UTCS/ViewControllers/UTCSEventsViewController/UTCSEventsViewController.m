@@ -12,18 +12,23 @@
 #import "UTCSEvent.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+Positioning.h"
+#import "FBShimmeringView.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
 const CGFloat kEventsTableViewCellHeight            = 75.0;
-const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
-
-
+const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 
 
 #pragma mark - UTCSEventsViewController Class Extension
 
 @interface UTCSEventsViewController ()
+
+//
+@property (strong, nonatomic) FBShimmeringView              *shimmeringView;
+
+//
+@property (strong, nonatomic) UILabel                       *navigationTitleLabel;
 
 //
 @property (strong, nonatomic) NSArray                       *events;
@@ -91,6 +96,14 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.eventsSegementedControl.tintColor = [UIColor utcsBurntOrangeColor];
     self.eventsSegementedControl.selectedSegmentIndex = 0;
 //    [self.navigationController.navigationBar.topItem setTitleView:self.eventsSegementedControl];
+    
+    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, 0.5 * self.view.width, 60)];
+    self.navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
+    self.navigationTitleLabel.text = @"Events";
+    self.navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
+    self.shimmeringView.contentView = self.navigationTitleLabel;
+    self.navigationItem.titleView = self.shimmeringView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,6 +111,11 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [super viewDidAppear:animated];
     // Update data
     [self updateEventData];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
 }
 
 #pragma mark Refresh Control
@@ -109,7 +127,9 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (void)updateEventData
 {
-    if(self.updateDate && [[NSDate date]timeIntervalSinceDate:self.updateDate] < kMinTimeIntervalBetweenUpdates) {
+    self.shimmeringView.shimmering = YES;
+    if(self.updateDate && [[NSDate date]timeIntervalSinceDate:self.updateDate] < kMinTimeIntervalBetweenEventUpdates) {
+        self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
         return;
     }
@@ -137,6 +157,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
             self.updateDate = [NSDate date];
             [self.tableView reloadData];
         }
+        self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
     }];
 }
@@ -171,9 +192,9 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     UTCSEventsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     UTCSEvent *event = self.events[indexPath.row];
     cell.nameLabel.text = event.name;
-    cell.dayLabel.text = [[self.dayDateFormatter stringFromDate:event.startDate]uppercaseString];
-    cell.monthLabel.text = [self.monthDateFormatter stringFromDate:event.startDate];
-    cell.locationLabel.text = event.location;
+    cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
+    cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
+//    cell.locationLabel.text = event.location;
     return cell;
 }
 

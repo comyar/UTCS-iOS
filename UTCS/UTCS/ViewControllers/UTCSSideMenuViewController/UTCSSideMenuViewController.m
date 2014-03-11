@@ -24,13 +24,10 @@
 @property (assign, nonatomic) CGFloat           animationVelocity;
 
 //
-@property (strong, nonatomic) UIImageView       *backgroundImageView;
+@property (strong, nonatomic) GPUImageView       *backgroundImageView;
 
 //
-@property (strong, nonatomic) NSMutableArray    *blurredBackgroundImages;
-
-//
-@property (assign, nonatomic) NSInteger         blurredImageIndex;
+@property (strong, nonatomic) GPUImagePicture   *backgroundImagePicture;
 
 //
 @property (assign, nonatomic)   CGFloat         contentViewScaleValue;
@@ -55,6 +52,10 @@
 
 //
 @property (strong, nonatomic)   NSNumber        *parallaxContentMaximumRelativeValue;
+
+@property (strong, nonatomic) GPUImageiOSBlurFilter *blurFilter;
+
+@property (assign, nonatomic)   CGFloat         maxBlurRadius;
 
 @end
 
@@ -88,8 +89,7 @@
         _parallaxContentMinimumRelativeValue = @(-25);
         _parallaxContentMaximumRelativeValue = @(25);
         
-        _blurredBackgroundImages = [NSMutableArray new];
-        _blurredImageIndex = 0;
+        _maxBlurRadius = 20.0;
     }
     return self;
 }
@@ -106,8 +106,7 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     // Initialize background image view
-    self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    self.backgroundImageView.image = self.backgroundImage;
+    self.backgroundImageView = [[GPUImageView alloc]initWithFrame:self.view.bounds];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.backgroundImageView];
@@ -214,7 +213,6 @@
             self.backgroundImageView.transform = CGAffineTransformIdentity;
         }
         
-        [self blurBackgroundImageWithFrameDuration:duration / ([self.blurredBackgroundImages count] - self.blurredImageIndex)];
         
     } completion:^(BOOL finished) {
         
@@ -277,8 +275,6 @@
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
         
-        [self unblurBackgroundImageWithFrameDuration:duration / self.blurredImageIndex];
-        
     } completion:^(BOOL finished) {
         
         // Restore touch events
@@ -308,30 +304,6 @@
         // Update the status bar style
         [self updateStatusBar];
     }];
-}
-
-- (void)blurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
-{
-    if(self.blurredImageIndex < [self.blurredBackgroundImages count] - 1) {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
-            self.blurredImageIndex++;
-            [self blurBackgroundImageWithFrameDuration:frameDuration];
-        });
-    }
-}
-
-- (void)unblurBackgroundImageWithFrameDuration:(CGFloat)frameDuration
-{
-    if(self.blurredImageIndex > 0) {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(frameDuration * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            self.backgroundImageView.image = self.blurredBackgroundImages[MIN(self.blurredImageIndex, [self.blurredBackgroundImages count] - 1)];
-            self.blurredImageIndex--;
-            [self blurBackgroundImageWithFrameDuration:frameDuration];
-        });
-    }
 }
 
 #pragma mark Adding Motion Effects
@@ -468,11 +440,6 @@
         
         // Determine the scale of the background view
         CGFloat backgroundViewScale = MAX(1.7f - (0.7f * delta), 1.0);
-    
-        // Determine index of blurred background image to use
-        self.blurredImageIndex = MIN(MAX(0.0, ([self.blurredBackgroundImages count] -1) * delta),
-                                          [self.blurredBackgroundImages count] - 1);
-        self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
         
         // Update menu view alpha and scale
         self.menuViewController.view.alpha = delta;
@@ -502,6 +469,9 @@
                                                                                    contentOffset, 0);
         }
         
+        
+        self.blurFilter.blurRadiusInPixels = self.maxBlurRadius * delta;
+        
         [self updateStatusBar];
     }
     
@@ -526,26 +496,17 @@
         return;
     }
     
-    [self.blurredBackgroundImages removeAllObjects];
+    _backgroundImage = backgroundImage;
     
-    UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.5];
+    if(!self.blurFilter) {
+        self.blurFilter = [GPUImageiOSBlurFilter new];
+        self.blurFilter.blurRadiusInPixels = (self.menuVisible)? self.maxBlurRadius : 0.0;
+        [self.blurFilter addTarget:self.backgroundImageView];
+    }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
-        CGFloat blurFactor = 0.1;
-        for(int i = 0; i < 20; ++i) {
-            UIImage *blurredImage = [backgroundImage applyBlurWithRadius:blurFactor
-                                                               tintColor:tintColor
-                                                   saturationDeltaFactor:1.8
-                                                               maskImage:nil];
-            [self.blurredBackgroundImages addObject:blurredImage];
-            blurFactor = MIN(blurFactor * 1.5, blurFactor + 1.0);
-        }
-        
-        _backgroundImage = self.blurredBackgroundImages[0];
-        dispatch_async(dispatch_get_main_queue(), ^ {
-            self.backgroundImageView.image = self.blurredBackgroundImages[self.blurredImageIndex];
-        });
-    });
+    self.backgroundImagePicture = [[GPUImagePicture alloc]initWithImage:_backgroundImage];
+    
+    [self.backgroundImagePicture addTarget:self.blurFilter];
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController

@@ -31,7 +31,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.title = @"Event";
+        self.title = @"News";
         self.dateFormatter = ({
             NSDateFormatter *dateFormatter  = [NSDateFormatter new];
             dateFormatter.timeZone          = [NSTimeZone timeZoneWithName:@"GMT"];
