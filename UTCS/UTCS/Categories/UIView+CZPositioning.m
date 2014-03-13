@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UIView+Positioning.h"
+#import "UIView+CZPositioning.h"
 
-@implementation UIView (Positioning)
+@implementation UIView (CZPositioning)
 @dynamic height, width, x, y, centerX, centerY;
 
 

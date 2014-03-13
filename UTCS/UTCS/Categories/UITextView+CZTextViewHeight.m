@@ -10,7 +10,7 @@
 
 @implementation UITextView (CZTextViewHeight)
 
-- (CGFloat)heightForText
+- (CGFloat)heightWithText
 {
     return [self sizeThatFits:CGSizeMake(CGRectGetWidth(self.bounds), FLT_MAX)].height;
 }

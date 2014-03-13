@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (Positioning)
+@interface UIView (CZPositioning)
 
 @property (assign, nonatomic) CGFloat x;
 

@@ -10,7 +10,7 @@
 #import "UTCSNewsDetailViewController.h"
 #import "UTCSNewsStory.h"
 #import "UIColor+UTCSColors.h"
-#import "UIView+Positioning.h"
+#import "UIView+CZPositioning.h"
 #import "FBShimmeringView.h"
 #import "FRDLivelyButton.h"
 #import "UTCSSideMenuViewController.h"
@@ -77,7 +77,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
     self.tableView.separatorColor = [UIColor utcsTableViewSeparatorColor];
-    self.tableView.rowHeight = 90.0;
+    self.tableView.rowHeight = 90;
     
     // Register tableview cell class
     [self.tableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
@@ -115,7 +115,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
         [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
                                                                                             object:self]];
     }
-    
 }
 
 #pragma mark Refresh Control
@@ -151,10 +150,10 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                 return [story2.date compare:story1.date];
             }];
             self.updateDate = [NSDate date];
-            [self.tableView reloadData];
         }
         self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
     }];
 }
 
@@ -171,8 +170,11 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = [self.dateFormatter stringFromDate:newsStory.date];
+    NSLog(@"%@", self.dateFormatter.dateFormat);
     return cell;
 }
+
+#pragma mark UITableViewDelegate Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

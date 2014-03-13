@@ -10,8 +10,8 @@
 #import "UTCSEvent.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UIColor+UTCSColors.h"
-#import "UIView+Positioning.h"
-
+#import "UIView+CZPositioning.h"
+#import "UITextView+CZTextViewHeight.h"
 
 #pragma mark UTCSEventDetailViewController Class Extension
 
@@ -182,13 +182,13 @@
 - (void)updateSubviewLayouts
 {
     self.scrollView.frame           = self.view.bounds;
-    self.titleTextView.frame        = CGRectMake(16.0, 0.0, self.view.width - 32.0, [self.titleTextView heightForText]);
+    self.titleTextView.frame        = CGRectMake(16.0, 0.0, self.view.width - 32.0, [self.titleTextView heightWithText]);
     self.dateLabel.frame            = CGRectMake(21.5, self.titleTextView.y + self.titleTextView.height + 4.0,
                                                  self.view.width - 43.0, self.dateLabel.font.pointSize);
     self.locationLabel.frame        = CGRectMake(21.5, self.dateLabel.y + self.dateLabel.height, self.view.width - 43.0, 32.0);
     self.addToCalendarButton.frame  = CGRectMake(16.0, self.locationLabel.y + self.locationLabel.height + 28.0, self.view.width - 32.0, 50.0);
     self.descriptionTextView.frame  = CGRectMake(16.0, self.addToCalendarButton.y + self.addToCalendarButton.height + 28.0,
-                                                 self.view.width - 32.0, [self.descriptionTextView heightForText]);
+                                                 self.view.width - 32.0, [self.descriptionTextView heightWithText]);
     self.contactLabel.frame         = CGRectMake(0.0, self.descriptionTextView.y + self.descriptionTextView.height + 8.0,
                                                  self.view.width, self.contactLabel.font.pointSize);
     self.scrollView.contentSize     = CGSizeMake(self.view.width, self.contactLabel.y + 2.0 * self.contactLabel.height);

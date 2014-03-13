@@ -10,6 +10,6 @@
 
 @interface UITextView (CZTextViewHeight)
 
-- (CGFloat)heightForText;
+- (CGFloat)heightWithText;
 
 @end

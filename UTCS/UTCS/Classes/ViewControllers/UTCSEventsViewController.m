@@ -11,8 +11,10 @@
 #import "UTCSEventDetailViewController.h"
 #import "UTCSEvent.h"
 #import "UIColor+UTCSColors.h"
-#import "UIView+Positioning.h"
+#import "UIView+CZPositioning.h"
 #import "FBShimmeringView.h"
+#import "FRDLivelyButton.h"
+#import "UTCSSideMenuViewController.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
@@ -26,6 +28,9 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 
 //
 @property (strong, nonatomic) FBShimmeringView              *shimmeringView;
+
+//
+@property (strong, nonatomic) FRDLivelyButton               *menuButton;
 
 //
 @property (strong, nonatomic) UILabel                       *navigationTitleLabel;
@@ -104,6 +109,12 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
     self.navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
     self.shimmeringView.contentView = self.navigationTitleLabel;
     self.navigationItem.titleView = self.shimmeringView;
+    
+    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
+    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
+    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -116,6 +127,14 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.menuButton) {
+        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
+                                                                                            object:self]];
+    }
 }
 
 #pragma mark Refresh Control

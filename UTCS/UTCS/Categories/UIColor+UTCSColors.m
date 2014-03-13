@@ -43,7 +43,7 @@
 
 + (UIColor *)utcsTableViewSeparatorColor
 {
-    return [UIColor colorWithRed:RGB(200) green:RGB(200) blue:RGB(200) alpha:1.0];
+    return [UIColor colorWithRed:RGB(240) green:RGB(240) blue:RGB(240) alpha:1.0];
 }
 
 + (UIColor *)utcsRefreshControlColor

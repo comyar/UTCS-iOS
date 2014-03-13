@@ -7,7 +7,7 @@
 //
 
 #import "UTCSNewsDetailViewController.h"
-#import "UIView+Positioning.h"
+#import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UTCSNewsStory.h"
