@@ -1,6 +1,6 @@
 [submodule "GPUImage"]
-	path = GPUImage
+	path = UTCS/GPUImage
 	url = https://github.com/BradLarson/GPUImage.git
 [submodule "Shimmer"]
-	path = Shimmer
+	path = UTCS/Shimmer
 	url = https://github.com/facebook/Shimmer.git

@@ -10,12 +10,7 @@
 
 extern NSString *const UTCSParseNewsStoryTitle;
 extern NSString *const UTCSParseNewsStoryDate;
-extern NSString *const UTCSParseNewsStoryHTMLText;
-
-extern NSString *const UTCSNewsStoryDetailBoldFont;
-extern NSString *const UTCSNewsStoryDetailBoldColor;
-extern NSString *const UTCSNewsStoryDetailNormalFont;
-extern NSString *const UTCSNewsStoryDetailNormalColor;
+extern NSString *const UTCSParseNewsStoryJSON;
 
 @interface UTCSNewsStory : NSObject
 
@@ -27,16 +22,10 @@ extern NSString *const UTCSNewsStoryDetailNormalColor;
  */
 - (instancetype)initWithParseObject:(PFObject *)object;
 
-/**
- */
-- (void)initializeAttributedTextWithAttributes:(NSDictionary *)attributes;
-
 @property (strong, nonatomic, readonly) NSString    *title;
 
 @property (strong, nonatomic, readonly) NSDate      *date;
 
-@property (strong, nonatomic, readonly) NSString    *HTMLText;
-
-@property (strong, nonatomic, readonly) NSAttributedString *attributedText;
+@property (strong, nonatomic, readonly) NSArray     *jsonContent;
 
 @end

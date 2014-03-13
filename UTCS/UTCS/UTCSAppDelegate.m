@@ -43,9 +43,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self loadReveal];
+    
     // Initialize Parse
-    [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
-                  clientKey:@"JJf7dzHkAaawjGMSLPN7N2HXzfII3svZoCIqxx8V"];
+    [Parse setApplicationId:@"WyRM4LmrPsZGdTuPoPUu1gLwWugasEMrWvUbDB6Y"
+                  clientKey:@"KfrKIwFqyWV8zKcW9bmeFqpFyr54Ew6tgt2t0t0N"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -116,6 +118,28 @@
 {
     view.layer.cornerRadius = 4.0;
     view.layer.masksToBounds = YES;
+}
+
+#pragma mark - Reveal
+
+#import <dlfcn.h>
+- (void)loadReveal
+{
+    NSString *revealLibName = @"libReveal";
+    NSString *revealLibExtension = @"dylib";
+    NSString *dyLibPath = [[NSBundle mainBundle] pathForResource:revealLibName ofType:revealLibExtension];
+    NSLog(@"Loading dynamic library: %@", dyLibPath);
+    
+    void *revealLib = NULL;
+    revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+    
+    if (revealLib == NULL)
+    {
+        char *error = dlerror();
+        NSLog(@"dlopen error: %s", error);
+        NSString *message = [NSString stringWithFormat:@"%@.%@ failed to load with error: %s", revealLibName, revealLibExtension, error];
+        [[[UIAlertView alloc] initWithTitle:@"Reveal library could not be loaded" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
 }
 
 

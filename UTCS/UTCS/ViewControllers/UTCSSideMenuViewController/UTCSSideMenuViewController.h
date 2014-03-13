@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GPUImage/GPUImage.h>
 #import "UTCSSideMenuViewControllerDelegate.h"
 
+extern NSString * const UTCSSideMenuDisplayNotification;
 
 /**
  */

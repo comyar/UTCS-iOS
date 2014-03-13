@@ -20,7 +20,7 @@
 // -------------
 
 #define PARSE_EVENT_CLASS           @"Event"
-#define PARSE_NEWSSTORY_CLASS       @"NewsStory"
+#define PARSE_NEWS_CLASS            @"News"
 
 // ------------
 // @name Types

@@ -11,11 +11,14 @@
 #import "UTCSNewsStory.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+Positioning.h"
+#import "FBShimmeringView.h"
+#import "FRDLivelyButton.h"
+#import "UTCSSideMenuViewController.h"
 
 // Constants
-static NSString     *cellIdentifier = @"UTCSNewsTableViewCell";
+static NSString * const cellIdentifier              = @"UTCSNewsTableViewCell";
 const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
-const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
+const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 
 
 #pragma mark - UTCSNewsViewController Class Extension
@@ -24,6 +27,9 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
 
 //
 @property (strong, nonatomic) FBShimmeringView              *shimmeringView;
+
+//
+@property (strong, nonatomic) FRDLivelyButton               *menuButton;
 
 //
 @property (strong, nonatomic) UILabel                       *navigationTitleLabel;
@@ -84,17 +90,32 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
     
     self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, 0.5 * self.view.width, 60)];
     self.navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
-    self.navigationTitleLabel.text = @"News";
+    self.navigationTitleLabel.text = self.title;
     self.navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
     self.shimmeringView.contentView = self.navigationTitleLabel;
     self.navigationItem.titleView = self.shimmeringView;
+    
+    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
+    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
+    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self updateNewStories];
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.menuButton) {
+        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
+                                                                                            object:self]];
+    }
+    
 }
 
 #pragma mark Refresh Control
@@ -115,19 +136,14 @@ const NSTimeInterval kEarliestTimeIntervalForNews = INT32_MIN;
         return;
     }
     
-    PFQuery *query = [PFQuery queryWithClassName:PARSE_NEWSSTORY_CLASS];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_NEWS_CLASS];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
     [query whereKey:UTCSParseNewsStoryDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:kEarliestTimeIntervalForNews]];
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         if(objects) {
             NSMutableArray *newStories = [NSMutableArray new];
             for(PFObject *object in objects) {
-                UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
-                [newsStory initializeAttributedTextWithAttributes:@{UTCSNewsStoryDetailNormalFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
-                                                                    UTCSNewsStoryDetailNormalColor: [UIColor utcsDarkGrayColor],
-                                                                    UTCSNewsStoryDetailBoldFont: [UIFont fontWithName:@"HelveticaNeue" size:16],
-                                                                    UTCSNewsStoryDetailBoldColor: [UIColor blackColor]}];
-                [newStories addObject:newsStory];
+                [newStories addObject:[UTCSNewsStory newsStoryWithParseObject:object]];
             }
             self.newsStories = [newStories sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
                 UTCSNewsStory *story1 = (UTCSNewsStory *)obj1;
