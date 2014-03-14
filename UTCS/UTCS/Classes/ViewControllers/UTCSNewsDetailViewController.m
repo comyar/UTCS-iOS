@@ -71,32 +71,28 @@ const CGFloat kParagraphLineSpacing = 5.0;
                                                 dateStyle:NSDateFormatterMediumStyle
                                                 timeStyle:NSDateFormatterNoStyle];
     
+    
+    
     self.attributedText = [NSMutableAttributedString new];
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.lineSpacing = kParagraphLineSpacing;
     
     NSString *titleText = [NSString stringWithFormat:@"%@\n", newsStory.title];
-    NSMutableAttributedString *titleAttributedString = [[NSMutableAttributedString alloc]initWithString:titleText attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline], NSForegroundColorAttributeName: [UIColor blackColor],NSParagraphStyleAttributeName: paragraphStyle}];
+    NSMutableAttributedString *titleAttributedString = [[NSMutableAttributedString alloc]initWithString:titleText attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline], NSForegroundColorAttributeName: [UIColor blackColor]}];
     [self.attributedText appendAttributedString:titleAttributedString];
     
     NSString *dateText = [NSString stringWithFormat:@"%@\n\n", [NSDateFormatter localizedStringFromDate:newsStory.date
                                                                                               dateStyle:NSDateFormatterLongStyle
                                                                                               timeStyle:NSDateFormatterNoStyle]];
     
-    NSMutableAttributedString *dateAttributedString = [[NSMutableAttributedString alloc]initWithString:dateText attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote], NSForegroundColorAttributeName: [UIColor utcsBurntOrangeColor], NSParagraphStyleAttributeName:paragraphStyle}];
+    NSMutableAttributedString *dateAttributedString = [[NSMutableAttributedString alloc]initWithString:dateText attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote], NSForegroundColorAttributeName: [UIColor utcsBurntOrangeColor]}];
     [self.attributedText appendAttributedString:dateAttributedString];
     
-    for(NSDictionary *content in newsStory.jsonContent) {
-        if([content[@"type"]isEqualToString:@"text"] || [content[@"type"]isEqualToString:@"link"]) {
-            NSString *contentText = content[@"content"];
-            if(contentText) {
-                NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc]initWithString:contentText attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody], NSForegroundColorAttributeName: [UIColor utcsDarkGrayColor], NSParagraphStyleAttributeName:paragraphStyle}];
-                [self.attributedText appendAttributedString:contentAttributedString];
-            }
-        } else if([content[@"type"] isEqualToString:@"image"]) {
-            
-        }
-    }
+    NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
+    
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.lineSpacing = kParagraphLineSpacing;
+    
+    [self.attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.attributedText length])];
+    [self.attributedText appendAttributedString:contentAttributedString];
     
     self.contentTextView.attributedText = self.attributedText;
     self.contentTextView.height = [self.contentTextView heightWithText];
@@ -112,22 +108,35 @@ const CGFloat kParagraphLineSpacing = 5.0;
             [imageURLs addObject:imageURL];
         }
     }
+    NSLog(@"%ld images to download", [imageURLs count]);
     
     __block NSInteger numImagesDownloaded = 0;
     __block NSInteger numImagesToDownload = [imageURLs count];
-    NSInteger count = [self.imageViewPool count];
+    NSInteger count = [imageURLs count];
     for(NSInteger i = 0; i < count; ++i) {
+        NSLog(@"%ld image number", i);
         if(i + 1 > [self.imageViewPool count]) {
+            NSLog(@"adding imageview to pool");
             [self.imageViewPool addObject:[UIImageView new]];
         }
-        NSURL *imageURL = [NSURL URLWithString:imageURLs[i]];
+        
         UIImageView *imageView = self.imageViewPool[i];
-        [imageView setImageWithURL:imageURL completed: ^ (UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        NSURL *imageURL = [NSURL URLWithString:imageURLs[i]];
+        NSLog(@"%@", imageURL);
+        [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if(data) {
+                NSLog(@"image data");
+                imageView.image = [UIImage imageWithData:data];
+            }
             numImagesDownloaded++;
             if(numImagesDownloaded >= numImagesToDownload) {
                 completion();
             }
         }];
+    }
+    
+    if(numImagesToDownload == 0) {
+        completion();
     }
 }
 
@@ -136,9 +145,11 @@ const CGFloat kParagraphLineSpacing = 5.0;
 - (void)setNewsStory:(UTCSNewsStory *)newsStory
 {
     _newsStory = newsStory;
-    [self downloadImagesForNewStory:newsStory withCompletion: ^ {
-        
-    }];
+    [self updateWithNewsStory:newsStory];
+//    [self downloadImagesForNewStory:newsStory withCompletion: ^ {
+//        NSLog(@"finished downloading all images");
+//        [self updateWithNewsStory:newsStory];
+//    }];
 }
 
 @end

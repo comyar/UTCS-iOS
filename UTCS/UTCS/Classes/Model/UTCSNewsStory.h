@@ -26,6 +26,8 @@ extern NSString *const UTCSParseNewsStoryJSON;
 
 @property (strong, nonatomic, readonly) NSDate      *date;
 
+@property (strong, nonatomic, readonly) NSString    *html;
+
 @property (strong, nonatomic, readonly) NSArray     *jsonContent;
 
 @end

@@ -10,7 +10,7 @@
 
 NSString *const UTCSParseNewsStoryTitle     = @"title";
 NSString *const UTCSParseNewsStoryDate      = @"date";
-NSString *const UTCSParseNewsStoryJSON      = @"json_content";
+NSString *const UTCSParseNewStoryHTML       = @"html";
 
 @implementation UTCSNewsStory
 
@@ -24,10 +24,7 @@ NSString *const UTCSParseNewsStoryJSON      = @"json_content";
     if(self = [super init]) {
         _title      = object[UTCSParseNewsStoryTitle];
         _date       = object[UTCSParseNewsStoryDate];
-        
-        NSString *jsonContentString = object[UTCSParseNewsStoryJSON];
-        NSData *jsonContentData = [jsonContentString dataUsingEncoding:NSUTF8StringEncoding];
-        _jsonContent = [NSJSONSerialization JSONObjectWithData:jsonContentData options:NSJSONReadingAllowFragments error:nil];
+        _html       = object[UTCSParseNewStoryHTML];
     }
     return self;
 }
