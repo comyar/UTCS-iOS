@@ -12,7 +12,7 @@
 
 - (CGFloat)heightWithText
 {
-    return [self sizeThatFits:CGSizeMake(CGRectGetWidth(self.bounds), FLT_MAX)].height;
+    return [self.attributedText boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.bounds), NSIntegerMax) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size.height;
 }
 
 @end

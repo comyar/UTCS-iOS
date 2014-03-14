@@ -26,6 +26,9 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 @interface UTCSNewsViewController ()
 
 //
+@property (assign, nonatomic) BOOL hasAppeared;
+
+//
 @property (strong, nonatomic) FBShimmeringView              *shimmeringView;
 
 //
@@ -41,9 +44,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 @property (strong, nonatomic) NSDate                        *updateDate;
 
 //
-@property (strong, nonatomic) NSDateFormatter               *dateFormatter;
-
-//
 @property (strong, nonatomic) UTCSNewsDetailViewController  *newsStorydetailViewController;
 
 @end
@@ -57,12 +57,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 {
     if (self = [super initWithStyle:style]) {
         self.title = @"News";
-        _dateFormatter = ({
-            NSDateFormatter *dateFormatter = [NSDateFormatter new];
-            self.dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-            self.dateFormatter.dateFormat = @"MMMM d, yyyy";
-            dateFormatter;
-        });
     }
     return self;
 }
@@ -106,7 +100,10 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self updateNewStories];
+    if(!self.hasAppeared) {
+        self.hasAppeared = YES;
+        [self updateNewStories];
+    }
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
@@ -169,8 +166,10 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.textLabel.text = newsStory.title;
-    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:newsStory.date];
-    NSLog(@"%@", self.dateFormatter.dateFormat);
+    
+    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsStory.date
+                                                               dateStyle:NSDateFormatterLongStyle
+                                                               timeStyle:NSDateFormatterNoStyle];
     return cell;
 }
 
