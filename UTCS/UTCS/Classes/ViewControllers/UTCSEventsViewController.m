@@ -33,9 +33,6 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 @property (strong, nonatomic) FRDLivelyButton               *menuButton;
 
 //
-@property (strong, nonatomic) UILabel                       *navigationTitleLabel;
-
-//
 @property (strong, nonatomic) NSArray                       *events;
 
 //
@@ -46,9 +43,6 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 
 //
 @property (strong, nonatomic) NSDateFormatter               *monthDateFormatter;
-
-//
-@property (strong, nonatomic) UISegmentedControl            *eventsSegementedControl;
 
 //
 @property (strong, nonatomic) UTCSEventDetailViewController *eventDetailViewController;
@@ -95,21 +89,18 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
     self.refreshControl.tintColor = [UIColor utcsRefreshControlColor];
     [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
     
-    // Initialize segmented control
-    
-    self.eventsSegementedControl = [[UISegmentedControl alloc]initWithItems:@[@"All",@"Academic", @"Careers"]];
-    self.eventsSegementedControl.tintColor = [UIColor utcsBurntOrangeColor];
-    self.eventsSegementedControl.selectedSegmentIndex = 0;
-//    [self.navigationController.navigationBar.topItem setTitleView:self.eventsSegementedControl];
-    
+    // Title Label
     self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, 0.5 * self.view.width, 60)];
-    self.navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
-    self.navigationTitleLabel.text = @"Events";
-    self.navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
-    self.shimmeringView.contentView = self.navigationTitleLabel;
+    self.shimmeringView.contentView = ({
+        UILabel *navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
+        navigationTitleLabel.text = self.title;
+        navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
+        navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
+        navigationTitleLabel;
+    });
     self.navigationItem.titleView = self.shimmeringView;
     
+    // Menu Button
     self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
     [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
     [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
@@ -120,7 +111,6 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    // Update data
     [self updateEventData];
 }
 

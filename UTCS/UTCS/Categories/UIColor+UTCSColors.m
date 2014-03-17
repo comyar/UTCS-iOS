@@ -46,6 +46,11 @@
     return [UIColor colorWithRed:RGB(225) green:RGB(225) blue:RGB(225) alpha:1.0];
 }
 
++ (UIColor *)utcsTableViewHeaderColor
+{
+    return [UIColor colorWithRed:RGB(210) green:RGB(210) blue:RGB(210) alpha:1.0];
+}
+
 + (UIColor *)utcsRefreshControlColor
 {
     return [UIColor colorWithRed:RGB(200) green:RGB(200) blue:RGB(200) alpha:1.0];

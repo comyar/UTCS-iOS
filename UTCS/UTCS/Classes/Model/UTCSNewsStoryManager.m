@@ -38,7 +38,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         NSArray *sortedNewsStories = nil;
         NSMutableArray *newsStories = [NSMutableArray new];
-        
+        NSMutableArray *monthDividedNewStories = [NSMutableArray new];
         if(objects) {
             for(PFObject *object in objects) {
                 UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object attributedContent:nil];
@@ -51,8 +51,23 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                 UTCSNewsStory *story2 = (UTCSNewsStory *)obj2;
                 return [story2.date compare:story1.date];
             }];
+            
+            NSInteger currentMonth = -1;
+            for(UTCSNewsStory *newsStory in sortedNewsStories) {
+                NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:newsStory.date];
+                NSInteger month = [dateComponents month];
+                if(month != currentMonth) {
+                    NSMutableArray *newMonthArray = [NSMutableArray arrayWithObject:newsStory];
+                    [monthDividedNewStories addObject:newMonthArray];
+                    currentMonth = month;
+                } else {
+                    NSMutableArray *monthArray = [monthDividedNewStories lastObject];
+                    [monthArray addObject:newsStory];
+                }
+            }
+            
         }
-        completion(sortedNewsStories, error);
+        completion(monthDividedNewStories, error);
     }];
 }
 

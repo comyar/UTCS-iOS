@@ -36,9 +36,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 @property (strong, nonatomic) FRDLivelyButton               *menuButton;
 
 //
-@property (strong, nonatomic) UILabel                       *navigationTitleLabel;
-
-//
 @property (strong, nonatomic) NSArray                       *newsStories;
 
 //
@@ -83,14 +80,18 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.refreshControl.tintColor = [UIColor utcsRefreshControlColor];
     [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
     
+    // Title
     self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, 0.5 * self.view.width, 60)];
-    self.navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
-    self.navigationTitleLabel.text = self.title;
-    self.navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
-    self.shimmeringView.contentView = self.navigationTitleLabel;
+    self.shimmeringView.contentView = ({
+        UILabel *navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
+        navigationTitleLabel.text = self.title;
+        navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
+        navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
+        navigationTitleLabel;
+    });
     self.navigationItem.titleView = self.shimmeringView;
     
+    // Menu Button
     self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
     [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
     [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
@@ -136,6 +137,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [UTCSNewsStoryManager newsStoriesWithFontAttributes:[self newsStoryFontAttributes] completion: ^ (NSArray *newsStories, NSError *error) {
         if(newsStories) {
             self.newsStories = newsStories;
+            self.updateDate = [NSDate date];
         }
         self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
@@ -158,18 +160,40 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return [self.newsStories[section] count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return [self.newsStories count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
+    UTCSNewsStory *newsStory = self.newsStories[indexPath.section][indexPath.row];
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsStory.date
                                                                dateStyle:NSDateFormatterLongStyle
                                                                timeStyle:NSDateFormatterNoStyle];
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    static NSDateFormatter *titleHeaderDateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^ {
+        titleHeaderDateFormatter = [NSDateFormatter new];
+        titleHeaderDateFormatter.dateFormat = @"  MMMM";
+    });
+    UTCSNewsStory *newsStory = self.newsStories[section][0];
+    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 16.0)];
+    headerLabel.text = [titleHeaderDateFormatter stringFromDate:newsStory.date];
+    headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14.0];
+    headerLabel.textColor = [UIColor whiteColor];
+    headerLabel.backgroundColor = [UIColor utcsTableViewHeaderColor];
+    return headerLabel;
 }
 
 #pragma mark UITableViewDelegate Methods
@@ -181,7 +205,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     if(!self.newsStorydetailViewController) {
         self.newsStorydetailViewController = [UTCSNewsDetailViewController new];
     }
-    self.newsStorydetailViewController.newsStory = self.newsStories[indexPath.row];
+    self.newsStorydetailViewController.newsStory = self.newsStories[indexPath.section][indexPath.row];
     [self.navigationController pushViewController:self.newsStorydetailViewController animated:YES];
 }
 

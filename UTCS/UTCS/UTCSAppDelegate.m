@@ -112,6 +112,7 @@
                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:22]}];
     [[UISearchBar appearance]setBarTintColor:[UIColor utcsBarTintColor]];
     [[UISearchBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
+
 }
 
 - (void)roundCornersOfView:(UIView *)view

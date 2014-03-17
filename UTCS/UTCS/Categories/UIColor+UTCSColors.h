@@ -44,6 +44,10 @@
 
 /**
  */
++ (UIColor *)utcsTableViewHeaderColor;
+
+/**
+ */
 + (UIColor *)utcsRefreshControlColor;
 
 @end
