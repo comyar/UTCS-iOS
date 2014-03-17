@@ -8,26 +8,52 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ */
 extern NSString *const UTCSParseNewsStoryTitle;
-extern NSString *const UTCSParseNewsStoryDate;
-extern NSString *const UTCSParseNewsStoryJSON;
-
-@interface UTCSNewsStory : NSObject
 
 /**
  */
+extern NSString *const UTCSParseNewsStoryDate;
+
+/**
+ */
+extern NSString *const UTCSParseNewStoryHTML;
+
+
+/**
+ */
+@interface UTCSNewsStory : NSObject
+
 + (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object;
+
+/**
+ */
++ (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent;
+
 
 /**
  */
 - (instancetype)initWithParseObject:(PFObject *)object;
 
-@property (strong, nonatomic, readonly) NSString    *title;
+/**
+ */
+- (instancetype)initWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent;
 
-@property (strong, nonatomic, readonly) NSDate      *date;
+// -----
+// @name Properties
+// -----
 
-@property (strong, nonatomic, readonly) NSString    *html;
+//
+@property (strong, nonatomic, readonly) NSString                *title;
 
-@property (strong, nonatomic, readonly) NSArray     *jsonContent;
+//
+@property (strong, nonatomic, readonly) NSDate                  *date;
+
+//
+@property (strong, nonatomic, readonly) NSString                *html;
+
+//
+@property (strong, nonatomic)           NSAttributedString      *attributedContent;
 
 @end

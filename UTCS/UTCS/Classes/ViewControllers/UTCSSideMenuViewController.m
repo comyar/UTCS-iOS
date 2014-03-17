@@ -495,7 +495,7 @@ NSString * const UTCSSideMenuDisplayNotification = @"UTCSSideMenuDisplayNotifica
     _backgroundImage = backgroundImage;
     
     if(!self.backgroundView) {
-        self.backgroundView = [[UTCSStackBlurView alloc]initWithFrame:self.view.frame image:backgroundImage count:10];
+        self.backgroundView = [[UTCSStackBlurView alloc]initWithFrame:self.view.frame image:backgroundImage count:1];
         self.backgroundView.alpha = (self.menuVisible)? 1.0 : 0.0;
         [self.view insertSubview:self.backgroundView atIndex:0];
     }

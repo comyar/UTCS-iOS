@@ -7,11 +7,20 @@
 //
 
 #import "UTCSDirectoryViewController.h"
+#import "UIColor+UTCSColors.h"
+#import "FRDLivelyButton.h"
+#import "UTCSSideMenuViewController.h"
+#import "UIView+CZPositioning.h"
 
 @interface UTCSDirectoryViewController ()
 
+//
 @property (strong, nonatomic) UISearchBar                   *directorySearchBar;
 
+//
+@property (strong, nonatomic) FRDLivelyButton               *menuButton;
+
+//
 @property (strong, nonatomic) UISearchDisplayController     *directorySearchDisplayController;
 
 @end
@@ -26,26 +35,51 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.directorySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44)];
+    
+    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
+    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
+    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
+    
+	self.directorySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, self.topLayoutGuide.length, self.view.width, 44.0)];
     self.directorySearchBar.placeholder = @"Search UTCS Directory";
-    self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.directorySearchBar contentsController:self];
-    self.directorySearchDisplayController.displaysSearchBarInNavigationBar = YES;
+    [self.view addSubview:self.directorySearchBar];
+    self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.directorySearchBar
+                                                                             contentsController:self];
 }
 
-#pragma mark UTCSSideMenuViewControllerDelegate Methods
-
-- (void)sideMenuViewController:(UTCSSideMenuViewController *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
+- (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    [self.directorySearchDisplayController setActive:YES animated:YES];
     [self.directorySearchBar becomeFirstResponder];
-    NSLog(@"yolo");
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.directorySearchDisplayController setActive:NO animated:YES];
+    [self.directorySearchBar resignFirstResponder];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.directorySearchBar.frame = CGRectMake(0.0, self.topLayoutGuide.length, self.view.width, 44.0);
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    [self.directorySearchDisplayController setActive:NO animated:YES];
+    
+    if(button == self.menuButton) {
+        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
+                                                                                            object:self]];
+    }
 }
 
 @end

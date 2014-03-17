@@ -14,17 +14,29 @@ NSString *const UTCSParseNewStoryHTML       = @"html";
 
 @implementation UTCSNewsStory
 
+
 + (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object
 {
-    return [[UTCSNewsStory alloc]initWithParseObject:object];
+    return [UTCSNewsStory newsStoryWithParseObject:object attributedContent:nil];
+}
+
++ (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent
+{
+    return [[UTCSNewsStory alloc]initWithParseObject:object attributedContent:attributedContent];
 }
 
 - (instancetype)initWithParseObject:(PFObject *)object
 {
+    return [self initWithParseObject:object attributedContent:nil];
+}
+
+- (instancetype)initWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent
+{
     if(self = [super init]) {
-        _title      = object[UTCSParseNewsStoryTitle];
-        _date       = object[UTCSParseNewsStoryDate];
-        _html       = object[UTCSParseNewStoryHTML];
+        _title              = object[UTCSParseNewsStoryTitle];
+        _date               = object[UTCSParseNewsStoryDate];
+        _html               = object[UTCSParseNewStoryHTML];
+        _attributedContent  = attributedContent;
     }
     return self;
 }

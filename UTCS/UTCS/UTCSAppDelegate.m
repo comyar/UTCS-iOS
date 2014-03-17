@@ -43,7 +43,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self loadReveal];
+//    [self loadReveal];
     
     // Initialize Parse
     [Parse setApplicationId:@"WyRM4LmrPsZGdTuPoPUu1gLwWugasEMrWvUbDB6Y"
@@ -110,8 +110,8 @@
     [[UINavigationBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],
                                                           NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:22]}];
-    
-    [[UITextField appearanceWhenContainedIn:[UIView class], [UISearchBar class], nil]setTextAlignment:NSTextAlignmentLeft];
+    [[UISearchBar appearance]setBarTintColor:[UIColor utcsBarTintColor]];
+    [[UISearchBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
 }
 
 - (void)roundCornersOfView:(UIView *)view

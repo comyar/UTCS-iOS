@@ -14,11 +14,12 @@
 #import "FBShimmeringView.h"
 #import "FRDLivelyButton.h"
 #import "UTCSSideMenuViewController.h"
+#import "UTCSNewsStoryManager.h"
 
 // Constants
 static NSString * const cellIdentifier              = @"UTCSNewsTableViewCell";
 const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
-const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
+
 
 
 #pragma mark - UTCSNewsViewController Class Extension
@@ -121,7 +122,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     [self updateNewStories];
 }
 
-#pragma mark Updating News Articles
+#pragma mark Updating News Stories
 
 - (void)updateNewStories
 {
@@ -132,26 +133,25 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
         return;
     }
     
-    PFQuery *query = [PFQuery queryWithClassName:PARSE_NEWS_CLASS];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    [query whereKey:UTCSParseNewsStoryDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:kEarliestTimeIntervalForNews]];
-    [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
-        if(objects) {
-            NSMutableArray *newStories = [NSMutableArray new];
-            for(PFObject *object in objects) {
-                [newStories addObject:[UTCSNewsStory newsStoryWithParseObject:object]];
-            }
-            self.newsStories = [newStories sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
-                UTCSNewsStory *story1 = (UTCSNewsStory *)obj1;
-                UTCSNewsStory *story2 = (UTCSNewsStory *)obj2;
-                return [story2.date compare:story1.date];
-            }];
-            self.updateDate = [NSDate date];
+    [UTCSNewsStoryManager newsStoriesWithFontAttributes:[self newsStoryFontAttributes] completion: ^ (NSArray *newsStories, NSError *error) {
+        if(newsStories) {
+            self.newsStories = newsStories;
         }
         self.shimmeringView.shimmering = NO;
         [self.refreshControl endRefreshing];
         [self.tableView reloadData];
     }];
+}
+
+- (NSDictionary *)newsStoryFontAttributes
+{
+    return @{UTCSNewsStoryTitleFontAttribute:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+             UTCSNewsStoryTitleFontColorAttribute:[UIColor blackColor],
+             UTCSNewsStoryDateFontAttribute:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1],
+             UTCSNewsStoryDateFontColorAttribute:[UIColor utcsBurntOrangeColor],
+             UTCSNewsStoryTextFontAttribute:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+             UTCSNewsStoryTextFontColorAttribute:[UIColor utcsDarkGrayColor],
+             UTCSNewsStoryParagraphLineSpacing:@(4.0)};
 }
 
 #pragma mark UITableViewDataSource Methods
@@ -166,7 +166,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.textLabel.text = newsStory.title;
-    
     cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsStory.date
                                                                dateStyle:NSDateFormatterLongStyle
                                                                timeStyle:NSDateFormatterNoStyle];
