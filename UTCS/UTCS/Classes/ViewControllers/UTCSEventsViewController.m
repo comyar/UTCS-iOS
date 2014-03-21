@@ -12,7 +12,6 @@
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "FBShimmeringView.h"
-#import "FRDLivelyButton.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
@@ -28,7 +27,7 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 @property (strong, nonatomic) FBShimmeringView              *shimmeringView;
 
 //
-@property (strong, nonatomic) FRDLivelyButton               *menuButton;
+@property (strong, nonatomic) UIButton               *menuButton;
 
 //
 @property (strong, nonatomic) NSArray                       *events;
@@ -99,11 +98,11 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
     self.navigationItem.titleView = self.shimmeringView;
     
     // Menu Button
-    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
-    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
-    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
+//    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
+//    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
+//    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
+//    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated

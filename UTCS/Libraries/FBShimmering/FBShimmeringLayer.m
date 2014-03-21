@@ -150,12 +150,12 @@ static CAAnimation *shimmer_slide_finish(CAAnimation *a)
 {
   if (self = [super init]) {
     // default configuration
-    _shimmeringPauseDuration = 0.4;
+    _shimmeringPauseDuration = 0.3;
     _shimmeringSpeed = 230.0;
     _shimmeringHighlightWidth = 1.0;
-    _shimmeringOpacity = 0.5;
+    _shimmeringOpacity = 0.6;
     _shimmeringBeginFadeDuration = 0.1;
-    _shimmeringEndFadeDuration = 0.3;
+    _shimmeringEndFadeDuration = 0.1;
   }
   return self;
 }

@@ -8,7 +8,6 @@
 
 #import "UTCSDirectoryViewController.h"
 #import "UIColor+UTCSColors.h"
-#import "FRDLivelyButton.h"
 #import "UIView+CZPositioning.h"
 
 @interface UTCSDirectoryViewController ()
@@ -17,7 +16,7 @@
 @property (strong, nonatomic) UISearchBar                   *directorySearchBar;
 
 //
-@property (strong, nonatomic) FRDLivelyButton               *menuButton;
+//@property (strong, nonatomic) FRDLivelyButton               *menuButton;
 
 //
 @property (strong, nonatomic) UISearchDisplayController     *directorySearchDisplayController;
@@ -38,11 +37,11 @@
 {
     [super viewDidLoad];
     
-    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
-    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
-    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
+//    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
+//    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
+//    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
+//    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
     
 	self.directorySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, self.topLayoutGuide.length, self.view.width, 44.0)];
     self.directorySearchBar.placeholder = @"Search UTCS Directory";
@@ -74,10 +73,10 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     [self.directorySearchDisplayController setActive:NO animated:YES];
-    
-    if(button == self.menuButton) {
-        
-    }
+//    
+//    if(button == self.menuButton) {
+//        
+//    }
 }
 
 @end

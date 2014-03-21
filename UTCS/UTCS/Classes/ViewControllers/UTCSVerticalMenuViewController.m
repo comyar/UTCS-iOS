@@ -150,6 +150,7 @@ const CGFloat animationDuration = 0.25;
     
     self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
     self.contentDynamicItemBehavior.allowsRotation = NO;
+    self.contentDynamicItemBehavior.resistance = 2.0;
     
     self.contentSnapUpBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                          snapToPoint:self.view.center];

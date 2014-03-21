@@ -21,7 +21,6 @@
 		DD154EF118D659F0004E098D /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD154EF018D659F0004E098D /* UTCSNewsStoryManager.m */; };
 		DD154EF418D6991A004E098D /* UTCSEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD154EF318D6991A004E098D /* UTCSEventManager.m */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
-		DD5B580618D1FF1300EEB474 /* FRDLivelyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B580518D1FF1300EEB474 /* FRDLivelyButton.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
 		DD5B585618D239F900EEB474 /* UTCSDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584018D239F900EEB474 /* UTCSDirectoryViewController.m */; };
@@ -88,8 +87,6 @@
 		DD154EF218D6991A004E098D /* UTCSEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventManager.h; sourceTree = "<group>"; };
 		DD154EF318D6991A004E098D /* UTCSEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventManager.m; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
-		DD5B580418D1FF1300EEB474 /* FRDLivelyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRDLivelyButton.h; path = Libraries/FRDLivelyButton/FRDLivelyButton.h; sourceTree = "<group>"; };
-		DD5B580518D1FF1300EEB474 /* FRDLivelyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRDLivelyButton.m; path = Libraries/FRDLivelyButton/FRDLivelyButton.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEvent.m; sourceTree = "<group>"; };
 		DD5B583C18D239F900EEB474 /* UTCSNewsStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsStory.h; sourceTree = "<group>"; };
@@ -274,15 +271,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DD5B580318D1FEFB00EEB474 /* FRDLivelyButton */ = {
-			isa = PBXGroup;
-			children = (
-				DD5B580418D1FF1300EEB474 /* FRDLivelyButton.h */,
-				DD5B580518D1FF1300EEB474 /* FRDLivelyButton.m */,
-			);
-			name = FRDLivelyButton;
-			sourceTree = "<group>";
-		};
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,7 +451,6 @@
 			children = (
 				DD7968F718B5EB03009ADE2A /* ImageEffects */,
 				DDF02DCD18CF548600C7D012 /* FBShimmering */,
-				DD5B580318D1FEFB00EEB474 /* FRDLivelyButton */,
 				DD46451418CF641500E1DB5C /* libReveal.dylib */,
 			);
 			name = Libraries;
@@ -588,7 +575,6 @@
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */,
 				DDF02DD418CF548600C7D012 /* FBShimmeringLayer.m in Sources */,
-				DD5B580618D1FF1300EEB474 /* FRDLivelyButton.m in Sources */,
 				DD5B585718D239F900EEB474 /* UTCSEventDetailViewController.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DD5B585618D239F900EEB474 /* UTCSDirectoryViewController.m in Sources */,
