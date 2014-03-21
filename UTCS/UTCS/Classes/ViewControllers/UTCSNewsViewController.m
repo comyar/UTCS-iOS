@@ -10,13 +10,14 @@
 #import "UTCSVerticalMenuViewController.h"
 
 #import "FBShimmeringView.h"
+#import "UTCSNewsStoryDataSource.h"
 
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "UIImage+ImageEffects.h"
 
 // Constants
-static NSString * const cellIdentifier              = @"UTCSNewsTableViewCell";
+
 const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 
@@ -43,10 +44,16 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 @property (strong, nonatomic) UIButton                      *menuButton;
 
 //
-@property (strong, nonatomic) NSArray                       *newsStories;
+@property (strong, nonatomic) UITableView                   *newsTableView;
 
 //
-@property (strong, nonatomic) NSDate                        *updateDate;
+@property (nonatomic) UIView                                *newsTableViewHeaderContainer;
+
+//
+@property (nonatomic) NSArray                               *newsStories;
+
+//
+@property (nonatomic) UTCSNewsStoryDataSource               *dataSource;
 
 @end
 
@@ -54,6 +61,14 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 #pragma mark - UTCSNewsViewController Implementation
 
 @implementation UTCSNewsViewController
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.dataSource = [UTCSNewsStoryDataSource new];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -66,10 +81,19 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.blurredBackgroundImageView.alpha = 0.0;
     [self.view addSubview:self.blurredBackgroundImageView];
     
-    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
+    self.newsTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.newsTableView.rowHeight = 90;
+    self.newsTableView.backgroundColor = [UIColor clearColor];
+    self.newsTableView.delegate = self;
+    self.newsTableView.dataSource = self.dataSource;
+    self.newsTableView.separatorColor = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.newsTableView];
     
+    self.newsTableViewHeaderContainer = [[UIView alloc]initWithFrame:self.newsTableView.bounds];
+    self.newsTableView.tableHeaderView = self.newsTableViewHeaderContainer;
+    
+    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
     self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-    [self.view addSubview:self.utcsNewsShimmeringView];
     self.utcsNewsShimmeringView.contentView = ({
         UILabel *label = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
@@ -80,6 +104,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         label.shadowOffset = CGSizeMake(0, 2);
         label;
     });
+    [self.newsTableViewHeaderContainer addSubview:self.utcsNewsShimmeringView];
     
     self.utcsDescriptionLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
@@ -91,8 +116,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         label;
     });
-    [self.view addSubview:self.utcsDescriptionLabel];
-
+    [self.newsTableViewHeaderContainer addSubview:self.utcsDescriptionLabel];
     
     // Menu Button
     self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -113,9 +137,13 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.utcsNewsShimmeringView.shimmering = YES;
     if(!self.hasAppeared) {
         self.hasAppeared = YES;
+        self.utcsNewsShimmeringView.shimmering = YES;
+        [self.dataSource updateNewsStories:^{
+            self.utcsNewsShimmeringView.shimmering = NO;
+            [self.newsTableView reloadData];
+        }];
     }
 }
 
@@ -141,6 +169,14 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (BOOL)shouldRecognizeVerticalMenuViewControllerPanGesture
 {
     return NO;
+}
+
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.blurredBackgroundImageView.alpha = MIN(1.0, 2.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));;
+    self.menuButton.hidden = (scrollView.contentOffset.y > 10.0);
 }
 
 @end

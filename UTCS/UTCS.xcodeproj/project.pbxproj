@@ -18,8 +18,6 @@
 		0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A26581891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
-		DD154EF118D659F0004E098D /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD154EF018D659F0004E098D /* UTCSNewsStoryManager.m */; };
-		DD154EF418D6991A004E098D /* UTCSEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD154EF318D6991A004E098D /* UTCSEventManager.m */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
@@ -31,7 +29,6 @@
 		DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584A18D239F900EEB474 /* UTCSNewsDetailViewController.m */; };
 		DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */; };
 		DD5B586318D23A0000EEB474 /* UTCSEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5B586118D23A0000EEB474 /* UTCSEventsTableViewCell.xib */; };
-		DD5B586418D23A0000EEB474 /* UTCSNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5B586218D23A0000EEB474 /* UTCSNewsTableViewCell.xib */; };
 		DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
@@ -47,6 +44,7 @@
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
+		DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */; };
 		DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */; };
 		DDF02B4518CE8C3800C7D012 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */; };
 		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
@@ -82,10 +80,6 @@
 		0B9A26571891D5E30032DA03 /* UTCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCSTests-Info.plist"; sourceTree = "<group>"; };
 		0B9A26591891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
-		DD154EEF18D659F0004E098D /* UTCSNewsStoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsStoryManager.h; sourceTree = "<group>"; };
-		DD154EF018D659F0004E098D /* UTCSNewsStoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsStoryManager.m; sourceTree = "<group>"; };
-		DD154EF218D6991A004E098D /* UTCSEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventManager.h; sourceTree = "<group>"; };
-		DD154EF318D6991A004E098D /* UTCSEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventManager.m; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEvent.m; sourceTree = "<group>"; };
@@ -106,7 +100,6 @@
 		DD5B584B18D239F900EEB474 /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DD5B586118D23A0000EEB474 /* UTCSEventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UTCSEventsTableViewCell.xib; sourceTree = "<group>"; };
-		DD5B586218D23A0000EEB474 /* UTCSNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UTCSNewsTableViewCell.xib; sourceTree = "<group>"; };
 		DD5B586718D23A0A00EEB474 /* UTCSMenuViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD5B586918D23AFD00EEB474 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -130,6 +123,8 @@
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561E318DC15C700C46480 /* UTCSVerticalMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewControllerDelegate.h; sourceTree = "<group>"; };
+		DDE561EA18DC441F00C46480 /* UTCSNewsStoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsStoryDataSource.h; sourceTree = "<group>"; };
+		DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsStoryDataSource.m; sourceTree = "<group>"; };
 		DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -288,10 +283,8 @@
 				DD5B583B18D239F900EEB474 /* UTCSEvent.m */,
 				DD5B583C18D239F900EEB474 /* UTCSNewsStory.h */,
 				DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */,
-				DD154EEF18D659F0004E098D /* UTCSNewsStoryManager.h */,
-				DD154EF018D659F0004E098D /* UTCSNewsStoryManager.m */,
-				DD154EF218D6991A004E098D /* UTCSEventManager.h */,
-				DD154EF318D6991A004E098D /* UTCSEventManager.m */,
+				DDE561EA18DC441F00C46480 /* UTCSNewsStoryDataSource.h */,
+				DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				DD5B586118D23A0000EEB474 /* UTCSEventsTableViewCell.xib */,
-				DD5B586218D23A0000EEB474 /* UTCSNewsTableViewCell.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -535,7 +527,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5B586418D23A0000EEB474 /* UTCSNewsTableViewCell.xib in Resources */,
 				DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
@@ -564,14 +555,13 @@
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
-				DD154EF118D659F0004E098D /* UTCSNewsStoryManager.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
+				DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */,
 				DD5B585918D239F900EEB474 /* UTCSLabsViewController.m in Sources */,
 				DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
-				DD154EF418D6991A004E098D /* UTCSEventManager.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */,
 				DDF02DD418CF548600C7D012 /* FBShimmeringLayer.m in Sources */,
