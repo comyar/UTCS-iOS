@@ -48,8 +48,8 @@
 //    [self loadReveal];
     
     // Initialize Parse
-    [Parse setApplicationId:@"WyRM4LmrPsZGdTuPoPUu1gLwWugasEMrWvUbDB6Y"
-                  clientKey:@"KfrKIwFqyWV8zKcW9bmeFqpFyr54Ew6tgt2t0t0N"];
+    [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
+                  clientKey:@"JJf7dzHkAaawjGMSLPN7N2HXzfII3svZoCIqxx8V"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

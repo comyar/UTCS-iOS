@@ -23,6 +23,8 @@ extern NSString * const UTCSNewsStoryParagraphLineSpacing;
 
 @interface UTCSNewsStoryDataSource : NSObject <UITableViewDataSource>
 
+@property (nonatomic) NSArray *newsStories;
+
 - (void)updateNewsStories:(void (^)(void))completion;
 
 @end

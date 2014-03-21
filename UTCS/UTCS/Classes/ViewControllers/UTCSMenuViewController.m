@@ -68,7 +68,9 @@
     }
     
     cell.textLabel.text         = self.menuOptions[indexPath.row];
-    
+    cell.imageView.image        = [[UIImage imageNamed:[cell.textLabel.text lowercaseString]]
+                                   imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    cell.imageView.tintColor    = [UIColor whiteColor];
     return cell;
 }
 

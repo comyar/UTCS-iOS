@@ -55,6 +55,11 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 //
 @property (nonatomic) UTCSNewsStoryDataSource               *dataSource;
 
+//
+@property (nonatomic) UILabel                               *updatedLabel;
+
+@property (nonatomic) UIImageView                           *downArrowImageView;
+
 @end
 
 
@@ -82,7 +87,10 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [self.view addSubview:self.blurredBackgroundImageView];
     
     self.newsTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    self.newsTableView.rowHeight = 90;
+    [self.newsTableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
+             forCellReuseIdentifier:@"UTCSNewsTableViewCell"];
+    self.newsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.newsTableView.rowHeight = 128;
     self.newsTableView.backgroundColor = [UIColor clearColor];
     self.newsTableView.delegate = self;
     self.newsTableView.dataSource = self.dataSource;
@@ -108,7 +116,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     
     self.utcsDescriptionLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
-        label.numberOfLines = 0;
         label.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
         label.text = @"What starts here changes the world.";
         label.textAlignment = NSTextAlignmentCenter;
@@ -117,6 +124,26 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         label;
     });
     [self.newsTableViewHeaderContainer addSubview:self.utcsDescriptionLabel];
+    
+    
+    self.downArrowImageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"arrowDown"]
+                                                                 imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+    self.downArrowImageView.tintColor = [UIColor whiteColor];
+    self.downArrowImageView.alpha = 0.0;
+    self.downArrowImageView.center = CGPointMake(self.view.center.x, 1.5 * self.view.center.y);
+    [self.newsTableViewHeaderContainer addSubview:self.downArrowImageView];
+    
+    UIView *separatorLine = [[UIView alloc]initWithFrame:CGRectMake(8, self.view.height - 50, self.view.width - 16, 1)];
+    separatorLine.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    [self.newsTableViewHeaderContainer addSubview:separatorLine];
+    
+    self.updatedLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.view.height - 32, self.view.width - 16, 18)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label;
+    });
+    [self.newsTableViewHeaderContainer addSubview:self.updatedLabel];
     
     // Menu Button
     self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -142,6 +169,20 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         self.utcsNewsShimmeringView.shimmering = YES;
         [self.dataSource updateNewsStories:^{
             self.utcsNewsShimmeringView.shimmering = NO;
+            if([self.dataSource.newsStories count] > 0) {
+                self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
+                                          [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                                         dateStyle:NSDateFormatterLongStyle
+                                                                         timeStyle:NSDateFormatterMediumStyle]];
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.downArrowImageView.alpha = 1.0;
+                }];
+            } else {
+                self.updatedLabel.text = @"No news stories available.";
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.downArrowImageView.alpha = 0.0;
+                }];
+            }
             [self.newsTableView reloadData];
         }];
     }
@@ -169,6 +210,20 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (BOOL)shouldRecognizeVerticalMenuViewControllerPanGesture
 {
     return NO;
+}
+
+#pragma mark UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 0.5;
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 1.0;
 }
 
 #pragma mark UIScrollViewDelegate Methods

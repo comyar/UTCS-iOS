@@ -13,7 +13,7 @@ typedef void (^ UTCSNewStoryManagerCompletion) (NSArray *newsStories, NSError *e
 
 NSString * const cellIdentifier = @"UTCSNewsTableViewCell";
 
-NSString * const UTCSParseClassNews                     = @"News";
+NSString * const UTCSParseClassNews                     = @"NewsStory";
 
 NSString * const UTCSNewsStoryTitleFontAttribute        = @"UTCSNewsStoryTitleFontAttribute";
 NSString * const UTCSNewsStoryTitleFontColorAttribute   = @"UTCSNewsStoryTitleFontColorAttribute";
@@ -27,11 +27,6 @@ NSString * const UTCSNewsStoryTextFontColorAttribute    = @"UTCSNewsStoryTextFon
 NSString * const UTCSNewsStoryParagraphLineSpacing      = @"UTCSNewsStoryParagraphLineSpacing";
 
 const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
-
-@interface UTCSNewsStoryDataSource ()
-
-@property (nonatomic) NSArray   *newsStories;
-@end
 
 
 @implementation UTCSNewsStoryDataSource
@@ -47,16 +42,8 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.textLabel.numberOfLines = 2;
-        NSLog(@"asdnlf");
-    }
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = newsStory.title;
     
     return cell;
@@ -99,8 +86,8 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                 UTCSNewsStory *story2 = (UTCSNewsStory *)obj2;
                 return [story2.date compare:story1.date];
             }];
-            
         }
+        
         completion(sortedNewsStories, error);
     }];
 }
