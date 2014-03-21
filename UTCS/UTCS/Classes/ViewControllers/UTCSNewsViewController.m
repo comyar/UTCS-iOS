@@ -198,7 +198,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.menuButton) {
-        button.alpha = 1.0;
+        button.alpha = 1.0 - MIN(1.0, 4.0 * MAX(self.newsTableView.contentOffset.y / self.view.height, 0.0));
         button.backgroundColor = [UIColor clearColor];
         [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSVerticalMenuDisplayNotification
                                                                                             object:self]];
@@ -209,7 +209,19 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (BOOL)shouldRecognizeVerticalMenuViewControllerPanGesture
 {
-    return NO;
+    return (self.newsTableView.contentOffset.y < 8);
+}
+
+- (void)verticalMenuViewController:(UTCSVerticalMenuViewController *)verticalMenuViewController willShowMenuViewController:(UIViewController *)menuViewController
+{
+    self.newsTableView.userInteractionEnabled = NO;
+    self.menuButton.userInteractionEnabled = NO;
+}
+
+- (void)verticalMenuViewController:(UTCSVerticalMenuViewController *)verticalMenuViewController didHideMenuViewController:(UIViewController *)menuViewController
+{
+    self.newsTableView.userInteractionEnabled = YES;
+    self.menuButton.userInteractionEnabled = YES;
 }
 
 #pragma mark UITableViewDelegate Methods
@@ -230,8 +242,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.blurredBackgroundImageView.alpha = MIN(1.0, 2.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));;
-    self.menuButton.hidden = (scrollView.contentOffset.y > 10.0);
+    self.blurredBackgroundImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
+    self.menuButton.alpha = 1.0 - MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
 }
 
 @end

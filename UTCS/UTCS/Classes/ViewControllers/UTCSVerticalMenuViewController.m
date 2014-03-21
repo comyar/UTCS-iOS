@@ -35,17 +35,20 @@ const CGFloat animationDuration = 0.25;
 
 @implementation UTCSVerticalMenuViewController
 
-- (instancetype)initWithMenuViewController:(UIViewController *)menuViewController contentViewController:(UIViewController *)contentViewController
+- (instancetype)initWithMenuViewController:(UIViewController *)menuViewController
+                     contentViewController:(UIViewController *)contentViewController
 {
     if(self = [super initWithNibName:nil bundle:nil]) {
-        if(![contentViewController isKindOfClass:[UIViewController class]]) {
+        if(![contentViewController conformsToProtocol:@protocol(UTCSVerticalMenuViewControllerDelegate)]) {
             @throw [NSException exceptionWithName:NSInvalidArgumentException
                                            reason:@"contentViewController argument must be an instance of UIViewController"
                                          userInfo:nil];
         }
         
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizePanGesture:)];
+        self.panGestureRecognizer.delegate = self;
         [self setMenuViewController:menuViewController];
-        [self setContentViewController:contentViewController];
+        [self setContentViewController:(UIViewController *)contentViewController];
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(didReceiveVerticalMenuDisplayNotification)
@@ -60,10 +63,44 @@ const CGFloat animationDuration = 0.25;
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if([(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController shouldRecognizeVerticalMenuViewControllerPanGesture]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.contentDynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+}
+
+- (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    CGPoint translation = [gestureRecognizer translationInView:self.contentViewController.view];
+    
+    if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:willShowMenuViewController:)]) {
+            [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self
+                                                                                     willShowMenuViewController:self.menuViewController];
+        }
+    }
+    
+    if(gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        self.contentViewController.view.transform = CGAffineTransformMakeTranslation(0, translation.y);
+        
+        
+        
+    } else if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint velocity = [gestureRecognizer velocityInView:self.contentViewController.view];
+        if(velocity.y > 0.0) {
+            [self showMenu];
+        } else {
+            [self hideMenu];
+        }
+    }
 }
 
 #pragma mark Using a UTCSVerticalMenuViewController
@@ -87,6 +124,10 @@ const CGFloat animationDuration = 0.25;
     [[UIApplication sharedApplication]endIgnoringInteractionEvents];
     
     self.showingMenu = YES;
+    if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:didShowMenuViewController:)]) {
+        [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self
+                                                                                 didShowMenuViewController:self.menuViewController];
+    }
     [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     
 }
@@ -101,6 +142,9 @@ const CGFloat animationDuration = 0.25;
     [[UIApplication sharedApplication]endIgnoringInteractionEvents];
     
     self.showingMenu = NO;
+    if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:didHideMenuViewController:)]) {
+        [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self didHideMenuViewController:self.menuViewController];
+    }
     [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     
 }
@@ -147,6 +191,8 @@ const CGFloat animationDuration = 0.25;
     [self.view addSubview:_contentViewController.view];
     [self addChildViewController:_contentViewController];
     [_contentViewController didMoveToParentViewController:self];
+    
+//    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
     
     self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
     self.contentDynamicItemBehavior.allowsRotation = NO;

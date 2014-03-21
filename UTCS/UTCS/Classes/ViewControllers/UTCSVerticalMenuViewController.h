@@ -18,7 +18,7 @@ extern NSString * const UTCSVerticalMenuDisplayNotification;
 
 /**
  */
-@interface UTCSVerticalMenuViewController : UIViewController
+@interface UTCSVerticalMenuViewController : UIViewController <UIGestureRecognizerDelegate>
 
 /**
  */

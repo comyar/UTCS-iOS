@@ -38,8 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.rowHeight = 50;
-    self.tableView.contentInset = UIEdgeInsetsMake(0.15 * CGRectGetHeight(self.view.bounds), 0, 0, 0);
+    self.tableView.rowHeight = 64;
+    self.tableView.contentInset = UIEdgeInsetsMake(0.10 * CGRectGetHeight(self.view.bounds), 0, 0, 0);
     self.tableView.backgroundColor = [UIColor utcsDarkGrayColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }

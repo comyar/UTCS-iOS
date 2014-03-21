@@ -11,7 +11,7 @@
 
 @class UTCSNewsStory;
 
-@interface UTCSNewsDetailViewController : UIViewController <UTCSVerticalMenuViewControllerDelegate>
+@interface UTCSNewsDetailViewController : UIViewController 
 
 @property (strong, nonatomic) UTCSNewsStory *newsStory;
 
