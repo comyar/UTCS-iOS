@@ -80,29 +80,29 @@ const CGFloat animationDuration = 0.25;
 - (void)showMenu
 {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapUpBehavior];
+    
+    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
+    [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapDownBehavior];
+    [[UIApplication sharedApplication]endIgnoringInteractionEvents];
     
     self.showingMenu = YES;
-    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
-    [UIView animateWithDuration:animationDuration animations:^{
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }];
-    [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+    [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    
 }
 
 - (void)hideMenu
 {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapDownBehavior];
-    [self.contentDynamicAnimator addBehavior:self.contentSnapUpBehavior];
     
     [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
-    [UIView animateWithDuration:animationDuration animations:^{
-        self.contentViewController.view.center = self.view.center;
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    } completion:^(BOOL finished) {
-        self.showingMenu = NO;
-    }];
+    [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
+    [self.contentDynamicAnimator addBehavior:self.contentSnapUpBehavior];
     [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+    
+    self.showingMenu = NO;
+    [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -153,9 +153,10 @@ const CGFloat animationDuration = 0.25;
     
     self.contentSnapUpBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                          snapToPoint:self.view.center];
+    self.contentSnapUpBehavior.damping = 0.35;
     self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                           snapToPoint:CGPointMake(self.view.center.x, 1.25 * self.view.center.y)];
-    [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
+                                                           snapToPoint:CGPointMake(self.view.center.x, 1.25 * CGRectGetHeight(self.view.bounds))];
+    self.contentSnapDownBehavior.damping = 0.35;
 }
 
 @end

@@ -9,7 +9,6 @@
 #import "UTCSDirectoryViewController.h"
 #import "UIColor+UTCSColors.h"
 #import "FRDLivelyButton.h"
-#import "UTCSSideMenuViewController.h"
 #import "UIView+CZPositioning.h"
 
 @interface UTCSDirectoryViewController ()
@@ -77,8 +76,7 @@
     [self.directorySearchDisplayController setActive:NO animated:YES];
     
     if(button == self.menuButton) {
-        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
-                                                                                            object:self]];
+        
     }
 }
 
