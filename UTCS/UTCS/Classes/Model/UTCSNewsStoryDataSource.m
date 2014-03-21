@@ -45,7 +45,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = newsStory.title;
-    
+    cell.detailTextLabel.text = newsStory.text;
     return cell;
 }
 
@@ -56,7 +56,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 
 - (void)updateNewsStories:(void (^)(void))completion
 {
-    [self newsStoriesWithFontAttributes:nil completion:^(NSArray *newsStories, NSError *error) {
+    [self newsStoriesWithCompletion:^(NSArray *newsStories, NSError *error) {
         if(newsStories) {
             self.newsStories = newsStories;
         }
@@ -66,7 +66,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     }];
 }
 
-- (void)newsStoriesWithFontAttributes:(NSDictionary *)attributes completion:(UTCSNewStoryManagerCompletion)completion
+- (void)newsStoriesWithCompletion:(UTCSNewStoryManagerCompletion)completion
 {
     PFQuery *query = [PFQuery queryWithClassName:UTCSParseClassNews];
     query.cachePolicy = kPFCachePolicyNetworkElseCache;
@@ -77,7 +77,8 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
         NSMutableArray *newsStories = [NSMutableArray new];
         if(objects) {
             for(PFObject *object in objects) {
-                UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object attributedContent:nil];
+                UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
+                [self configureNewsStory:newsStory];
                 [newsStories addObject:newsStory];
             }
             
@@ -91,5 +92,41 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
         completion(sortedNewsStories, error);
     }];
 }
+
+- (void)configureNewsStory:(UTCSNewsStory *)newsStory
+{
+    NSArray *json = [NSJSONSerialization JSONObjectWithData:[newsStory.json dataUsingEncoding:NSUTF8StringEncoding]
+                                                    options:NSJSONReadingAllowFragments
+                                                      error:nil];
+    if(json) {
+        
+        NSDictionary *fonts = @{@"normal":@"HelveticaNeue-Light",
+                                @"header":@"HelveticaNeue-Bold",
+                                @"subheader":@"HelveticaNeue",
+                                @"strong":@"HelveticaNeue-Medium"};
+        
+        NSMutableString *storyText = [NSMutableString new];
+        NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
+        
+        for(NSDictionary *content in json) {
+            if([content[@"type"] isEqualToString:@"text"]) {
+                NSString *fontType = content[@"font"];
+                NSString *text  = content[@"content"];
+                [storyText appendString:text];
+                
+                NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
+                [attributedText addAttribute:NSFontAttributeName
+                                       value:[UIFont fontWithName:fonts[fontType] size:14]
+                                       range:NSMakeRange(0, [attributedText length])];
+                [attributedContent appendAttributedString:attributedText];
+            }
+        }
+        
+        newsStory.text = storyText;
+        newsStory.attributedContent = attributedContent;
+    }
+}
+
+
 
 @end

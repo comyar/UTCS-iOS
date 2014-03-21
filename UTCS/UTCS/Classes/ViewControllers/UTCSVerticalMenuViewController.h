@@ -23,7 +23,7 @@ extern NSString * const UTCSVerticalMenuDisplayNotification;
 /**
  */
 - (instancetype)initWithMenuViewController:(UIViewController *)menuViewController
-                     contentViewController:(id <UTCSVerticalMenuViewControllerDelegate>)contentViewController;
+                     contentViewController:(UIViewController *)contentViewController;
 
 /**
  */

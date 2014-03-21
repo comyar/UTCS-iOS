@@ -18,6 +18,8 @@ const CGFloat animationDuration = 0.25;
 
 @property (nonatomic, getter = isShowingMenu) BOOL showingMenu;
 
+@property (nonatomic) UITapGestureRecognizer        *tapGestureRecognizer;
+
 @property (nonatomic) UIPanGestureRecognizer        *panGestureRecognizer;
 
 @property (nonatomic) UIDynamicAnimator             *contentDynamicAnimator;
@@ -39,14 +41,12 @@ const CGFloat animationDuration = 0.25;
                      contentViewController:(UIViewController *)contentViewController
 {
     if(self = [super initWithNibName:nil bundle:nil]) {
-        if(![contentViewController conformsToProtocol:@protocol(UTCSVerticalMenuViewControllerDelegate)]) {
-            @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                           reason:@"contentViewController argument must be an instance of UIViewController"
-                                         userInfo:nil];
-        }
         
         self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizePanGesture:)];
         self.panGestureRecognizer.delegate = self;
+        
+        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizeTapGesture:)];
+        
         [self setMenuViewController:menuViewController];
         [self setContentViewController:(UIViewController *)contentViewController];
         
@@ -58,17 +58,15 @@ const CGFloat animationDuration = 0.25;
     return self;
 }
 
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    CGPoint point = [gestureRecognizer locationInView:self.contentViewController.view];
+    return point.y <= 64;
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    if([(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController shouldRecognizeVerticalMenuViewControllerPanGesture]) {
-        return YES;
-    }
-    return NO;
 }
 
 - (void)viewDidLoad
@@ -77,15 +75,21 @@ const CGFloat animationDuration = 0.25;
     self.contentDynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
 }
 
+- (void)didRecognizeTapGesture:(UITapGestureRecognizer *)gestureRecognizer
+{
+    if(gestureRecognizer == self.tapGestureRecognizer) {
+        if(self.isShowingMenu) {
+            [self hideMenu];
+        }
+    }
+}
+
 - (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
 {
     CGPoint translation = [gestureRecognizer translationInView:self.contentViewController.view];
     
     if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:willShowMenuViewController:)]) {
-            [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self
-                                                                                     willShowMenuViewController:self.menuViewController];
-        }
+        
     }
     
     if(gestureRecognizer.state == UIGestureRecognizerStateChanged) {
@@ -94,11 +98,11 @@ const CGFloat animationDuration = 0.25;
         
         
     } else if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        CGPoint velocity = [gestureRecognizer velocityInView:self.contentViewController.view];
-        if(velocity.y > 0.0) {
-            [self showMenu];
-        } else {
+        CGPoint point = [gestureRecognizer locationInView:self.view];
+        if(point.y < self.view.center.y) {
             [self hideMenu];
+        } else {
+            [self showMenu];
         }
     }
 }
@@ -128,7 +132,15 @@ const CGFloat animationDuration = 0.25;
         [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self
                                                                                  didShowMenuViewController:self.menuViewController];
     }
-    [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    
+    if([self.contentViewController isKindOfClass:[UINavigationController class]]) {
+        for(UIViewController *viewController in self.contentViewController.childViewControllers) {
+            viewController.view.userInteractionEnabled = NO;
+        }
+    } else {
+        self.contentViewController.view.userInteractionEnabled = NO;
+    }
+    [self setNeedsStatusBarAppearanceUpdate];
     
 }
 
@@ -141,23 +153,36 @@ const CGFloat animationDuration = 0.25;
     [self.contentDynamicAnimator addBehavior:self.contentSnapUpBehavior];
     [[UIApplication sharedApplication]endIgnoringInteractionEvents];
     
+    self.contentViewController.view.userInteractionEnabled = YES;
+    for(UIView *subview in self.contentViewController.view.subviews) {
+        subview.userInteractionEnabled = YES;
+    }
+    
     self.showingMenu = NO;
     if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:didHideMenuViewController:)]) {
         [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self didHideMenuViewController:self.menuViewController];
     }
-    [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     
+    if([self.contentViewController isKindOfClass:[UINavigationController class]]) {
+        for(UIViewController *viewController in self.contentViewController.childViewControllers) {
+            viewController.view.userInteractionEnabled = YES;
+        }
+    } else {
+        self.contentViewController.view.userInteractionEnabled = YES;
+    }
+    
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return (self.isShowingMenu)? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+    return UIStatusBarStyleLightContent;
 }
 
-- (BOOL)prefersStatusBarHidden
-{
-    return !self.isShowingMenu;
-}
+//- (BOOL)prefersStatusBarHidden
+//{
+//    return !self.isShowingMenu;
+//}
 
 #pragma mark Property Setters
 
@@ -171,10 +196,12 @@ const CGFloat animationDuration = 0.25;
     }
     
     _menuViewController = menuViewController;
-    _menuViewController.view.frame = self.view.frame;
+    _menuViewController.view.frame = self.view.bounds;
     [self.view addSubview:_menuViewController.view];
     [self addChildViewController:menuViewController];
     [_menuViewController didMoveToParentViewController:self];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
@@ -184,13 +211,18 @@ const CGFloat animationDuration = 0.25;
     } else if(_contentViewController) {
         [_contentViewController.view removeFromSuperview];
         [_contentViewController removeFromParentViewController];
+        [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
     }
     
     _contentViewController = contentViewController;
-    _contentViewController.view.frame = self.view.frame;
+    _contentViewController.view.frame = self.view.bounds;
     [self.view addSubview:_contentViewController.view];
     [self addChildViewController:_contentViewController];
     [_contentViewController didMoveToParentViewController:self];
+    
+    [self.contentViewController.view addGestureRecognizer:self.tapGestureRecognizer];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
     
 //    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
     

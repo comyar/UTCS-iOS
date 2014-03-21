@@ -22,19 +22,22 @@
 @interface UTCSAppDelegate ()
 
 //
-@property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
+@property (strong, nonatomic) UTCSMenuViewController            *menuViewController;
 
-@property (nonatomic) UTCSNewsViewController                *newsViewController;
+@property (nonatomic) UTCSNewsViewController                    *newsViewController;
 
-//
-@property (strong, nonatomic) UINavigationController        *eventsNavigationController;
-
-@property (strong, nonatomic) UTCSLabsViewController        *labsViewController;
+@property (nonatomic) UINavigationController                    *newsNavigationController;
 
 //
-@property (strong, nonatomic) UINavigationController        *directoryNavigationController;
+@property (strong, nonatomic) UINavigationController            *eventsNavigationController;
 
-@property (strong, nonatomic) UTCSVerticalMenuViewController *verticalMenuViewController;
+@property (strong, nonatomic) UTCSLabsViewController            *labsViewController;
+
+//
+@property (strong, nonatomic) UINavigationController            *directoryNavigationController;
+
+//
+@property (strong, nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
 @end
 
@@ -52,6 +55,7 @@
                   clientKey:@"JJf7dzHkAaawjGMSLPN7N2HXzfII3svZoCIqxx8V"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [self configureAppearance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
    
@@ -61,63 +65,31 @@
     
     // Initialize main view controllers
     self.newsViewController = [UTCSNewsViewController new];
+    self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:self.newsViewController];
+    
     
     self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    [self roundCornersOfView:self.eventsNavigationController.view];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsViewController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
-    [self configureAppearance];
     return YES;
+}
+
+- (void)configureAppearance
+{
+    [[UINavigationBar appearance]setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
+    [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods
 
 - (void)didSelectMenuOption:(UTCSMenuOptions)option
 {
-//    if(option == UTCSMenuOptionNews) {
-//        [self.sideMenuViewController setContentViewController:self.newsNavigationController animated:YES];
-//    } else if(option == UTCSMenuOptionEvents) {
-//        [self.sideMenuViewController setContentViewController:self.eventsNavigationController animated:YES];
-//    } else if(option == UTCSMenuOptionLabs) {
-//        if(!self.labsViewController) {
-//            self.labsViewController = [UTCSLabsViewController new];
-//            [self roundCornersOfView:self.labsViewController.view];
-//        }
-//        [self.sideMenuViewController setContentViewController:self.labsViewController animated:YES];
-//    } else if(option == UTCSMenuOptionDirectory) {
-//        if(!self.directoryNavigationController) {
-//            self.directoryNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-//            [self roundCornersOfView:self.directoryNavigationController.view];
-//        }
-//        [self.sideMenuViewController setContentViewController:self.directoryNavigationController animated:YES];
-//    }
-//    [self.sideMenuViewController hideMenuViewController];
+
  }
-
-#pragma mark Configure Appearance
-
-- (void)configureAppearance
-{
-    [[UINavigationBar appearance]setBackgroundImage:[[UIImage imageNamed:@"navbarBackground"]resizableImageWithCapInsets:UIEdgeInsetsZero]
-                                      forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setShadowImage:[[UIImage imageNamed:@"navbarShadow"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
-    [[UINavigationBar appearance]setBarTintColor:[UIColor utcsBarTintColor]];
-    [[UINavigationBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],
-                                                          NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:22]}];
-    [[UISearchBar appearance]setBarTintColor:[UIColor utcsBarTintColor]];
-    [[UISearchBar appearance]setTintColor:[UIColor utcsBurntOrangeColor]];
-
-}
-
-- (void)roundCornersOfView:(UIView *)view
-{
-    view.layer.cornerRadius = 4.0;
-    view.layer.masksToBounds = YES;
-}
 
 #pragma mark - Reveal
 

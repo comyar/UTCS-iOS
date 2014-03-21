@@ -40,7 +40,7 @@
     [super viewDidLoad];
     self.tableView.rowHeight = 64;
     self.tableView.contentInset = UIEdgeInsetsMake(0.10 * CGRectGetHeight(self.view.bounds), 0, 0, 0);
-    self.tableView.backgroundColor = [UIColor utcsDarkGrayColor];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 

@@ -40,20 +40,26 @@ extern NSString *const UTCSParseNewStoryHTML;
  */
 - (instancetype)initWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent;
 
+
 // -----
 // @name Properties
 // -----
 
-//
-@property (strong, nonatomic, readonly) NSString                *title;
+@property (nonatomic) UIImage                   *headerImage;
 
 //
-@property (strong, nonatomic, readonly) NSDate                  *date;
+@property (nonatomic) NSString                  *title;
 
 //
-@property (strong, nonatomic, readonly) NSString                *html;
+@property (nonatomic) NSString                  *text;
 
 //
-@property (strong, nonatomic)           NSAttributedString      *attributedContent;
+@property (nonatomic) NSDate                    *date;
+
+//
+@property (nonatomic) NSString                   *json;
+
+//
+@property (nonatomic) NSAttributedString        *attributedContent;
 
 @end
