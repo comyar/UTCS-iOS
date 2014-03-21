@@ -7,19 +7,17 @@
 //
 
 #import "UTCSNewsViewController.h"
-#import "UTCSNewsDetailViewController.h"
-#import "UTCSNewsStory.h"
+#import "UTCSVerticalMenuViewController.h"
+
+#import "FBShimmeringView.h"
+
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
-#import "FBShimmeringView.h"
-#import "FRDLivelyButton.h"
-#import "UTCSSideMenuViewController.h"
-#import "UTCSNewsStoryManager.h"
+#import "UIImage+ImageEffects.h"
 
 // Constants
 static NSString * const cellIdentifier              = @"UTCSNewsTableViewCell";
 const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
-
 
 
 #pragma mark - UTCSNewsViewController Class Extension
@@ -30,19 +28,25 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 @property (assign, nonatomic) BOOL hasAppeared;
 
 //
-@property (strong, nonatomic) FBShimmeringView              *shimmeringView;
+@property (nonatomic) UIImageView                           *backgroundImageView;
 
 //
-@property (strong, nonatomic) FRDLivelyButton               *menuButton;
+@property (nonatomic) UIImageView                           *blurredBackgroundImageView;
+
+//
+@property (nonatomic) FBShimmeringView                      *utcsNewsShimmeringView;
+
+//
+@property (nonatomic) UILabel                               *utcsDescriptionLabel;
+
+//
+@property (strong, nonatomic) UIButton                      *menuButton;
 
 //
 @property (strong, nonatomic) NSArray                       *newsStories;
 
 //
 @property (strong, nonatomic) NSDate                        *updateDate;
-
-//
-@property (strong, nonatomic) UTCSNewsDetailViewController  *newsStorydetailViewController;
 
 @end
 
@@ -51,162 +55,85 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 @implementation UTCSNewsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    if (self = [super initWithStyle:style]) {
-        self.title = @"News";
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Adjust edges so tableview extends beneath navigation bar
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) + CGRectGetHeight([[UIApplication sharedApplication]statusBarFrame]) + 1, 0, 0, 0); // plus one accounts for navigation bar hairline
-    self.tableView.separatorColor = [UIColor utcsTableViewSeparatorColor];
-    self.tableView.rowHeight = 90;
+    self.backgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground"]];
+    [self.view addSubview:self.backgroundImageView];
     
-    // Register tableview cell class
-    [self.tableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
-         forCellReuseIdentifier:cellIdentifier];
+    self.blurredBackgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground-blurred"]];
+    self.blurredBackgroundImageView.alpha = 0.0;
+    [self.view addSubview:self.blurredBackgroundImageView];
     
-    // Initialize refresh control
-    self.refreshControl = [UIRefreshControl new];
-    self.refreshControl.tintColor = [UIColor utcsRefreshControlColor];
-    [self.refreshControl addTarget:self action:@selector(didRefresh:) forControlEvents:UIControlEventValueChanged];
+    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
     
-    // Title
-    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, 0.5 * self.view.width, 60)];
-    self.shimmeringView.contentView = ({
-        UILabel *navigationTitleLabel = [[UILabel alloc]initWithFrame:self.shimmeringView.frame];
-        navigationTitleLabel.text = self.title;
-        navigationTitleLabel.textAlignment = NSTextAlignmentCenter;
-        navigationTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:24];
-        navigationTitleLabel;
+    self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+    [self.view addSubview:self.utcsNewsShimmeringView];
+    self.utcsNewsShimmeringView.contentView = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+        label.text = @"UTCS News";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.25];
+        label.shadowOffset = CGSizeMake(0, 1);
+        label;
     });
-    self.navigationItem.titleView = self.shimmeringView;
+    
+    self.utcsDescriptionLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
+        label.numberOfLines = 0;
+        label.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
+        label.text = @"What starts here changes the world.";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        label;
+    });
+    [self.view addSubview:self.utcsDescriptionLabel];
+
+    
     
     // Menu Button
-    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
-    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
+    self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuButton.frame = CGRectMake(8, 8, 64, 24);
+    [self.menuButton addSubview:({
+        UILabel *label = [[UILabel alloc]initWithFrame:self.menuButton.frame];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+        label.text = @"MENU";
+        label.textColor = [UIColor whiteColor];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+        label.shadowOffset = CGSizeMake(0, 2);
+        label;
+    })];
+    self.menuButton.showsTouchWhenHighlighted = YES;
     [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
+    [self.view addSubview:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+//    self.utcsNewsShimmeringView.shimmering = YES;
     if(!self.hasAppeared) {
         self.hasAppeared = YES;
-        [self updateNewStories];
     }
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.menuButton) {
-        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
+        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSVerticalMenuDisplayNotification
                                                                                             object:self]];
     }
 }
 
-#pragma mark Refresh Control
+#pragma mark UTCSVerticalMenuViewControllerDelegate Methods
 
-- (void)didRefresh:(UIRefreshControl *)refreshControl
+- (BOOL)shouldRecognizeVerticalMenuViewControllerPanGesture
 {
-    [self updateNewStories];
-}
-
-#pragma mark Updating News Stories
-
-- (void)updateNewStories
-{
-    self.shimmeringView.shimmering = YES;
-    if(self.updateDate && [[NSDate date]timeIntervalSinceDate:self.updateDate] < kMinTimeIntervalBetweenUpdates) {
-        self.shimmeringView.shimmering = NO;
-        [self.refreshControl endRefreshing];
-        return;
-    }
-    
-    [UTCSNewsStoryManager newsStoriesWithFontAttributes:[self newsStoryFontAttributes] completion: ^ (NSArray *newsStories, NSError *error) {
-        if(newsStories) {
-            self.newsStories = newsStories;
-            self.updateDate = [NSDate date];
-        }
-        self.shimmeringView.shimmering = NO;
-        [self.refreshControl endRefreshing];
-        [self.tableView reloadData];
-    }];
-}
-
-- (NSDictionary *)newsStoryFontAttributes
-{
-    return @{UTCSNewsStoryTitleFontAttribute:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
-             UTCSNewsStoryTitleFontColorAttribute:[UIColor blackColor],
-             UTCSNewsStoryDateFontAttribute:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1],
-             UTCSNewsStoryDateFontColorAttribute:[UIColor utcsBurntOrangeColor],
-             UTCSNewsStoryTextFontAttribute:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],
-             UTCSNewsStoryTextFontColorAttribute:[UIColor utcsDarkGrayColor],
-             UTCSNewsStoryParagraphLineSpacing:@(4.0)};
-}
-
-#pragma mark UITableViewDataSource Methods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.newsStories[section] count];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [self.newsStories count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    UTCSNewsStory *newsStory = self.newsStories[indexPath.section][indexPath.row];
-    cell.textLabel.text = newsStory.title;
-    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:newsStory.date
-                                                               dateStyle:NSDateFormatterLongStyle
-                                                               timeStyle:NSDateFormatterNoStyle];
-    return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    static NSDateFormatter *titleHeaderDateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^ {
-        titleHeaderDateFormatter = [NSDateFormatter new];
-        titleHeaderDateFormatter.dateFormat = @"  MMMM";
-    });
-    UTCSNewsStory *newsStory = self.newsStories[section][0];
-    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 16.0)];
-    headerLabel.text = [titleHeaderDateFormatter stringFromDate:newsStory.date];
-    headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14.0];
-    headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.backgroundColor = [UIColor utcsTableViewHeaderColor];
-    return headerLabel;
-}
-
-#pragma mark UITableViewDelegate Methods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selected = NO;
-    if(!self.newsStorydetailViewController) {
-        self.newsStorydetailViewController = [UTCSNewsDetailViewController new];
-    }
-    self.newsStorydetailViewController.newsStory = self.newsStories[indexPath.section][indexPath.row];
-    [self.navigationController pushViewController:self.newsStorydetailViewController animated:YES];
+    return NO;
 }
 
 @end

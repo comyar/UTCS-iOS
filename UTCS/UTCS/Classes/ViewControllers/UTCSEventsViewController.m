@@ -7,14 +7,12 @@
 //
 
 #import "UTCSEventsViewController.h"
-#import "UTCSEventsTableViewCell.h"
 #import "UTCSEventDetailViewController.h"
 #import "UTCSEvent.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "FBShimmeringView.h"
 #import "FRDLivelyButton.h"
-#import "UTCSSideMenuViewController.h"
 
 // Constants
 static NSString *cellIdentifier = @"UTCSEventsTableViewCell";
@@ -122,8 +120,7 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.menuButton) {
-        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSSideMenuDisplayNotification
-                                                                                            object:self]];
+        
     }
 }
 
@@ -196,15 +193,15 @@ const NSTimeInterval kMinTimeIntervalBetweenEventUpdates = 3600;
     return kEventsTableViewCellHeight;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UTCSEventsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    UTCSEvent *event = self.events[indexPath.row];
-    cell.nameLabel.text = event.name;
-    cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
-    cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
-//    cell.locationLabel.text = event.location;
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UTCSEventsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+//    UTCSEvent *event = self.events[indexPath.row];
+//    cell.nameLabel.text = event.name;
+//    cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
+//    cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
+////    cell.locationLabel.text = event.location;
+//    return cell;
+//}
 
 @end

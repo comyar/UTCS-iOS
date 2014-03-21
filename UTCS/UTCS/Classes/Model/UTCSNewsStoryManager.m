@@ -74,44 +74,44 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 + (NSAttributedString *)attributedContentForNewsStory:(UTCSNewsStory *)newsStory withFontAttributes:(NSDictionary *)attributes
 {
     NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
-    
-    // Title
-    NSString *titleText = [NSString stringWithFormat:@"%@\n", newsStory.title];
-    NSMutableAttributedString *titleAttributedString = [[NSMutableAttributedString alloc]initWithString:titleText attributes:@{NSFontAttributeName: attributes[UTCSNewsStoryTitleFontAttribute], NSForegroundColorAttributeName: attributes[UTCSNewsStoryTitleFontColorAttribute]}];
-    [attributedString appendAttributedString:titleAttributedString];
-    
-    
-    // Date
-    NSString *dateText = [NSString stringWithFormat:@"%@\n\n\n", [NSDateFormatter localizedStringFromDate:newsStory.date
-                                                                                                dateStyle:NSDateFormatterLongStyle
-                                                                                                timeStyle:NSDateFormatterNoStyle]];
-    NSMutableAttributedString *dateAttributedString = [[NSMutableAttributedString alloc]initWithString:dateText attributes:@{NSFontAttributeName: attributes[UTCSNewsStoryDateFontAttribute], NSForegroundColorAttributeName:attributes[UTCSNewsStoryDateFontColorAttribute]}];
-    [attributedString appendAttributedString:dateAttributedString];
-    
-    
-    // Content
-    NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
-    
-    UIFont *font = attributes[UTCSNewsStoryTextFontAttribute];
-    UIColor *textColor = attributes[UTCSNewsStoryTextFontColorAttribute];
-    [contentAttributedString enumerateAttributesInRange:NSMakeRange(0, [contentAttributedString length]) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock: ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
-        
-//        if(!attrs[NSAttachmentAttributeName]) {
-            UIFont *currentFont = attrs[NSFontAttributeName];
-            UIFontDescriptorSymbolicTraits currentFontSymbolicTraits = [[currentFont fontDescriptor]symbolicTraits];
-            UIFontDescriptor *newFontDescriptor = [[font fontDescriptor] fontDescriptorWithSymbolicTraits:currentFontSymbolicTraits];
-            UIFont *newFont = [UIFont fontWithDescriptor:newFontDescriptor size:font.pointSize];
-        
-            [contentAttributedString setAttributes:@{NSFontAttributeName: newFont, NSForegroundColorAttributeName:textColor} range:range];
-//        }
-    }];
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.lineSpacing = [attributes[UTCSNewsStoryParagraphLineSpacing]floatValue];
-    
-    [contentAttributedString addAttribute:NSParagraphStyleAttributeName
-                                    value:paragraphStyle
-                                    range:NSMakeRange(0, [contentAttributedString length])];
-    [attributedString appendAttributedString:contentAttributedString];
+//    
+//    // Title
+//    NSString *titleText = [NSString stringWithFormat:@"%@\n", newsStory.title];
+//    NSMutableAttributedString *titleAttributedString = [[NSMutableAttributedString alloc]initWithString:titleText attributes:@{NSFontAttributeName: attributes[UTCSNewsStoryTitleFontAttribute], NSForegroundColorAttributeName: attributes[UTCSNewsStoryTitleFontColorAttribute]}];
+//    [attributedString appendAttributedString:titleAttributedString];
+//    
+//    
+//    // Date
+//    NSString *dateText = [NSString stringWithFormat:@"%@\n\n\n", [NSDateFormatter localizedStringFromDate:newsStory.date
+//                                                                                                dateStyle:NSDateFormatterLongStyle
+//                                                                                                timeStyle:NSDateFormatterNoStyle]];
+//    NSMutableAttributedString *dateAttributedString = [[NSMutableAttributedString alloc]initWithString:dateText attributes:@{NSFontAttributeName: attributes[UTCSNewsStoryDateFontAttribute], NSForegroundColorAttributeName:attributes[UTCSNewsStoryDateFontColorAttribute]}];
+//    [attributedString appendAttributedString:dateAttributedString];
+//    
+//    
+//    // Content
+//    NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
+//    
+//    UIFont *font = attributes[UTCSNewsStoryTextFontAttribute];
+//    UIColor *textColor = attributes[UTCSNewsStoryTextFontColorAttribute];
+//    [contentAttributedString enumerateAttributesInRange:NSMakeRange(0, [contentAttributedString length]) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock: ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
+//        
+////        if(!attrs[NSAttachmentAttributeName]) {
+//            UIFont *currentFont = attrs[NSFontAttributeName];
+//            UIFontDescriptorSymbolicTraits currentFontSymbolicTraits = [[currentFont fontDescriptor]symbolicTraits];
+//            UIFontDescriptor *newFontDescriptor = [[font fontDescriptor] fontDescriptorWithSymbolicTraits:currentFontSymbolicTraits];
+//            UIFont *newFont = [UIFont fontWithDescriptor:newFontDescriptor size:font.pointSize];
+//        
+//            [contentAttributedString setAttributes:@{NSFontAttributeName: newFont, NSForegroundColorAttributeName:textColor} range:range];
+////        }
+//    }];
+//    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+//    paragraphStyle.lineSpacing = [attributes[UTCSNewsStoryParagraphLineSpacing]floatValue];
+//    
+//    [contentAttributedString addAttribute:NSParagraphStyleAttributeName
+//                                    value:paragraphStyle
+//                                    range:NSMakeRange(0, [contentAttributedString length])];
+//    [attributedString appendAttributedString:contentAttributedString];
     
     return attributedString;
 }

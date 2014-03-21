@@ -8,12 +8,13 @@
 
 #import "UTCSAppDelegate.h"
 #import "UTCSMenuViewController.h"
-#import "UTCSSideMenuViewController.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
 #import "UIColor+UTCSColors.h"
+
+#import "UTCSVerticalMenuViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -23,8 +24,7 @@
 //
 @property (strong, nonatomic) UTCSMenuViewController        *menuViewController;
 
-//
-@property (strong, nonatomic) UINavigationController        *newsNavigationController;
+@property (nonatomic) UTCSNewsViewController                *newsViewController;
 
 //
 @property (strong, nonatomic) UINavigationController        *eventsNavigationController;
@@ -33,6 +33,8 @@
 
 //
 @property (strong, nonatomic) UINavigationController        *directoryNavigationController;
+
+@property (strong, nonatomic) UTCSVerticalMenuViewController *verticalMenuViewController;
 
 @end
 
@@ -54,22 +56,18 @@
     self.window.backgroundColor = [UIColor whiteColor];
    
     // Initialize menu view controller
-    self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStylePlain];
     self.menuViewController.delegate = self;
     
     // Initialize main view controllers
-    self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
-    [self roundCornersOfView:self.newsNavigationController.view];
+    self.newsViewController = [UTCSNewsViewController new];
     
     self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     [self roundCornersOfView:self.eventsNavigationController.view];
     
-    // Initialize side menu view controller
-    self.sideMenuViewController = [[UTCSSideMenuViewController alloc]initWithContentViewController:self.newsNavigationController
-                                                                                menuViewController:self.menuViewController];
-    self.sideMenuViewController.backgroundImage = [UIImage imageNamed:@"menuBackground"];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsViewController];
     
-    self.window.rootViewController = self.sideMenuViewController;
+    self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
     [self configureAppearance];
     return YES;
@@ -79,24 +77,24 @@
 
 - (void)didSelectMenuOption:(UTCSMenuOptions)option
 {
-    if(option == UTCSMenuOptionNews) {
-        [self.sideMenuViewController setContentViewController:self.newsNavigationController animated:YES];
-    } else if(option == UTCSMenuOptionEvents) {
-        [self.sideMenuViewController setContentViewController:self.eventsNavigationController animated:YES];
-    } else if(option == UTCSMenuOptionLabs) {
-        if(!self.labsViewController) {
-            self.labsViewController = [UTCSLabsViewController new];
-            [self roundCornersOfView:self.labsViewController.view];
-        }
-        [self.sideMenuViewController setContentViewController:self.labsViewController animated:YES];
-    } else if(option == UTCSMenuOptionDirectory) {
-        if(!self.directoryNavigationController) {
-            self.directoryNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-            [self roundCornersOfView:self.directoryNavigationController.view];
-        }
-        [self.sideMenuViewController setContentViewController:self.directoryNavigationController animated:YES];
-    }
-    [self.sideMenuViewController hideMenuViewController];
+//    if(option == UTCSMenuOptionNews) {
+//        [self.sideMenuViewController setContentViewController:self.newsNavigationController animated:YES];
+//    } else if(option == UTCSMenuOptionEvents) {
+//        [self.sideMenuViewController setContentViewController:self.eventsNavigationController animated:YES];
+//    } else if(option == UTCSMenuOptionLabs) {
+//        if(!self.labsViewController) {
+//            self.labsViewController = [UTCSLabsViewController new];
+//            [self roundCornersOfView:self.labsViewController.view];
+//        }
+//        [self.sideMenuViewController setContentViewController:self.labsViewController animated:YES];
+//    } else if(option == UTCSMenuOptionDirectory) {
+//        if(!self.directoryNavigationController) {
+//            self.directoryNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+//            [self roundCornersOfView:self.directoryNavigationController.view];
+//        }
+//        [self.sideMenuViewController setContentViewController:self.directoryNavigationController animated:YES];
+//    }
+//    [self.sideMenuViewController hideMenuViewController];
  }
 
 #pragma mark Configure Appearance

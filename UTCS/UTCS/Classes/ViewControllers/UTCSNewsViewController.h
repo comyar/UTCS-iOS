@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "UTCSVerticalMenuViewControllerDelegate.h"
 
-@interface UTCSNewsViewController : UITableViewController
+@interface UTCSNewsViewController : UIViewController <UTCSVerticalMenuViewControllerDelegate>
 
 @end

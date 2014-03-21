@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UTCSVerticalMenuViewController.h"
 
 @class UTCSNewsStory;
 
-@interface UTCSNewsDetailViewController : UIViewController
+@interface UTCSNewsDetailViewController : UIViewController <UTCSVerticalMenuViewControllerDelegate>
 
 @property (strong, nonatomic) UTCSNewsStory *newsStory;
 

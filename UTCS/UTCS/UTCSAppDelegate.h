@@ -10,16 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UTCSMenuViewControllerDelegate.h"
 
-@class  UTCSSideMenuViewController;
-
 /**
  */
 @interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate>
 
 //
 @property (strong, nonatomic) UIWindow                      *window;
-
-//
-@property (strong, nonatomic) UTCSSideMenuViewController    *sideMenuViewController;
 
 @end
