@@ -48,7 +48,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [self loadReveal];
+    [self loadReveal];
     
     // Initialize Parse
     [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
@@ -82,6 +82,7 @@
     [[UINavigationBar appearance]setShadowImage:[UIImage new]];
     [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
     [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods

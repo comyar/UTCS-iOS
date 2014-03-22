@@ -94,15 +94,15 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     
     self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64)
                                                      style:UITableViewStylePlain];
+    [self.newsTableView setEditing:NO animated:NO];
+    self.newsTableView.delegate = self;
+    self.newsTableView.dataSource = self.dataSource;
     [self.newsTableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
              forCellReuseIdentifier:@"UTCSNewsTableViewCell"];
     self.newsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.newsTableView.rowHeight = 128;
     self.newsTableView.backgroundColor = [UIColor clearColor];
-    self.newsTableView.delegate = self;
-    self.newsTableView.dataSource = self.dataSource;
     self.newsTableView.separatorColor = UITableViewCellSeparatorStyleNone;
-    self.newsTableView.scrollsToTop = YES;
     [self.view addSubview:self.newsTableView];
     
     self.newsTableViewHeaderContainer = [[UIView alloc]initWithFrame:self.newsTableView.bounds];
@@ -226,18 +226,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     return (self.newsTableView.contentOffset.y < 8);
 }
 
-- (void)verticalMenuViewController:(UTCSVerticalMenuViewController *)verticalMenuViewController willShowMenuViewController:(UIViewController *)menuViewController
-{
-    self.newsTableView.userInteractionEnabled = NO;
-    self.menuButton.userInteractionEnabled = NO;
-}
-
-- (void)verticalMenuViewController:(UTCSVerticalMenuViewController *)verticalMenuViewController didHideMenuViewController:(UIViewController *)menuViewController
-{
-    self.newsTableView.userInteractionEnabled = YES;
-    self.menuButton.userInteractionEnabled = YES;
-}
-
 #pragma mark UITableViewDelegate Methods
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
@@ -254,9 +242,12 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
     UTCSNewsStory *newsStory = self.dataSource.newsStories[indexPath.row];
     self.newsDetailViewController = [UTCSNewsDetailViewController new];
     self.newsDetailViewController.newsStory = newsStory;
+    [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
 }
 
 #pragma mark UIScrollViewDelegate Methods

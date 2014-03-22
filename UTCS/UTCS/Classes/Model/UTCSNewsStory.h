@@ -27,18 +27,10 @@ extern NSString *const UTCSParseNewStoryHTML;
 
 + (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object;
 
-/**
- */
-+ (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent;
-
 
 /**
  */
 - (instancetype)initWithParseObject:(PFObject *)object;
-
-/**
- */
-- (instancetype)initWithParseObject:(PFObject *)object attributedContent:(NSAttributedString *)attributedContent;
 
 
 // -----

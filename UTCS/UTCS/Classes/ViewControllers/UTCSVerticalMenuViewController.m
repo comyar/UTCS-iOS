@@ -46,6 +46,7 @@ const CGFloat animationDuration = 0.25;
         self.panGestureRecognizer.delegate = self;
         
         self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizeTapGesture:)];
+        self.tapGestureRecognizer.delegate = self;
         
         [self setMenuViewController:menuViewController];
         [self setContentViewController:(UIViewController *)contentViewController];
@@ -60,8 +61,10 @@ const CGFloat animationDuration = 0.25;
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    CGPoint point = [gestureRecognizer locationInView:self.contentViewController.view];
-    return point.y <= 64;
+    if(gestureRecognizer == self.tapGestureRecognizer) {
+        return self.isShowingMenu;
+    }
+    return YES;
 }
 
 - (void)dealloc
