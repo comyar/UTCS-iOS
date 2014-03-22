@@ -12,8 +12,12 @@
 #import "UITextView+CZTextViewHeight.h"
 #import "UTCSNewsStory.h"
 
+#import "UTCSParallaxHeaderScrollView.h"
+
 
 @interface UTCSNewsDetailViewController ()
+
+@property (nonatomic) UTCSParallaxHeaderScrollView      *parallaxScrollView;
 
 @property (strong, nonatomic) UITextView                *contentTextView;
 
@@ -33,27 +37,26 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.view.backgroundColor = [UIColor blackColor];
         self.defaultHeaders = @[[UIImage imageNamed:@"header"]];
         self.defaultBlurredHeaders = @[[UIImage imageNamed:@"blurredHeader"]];
         
         self.headerImageView = [[UIImageView alloc]initWithImage:self.defaultHeaders[0]];
-        self.headerImageView.frame = CGRectMake(0, 0, self.view.width, 0.5 * self.view.height);
-        self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
         
         self.blurredImageView = [[UIImageView alloc]initWithImage:self.defaultBlurredHeaders[0]];
-        self.blurredImageView.frame = CGRectMake(0, 0, self.view.width, 0.5 * self.view.height);
-        self.blurredImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.blurredImageView.alpha = 0.0;
         
         self.headerContainer = [UIView new];
+        self.headerContainer.backgroundColor = [UIColor clearColor];
         
+        self.headerContainer.frame = CGRectMake(0, 0, self.headerImageView.width, self.headerImageView.height);
+        [self.headerContainer addSubview:self.headerImageView];
+        [self.headerContainer addSubview:self.blurredImageView];
         
-        self.contentTextView = [[UITextView alloc]initWithFrame:CGRectZero];
-        self.contentTextView.linkTextAttributes = @{NSForegroundColorAttributeName: [UIColor utcsBurntOrangeColor]};
-        self.contentTextView.dataDetectorTypes = UIDataDetectorTypeAll;
-        self.contentTextView.scrollEnabled = YES;
-        self.contentTextView.editable = NO;
-        self.contentTextView.delegate = self;
+        self.parallaxScrollView = [[UTCSParallaxHeaderScrollView alloc]initWithFrame:self.view.bounds headerView:self.headerImageView];
+        self.parallaxScrollView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:self.parallaxScrollView];
+
     }
     return self;
 }
@@ -65,27 +68,16 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.headerContainer addSubview:self.headerImageView];
-    [self.headerContainer addSubview:self.blurredImageView];
-    [self.headerContainer sizeToFit];
-    [self.view addSubview:self.headerContainer];
-    
-    
-    self.contentTextView.backgroundColor = [UIColor clearColor];
-    self.contentTextView.frame = self.view.bounds;
-    [self.view addSubview:self.contentTextView];
-}
+    }
 
 - (void)updateWithNewsStory:(UTCSNewsStory *)newsStory
 {
-    [self.contentTextView scrollRangeToVisible:NSMakeRange(0, 1)];
-    
-    self.contentTextView.contentInset = UIEdgeInsetsMake(self.headerImageView.height, 0, 0, 0);
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.blurredImageView.alpha = MIN(1.0,  MAX(scrollView.contentOffset.y / self.view.height, 0.0));
+    self.blurredImageView.alpha = MIN(1.0,  10.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
 }
 
 #pragma mark Overridden Setters

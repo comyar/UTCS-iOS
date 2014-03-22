@@ -57,7 +57,7 @@
     
     [self configureAppearance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
    
     // Initialize menu view controller
     self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStylePlain];
