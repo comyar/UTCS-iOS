@@ -116,8 +116,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         label.text = @"UTCS News";
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor whiteColor];
-        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        label.shadowOffset = CGSizeMake(0, 2);
         label;
     });
     [self.newsTableViewHeaderContainer addSubview:self.utcsNewsShimmeringView];
@@ -162,8 +160,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
     
-    self.topSeparator = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 1)];
-    self.topSeparator.backgroundColor = [UIColor whiteColor];
+    self.topSeparator = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 0.5)];
+    self.topSeparator.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     self.topSeparator.alpha = 0.0;
     [self.view addSubview:self.topSeparator];
 }
@@ -255,7 +253,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.blurredBackgroundImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
-    self.topSeparator.alpha = MIN(1.0, MAX(scrollView.contentOffset.y / self.view.height, 0.0));
+    self.topSeparator.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
 }
 
 @end

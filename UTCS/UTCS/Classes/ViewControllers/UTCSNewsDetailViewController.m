@@ -46,6 +46,7 @@
         self.defaultBlurredHeaders = @[[UIImage imageNamed:@"blurredHeader"]];
         
         self.headerImageView = [[UIImageView alloc]initWithImage:self.defaultHeaders[0]];
+        self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
         
         self.blurredImageView = [[UIImageView alloc]initWithImage:self.defaultBlurredHeaders[0]];
         self.blurredImageView.alpha = 0.0;
@@ -78,15 +79,21 @@
         [self.view addSubview:self.scrollView];
         
         self.contentTextView = [[UITextView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 0.0)];
-//        self.contentTextView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+        self.contentTextView.textContainerInset = UIEdgeInsetsMake(16.0, 8.0, 8.0, 8.0);
         self.contentTextView.dataDetectorTypes = UIDataDetectorTypeAll;
         self.contentTextView.scrollEnabled = NO;
         self.contentTextView.editable = NO;
+        self.contentTextView.delegate = self;
         [self.scrollView addSubview:self.contentTextView];
         
         self.headerMask = [CAShapeLayer layer];
     }
     return self;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+{
+    return NO;
 }
 
 #pragma mark UIViewController Methods
@@ -101,6 +108,11 @@
 
 - (void)updateWithNewsStory:(UTCSNewsStory *)newsStory
 {
+    if(newsStory.headerImage) {
+        self.headerImageView.image = newsStory.headerImage;
+    }
+    
+    
     self.headerDateLabel.text = [NSDateFormatter localizedStringFromDate:newsStory.date
                                                                dateStyle:NSDateFormatterLongStyle
                                                                timeStyle:NSDateFormatterNoStyle];
@@ -110,8 +122,9 @@
     self.headerTitleLabel.y = self.headerContainer.height - self.headerTitleLabel.height - self.headerDateLabel.height;
     self.headerDateLabel.y = self.headerContainer.height - self.headerDateLabel.height;
     self.contentTextView.attributedText = newsStory.attributedContent;
-//    self.contentTextView.y = self.headerContainer.height;
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.contentTextView.contentSize.height + self.headerContainer.height);
+    self.contentTextView.y = self.headerContainer.height;
+    self.contentTextView.height = [self.contentTextView heightWithText];
+    self.scrollView.contentSize = CGSizeMake(self.view.width, self.contentTextView.height + self.headerContainer.height);
     [self.scrollView scrollRectToVisible:CGRectZero animated:YES];
 }
 
