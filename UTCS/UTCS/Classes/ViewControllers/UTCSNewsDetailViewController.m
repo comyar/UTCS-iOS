@@ -28,6 +28,7 @@
 @property (nonatomic) UIView                            *headerContainer;
 
 @property (nonatomic) UILabel                           *headerTitleLabel;
+@property (nonatomic) UILabel                           *headerDateLabel;
 
 @property (nonatomic) CAShapeLayer                      *headerMask;
 
@@ -49,8 +50,6 @@
         self.blurredImageView = [[UIImageView alloc]initWithImage:self.defaultBlurredHeaders[0]];
         self.blurredImageView.alpha = 0.0;
         
-        
-        
         self.headerContainer = [UIView new];
         self.headerContainer.backgroundColor = [UIColor clearColor];
         
@@ -60,18 +59,18 @@
         
         [self.view addSubview:self.headerContainer];
         
-        
-        
-        self.headerTitleLabel = [[UILabel alloc]initWithFrame:self.headerContainer.bounds];
+        self.headerTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 64.0, self.headerContainer.width - 16.0, self.headerContainer.height - 96.0)];
         self.headerTitleLabel.numberOfLines = 0;
         self.headerTitleLabel.adjustsFontSizeToFitWidth = YES;
-        self.headerTitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        self.headerTitleLabel.shadowOffset = CGSizeMake(0, 1);
-        self.headerTitleLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        self.headerTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:28];
+        self.headerTitleLabel.textColor = [UIColor whiteColor];
         [self.headerContainer addSubview:self.headerTitleLabel];
         
-        
-        [self.headerContainer addSubview:self.headerTitleLabel];
+        self.headerDateLabel = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 0.0, self.view.width - 16.0, 32)];
+        self.headerDateLabel.adjustsFontSizeToFitWidth = YES;
+        self.headerDateLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+        self.headerDateLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        [self.headerContainer addSubview:self.headerDateLabel];
         
         self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
         self.scrollView.alwaysBounceVertical = YES;
@@ -79,6 +78,8 @@
         [self.view addSubview:self.scrollView];
         
         self.contentTextView = [[UITextView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 0.0)];
+//        self.contentTextView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+        self.contentTextView.dataDetectorTypes = UIDataDetectorTypeAll;
         self.contentTextView.scrollEnabled = NO;
         self.contentTextView.editable = NO;
         [self.scrollView addSubview:self.contentTextView];
@@ -100,14 +101,17 @@
 
 - (void)updateWithNewsStory:(UTCSNewsStory *)newsStory
 {
-    CGFloat height = [newsStory.title boundingRectWithSize:self.headerTitleLabel.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: self.headerTitleLabel.font} context:nil].size.height;
+    self.headerDateLabel.text = [NSDateFormatter localizedStringFromDate:newsStory.date
+                                                               dateStyle:NSDateFormatterLongStyle
+                                                               timeStyle:NSDateFormatterNoStyle];
     
-//    self.headerTitleLabel.y = self.headerContainer.height - height;
     self.headerTitleLabel.text = newsStory.title;
+    [self.headerTitleLabel sizeToFit];
+    self.headerTitleLabel.y = self.headerContainer.height - self.headerTitleLabel.height - self.headerDateLabel.height;
+    self.headerDateLabel.y = self.headerContainer.height - self.headerDateLabel.height;
     self.contentTextView.attributedText = newsStory.attributedContent;
-    self.contentTextView.y = self.headerContainer.height;
-    self.contentTextView.height = [self.contentTextView heightWithText];
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.contentTextView.height + self.headerContainer.height);
+//    self.contentTextView.y = self.headerContainer.height;
+    self.scrollView.contentSize = CGSizeMake(self.view.width, self.contentTextView.contentSize.height + self.headerContainer.height);
     [self.scrollView scrollRectToVisible:CGRectZero animated:YES];
 }
 
@@ -128,7 +132,8 @@
         } else {
             self.headerContainer.y = 0.0;
         }
-        self.blurredImageView.alpha = MIN(1.0,  10.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
+        self.blurredImageView.alpha = MIN(1.0, 10.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
+        self.headerTitleLabel.alpha = 1.0 - MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
     }
 }
 

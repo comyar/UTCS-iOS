@@ -100,13 +100,16 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                                                       error:nil];
     if(json) {
         
-        NSDictionary *fonts = @{@"normal":@"HelveticaNeue-Light",
-                                @"header":@"HelveticaNeue-Bold",
-                                @"subheader":@"HelveticaNeue",
-                                @"strong":@"HelveticaNeue-Medium"};
+        NSDictionary *fonts = @{@"normal":@"Georgia",
+                                @"header":@"Georgia-Bold",
+                                @"subheader":@"Georgia-Italic",
+                                @"strong":@"Georgia-Bold"};
         
         NSMutableString *storyText = [NSMutableString new];
         NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
+        
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineSpacing = 8.0;
         
         for(NSDictionary *content in json) {
             if([content[@"type"] isEqualToString:@"text"]) {
@@ -116,11 +119,21 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                 
                 NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
                 [attributedText addAttribute:NSFontAttributeName
-                                       value:[UIFont fontWithName:fonts[fontType] size:14]
+                                       value:[UIFont fontWithName:fonts[fontType] size:18]
+                                       range:NSMakeRange(0, [attributedText length])];
+                [attributedText addAttribute:NSParagraphStyleAttributeName
+                                       value:paragraphStyle
                                        range:NSMakeRange(0, [attributedText length])];
                 [attributedContent appendAttributedString:attributedText];
+            } else if([content[@"type"] isEqualToString:@"link"]) {
+                NSString *fontType = content[@"font"];
+                NSString *text  = content[@"content"];
+                NSString *link  = content[@"href"];
             }
         }
+        
+        
+        
         
         newsStory.text = storyText;
         newsStory.attributedContent = attributedContent;
