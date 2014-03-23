@@ -30,7 +30,6 @@
 		DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */; };
 		DD5B586318D23A0000EEB474 /* UTCSEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5B586118D23A0000EEB474 /* UTCSEventsTableViewCell.xib */; };
 		DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */; };
-		DD724E0D18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E0C18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
 		DD79690118B60D57009ADE2A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690018B60D57009ADE2A /* AudioToolbox.framework */; };
@@ -105,8 +104,6 @@
 		DD5B586718D23A0A00EEB474 /* UTCSMenuViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		DD5B586918D23AFD00EEB474 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		DD724E0B18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSParallaxHeaderScrollView.h; sourceTree = "<group>"; };
-		DD724E0C18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSParallaxHeaderScrollView.m; sourceTree = "<group>"; };
 		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DD7968FE18B60D1F009ADE2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DD79690018B60D57009ADE2A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -306,8 +303,6 @@
 		DD5B584F18D239F900EEB474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DD724E0B18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.h */,
-				DD724E0C18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -566,7 +561,6 @@
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */,
-				DD724E0D18DE26E500AAE4F0 /* UTCSParallaxHeaderScrollView.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */,
 				DD5B585918D239F900EEB474 /* UTCSLabsViewController.m in Sources */,
