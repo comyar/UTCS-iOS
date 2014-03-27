@@ -39,6 +39,8 @@ extern NSString *const UTCSParseNewStoryHTML;
 
 @property (nonatomic) UIImage                   *headerImage;
 
+@property (nonatomic) UIImage                   *blurredHeaderImage;
+
 //
 @property (nonatomic) NSString                  *title;
 

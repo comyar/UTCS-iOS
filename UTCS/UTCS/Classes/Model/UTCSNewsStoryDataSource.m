@@ -7,6 +7,7 @@
 //
 
 #import "UTCSNewsStoryDataSource.h"
+#import "UIImage+ImageEffects.h"
 #import "UTCSNewsStory.h"
 
 #import "UIImage+CZScaling.h"
@@ -48,6 +49,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = newsStory.text;
+//    NSLog(@"%@", cell.detailTextLabel.text);
     return cell;
 }
 
@@ -135,18 +137,19 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                                                       error:nil];
     if(json) {
         
-        [self downloadImagesForJSON:json completion:^(UIImage *header, NSDictionary *images) {
-            
-            if(header) {
-                newsStory.headerImage = header;
-            }
-            
+//        [self downloadImagesForJSON:json completion:^(UIImage *header, NSDictionary *images) {
+        
+//            if(header) {
+//                newsStory.headerImage = [header imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//                newsStory.blurredHeaderImage = [header applyTintEffectWithColor:[UIColor colorWithWhite:0.11 alpha:0.73]];
+//            }
+        
             NSDictionary *fonts = @{@"normal":@"Georgia",
                                     @"header":@"Georgia-Bold",
                                     @"subheader":@"Georgia-Italic",
                                     @"strong":@"Georgia-Bold"};
             
-            NSMutableString *storyText = [NSMutableString new];
+            NSMutableString *textString = [NSMutableString new];
             NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
             
             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
@@ -156,7 +159,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
                 if([content[@"type"] isEqualToString:@"text"]) {
                     NSString *fontType = content[@"font"];
                     NSString *text  = content[@"content"];
-                    [storyText appendString:text];
+                    [textString appendString:text];
                     
                     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
                     [attributedText addAttribute:NSFontAttributeName
@@ -170,27 +173,26 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
 
                     
                 } else if([content[@"type"] isEqualToString:@"image"]) {
-                    UIImage *image = images[content[@"src"]];
-                    if(image) {
-                        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-                        paragraphStyle.alignment = NSTextAlignmentCenter;
-                        
-                        NSTextAttachment *textAttachment = [NSTextAttachment new];
-                        textAttachment.image = image;
-                        
-                        NSMutableAttributedString *imageString = [[NSAttributedString attributedStringWithAttachment:textAttachment]mutableCopy];
-                        [imageString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [imageString length])];
-                        
-                        [attributedContent appendAttributedString:[[NSAttributedString alloc]initWithString:@"\n"]];
-                        [attributedContent appendAttributedString:imageString];
-                        [attributedContent appendAttributedString:[[NSAttributedString alloc]initWithString:@"\n"]];
-                    }
+//                    UIImage *image = images[content[@"src"]];
+//                    if(image) {
+//                        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+//                        paragraphStyle.alignment = NSTextAlignmentCenter;
+//                        
+//                        NSTextAttachment *textAttachment = [NSTextAttachment new];
+//                        textAttachment.image = image;
+//                        
+//                        NSMutableAttributedString *imageString = [[NSAttributedString attributedStringWithAttachment:textAttachment]mutableCopy];
+//                        [imageString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [imageString length])];
+//                        
+//                        [attributedContent appendAttributedString:[[NSAttributedString alloc]initWithString:@"\n"]];
+//                        [attributedContent appendAttributedString:imageString];
+//                        [attributedContent appendAttributedString:[[NSAttributedString alloc]initWithString:@"\n"]];
+//                    }
                 }
             }
-            
-            newsStory.text = storyText;
+            newsStory.text = textString;
             newsStory.attributedContent = attributedContent;
-        }];
+//        }];
     }
 }
 
