@@ -16,7 +16,7 @@
         return [self copy];
     }
     
-    CGFloat widthScale = width / self.size.width;
+    CGFloat widthScale = self.size.width / width;
     CGSize scaleSize = CGSizeMake(widthScale * self.size.width, widthScale * self.size.height);
     
     UIGraphicsBeginImageContext(scaleSize);
@@ -25,6 +25,27 @@
     UIGraphicsEndImageContext();
     return scaledImage;
 
+}
+
+- (UIImage*)imageScaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+- (UIImage*)imageScaledByFactor:(CGFloat)scale
+{
+    CGSize scaledSize = CGSizeMake(scale * self.size.width, scale * self.size.height);
+    UIGraphicsBeginImageContext(scaledSize);
+    [self drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
 }
 
 @end

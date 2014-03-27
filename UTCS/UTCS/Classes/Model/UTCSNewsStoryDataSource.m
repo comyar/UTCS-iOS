@@ -29,7 +29,7 @@ NSString * const UTCSNewsStoryTextFontColorAttribute    = @"UTCSNewsStoryTextFon
 
 NSString * const UTCSNewsStoryParagraphLineSpacing      = @"UTCSNewsStoryParagraphLineSpacing";
 
-const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
+const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 
 @implementation UTCSNewsStoryDataSource
@@ -48,8 +48,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = newsStory.title;
-    cell.detailTextLabel.text = newsStory.text;
-//    NSLog(@"%@", cell.detailTextLabel.text);
+    cell.detailTextLabel.text = [newsStory.attributedContent string];
     return cell;
 }
 
@@ -82,8 +81,9 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
         if(objects) {
             for(PFObject *object in objects) {
                 UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
-                [self configureNewsStory:newsStory];
-                [newsStories addObject:newsStory];
+                if([self setAttributedContentForNewsStory:newsStory]) {
+                    [newsStories addObject:newsStory];
+                }
             }
             
             sortedNewsStories = [newsStories sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
@@ -97,105 +97,43 @@ const NSTimeInterval kEarliestTimeIntervalForNews   = INT32_MIN;
     }];
 }
 
-
-- (void)downloadImagesForJSON:(NSArray *)JSON completion:(void (^)(UIImage *header, NSDictionary *images))completion
+- (BOOL)setAttributedContentForNewsStory:(UTCSNewsStory *)newsStory
 {
-    NSMutableArray *imageURLs = [NSMutableArray new];
-    for(NSDictionary *content  in JSON) {
-        if([content[@"type"] isEqualToString:@"image"]) {
-            [imageURLs addObject:content[@"src"]];
-        }
+    NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
+    if(!attributedHTML) {
+        return NO;
     }
     
-    __block int count = 0;
     __block UIImage *headerImage = nil;
-    NSMutableDictionary *images = [NSMutableDictionary new];
-    for(NSString *url in imageURLs) {
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            if(data) {
-                UIImage *image = [UIImage imageWithData:data];
-                if(!headerImage && image.size.width > 300) {
-                    headerImage = image;
-                } else {
-                    images[url] = image;
-                }
-            }
-            count++;
-            if(count == [imageURLs count]) {
-                completion(headerImage, images);
-            }
-        }];
-    }
-}
-
-- (void)configureNewsStory:(UTCSNewsStory *)newsStory
-{
+    NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
+    [attributedHTML enumerateAttributesInRange:NSMakeRange(0, [attributedHTML length])
+                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                                       usingBlock:
+     ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
+         if(attrs[NSAttachmentAttributeName]) {
+             NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
+             if(!headerImage && textAttachment.image) {
+                 if(textAttachment.image.size.width >= 200) {
+                     headerImage = [textAttachment.image copy];
+                 }
+             }
+         } else {
+             UIFont *htmlFont = attrs[NSFontAttributeName];
+             NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
+             fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"Palatino-Roman";
+             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
+             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.4 * htmlFont.pointSize];
+             [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
+             [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
+         }
+    }];
     
-    NSArray *json = [NSJSONSerialization JSONObjectWithData:[newsStory.json dataUsingEncoding:NSUTF8StringEncoding]
-                                                    options:NSJSONReadingAllowFragments
-                                                      error:nil];
-    if(json) {
-        
-//        [self downloadImagesForJSON:json completion:^(UIImage *header, NSDictionary *images) {
-        
-//            if(header) {
-//                newsStory.headerImage = [header imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//                newsStory.blurredHeaderImage = [header applyTintEffectWithColor:[UIColor colorWithWhite:0.11 alpha:0.73]];
-//            }
-        
-            NSDictionary *fonts = @{@"normal":@"Georgia",
-                                    @"header":@"Georgia-Bold",
-                                    @"subheader":@"Georgia-Italic",
-                                    @"strong":@"Georgia-Bold"};
-            
-            NSMutableString *textString = [NSMutableString new];
-            NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
-            
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = 8.0;
-            
-            for(NSDictionary *content in json) {
-                if([content[@"type"] isEqualToString:@"text"]) {
-                    NSString *fontType = content[@"font"];
-                    NSString *text  = content[@"content"];
-                    [textString appendString:text];
-                    
-                    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
-                    [attributedText addAttribute:NSFontAttributeName
-                                           value:[UIFont fontWithName:fonts[fontType] size:18]
-                                           range:NSMakeRange(0, [attributedText length])];
-                    [attributedText addAttribute:NSParagraphStyleAttributeName
-                                           value:paragraphStyle
-                                           range:NSMakeRange(0, [attributedText length])];
-                    [attributedContent appendAttributedString:attributedText];
-                } else if([content[@"type"] isEqualToString:@"link"]) {
-
-                    
-                } else if([content[@"type"] isEqualToString:@"image"]) {
-//                    UIImage *image = images[content[@"src"]];
-//                    if(image) {
-//                        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-//                        paragraphStyle.alignment = NSTextAlignmentCenter;
-//                        
-//                        NSTextAttachment *textAttachment = [NSTextAttachment new];
-//                        textAttachment.image = image;
-//                        
-//                        NSMutableAttributedString *imageString = [[NSAttributedString attributedStringWithAttachment:textAttachment]mutableCopy];
-//                        [imageString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [imageString length])];
-//                        
-//                        [attributedContent appendAttributedString:[[NSAttributedString alloc]initWithString:@"\n"]];
-//                        [attributedContent appendAttributedString:imageString];
-//                        [attributedContent appendAttributedString:[[NSAttributedString alloc]initWithString:@"\n"]];
-//                    }
-                }
-            }
-            newsStory.text = textString;
-            newsStory.attributedContent = attributedContent;
-//        }];
-    }
+    newsStory.headerImage = [headerImage applyTintEffectWithColor:[UIColor colorWithWhite:0.11 alpha:0.73]];
+    newsStory.blurredHeaderImage = [headerImage applyDarkEffect];
+    newsStory.attributedContent = attributedContent;
+    
+    return YES;
 }
-
 
 
 @end

@@ -41,7 +41,8 @@ const CGFloat navigationBarHeight   = 64.0;
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.headerMask                             = [CAShapeLayer new];
+        
+        
         
         self.headerImageView                        = [UIImageView new];
         self.headerImageView.tintColor              = [UIColor colorWithWhite:0.11 alpha:0.73];
@@ -66,6 +67,9 @@ const CGFloat navigationBarHeight   = 64.0;
         self.scrollView.alwaysBounceVertical = YES;
         self.scrollView.delegate = self;
         [self addSubview:self.scrollView];
+        
+        self.headerMask                             = [CAShapeLayer new];
+        
     }
     return self;
 }
@@ -80,6 +84,7 @@ const CGFloat navigationBarHeight   = 64.0;
                                                      CGRectGetWidth(self.bounds), _headerImage.size.height);
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
+    self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight),CGRectGetWidth(self.scrollView.bounds), navigationBarHeight)]CGPath];
 }
 
 
@@ -119,13 +124,16 @@ const CGFloat navigationBarHeight   = 64.0;
                     frame.origin.y = -parallaxFactor * scrollView.contentOffset.y;
                     frame;
                 });
+                self.headerContainerView.layer.mask = nil;
                 [self bringSubviewToFront:self.scrollView];
             } else {
+                self.headerContainerView.frame = CGRectMake(0.0, -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight),CGRectGetWidth(self.headerContainerView.bounds), CGRectGetHeight(self.headerContainerView.bounds));
+                self.headerContainerView.layer.mask = self.headerMask;
                 [self bringSubviewToFront:self.headerContainerView];
             }
         } else {
             self.headerContainerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.headerContainerView.bounds), CGRectGetHeight(self.headerContainerView.bounds));
-            [self bringSubviewToFront:self.scrollView];
+            
         }
         
         self.headerBlurredImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));

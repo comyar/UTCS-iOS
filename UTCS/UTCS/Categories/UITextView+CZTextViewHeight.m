@@ -12,7 +12,11 @@
 
 - (CGFloat)heightWithText
 {
-    return [self.attributedText boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.bounds), NSIntegerMax) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size.height;
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.attributedText);
+    CGSize targetSize = CGSizeMake(CGRectGetWidth(self.bounds) - self.textContainerInset.left - self.textContainerInset.right, CGFLOAT_MAX);
+    CGSize size = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, [self.attributedText length]), NULL, targetSize, NULL);
+    CFRelease(framesetter);
+    return size.height;
 }
 
 @end

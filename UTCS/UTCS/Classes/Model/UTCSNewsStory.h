@@ -50,6 +50,8 @@ extern NSString *const UTCSParseNewStoryHTML;
 //
 @property (nonatomic) NSDate                    *date;
 
+@property (nonatomic) NSString                  *html;
+
 //
 @property (nonatomic) NSString                   *json;
 

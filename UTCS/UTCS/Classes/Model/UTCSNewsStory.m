@@ -11,6 +11,7 @@
 NSString *const UTCSParseNewsStoryTitle     = @"title";
 NSString *const UTCSParseNewsStoryDate      = @"date";
 NSString *const UTCSParseNewStoryJSON       = @"json";
+NSString * const UTCSParseNewsStoryHTML     = @"text";
 
 @implementation UTCSNewsStory
 
@@ -26,6 +27,7 @@ NSString *const UTCSParseNewStoryJSON       = @"json";
         _title              = object[UTCSParseNewsStoryTitle];
         _date               = object[UTCSParseNewsStoryDate];
         _json               = object[UTCSParseNewStoryJSON];
+        _html               = object[UTCSParseNewsStoryHTML];
     }
     return self;
 }

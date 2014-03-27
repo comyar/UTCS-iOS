@@ -33,8 +33,11 @@
         self.parallaxBlurHeaderScrollView.headerBlurredImage = [UIImage imageNamed:@"blurredHeader"];
         
         self.contentTextView = [[UITextView alloc]initWithFrame:self.parallaxBlurHeaderScrollView.scrollView.bounds];
+        self.contentTextView.textContainerInset = UIEdgeInsetsMake(16.0, 8.0, 0, 8.0);
         self.contentTextView.scrollEnabled = NO;
         self.contentTextView.editable = NO;
+        self.contentTextView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypePhoneNumber | UIDataDetectorTypeAddress;
+        self.contentTextView.textColor = [UIColor utcsGrayColor];
         [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.contentTextView];
         
         [self.view addSubview:self.parallaxBlurHeaderScrollView];
@@ -42,22 +45,19 @@
     return self;
 }
 
-#pragma mark UIViewController Methods
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
 - (void)updateWithNewsStory:(UTCSNewsStory *)newsStory
 {
     self.title = [NSDateFormatter localizedStringFromDate:newsStory.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    
+    if(newsStory.headerImage) {
+        self.parallaxBlurHeaderScrollView.headerImage = newsStory.headerImage;
+        self.parallaxBlurHeaderScrollView.headerBlurredImage = newsStory.blurredHeaderImage;
+    }
+    
     self.contentTextView.attributedText = newsStory.attributedContent;
-    self.contentTextView.height = [self.contentTextView heightWithText];
+    self.contentTextView.height = ceilf([self.contentTextView heightWithText]);
     self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerImage.size.height;
-    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.contentTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
+    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.contentTextView.height + self.parallaxBlurHeaderScrollView.headerImage.size.height);
 }
 
 #pragma mark Overridden Setters

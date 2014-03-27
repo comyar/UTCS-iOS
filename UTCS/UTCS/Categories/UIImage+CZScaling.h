@@ -11,5 +11,6 @@
 @interface UIImage (CZScaling)
 
 - (UIImage *)imageScaledToFitWidth:(CGFloat)width;
+- (UIImage*)imageScaledByFactor:(CGFloat)scale;
 
 @end
