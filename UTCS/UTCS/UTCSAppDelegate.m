@@ -22,22 +22,15 @@
 @interface UTCSAppDelegate ()
 
 //
-@property (strong, nonatomic) UTCSMenuViewController            *menuViewController;
+@property (nonatomic) UTCSMenuViewController            *menuViewController;
 
-@property (nonatomic) UTCSNewsViewController                    *newsViewController;
-
-@property (nonatomic) UINavigationController                    *newsNavigationController;
+@property (nonatomic) UINavigationController            *newsNavigationController;
 
 //
-@property (strong, nonatomic) UINavigationController            *eventsNavigationController;
-
-@property (strong, nonatomic) UTCSLabsViewController            *labsViewController;
+@property (nonatomic) UINavigationController            *eventsNavigationController;
 
 //
-@property (strong, nonatomic) UINavigationController            *directoryNavigationController;
-
-//
-@property (strong, nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
+@property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
 @end
 
@@ -64,10 +57,7 @@
     self.menuViewController.delegate = self;
     
     // Initialize main view controllers
-    self.newsViewController = [UTCSNewsViewController new];
-    self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:self.newsViewController];
-    
-    
+    self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
     self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsNavigationController];
@@ -91,9 +81,9 @@
 - (void)didSelectMenuOption:(UTCSMenuOptions)option
 {
     if(option == UTCSMenuOptionNews) {
-        
+        self.verticalMenuViewController.contentViewController = self.newsNavigationController;
     } else if(option == UTCSMenuOptionEvents) {
-        
+        self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
     }
 }
 

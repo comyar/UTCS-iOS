@@ -7,43 +7,27 @@
 //
 
 #import "UTCSEventsViewController.h"
+#import "UTCSBackgroundHeaderBlurTableView.h"
+#import "UTCSMenuButton.h"
 
 @interface UTCSEventsViewController ()
+
+@property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
 
 @end
 
 @implementation UTCSEventsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
+    self.backgroundHeaderBlurTableView.backgroundImage = [UIImage imageNamed:@"newsBackground"];
+    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [UIImage imageNamed:@"newsBackground-blurred"];
+    self.backgroundHeaderBlurTableView.tableView.delegate = self;
+//    self.backgroundHeaderBlurTableView.tableView.dataSource = self.dataSource;
+    [self.view addSubview:self.backgroundHeaderBlurTableView];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -2,24 +2,13 @@
 //  UTCSDirectoryViewController.m
 //  UTCS
 //
-//  Created by Comyar Zaheri on 2/21/14.
+//  Created by Comyar Zaheri on 3/28/14.
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
 #import "UTCSDirectoryViewController.h"
-#import "UIColor+UTCSColors.h"
-#import "UIView+CZPositioning.h"
 
 @interface UTCSDirectoryViewController ()
-
-//
-@property (strong, nonatomic) UISearchBar                   *directorySearchBar;
-
-//
-//@property (strong, nonatomic) FRDLivelyButton               *menuButton;
-
-//
-@property (strong, nonatomic) UISearchDisplayController     *directorySearchDisplayController;
 
 @end
 
@@ -27,8 +16,9 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.view.backgroundColor = [UIColor whiteColor];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
     }
     return self;
 }
@@ -36,47 +26,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    self.menuButton = [[FRDLivelyButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
-//    [self.menuButton setOptions:@{kFRDLivelyButtonColor: [UIColor utcsBurntOrangeColor]}];
-//    [self.menuButton setStyle:kFRDLivelyButtonStyleHamburger animated:NO];
-//    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
-    
-	self.directorySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, self.topLayoutGuide.length, self.view.width, 44.0)];
-    self.directorySearchBar.placeholder = @"Search UTCS Directory";
-    [self.view addSubview:self.directorySearchBar];
-    self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.directorySearchBar
-                                                                             contentsController:self];
+    // Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)didReceiveMemoryWarning
 {
-    [super viewDidAppear:animated];
-    [self.directorySearchDisplayController setActive:YES animated:YES];
-    [self.directorySearchBar becomeFirstResponder];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.directorySearchDisplayController setActive:NO animated:YES];
-    [self.directorySearchBar resignFirstResponder];
-}
+/*
+#pragma mark - Navigation
 
-- (void)viewDidLayoutSubviews
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [super viewDidLayoutSubviews];
-    self.directorySearchBar.frame = CGRectMake(0.0, self.topLayoutGuide.length, self.view.width, 44.0);
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
-- (void)didTouchUpInsideButton:(UIButton *)button
-{
-    [self.directorySearchDisplayController setActive:NO animated:YES];
-//    
-//    if(button == self.menuButton) {
-//        
-//    }
-}
+*/
 
 @end

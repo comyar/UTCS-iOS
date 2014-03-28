@@ -1,18 +1,18 @@
 //
-//  UTCSLabsViewController.m
+//  UTCSAboutViewController.m
 //  UTCS
 //
 //  Created by Comyar Zaheri on 3/28/14.
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSLabsViewController.h"
+#import "UTCSAboutViewController.h"
 
-@interface UTCSLabsViewController ()
+@interface UTCSAboutViewController ()
 
 @end
 
-@implementation UTCSLabsViewController
+@implementation UTCSAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

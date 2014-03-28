@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSEventsViewController : UIViewController
+@interface UTCSEventsViewController : UIViewController <UITableViewDelegate>
 
 @end

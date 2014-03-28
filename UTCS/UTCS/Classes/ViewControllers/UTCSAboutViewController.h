@@ -1,5 +1,5 @@
 //
-//  UTCSDirectoryViewController.h
+//  UTCSAboutViewController.h
 //  UTCS
 //
 //  Created by Comyar Zaheri on 3/28/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSDirectoryViewController : UIViewController
+@interface UTCSAboutViewController : UIViewController
 
 @end
