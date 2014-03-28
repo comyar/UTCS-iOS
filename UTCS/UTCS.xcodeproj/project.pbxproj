@@ -28,6 +28,7 @@
 		DD44658318E5837600ED1153 /* UTCSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44658218E5837600ED1153 /* UTCSSettingsViewController.m */; };
 		DD44658718E5838600ED1153 /* UTCSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44658618E5838600ED1153 /* UTCSAboutViewController.m */; };
 		DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44658918E584A200ED1153 /* UTCSEventsDataSource.m */; };
+		DD44658C18E5859F00ED1153 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44658B18E5859F00ED1153 /* NMSSH.framework */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
@@ -105,6 +106,7 @@
 		DD44658618E5838600ED1153 /* UTCSAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSAboutViewController.m; sourceTree = "<group>"; };
 		DD44658818E584A200ED1153 /* UTCSEventsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventsDataSource.h; sourceTree = "<group>"; };
 		DD44658918E584A200ED1153 /* UTCSEventsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventsDataSource.m; sourceTree = "<group>"; };
+		DD44658B18E5859F00ED1153 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEvent.m; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */,
 				DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */,
 				DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */,
+				DD44658C18E5859F00ED1153 /* NMSSH.framework in Frameworks */,
 				DD79690518B60D69009ADE2A /* CoreLocation.framework in Frameworks */,
 				DD79690318B60D60009ADE2A /* CFNetwork.framework in Frameworks */,
 				DD79690118B60D57009ADE2A /* AudioToolbox.framework in Frameworks */,
@@ -219,6 +222,7 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD44658B18E5859F00ED1153 /* NMSSH.framework */,
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
 				DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */,
