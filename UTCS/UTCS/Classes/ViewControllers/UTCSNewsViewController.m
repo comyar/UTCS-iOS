@@ -18,6 +18,7 @@
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "UIImage+ImageEffects.h"
+#import "UTCSMenuButton.h"
 
 // Constants
 
@@ -159,20 +160,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 //    [self.newsTableViewHeaderContainer addSubview:self.updatedLabel];
     
     // Menu Button
-    self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuButton.tag = INT32_MIN;
-    self.menuButton.frame = CGRectMake(8, 8, 64, 32);
-    self.menuButton.contentEdgeInsets = UIEdgeInsetsMake(16, 0, 16, 0);
-    self.menuButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-    [self.menuButton setTitle:@"MENU" forState:UIControlStateNormal];
-    [self.menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(0.0, 0.0, 48, 32)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
-    
-    self.topSeparator = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 0.5)];
-    self.topSeparator.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    self.topSeparator.alpha = 0.0;
-    [self.view addSubview:self.topSeparator];
 }
 
 - (void)viewDidAppear:(BOOL)animated

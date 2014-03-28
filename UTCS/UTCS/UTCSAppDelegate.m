@@ -90,8 +90,12 @@
 
 - (void)didSelectMenuOption:(UTCSMenuOptions)option
 {
-
- }
+    if(option == UTCSMenuOptionNews) {
+        
+    } else if(option == UTCSMenuOptionEvents) {
+        
+    }
+}
 
 #pragma mark - Reveal
 

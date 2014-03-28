@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface UTCSMenuButton : UIButton
+
+@property (nonatomic) UIColor *lineColor;
 
 @end

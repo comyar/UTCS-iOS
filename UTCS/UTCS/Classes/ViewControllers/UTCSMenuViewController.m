@@ -16,6 +16,8 @@
 //
 @property (strong, nonatomic) NSArray   *menuOptions;
 
+@property (nonatomic) NSInteger activeRow;
+
 @end
 
 
@@ -64,14 +66,16 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MenuTableViewCell"];
         cell.selectionStyle         = UITableViewCellSelectionStyleNone;
         cell.backgroundColor        = [UIColor clearColor];
-        cell.textLabel.textColor    = [UIColor colorWithWhite:1.0 alpha:0.8];
         cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:32];
     }
+    
+    cell.textLabel.textColor    = (indexPath.row == self.activeRow)? [UIColor whiteColor] : [UIColor colorWithWhite:1.0 alpha:0.5];
+    cell.imageView.tintColor    = cell.textLabel.textColor;
     
     cell.textLabel.text         = self.menuOptions[indexPath.row];
     cell.imageView.image        = [[UIImage imageNamed:[cell.textLabel.text lowercaseString]]
                                    imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    cell.imageView.tintColor    = [UIColor whiteColor];
+    
     return cell;
 }
 
@@ -84,6 +88,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.activeRow = indexPath.row;
+    [self.tableView reloadData];
     if(self.delegate && [self.delegate conformsToProtocol:@protocol(UTCSMenuViewControllerDelegate)] &&
        [self.delegate respondsToSelector:@selector(didSelectMenuOption:)])
     {
