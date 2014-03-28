@@ -9,6 +9,7 @@
 #import "UTCSNewsViewController.h"
 #import "UTCSVerticalMenuViewController.h"
 #import "UTCSNewsDetailViewController.h"
+#import "UTCSBackgroundHeaderBlurTableView.h"
 
 #import "FBShimmeringView.h"
 #import "UTCSNewsStoryDataSource.h"
@@ -66,6 +67,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 @property (nonatomic) UTCSNewsDetailViewController          *newsDetailViewController;
 
+@property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
+
 @end
 
 
@@ -85,68 +88,75 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 {
     [super viewDidLoad];
     
-    self.backgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground"]];
-    [self.view addSubview:self.backgroundImageView];
+    self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
+    self.backgroundHeaderBlurTableView.backgroundImage = [UIImage imageNamed:@"newsBackground"];
+    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [UIImage imageNamed:@"newsBackground-blurred"];
+    self.backgroundHeaderBlurTableView.tableView.delegate = self;
+    self.backgroundHeaderBlurTableView.tableView.dataSource = self.dataSource;
+    [self.view addSubview:self.backgroundHeaderBlurTableView];
     
-    self.blurredBackgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground-blurred"]];
-    self.blurredBackgroundImageView.alpha = 0.0;
-    [self.view addSubview:self.blurredBackgroundImageView];
-    
-    self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64)
-                                                     style:UITableViewStylePlain];
-    [self.newsTableView setEditing:NO animated:NO];
-    self.newsTableView.delegate = self;
-    self.newsTableView.dataSource = self.dataSource;
-    [self.newsTableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
-             forCellReuseIdentifier:@"UTCSNewsTableViewCell"];
-    self.newsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.newsTableView.rowHeight = 128;
-    self.newsTableView.backgroundColor = [UIColor clearColor];
-    self.newsTableView.separatorColor = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.newsTableView];
-    
-    self.newsTableViewHeaderContainer = [[UIView alloc]initWithFrame:self.newsTableView.bounds];
-    self.newsTableView.tableHeaderView = self.newsTableViewHeaderContainer;
-    
-    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
-    self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
-    self.utcsNewsShimmeringView.contentView = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
-        label.text = @"UTCS News";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        label;
-    });
-    [self.newsTableViewHeaderContainer addSubview:self.utcsNewsShimmeringView];
-    
-    self.utcsDescriptionLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
-        label.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-        label.text = @"What starts here changes the world.";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        label;
-    });
-    [self.newsTableViewHeaderContainer addSubview:self.utcsDescriptionLabel];
-    
-    
-    self.downArrowImageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"arrowDown"]
-                                                                 imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-    self.downArrowImageView.tintColor = [UIColor whiteColor];
-    self.downArrowImageView.alpha = 0.0;
-    self.downArrowImageView.center = CGPointMake(self.view.center.x, 1.25 * self.view.center.y);
-    [self.newsTableViewHeaderContainer addSubview:self.downArrowImageView];
-    
-    
-    self.updatedLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.newsTableView.height - 32, self.newsTableView.width - 16, 18)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        label;
-    });
-    [self.newsTableViewHeaderContainer addSubview:self.updatedLabel];
+//    self.backgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground"]];
+//    [self.view addSubview:self.backgroundImageView];
+//    
+//    self.blurredBackgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground-blurred"]];
+//    self.blurredBackgroundImageView.alpha = 0.0;
+//    [self.view addSubview:self.blurredBackgroundImageView];
+//    
+//    self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64)
+//                                                     style:UITableViewStylePlain];
+//    [self.newsTableView setEditing:NO animated:NO];
+//    self.newsTableView.delegate = self;
+//    self.newsTableView.dataSource = self.dataSource;
+//    [self.newsTableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
+//             forCellReuseIdentifier:@"UTCSNewsTableViewCell"];
+//    self.newsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.newsTableView.rowHeight = 128;
+//    self.newsTableView.backgroundColor = [UIColor clearColor];
+//    self.newsTableView.separatorColor = UITableViewCellSeparatorStyleNone;
+//    [self.view addSubview:self.newsTableView];
+//    
+//    self.newsTableViewHeaderContainer = [[UIView alloc]initWithFrame:self.newsTableView.bounds];
+//    self.newsTableView.tableHeaderView = self.newsTableViewHeaderContainer;
+//    
+//    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
+//    self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
+//    self.utcsNewsShimmeringView.contentView = ({
+//        UILabel *label = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
+//        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+//        label.text = @"UTCS News";
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.textColor = [UIColor whiteColor];
+//        label;
+//    });
+//    [self.newsTableViewHeaderContainer addSubview:self.utcsNewsShimmeringView];
+//    
+//    self.utcsDescriptionLabel = ({
+//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
+//        label.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+//        label.text = @"What starts here changes the world.";
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.textColor = [UIColor whiteColor];
+//        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+//        label;
+//    });
+//    [self.newsTableViewHeaderContainer addSubview:self.utcsDescriptionLabel];
+//    
+//    
+//    self.downArrowImageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"arrowDown"]
+//                                                                 imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+//    self.downArrowImageView.tintColor = [UIColor whiteColor];
+//    self.downArrowImageView.alpha = 0.0;
+//    self.downArrowImageView.center = CGPointMake(self.view.center.x, 1.25 * self.view.center.y);
+//    [self.newsTableViewHeaderContainer addSubview:self.downArrowImageView];
+//    
+//    
+//    self.updatedLabel = ({
+//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.newsTableView.height - 32, self.newsTableView.width - 16, 18)];
+//        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+//        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+//        label;
+//    });
+//    [self.newsTableViewHeaderContainer addSubview:self.updatedLabel];
     
     // Menu Button
     self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -157,7 +167,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [self.menuButton setTitle:@"MENU" forState:UIControlStateNormal];
     [self.menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.menuButton addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
     
     self.topSeparator = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 0.5)];
@@ -190,22 +199,14 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
                 }];
             }
             self.newsTableView.scrollEnabled = YES;
-            [self.newsTableView reloadData];
+            [self.backgroundHeaderBlurTableView.tableView reloadData];
         }];
-    }
-}
-
-- (void)didTouchDownInsideButton:(UIButton *)button
-{
-    if(button == self.menuButton) {
-        button.alpha = 0.5;
     }
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.menuButton) {
-        button.alpha = 1.0;
         button.backgroundColor = [UIColor clearColor];
         [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSVerticalMenuDisplayNotification
                                                                                             object:self]];
@@ -217,31 +218,28 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark UTCSVerticalMenuViewControllerDelegate Methods
-
-- (BOOL)shouldRecognizeVerticalMenuViewControllerPanGesture
-{
-    return (self.newsTableView.contentOffset.y < 8);
-}
-
 #pragma mark UITableViewDelegate Methods
 
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.alpha = 0.5;
+    UTCSNewsStory *newsStory = self.dataSource.newsStories[indexPath.row];
+    CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
+                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+                                                context:nil];
+    return ceilf(rect.size.height) + 80.0;
 }
 
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.alpha = 1.0;
+    return 128.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selected = NO;
+    [cell setHighlighted:NO animated:NO];
+    [cell setSelected:NO animated:NO];
     UTCSNewsStory *newsStory = self.dataSource.newsStories[indexPath.row];
     self.newsDetailViewController = [UTCSNewsDetailViewController new];
     self.newsDetailViewController.newsStory = newsStory;
@@ -252,8 +250,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.blurredBackgroundImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
-    self.topSeparator.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / self.view.height, 0.0));
+    [self.backgroundHeaderBlurTableView tableViewDidScroll];
 }
 
 @end

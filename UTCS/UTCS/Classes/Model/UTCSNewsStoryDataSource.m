@@ -12,22 +12,10 @@
 
 #import "UIImage+CZScaling.h"
 
+
 typedef void (^ UTCSNewStoryManagerCompletion) (NSArray *newsStories, NSError *error);
 
-NSString * const cellIdentifier                         = @"UTCSNewsTableViewCell";
-
 NSString * const UTCSParseClassNews                     = @"NewsStory";
-
-NSString * const UTCSNewsStoryTitleFontAttribute        = @"UTCSNewsStoryTitleFontAttribute";
-NSString * const UTCSNewsStoryTitleFontColorAttribute   = @"UTCSNewsStoryTitleFontColorAttribute";
-
-NSString * const UTCSNewsStoryDateFontAttribute         = @"UTCSNewsStoryDateFontAttribute";
-NSString * const UTCSNewsStoryDateFontColorAttribute    = @"UTCSNewsStoryDateFontColorAttribute";
-
-NSString * const UTCSNewsStoryTextFontAttribute         = @"UTCSNewsStoryTextFontAttribute";
-NSString * const UTCSNewsStoryTextFontColorAttribute    = @"UTCSNewsStoryTextFontColorAttribute";
-
-NSString * const UTCSNewsStoryParagraphLineSpacing      = @"UTCSNewsStoryParagraphLineSpacing";
 
 const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
@@ -44,7 +32,19 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSNewsTableViewCell"];
+    if(!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSNewsTableViewCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+        cell.textLabel.numberOfLines = 4;
+        cell.textLabel.textColor = [UIColor whiteColor];
+        
+        cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+        cell.detailTextLabel.numberOfLines = 4;
+        cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    }
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = newsStory.title;
