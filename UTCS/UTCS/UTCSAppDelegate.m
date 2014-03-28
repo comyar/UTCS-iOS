@@ -12,6 +12,8 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
+#import "UTCSSettingsViewController.h"
+#import "UTCSAboutViewController.h"
 #import "UIColor+UTCSColors.h"
 
 #import "UTCSVerticalMenuViewController.h"
@@ -28,6 +30,14 @@
 
 //
 @property (nonatomic) UINavigationController            *eventsNavigationController;
+
+@property (nonatomic) UINavigationController            *labsNavigationController;
+
+@property (nonatomic) UINavigationController            *directoryNavigationController;
+
+@property (nonatomic) UTCSSettingsViewController        *settingsViewController;
+
+@property (nonatomic) UTCSAboutViewController           *aboutViewController;
 
 //
 @property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
@@ -56,9 +66,12 @@
     self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStylePlain];
     self.menuViewController.delegate = self;
     
-    // Initialize main view controllers
-    self.newsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
-    self.eventsNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    // Initialize navigation view controllers
+    self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
+    self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsNavigationController];
     
@@ -84,6 +97,10 @@
         self.verticalMenuViewController.contentViewController = self.newsNavigationController;
     } else if(option == UTCSMenuOptionEvents) {
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
+    } else if(option == UTCSMenuOptionLabs) {
+        self.verticalMenuViewController.contentViewController = self.labsNavigationController;
+    } else if(option == UTCSMenuOptionDirectory) {
+        self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     }
 }
 
