@@ -9,18 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-extern NSString * const UTCSNewsStoryTitleFontAttribute;
-extern NSString * const UTCSNewsStoryTitleFontColorAttribute;
-
-extern NSString * const UTCSNewsStoryDateFontAttribute;
-extern NSString * const UTCSNewsStoryDateFontColorAttribute;
-
-extern NSString * const UTCSNewsStoryTextFontAttribute;
-extern NSString * const UTCSNewsStoryTextFontColorAttribute;
-
-extern NSString * const UTCSNewsStoryParagraphLineSpacing;
-
-
 @interface UTCSNewsStoryDataSource : NSObject <UITableViewDataSource>
 
 @property (nonatomic) NSArray *newsStories;

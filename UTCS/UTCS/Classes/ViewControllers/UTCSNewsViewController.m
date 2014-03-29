@@ -33,12 +33,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 @property (assign, nonatomic) BOOL hasAppeared;
 
 //
-@property (nonatomic) UIImageView                           *backgroundImageView;
-
-//
-@property (nonatomic) UIImageView                           *blurredBackgroundImageView;
-
-//
 @property (nonatomic) FBShimmeringView                      *utcsNewsShimmeringView;
 
 //
@@ -48,12 +42,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 @property (strong, nonatomic) UIButton                      *menuButton;
 
 //
-@property (strong, nonatomic) UITableView                   *newsTableView;
-
-//
-@property (nonatomic) UIView                                *newsTableViewHeaderContainer;
-
-//
 @property (nonatomic) NSArray                               *newsStories;
 
 //
@@ -61,10 +49,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 
 //
 @property (nonatomic) UILabel                               *updatedLabel;
-
-@property (nonatomic) UIImageView                           *downArrowImageView;
-
-@property (nonatomic) UIView                                *topSeparator;
 
 @property (nonatomic) UTCSNewsDetailViewController          *newsDetailViewController;
 
@@ -169,7 +153,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [super viewDidAppear:animated];
     if(!self.hasAppeared) {
         self.hasAppeared = YES;
-        self.newsTableView.scrollEnabled = NO;
+        self.backgroundHeaderBlurTableView.tableView.scrollEnabled = NO;
         self.utcsNewsShimmeringView.shimmering = YES;
         [self.dataSource updateNewsStories:^{
             self.utcsNewsShimmeringView.shimmering = NO;
@@ -178,27 +162,12 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
                                           [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                                          dateStyle:NSDateFormatterLongStyle
                                                                          timeStyle:NSDateFormatterMediumStyle]];
-                [UIView animateWithDuration:0.25 animations:^{
-                    self.downArrowImageView.alpha = 1.0;
-                }];
             } else {
                 self.updatedLabel.text = @"No news stories available.";
-                [UIView animateWithDuration:0.25 animations:^{
-                    self.downArrowImageView.alpha = 0.0;
-                }];
             }
-            self.newsTableView.scrollEnabled = YES;
+            self.backgroundHeaderBlurTableView.tableView.scrollEnabled = YES;
             [self.backgroundHeaderBlurTableView.tableView reloadData];
         }];
-    }
-}
-
-- (void)didTouchUpInsideButton:(UIButton *)button
-{
-    if(button == self.menuButton) {
-        button.backgroundColor = [UIColor clearColor];
-        [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:UTCSVerticalMenuDisplayNotification
-                                                                                            object:self]];
     }
 }
 
@@ -233,13 +202,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.newsDetailViewController = [UTCSNewsDetailViewController new];
     self.newsDetailViewController.newsStory = newsStory;
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
-}
-
-#pragma mark UIScrollViewDelegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.backgroundHeaderBlurTableView tableViewDidScroll];
 }
 
 @end

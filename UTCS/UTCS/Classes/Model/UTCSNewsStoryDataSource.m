@@ -36,7 +36,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
     if(!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSNewsTableViewCell"];
         cell.backgroundColor = [UIColor clearColor];
-        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
         cell.textLabel.numberOfLines = 4;
         cell.textLabel.textColor = [UIColor whiteColor];

@@ -222,6 +222,7 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD46451418CF641500E1DB5C /* libReveal.dylib */,
 				DD44658B18E5859F00ED1153 /* NMSSH.framework */,
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
@@ -254,7 +255,6 @@
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
 				DD5B583818D239F900EEB474 /* Classes */,
-				DD5B586018D23A0000EEB474 /* Nibs */,
 				DD5B586618D23A0A00EEB474 /* Protocols */,
 			);
 			path = UTCS;
@@ -380,13 +380,6 @@
 				DD44657118E5711400ED1153 /* UTCSMenuButton.m */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		DD5B586018D23A0000EEB474 /* Nibs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Nibs;
 			sourceTree = "<group>";
 		};
 		DD5B586618D23A0A00EEB474 /* Protocols */ = {
@@ -518,7 +511,6 @@
 			children = (
 				DD7968F718B5EB03009ADE2A /* ImageEffects */,
 				DDF02DCD18CF548600C7D012 /* FBShimmering */,
-				DD46451418CF641500E1DB5C /* libReveal.dylib */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";

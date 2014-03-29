@@ -212,10 +212,30 @@ const CGFloat animationDuration = 0.25;
     if(!contentViewController || _contentViewController == contentViewController) {
         return;
     } else if(_contentViewController) {
-        [_contentViewController.view removeFromSuperview];
-        [_contentViewController removeFromParentViewController];
-        [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
+        contentViewController.view.frame = _contentViewController.view.frame;
+        [self.view addSubview:contentViewController.view];
+        [self addChildViewController:contentViewController];
+        [contentViewController didMoveToParentViewController:self];
+        
+        contentViewController.view.alpha = 0.0;
+        [UIView animateWithDuration:0.3 animations:^{
+            _contentViewController.view.alpha = 0.0;
+            contentViewController.view.alpha = 1.0;
+            contentViewController.view.frame = self.view.frame;
+        } completion:^(BOOL finished) {
+            [self updateContentViewController:contentViewController];
+        }];
+    } else {
+        [self updateContentViewController:contentViewController];
     }
+}
+
+- (void)updateContentViewController:(UIViewController *)contentViewController
+{
+    
+    [_contentViewController.view removeFromSuperview];
+    [_contentViewController removeFromParentViewController];
+    [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
     
     _contentViewController = contentViewController;
     _contentViewController.view.frame = self.view.bounds;
@@ -227,8 +247,6 @@ const CGFloat animationDuration = 0.25;
     
     [self setNeedsStatusBarAppearanceUpdate];
     
-//    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
-    
     self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
     self.contentDynamicItemBehavior.allowsRotation = NO;
     self.contentDynamicItemBehavior.resistance = 2.0;
@@ -239,6 +257,7 @@ const CGFloat animationDuration = 0.25;
     self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                            snapToPoint:CGPointMake(self.view.center.x, 1.25 * CGRectGetHeight(self.view.bounds))];
     self.contentSnapDownBehavior.damping = 0.35;
+
 }
 
 @end

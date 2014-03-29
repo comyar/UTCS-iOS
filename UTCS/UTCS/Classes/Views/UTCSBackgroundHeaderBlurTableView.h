@@ -19,6 +19,4 @@
 
 @property (nonatomic, readonly) UITableView     *tableView;
 
-- (void)tableViewDidScroll;
-
 @end

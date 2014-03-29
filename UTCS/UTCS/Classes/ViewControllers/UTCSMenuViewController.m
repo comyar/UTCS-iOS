@@ -99,9 +99,9 @@
         } else if(indexPath.row == 1) {
             option = UTCSMenuOptionEvents;
         } else if(indexPath.row == 2) {
-            option = UTCSMenuOptionLabs;
-        } else if(indexPath.row == 3) {
             option = UTCSMenuOptionDirectory;
+        } else if(indexPath.row == 3) {
+            option = UTCSMenuOptionLabs;
         } else if(indexPath.row == 4) {
             
         }

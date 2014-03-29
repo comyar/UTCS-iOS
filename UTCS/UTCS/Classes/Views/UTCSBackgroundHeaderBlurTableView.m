@@ -53,15 +53,24 @@ static const CGFloat navigationBarHeight = 64.0;
         self.navigationSeparatorView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         self.navigationSeparatorView.alpha = 0.0;
         [self addSubview:self.navigationSeparatorView];
+        
+        [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
 #pragma mark Update
 
-- (void)tableViewDidScroll
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0);
+    if([keyPath isEqualToString:@"contentOffset"]) {
+        [self updateWithContentOffset:self.tableView.contentOffset];
+    }
+}
+
+- (void)updateWithContentOffset:(CGPoint)contentOffset
+{
+    CGFloat normalizedOffsetDelta = MAX(contentOffset.y / CGRectGetHeight(self.bounds), 0.0);
     self.backgroundBlurredImageView.alpha = MIN(1.0, 4.0 * normalizedOffsetDelta);
     self.navigationSeparatorView.alpha = MIN(1.0, 2.0 * normalizedOffsetDelta);
 }
