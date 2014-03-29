@@ -130,6 +130,9 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
     
     newsStory.headerImage = [headerImage applyTintEffectWithColor:[UIColor colorWithWhite:0.11 alpha:0.73]];
     newsStory.blurredHeaderImage = [headerImage applyDarkEffect];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(\n{2,})" options:0 error:nil];
+    [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
     newsStory.attributedContent = attributedContent;
     
     return YES;
