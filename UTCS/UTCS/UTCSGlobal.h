@@ -15,22 +15,4 @@
 
 #define RGB(val) ((1.0 * val) / 255.0)
 
-// ------------
-// @name Parse
-// -------------
-
-#define PARSE_EVENT_CLASS           @"Event"
-#define PARSE_NEWS_CLASS            @"News"
-
-// ------------
-// @name Types
-// -------------
-
-typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
-    UTCSMenuOptionNews = 0,
-    UTCSMenuOptionEvents,
-    UTCSMenuOptionLabs,
-    UTCSMenuOptionDirectory
-};
-
 #endif

@@ -66,12 +66,12 @@
     self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStylePlain];
     self.menuViewController.delegate = self;
     
-    // Initialize navigation view controllers
+    // Initialize view controllers
     self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
     self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-    
+    self.aboutViewController            = [UTCSAboutViewController new];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsNavigationController];
     
@@ -101,6 +101,8 @@
         self.verticalMenuViewController.contentViewController = self.labsNavigationController;
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
+    } else if(option == UTCSMenuOptionAbout) {
+        self.verticalMenuViewController.contentViewController = self.aboutViewController;
     }
 }
 

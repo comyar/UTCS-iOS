@@ -80,68 +80,38 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     self.backgroundHeaderBlurTableView.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.backgroundHeaderBlurTableView];
     
-//    self.backgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground"]];
-//    [self.view addSubview:self.backgroundImageView];
-//    
-//    self.blurredBackgroundImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newsBackground-blurred"]];
-//    self.blurredBackgroundImageView.alpha = 0.0;
-//    [self.view addSubview:self.blurredBackgroundImageView];
-//    
-//    self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64)
-//                                                     style:UITableViewStylePlain];
-//    [self.newsTableView setEditing:NO animated:NO];
-//    self.newsTableView.delegate = self;
-//    self.newsTableView.dataSource = self.dataSource;
-//    [self.newsTableView registerNib:[UINib nibWithNibName:@"UTCSNewsTableViewCell" bundle:[NSBundle mainBundle]]
-//             forCellReuseIdentifier:@"UTCSNewsTableViewCell"];
-//    self.newsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.newsTableView.rowHeight = 128;
-//    self.newsTableView.backgroundColor = [UIColor clearColor];
-//    self.newsTableView.separatorColor = UITableViewCellSeparatorStyleNone;
-//    [self.view addSubview:self.newsTableView];
-//    
-//    self.newsTableViewHeaderContainer = [[UIView alloc]initWithFrame:self.newsTableView.bounds];
-//    self.newsTableView.tableHeaderView = self.newsTableViewHeaderContainer;
-//    
-//    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
-//    self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
-//    self.utcsNewsShimmeringView.contentView = ({
-//        UILabel *label = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
-//        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
-//        label.text = @"UTCS News";
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.textColor = [UIColor whiteColor];
-//        label;
-//    });
-//    [self.newsTableViewHeaderContainer addSubview:self.utcsNewsShimmeringView];
-//    
-//    self.utcsDescriptionLabel = ({
-//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
-//        label.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-//        label.text = @"What starts here changes the world.";
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.textColor = [UIColor whiteColor];
-//        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-//        label;
-//    });
-//    [self.newsTableViewHeaderContainer addSubview:self.utcsDescriptionLabel];
-//    
-//    
-//    self.downArrowImageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"arrowDown"]
-//                                                                 imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-//    self.downArrowImageView.tintColor = [UIColor whiteColor];
-//    self.downArrowImageView.alpha = 0.0;
-//    self.downArrowImageView.center = CGPointMake(self.view.center.x, 1.25 * self.view.center.y);
-//    [self.newsTableViewHeaderContainer addSubview:self.downArrowImageView];
-//    
-//    
-//    self.updatedLabel = ({
-//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.newsTableView.height - 32, self.newsTableView.width - 16, 18)];
-//        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-//        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-//        label;
-//    });
-//    [self.newsTableViewHeaderContainer addSubview:self.updatedLabel];
+    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
+    self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
+    self.utcsNewsShimmeringView.contentView = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+        label.text = @"UTCS News";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label;
+    });
+    [self.backgroundHeaderBlurTableView.header addSubview:self.utcsNewsShimmeringView];
+    
+
+    self.utcsDescriptionLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
+        label.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+        label.text = @"What starts here changes the world.";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        label;
+    });
+    [self.backgroundHeaderBlurTableView.header addSubview:self.utcsDescriptionLabel];
+
+    self.updatedLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.backgroundHeaderBlurTableView.header.height - 96.0,
+                                                                  self.backgroundHeaderBlurTableView.header.width - 16, 18)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label;
+    });
+    [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
     
     // Menu Button
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(0.0, 0.0, 48, 32)];
