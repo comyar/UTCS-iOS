@@ -8,7 +8,7 @@
 
 #import "UTCSBackgroundHeaderBlurTableView.h"
 
-static const CGFloat navigationBarHeight = 64.0;
+static const CGFloat navigationBarHeight = 44.0;
 
 
 @interface UTCSBackgroundHeaderBlurTableView ()
@@ -22,6 +22,8 @@ static const CGFloat navigationBarHeight = 64.0;
 @property (nonatomic) UITableView   *tableView;
 
 @property (nonatomic) UIView        *navigationSeparatorView;
+
+@property (nonatomic) UIButton      *scrollToTopButton;
 
 @end
 
@@ -55,8 +57,19 @@ static const CGFloat navigationBarHeight = 64.0;
         [self addSubview:self.navigationSeparatorView];
         
         [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        
+        self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+        self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), navigationBarHeight);
+        [self addSubview:self.scrollToTopButton];
+        
     }
     return self;
+}
+
+- (void)didTouchDownInsideButton:(UIButton *)button
+{
+    [self.tableView scrollRectToVisible:CGRectMake(0.0, .0, 1.0, 1.0) animated:YES];
 }
 
 #pragma mark Update

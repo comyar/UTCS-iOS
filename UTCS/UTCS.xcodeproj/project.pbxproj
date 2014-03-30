@@ -440,10 +440,10 @@
 		DD5B586E18D23EDA00EEB474 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				DD5B584918D239F900EEB474 /* UTCSNewsDetailViewController.h */,
-				DD5B584A18D239F900EEB474 /* UTCSNewsDetailViewController.m */,
 				DD5B584B18D239F900EEB474 /* UTCSNewsViewController.h */,
 				DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */,
+				DD5B584918D239F900EEB474 /* UTCSNewsDetailViewController.h */,
+				DD5B584A18D239F900EEB474 /* UTCSNewsDetailViewController.m */,
 			);
 			name = News;
 			sourceTree = "<group>";

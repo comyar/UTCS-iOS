@@ -29,10 +29,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)setEvent:(UTCSEvent *)event
 {
     _event = event;
-    
 }
 
 @end

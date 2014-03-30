@@ -14,6 +14,7 @@
 #import "UTCSEventsManager.h"
 #import "UTCSEvent.h"
 #import "UIView+CZPositioning.h"
+#import "UTCSEventDetailViewController.h"
 
 @interface UTCSEventsViewController ()
 
@@ -24,6 +25,8 @@
 @property (nonatomic) BOOL hasAppeared;
 
 @property (nonatomic) UTCSMenuButton *menuButton;
+
+@property (nonatomic) UTCSEventDetailViewController *eventDetailViewController;
  
 @end
 
@@ -49,7 +52,7 @@
     [self.view addSubview:self.backgroundHeaderBlurTableView];
     
     // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 28, 56, 32)];
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 8, 56, 32)];
     [self.view addSubview:self.menuButton];
 }
 
@@ -80,6 +83,14 @@
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 90.0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSEvent *event = self.eventManager.events[indexPath.row];
+    self.eventDetailViewController = [UTCSEventDetailViewController new];
+    self.eventDetailViewController.event = event;
+    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
 }
 
 
