@@ -126,12 +126,12 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     if(!self.hasAppeared) {
-        self.hasAppeared = YES;
         self.backgroundHeaderBlurTableView.tableView.scrollEnabled = NO;
         self.utcsNewsShimmeringView.shimmering = YES;
         [self.dataSource updateNewsStories:^{
             self.utcsNewsShimmeringView.shimmering = NO;
             if([self.dataSource.newsStories count] > 0) {
+                self.hasAppeared = YES;
                 self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
                                           [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                                          dateStyle:NSDateFormatterLongStyle
