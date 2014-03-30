@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSDirectoryViewController : UIViewController
+@interface UTCSDirectoryViewController : UIViewController <UITableViewDelegate>
 
 @end
