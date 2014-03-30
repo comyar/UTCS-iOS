@@ -61,5 +61,10 @@
     return [UIColor colorWithRed:RGB(250) green:RGB(250) blue:RGB(250) alpha:1.0];
 }
 
++ (UIColor *)utcsImageTintColor
+{
+    return [UIColor colorWithWhite:0.11 alpha:0.5];
+}
+
 
 @end

@@ -10,6 +10,7 @@
 #import "UTCSVerticalMenuViewController.h"
 #import "UTCSNewsDetailViewController.h"
 #import "UTCSBackgroundHeaderBlurTableView.h"
+#import "UIImage+CZTinting.h"
 
 #import "FBShimmeringView.h"
 #import "UTCSNewsStoryDataSource.h"
@@ -74,8 +75,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [super viewDidLoad];
     
     self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-    self.backgroundHeaderBlurTableView.backgroundImage = [UIImage imageNamed:@"newsBackground"];
-    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [UIImage imageNamed:@"newsBackground-blurred"];
+    self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"newsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"newsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
     self.backgroundHeaderBlurTableView.tableView.delegate = self;
     self.backgroundHeaderBlurTableView.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.backgroundHeaderBlurTableView];
@@ -102,6 +103,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         label;
     });
+    self.utcsDescriptionLabel.alpha = 0.0;
     [self.backgroundHeaderBlurTableView.header addSubview:self.utcsDescriptionLabel];
 
     self.updatedLabel = ({
@@ -135,6 +137,10 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
             } else {
                 self.updatedLabel.text = @"No news stories available.";
             }
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.utcsDescriptionLabel.alpha = 1.0;
+            }];
             self.backgroundHeaderBlurTableView.tableView.scrollEnabled = YES;
             [self.backgroundHeaderBlurTableView.tableView reloadData];
         }];

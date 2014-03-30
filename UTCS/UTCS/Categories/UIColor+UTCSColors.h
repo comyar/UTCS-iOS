@@ -50,4 +50,6 @@
  */
 + (UIColor *)utcsRefreshControlColor;
 
++ (UIColor *)utcsImageTintColor;
+
 @end
