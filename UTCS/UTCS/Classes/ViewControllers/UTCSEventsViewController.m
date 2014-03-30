@@ -11,11 +11,14 @@
 #import "UTCSMenuButton.h"
 #import "UIImage+CZTinting.h"
 #import "UIColor+UTCSColors.h"
+#import "UTCSEventsDataSource.h"
 
 @interface UTCSEventsViewController ()
 
 @property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
 
+@property (nonatomic) UTCSEventsDataSource *dataSource;
+ 
 @end
 
 @implementation UTCSEventsViewController
@@ -28,7 +31,7 @@
     self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"eventsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
     self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"eventsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
     self.backgroundHeaderBlurTableView.tableView.delegate = self;
-    //    self.backgroundHeaderBlurTableView.tableView.dataSource = self.dataSource;
+    self.backgroundHeaderBlurTableView.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.backgroundHeaderBlurTableView];
 }
 

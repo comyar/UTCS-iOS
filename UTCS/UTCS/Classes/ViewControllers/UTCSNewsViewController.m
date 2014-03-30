@@ -74,6 +74,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 {
     [super viewDidLoad];
     
+    self.navigationController.navigationBarHidden = YES;
+    
     self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
     self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"newsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
     self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"newsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
@@ -116,8 +118,8 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
     
     // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(0.0, 0.0, 48, 32)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 28, 56, 32)];
+    [self.view addSubview:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -87,29 +87,6 @@ const CGFloat animationDuration = 0.25;
     }
 }
 
-- (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    CGPoint translation = [gestureRecognizer translationInView:self.contentViewController.view];
-    
-    if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        
-    }
-    
-    if(gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        self.contentViewController.view.transform = CGAffineTransformMakeTranslation(0, translation.y);
-        
-        
-        
-    } else if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        CGPoint point = [gestureRecognizer locationInView:self.view];
-        if(point.y < self.view.center.y) {
-            [self hideMenu];
-        } else {
-            [self showMenu];
-        }
-    }
-}
-
 #pragma mark Using a UTCSVerticalMenuViewController
 
 - (void)didReceiveVerticalMenuDisplayNotification
@@ -138,10 +115,18 @@ const CGFloat animationDuration = 0.25;
     
     if([self.contentViewController isKindOfClass:[UINavigationController class]]) {
         for(UIViewController *viewController in self.contentViewController.childViewControllers) {
-            viewController.view.userInteractionEnabled = NO;
+            for(UIView *subview in viewController.view.subviews) {
+                if(subview.tag < NSIntegerMax) {
+                    subview.userInteractionEnabled = NO;
+                }
+            }
         }
     } else {
-        self.contentViewController.view.userInteractionEnabled = NO;
+        for(UIView *subview in self.contentViewController.view.subviews) {
+            if(subview.tag < NSIntegerMax) {
+                subview.userInteractionEnabled = NO;
+            }
+        }
     }
     [self setNeedsStatusBarAppearanceUpdate];
     

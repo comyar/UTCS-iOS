@@ -10,12 +10,14 @@
 #import "UTCSVerticalMenuViewController.h"
 
 static const CGFloat goldenRatio = 1.618;
+static const CGFloat animationDuration = 0.3;
 
 @implementation UTCSMenuButton
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.tag = NSIntegerMax;
         self.lineColor = [UIColor whiteColor];
         [self addTarget:self action:@selector(didDragExit) forControlEvents:UIControlEventTouchDragExit];
         [self addTarget:self action:@selector(didTouchDown) forControlEvents:UIControlEventTouchDown];
@@ -28,9 +30,19 @@ static const CGFloat goldenRatio = 1.618;
 {
     self.alpha = 0.5;
     CGPoint center = self.center;
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:animationDuration/3 animations:^{
         self.transform = CGAffineTransformMakeScale(0.9, 0.9);
         self.center = center;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:animationDuration/3 animations:^{
+            self.transform = CGAffineTransformMakeScale(0.95, 0.95);
+            self.center = center;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:animationDuration/3 animations:^{
+                self.transform = CGAffineTransformMakeScale(0.925, 0.925);
+                self.center = center;
+            }];
+        }];
     }];
 }
 

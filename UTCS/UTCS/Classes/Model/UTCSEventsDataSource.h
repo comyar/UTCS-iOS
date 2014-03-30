@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UTCSEventsDataSource : NSObject
+@interface UTCSEventsDataSource : NSObject <UITableViewDataSource>
 
 @end
