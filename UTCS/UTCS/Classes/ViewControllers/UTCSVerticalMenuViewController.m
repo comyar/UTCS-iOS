@@ -102,64 +102,33 @@ const CGFloat animationDuration = 0.25;
 {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapUpBehavior];
     
-    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapDownBehavior];
-    [[UIApplication sharedApplication]endIgnoringInteractionEvents];
     
     self.showingMenu = YES;
-    if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:didShowMenuViewController:)]) {
-        [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self
-                                                                                 didShowMenuViewController:self.menuViewController];
-    }
     
-    if([self.contentViewController isKindOfClass:[UINavigationController class]]) {
-        for(UIViewController *viewController in self.contentViewController.childViewControllers) {
-            for(UIView *subview in viewController.view.subviews) {
-                if(subview.tag < NSIntegerMax) {
-                    subview.userInteractionEnabled = NO;
-                }
-            }
-        }
-    } else {
-        for(UIView *subview in self.contentViewController.view.subviews) {
-            if(subview.tag < NSIntegerMax) {
-                subview.userInteractionEnabled = NO;
-            }
-        }
-    }
+    [self enableUserInteraction:NO forViewController:self.contentViewController];
+    
     [self setNeedsStatusBarAppearanceUpdate];
-    
 }
 
 - (void)hideMenu
 {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapDownBehavior];
     
-    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapUpBehavior];
-    [[UIApplication sharedApplication]endIgnoringInteractionEvents];
-    
-    self.contentViewController.view.userInteractionEnabled = YES;
-    for(UIView *subview in self.contentViewController.view.subviews) {
-        subview.userInteractionEnabled = YES;
-    }
     
     self.showingMenu = NO;
-    if([self.contentViewController respondsToSelector:@selector(verticalMenuViewController:didHideMenuViewController:)]) {
-        [(id<UTCSVerticalMenuViewControllerDelegate>)self.contentViewController verticalMenuViewController:self didHideMenuViewController:self.menuViewController];
-    }
     
-    if([self.contentViewController isKindOfClass:[UINavigationController class]]) {
-        for(UIViewController *viewController in self.contentViewController.childViewControllers) {
-            viewController.view.userInteractionEnabled = YES;
-        }
-    } else {
-        self.contentViewController.view.userInteractionEnabled = YES;
-    }
+    [self enableUserInteraction:YES forViewController:self.contentViewController];
     
     [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return !self.showingMenu;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -167,10 +136,24 @@ const CGFloat animationDuration = 0.25;
     return UIStatusBarStyleLightContent;
 }
 
-//- (BOOL)prefersStatusBarHidden
-//{
-//    return !self.isShowingMenu;
-//}
+- (void)enableUserInteraction:(BOOL)enabled forViewController:(UIViewController *)viewController
+{
+    if([viewController isKindOfClass:[UINavigationController class]]) {
+        for(UIViewController *childViewController in viewController.childViewControllers) {
+            for(UIView *subview in childViewController.view.subviews) {
+                if(subview.tag < NSIntegerMax) {
+                    subview.userInteractionEnabled = enabled;
+                }
+            }
+        }
+    } else {
+        for(UIView *subview in viewController.view.subviews) {
+            if(subview.tag < NSIntegerMax) {
+                subview.userInteractionEnabled = enabled;
+            }
+        }
+    }
+}
 
 #pragma mark Property Setters
 
@@ -197,38 +180,28 @@ const CGFloat animationDuration = 0.25;
     if(!contentViewController || _contentViewController == contentViewController) {
         return;
     } else if(_contentViewController) {
-        contentViewController.view.frame = _contentViewController.view.frame;
-        [self.view addSubview:contentViewController.view];
-        [self addChildViewController:contentViewController];
-        [contentViewController didMoveToParentViewController:self];
+        [self enableUserInteraction:YES forViewController:_contentViewController];
         
-        contentViewController.view.alpha = 0.0;
-        [UIView animateWithDuration:0.3 animations:^{
-            _contentViewController.view.alpha = 0.0;
-            contentViewController.view.alpha = 1.0;
-            contentViewController.view.frame = self.view.frame;
-        } completion:^(BOOL finished) {
-            [self updateContentViewController:contentViewController];
-        }];
+        contentViewController.view.frame = _contentViewController.view.frame;
+        [self configureContentViewController:contentViewController];
     } else {
-        [self updateContentViewController:contentViewController];
+        [self configureContentViewController:contentViewController];
     }
+    [self hideMenu];
 }
 
-- (void)updateContentViewController:(UIViewController *)contentViewController
+- (void)configureContentViewController:(UIViewController *)contentViewController
 {
-    
     [_contentViewController.view removeFromSuperview];
     [_contentViewController removeFromParentViewController];
     [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
     
     _contentViewController = contentViewController;
-    _contentViewController.view.frame = self.view.bounds;
     [self.view addSubview:_contentViewController.view];
     [self addChildViewController:_contentViewController];
     [_contentViewController didMoveToParentViewController:self];
     
-    [self.contentViewController.view addGestureRecognizer:self.tapGestureRecognizer];
+    [_contentViewController.view addGestureRecognizer:self.tapGestureRecognizer];
     
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -242,7 +215,6 @@ const CGFloat animationDuration = 0.25;
     self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                            snapToPoint:CGPointMake(self.view.center.x, 1.25 * CGRectGetHeight(self.view.bounds))];
     self.contentSnapDownBehavior.damping = 0.35;
-
 }
 
 @end

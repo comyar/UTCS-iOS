@@ -51,7 +51,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self loadReveal];
+//    [self loadReveal];
     
     // Initialize Parse
     [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
@@ -73,7 +73,7 @@
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.aboutViewController            = [UTCSAboutViewController new];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.directoryNavigationController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
