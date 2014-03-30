@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSNewsStoryDataSource.h"
+#import "UTCSNewsStoryManager.h"
 #import "UIImage+ImageEffects.h"
 #import "UTCSNewsStory.h"
 
@@ -20,7 +20,7 @@ NSString * const UTCSParseClassNews                     = @"NewsStory";
 const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 
-@implementation UTCSNewsStoryDataSource
+@implementation UTCSNewsStoryManager
 
 - (instancetype)init
 {
@@ -46,7 +46,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     }
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = [newsStory.attributedContent string];
     return cell;
@@ -118,13 +117,22 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
                  }
              }
          } else {
+             
+             
              UIFont *htmlFont = attrs[NSFontAttributeName];
              NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-             fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"Palatino-Roman";
+             fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"TimesNewRomanPSMT";
              UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.4 * htmlFont.pointSize];
+             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.5 * htmlFont.pointSize];
+             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+             paragraphStyle.lineSpacing = 6.0;
+             paragraphStyle.paragraphSpacing = 16.0;
+             
+             
              [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
+             [attributedHTML addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
              [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
+             
          }
     }];
     

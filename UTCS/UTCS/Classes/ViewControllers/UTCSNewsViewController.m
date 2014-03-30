@@ -13,7 +13,7 @@
 #import "UIImage+CZTinting.h"
 
 #import "FBShimmeringView.h"
-#import "UTCSNewsStoryDataSource.h"
+#import "UTCSNewsStoryManager.h"
 #import "UTCSNewsStory.h"
 
 #import "UIColor+UTCSColors.h"
@@ -46,7 +46,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 @property (nonatomic) NSArray                               *newsStories;
 
 //
-@property (nonatomic) UTCSNewsStoryDataSource               *dataSource;
+@property (nonatomic) UTCSNewsStoryManager               *dataSource;
 
 //
 @property (nonatomic) UILabel                               *updatedLabel;
@@ -65,7 +65,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.dataSource = [UTCSNewsStoryDataSource new];
+        self.dataSource = [UTCSNewsStoryManager new];
     }
     return self;
 }
@@ -73,8 +73,6 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationController.navigationBarHidden = YES;
     
     self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
     self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"newsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
@@ -115,6 +113,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         label;
     });
+    self.updatedLabel.alpha = 0.0;
     [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
     
     // Menu Button
@@ -125,6 +124,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
     if(!self.hasAppeared) {
         self.hasAppeared = YES;
         self.backgroundHeaderBlurTableView.tableView.scrollEnabled = NO;
@@ -142,6 +142,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
             
             [UIView animateWithDuration:0.3 animations:^{
                 self.utcsDescriptionLabel.alpha = 1.0;
+                self.updatedLabel.alpha = 1.0;
             }];
             self.backgroundHeaderBlurTableView.tableView.scrollEnabled = YES;
             [self.backgroundHeaderBlurTableView.tableView reloadData];

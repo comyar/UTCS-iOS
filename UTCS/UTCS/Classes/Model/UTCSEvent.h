@@ -37,38 +37,34 @@ extern NSString *const UTCSEventDetailNormalColor;
 
 /**
  */
-- (void)initializeAttributedDescriptionWithAttributes:(NSDictionary *)attributes;
+@property (strong, nonatomic) NSString            *name;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSString            *name;
+@property (strong, nonatomic) NSString            *contactName;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSString            *contactName;
+@property (strong, nonatomic) NSString            *contactEmail;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSString            *contactEmail;
+@property (strong, nonatomic) NSString            *location;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSString            *location;
+@property (strong, nonatomic) NSString            *HTMLDescription;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSString            *HTMLDescription;
+@property (strong, nonatomic) NSDate              *startDate;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSDate            *startDate;
+@property (strong, nonatomic) NSDate              *endDate;
 
 /**
  */
-@property (strong, nonatomic, readonly) NSDate            *endDate;
-
-/**
- */
-@property (strong, nonatomic, readonly) NSAttributedString  *attributedDescription;
+@property (strong, nonatomic) NSAttributedString  *attributedDescription;
 
 @end

@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UTCSEventsDataSource : NSObject <UITableViewDataSource>
+@interface UTCSEventsManager : NSObject <UITableViewDataSource>
+
+- (void)updateEventsWithCompletion:(void (^)(void))completion;
+
+@property (nonatomic, readonly) NSArray *events;
 
 @end

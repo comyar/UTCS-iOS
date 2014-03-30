@@ -45,6 +45,12 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)updateWithNewsStory:(UTCSNewsStory *)newsStory
 {
     self.title = [NSDateFormatter localizedStringFromDate:newsStory.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];

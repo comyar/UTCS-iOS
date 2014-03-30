@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UTCSNewsStoryDataSource : NSObject <UITableViewDataSource>
+@interface UTCSNewsStoryManager : NSObject <UITableViewDataSource>
 
 @property (nonatomic) NSArray *newsStories;
 
