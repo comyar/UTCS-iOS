@@ -42,9 +42,6 @@ const CGFloat animationDuration = 0.25;
 {
     if(self = [super initWithNibName:nil bundle:nil]) {
         
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizePanGesture:)];
-        self.panGestureRecognizer.delegate = self;
-        
         self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizeTapGesture:)];
         self.tapGestureRecognizer.delegate = self;
         
@@ -185,6 +182,7 @@ const CGFloat animationDuration = 0.25;
         contentViewController.view.frame = _contentViewController.view.frame;
         [self configureContentViewController:contentViewController];
     } else {
+        contentViewController.view.frame = self.view.bounds;
         [self configureContentViewController:contentViewController];
     }
     [self hideMenu];
@@ -192,6 +190,7 @@ const CGFloat animationDuration = 0.25;
 
 - (void)configureContentViewController:(UIViewController *)contentViewController
 {
+    _contentViewController.view.frame = self.view.bounds;
     [_contentViewController.view removeFromSuperview];
     [_contentViewController removeFromParentViewController];
     [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
