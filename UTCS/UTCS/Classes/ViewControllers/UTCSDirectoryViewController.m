@@ -44,9 +44,6 @@
     self.backgroundImageView.image = [[UIImage imageNamed:@"directoryBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
     [self.view addSubview:self.backgroundImageView];
     
-    // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 28, 56, 32)];
-    [self.view addSubview:self.menuButton];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 128.0, self.view.width, self.view.height - 64.0)
                                                  style:UITableViewStylePlain];
@@ -55,10 +52,13 @@
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     
-    self.searchBar = [[UTCSSearchBar alloc]initWithFrame:CGRectMake(0.0, 64.0, self.view.width, 64.0)];
-    self.searchBar.searchField.placeholder = @"Search UTCS Directory";
+    self.searchBar = [[UTCSSearchBar alloc]initWithFrame:CGRectMake(56.0, 8.0, self.view.width - 64.0, 28.0)];
+    self.searchBar.searchField.placeholder = @"Search Directory";
     [self.view addSubview:self.searchBar];
     
+    // Menu Button
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 8, 56, 32)];
+    [self.view addSubview:self.menuButton];
     
 }
 
