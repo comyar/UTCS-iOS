@@ -31,6 +31,8 @@
 		DD44658C18E5859F00ED1153 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44658B18E5859F00ED1153 /* NMSSH.framework */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */; };
+		DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */; };
+		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
@@ -113,6 +115,10 @@
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
 		DD44659718E8254B00ED1153 /* UTCSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventDetailViewController.h; sourceTree = "<group>"; };
 		DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventDetailViewController.m; sourceTree = "<group>"; };
+		DD44659A18E93D3500ED1153 /* UTCSDirectoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDirectoryManager.h; sourceTree = "<group>"; };
+		DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDirectoryManager.m; sourceTree = "<group>"; };
+		DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDirectoryPerson.h; sourceTree = "<group>"; };
+		DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDirectoryPerson.m; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEvent.m; sourceTree = "<group>"; };
@@ -352,6 +358,39 @@
 			name = "UIColor+CZTinting";
 			sourceTree = "<group>";
 		};
+		DD4465A018E93D8200ED1153 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				DD44658818E584A200ED1153 /* UTCSEventsManager.h */,
+				DD44658918E584A200ED1153 /* UTCSEventsManager.m */,
+				DD5B583A18D239F900EEB474 /* UTCSEvent.h */,
+				DD5B583B18D239F900EEB474 /* UTCSEvent.m */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		DD4465A118E93D8C00ED1153 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DD5B583C18D239F900EEB474 /* UTCSNewsStory.h */,
+				DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */,
+				DDE561EA18DC441F00C46480 /* UTCSNewsStoryManager.h */,
+				DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		DD4465A218E93D9600ED1153 /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				DD44659A18E93D3500ED1153 /* UTCSDirectoryManager.h */,
+				DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */,
+				DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */,
+				DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */,
+			);
+			name = Directory;
+			sourceTree = "<group>";
+		};
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,14 +404,9 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DD5B583A18D239F900EEB474 /* UTCSEvent.h */,
-				DD5B583B18D239F900EEB474 /* UTCSEvent.m */,
-				DD5B583C18D239F900EEB474 /* UTCSNewsStory.h */,
-				DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */,
-				DDE561EA18DC441F00C46480 /* UTCSNewsStoryManager.h */,
-				DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */,
-				DD44658818E584A200ED1153 /* UTCSEventsManager.h */,
-				DD44658918E584A200ED1153 /* UTCSEventsManager.m */,
+				DD4465A218E93D9600ED1153 /* Directory */,
+				DD4465A118E93D8C00ED1153 /* News */,
+				DD4465A018E93D8200ED1153 /* Events */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -641,8 +675,10 @@
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
+				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
+				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,

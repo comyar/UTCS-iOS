@@ -12,14 +12,17 @@
 #import "UTCSMenuButton.h"
 #import "UIView+CZPositioning.h"
 #import "UIImage+ImageEffects.h"
+#import "UTCSDirectoryPerson.h"
+#import "UTCSDirectoryManager.h"
 
 @interface UTCSDirectoryViewController ()
 @property (nonatomic) UIImageView       *backgroundImageView;
 @property (nonatomic) UTCSMenuButton    *menuButton;
 @property (nonatomic) UITableView       *tableView;
 @property (nonatomic) UISearchBar       *searchBar;
-@property (nonatomic) NSArray           *fillerData;
 @property (nonatomic) UIButton          *scrollToTopButton;
+@property (nonatomic) UTCSDirectoryManager  *directoryManager;
+@property (nonatomic) UISearchDisplayController *directorySearchDisplayController;
 
 @end
 
@@ -28,11 +31,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.view.backgroundColor = [UIColor redColor];
-        self.fillerData = @[@[@"Comyar Zaheri", @"Undergraduate"],
-                            @[@"Henri Sweers", @"Undergradute"],
-                            @[@"Brent Winkelman", @"Staff"],
-                            @[@"Paul Toprac", @"Faculty"]];
+        self.directoryManager = [UTCSDirectoryManager new];
     }
     return self;
 }
@@ -55,20 +54,21 @@
     self.backgroundImageView.image = [[UIImage imageNamed:@"directoryBackground"]applyDarkEffect];
     [self.view addSubview:self.backgroundImageView];
     
-    
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 108.0, self.view.width, self.view.height - 64.0)
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
                                                  style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.rowHeight = 64.0;
     self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.tableView.dataSource = self.directoryManager;
     [self.view addSubview:self.tableView];
     
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
     self.searchBar.placeholder = @"Search Directory";
-    self.searchBar.tintColor = [UIColor utcsBurntOrangeColor];
+    self.searchBar.tintColor = [UIColor lightGrayColor];
     self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     [self.view addSubview:self.searchBar];
+    
+    self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
     
     self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
@@ -80,6 +80,10 @@
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 8, 56, 32)];
     [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:self.menuButton];
+    
+    [self.directoryManager syncDirectoryWithCompletion:^(BOOL success) {
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didTouchDownInsideButton:(UIButton *)button
@@ -87,28 +91,10 @@
     if(button == self.scrollToTopButton) {
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     }
-    [self.searchBar resignFirstResponder];
+    [self.directorySearchDisplayController setActive:NO animated:YES];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
-    if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.text = self.fillerData[indexPath.row][0];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-        cell.detailTextLabel.text = self.fillerData[indexPath.row][1];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    return cell;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.fillerData count];
-}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
