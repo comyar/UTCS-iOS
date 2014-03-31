@@ -30,7 +30,6 @@
 		DD44658A18E584A200ED1153 /* UTCSEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44658918E584A200ED1153 /* UTCSEventsManager.m */; };
 		DD44658C18E5859F00ED1153 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44658B18E5859F00ED1153 /* NMSSH.framework */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
-		DD44659618E7FF6400ED1153 /* UTCSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659518E7FF6400ED1153 /* UTCSSearchBar.m */; };
 		DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
@@ -112,8 +111,6 @@
 		DD44658B18E5859F00ED1153 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
 		DD44659118E7EA6C00ED1153 /* UIImage+CZTinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZTinting.h"; path = "Categories/UIImage+CZTinting.h"; sourceTree = "<group>"; };
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
-		DD44659418E7FF6400ED1153 /* UTCSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSearchBar.h; sourceTree = "<group>"; };
-		DD44659518E7FF6400ED1153 /* UTCSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSearchBar.m; sourceTree = "<group>"; };
 		DD44659718E8254B00ED1153 /* UTCSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventDetailViewController.h; sourceTree = "<group>"; };
 		DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventDetailViewController.m; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
@@ -398,8 +395,6 @@
 				DD44656218E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m */,
 				DD44657018E5711400ED1153 /* UTCSMenuButton.h */,
 				DD44657118E5711400ED1153 /* UTCSMenuButton.m */,
-				DD44659418E7FF6400ED1153 /* UTCSSearchBar.h */,
-				DD44659518E7FF6400ED1153 /* UTCSSearchBar.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -642,7 +637,6 @@
 				DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */,
 				DD44656318E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
-				DD44659618E7FF6400ED1153 /* UTCSSearchBar.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
