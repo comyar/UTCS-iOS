@@ -19,4 +19,33 @@
     return size.height;
 }
 
+- (CGSize)sizeForWidth:(CGFloat)width height:(CGFloat)height
+{
+    CGSize size = CGSizeZero;
+    if(![self.attributedText length]) {
+        return size;
+    }
+    
+    CGSize givenSize = CGSizeMake(width, height);
+    NSTextContainer *textContainer = [[NSTextContainer alloc]initWithSize:givenSize];
+    NSTextStorage *textStorage = [[NSTextStorage alloc]initWithAttributedString:self.attributedText];
+    NSLayoutManager *layoutManager = [NSLayoutManager new];
+    [layoutManager addTextContainer:textContainer];
+    [textStorage addLayoutManager:layoutManager];
+    [layoutManager setHyphenationFactor:0.0];
+    
+    // NSLayoutManager is lazy, so we need the following kludge to force layout:
+    [layoutManager glyphRangeForTextContainer:textContainer];
+    
+    size = [layoutManager usedRectForTextContainer:textContainer].size;
+    
+    // Adjust if there is extra height for the cursor
+    CGSize extraLineSize = [layoutManager extraLineFragmentRect].size ;
+    if (extraLineSize.height > 0) {
+        size.height -= extraLineSize.height ;
+    }
+    
+	return size;
+}
+
 @end

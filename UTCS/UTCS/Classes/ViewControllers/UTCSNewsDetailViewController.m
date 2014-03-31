@@ -61,7 +61,7 @@
     }
     
     self.contentTextView.attributedText = newsStory.attributedContent;
-    self.contentTextView.height = ceilf([self.contentTextView heightWithText]);
+    self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width height:CGFLOAT_MAX].height;
     self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerImage.size.height;
     self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.contentTextView.height + self.parallaxBlurHeaderScrollView.headerImage.size.height);
 }

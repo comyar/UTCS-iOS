@@ -99,6 +99,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 - (BOOL)setAttributedContentForNewsStory:(UTCSNewsStory *)newsStory
 {
     NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
+    
     if(!attributedHTML) {
         return NO;
     }
@@ -111,13 +112,8 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
      ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
          if(attrs[NSAttachmentAttributeName]) {
              NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
-             if(!headerImage && textAttachment.image) {
-                 if(textAttachment.image.size.width >= 200) {
-                     headerImage = [textAttachment.image copy];
-                 }
-             }
+             NSLog(@"%@", textAttachment.image);
          } else {
-             
              
              UIFont *htmlFont = attrs[NSFontAttributeName];
              NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
