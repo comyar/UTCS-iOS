@@ -179,6 +179,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [cell setSelected:NO animated:NO];
     UTCSNewsStory *newsStory = self.dataSource.newsStories[indexPath.row];
     self.newsDetailViewController = [UTCSNewsDetailViewController new];
+    
     self.newsDetailViewController.newsStory = newsStory;
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
 }

@@ -16,13 +16,12 @@
 #import "UTCSDirectoryManager.h"
 
 @interface UTCSDirectoryViewController ()
-@property (nonatomic) UIImageView       *backgroundImageView;
-@property (nonatomic) UTCSMenuButton    *menuButton;
-@property (nonatomic) UITableView       *tableView;
-@property (nonatomic) UISearchBar       *searchBar;
-@property (nonatomic) UIButton          *scrollToTopButton;
-@property (nonatomic) UTCSDirectoryManager  *directoryManager;
-@property (nonatomic) UISearchDisplayController *directorySearchDisplayController;
+@property (nonatomic) UIImageView               *backgroundImageView;
+@property (nonatomic) UTCSMenuButton            *menuButton;
+@property (nonatomic) UITableView               *tableView;
+@property (nonatomic) UISearchBar               *searchBar;
+@property (nonatomic) UIButton                  *scrollToTopButton;
+@property (nonatomic) UTCSDirectoryManager      *directoryManager;
 
 @end
 
@@ -40,11 +39,6 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.searchBar resignFirstResponder];
 }
 
 - (void)viewDidLoad
@@ -68,7 +62,7 @@
     self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     [self.view addSubview:self.searchBar];
     
-    self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+    self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
     
     self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
@@ -91,14 +85,10 @@
     if(button == self.scrollToTopButton) {
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     }
-    [self.directorySearchDisplayController setActive:NO animated:YES];
+    [self.directoryManager.searchDisplayController setActive:NO animated:YES];
 }
 
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.searchBar resignFirstResponder];
-}
 
 @end

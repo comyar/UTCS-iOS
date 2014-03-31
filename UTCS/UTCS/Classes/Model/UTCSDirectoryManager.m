@@ -9,8 +9,12 @@
 #import "UTCSDirectoryManager.h"
 #import "UTCSDirectoryPerson.h"
 
-@implementation UTCSDirectoryManager
 
+@interface UTCSDirectoryManager ()
+@property (nonatomic) NSArray *searchResults;
+@end
+
+@implementation UTCSDirectoryManager
 
 - (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion
 {
@@ -64,7 +68,6 @@
     }];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
@@ -75,8 +78,13 @@
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    UTCSDirectoryPerson *person = self.directoryPeople[indexPath.section][indexPath.row];
     
+    UTCSDirectoryPerson *person = nil;
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        person = self.searchResults[indexPath.section][indexPath.row];
+    } else {
+        person = self.directoryPeople[indexPath.section][indexPath.row];
+    }
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:cell.textLabel.font.pointSize] range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];
@@ -102,5 +110,21 @@
     return [[person.lastName substringToIndex:1]uppercaseString];
 }
 
+- (void)setSearchDisplayController:(UISearchDisplayController *)searchDisplayController
+{
+    _searchDisplayController = searchDisplayController;
+    _searchDisplayController.delegate = self;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fullName like[cd] %@", searchString];
+    NSMutableArray *filteredPeople = [NSMutableArray new];
+    for(NSArray *peopleForLetter in self.directoryPeople) {
+        [filteredPeople addObject:[peopleForLetter filteredArrayUsingPredicate:predicate]];
+    }
+    self.searchResults = filteredPeople;
+    return YES;
+}
 
 @end

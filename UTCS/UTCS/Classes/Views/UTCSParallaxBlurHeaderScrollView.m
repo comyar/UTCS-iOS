@@ -10,7 +10,7 @@
 
 
 const CGFloat parallaxFactor        = 0.5;
-const CGFloat navigationBarHeight   = 64.0;
+const CGFloat navigationBarHeight   = 44.0;
 
 
 #pragma mark - UTCSNewsDetailView Class Extension
@@ -98,7 +98,7 @@ const CGFloat navigationBarHeight   = 64.0;
     
     _headerImage = headerImage;
     self.headerImageView.image = _headerImage;
-    [self setNeedsDisplay];
+    [self layoutIfNeeded];
 }
 
 - (void)setHeaderBlurredImage:(UIImage *)headerBlurredImage
@@ -109,7 +109,7 @@ const CGFloat navigationBarHeight   = 64.0;
     
     _headerBlurredImage = headerBlurredImage;
     self.headerBlurredImageView.image = _headerBlurredImage;
-    [self setNeedsDisplay];
+    [self layoutIfNeeded];
 }
 
 #pragma mark UIScrollViewDelegate Methods
@@ -137,6 +137,11 @@ const CGFloat navigationBarHeight   = 64.0;
         }
         
         self.headerBlurredImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
+        for(UIView *subview in self.headerContainerView.subviews) {
+            if(subview != self.headerBlurredImageView && subview != self.headerImageView) {
+                subview.alpha = 1.0 - MIN(1.0, 2.5 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
+            }
+        }
     }
 }
 
