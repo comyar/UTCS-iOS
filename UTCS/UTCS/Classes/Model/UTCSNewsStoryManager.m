@@ -117,9 +117,9 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
              
              UIFont *htmlFont = attrs[NSFontAttributeName];
              NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-             fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"TimesNewRomanPSMT";
+             fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"IowanOldStyle-Roman";
              UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.65 * htmlFont.pointSize];
+             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.6 * htmlFont.pointSize];
              NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
              paragraphStyle.lineSpacing = 6.0;
              paragraphStyle.paragraphSpacing = 16.0;
