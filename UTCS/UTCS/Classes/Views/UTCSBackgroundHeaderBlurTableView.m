@@ -32,6 +32,8 @@ static const CGFloat navigationBarHeight = 44.0;
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        _navigationBarHeight = navigationBarHeight;
+        
         self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.bounds];
         self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.backgroundImageView.layer.masksToBounds = YES;

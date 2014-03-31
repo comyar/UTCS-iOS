@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+/**
+ UTCSNewsViewController displays all the available news articles in a simple table
+ */
 @interface UTCSNewsViewController : UIViewController <UITableViewDelegate>
 
 @end

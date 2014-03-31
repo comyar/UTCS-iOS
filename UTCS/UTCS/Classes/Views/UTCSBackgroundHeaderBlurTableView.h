@@ -19,4 +19,6 @@
 
 @property (nonatomic, readonly) UITableView     *tableView;
 
+@property (nonatomic, readonly) CGFloat         navigationBarHeight;
+
 @end
