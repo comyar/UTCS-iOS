@@ -19,6 +19,7 @@
 @property (nonatomic) UITableView       *tableView;
 @property (nonatomic) UISearchBar       *searchBar;
 @property (nonatomic) NSArray           *fillerData;
+@property (nonatomic) UIButton          *scrollToTopButton;
 
 @end
 
@@ -42,11 +43,16 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.searchBar resignFirstResponder];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    self.backgroundImageView.image = [[UIImage imageNamed:@"menuBackground"]applyDarkEffect];
+    self.backgroundImageView.image = [[UIImage imageNamed:@"directoryBackground"]applyDarkEffect];
     [self.view addSubview:self.backgroundImageView];
     
     
@@ -64,13 +70,24 @@
     self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     [self.view addSubview:self.searchBar];
     
-    UIView *pseudoNavigationBar = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 44.0)];
-    pseudoNavigationBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-    [self.view addSubview:pseudoNavigationBar];
+    self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
+    self.scrollToTopButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+    [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:self.scrollToTopButton];
     
     // Menu Button
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 8, 56, 32)];
+    [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:self.menuButton];
+}
+
+- (void)didTouchDownInsideButton:(UIButton *)button
+{
+    if(button == self.scrollToTopButton) {
+        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
+    }
+    [self.searchBar resignFirstResponder];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,6 +108,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.fillerData count];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
 }
 
 @end

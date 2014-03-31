@@ -35,7 +35,7 @@
 
 @property (nonatomic) UINavigationController            *directoryNavigationController;
 
-@property (nonatomic) UTCSSettingsViewController        *settingsViewController;
+@property (nonatomic) UINavigationController            *settingsNavigationController;
 
 @property (nonatomic) UTCSAboutViewController           *aboutViewController;
 
@@ -72,6 +72,7 @@
     self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.aboutViewController            = [UTCSAboutViewController new];
+    self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.directoryNavigationController];
     
@@ -102,8 +103,8 @@
         self.verticalMenuViewController.contentViewController = self.labsNavigationController;
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
-    } else if(option == UTCSMenuOptionAbout) {
-        self.verticalMenuViewController.contentViewController = self.aboutViewController;
+    } else if(option == UTCSMenuOptionSettings) {
+        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
 

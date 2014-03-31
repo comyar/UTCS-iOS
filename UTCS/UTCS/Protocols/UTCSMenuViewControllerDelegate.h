@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
     UTCSMenuOptionEvents,
     UTCSMenuOptionLabs,
     UTCSMenuOptionDirectory,
-    UTCSMenuOptionAbout
+    UTCSMenuOptionSettings
 };
 
 /**

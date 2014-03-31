@@ -30,7 +30,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"About"];
+        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Settings"];
     }
     return self;
 }

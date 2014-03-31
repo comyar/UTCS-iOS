@@ -55,8 +55,8 @@
     [super viewDidLoad];
     
     self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-    self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"eventsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
-    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"eventsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+    self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"menuBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"menuBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
     self.backgroundHeaderBlurTableView.tableView.delegate = self;
     self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventManager;
     [self.view addSubview:self.backgroundHeaderBlurTableView];
