@@ -42,7 +42,7 @@ const CGFloat navigationBarHeight   = 44.0;
 {
     if (self = [super initWithFrame:frame]) {
         
-        
+        _navigationBarHeight = navigationBarHeight;
         
         self.headerImageView                        = [UIImageView new];
         self.headerImageView.tintColor              = [UIColor colorWithWhite:0.11 alpha:0.73];
@@ -117,6 +117,7 @@ const CGFloat navigationBarHeight   = 44.0;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if(scrollView == self.scrollView) {
+        NSLog(@"%f", scrollView.contentOffset.y);
         if(scrollView.contentOffset.y > 0) {
             if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
                 self.headerContainerView.frame = ({
@@ -133,7 +134,8 @@ const CGFloat navigationBarHeight   = 44.0;
             }
         } else {
             self.headerContainerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.headerContainerView.bounds), CGRectGetHeight(self.headerContainerView.bounds));
-            
+            self.headerContainerView.layer.mask = nil;
+            [self bringSubviewToFront:self.scrollView];
         }
         
         self.headerBlurredImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));

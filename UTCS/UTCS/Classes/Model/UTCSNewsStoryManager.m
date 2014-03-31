@@ -112,7 +112,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
      ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
          if(attrs[NSAttachmentAttributeName]) {
              NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
-             NSLog(@"%@", textAttachment.image);
          } else {
              
              UIFont *htmlFont = attrs[NSFontAttributeName];

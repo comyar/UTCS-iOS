@@ -26,4 +26,6 @@
  */
 @property (nonatomic, readonly) UIScrollView *scrollView;
 
+@property (nonatomic, readonly) CGFloat navigationBarHeight;
+
 @end
