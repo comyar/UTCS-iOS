@@ -71,7 +71,7 @@
     [self.view addSubview:self.scrollToTopButton];
     
     // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 8, 56, 32)];
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
     [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:self.menuButton];
     

@@ -117,7 +117,7 @@ const NSTimeInterval kMinTimeIntervalBetweenUpdates = 3600;
     [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
     
     // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(8, 8, 56, 32)];
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
     [self.view addSubview:self.menuButton];
 }
 

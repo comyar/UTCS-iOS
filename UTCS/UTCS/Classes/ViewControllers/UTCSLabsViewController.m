@@ -7,17 +7,19 @@
 //
 
 #import "UTCSLabsViewController.h"
+#import "UTCSMenuButton.h"
+#import "UIImage+ImageEffects.h"
 
 @interface UTCSLabsViewController ()
-
+@property (nonatomic) UIImageView               *backgroundImageView;
+@property (nonatomic) UTCSMenuButton            *menuButton;
 @end
 
 @implementation UTCSLabsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
     }
     return self;
@@ -26,24 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    self.backgroundImageView.image = [[UIImage imageNamed:@"menuBackground"]applyDarkEffect];
+    [self.view addSubview:self.backgroundImageView];
+    
+    // Menu Button
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
+    [self.view addSubview:self.menuButton];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
