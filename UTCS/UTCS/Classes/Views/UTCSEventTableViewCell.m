@@ -51,22 +51,22 @@
 {
     [super layoutSubviews];
     
-    self.dayLabel.frame = CGRectMake(0.0, 0.0, 100, 28);
-    self.dayLabel.center = CGPointMake(0.5 * CGRectGetWidth(self.dayLabel.bounds), self.center.y);
-    
-    self.textLabel.frame = ({
-        CGRect frame = self.textLabel.frame;
-        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
-        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - CGRectGetWidth(self.dayLabel.bounds) - 8.0;
-        frame;
-    });
-    
-    self.detailTextLabel.frame = ({
-        CGRect frame = self.detailTextLabel.frame;
-        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
-        frame.size.width = CGRectGetWidth(self.detailTextLabel.bounds) - self.dayLabel.frame.origin.x - CGRectGetWidth(self.dayLabel.bounds);
-        frame;
-    });
+//    self.dayLabel.frame = CGRectMake(0.0, 0.0, 100, 28);
+//    self.dayLabel.center = CGPointMake(0.5 * CGRectGetWidth(self.dayLabel.bounds), self.center.y);
+//    
+//    self.textLabel.frame = ({
+//        CGRect frame = self.textLabel.frame;
+//        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
+//        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - CGRectGetWidth(self.dayLabel.bounds) - 8.0;
+//        frame;
+//    });
+//    
+//    self.detailTextLabel.frame = ({
+//        CGRect frame = self.detailTextLabel.frame;
+//        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
+//        frame.size.width = CGRectGetWidth(self.detailTextLabel.bounds) - self.dayLabel.frame.origin.x - CGRectGetWidth(self.dayLabel.bounds);
+//        frame;
+//    });
 }
 
 @end
