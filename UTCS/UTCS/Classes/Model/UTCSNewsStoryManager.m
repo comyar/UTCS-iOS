@@ -9,9 +9,12 @@
 #import "UTCSNewsStoryManager.h"
 #import "UIImage+ImageEffects.h"
 #import "UTCSNewsStory.h"
+#import "UIImage+CZTinting.h"
 
 #import "UIImage+CZScaling.h"
 
+
+static const CGFloat minHeaderImageWidth = 300.0;
 
 typedef void (^ UTCSNewStoryManagerCompletion) (NSArray *newsStories, NSError *error);
 
@@ -105,40 +108,41 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         return NO;
     }
     
+    
     __block UIImage *headerImage = nil;
     NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
-    [attributedHTML enumerateAttributesInRange:NSMakeRange(0, [attributedHTML length])
-                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
-                                       usingBlock:
-     ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
-         if(attrs[NSAttachmentAttributeName]) {
-//             NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
-         } else {
-             
-             UIFont *htmlFont = attrs[NSFontAttributeName];
-             NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-             fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"IowanOldStyle-Roman";
-             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.6 * htmlFont.pointSize];
-             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-             paragraphStyle.lineSpacing = 6.0;
-             paragraphStyle.paragraphSpacing = 16.0;
-             
-             
-             [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
-             [attributedHTML addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-             [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
-             
-         }
+    [attributedHTML enumerateAttributesInRange:NSMakeRange(0, [attributedHTML length]) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+        
+        if(attrs[NSAttachmentAttributeName] && !headerImage) {
+            NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
+            UIImage *image = textAttachment.image;
+            if(textAttachment.fileWrapper.isRegularFile) {
+                image = [UIImage imageWithData:textAttachment.fileWrapper.regularFileContents];
+            }
+            if(image.size.width >= minHeaderImageWidth) {
+                headerImage = image;
+            }
+        } else {
+            UIFont *htmlFont = attrs[NSFontAttributeName];
+            NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
+            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"IowanOldStyle-Roman";
+            UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
+            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.6 * htmlFont.pointSize];
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineSpacing = 6.0;
+            paragraphStyle.paragraphSpacing = 16.0;
+            
+            [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
+            [attributedHTML addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+            [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
+        }
     }];
     
-    newsStory.headerImage = [headerImage applyTintEffectWithColor:[UIColor colorWithWhite:0.11 alpha:0.73]];
+    newsStory.headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay];
     newsStory.blurredHeaderImage = [headerImage applyDarkEffect];
-    
+
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"((\n|\r){2,})" options:0 error:nil];
     [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
-    
-    
     
     newsStory.attributedContent = attributedContent;
     

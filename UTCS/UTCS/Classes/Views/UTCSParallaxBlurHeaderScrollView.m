@@ -45,17 +45,15 @@ const CGFloat navigationBarHeight   = 44.0;
         _navigationBarHeight = navigationBarHeight;
         
         self.headerImageView                        = [UIImageView new];
-        self.headerImageView.tintColor              = [UIColor colorWithWhite:0.11 alpha:0.73];
         self.headerImageView.contentMode            = UIViewContentModeScaleAspectFill;
         self.headerImageView.userInteractionEnabled = NO;
         
         self.headerBlurredImageView                 = [UIImageView new];
-        self.headerBlurredImageView.tintColor       = [UIColor colorWithWhite:0.11 alpha:0.73];
         self.headerBlurredImageView.alpha           = 0.0;
         self.headerBlurredImageView.contentMode     = UIViewContentModeScaleAspectFill;
         self.headerBlurredImageView.userInteractionEnabled = NO;
         
-        self.headerContainerView                    = [UIView new];
+        self.headerContainerView                        = [UIView new];
         self.headerContainerView.layer.masksToBounds    = YES;
         self.headerContainerView.userInteractionEnabled = NO;
         
