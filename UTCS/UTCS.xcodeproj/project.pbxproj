@@ -34,6 +34,7 @@
 		DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */; };
 		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
+		DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
 		DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */; };
@@ -120,6 +121,8 @@
 		DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDirectoryPerson.h; sourceTree = "<group>"; };
 		DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDirectoryPerson.m; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
+		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventTableViewCell.h; sourceTree = "<group>"; };
+		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventTableViewCell.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEvent.m; sourceTree = "<group>"; };
 		DD5B583C18D239F900EEB474 /* UTCSNewsStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsStory.h; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 				DD44656218E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m */,
 				DD44657018E5711400ED1153 /* UTCSMenuButton.h */,
 				DD44657118E5711400ED1153 /* UTCSMenuButton.m */,
+				DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */,
+				DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
+				DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */,
 				DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */,
 				DD44658718E5838600ED1153 /* UTCSAboutViewController.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,

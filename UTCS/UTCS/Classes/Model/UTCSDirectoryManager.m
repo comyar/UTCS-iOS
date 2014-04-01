@@ -19,44 +19,36 @@
 - (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion
 {
     PFQuery *query = [PFQuery queryWithClassName:@"DirectoryItem"];
+    query.limit = 1000;
+    [query orderByAscending:@"lName"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray *directoryPeople = [NSMutableArray new];
         if(objects) {
-            
-            NSMutableDictionary *directory = [NSMutableDictionary new];
-            
+            NSString *lastChar = nil;
             for(PFObject *object in objects) {
                 UTCSDirectoryPerson *person = [UTCSDirectoryPerson directoryPersonWithParseObject:object];
-                NSString *firstChar = [[person.lastName substringToIndex:1]uppercaseString];
-                if(!firstChar) {
+                if(!person.fullName ||
+                   [person.firstName isEqualToString:@"undergrad"] ||
+                   [person.firstName isEqualToString:@"post"] ||
+                   [person.firstName isEqualToString:@"visitor"]) {
                     continue;
                 }
-                if(directory[firstChar]) {
-                    NSMutableArray *peopleWithFirstLetter = directory[firstChar];
-                    NSUInteger insertionIndex = [peopleWithFirstLetter indexOfObject:person inSortedRange:NSMakeRange(0, [peopleWithFirstLetter count]) options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult(id obj1, id obj2) {
-                        
-                        return [((UTCSDirectoryPerson *)obj1).firstName
-                                compare:((UTCSDirectoryPerson *)obj2).firstName
-                                options:NSCaseInsensitiveSearch];
-                    }];
-                    [peopleWithFirstLetter insertObject:person atIndex:insertionIndex];
+                
+                NSString *firstChar = [person.lastName substringToIndex:1];
+                if([firstChar isEqualToString:lastChar]) {
+                    NSMutableArray *letter = [directoryPeople lastObject];
+                    if(!letter) {
+                        letter = [NSMutableArray new];
+                    }
+                    [letter addObject:person];
                 } else {
-                    NSMutableArray *peopleWithFirstLetter = [NSMutableArray new];
-                    [peopleWithFirstLetter addObject:person];
-                    directory[firstChar] = peopleWithFirstLetter;
+                    NSMutableArray *letter = [NSMutableArray new];
+                    [letter addObject:person];
+                    [directoryPeople addObject:letter];
+                    lastChar = firstChar;
                 }
             }
-            
-            NSArray *sortedKeys = [[directory allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                return [obj1 compare:obj2 options:NSCaseInsensitiveSearch];
-            }];
-            
-            NSMutableArray *sortedPeople = [NSMutableArray new];
-            for(NSString *key in sortedKeys) {
-                [sortedPeople addObject:directory[key]];
-            }
-            
-            _directoryPeople = sortedPeople;
-            
+            _directoryPeople = directoryPeople;
             if(completion) {
                 completion(YES);
             }

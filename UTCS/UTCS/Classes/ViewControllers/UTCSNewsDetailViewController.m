@@ -142,6 +142,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
                                                 dateStyle:NSDateFormatterLongStyle
                                                 timeStyle:NSDateFormatterNoStyle];
     
+    NSLog(@"%f", self.parallaxBlurHeaderScrollView.headerContainerView.height);
     // Set header image
     if(_newsStory.headerImage) {
         self.parallaxBlurHeaderScrollView.headerImage           = _newsStory.headerImage;
@@ -153,6 +154,18 @@ static const CGFloat dateLabelFontSize  = 16.0;
         self.parallaxBlurHeaderScrollView.headerImage           = headerImage[0];
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = headerImage[1];
     }
+    
+    NSLog(@"y %f", self.parallaxBlurHeaderScrollView.headerContainerView.y);
+    NSLog(@"after %f", self.parallaxBlurHeaderScrollView.headerContainerView.height);
+    
+    self.contentTextView.attributedText = newsStory.attributedContent;
+    self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
+                                                              height:CGFLOAT_MAX].height;
+    
+    self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerContainerView.height;
+    NSLog(@"content %f", self.contentTextView.y);
+    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.contentTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
+    
     
     // Set date label
     self.dateLabel.text = [NSDateFormatter localizedStringFromDate:_newsStory.date
@@ -172,13 +185,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     self.titleLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - (self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.y) - self.titleLabel.height;
     
     
-    self.contentTextView.attributedText = newsStory.attributedContent;
-    self.contentTextView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
-    self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
-                                                              height:CGFLOAT_MAX].height;
     
-    self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerImage.size.height;
-    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.contentTextView.height + self.parallaxBlurHeaderScrollView.headerImage.size.height);
 }
 
 @end

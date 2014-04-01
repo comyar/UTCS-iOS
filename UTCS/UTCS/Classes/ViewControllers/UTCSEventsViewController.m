@@ -133,6 +133,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
+    
     UTCSEvent *event = self.eventManager.events[indexPath.row];
     self.eventDetailViewController = [UTCSEventDetailViewController new];
     self.eventDetailViewController.event = event;

@@ -8,6 +8,7 @@
 
 #import "UTCSEventsManager.h"
 #import "UTCSEvent.h"
+#import "UTCSEventTableViewCell.h"
 
 
 typedef void (^ UTCSEventManagerCompletion) (NSArray *events, NSError *error);
@@ -20,31 +21,45 @@ NSString * const UTCSParseClassEvent                        = @"Event";
 
 @interface UTCSEventsManager ()
 @property (nonatomic) NSArray *events;
+@property (nonatomic) NSDateFormatter *monthDateFormatter;
+@property (nonatomic) NSDateFormatter *dayDateFormatter;
 @end
 
 
 @implementation UTCSEventsManager
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (instancetype)init
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSEventTableViewCell"];
-    if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        cell.textLabel.numberOfLines = 4;
-        cell.textLabel.textColor = [UIColor whiteColor];
+    if(self = [super init]) {
+        self.monthDateFormatter = ({
+            NSDateFormatter *formatter = [NSDateFormatter new];
+            formatter.dateFormat = @"MMM";
+            formatter;
+        });
         
-        cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-        cell.detailTextLabel.numberOfLines = 4;
-        cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        self.dayDateFormatter = ({
+            NSDateFormatter *formatter = [NSDateFormatter new];
+            formatter.dateFormat = @"d";
+            formatter;
+        });
+    }
+    return self;
+}
+
+- (UTCSEventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSEventTableViewCell"];
+    if(!cell) {
+        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
     }
     
     UTCSEvent *event = self.events[indexPath.row];
+    cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
+    
+    
     cell.textLabel.text = event.name;
     cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle];
+    
     return cell;
 }
 

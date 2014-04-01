@@ -66,7 +66,7 @@ const CGFloat navigationBarHeight   = 44.0;
         self.scrollView.delegate = self;
         [self addSubview:self.scrollView];
         
-        self.headerMask                             = [CAShapeLayer new];
+        self.headerMask = [CAShapeLayer new];
         
     }
     return self;
@@ -74,10 +74,9 @@ const CGFloat navigationBarHeight   = 44.0;
 
 #pragma mark Layout Subviews
 
-- (void)layoutSubviews
+- (void)updateSubviews
 {
     [super layoutSubviews];
-    
     self.headerContainerView.frame      = CGRectMake(0.0, -parallaxFactor * self.scrollView.contentOffset.y,
                                                      CGRectGetWidth(self.bounds), _headerImage.size.height);
     self.headerImageView.frame          = self.headerContainerView.bounds;
@@ -96,7 +95,7 @@ const CGFloat navigationBarHeight   = 44.0;
     
     _headerImage = headerImage;
     self.headerImageView.image = _headerImage;
-    [self layoutIfNeeded];
+    [self updateSubviews];
 }
 
 - (void)setHeaderBlurredImage:(UIImage *)headerBlurredImage
@@ -107,7 +106,7 @@ const CGFloat navigationBarHeight   = 44.0;
     
     _headerBlurredImage = headerBlurredImage;
     self.headerBlurredImageView.image = _headerBlurredImage;
-    [self layoutIfNeeded];
+    [self updateSubviews];
 }
 
 #pragma mark UIScrollViewDelegate Methods

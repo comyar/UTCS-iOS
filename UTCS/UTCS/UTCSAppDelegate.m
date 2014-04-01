@@ -100,11 +100,11 @@
     } else if(option == UTCSMenuOptionEvents) {
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
     } else if(option == UTCSMenuOptionLabs) {
-        self.verticalMenuViewController.contentViewController = self.labsNavigationController;
+//        self.verticalMenuViewController.contentViewController = self.labsNavigationController;
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionSettings) {
-        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
+//        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
 
