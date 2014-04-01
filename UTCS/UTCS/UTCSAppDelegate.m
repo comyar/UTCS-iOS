@@ -89,6 +89,7 @@
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
+    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods

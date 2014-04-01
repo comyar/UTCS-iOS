@@ -57,12 +57,15 @@
     [self.view addSubview:self.tableView];
     
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
-    self.searchBar.placeholder = @"Search Directory";
-    self.searchBar.tintColor = [UIColor lightGrayColor];
+    self.searchBar.placeholder = @"Search Name";
+    self.searchBar.tintColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     [self.view addSubview:self.searchBar];
+    self.searchBar.showsScopeBar = YES;
+    self.searchBar.scopeButtonTitles = @[@"Faculty", @"Staff", @"Graduate"];
     
     self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+    self.directoryManager.searchDisplayController.delegate = self;
     
     self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
@@ -86,6 +89,20 @@
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     }
     [self.directoryManager.searchDisplayController setActive:NO animated:YES];
+}
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0.0, self.tableView.y + 44.0, self.tableView.width, self.tableView.height - 44.0);
+    }];
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0.0, self.tableView.y - 44.0, self.tableView.width, self.tableView.height + 44.0);
+    }];
 }
 
 
