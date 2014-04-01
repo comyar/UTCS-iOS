@@ -98,6 +98,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 - (BOOL)setAttributedContentForNewsStory:(UTCSNewsStory *)newsStory
 {
+    
     NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
     
     if(!attributedHTML) {
@@ -111,7 +112,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
                                        usingBlock:
      ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
          if(attrs[NSAttachmentAttributeName]) {
-             NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
+//             NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
          } else {
              
              UIFont *htmlFont = attrs[NSFontAttributeName];
@@ -134,8 +135,11 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
     newsStory.headerImage = [headerImage applyTintEffectWithColor:[UIColor colorWithWhite:0.11 alpha:0.73]];
     newsStory.blurredHeaderImage = [headerImage applyDarkEffect];
     
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(\n{2,})" options:0 error:nil];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"((\n|\r){2,})" options:0 error:nil];
     [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
+    
+    
+    
     newsStory.attributedContent = attributedContent;
     
     return YES;

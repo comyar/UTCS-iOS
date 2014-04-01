@@ -45,6 +45,8 @@
         size.height -= extraLineSize.height ;
     }
     
+    size.width = ceilf(size.width);
+    size.height = ceilf(size.height);
 	return size;
 }
 

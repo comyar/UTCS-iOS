@@ -117,7 +117,6 @@ const CGFloat navigationBarHeight   = 44.0;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if(scrollView == self.scrollView) {
-        NSLog(@"%f", scrollView.contentOffset.y);
         if(scrollView.contentOffset.y > 0) {
             if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
                 self.headerContainerView.frame = ({
@@ -128,14 +127,22 @@ const CGFloat navigationBarHeight   = 44.0;
                 self.headerContainerView.layer.mask = nil;
                 [self bringSubviewToFront:self.scrollView];
             } else {
-                self.headerContainerView.frame = CGRectMake(0.0, -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight),CGRectGetWidth(self.headerContainerView.bounds), CGRectGetHeight(self.headerContainerView.bounds));
+                self.headerContainerView.frame = ({
+                    CGRect frame = self.headerContainerView.frame;
+                    frame.origin.y = -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight);
+                    frame;
+                });
                 self.headerContainerView.layer.mask = self.headerMask;
                 [self bringSubviewToFront:self.headerContainerView];
             }
         } else {
-            self.headerContainerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.headerContainerView.bounds), CGRectGetHeight(self.headerContainerView.bounds));
+            self.headerContainerView.frame = ({
+                CGRect frame = self.headerContainerView.frame;
+                frame.origin.y = 0.0;
+                frame;
+            });
             self.headerContainerView.layer.mask = nil;
-            [self bringSubviewToFront:self.scrollView];
+            [self bringSubviewToFront:self.headerContainerView];
         }
         
         self.headerBlurredImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));

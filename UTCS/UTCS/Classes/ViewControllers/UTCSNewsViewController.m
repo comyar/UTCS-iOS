@@ -43,7 +43,7 @@ static const CGFloat shimmeringViewFontSize         = 50.0;
 /**
  Font size of the subtitle label
  */
-static const CGFloat subtitleLabelFontSize          = 18.0;
+static const CGFloat subtitleLabelFontSize          = 17.0;
 
 /**
  Font size of the updated label
@@ -160,10 +160,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     self.utcsSubtitleLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize)];
         label.font          = [UIFont fontWithName:@"HelveticaNeue" size:subtitleLabelFontSize];
-        label.center        = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-        label.text          = @"What starts here changes the world.";
+        label.center        = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
+        label.text          = @"What Starts Here Changes the World";
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor     = [UIColor whiteColor];
+        label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
         label.alpha         = 0.0;
         label;
     });

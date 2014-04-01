@@ -124,7 +124,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
+    self.parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPointMake(0.0, 0.0);
 }
 
 #pragma mark Setters
@@ -141,6 +141,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
                                                 dateStyle:NSDateFormatterLongStyle
                                                 timeStyle:NSDateFormatterNoStyle];
     
+    // Set header image
     if(_newsStory.headerImage) {
         self.parallaxBlurHeaderScrollView.headerImage           = _newsStory.headerImage;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = _newsStory.blurredHeaderImage;
@@ -152,12 +153,13 @@ static const CGFloat dateLabelFontSize  = 16.0;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = headerImage[1];
     }
     
+    // Set date label
     self.dateLabel.text = [NSDateFormatter localizedStringFromDate:_newsStory.date
                                                          dateStyle:NSDateFormatterLongStyle
                                                          timeStyle:NSDateFormatterNoStyle];
-    
     self.dateLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.height - 8.0;
     
+    // Set title label
     self.titleLabel.frame = CGRectMake(8.0, self.parallaxBlurHeaderScrollView.navigationBarHeight, self.view.width - 16.0, 0.0);
     self.titleLabel.text = _newsStory.title;
     [self.titleLabel sizeToFit];
@@ -168,7 +170,9 @@ static const CGFloat dateLabelFontSize  = 16.0;
     
     self.titleLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - (self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.y) - self.titleLabel.height;
     
+    
     self.contentTextView.attributedText = newsStory.attributedContent;
+    self.contentTextView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
     self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
                                                               height:CGFLOAT_MAX].height;
     
