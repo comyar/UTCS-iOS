@@ -124,7 +124,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPointMake(0.0, 0.0);
+    [self.parallaxBlurHeaderScrollView.scrollView setContentOffset:CGPointMake(0.0, 0.0)];
 }
 
 #pragma mark Setters
