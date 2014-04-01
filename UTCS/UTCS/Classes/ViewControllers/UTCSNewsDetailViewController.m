@@ -155,15 +155,12 @@ static const CGFloat dateLabelFontSize  = 16.0;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = headerImage[1];
     }
     
-    NSLog(@"y %f", self.parallaxBlurHeaderScrollView.headerContainerView.y);
-    NSLog(@"after %f", self.parallaxBlurHeaderScrollView.headerContainerView.height);
-    
     self.contentTextView.attributedText = newsStory.attributedContent;
     self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
                                                               height:CGFLOAT_MAX].height;
     
     self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerContainerView.height;
-    NSLog(@"content %f", self.contentTextView.y);
+    
     self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.contentTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
     
     

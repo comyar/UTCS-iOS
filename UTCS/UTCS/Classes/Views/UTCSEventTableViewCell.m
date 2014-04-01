@@ -51,7 +51,7 @@
 {
     [super layoutSubviews];
     
-    self.dayLabel.frame = CGRectMake(0.0, 0.0, 56, 28);
+    self.dayLabel.frame = CGRectMake(0.0, 0.0, 100, 28);
     self.dayLabel.center = CGPointMake(0.5 * CGRectGetWidth(self.dayLabel.bounds), self.center.y);
     
     self.textLabel.frame = ({
