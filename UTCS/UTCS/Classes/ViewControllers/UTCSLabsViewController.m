@@ -9,6 +9,8 @@
 #import "UTCSLabsViewController.h"
 #import "UTCSMenuButton.h"
 #import "UIImage+ImageEffects.h"
+#import "MBProgressHUD.h"
+#import "UTCSSSHManager.h"
 
 
 @interface UTCSLabsViewController ()
@@ -118,26 +120,15 @@
     if(button == self.loginButton) {
         [self.usernameTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
-        [self loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
-    }
-}
-
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password
-{
-    NMSSHSession *session = [NMSSHSession connectToHost:@"weretaco@cs.utexas.edu" withUsername:username];
-    [NMSSHLogger logger].logLevel = NMSSHLogLevelVerbose;
-    NSLog(@"%@", session.supportedAuthenticationMethods);
-    if(session.isConnected) {
-        NSLog(@"Connection");
-        [session addKnownHostName:session.host port:[session.port longValue] toFile:nil withSalt:nil];
-        [session authenticateByPublicKey:nil privateKey:nil andPassword:password];
-        if(session.isAuthorized) {
-            NSLog(@"authenticated");
-            NSString *response = [session.channel execute:@"ls" error:nil];
-            NSLog(@"%@", response);
-        }
-    } else {
-        NSLog(@"failed ssh");
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [[UTCSSSHManager sharedSSHAuthHandler]connectWithUsername:self.usernameTextField.text password:self.passwordTextField.text completion:^(BOOL success) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+            }];
+        });
     }
 }
 

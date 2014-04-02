@@ -23,6 +23,8 @@
 
 @property (nonatomic) UIButton          *twitterButton;
 
+@property (nonatomic) UIButton          *notificationsButton;
+
 @end
 
 
@@ -45,9 +47,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.scrollsToTop = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.rowHeight = 58;
-    self.tableView.contentInset = UIEdgeInsetsMake(0.05 * CGRectGetHeight(self.view.bounds), 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0.05 * self.view.height, 0, 0, 0);
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -55,11 +57,11 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"facebook"]];
-        button.frame = CGRectMake(self.view.width - 128, 0.6 * self.view.height, 44.0, 44.0);
+        button.frame = CGRectMake(self.view.width - 128, 0.675 * self.view.height, 44.0, 44.0);
         imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
         button.showsTouchWhenHighlighted = YES;
         [button addSubview:imageView];
-        button.alpha = 0.0;
+        button.alpha = 0.5;
         button;
     });
     [self.view addSubview:self.facebookButton];
@@ -68,20 +70,34 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"twitter"]];
-        button.frame = CGRectMake(self.view.width - 64, 0.6 * self.view.height, 44.0, 44.0);
+        button.frame = CGRectMake(self.view.width - 64, 0.675 * self.view.height, 44.0, 44.0);
         imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
         button.showsTouchWhenHighlighted = YES;
         [button addSubview:imageView];
-        button.alpha = 0.0;
+        button.alpha = 0.5;
         button;
     });
     [self.view addSubview:self.twitterButton];
     
+    self.notificationsButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"notifications"]];
+        imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        [button addSubview:imageView];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(44.0, 0.0, 160.0, 44.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:22];
+        label.textColor = [UIColor whiteColor];
+        label.text = @"Notifications";
+        [button addSubview:label];
+        button.frame = CGRectMake(0.0, 0.0, 204.0, 44.0);
+        button;
+    });
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
-    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://profile/272565539464226"]]) {
         self.facebookButton.alpha = 0.5;
         self.facebookButton.centerX = self.view.width - 42.0;

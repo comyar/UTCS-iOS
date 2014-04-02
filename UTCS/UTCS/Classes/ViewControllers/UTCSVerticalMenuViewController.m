@@ -216,7 +216,7 @@ const CGFloat animationDuration = 0.25;
     self.contentSnapUpBehavior.damping = 0.35;
     
     self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                           snapToPoint:CGPointMake(self.view.center.x, 1.25 * CGRectGetHeight(self.view.bounds))];
+                                                           snapToPoint:CGPointMake(self.view.center.x, 1.33 * CGRectGetHeight(self.view.bounds))];
     self.contentSnapDownBehavior.damping = 0.35;
 }
 
