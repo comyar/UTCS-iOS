@@ -82,12 +82,12 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://"]]) {
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://profile/272565539464226"]]) {
         self.facebookButton.alpha = 0.5;
         self.facebookButton.centerX = self.view.width - 42.0;
     }
     
-    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"twitter://"]]) {
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"twitter://user?screen_name=UTCompSci"]]) {
         self.twitterButton.alpha = 0.5;
         self.twitterButton.centerX = self.view.width - 42.0;
         self.facebookButton.centerX = self.view.width - 106.0;
@@ -97,7 +97,7 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.facebookButton) {
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://pages/272565539464226"]];
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://profile/272565539464226"]];
     } else if(button == self.twitterButton) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"twitter://user?screen_name=UTCompSci"]];
     }
