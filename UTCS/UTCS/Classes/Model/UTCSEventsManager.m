@@ -14,9 +14,9 @@
 typedef void (^ UTCSEventManagerCompletion) (NSArray *events, NSError *error);
 
 
-const NSTimeInterval kEarliestTimeIntervalForEvents           = -86400;
+const NSTimeInterval kEarliestTimeIntervalForEvents             = -86400;
 
-NSString * const UTCSParseClassEvent                        = @"Event";
+NSString * const UTCSParseClassEvent                            = @"Event";
 
 
 @interface UTCSEventsManager ()
@@ -39,7 +39,7 @@ NSString * const UTCSParseClassEvent                        = @"Event";
         
         self.dayDateFormatter = ({
             NSDateFormatter *formatter = [NSDateFormatter new];
-            formatter.dateFormat = @"d";
+            formatter.dateFormat = @"dd";
             formatter;
         });
     }
@@ -53,9 +53,12 @@ NSString * const UTCSParseClassEvent                        = @"Event";
         cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
     }
     
+    cell.selected = NO;
+    cell.highlighted = NO;
+    
     UTCSEvent *event = self.events[indexPath.row];
     cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
-    
+    cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
     
     cell.textLabel.text = event.name;
     cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle];
@@ -85,7 +88,7 @@ NSString * const UTCSParseClassEvent                        = @"Event";
     PFQuery *query = [PFQuery queryWithClassName:UTCSParseClassEvent];
     query.cachePolicy = kPFCachePolicyNetworkElseCache;
     [query whereKey:UTCSParseEventEndDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:kEarliestTimeIntervalForEvents]];
-    
+    [query orderByAscending:@"date"];
     [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
         NSArray *sortedEvents = nil;
         NSMutableArray *events = [NSMutableArray new];

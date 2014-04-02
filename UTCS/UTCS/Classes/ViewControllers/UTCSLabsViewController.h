@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NMSSH/NMSSH.h>
 
 @interface UTCSLabsViewController : UIViewController
 

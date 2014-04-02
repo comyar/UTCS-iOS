@@ -10,11 +10,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UTCSMenuViewControllerDelegate.h"
 
+@class UTCSWebViewController;
+
 /**
  */
 @interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate>
 
 //
 @property (strong, nonatomic) UIWindow                      *window;
+
+- (void)didDismissWebViewController:(UTCSWebViewController *)webViewController;
 
 @end

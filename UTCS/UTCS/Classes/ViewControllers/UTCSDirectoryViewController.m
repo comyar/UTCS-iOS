@@ -16,6 +16,7 @@
 #import "UTCSDirectoryManager.h"
 
 @interface UTCSDirectoryViewController ()
+
 @property (nonatomic) UIImageView               *backgroundImageView;
 @property (nonatomic) UTCSMenuButton            *menuButton;
 @property (nonatomic) UITableView               *tableView;

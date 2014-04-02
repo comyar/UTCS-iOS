@@ -34,6 +34,8 @@
 		DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */; };
 		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
 		DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = DD46451418CF641500E1DB5C /* libReveal.dylib */; };
+		DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4954DA18EBAFAA00BC928B /* UTCSWebViewController.m */; };
+		DD4954DF18EBB20B00BC928B /* UTCSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4954DE18EBB20B00BC928B /* UTCSApplication.m */; };
 		DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
@@ -121,6 +123,10 @@
 		DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDirectoryPerson.h; sourceTree = "<group>"; };
 		DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDirectoryPerson.m; sourceTree = "<group>"; };
 		DD46451418CF641500E1DB5C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
+		DD4954D918EBAFAA00BC928B /* UTCSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSWebViewController.h; sourceTree = "<group>"; };
+		DD4954DA18EBAFAA00BC928B /* UTCSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSWebViewController.m; sourceTree = "<group>"; };
+		DD4954DD18EBB20B00BC928B /* UTCSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSApplication.h; sourceTree = "<group>"; };
+		DD4954DE18EBB20B00BC928B /* UTCSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSApplication.m; sourceTree = "<group>"; };
 		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventTableViewCell.h; sourceTree = "<group>"; };
 		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventTableViewCell.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
@@ -394,6 +400,24 @@
 			name = Directory;
 			sourceTree = "<group>";
 		};
+		DD4954D818EBAFA000BC928B /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				DD4954D918EBAFAA00BC928B /* UTCSWebViewController.h */,
+				DD4954DA18EBAFAA00BC928B /* UTCSWebViewController.m */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
+		DD4954DC18EBB1FA00BC928B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				DD4954DD18EBB20B00BC928B /* UTCSApplication.h */,
+				DD4954DE18EBB20B00BC928B /* UTCSApplication.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +431,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD4954DC18EBB1FA00BC928B /* Application */,
 				DD4465A218E93D9600ED1153 /* Directory */,
 				DD4465A118E93D8C00ED1153 /* News */,
 				DD4465A018E93D8200ED1153 /* Events */,
@@ -461,6 +486,7 @@
 		DD5B586D18D23DE100EEB474 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				DD4954D818EBAFA000BC928B /* Web */,
 				DD44658418E5837B00ED1153 /* About */,
 				DD44657F18E5836200ED1153 /* Settings */,
 				DD44657B18E5833100ED1153 /* Directory */,
@@ -679,6 +705,7 @@
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
+				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
@@ -702,6 +729,7 @@
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				DDF02DD418CF548600C7D012 /* FBShimmeringLayer.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
+				DD4954DF18EBB20B00BC928B /* UTCSApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

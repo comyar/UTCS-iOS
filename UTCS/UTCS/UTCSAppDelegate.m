@@ -15,8 +15,10 @@
 #import "UTCSSettingsViewController.h"
 #import "UTCSAboutViewController.h"
 #import "UIColor+UTCSColors.h"
+#import "UTCSApplication.h"
 
 #import "UTCSVerticalMenuViewController.h"
+#import "UTCSWebViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -42,6 +44,8 @@
 //
 @property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
+@property (nonatomic) UTCSWebViewController             *webViewController;
+
 @end
 
 
@@ -57,6 +61,16 @@
     [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
                   clientKey:@"JJf7dzHkAaawjGMSLPN7N2HXzfII3svZoCIqxx8V"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+
+    self.webViewController = [UTCSWebViewController new];
+
+    ((UTCSApplication *)application).urlHandler = ^ BOOL(NSURL *url) {
+        self.webViewController.url = url;
+        [self.window.rootViewController presentViewController:self.webViewController animated:YES completion:nil];
+        return YES;
+    };
+    
     
     [self configureAppearance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -74,7 +88,7 @@
     self.aboutViewController            = [UTCSAboutViewController new];
     self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.newsNavigationController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController contentViewController:self.labsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
@@ -101,12 +115,17 @@
     } else if(option == UTCSMenuOptionEvents) {
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
     } else if(option == UTCSMenuOptionLabs) {
-//        self.verticalMenuViewController.contentViewController = self.labsNavigationController;
+        self.verticalMenuViewController.contentViewController = self.labsNavigationController;
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionSettings) {
 //        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
+}
+
+- (void)didDismissWebViewController:(UTCSWebViewController *)webViewController
+{
+    [webViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Reveal
