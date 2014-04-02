@@ -19,6 +19,7 @@
 
 #import "UTCSVerticalMenuViewController.h"
 #import "UTCSWebViewController.h"
+#import "UTCSDiskQuotaViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -43,6 +44,8 @@
 
 //
 @property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
+
+@property (nonatomic) UTCSDiskQuotaViewController       *diskQuotaViewController;
 
 @property (nonatomic) UTCSWebViewController             *webViewController;
 
@@ -79,6 +82,8 @@
     // Initialize menu view controller
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
+    
+    self.diskQuotaViewController = [UTCSDiskQuotaViewController new];
     
     // Initialize view controllers
     self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];

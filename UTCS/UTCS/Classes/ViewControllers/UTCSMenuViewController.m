@@ -42,7 +42,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Settings"];
+        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Disk Quota", @"Settings"];
         self.notificationsViewController = [UTCSNotificationsViewController new];
         self.title = @"Menu";
         
@@ -164,8 +164,8 @@
     cell.imageView.tintColor    = cell.textLabel.textColor;
     
     cell.textLabel.text         = self.menuOptions[indexPath.row];
-    cell.imageView.image        = [[UIImage imageNamed:[cell.textLabel.text lowercaseString]]
-                                   imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    NSString *imageName         = [[cell.textLabel.text lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    cell.imageView.image        = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     return cell;
 }
