@@ -8,6 +8,7 @@
 
 #import "UTCSMenuViewController.h"
 #import "UIColor+UTCSColors.h"
+#import "UIView+CZPositioning.h"
 
 #pragma mark - UTCSMenuViewController Class Extension
 
@@ -16,7 +17,11 @@
 //
 @property (strong, nonatomic) NSArray   *menuOptions;
 
-@property (nonatomic) NSInteger activeRow;
+@property (nonatomic) NSInteger         activeRow;
+
+@property (nonatomic) UIButton          *facebookButton;
+
+@property (nonatomic) UIButton          *twitterButton;
 
 @end
 
@@ -45,6 +50,57 @@
     self.tableView.contentInset = UIEdgeInsetsMake(0.05 * CGRectGetHeight(self.view.bounds), 0, 0, 0);
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.facebookButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"facebook"]];
+        button.frame = CGRectMake(self.view.width - 128, 0.6 * self.view.height, 44.0, 44.0);
+        imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.showsTouchWhenHighlighted = YES;
+        [button addSubview:imageView];
+        button.alpha = 0.5;
+        button;
+    });
+    [self.view addSubview:self.facebookButton];
+    
+    self.twitterButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"twitter"]];
+        button.frame = CGRectMake(self.view.width - 64, 0.6 * self.view.height, 44.0, 44.0);
+        imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.showsTouchWhenHighlighted = YES;
+        [button addSubview:imageView];
+        button.alpha = 0.5;
+        button;
+    });
+    [self.view addSubview:self.twitterButton];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://"]]) {
+        self.facebookButton.alpha = 0.5;
+    }
+    
+    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"twitter://"]]) {
+        self.twitterButton.alpha = 0.5;
+    }
+    
+    
+}
+
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.facebookButton) {
+        
+    } else if(button == self.twitterButton) {
+        
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -103,7 +159,7 @@
         } else if(indexPath.row == 3) {
             option = UTCSMenuOptionLabs;
         } else if(indexPath.row == 4) {
-            
+            option = UTCSMenuOptionSettings;
         }
         [self.delegate didSelectMenuOption:option];
     }

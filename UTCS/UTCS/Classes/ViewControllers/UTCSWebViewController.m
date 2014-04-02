@@ -20,7 +20,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-//        self.view.backgroundColor = [UIColor blackColor];
         self.webView = [UIWebView new];
         self.webView.scalesPageToFit = YES;
         [self.view addSubview:self.webView];
@@ -28,11 +27,6 @@
         self.navigationBar = [UINavigationBar new];
         self.navigationBar.backgroundColor = [UIColor darkGrayColor];
         [self.view addSubview:self.navigationBar];
-        
-        self.navigationBar.topItem.leftBarButtonItem = ({
-            UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:[UIApplication sharedApplication].delegate action:@selector(didDismissWebViewController:)];
-            barButtonItem;
-        });
     }
     return self;
 }
