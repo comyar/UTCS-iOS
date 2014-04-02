@@ -39,12 +39,12 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if(self = [super init]) {
-        _fullName = [aDecoder valueForKey:@"name"];
-        _firstName = [aDecoder valueForKey:@"fName"];
-        _lastName = [aDecoder valueForKey:@"lName"];
-        _officeLocation = [aDecoder valueForKey:@"location"];
-        _phoneNumber = [aDecoder valueForKey:@"phone"];
-        _type = [aDecoder valueForKey:@"type"];
+        _fullName = [aDecoder decodeObjectForKey:@"name"];
+        _firstName = [aDecoder decodeObjectForKey:@"fName"];
+        _lastName = [aDecoder decodeObjectForKey:@"lName"];
+        _officeLocation = [aDecoder decodeObjectForKey:@"location"];
+        _phoneNumber = [aDecoder decodeObjectForKey:@"phone"];
+        _type = [aDecoder decodeObjectForKey:@"type"];
     }
     return self;
 }

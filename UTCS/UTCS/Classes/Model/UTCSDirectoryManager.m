@@ -59,6 +59,7 @@
             }
             _directory = directoryPeople;
             if(completion) {
+                [UTCSStateManager setDirectory:_directory];
                 completion(YES);
             }
         } else {

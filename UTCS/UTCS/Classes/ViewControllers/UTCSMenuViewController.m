@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     self.tableView.scrollsToTop = NO;
-    self.tableView.rowHeight = 64;
+    self.tableView.rowHeight = 58;
     self.tableView.contentInset = UIEdgeInsetsMake(0.05 * CGRectGetHeight(self.view.bounds), 0, 0, 0);
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -59,7 +59,7 @@
         imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
         button.showsTouchWhenHighlighted = YES;
         [button addSubview:imageView];
-        button.alpha = 0.5;
+        button.alpha = 0.0;
         button;
     });
     [self.view addSubview:self.facebookButton];
@@ -72,7 +72,7 @@
         imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
         button.showsTouchWhenHighlighted = YES;
         [button addSubview:imageView];
-        button.alpha = 0.5;
+        button.alpha = 0.0;
         button;
     });
     [self.view addSubview:self.twitterButton];
@@ -84,22 +84,22 @@
     
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://"]]) {
         self.facebookButton.alpha = 0.5;
+        self.facebookButton.centerX = self.view.width - 42.0;
     }
     
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"twitter://"]]) {
         self.twitterButton.alpha = 0.5;
+        self.twitterButton.centerX = self.view.width - 42.0;
+        self.facebookButton.centerX = self.view.width - 106.0;
     }
-    
-    
 }
-
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.facebookButton) {
-        
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://pages/272565539464226"]];
     } else if(button == self.twitterButton) {
-        
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"twitter://user?screen_name=UTCompSci"]];
     }
 }
 
@@ -122,7 +122,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MenuTableViewCell"];
         cell.selectionStyle         = UITableViewCellSelectionStyleNone;
         cell.backgroundColor        = [UIColor clearColor];
-        cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:32];
+        cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:28];
     }
     
     cell.textLabel.textColor    = (indexPath.row == self.activeRow)? [UIColor whiteColor] : [UIColor colorWithWhite:1.0 alpha:0.5];
