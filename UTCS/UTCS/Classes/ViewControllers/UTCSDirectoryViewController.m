@@ -36,6 +36,54 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.directoryManager = [UTCSDirectoryManager new];
         
+        self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        self.backgroundImageView.image = [[UIImage imageNamed:@"directoryBackground"]applyDarkEffect];
+        [self.view addSubview:self.backgroundImageView];
+        
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
+                                                     style:UITableViewStylePlain];
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.rowHeight = 64.0;
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self.directoryManager;
+        [self.view addSubview:self.tableView];
+        
+        self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
+        self.searchBar.placeholder = @"Search Name";
+        self.searchBar.tintColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        [self.view addSubview:self.searchBar];
+        self.searchBar.showsScopeBar = YES;
+        self.searchBar.scopeButtonTitles = @[@"Faculty", @"Staff", @"Graduate"];
+        
+        self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+        self.directoryManager.searchDisplayController.delegate = self;
+        
+        self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
+        self.scrollToTopButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:self.scrollToTopButton];
+        
+        // Menu Button
+        self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
+        [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:self.menuButton];
+        
+        self.syncButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            button.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 44);
+            button.center = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
+            [button setTitle:@"Sync Directory" forState:UIControlStateNormal];
+            button.tintColor = [UIColor whiteColor];
+            button.layer.borderWidth = 1.0;
+            button.layer.borderColor = [UIColor whiteColor].CGColor;
+            button.layer.cornerRadius = 8.0;
+            button.layer.masksToBounds = YES;
+            button;
+        });
+        [self.view addSubview:self.syncButton];
     }
     return self;
 }
@@ -66,56 +114,6 @@
         progressHUD.labelText = @"Syncing...";
         progressHUD;
     });
-    
-    
-    self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    self.backgroundImageView.image = [[UIImage imageNamed:@"directoryBackground"]applyDarkEffect];
-    [self.view addSubview:self.backgroundImageView];
-    
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
-                                                 style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.rowHeight = 64.0;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self.directoryManager;
-    [self.view addSubview:self.tableView];
-    
-    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
-    self.searchBar.placeholder = @"Search Name";
-    self.searchBar.tintColor = [UIColor colorWithWhite:1.0 alpha:1.0];
-    self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-    [self.view addSubview:self.searchBar];
-    self.searchBar.showsScopeBar = YES;
-    self.searchBar.scopeButtonTitles = @[@"Faculty", @"Staff", @"Graduate"];
-    
-    self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
-    self.directoryManager.searchDisplayController.delegate = self;
-    
-    self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
-    self.scrollToTopButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-    [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:self.scrollToTopButton];
-    
-    // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
-    [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:self.menuButton];
-    
-    self.syncButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        button.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 44);
-        button.center = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
-        [button setTitle:@"Sync Directory" forState:UIControlStateNormal];
-        button.tintColor = [UIColor whiteColor];
-        button.layer.borderWidth = 1.0;
-        button.layer.borderColor = [UIColor whiteColor].CGColor;
-        button.layer.cornerRadius = 8.0;
-        button.layer.masksToBounds = YES;
-        button;
-    });
-    [self.view addSubview:self.syncButton];
 }
 
 - (void)didTouchDownInsideButton:(UIButton *)button

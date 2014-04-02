@@ -122,6 +122,60 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.newsStoryManager = [UTCSNewsStoryManager new];
         self.newsDetailViewController = [UTCSNewsDetailViewController new];
+        
+        // Background header blur table view
+        self.backgroundHeaderBlurTableView = ({
+            UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
+            view.tableView.delegate = self;
+            view.tableView.dataSource = self.newsStoryManager;
+            view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
+                                                                                           blendingMode:kCGBlendModeOverlay];
+            view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
+                                                                                                  blendingMode:kCGBlendModeOverlay];
+            view;
+        });
+        [self.view addSubview:self.backgroundHeaderBlurTableView];
+        
+        // Shimmering view
+        self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, shimmeringViewFontSize)];
+        self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
+        self.utcsNewsShimmeringView.contentView = ({
+            UILabel *label      = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
+            label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor     = [UIColor whiteColor];
+            label.text          = @"UTCS News";
+            label;
+        });
+        [self.backgroundHeaderBlurTableView.header addSubview:self.utcsNewsShimmeringView];
+        
+        // Subtitle label
+        self.utcsSubtitleLabel = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize)];
+            label.font          = [UIFont fontWithName:@"HelveticaNeue" size:subtitleLabelFontSize];
+            label.center        = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
+            label.text          = @"What Starts Here Changes the World";
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
+            label.alpha         = 0.0;
+            label;
+        });
+        [self.backgroundHeaderBlurTableView.header addSubview:self.utcsSubtitleLabel];
+        
+        // Updated label
+        self.updatedLabel = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0,self.backgroundHeaderBlurTableView.header.height - self.backgroundHeaderBlurTableView.navigationBarHeight - updatedLabelFontSize - 8.0, self.backgroundHeaderBlurTableView.width - 16.0, 1.5 * updatedLabelFontSize)];
+            label.font = [UIFont fontWithName:@"HelveticaNeue" size:updatedLabelFontSize];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            label.alpha = 0.0;
+            label;
+        });
+        [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
+        
+        // Menu Button
+        self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2.0, 8.0, 56.0, 32.0)];
+        [self.view addSubview:self.menuButton];
+        
     }
     return self;
 }
@@ -130,58 +184,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [super viewDidLoad];
     
-    // Background header blur table view
-    self.backgroundHeaderBlurTableView = ({
-        UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-        view.tableView.delegate = self;
-        view.tableView.dataSource = self.newsStoryManager;
-        view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                       blendingMode:kCGBlendModeOverlay];
-        view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                              blendingMode:kCGBlendModeOverlay];
-        view;
-    });
-    [self.view addSubview:self.backgroundHeaderBlurTableView];
-    
-    // Shimmering view
-    self.utcsNewsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, shimmeringViewFontSize)];
-    self.utcsNewsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
-    self.utcsNewsShimmeringView.contentView = ({
-        UILabel *label      = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
-        label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor     = [UIColor whiteColor];
-        label.text          = @"UTCS News";
-        label;
-    });
-    [self.backgroundHeaderBlurTableView.header addSubview:self.utcsNewsShimmeringView];
 
-    // Subtitle label
-    self.utcsSubtitleLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize)];
-        label.font          = [UIFont fontWithName:@"HelveticaNeue" size:subtitleLabelFontSize];
-        label.center        = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
-        label.text          = @"What Starts Here Changes the World";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
-        label.alpha         = 0.0;
-        label;
-    });
-    [self.backgroundHeaderBlurTableView.header addSubview:self.utcsSubtitleLabel];
-
-    // Updated label
-    self.updatedLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0,self.backgroundHeaderBlurTableView.header.height - self.backgroundHeaderBlurTableView.navigationBarHeight - updatedLabelFontSize - 8.0, self.backgroundHeaderBlurTableView.width - 16.0, 1.5 * updatedLabelFontSize)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:updatedLabelFontSize];
-        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        label.alpha = 0.0;
-        label;
-    });
-    [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
-    
-    // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2.0, 8.0, 56.0, 32.0)];
-    [self.view addSubview:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -46,6 +46,40 @@
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.eventManager = [UTCSEventsManager new];
+        
+        self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
+        self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"menuBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+        self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"menuBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+        self.backgroundHeaderBlurTableView.tableView.delegate = self;
+        self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventManager;
+        [self.view addSubview:self.backgroundHeaderBlurTableView];
+        
+        self.utcsEventsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
+        self.utcsEventsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
+        self.utcsEventsShimmeringView.contentView = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:self.utcsEventsShimmeringView.bounds];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:48];
+            label.text = @"UTCS Events";
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor whiteColor];
+            label;
+        });
+        [self.backgroundHeaderBlurTableView.header addSubview:self.utcsEventsShimmeringView];
+        
+        self.updatedLabel = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.backgroundHeaderBlurTableView.header.height - 64.0,
+                                                                      self.backgroundHeaderBlurTableView.header.width - 16, 18)];
+            label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            label;
+        });
+        self.updatedLabel.alpha = 0.0;
+        [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
+        
+        // Menu Button
+        self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
+        [self.view addSubview:self.menuButton];
+        
     }
     return self;
 }
@@ -54,38 +88,7 @@
 {
     [super viewDidLoad];
     
-    self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-    self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"menuBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
-    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"menuBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
-    self.backgroundHeaderBlurTableView.tableView.delegate = self;
-    self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventManager;
-    [self.view addSubview:self.backgroundHeaderBlurTableView];
-    
-    self.utcsEventsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
-    self.utcsEventsShimmeringView.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
-    self.utcsEventsShimmeringView.contentView = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:self.utcsEventsShimmeringView.bounds];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:48];
-        label.text = @"UTCS Events";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        label;
-    });
-    [self.backgroundHeaderBlurTableView.header addSubview:self.utcsEventsShimmeringView];
 
-    self.updatedLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, self.backgroundHeaderBlurTableView.header.height - 64.0,
-                                                                  self.backgroundHeaderBlurTableView.header.width - 16, 18)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        label;
-    });
-    self.updatedLabel.alpha = 0.0;
-    [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
-    
-    // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
-    [self.view addSubview:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
