@@ -9,6 +9,7 @@
 #import "UTCSMenuViewController.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
+#import "UTCSNotificationsViewController.h"
 
 #pragma mark - UTCSMenuViewController Class Extension
 
@@ -25,6 +26,10 @@
 
 @property (nonatomic) UIButton          *notificationsButton;
 
+@property (nonatomic) UITableView       *tableView;
+
+@property (nonatomic) UTCSNotificationsViewController *notificationsViewController;
+
 @end
 
 
@@ -38,6 +43,7 @@
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Settings"];
+        self.notificationsViewController = [UTCSNotificationsViewController new];
     }
     return self;
 }
@@ -47,11 +53,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Menu";
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.tableView.rowHeight = 58;
+    self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.75 * self.view.width, self.view.height)
+                                                 style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = 60;
     self.tableView.contentInset = UIEdgeInsetsMake(0.05 * self.view.height, 0, 0, 0);
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.width = 0.75 * self.view.width;
+    [self.view addSubview:self.tableView];
     
     self.facebookButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -81,23 +97,23 @@
     
     self.notificationsButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = CGRectMake(self.view.width - 64.0, 0.05 * self.view.height, 44.0, 44.0);
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"notifications"]];
-        imageView.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        imageView.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
+        imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
+        imageView.alpha = 0.5;
         [button addSubview:imageView];
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(44.0, 0.0, 160.0, 44.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:22];
-        label.textColor = [UIColor whiteColor];
-        label.text = @"Notifications";
-        [button addSubview:label];
-        button.frame = CGRectMake(0.0, 0.0, 204.0, 44.0);
+        button.showsTouchWhenHighlighted = YES;
         button;
     });
+    [self.view addSubview:self.notificationsButton];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://profile/272565539464226"]]) {
         self.facebookButton.alpha = 0.5;
         self.facebookButton.centerX = self.view.width - 42.0;
@@ -116,6 +132,8 @@
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://profile/272565539464226"]];
     } else if(button == self.twitterButton) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"twitter://user?screen_name=UTCompSci"]];
+    } else if(button == self.notificationsButton) {
+        [self.navigationController pushViewController:self.notificationsViewController animated:YES];
     }
 }
 

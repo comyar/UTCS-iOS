@@ -159,7 +159,6 @@ static const CGFloat dateLabelFontSize  = 16.0;
                                                 dateStyle:NSDateFormatterLongStyle
                                                 timeStyle:NSDateFormatterNoStyle];
     
-    NSLog(@"%f", self.parallaxBlurHeaderScrollView.headerContainerView.height);
     // Set header image
     if(_newsStory.headerImage) {
         self.parallaxBlurHeaderScrollView.headerImage           = _newsStory.headerImage;

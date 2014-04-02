@@ -14,7 +14,7 @@
 
 /**
  */
-@interface UTCSMenuViewController : UITableViewController
+@interface UTCSMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 //
 @property (weak, nonatomic) id<UTCSMenuViewControllerDelegate> delegate;

@@ -77,7 +77,7 @@
     self.window.backgroundColor = [UIColor blackColor];
    
     // Initialize menu view controller
-    self.menuViewController = [[UTCSMenuViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
     // Initialize view controllers
@@ -88,7 +88,7 @@
     self.aboutViewController            = [UTCSAboutViewController new];
     self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.labsNavigationController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.newsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
