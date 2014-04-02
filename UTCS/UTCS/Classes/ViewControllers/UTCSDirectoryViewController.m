@@ -14,6 +14,7 @@
 #import "UIImage+ImageEffects.h"
 #import "UTCSDirectoryPerson.h"
 #import "UTCSDirectoryManager.h"
+#import "MBProgressHUD.h"
 
 @interface UTCSDirectoryViewController ()
 
@@ -23,6 +24,8 @@
 @property (nonatomic) UISearchBar               *searchBar;
 @property (nonatomic) UIButton                  *scrollToTopButton;
 @property (nonatomic) UTCSDirectoryManager      *directoryManager;
+@property (nonatomic) UIButton                  *syncButton;
+@property (nonatomic) MBProgressHUD             *progressHUD;
 
 @end
 
@@ -32,6 +35,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.directoryManager = [UTCSDirectoryManager new];
+        
     }
     return self;
 }
@@ -40,11 +44,30 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    if(!self.directoryManager.directory) {
+        self.syncButton.alpha = 1.0;
+        self.tableView.alpha = 0.0;
+        self.searchBar.alpha = 0.0;
+    } else {
+        self.syncButton.alpha = 0.0;
+        self.tableView.alpha = 1.0;
+        self.searchBar.alpha = 1.0;
+    }
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.progressHUD = ({
+        MBProgressHUD *progressHUD = [[MBProgressHUD alloc]initWithView:self.view];
+        progressHUD.mode = MBProgressHUDModeIndeterminate;
+        progressHUD.labelText = @"Syncing...";
+        progressHUD;
+    });
+    
+    
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     self.backgroundImageView.image = [[UIImage imageNamed:@"directoryBackground"]applyDarkEffect];
     [self.view addSubview:self.backgroundImageView];
@@ -79,17 +102,50 @@
     [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:self.menuButton];
     
-    [self.directoryManager syncDirectoryWithCompletion:^(BOOL success) {
-        [self.tableView reloadData];
-    }];
+    self.syncButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 44);
+        button.center = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
+        [button setTitle:@"Sync Directory" forState:UIControlStateNormal];
+        button.tintColor = [UIColor whiteColor];
+        button.layer.borderWidth = 1.0;
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
+        button.layer.cornerRadius = 8.0;
+        button.layer.masksToBounds = YES;
+        button;
+    });
+    [self.view addSubview:self.syncButton];
 }
 
 - (void)didTouchDownInsideButton:(UIButton *)button
 {
     if(button == self.scrollToTopButton) {
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
-    }
+    } else
     [self.directoryManager.searchDisplayController setActive:NO animated:YES];
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.syncButton) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self.directoryManager syncDirectoryWithCompletion:^(BOOL success) {
+                if(success) {
+                    [self.tableView reloadData];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.tableView.alpha = (success)? 1.0 : 0.0;
+                        self.syncButton.alpha = (success)? 0.0 : 1.0;
+                        self.searchBar.alpha = (success)? 1.0 : 0.0;
+                    }];
+                });
+            }];
+        });
+    }
 }
 
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller

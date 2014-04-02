@@ -36,4 +36,27 @@
     return [parseType capitalizedString];
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if(self = [super init]) {
+        _fullName = [aDecoder valueForKey:@"name"];
+        _firstName = [aDecoder valueForKey:@"fName"];
+        _lastName = [aDecoder valueForKey:@"lName"];
+        _officeLocation = [aDecoder valueForKey:@"location"];
+        _phoneNumber = [aDecoder valueForKey:@"phone"];
+        _type = [aDecoder valueForKey:@"type"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_fullName forKey:@"name"];
+    [aCoder encodeObject:_firstName forKey:@"fName"];
+    [aCoder encodeObject:_lastName forKey:@"lName"];
+    [aCoder encodeObject:_officeLocation forKey:@"location"];
+    [aCoder encodeObject:_phoneNumber forKey:@"phone"];
+    [aCoder encodeObject:_type forKey:@"type"];
+}
+
 @end

@@ -12,10 +12,9 @@
 
 
 - (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion;
-- (NSArray *)searchResultsForString:(NSString *)searchString;
 
 
-@property (nonatomic, readonly) NSArray *directoryPeople;
+@property (nonatomic, readonly) NSArray         *directory;
 @property (nonatomic) UISearchDisplayController *searchDisplayController;
 
 @end

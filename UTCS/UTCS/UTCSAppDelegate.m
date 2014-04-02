@@ -128,6 +128,11 @@
     [webViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
 #pragma mark - Reveal
 
 #import <dlfcn.h>

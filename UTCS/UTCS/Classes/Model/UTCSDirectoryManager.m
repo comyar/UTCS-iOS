@@ -8,13 +8,22 @@
 
 #import "UTCSDirectoryManager.h"
 #import "UTCSDirectoryPerson.h"
-
+#import "UTCSStateManager.h"
 
 @interface UTCSDirectoryManager ()
 @property (nonatomic) NSArray *searchResults;
 @end
 
 @implementation UTCSDirectoryManager
+
+
+- (instancetype)init
+{
+    if(self = [super init]) {
+        _directory = [UTCSStateManager directory];
+    }
+    return self;
+}
 
 - (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion
 {
@@ -48,7 +57,7 @@
                     lastChar = firstChar;
                 }
             }
-            _directoryPeople = directoryPeople;
+            _directory = directoryPeople;
             if(completion) {
                 completion(YES);
             }
@@ -75,7 +84,7 @@
     if(tableView == self.searchDisplayController.searchResultsTableView) {
         person = self.searchResults[indexPath.section][indexPath.row];
     } else {
-        person = self.directoryPeople[indexPath.section][indexPath.row];
+        person = self.directory[indexPath.section][indexPath.row];
     }
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
@@ -88,17 +97,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.directoryPeople[section] count];
+    return [self.directory[section] count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.directoryPeople count];
+    return [self.directory count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    UTCSDirectoryPerson *person = self.directoryPeople[section][0];
+    UTCSDirectoryPerson *person = self.directory[section][0];
     return [[person.lastName substringToIndex:1]uppercaseString];
 }
 
@@ -112,7 +121,7 @@
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fullName like[cd] %@", searchString];
     NSMutableArray *filteredPeople = [NSMutableArray new];
-    for(NSArray *peopleForLetter in self.directoryPeople) {
+    for(NSArray *peopleForLetter in self.directory) {
         [filteredPeople addObject:[peopleForLetter filteredArrayUsingPredicate:predicate]];
     }
     self.searchResults = filteredPeople;

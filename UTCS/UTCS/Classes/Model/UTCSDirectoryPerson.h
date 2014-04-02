@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface UTCSDirectoryPerson : NSObject
+@interface UTCSDirectoryPerson : NSObject <NSCoding>
 
 + (UTCSDirectoryPerson *)directoryPersonWithParseObject:(PFObject *)object;
 
