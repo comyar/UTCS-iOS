@@ -12,6 +12,7 @@ typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
     UTCSMenuOptionEvents,
     UTCSMenuOptionLabs,
     UTCSMenuOptionDirectory,
+    UTCSMenuOptionDiskQuota,
     UTCSMenuOptionSettings
 };
 

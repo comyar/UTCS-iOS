@@ -194,6 +194,8 @@
         } else if(indexPath.row == 3) {
             option = UTCSMenuOptionLabs;
         } else if(indexPath.row == 4) {
+            option = UTCSMenuOptionDiskQuota;
+        } else if(indexPath.row == 5) {
             option = UTCSMenuOptionSettings;
         }
         [self.delegate didSelectMenuOption:option];

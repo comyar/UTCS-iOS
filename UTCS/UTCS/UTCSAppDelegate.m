@@ -123,6 +123,8 @@
         self.verticalMenuViewController.contentViewController = self.labsNavigationController;
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
+    } else if(option == UTCSMenuOptionDiskQuota) {
+        self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
     } else if(option == UTCSMenuOptionSettings) {
 //        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
