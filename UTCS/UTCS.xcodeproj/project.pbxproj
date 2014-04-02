@@ -60,6 +60,7 @@
 		DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B518EC3F950082C235 /* MBProgressHUD.m */; };
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
 		DDC676BE18EC5A550082C235 /* UTCSKeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */; };
+		DDC676C218EC5C3B0082C235 /* UTCSKeyChainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676C118EC5C3B0082C235 /* UTCSKeyChainItem.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */; };
@@ -170,6 +171,8 @@
 		DDC676B918EC55F40082C235 /* UTCSSSHManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSSHManager.m; sourceTree = "<group>"; };
 		DDC676BC18EC5A550082C235 /* UTCSKeyChainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeyChainManager.h; sourceTree = "<group>"; };
 		DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeyChainManager.m; sourceTree = "<group>"; };
+		DDC676C018EC5C3B0082C235 /* UTCSKeyChainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeyChainItem.h; sourceTree = "<group>"; };
+		DDC676C118EC5C3B0082C235 /* UTCSKeyChainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeyChainItem.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
@@ -452,6 +455,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DDC676BF18EC5C240082C235 /* KeyChainItem */,
 				DDC676BB18EC5A440082C235 /* KeyChainManager */,
 				DDC676B718EC55DB0082C235 /* SSHManager */,
 				DD0F0D6A18EC39D10088178C /* Settings */,
@@ -606,6 +610,15 @@
 				DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */,
 			);
 			name = KeyChainManager;
+			sourceTree = "<group>";
+		};
+		DDC676BF18EC5C240082C235 /* KeyChainItem */ = {
+			isa = PBXGroup;
+			children = (
+				DDC676C018EC5C3B0082C235 /* UTCSKeyChainItem.h */,
+				DDC676C118EC5C3B0082C235 /* UTCSKeyChainItem.m */,
+			);
+			name = KeyChainItem;
 			sourceTree = "<group>";
 		};
 		DDCA58E518BE4BA5001F543D /* UITextView+CZTextViewHeight */ = {
@@ -767,6 +780,7 @@
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
+				DDC676C218EC5C3B0082C235 /* UTCSKeyChainItem.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,

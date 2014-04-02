@@ -8,6 +8,10 @@
 
 #import "UTCSKeyChainManager.h"
 
+@interface UTCSKeyChainManager ()
+
+@end
+
 @implementation UTCSKeyChainManager
 
 @end
