@@ -452,7 +452,6 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DDC676BF18EC5C240082C235 /* KeyChainItem */,
 				DDC676BB18EC5A440082C235 /* KeyChainManager */,
 				DDC676B718EC55DB0082C235 /* SSHManager */,
 				DD0F0D6A18EC39D10088178C /* Settings */,
@@ -607,13 +606,6 @@
 				DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */,
 			);
 			name = KeyChainManager;
-			sourceTree = "<group>";
-		};
-		DDC676BF18EC5C240082C235 /* KeyChainItem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = KeyChainItem;
 			sourceTree = "<group>";
 		};
 		DDCA58E518BE4BA5001F543D /* UITextView+CZTextViewHeight */ = {

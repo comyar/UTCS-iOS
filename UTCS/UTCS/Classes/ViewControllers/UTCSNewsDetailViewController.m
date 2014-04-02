@@ -66,6 +66,8 @@ static const CGFloat dateLabelFontSize  = 16.0;
  */
 @property (nonatomic) NSArray                           *defaultHeaderImages;
 
+@property (nonatomic) UIButton                          *scrollToTopButton;
+
 @end
 
 
@@ -78,6 +80,14 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
         self.defaultHeaderImages = @[@[[UIImage imageNamed:@"header"], [UIImage imageNamed:@"blurredHeader"]]];
+        
+        self.scrollToTopButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
+            button;
+        });
+        self.navigationItem.titleView = self.scrollToTopButton;
         
         // Parallax blur header scroll view
         self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
@@ -118,6 +128,13 @@ static const CGFloat dateLabelFontSize  = 16.0;
         [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.contentTextView];
     }
     return self;
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.scrollToTopButton) {
+        [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0.0, 0.0, 1, 1) animated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
