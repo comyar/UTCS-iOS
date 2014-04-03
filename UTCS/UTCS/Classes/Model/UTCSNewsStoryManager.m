@@ -125,7 +125,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         } else {
             UIFont *htmlFont = attrs[NSFontAttributeName];
             NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"IowanOldStyle-Roman";
+            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"HelveticaNeue-Light";
             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.6 * htmlFont.pointSize];
             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];

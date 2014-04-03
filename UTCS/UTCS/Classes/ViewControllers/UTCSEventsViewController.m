@@ -121,17 +121,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEvent *event = self.eventManager.events[indexPath.row];
-    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
-                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
-                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
-                                                context:nil];
-    return MIN(ceilf(rect.size.height), 128) + 36.0;
+    return (3.0 * [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline].pointSize +
+            [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].pointSize) + 32.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90.0;
+    return (3.0 * [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline].pointSize) + [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].pointSize;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

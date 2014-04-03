@@ -20,9 +20,8 @@ static const CGFloat monthLabelFontSize = 14.0;
         
         self.backgroundColor = [UIColor clearColor];
         self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-//        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.numberOfLines = 4;
+        self.textLabel.numberOfLines = 3;
         
         self.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
         self.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];

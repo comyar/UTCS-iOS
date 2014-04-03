@@ -78,7 +78,6 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     UTCSDirectoryPerson *person = nil;
