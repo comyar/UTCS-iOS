@@ -55,6 +55,7 @@
 		DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */; };
 		DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */; };
 		DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */; };
+		DD83B55318EF1A5900EBDE06 /* UIView+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B55218EF1A5900EBDE06 /* UIView+Shake.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -166,6 +167,8 @@
 		DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeychainStore.m; sourceTree = "<group>"; };
 		DD83B54D18EF091400EBDE06 /* UTCSAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSAccountManager.h; sourceTree = "<group>"; };
 		DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSAccountManager.m; sourceTree = "<group>"; };
+		DD83B55118EF1A5900EBDE06 /* UIView+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shake.h"; sourceTree = "<group>"; };
+		DD83B55218EF1A5900EBDE06 /* UIView+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shake.m"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -582,6 +585,16 @@
 			name = AccountManager;
 			sourceTree = "<group>";
 		};
+		DD83B55018EF1A5900EBDE06 /* UIView+Shake */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B55118EF1A5900EBDE06 /* UIView+Shake.h */,
+				DD83B55218EF1A5900EBDE06 /* UIView+Shake.m */,
+			);
+			name = "UIView+Shake";
+			path = "Libraries/UIView+Shake";
+			sourceTree = "<group>";
+		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,6 +698,7 @@
 		DDF02FD118CF54AE00C7D012 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B55018EF1A5900EBDE06 /* UIView+Shake */,
 				DDC676C718EC6DB00082C235 /* WMGaugeView */,
 				DDC676B318EC3F6E0082C235 /* MBProgressHUD */,
 				DD7968F718B5EB03009ADE2A /* ImageEffects */,
@@ -816,6 +830,7 @@
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
+				DD83B55318EF1A5900EBDE06 /* UIView+Shake.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
