@@ -61,7 +61,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
     cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
     
     cell.textLabel.text = event.name;
-    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle];
+    cell.detailTextLabel.text = event.location;
     
     return cell;
 }

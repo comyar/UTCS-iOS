@@ -60,7 +60,6 @@
 		DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B518EC3F950082C235 /* MBProgressHUD.m */; };
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
 		DDC676BE18EC5A550082C235 /* UTCSKeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */; };
-		DDC676C618EC63F70082C235 /* UTCSNotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676C518EC63F70082C235 /* UTCSNotificationsViewController.m */; };
 		DDC676CA18EC6DBC0082C235 /* WMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676C918EC6DBC0082C235 /* WMGaugeView.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
@@ -173,8 +172,6 @@
 		DDC676B918EC55F40082C235 /* UTCSSSHManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSSHManager.m; sourceTree = "<group>"; };
 		DDC676BC18EC5A550082C235 /* UTCSKeyChainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeyChainManager.h; sourceTree = "<group>"; };
 		DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeyChainManager.m; sourceTree = "<group>"; };
-		DDC676C418EC63F70082C235 /* UTCSNotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNotificationsViewController.h; sourceTree = "<group>"; };
-		DDC676C518EC63F70082C235 /* UTCSNotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNotificationsViewController.m; sourceTree = "<group>"; };
 		DDC676C818EC6DBC0082C235 /* WMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMGaugeView.h; path = Libraries/WMGaugeView/WMGaugeView.h; sourceTree = "<group>"; };
 		DDC676C918EC6DBC0082C235 /* WMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMGaugeView.m; path = Libraries/WMGaugeView/WMGaugeView.m; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
@@ -520,7 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				DDC676CB18EC6DD30082C235 /* DiskQuota */,
-				DDC676C318EC61EE0082C235 /* Notifications */,
 				DD4954D818EBAFA000BC928B /* Web */,
 				DD44658418E5837B00ED1153 /* About */,
 				DD44657F18E5836200ED1153 /* Settings */,
@@ -617,15 +613,6 @@
 				DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */,
 			);
 			name = KeyChainManager;
-			sourceTree = "<group>";
-		};
-		DDC676C318EC61EE0082C235 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				DDC676C418EC63F70082C235 /* UTCSNotificationsViewController.h */,
-				DDC676C518EC63F70082C235 /* UTCSNotificationsViewController.m */,
-			);
-			name = Notifications;
 			sourceTree = "<group>";
 		};
 		DDC676C718EC6DB00082C235 /* WMGaugeView */ = {
@@ -816,7 +803,6 @@
 				DD44658A18E584A200ED1153 /* UTCSEventsManager.m in Sources */,
 				DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
-				DDC676C618EC63F70082C235 /* UTCSNotificationsViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,

@@ -120,6 +120,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title = @"News";
         self.newsStoryManager = [UTCSNewsStoryManager new];
         self.newsDetailViewController = [UTCSNewsDetailViewController new];
         
@@ -187,10 +188,16 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
     
     if([self.newsStoryManager.newsStories count]) {
         return;

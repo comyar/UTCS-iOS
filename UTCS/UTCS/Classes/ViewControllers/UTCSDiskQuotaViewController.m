@@ -10,6 +10,7 @@
 #import "UTCSMenuButton.h"
 #import "WMGaugeView.h"
 #import "UIView+CZPositioning.h"
+#import "UTCSSSHManager.h"
 
 @interface UTCSDiskQuotaViewController ()
 @property (nonatomic) UTCSMenuButton    *menuButton;
@@ -24,6 +25,11 @@
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
