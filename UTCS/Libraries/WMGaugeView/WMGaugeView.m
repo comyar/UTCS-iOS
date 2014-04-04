@@ -273,12 +273,12 @@
             
             // External circle
             CGContextAddEllipseInRect(context, CGRectMake(center.x - EXTERNAL_RING_RADIUS, center.y - EXTERNAL_RING_RADIUS, EXTERNAL_RING_RADIUS * 2.0, EXTERNAL_RING_RADIUS * 2.0));
-            CGContextSetFillColorWithColor(context, CGRGB(255, 104, 97));
+            CGContextSetFillColorWithColor(context, CGRGB(242, 169, 0));
             CGContextFillPath(context);
             
             // Inner circle
             CGContextAddEllipseInRect(context, CGRectMake(center.x - INTERNAL_RING_RADIUS, center.y - INTERNAL_RING_RADIUS, INTERNAL_RING_RADIUS * 2.0, INTERNAL_RING_RADIUS * 2.0));
-            CGContextSetFillColorWithColor(context, CGRGB(242, 99, 92));
+            CGContextSetFillColorWithColor(context, CGRGB(203, 96, 21));
             CGContextFillPath(context);
         }
         break;
@@ -461,8 +461,8 @@
 
             needleLayer.path = needlePath.CGPath;
             needleLayer.backgroundColor = [[UIColor clearColor] CGColor];
-            needleLayer.fillColor = CGRGB(255, 104, 97);
-            needleLayer.strokeColor = CGRGB(255, 104, 97);
+            needleLayer.fillColor = CGRGB(203, 96, 21);
+            needleLayer.strokeColor = CGRGB(203, 96, 21);
             needleLayer.lineWidth = 1.2;
             
             // Needle shadow
@@ -515,7 +515,7 @@
             screwLayer.bounds = CGRectMake(FULL_SCALE(center.x - _needleScrewRadius, center.y - _needleScrewRadius), FULL_SCALE(_needleScrewRadius * 2.0, _needleScrewRadius * 2.0));
             screwLayer.position = CGPointMake(FULL_SCALE(center.x, center.y));
             screwLayer.path = [UIBezierPath bezierPathWithOvalInRect:screwLayer.bounds].CGPath;
-            screwLayer.fillColor = CGRGB(68, 84, 105);
+            screwLayer.fillColor = CGRGB(203, 96, 21);
             
             // Screw shadow
             screwLayer.shadowColor = [[UIColor blackColor] CGColor];

@@ -52,7 +52,6 @@
 		DD79690518B60D69009ADE2A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690418B60D69009ADE2A /* CoreLocation.framework */; };
 		DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690618B60D78009ADE2A /* libz.dylib */; };
 		DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690818B60D81009ADE2A /* MobileCoreServices.framework */; };
-		DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690A18B60D8D009ADE2A /* StoreKit.framework */; };
 		DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */; };
 		DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */; };
 		DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */; };
@@ -162,7 +161,6 @@
 		DD79690418B60D69009ADE2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DD79690618B60D78009ADE2A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DD79690818B60D81009ADE2A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		DD79690A18B60D8D009ADE2A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD83B54918EEF94100EBDE06 /* UTCSKeychainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeychainStore.h; sourceTree = "<group>"; };
 		DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeychainStore.m; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 		DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaAuthenticationViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
-		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561E318DC15C700C46480 /* UTCSVerticalMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -217,7 +214,6 @@
 				DDF02B4518CE8C3800C7D012 /* CoreVideo.framework in Frameworks */,
 				DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */,
 				DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */,
-				DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */,
 				DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */,
 				DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */,
 				DD44658C18E5859F00ED1153 /* NMSSH.framework in Frameworks */,
@@ -278,7 +274,6 @@
 				DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */,
 				DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */,
 				DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */,
-				DD79690A18B60D8D009ADE2A /* StoreKit.framework */,
 				DD79690818B60D81009ADE2A /* MobileCoreServices.framework */,
 				DD79690618B60D78009ADE2A /* libz.dylib */,
 				DD79690418B60D69009ADE2A /* CoreLocation.framework */,
@@ -299,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				DDFD7DD618AA049A008F5A47 /* Resources.xcassets */,
-				DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */,
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
 				DD5B583818D239F900EEB474 /* Classes */,
@@ -749,6 +743,14 @@
 				TargetAttributes = {
 					0B9A26321891D5E30032DA03 = {
 						DevelopmentTeam = TRMC2X2YJ7;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					0B9A264D1891D5E30032DA03 = {
 						TestTargetID = 0B9A26321891D5E30032DA03;

@@ -22,7 +22,9 @@ static NSString * const UTCSAccountManagerPasswordKey = @"UTCSAccountManagerPass
 + (NSString *)password
 {
     NSString *username = [UTCSAccountManager username];
+    NSLog(@"%@", username);
     if(!username) {
+        NSLog(@"Returning nil");
         return nil;
     }
     

@@ -125,7 +125,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
      ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
             UIFont *htmlFont = attrs[NSFontAttributeName];
             NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"TimesNewRomanPSMT";
+            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"HelveticaNeue-Light";
             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
             UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.5 * htmlFont.pointSize];
             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSDiskQuotaAuthenticationViewController : UIViewController
+@interface UTCSDiskQuotaAuthenticationViewController : UIViewController <UITextFieldDelegate>
 
 @end

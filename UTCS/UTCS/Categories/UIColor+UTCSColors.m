@@ -7,7 +7,8 @@
 //
 
 #import "UIColor+UTCSColors.h"
-#import "UTCSGlobal.h"
+
+#define RGB(val) ((1.0 * val) / 255.0)
 
 @implementation UIColor (UTCSColors)
 
