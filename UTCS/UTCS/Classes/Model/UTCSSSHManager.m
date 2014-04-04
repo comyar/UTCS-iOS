@@ -46,23 +46,20 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
     return sharedSSHAuthHandler;
 }
 
-- (void)connectWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion
+- (BOOL)connectWithUsername:(NSString *)username password:(NSString *)password
 {
     if(self.isAuthenticated) {
-        return;
+        return YES;
     }
     
     self.session = [NMSSHSession connectToHost:host withUsername:username];
     if(self.session.connected) {
         [self.session authenticateByPassword:password];
         if(self.session.authorized) {
-            completion(YES);
-        } else {
-            completion(NO);
+            return YES;
         }
-    } else {
-        completion(NO);
     }
+    return NO;
     
 }
 

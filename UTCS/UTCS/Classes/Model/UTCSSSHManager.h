@@ -12,7 +12,7 @@
 
 + (UTCSSSHManager *)sharedSSHAuthHandler;
 
-- (void)connectWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL success))completion;
+- (BOOL)connectWithUsername:(NSString *)username password:(NSString *)password;
 - (NSString *)executeCommand:(NSString *)command;
 
 
