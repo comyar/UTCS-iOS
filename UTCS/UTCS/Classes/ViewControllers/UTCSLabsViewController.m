@@ -121,14 +121,9 @@
         [self.usernameTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
         
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [[UTCSSSHManager sharedSSHAuthHandler]connectWithUsername:self.usernameTextField.text password:self.passwordTextField.text completion:^(BOOL success) {
-                NSLog(@"%@", [[UTCSSSHManager sharedSSHAuthHandler]executeCommand:@"chkquota"]);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-            }];
+            
+            
         });
     }
 }

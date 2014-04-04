@@ -55,6 +55,7 @@
 		DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690A18B60D8D009ADE2A /* StoreKit.framework */; };
 		DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */; };
 		DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */; };
+		DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -165,6 +166,8 @@
 		DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD83B54918EEF94100EBDE06 /* UTCSKeychainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeychainStore.h; sourceTree = "<group>"; };
 		DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeychainStore.m; sourceTree = "<group>"; };
+		DD83B54D18EF091400EBDE06 /* UTCSAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSAccountManager.h; sourceTree = "<group>"; };
+		DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSAccountManager.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B54C18EF090400EBDE06 /* AccountManager */,
 				DD83B54818EEF92F00EBDE06 /* KeychainStore */,
 				DDC676B718EC55DB0082C235 /* SSHManager */,
 				DD0F0D6A18EC39D10088178C /* Settings */,
@@ -573,6 +577,15 @@
 				DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */,
 			);
 			name = KeychainStore;
+			sourceTree = "<group>";
+		};
+		DD83B54C18EF090400EBDE06 /* AccountManager */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B54D18EF091400EBDE06 /* UTCSAccountManager.h */,
+				DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */,
+			);
+			name = AccountManager;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -797,6 +810,7 @@
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */,
+				DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,

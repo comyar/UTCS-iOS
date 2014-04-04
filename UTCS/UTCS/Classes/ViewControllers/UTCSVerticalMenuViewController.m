@@ -175,6 +175,7 @@ const CGFloat animationDuration = 0.25;
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
     if(!contentViewController || _contentViewController == contentViewController) {
+        [self hideMenu];
         return;
     } else if(_contentViewController) {
         [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];

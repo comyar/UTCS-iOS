@@ -27,6 +27,13 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -45,14 +52,14 @@
     self.gaugeView.center = self.view.center;
     self.gaugeView.backgroundColor = [UIColor clearColor];
 
-    self.gaugeView.maxValue = 100.0;
+    self.gaugeView.maxValue = 2048;
     self.gaugeView.scaleDivisions = 10;
     self.gaugeView.scaleSubdivisions = 5;
-    self.gaugeView.scaleStartAngle = 30;
-    self.gaugeView.scaleEndAngle = 280;
+    self.gaugeView.scaleStartAngle = 45;
+    self.gaugeView.scaleEndAngle = 315;
     self.gaugeView.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleFlat;
     self.gaugeView.showScaleShadow = NO;
-    self.gaugeView.scaleFont = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:0.065];
+    self.gaugeView.scaleFont = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:0.07];
     self.gaugeView.scalesubdivisionsAligment = WMGaugeViewSubdivisionsAlignmentCenter;
     self.gaugeView.scaleSubdivisionsWidth = 0.002;
     self.gaugeView.scaleSubdivisionsLength = 0.04;
