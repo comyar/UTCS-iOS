@@ -16,9 +16,11 @@
 
 + (UTCSKeychainStore *)sharedKeychainStore;
 
-- (void)setString:(NSString *)value forKey:(NSString *)key;
+- (NSString *)itemForKey:(NSString *)key account:(NSString *)account;
+- (BOOL)setItem:(NSString *)item forKey:(NSString *)key account:(NSString *)account;
+- (void)removeAllItems;
+
 
 @property (nonatomic, readonly) NSString *service;
-@property (nonatomic, readonly) NSString *accessGroup;
 
 @end
