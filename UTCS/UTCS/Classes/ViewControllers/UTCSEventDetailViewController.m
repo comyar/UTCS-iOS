@@ -17,7 +17,7 @@
 /**
  Font size of the date label
  */
-static const CGFloat dateLabelFontSize  = 16.0;
+static const CGFloat dateLabelFontSize  = 32.0;
 
 
 @interface UTCSEventDetailViewController ()
@@ -50,8 +50,9 @@ static const CGFloat dateLabelFontSize  = 16.0;
         
         self.locationLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - 1.5 * dateLabelFontSize, self.view.width - 16.0, 1.5 * dateLabelFontSize)];
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:dateLabelFontSize];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.75];
+            label.numberOfLines = 1;
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:dateLabelFontSize];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.90];
             label.adjustsFontSizeToFitWidth = YES;
             label;
         });
@@ -99,7 +100,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 {
     _event = event;
     
-    self.locationLabel.text = [NSString stringWithFormat:@"Location : %@", event.location];
+    self.locationLabel.text = [NSString stringWithFormat:@"%@", event.location];
     
     self.descriptionTextView.attributedText = event.attributedDescription;
     self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width

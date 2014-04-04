@@ -54,14 +54,16 @@
 		DD79690918B60D81009ADE2A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690818B60D81009ADE2A /* MobileCoreServices.framework */; };
 		DD79690B18B60D8D009ADE2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690A18B60D8D009ADE2A /* StoreKit.framework */; };
 		DD79690D18B60D96009ADE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */; };
+		DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B518EC3F950082C235 /* MBProgressHUD.m */; };
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
-		DDC676BE18EC5A550082C235 /* UTCSKeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */; };
 		DDC676CA18EC6DBC0082C235 /* WMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676C918EC6DBC0082C235 /* WMGaugeView.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
+		DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */; };
+		DDC676D418EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */; };
@@ -161,6 +163,8 @@
 		DD79690818B60D81009ADE2A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DD79690A18B60D8D009ADE2A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DD79690C18B60D96009ADE2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DD83B54918EEF94100EBDE06 /* UTCSKeychainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeychainStore.h; sourceTree = "<group>"; };
+		DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeychainStore.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -170,12 +174,14 @@
 		DDC676B518EC3F950082C235 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libraries/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		DDC676B818EC55F40082C235 /* UTCSSSHManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSSHManager.h; sourceTree = "<group>"; };
 		DDC676B918EC55F40082C235 /* UTCSSSHManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSSHManager.m; sourceTree = "<group>"; };
-		DDC676BC18EC5A550082C235 /* UTCSKeyChainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSKeyChainManager.h; sourceTree = "<group>"; };
-		DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSKeyChainManager.m; sourceTree = "<group>"; };
 		DDC676C818EC6DBC0082C235 /* WMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMGaugeView.h; path = Libraries/WMGaugeView/WMGaugeView.h; sourceTree = "<group>"; };
 		DDC676C918EC6DBC0082C235 /* WMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMGaugeView.m; path = Libraries/WMGaugeView/WMGaugeView.m; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
+		DDC676CF18EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsAuthenticationViewController.h; sourceTree = "<group>"; };
+		DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsAuthenticationViewController.m; sourceTree = "<group>"; };
+		DDC676D218EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDiskQuotaAuthenticationViewController.h; sourceTree = "<group>"; };
+		DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaAuthenticationViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDDF8A1018A6657E006DD1D4 /* UTCSGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSGlobal.h; sourceTree = "<group>"; };
@@ -354,6 +360,8 @@
 			children = (
 				DD44657818E5832E00ED1153 /* UTCSLabsViewController.h */,
 				DD44657918E5832E00ED1153 /* UTCSLabsViewController.m */,
+				DDC676CF18EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.h */,
+				DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */,
 			);
 			name = Labs;
 			sourceTree = "<group>";
@@ -458,7 +466,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DDC676BB18EC5A440082C235 /* KeyChainManager */,
+				DD83B54818EEF92F00EBDE06 /* KeychainStore */,
 				DDC676B718EC55DB0082C235 /* SSHManager */,
 				DD0F0D6A18EC39D10088178C /* Settings */,
 				DD4954DC18EBB1FA00BC928B /* Application */,
@@ -558,6 +566,15 @@
 			path = UTCS;
 			sourceTree = "<group>";
 		};
+		DD83B54818EEF92F00EBDE06 /* KeychainStore */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B54918EEF94100EBDE06 /* UTCSKeychainStore.h */,
+				DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */,
+			);
+			name = KeychainStore;
+			sourceTree = "<group>";
+		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,15 +623,6 @@
 			name = SSHManager;
 			sourceTree = "<group>";
 		};
-		DDC676BB18EC5A440082C235 /* KeyChainManager */ = {
-			isa = PBXGroup;
-			children = (
-				DDC676BC18EC5A550082C235 /* UTCSKeyChainManager.h */,
-				DDC676BD18EC5A550082C235 /* UTCSKeyChainManager.m */,
-			);
-			name = KeyChainManager;
-			sourceTree = "<group>";
-		};
 		DDC676C718EC6DB00082C235 /* WMGaugeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,6 +637,8 @@
 			children = (
 				DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */,
 				DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */,
+				DDC676D218EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.h */,
+				DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */,
 			);
 			name = DiskQuota;
 			sourceTree = "<group>";
@@ -777,8 +787,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD0F0D6D18EC39DE0088178C /* UTCSStateManager.m in Sources */,
+				DDC676D418EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m in Sources */,
 				DD44658318E5837600ED1153 /* UTCSSettingsViewController.m in Sources */,
 				DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */,
+				DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */,
 				DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */,
 				DD44656318E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
@@ -786,7 +798,6 @@
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
-				DDC676BE18EC5A550082C235 /* UTCSKeyChainManager.m in Sources */,
 				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
@@ -797,6 +808,7 @@
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */,
+				DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */,
 				DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */,
 				DD44658718E5838600ED1153 /* UTCSAboutViewController.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,

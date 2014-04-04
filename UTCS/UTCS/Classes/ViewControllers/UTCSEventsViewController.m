@@ -45,6 +45,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title = @"Events";
         self.eventManager = [UTCSEventsManager new];
         
         self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
