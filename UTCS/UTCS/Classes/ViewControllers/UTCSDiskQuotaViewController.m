@@ -67,9 +67,14 @@
                     CGFloat usage = [self diskUsageForResponse:response];
                     self.gaugeView.maxValue = limit;
                     [self.gaugeView setValue:usage animated:YES];
+                    self.updatedLabel.text = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                                            dateStyle:NSDateFormatterMediumStyle
+                                                                            timeStyle:NSDateFormatterMediumStyle];
                 });
                 [[UTCSSSHManager sharedSSHManager]disconnect];
             }];
+        } else {
+            self.updatedLabel.text = @"Update Failed. Check Your Network Connection.";
         }
     }];
 }
@@ -153,6 +158,14 @@
         button;
     });
     [self.view addSubview:self.updateButton];
+    
+    self.updatedLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, self.view.height - 24, self.view.width, 24)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor blackColor];
+        label;
+    });
 }
 
 @end

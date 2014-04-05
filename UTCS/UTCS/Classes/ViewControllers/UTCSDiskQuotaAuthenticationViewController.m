@@ -12,6 +12,8 @@
 #import "UTCSSSHManager.h"
 #import "UIView+Shake.h"
 #import "UTCSAccountManager.h"
+#import "MBProgressHUD.h"
+#import "UIColor+UTCSColors.h"
 
 @interface UTCSDiskQuotaAuthenticationViewController ()
 @property (nonatomic) UIView                    *loginContainerView;
@@ -20,26 +22,30 @@
 @property (nonatomic) UTCSMenuButton            *menuButton;
 @property (nonatomic) UIView                    *textFieldSeparatorView;
 @property (nonatomic) UIButton                  *loginButton;
+@property (nonatomic) UILabel                   *titleLabel;
 @end
 
 @implementation UTCSDiskQuotaAuthenticationViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-     self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.loginContainerView = [[UIView alloc]initWithFrame:self.view.bounds];
     self.loginContainerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.loginContainerView];
+    
+    self.titleLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.1 * self.view.height, self.view.width, 100)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:62];
+        label.textColor = [UIColor utcsDarkGrayColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = @"Disk Quota";
+        label;
+    });
+    [self.view addSubview:self.titleLabel];
+    
     
     self.usernameTextField = ({
         UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
@@ -48,12 +54,15 @@
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.textColor = [UIColor blackColor];
         textField.tintColor = [UIColor darkGrayColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.delegate = self;
+        textField.returnKeyType = UIReturnKeyNext;
         textField.textAlignment = NSTextAlignmentCenter;
-        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"CS Username"];
+        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"username"];
         [attributedPlaceholder addAttribute:NSForegroundColorAttributeName
-                                      value:[UIColor lightGrayColor]
+                                      value:[UIColor utcsLightGrayColor]
                                       range:NSMakeRange(0, [attributedPlaceholder length])];
+        textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         textField.attributedPlaceholder = attributedPlaceholder;
         textField;
     });
@@ -61,8 +70,9 @@
     
     self.textFieldSeparatorView = ({
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 0.5)];
+        view.backgroundColor = [UIColor utcsBurntOrangeColor];
         view.center = self.view.center;
-        view.backgroundColor = [UIColor blackColor];
+        view.alpha = 0.5;
         view;
     });
     [self.loginContainerView addSubview:self.textFieldSeparatorView];
@@ -73,14 +83,17 @@
         textField.textColor = [UIColor blackColor];
         textField.tintColor = [UIColor darkGrayColor];
         textField.textAlignment = NSTextAlignmentCenter;
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.delegate = self;
+        textField.returnKeyType = UIReturnKeyDone;
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.secureTextEntry = YES;
-        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"Password"];
+        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"password"];
         [attributedPlaceholder addAttribute:NSForegroundColorAttributeName
-                                      value:[UIColor lightGrayColor]
+                                      value:[UIColor utcsLightGrayColor]
                                       range:NSMakeRange(0, [attributedPlaceholder length])];
+        textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         textField.attributedPlaceholder = attributedPlaceholder;
         textField;
     });
@@ -95,11 +108,11 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 44.0);
         button.center = CGPointMake(self.view.center.x, 1.5 * self.view.center.y);
-        button.layer.borderWidth = 1.0;
-        button.layer.borderColor = [UIColor blackColor].CGColor;
+        button.layer.borderWidth = 0.75;
+        button.layer.borderColor = [UIColor utcsDarkGrayColor].CGColor;
         button.layer.cornerRadius = 10.0;
         [button setTitle:@"Login" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor utcsDarkGrayColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
@@ -111,6 +124,7 @@
 {
     [UIView animateWithDuration:0.3 animations:^{
         self.loginContainerView.center = CGPointMake(self.view.center.x, 0.5 * self.view.center.y);
+        self.titleLabel.alpha = 0.0;
     }];
 }
 
@@ -119,8 +133,19 @@
     if(textField == self.passwordTextField) {
         [UIView animateWithDuration:0.3 animations:^{
             self.loginContainerView.center = self.view.center;
+            self.titleLabel.alpha = 1.0;
         }];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.usernameTextField) {
+        [self.passwordTextField becomeFirstResponder];
+    } else if(textField == self.passwordTextField) {
+        // auth
+    }
+    return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -129,6 +154,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.loginContainerView.center = self.view.center;
+        self.titleLabel.alpha = 1.0;
     }];
 }
 
@@ -141,6 +167,8 @@
         }];
         NSString *username = self.usernameTextField.text;
         NSString *password = self.passwordTextField.text;
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if(success) {
@@ -151,6 +179,7 @@
                 } else {
                     [self.loginContainerView shake:3 withDelta:16.0];
                 }
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         }];
     }
