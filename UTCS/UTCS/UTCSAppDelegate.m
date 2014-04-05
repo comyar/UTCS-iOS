@@ -126,7 +126,7 @@
     } else if(option == UTCSMenuOptionDiskQuota) {
         self.verticalMenuViewController.contentViewController = self.diskQuotaNavigationController;
     } else if(option == UTCSMenuOptionSettings) {
-//        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
+        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
 
