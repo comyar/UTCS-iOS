@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol UTCSDiskQuotaAuthenticationViewControllerDelegate <NSObject>
+
+- (void)didAuthenticate;
+
+@end
+
 @interface UTCSDiskQuotaAuthenticationViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic) id<UTCSDiskQuotaAuthenticationViewControllerDelegate> delegate;
 
 @end

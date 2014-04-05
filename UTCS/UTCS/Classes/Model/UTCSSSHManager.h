@@ -10,11 +10,11 @@
 
 @interface UTCSSSHManager : NSObject
 
-+ (UTCSSSHManager *)sharedSSHAuthHandler;
++ (UTCSSSHManager *)sharedSSHManager;
 
-- (BOOL)connectWithUsername:(NSString *)username password:(NSString *)password;
-- (NSString *)executeCommand:(NSString *)command;
-
+- (void)connectWithUsername:(NSString *)username password:(NSString *)password completion:(void(^)(BOOL success))completion;
+- (void)executeCommand:(NSString *)command completion:(void (^)(NSString *response))completion;
+- (void)disconnect;
 
 @property (nonatomic, readonly, getter = isConnected)       BOOL connected;
 @property (nonatomic, readonly, getter = isAuthenticated)   BOOL authenticated;

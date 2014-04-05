@@ -11,6 +11,7 @@
 #import "UIView+CZPositioning.h"
 #import "UTCSSSHManager.h"
 #import "UIView+Shake.h"
+#import "UTCSAccountManager.h"
 
 @interface UTCSDiskQuotaAuthenticationViewController ()
 @property (nonatomic) UIView                    *loginContainerView;
@@ -134,18 +135,24 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.loginButton) {
-        BOOL success = [[UTCSSSHManager sharedSSHAuthHandler]connectWithUsername:self.usernameTextField.text
-                                                                        password:self.passwordTextField.text];
-        if(success) {
-            NSString *result = [[UTCSSSHManager sharedSSHAuthHandler]executeCommand:@"ls"];
-            NSLog(@"%@", result);
-            
-            // Store in keychain
-            // pop view controller
-        } else {
-            // shake window
-            [self.loginContainerView shake:3 withDelta:16.0];
-        }
+        [self.view endEditing:YES];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.loginContainerView.center = self.view.center;
+        }];
+        NSString *username = self.usernameTextField.text;
+        NSString *password = self.passwordTextField.text;
+        [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(success) {
+                    [[UTCSSSHManager sharedSSHManager]disconnect];
+                    [UTCSAccountManager setUsername:username];
+                    [UTCSAccountManager setPassword:password];
+                    [self.delegate didAuthenticate];
+                } else {
+                    [self.loginContainerView shake:3 withDelta:16.0];
+                }
+            });
+        }];
     }
 }
 

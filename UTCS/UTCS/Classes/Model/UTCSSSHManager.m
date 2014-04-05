@@ -36,7 +36,7 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
     return self;
 }
 
-+ (UTCSSSHManager *)sharedSSHAuthHandler
++ (UTCSSSHManager *)sharedSSHManager
 {
     static UTCSSSHManager *sharedSSHAuthHandler = nil;
     static dispatch_once_t onceToken;
@@ -46,30 +46,42 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
     return sharedSSHAuthHandler;
 }
 
-- (BOOL)connectWithUsername:(NSString *)username password:(NSString *)password
+- (void)connectWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion
 {
     if(self.isAuthenticated) {
-        return YES;
+        completion(YES);
     }
     
-    self.session = [NMSSHSession connectToHost:host withUsername:username];
-    if(self.session.connected) {
-        [self.session authenticateByPassword:password];
-        if(self.session.authorized) {
-            return YES;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        self.session = [NMSSHSession connectToHost:host withUsername:username];
+        if(self.session.connected) {
+            if([self.session authenticateByPassword:password]) {
+                completion(YES);
+            } else {
+                completion(NO);
+            }
+        } else {
+            completion(NO);
         }
-    }
-    return NO;
+    });
     
 }
 
-- (NSString *)executeCommand:(NSString *)command
+- (void)executeCommand:(NSString *)command completion:(void (^)(NSString *))completion
 {
     if(!self.isAuthenticated) {
-        return nil;
+        completion(nil);
     }
     
-    return [self.session.channel execute:command error:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString *response = [self.session.channel execute:command error:nil];
+        completion(response);
+    });
+}
+
+- (void)disconnect
+{
+    [self.session disconnect];
 }
 
 - (BOOL)isAuthenticated

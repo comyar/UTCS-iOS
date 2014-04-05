@@ -15,7 +15,9 @@
 #import "UTCSDiskQuotaAuthenticationViewController.h"
 #import "UIColor+UTCSColors.h"
 
+
 @interface UTCSDiskQuotaViewController ()
+@property (nonatomic) CGFloat           currentQuota;
 @property (nonatomic) UTCSMenuButton    *menuButton;
 @property (nonatomic) UIButton          *updateButton;
 @property (nonatomic) UILabel           *updatedLabel;
@@ -33,6 +35,12 @@
     return self;
 }
 
+- (void)didAuthenticate
+{
+    [self.navigationController popToViewController:self animated:YES];
+    [self updateDiskQuota];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -40,15 +48,58 @@
     if(![UTCSAccountManager password]) {
         if(!self.diskQuotaAuthenticationViewController) {
             self.diskQuotaAuthenticationViewController = [UTCSDiskQuotaAuthenticationViewController new];
+            self.diskQuotaAuthenticationViewController.delegate = self;
         }
         [self.navigationController pushViewController:self.diskQuotaAuthenticationViewController animated:NO];
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)updateDiskQuota
 {
-    [super viewDidAppear:animated];
-    [self.gaugeView setValue:2000 animated:YES];
+    NSString *username = [UTCSAccountManager username];
+    NSString *password = [UTCSAccountManager password];
+    [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
+        if(success) {
+            [[UTCSSSHManager sharedSSHManager]executeCommand:@"chkquota" completion:^(NSString *response) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"%@", response);
+                    CGFloat limit = [self diskLimitForResponse:response];
+                    CGFloat usage = [self diskUsageForResponse:response];
+                    self.gaugeView.maxValue = limit;
+                    [self.gaugeView setValue:usage animated:YES];
+                });
+                [[UTCSSSHManager sharedSSHManager]disconnect];
+            }];
+        }
+    }];
+}
+
+- (CGFloat)diskLimitForResponse:(NSString *)response
+{
+    CGFloat limit = 0.0;
+    NSArray *lines = [response componentsSeparatedByString:@"\n"];
+    if([lines count] >= 2) {
+        NSString *line = lines[1];
+        NSArray *components = [line componentsSeparatedByString:@" "];
+        if([components count] >= 3) {
+            limit = [components[2] floatValue];
+        }
+    }
+    return limit;
+}
+
+- (CGFloat)diskUsageForResponse:(NSString *)response
+{
+    CGFloat usage = 0.0;
+    NSArray *lines = [response componentsSeparatedByString:@"\n"];
+    if([lines count] >= 3) {
+        NSString *line = lines[2];
+        NSArray *components = [line componentsSeparatedByString:@" "];
+        if([components count] >= 3) {
+            usage = [components[2] floatValue];
+        }
+    }
+    return usage;
 }
 
 - (void)viewDidLoad
@@ -98,6 +149,7 @@
         button.layer.cornerRadius = 10.0;
         [button setTitle:@"Update" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(updateDiskQuota) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
     [self.view addSubview:self.updateButton];
