@@ -15,27 +15,49 @@
 #import "UTCSDiskQuotaAuthenticationViewController.h"
 #import "UIColor+UTCSColors.h"
 #import "UIImage+CZTinting.h"
+#import "UIView+Shake.h"
+#import "MBProgressHUD.h"
 
 
 @interface UTCSDiskQuotaViewController ()
-@property (nonatomic) UIImageView       *backgroundImageView;
-@property (nonatomic) CGFloat           currentQuota;
-@property (nonatomic) UTCSMenuButton    *menuButton;
-@property (nonatomic) UIButton          *updateButton;
-@property (nonatomic) MRCircularProgressView *diskQuotaGaugeView;
-@property (nonatomic) UILabel           *diskQuotaDetailLabel;
-@property (nonatomic) UILabel           *updatedLabel;
+
+// Label displaying the title of the view controller
+@property (nonatomic) UILabel                   *titleLabel;
+@property (nonatomic) UIView                    *diskQuotaContainerView;
+@property (nonatomic) UIView                    *diskQuotaAuthenticationContainerView;
+@property (nonatomic) UIImageView               *backgroundImageView;
+@property (nonatomic) CGFloat                   currentQuota;
+@property (nonatomic) UTCSMenuButton            *menuButton;
+@property (nonatomic) UIButton                  *updateButton;
+@property (nonatomic) MRCircularProgressView    *diskQuotaGaugeView;
+@property (nonatomic) UILabel                   *diskQuotaDetailLabel;
+@property (nonatomic) UILabel                   *updatedLabel;
 @property (nonatomic) UTCSDiskQuotaAuthenticationViewController *diskQuotaAuthenticationViewController;
+
+
+// Button used to begin authentication
+@property (nonatomic) UIButton                  *loginButton;
+
+// Textfield used to input username
+@property (nonatomic) UITextField               *usernameTextField;
+
+// Textfield used to input password
+@property (nonatomic) UITextField               *passwordTextField;
+
+// View containing the usernameTextField, passwordTextField, and textFieldSeparatorView
+@property (nonatomic) UIView                    *loginContainerView;
+
+// Aesthetic view used to draw a separating line between the username and password text fields
+@property (nonatomic) UIView                    *textFieldSeparatorView;
+
 @end
 
 @implementation UTCSDiskQuotaViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.view.backgroundColor = [UIColor whiteColor];
-    }
-    return self;
+    [self.view endEditing:YES];
+    [self adjustSubviewsWhileEditing:NO];
 }
 
 - (void)didAuthenticate
@@ -47,13 +69,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    if(![UTCSAccountManager password]) {
-        if(!self.diskQuotaAuthenticationViewController) {
-            self.diskQuotaAuthenticationViewController = [UTCSDiskQuotaAuthenticationViewController new];
-            self.diskQuotaAuthenticationViewController.delegate = self;
-        }
-//        [self.navigationController pushViewController:self.diskQuotaAuthenticationViewController animated:NO];
+    if([UTCSAccountManager password]) {
+        self.diskQuotaContainerView.alpha = 1.0;
+    } else {
+        self.diskQuotaAuthenticationContainerView.alpha = 1.0;
     }
 }
 
@@ -68,6 +87,7 @@
                     NSLog(@"%@", response);
                     CGFloat limit = [self diskLimitForResponse:response];
                     CGFloat usage = [self diskUsageForResponse:response];
+                    self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.f / %0.2f", usage, limit];
                     [self.diskQuotaGaugeView setProgress:(usage/limit) animated:YES];
                     self.updatedLabel.text = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                                             dateStyle:NSDateFormatterMediumStyle
@@ -119,10 +139,28 @@
         imageView;
     });
     
+    
     // Menu Button
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
     self.menuButton.lineColor = [UIColor whiteColor];
     [self.view addSubview:self.menuButton];
+    
+    self.diskQuotaContainerView = ({
+        UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
+        view.backgroundColor = [UIColor clearColor];
+        view.alpha = 0.0;
+        [self.view addSubview:view];
+        view;
+    });
+    
+    self.diskQuotaAuthenticationContainerView = ({
+        UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
+        view.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:view];
+        view.alpha = 0.0;
+        view;
+    });
+    
     
     self.diskQuotaGaugeView = ({
         MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectMake(0, 0, 0.7 * self.view.width,
@@ -131,7 +169,7 @@
         view.backgroundColor = [UIColor clearColor];
         view.progressColor = [UIColor whiteColor];
         view.progressArcWidth = 8.0;
-        [self.view addSubview:view];
+        [self.diskQuotaContainerView addSubview:view];
         view;
     });
     
@@ -141,6 +179,7 @@
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
+        [self.diskQuotaContainerView addSubview:label];
         label;
     });
     
@@ -154,19 +193,197 @@
         [button setTitle:@"Update" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(updateDiskQuota) forControlEvents:UIControlEventTouchUpInside];
+        [self.diskQuotaContainerView addSubview:button];
         button;
     });
-    [self.view addSubview:self.updateButton];
+    
     
     self.updatedLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, self.view.height - 24, self.view.width, 24)];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor blackColor];
+        [self.diskQuotaContainerView addSubview:label];
         label;
     });
     
     
+    
+    
+}
+
+#pragma mark - Disk Quota
+
+- (void)initDiskQuotaSubviews
+{
+    
+}
+
+
+#pragma mark - Authentication
+
+
+- (void)initAuthenticationSubviews
+{
+    // Login container view
+    self.loginContainerView = ({
+        UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
+        view.backgroundColor = [UIColor clearColor];
+        [self.diskQuotaAuthenticationContainerView addSubview:view];
+        view;
+    });
+    
+    // Titel label
+    self.titleLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.1 * self.view.height, self.view.width, 100)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:58];
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = @"Disk Quota";
+        [self.view addSubview:label];
+        label;
+    });
+    
+    // Username text field
+    self.usernameTextField = ({
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
+        textField.center = CGPointMake(self.view.center.x, self.view.center.y - 0.5 * CGRectGetHeight(textField.bounds));
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.textAlignment = NSTextAlignmentCenter;
+        textField.tintColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        textField.textColor = [UIColor whiteColor];
+        textField.returnKeyType = UIReturnKeyNext;
+        textField.delegate = self;
+        
+        // Placeholder
+        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"username"];
+        [attributedPlaceholder addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:1.0 alpha:0.8]
+                                      range:NSMakeRange(0, [attributedPlaceholder length])];
+        textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        textField.attributedPlaceholder = attributedPlaceholder;
+        
+        [self.loginContainerView addSubview:textField];
+        textField;
+    });
+    
+    // Textfield separator view
+    self.textFieldSeparatorView = ({
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 0.5)];
+        view.backgroundColor = [UIColor whiteColor];
+        view.center = self.view.center;
+        [self.loginContainerView addSubview:view];
+        view;
+    });
+    
+    // Password text field
+    self.passwordTextField = ({
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
+        textField.center = CGPointMake(self.view.center.x, self.view.center.y + 0.5 * CGRectGetHeight(textField.bounds));
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.textAlignment = NSTextAlignmentCenter;
+        textField.tintColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        textField.textColor = [UIColor whiteColor];
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.secureTextEntry = YES;
+        textField.delegate = self;
+        
+        // Placeholder
+        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"password"];
+        [attributedPlaceholder addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:1.0 alpha:0.8]
+                                      range:NSMakeRange(0, [attributedPlaceholder length])];
+        textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        textField.attributedPlaceholder = attributedPlaceholder;
+        
+        [self.loginContainerView addSubview:textField];
+        textField;
+    });
+    
+    // Login button
+    self.loginButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 44.0);
+        button.center = CGPointMake(self.view.center.x, 1.5 * self.view.center.y);
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
+        [button setTitle:@"Login" forState:UIControlStateNormal];
+        button.layer.cornerRadius = 10.0;
+        button.layer.borderWidth = 0.75;
+        [self.loginContainerView addSubview:button];
+        button;
+    });
+}
+
+#pragma mark UIButton Methods
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.loginButton) {
+        [self.view endEditing:YES];
+        [self adjustSubviewsWhileEditing:NO];
+        [self authenticateWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
+    }
+}
+
+#pragma mark UITextFieldDelegate Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self adjustSubviewsWhileEditing:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == self.passwordTextField) {
+        [self adjustSubviewsWhileEditing:NO];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.usernameTextField) {
+        [self.passwordTextField becomeFirstResponder];
+    } else if(textField == self.passwordTextField) {
+        [self adjustSubviewsWhileEditing:NO];
+        [self authenticateWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
+    }
+    return YES;
+}
+
+#pragma mark Authentication Animation
+
+- (void)adjustSubviewsWhileEditing:(BOOL)editing
+{
+    CGPoint loginOffset = (editing)? CGPointMake(self.view.center.x, 0.5 * self.view.center.y) : self.view.center;
+    CGFloat titleAlpha = (editing)? 0.0 : 1.0;
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.loginContainerView.center = loginOffset;
+        self.titleLabel.alpha = titleAlpha;
+    } completion:nil];
+}
+
+#pragma mark Authentication
+
+- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(success) {
+                [[UTCSSSHManager sharedSSHManager]disconnect];
+                [UTCSAccountManager setUsername:username];
+                [UTCSAccountManager setPassword:password];
+            } else {
+                [self.loginContainerView shake:3 withDelta:16.0];
+            }
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    }];
 }
 
 @end

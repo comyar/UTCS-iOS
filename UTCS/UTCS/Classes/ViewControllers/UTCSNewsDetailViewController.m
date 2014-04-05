@@ -141,6 +141,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 #pragma mark Setters

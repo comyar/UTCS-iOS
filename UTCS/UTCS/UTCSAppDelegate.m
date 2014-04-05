@@ -41,11 +41,10 @@
 @property (nonatomic) UINavigationController            *settingsNavigationController;
 
 @property (nonatomic) UTCSAboutViewController           *aboutViewController;
-
 //
 @property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
-@property (nonatomic) UINavigationController            *diskQuotaNavigationController;
+@property (nonatomic) UTCSDiskQuotaViewController       *diskQuotaViewController;
 
 @property (nonatomic) UTCSWebViewController             *webViewController;
 
@@ -83,7 +82,7 @@
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    self.diskQuotaNavigationController = [[UINavigationController alloc]initWithRootViewController:[UTCSDiskQuotaViewController new]];
+    self.diskQuotaViewController = [UTCSDiskQuotaViewController new];
     
     // Initialize view controllers
     self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
@@ -93,7 +92,7 @@
     self.aboutViewController            = [UTCSAboutViewController new];
     self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.diskQuotaNavigationController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.diskQuotaViewController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
@@ -124,7 +123,7 @@
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionDiskQuota) {
-        self.verticalMenuViewController.contentViewController = self.diskQuotaNavigationController;
+        self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
     } else if(option == UTCSMenuOptionSettings) {
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
