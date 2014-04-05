@@ -63,7 +63,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     
     // Login container view
     self.loginContainerView = ({
@@ -76,7 +76,7 @@
     // Titel label
     self.titleLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.1 * self.view.height, self.view.width, 100)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:62];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:58];
         label.textColor = [UIColor utcsDarkGrayColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"Disk Quota";
@@ -104,7 +104,7 @@
         textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         textField.attributedPlaceholder = attributedPlaceholder;
         
-        [self.view addSubview:textField];
+        [self.loginContainerView addSubview:textField];
         textField;
     });
     
@@ -114,7 +114,7 @@
         view.backgroundColor = [UIColor utcsBurntOrangeColor];
         view.center = self.view.center;
         view.alpha = 0.5;
-        [self.view addSubview:view];
+        [self.loginContainerView addSubview:view];
         view;
     });
     
@@ -128,7 +128,7 @@
         textField.textAlignment = NSTextAlignmentCenter;
         textField.tintColor = [UIColor darkGrayColor];
         textField.textColor = [UIColor blackColor];
-        textField.returnKeyType = UIReturnKeyNext;
+        textField.returnKeyType = UIReturnKeyDone;
         textField.secureTextEntry = YES;
         textField.delegate = self;
         
@@ -139,7 +139,7 @@
         textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         textField.attributedPlaceholder = attributedPlaceholder;
         
-        [self.view addSubview:textField];
+        [self.loginContainerView addSubview:textField];
         textField;
     });
     
@@ -162,7 +162,7 @@
         [button setTitle:@"Login" forState:UIControlStateNormal];
         button.layer.cornerRadius = 10.0;
         button.layer.borderWidth = 0.75;
-        [self.view addSubview:button];
+        [self.loginContainerView addSubview:button];
         button;
     });
 

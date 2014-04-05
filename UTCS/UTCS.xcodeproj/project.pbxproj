@@ -56,12 +56,12 @@
 		DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54A18EEF94100EBDE06 /* UTCSKeychainStore.m */; };
 		DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */; };
 		DD83B55318EF1A5900EBDE06 /* UIView+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B55218EF1A5900EBDE06 /* UIView+Shake.m */; };
+		DD83B55C18F0B2FA00EBDE06 /* MRCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B518EC3F950082C235 /* MBProgressHUD.m */; };
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
-		DDC676CA18EC6DBC0082C235 /* WMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676C918EC6DBC0082C235 /* WMGaugeView.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */; };
 		DDC676D418EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */; };
@@ -169,6 +169,8 @@
 		DD83B54E18EF091400EBDE06 /* UTCSAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSAccountManager.m; sourceTree = "<group>"; };
 		DD83B55118EF1A5900EBDE06 /* UIView+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shake.h"; sourceTree = "<group>"; };
 		DD83B55218EF1A5900EBDE06 /* UIView+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shake.m"; sourceTree = "<group>"; };
+		DD83B55A18F0B2FA00EBDE06 /* MRCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCircularProgressView.h; sourceTree = "<group>"; };
+		DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCircularProgressView.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -178,8 +180,6 @@
 		DDC676B518EC3F950082C235 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libraries/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		DDC676B818EC55F40082C235 /* UTCSSSHManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSSHManager.h; sourceTree = "<group>"; };
 		DDC676B918EC55F40082C235 /* UTCSSSHManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSSHManager.m; sourceTree = "<group>"; };
-		DDC676C818EC6DBC0082C235 /* WMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMGaugeView.h; path = Libraries/WMGaugeView/WMGaugeView.h; sourceTree = "<group>"; };
-		DDC676C918EC6DBC0082C235 /* WMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMGaugeView.m; path = Libraries/WMGaugeView/WMGaugeView.m; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDC676CF18EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsAuthenticationViewController.h; sourceTree = "<group>"; };
@@ -595,6 +595,16 @@
 			path = "Libraries/UIView+Shake";
 			sourceTree = "<group>";
 		};
+		DD83B55918F0B2FA00EBDE06 /* MRCircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B55A18F0B2FA00EBDE06 /* MRCircularProgressView.h */,
+				DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */,
+			);
+			name = MRCircularProgressView;
+			path = Libraries/MRCircularProgressView;
+			sourceTree = "<group>";
+		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,15 +653,6 @@
 			name = SSHManager;
 			sourceTree = "<group>";
 		};
-		DDC676C718EC6DB00082C235 /* WMGaugeView */ = {
-			isa = PBXGroup;
-			children = (
-				DDC676C818EC6DBC0082C235 /* WMGaugeView.h */,
-				DDC676C918EC6DBC0082C235 /* WMGaugeView.m */,
-			);
-			name = WMGaugeView;
-			sourceTree = "<group>";
-		};
 		DDC676CB18EC6DD30082C235 /* DiskQuota */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,8 +699,8 @@
 		DDF02FD118CF54AE00C7D012 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B55918F0B2FA00EBDE06 /* MRCircularProgressView */,
 				DD83B55018EF1A5900EBDE06 /* UIView+Shake */,
-				DDC676C718EC6DB00082C235 /* WMGaugeView */,
 				DDC676B318EC3F6E0082C235 /* MBProgressHUD */,
 				DD7968F718B5EB03009ADE2A /* ImageEffects */,
 				DDF02DCD18CF548600C7D012 /* FBShimmering */,
@@ -836,6 +837,7 @@
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
+				DD83B55C18F0B2FA00EBDE06 /* MRCircularProgressView.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */,
@@ -851,7 +853,6 @@
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
-				DDC676CA18EC6DBC0082C235 /* WMGaugeView.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				DDF02DD418CF548600C7D012 /* FBShimmeringLayer.m in Sources */,
