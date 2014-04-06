@@ -57,7 +57,7 @@
         self.searchBar.scopeButtonTitles = @[@"Faculty", @"Staff", @"Graduate"];
         
         self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
-        self.directoryManager.searchDisplayController.delegate = self;
+        self.directoryManager.searchDisplayController.delegate = self.directoryManager;
         
         self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);

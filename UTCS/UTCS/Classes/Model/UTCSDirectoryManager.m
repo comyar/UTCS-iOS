@@ -119,6 +119,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    NSLog(@"blah\n");
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fullName like[cd] %@", searchString];
     NSMutableArray *filteredPeople = [NSMutableArray new];
     for(NSArray *peopleForLetter in self.directory) {

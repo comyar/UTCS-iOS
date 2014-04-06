@@ -26,6 +26,7 @@
 #import "UIImage+CZTinting.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 
 #pragma mark - UTCSDiskQuotaViewController Class Extension
@@ -448,6 +449,8 @@
                 [UTCSAccountManager setPassword:password];
             } else {
                 [self.authenticationContainerView shake:3 withDelta:16.0];
+                // Creates Vibration
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             }
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
