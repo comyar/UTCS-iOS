@@ -64,6 +64,7 @@
 		DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering.txt */; };
 		DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */; };
 		DD83B57518F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */; };
+		DD83B57C18F16A1500EBDE06 /* App-About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B57B18F16A1500EBDE06 /* App-About.txt */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -186,6 +187,7 @@
 		DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseViewController.m; sourceTree = "<group>"; };
 		DD83B57318F15CCE00EBDE06 /* UTCSLicenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseDetailViewController.h; sourceTree = "<group>"; };
 		DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseDetailViewController.m; sourceTree = "<group>"; };
+		DD83B57B18F16A1500EBDE06 /* App-About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "App-About.txt"; path = "Assets/App-About.txt"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		0B9A263C1891D5E30032DA03 /* UTCS */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B57A18F169E400EBDE06 /* Assets */,
 				DDFD7DD618AA049A008F5A47 /* Resources.xcassets */,
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
@@ -634,6 +637,14 @@
 			name = License;
 			sourceTree = "<group>";
 		};
+		DD83B57A18F169E400EBDE06 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B57B18F16A1500EBDE06 /* App-About.txt */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,6 +834,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD83B57C18F16A1500EBDE06 /* App-About.txt in Resources */,
 				DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering.txt in Resources */,
 				DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
