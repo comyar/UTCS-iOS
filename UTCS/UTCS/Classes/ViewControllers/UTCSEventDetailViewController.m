@@ -51,6 +51,8 @@ static const CGFloat dateLabelFontSize  = 28.0;
 
 @property (nonatomic) EKEventEditViewController         *eventEditViewController;
 
+@property (nonatomic) UIActivityViewController          *activityViewController;
+
 @end
 
 @implementation UTCSEventDetailViewController
@@ -226,6 +228,13 @@ static const CGFloat dateLabelFontSize  = 28.0;
         }];
         
     } else if(button == self.shareButton) {
+        NSString *startDateString = [NSString stringWithFormat:@"\nStart : %@\n", [NSDateFormatter localizedStringFromDate:_event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
+        NSString *endDateString = [NSString stringWithFormat:@"End : %@\n", [NSDateFormatter localizedStringFromDate:_event.endDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
+        
+        NSArray *itemsToShare = @[_event.name, _event.location, startDateString, endDateString, [_event.attributedDescription string]];
+        self.activityViewController = [[UIActivityViewController alloc]initWithActivityItems:itemsToShare applicationActivities:nil];
+        self.activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList, UIActivityTypeAssignToContact, UIActivityTypePostToVimeo, UIActivityTypeSaveToCameraRoll];
+        [self presentViewController:self.activityViewController animated:YES completion:nil];
         
     } else if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
