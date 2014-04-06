@@ -10,9 +10,12 @@
 
 @interface UTCSAccountManager : NSObject
 
++ (NSString *)name;
+
 + (NSString *)username;
 + (NSString *)password;
 
++ (void)setName:(NSString *)name;
 + (void)setUsername:(NSString *)username;
 + (void)setPassword:(NSString *)password;
 

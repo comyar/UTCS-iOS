@@ -88,7 +88,7 @@
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.aboutViewController            = [UTCSAboutViewController new];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.diskQuotaViewController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.eventsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];

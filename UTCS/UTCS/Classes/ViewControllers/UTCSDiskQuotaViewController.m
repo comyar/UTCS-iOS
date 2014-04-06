@@ -176,14 +176,16 @@
                     [self.diskQuotaGaugeView setProgress:(usage/limit) animated:YES];
                     NSString *updatedTime = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                                            dateStyle:NSDateFormatterMediumStyle
-                                                                           timeStyle:NSDateFormatterShortStyle];
+                                                                           timeStyle:NSDateFormatterMediumStyle];
                     self.updatedLabel.text = [NSString stringWithFormat:@"Updated: %@", updatedTime];
                 });
                 [[UTCSSSHManager sharedSSHManager]disconnect];
             }];
         } else {
             self.updatedLabel.text = @"Update Failed. Check Your Network Connection.";
+            [[UTCSSSHManager sharedSSHManager]disconnect];
         }
+        
     }];
 }
 
@@ -240,7 +242,7 @@
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.6 * self.diskQuotaContainerView.width, 18)];
         label.center = CGPointMake(self.diskQuotaContainerView.center.x, 0.9 * self.diskQuotaContainerView.center.y - self.diskQuotaContainerView.y);
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         label.textAlignment = NSTextAlignmentCenter;
         [self.diskQuotaContainerView addSubview:label];
         label;
@@ -260,7 +262,7 @@
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.6 * self.diskQuotaContainerView.width, 14)];
         label.center = CGPointMake(self.diskQuotaContainerView.center.x, 1.08 * self.diskQuotaContainerView.center.y - self.diskQuotaContainerView.y);
         label.text = @"MB";
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         [self.diskQuotaContainerView addSubview:label];
