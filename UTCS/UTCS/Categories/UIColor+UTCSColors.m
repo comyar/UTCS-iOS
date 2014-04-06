@@ -59,7 +59,7 @@
 
 + (UIColor *)utcsBarTintColor
 {
-    return [UIColor colorWithRed:RGB(250) green:RGB(250) blue:RGB(250) alpha:1.0];
+    return [UIColor colorWithWhite:0.95 alpha:1.0];
 }
 
 + (UIColor *)utcsImageTintColor

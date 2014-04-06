@@ -21,7 +21,9 @@ static const CGFloat dateLabelFontSize  = 32.0;
 
 
 @interface UTCSEventDetailViewController ()
-@property (nonatomic) UITabBar  *headerTabBar;
+
+@property (nonatomic) UIView  *headerControlBar;
+
 @property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
 /**
@@ -71,21 +73,22 @@ static const CGFloat dateLabelFontSize  = 32.0;
         });
         [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
         
-        self.headerTabBar = ({
-            UITabBar *tabBar = [[UITabBar alloc]initWithFrame:CGRectMake(0.0,
-                                                                         self.parallaxBlurHeaderScrollView.headerContainerView.height,
-                                                                         self.view.width, 64)];
-            UITabBarItem *calendarItem = [[UITabBarItem alloc]initWithTitle:@"Add to Calender"
-                                                                      image:[UIImage imageNamed:@"events"]
-                                                              selectedImage:nil];
-            UITabBarItem *starItem = [[UITabBarItem alloc]initWithTitle:@"Star"
-                                                                  image:[UIImage imageNamed:@"star"]
-                                                          selectedImage:nil];
-            tabBar.items = @[calendarItem, starItem];
-            tabBar.tintColor = [UIColor utcsBurntOrangeColor];
-            tabBar;
+        self.headerControlBar = ({
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, self.parallaxBlurHeaderScrollView.headerContainerView.height, self.view.width, 64)];
+            view.backgroundColor = [UIColor clearColor];
+            
+            UIButton *addToCalendarButton = [self headerControlButtonWithTitle:@"Add To Calendar"];
+            addToCalendarButton.centerX = 0.125 * view.width;
+            UIButton *shareButton = [self headerControlButtonWithTitle:@"Share"];
+            shareButton.centerX = 0.375 * view.width;
+            
+            [view addSubview:shareButton];
+            [view addSubview:addToCalendarButton];
+            
+            [self.parallaxBlurHeaderScrollView.scrollView addSubview:view];
+            view;
         });
-        [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.headerTabBar];
+        
     }
     return self;
 }
@@ -106,7 +109,38 @@ static const CGFloat dateLabelFontSize  = 32.0;
     self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
                                                               height:CGFLOAT_MAX].height;
     
-    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height + self.headerTabBar.height);
+    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height + self.headerControlBar.height);
+}
+
+- (UIButton *)headerControlButtonWithTitle:(NSString *)title
+{
+    return ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.showsTouchWhenHighlighted = YES;
+        
+        UIImageView *imageView = ({
+            NSString *imageName = [[title lowercaseString]stringByReplacingOccurrencesOfString:@" " withString:@""];
+            UIImage *image = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+            imageView.tintColor = [UIColor blackColor];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            imageView.frame = CGRectMake(0, 0, 128, 48);
+            imageView;
+        });
+        [button addSubview:imageView];
+        
+        UILabel *label = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 48, 128, 16)];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor darkGrayColor];
+            label.text = title;
+            label;
+        });
+        [button addSubview:label];
+        
+        button;
+    });
 }
 
 @end
