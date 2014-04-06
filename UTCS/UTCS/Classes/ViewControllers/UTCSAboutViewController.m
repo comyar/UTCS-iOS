@@ -35,13 +35,6 @@
 {
     [super viewDidLoad];
     
-    // Background image view
-    self.backgroundImageView = ({
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"diskQuotaBackground"]tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay]];
-        [self.view addSubview:imageView];
-        imageView;
-    });
-    
     
 }
 @end

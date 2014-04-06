@@ -18,12 +18,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor clearColor];
         self.textView = ({
             UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, 44, self.view.width, self.view.height - 44.0)];
             textView.backgroundColor = [UIColor clearColor];
+            textView.textColor = [UIColor whiteColor];
             textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             textView.editable = NO;
+            textView.textContainerInset = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
             [self.view addSubview:textView];
             textView;
         });
@@ -31,10 +33,28 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 1.0;
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 0.0;
+    }];
+}
+
 - (void)setLicense:(NSString *)license
 {
     _license = license;
-    
+    self.title = _license;
     NSString *licenseFile = [NSString stringWithFormat:@"LICENSE-%@", _license];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:licenseFile ofType:@"txt"];

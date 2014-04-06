@@ -41,6 +41,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title = @"Settings";
         self.headers = @[@"App Info", @"Account"];
         self.settings = @[@[@"About", @"Legal"], @[@"Logout"]];
     }
@@ -62,20 +63,33 @@
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://profile/272565539464226"]]) {
         self.facebookButton.alpha = 0.5;
     }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 1.0;
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 0.0;
+    }];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor clearColor];
     
     // Background image view
     self.backgroundImageView = ({
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"diskQuotaBackground"]tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay]];
-        [self.view addSubview:imageView];
         imageView;
     });
+    
+    [self.navigationController.view insertSubview:self.backgroundImageView atIndex:0];
     
     // Menu Button
     self.menuButton = ({
@@ -147,7 +161,7 @@
     } else {
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
-    
+    cell.selected = NO;
     cell.textLabel.text = self.settings[indexPath.section][indexPath.row];
     
     return cell;
@@ -195,6 +209,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setSelected:NO animated:YES];
+    
     if(indexPath.section == 0) {
         if(indexPath.row == 0) {
             if(!self.aboutViewController) {
@@ -205,6 +222,7 @@
             if(!self.licenseViewController) {
                 self.licenseViewController = [UTCSLicenseViewController new];
             }
+            
             [self.navigationController pushViewController:self.licenseViewController animated:YES];
         }
     } else if(indexPath.section == 1) {
