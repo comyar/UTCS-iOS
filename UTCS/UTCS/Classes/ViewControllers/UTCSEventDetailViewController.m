@@ -98,6 +98,38 @@ static const CGFloat dateLabelFontSize  = 28.0;
         });
         [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
         
+        self.addToCalendarButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(0, 0, 20, 20);
+            button.showsTouchWhenHighlighted = YES;
+            
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"addtocalendar"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            imageView.tintColor = [UIColor whiteColor];
+            imageView.frame = button.bounds;
+            [button addSubview:imageView];
+            
+            button;
+        });
+        
+        self.shareButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(0, 0, 20, 20);
+            button.showsTouchWhenHighlighted = YES;
+            
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            imageView.tintColor = [UIColor whiteColor];
+            imageView.frame = button.bounds;
+            [button addSubview:imageView];
+            
+            button;
+        });
+        
+        UIBarButtonItem *spacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        spacer.width = 20.0;
+        self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],
+                                                    spacer,
+                                                    [[UIBarButtonItem alloc]initWithCustomView:self.addToCalendarButton]];
+        
     }
     return self;
 }
@@ -131,8 +163,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
         }
         
         if(_event.attributedDescription) {
-            NSLog(@"asdfasdfasdf");
-            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description\n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description\n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:14], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
             
             [attributedText appendAttributedString:descriptionHeader];
             [attributedText appendAttributedString:_event.attributedDescription];
