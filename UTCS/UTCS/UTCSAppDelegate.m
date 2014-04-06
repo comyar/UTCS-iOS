@@ -12,7 +12,6 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
-#import "UTCSSettingsViewController.h"
 #import "UTCSAboutViewController.h"
 #import "UIColor+UTCSColors.h"
 #import "UTCSApplication.h"
@@ -37,8 +36,6 @@
 @property (nonatomic) UINavigationController            *labsNavigationController;
 
 @property (nonatomic) UINavigationController            *directoryNavigationController;
-
-@property (nonatomic) UINavigationController            *settingsNavigationController;
 
 @property (nonatomic) UTCSAboutViewController           *aboutViewController;
 //
@@ -90,7 +87,6 @@
     self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.aboutViewController            = [UTCSAboutViewController new];
-    self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.diskQuotaViewController];
     
@@ -125,7 +121,7 @@
     } else if(option == UTCSMenuOptionDiskQuota) {
         self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
     } else if(option == UTCSMenuOptionSettings) {
-        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
+        
     }
 }
 

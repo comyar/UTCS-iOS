@@ -27,6 +27,8 @@
 
 @property (nonatomic) UITableView       *tableView;
 
+@property (nonatomic) UIButton          *logoutButton;
+
 @end
 
 
@@ -39,7 +41,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Disk Quota", @"Settings"];
+        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Disk Quota"];
         self.title = @"Menu";
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -49,6 +51,7 @@
                                                      style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
+        self.tableView.scrollEnabled = NO;
         self.tableView.rowHeight = 60;
         self.tableView.contentInset = UIEdgeInsetsMake(0.05 * self.view.height, 0, 0, 0);
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -84,6 +87,20 @@
         });
         [self.view addSubview:self.facebookButton];
         
+        self.logoutButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(44.0, self.tableView.y + self.tableView.height, self.tableView.width - self.tableView.x, 44.0);
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logout"]];
+            imageView.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+            imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
+            button.showsTouchWhenHighlighted = YES;
+            [button addSubview:imageView];
+            button.alpha = 0.5;
+            button;
+        });
+        [self.view addSubview:self.logoutButton];
+        
     }
     return self;
 }
@@ -112,8 +129,6 @@
     if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:@"fb://profile/272565539464226"]]) {
         self.facebookButton.alpha = 0.5;
     }
-    
-   
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
@@ -122,6 +137,8 @@
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://profile/272565539464226"]];
     } else if(button == self.twitterButton) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"twitter://user?screen_name=UTCompSci"]];
+    } else if(button == self.logoutButton) {
+        
     }
 }
 
@@ -166,7 +183,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.activeRow = indexPath.row;
+    
+    if(!indexPath.row == 5) {
+        self.activeRow = indexPath.row;
+    }
+    
     [self.tableView reloadData];
     if(self.delegate && [self.delegate conformsToProtocol:@protocol(UTCSMenuViewControllerDelegate)] &&
        [self.delegate respondsToSelector:@selector(didSelectMenuOption:)])
