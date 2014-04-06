@@ -17,12 +17,10 @@
 /**
  Font size of the date label
  */
-static const CGFloat dateLabelFontSize  = 32.0;
+static const CGFloat dateLabelFontSize  = 28.0;
 
 
 @interface UTCSEventDetailViewController ()
-
-@property (nonatomic) UIView  *headerControlBar;
 
 @property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
@@ -47,6 +45,8 @@ static const CGFloat dateLabelFontSize  = 32.0;
 
 @property (nonatomic) UIButton                          *shareButton;
 
+@property (nonatomic) UIButton                          *scrollToTopButton;
+
 @end
 
 @implementation UTCSEventDetailViewController
@@ -55,6 +55,14 @@ static const CGFloat dateLabelFontSize  = 32.0;
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
+        
+        self.scrollToTopButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
+            button;
+        });
+        self.navigationItem.titleView = self.scrollToTopButton;
         
         self.dateFormatter = [NSDateFormatter new];
         self.dateFormatter.timeZone = [[NSTimeZone alloc]initWithName:@"GMT"];
@@ -69,20 +77,8 @@ static const CGFloat dateLabelFontSize  = 32.0;
         self.parallaxBlurHeaderScrollView.headerBlurredImage = [UIImage imageNamed:@"blurredHeader"];
         [self.view addSubview:self.parallaxBlurHeaderScrollView];
         
-        
-        
-        self.locationLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - 1.5 * dateLabelFontSize, self.view.width - 16.0, 1.5 * dateLabelFontSize)];
-            label.numberOfLines = 1;
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:dateLabelFontSize];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.90];
-            label.adjustsFontSizeToFitWidth = YES;
-            label;
-        });
-        [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:self.locationLabel];
-        
         self.dateLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - self.locationLabel.height - 100.0, self.parallaxBlurHeaderScrollView.headerContainerView.width - 16.0, 80.0)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - 80.0, self.parallaxBlurHeaderScrollView.headerContainerView.width - 16.0, 80.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36];
             label.textColor = [UIColor whiteColor];
             label.adjustsFontSizeToFitWidth = YES;
@@ -94,30 +90,13 @@ static const CGFloat dateLabelFontSize  = 32.0;
         self.descriptionTextView = ({
             UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0, self.parallaxBlurHeaderScrollView.headerContainerView.height, self.view.width, 0.0)];
             textView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypePhoneNumber | UIDataDetectorTypeAddress;
-            textView.textContainerInset = UIEdgeInsetsMake(128.0, 8.0, 8.0, 8.0);
+            textView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
             textView.textColor = [UIColor utcsGrayColor];
             textView.scrollEnabled = NO;
             textView.editable = NO;
             textView;
         });
         [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
-        
-        self.headerControlBar = ({
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, self.parallaxBlurHeaderScrollView.headerContainerView.height, self.view.width, 64)];
-            view.backgroundColor = [UIColor clearColor];
-            
-            self.addToCalendarButton = [self headerControlButtonWithTitle:@"Add To Calendar"];
-            self.addToCalendarButton.centerX = 0.25 * view.width;
-            
-            self.shareButton = [self headerControlButtonWithTitle:@"Share"];
-            self.shareButton.centerX = .75 * view.width;
-            
-            [view addSubview:self.shareButton];
-            [view addSubview:self.addToCalendarButton];
-            
-            [self.parallaxBlurHeaderScrollView.scrollView addSubview:view];
-            view;
-        });
         
     }
     return self;
@@ -133,28 +112,56 @@ static const CGFloat dateLabelFontSize  = 32.0;
 {
     _event = event;
     
-    self.dateLabel.text = [self dateStringForStartDate:_event.startDate endDate:_event.endDate];
+    self.dateLabel.attributedText = [self dateStringForStartDate:_event.startDate endDate:_event.endDate];
     
     self.locationLabel.text = _event.location;
     
-    self.descriptionTextView.attributedText = event.attributedDescription;
+    self.descriptionTextView.attributedText = ({
+        NSMutableAttributedString *attributedText = [NSMutableAttributedString new];
+        
+        NSString *nameString = [NSString stringWithFormat:@"%@\n\n", _event.name];
+        NSAttributedString *name = [[NSAttributedString alloc]initWithString:nameString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor blackColor]}];
+        
+        [attributedText appendAttributedString:name];
+        
+        if(_event.location) {
+            NSString *locationString = [NSString stringWithFormat:@"Location : %@\n\n", _event.location];
+            NSAttributedString *location = [[NSAttributedString alloc]initWithString:locationString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor blackColor]}];
+            [attributedText appendAttributedString:location];
+        }
+        
+        if(_event.attributedDescription) {
+            NSLog(@"asdfasdfasdf");
+            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description\n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+            
+            [attributedText appendAttributedString:descriptionHeader];
+            [attributedText appendAttributedString:_event.attributedDescription];
+        } else {
+            NSAttributedString *description = [[NSAttributedString alloc]initWithString:@"Description Unavailable\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+            [attributedText appendAttributedString:description];
+        }
+        
+        attributedText;
+    });
+    
     self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
                                                               height:CGFLOAT_MAX].height;
     
-    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height + self.headerControlBar.height);
+    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
-    NSLog(@"yolo");
     if(button == self.addToCalendarButton) {
         
     } else if(button == self.shareButton) {
         
+    } else if(button == self.scrollToTopButton) {
+        [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
 }
 
-- (NSString *)dateStringForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
+- (NSAttributedString *)dateStringForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
 {
     NSString *startDateString = [self.dateFormatter stringFromDate:startDate];
     NSString *endDateString = [self.dateFormatter stringFromDate:endDate];
@@ -167,47 +174,27 @@ static const CGFloat dateLabelFontSize  = 32.0;
                                                              dateStyle:NSDateFormatterNoStyle
                                                              timeStyle:NSDateFormatterShortStyle];
     
-    NSString *dateString = nil;
+    NSMutableAttributedString *attributedDateString = [NSMutableAttributedString new];
+    
+    NSAttributedString *attributedStartDate = [[NSAttributedString alloc]initWithString:startDateString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:36]}];
+    [attributedDateString appendAttributedString:attributedStartDate];
+    
+    NSString *timeString = [NSString stringWithFormat:@"\n%@ - %@", startTimeString, endTimeString];
+    NSAttributedString *attributedTime = [[NSAttributedString alloc]initWithString:timeString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
+    
     if([startDateString isEqualToString:endDateString]) {
-        dateString = [NSString stringWithFormat:@"%@\n%@ - %@", startDateString, startTimeString, endTimeString];
+        [attributedDateString appendAttributedString:attributedTime];
     } else {
-        NSString *endDayString = [self.dayDateFormatter stringFromDate:endDate];
-        dateString = [NSString stringWithFormat:@"%@ - %@\n%@ - %@", startDateString, endDayString, startTimeString, endTimeString];
+        [attributedDateString appendAttributedString:attributedStartDate];
+        
+        NSString *endDayString = [NSString stringWithFormat:@" - %@", [self.dayDateFormatter stringFromDate:endDate]];
+        
+        NSAttributedString *attributedEndDay = [[NSAttributedString alloc]initWithString:endDayString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:36]}];
+        
+        [attributedDateString appendAttributedString:attributedEndDay];
+        [attributedDateString appendAttributedString:attributedTime];
     }
-    return dateString;
-}
-
-- (UIButton *)headerControlButtonWithTitle:(NSString *)title
-{
-    return ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.showsTouchWhenHighlighted = YES;
-        button.frame = CGRectMake(0, 0, 128, 64);
-        
-        UIImageView *imageView = ({
-            NSString *imageName = [[title lowercaseString]stringByReplacingOccurrencesOfString:@" " withString:@""];
-            UIImage *image = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.tintColor = [UIColor blackColor];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            imageView.frame = CGRectMake(0, 0, 36, 36);
-            imageView.center = CGPointMake(0.5 * button.width, 0.375 * button.height);
-            imageView;
-        });
-        [button addSubview:imageView];
-        
-        UILabel *label = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 48, 128, 16)];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor darkGrayColor];
-            label.text = title;
-            label;
-        });
-        [button addSubview:label];
-        
-        button;
-    });
+    return attributedDateString;
 }
 
 @end
