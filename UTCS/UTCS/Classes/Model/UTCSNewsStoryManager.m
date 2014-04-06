@@ -10,7 +10,7 @@
 #import "UIImage+ImageEffects.h"
 #import "UTCSNewsStory.h"
 #import "UIImage+CZTinting.h"
-
+#import <AVFoundation/AVFoundation.h>
 #import "UIImage+CZScaling.h"
 
 

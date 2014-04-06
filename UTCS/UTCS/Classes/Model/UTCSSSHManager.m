@@ -48,7 +48,7 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
 
 - (void)connectWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion
 {
-    if(self.isAuthenticated) {
+    if(self.authenticated) {
         completion(YES);
     }
     
@@ -69,7 +69,7 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
 
 - (void)executeCommand:(NSString *)command completion:(void (^)(NSString *))completion
 {
-    if(!self.isAuthenticated) {
+    if(!self.authenticated) {
         completion(nil);
     }
     
@@ -81,17 +81,19 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
 
 - (void)disconnect
 {
-    [self.session disconnect];
+    if(self.session.connected) {
+        [self.session disconnect];
+    }
 }
 
 - (BOOL)isAuthenticated
 {
-    return self.session.isAuthorized;
+    return self.session.authorized;
 }
 
 - (BOOL)isConnected
 {
-    return self.session.isConnected;
+    return self.session.connected;
 }
 
 @end

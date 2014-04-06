@@ -83,6 +83,8 @@
 
 @property (nonatomic) UILabel                   *unitLabel;
 
+@property (nonatomic) UILabel                   *nameLabel;
+
 @end
 
 
@@ -168,25 +170,50 @@
     [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
         if(success) {
             [[UTCSSSHManager sharedSSHManager]executeCommand:@"chkquota" completion:^(NSString *response) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    CGFloat limit = [self diskLimitForResponse:response];
-                    CGFloat usage = [self diskUsageForResponse:response];
-                    self.usernameLabel.text = username;
-                    self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.f / %0.0f", usage, limit];
-                    [self.diskQuotaGaugeView setProgress:(usage/limit) animated:YES];
-                    NSString *updatedTime = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                                           dateStyle:NSDateFormatterMediumStyle
-                                                                           timeStyle:NSDateFormatterMediumStyle];
-                    self.updatedLabel.text = [NSString stringWithFormat:@"Updated: %@", updatedTime];
-                });
-                [[UTCSSSHManager sharedSSHManager]disconnect];
+                
+                CGFloat limit = [self diskLimitForResponse:response];
+                CGFloat usage = [self diskUsageForResponse:response];
+                NSString *command = [NSString stringWithFormat:@"finger %@", username];
+                [[UTCSSSHManager sharedSSHManager]executeCommand:command completion:^(NSString *response) {
+                    [[UTCSSSHManager sharedSSHManager]disconnect];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        NSString *name = [self nameForResponse:response];
+                        [UTCSAccountManager setName:name];
+                        self.nameLabel.text = name;
+                        self.usernameLabel.text = username;
+                        self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.f / %0.0f", usage, limit];
+                        [self.diskQuotaGaugeView setProgress:(usage/limit) animated:YES];
+                        NSString *updatedTime = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                                               dateStyle:NSDateFormatterMediumStyle
+                                                                               timeStyle:NSDateFormatterMediumStyle];
+                        self.updatedLabel.text = [NSString stringWithFormat:@"Updated: %@", updatedTime];
+                    });
+                }];
             }];
         } else {
             self.updatedLabel.text = @"Update Failed. Check Your Network Connection.";
             [[UTCSSSHManager sharedSSHManager]disconnect];
         }
-        
     }];
+}
+
+- (NSString *)nameForResponse:(NSString *)response
+{
+    NSString *name = nil;
+    NSLog(@"%@", response);
+    NSArray *lines = [response componentsSeparatedByString:@"\n"];
+    NSLog(@"%@", lines);
+    if([lines count] >= 1) {
+        NSString *line = lines[0];
+        NSLog(@"%@", line);
+        NSArray *components = [line componentsSeparatedByString:@":"];
+        NSInteger lastIndex = [components count] - 1;
+        if(lastIndex >= 0) {
+            name = [components[lastIndex] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
+    }
+    NSLog(@"%@", name);
+    return name;
 }
 
 - (CGFloat)diskLimitForResponse:(NSString *)response
@@ -244,6 +271,16 @@
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         label.textAlignment = NSTextAlignmentCenter;
+        [self.diskQuotaContainerView addSubview:label];
+        label;
+    });
+    
+    self.nameLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 96.0, self.diskQuotaContainerView.width, 24)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.adjustsFontSizeToFitWidth = YES;
         [self.diskQuotaContainerView addSubview:label];
         label;
     });
@@ -405,7 +442,7 @@
                     self.authenticationContainerView.alpha = 0.0;
                     self.diskQuotaContainerView.alpha = 1.0;
                 }];
-                
+            
                 [self updateDiskQuotaWithUsername:username password:password];
                 [UTCSAccountManager setUsername:username];
                 [UTCSAccountManager setPassword:password];
