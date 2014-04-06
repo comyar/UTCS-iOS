@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UTCSLicenseDetailViewController : UIViewController
-
+@property (nonatomic) NSString *license;
 @end

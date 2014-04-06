@@ -7,43 +7,39 @@
 //
 
 #import "UTCSLicenseDetailViewController.h"
+#import "UIView+CZPositioning.h"
 
 @interface UTCSLicenseDetailViewController ()
-
+@property (nonatomic) UITextView *textView;
 @end
 
 @implementation UTCSLicenseDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.textView = ({
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, 44, self.view.width, self.view.height - 44.0)];
+            textView.backgroundColor = [UIColor clearColor];
+            textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            textView.editable = NO;
+            [self.view addSubview:textView];
+            textView;
+        });
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)setLicense:(NSString *)license
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _license = license;
+    
+    NSString *licenseFile = [NSString stringWithFormat:@"LICENSE-%@", _license];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:licenseFile ofType:@"txt"];
+    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    self.textView.text = content;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

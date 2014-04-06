@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSLicenseTableViewController : UITableViewController
+@interface UTCSLicenseViewController : UITableViewController
 
 @end

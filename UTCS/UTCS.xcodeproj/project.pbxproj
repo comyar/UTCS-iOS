@@ -59,10 +59,10 @@
 		DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55D18F0EB8600EBDE06 /* EventKit.framework */; };
 		DD83B56018F0EC1300EBDE06 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */; };
 		DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */; };
-		DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView */; };
-		DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD */; };
-		DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering */; };
-		DD83B57218F15CB800EBDE06 /* UTCSLicenseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57118F15CB800EBDE06 /* UTCSLicenseTableViewController.m */; };
+		DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt */; };
+		DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD.txt */; };
+		DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering.txt */; };
+		DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */; };
 		DD83B57518F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
@@ -179,11 +179,11 @@
 		DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		DD83B56218F1353A00EBDE06 /* UTCSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSettingsViewController.h; sourceTree = "<group>"; };
 		DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSettingsViewController.m; sourceTree = "<group>"; };
-		DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MRCircularProgressView"; sourceTree = "<group>"; };
-		DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MBProgressHUD"; sourceTree = "<group>"; };
-		DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-FBShimmering"; sourceTree = "<group>"; };
-		DD83B57018F15CB800EBDE06 /* UTCSLicenseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseTableViewController.h; sourceTree = "<group>"; };
-		DD83B57118F15CB800EBDE06 /* UTCSLicenseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseTableViewController.m; sourceTree = "<group>"; };
+		DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MRCircularProgressView.txt"; sourceTree = "<group>"; };
+		DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MBProgressHUD.txt"; sourceTree = "<group>"; };
+		DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-FBShimmering.txt"; sourceTree = "<group>"; };
+		DD83B57018F15CB800EBDE06 /* UTCSLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseViewController.h; sourceTree = "<group>"; };
+		DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseViewController.m; sourceTree = "<group>"; };
 		DD83B57318F15CCE00EBDE06 /* UTCSLicenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseDetailViewController.h; sourceTree = "<group>"; };
 		DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseDetailViewController.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -604,7 +604,7 @@
 		DD83B55918F0B2FA00EBDE06 /* MRCircularProgressView */ = {
 			isa = PBXGroup;
 			children = (
-				DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView */,
+				DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt */,
 				DD83B55A18F0B2FA00EBDE06 /* MRCircularProgressView.h */,
 				DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */,
 			);
@@ -626,8 +626,8 @@
 		DD83B56B18F157BA00EBDE06 /* License */ = {
 			isa = PBXGroup;
 			children = (
-				DD83B57018F15CB800EBDE06 /* UTCSLicenseTableViewController.h */,
-				DD83B57118F15CB800EBDE06 /* UTCSLicenseTableViewController.m */,
+				DD83B57018F15CB800EBDE06 /* UTCSLicenseViewController.h */,
+				DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */,
 				DD83B57318F15CCE00EBDE06 /* UTCSLicenseDetailViewController.h */,
 				DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */,
 			);
@@ -667,7 +667,7 @@
 		DDC676B318EC3F6E0082C235 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD */,
+				DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD.txt */,
 				DDC676B418EC3F950082C235 /* MBProgressHUD.h */,
 				DDC676B518EC3F950082C235 /* MBProgressHUD.m */,
 			);
@@ -713,7 +713,7 @@
 		DDF02DCD18CF548600C7D012 /* FBShimmering */ = {
 			isa = PBXGroup;
 			children = (
-				DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering */,
+				DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering.txt */,
 				DDF02DCF18CF548600C7D012 /* FBShimmering.h */,
 				DDF02DD018CF548600C7D012 /* FBShimmeringLayer.h */,
 				DDF02DD118CF548600C7D012 /* FBShimmeringLayer.m */,
@@ -823,12 +823,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering in Resources */,
+				DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering.txt in Resources */,
 				DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
-				DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView in Resources */,
+				DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
-				DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD in Resources */,
+				DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,7 +856,7 @@
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
-				DD83B57218F15CB800EBDE06 /* UTCSLicenseTableViewController.m in Sources */,
+				DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */,
 				DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */,
 				DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */,
 				DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */,

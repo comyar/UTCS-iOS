@@ -202,7 +202,10 @@
             }
             [self.navigationController pushViewController:self.aboutViewController animated:YES];
         } else if(indexPath.row == 1) {
-            if(!self.)
+            if(!self.licenseViewController) {
+                self.licenseViewController = [UTCSLicenseViewController new];
+            }
+            [self.navigationController pushViewController:self.licenseViewController animated:YES];
         }
     } else if(indexPath.section == 1) {
         if(indexPath.row == 0) {
