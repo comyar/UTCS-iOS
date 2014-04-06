@@ -22,6 +22,7 @@
 @interface UTCSDiskQuotaViewController ()
 
 // Label displaying the title of the view controller
+@property (nonatomic, getter = isEnteringCredentials) BOOL enteringCredentials;
 @property (nonatomic) UILabel                   *titleLabel;
 @property (nonatomic) UIView                    *diskQuotaContainerView;
 @property (nonatomic) UIView                    *diskQuotaAuthenticationContainerView;
@@ -222,7 +223,7 @@
 {
     // Disk quota authentication container view
     self.diskQuotaAuthenticationContainerView = ({
-        UIView *view = [UIView new];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 44.0, self.view.width, self.view.height - 44.0)];
         view.backgroundColor = [UIColor clearColor];
         [self.view addSubview:view];
         view.alpha = 0.0;
@@ -337,14 +338,20 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self adjustSubviewsWhileEditing:YES];
+    if(!self.enteringCredentials) {
+        [self adjustSubviewsWhileEditing:YES];
+    }
+    self.enteringCredentials = YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if(textField == self.passwordTextField) {
-        [self adjustSubviewsWhileEditing:NO];
+        if(!self.enteringCredentials) {
+            [self adjustSubviewsWhileEditing:NO];
+        }
     }
+    self.enteringCredentials = NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
