@@ -120,8 +120,8 @@
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionDiskQuota) {
         self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
-    } else if(option == UTCSMenuOptionSettings) {
-        
+    } else if(option == UTCSMenuOptionLogout) {
+        [[[UIAlertView alloc]initWithTitle:@"Logout" message:@"Are you sure?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil]show];
     }
 }
 

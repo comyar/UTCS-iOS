@@ -27,8 +27,6 @@
 
 @property (nonatomic) UITableView       *tableView;
 
-@property (nonatomic) UIButton          *logoutButton;
-
 @end
 
 
@@ -41,13 +39,13 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Disk Quota"];
+        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Disk Quota", @"Logout"];
         self.title = @"Menu";
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
         
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.75 * self.view.width, self.view.height)
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.75 * self.view.width, self.view.height - 28.0)
                                                      style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
@@ -86,21 +84,6 @@
             button;
         });
         [self.view addSubview:self.facebookButton];
-        
-        self.logoutButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(44.0, self.tableView.y + self.tableView.height, self.tableView.width - self.tableView.x, 44.0);
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logout"]];
-            imageView.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
-            imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
-            button.showsTouchWhenHighlighted = YES;
-            [button addSubview:imageView];
-            button.alpha = 0.5;
-            button;
-        });
-        [self.view addSubview:self.logoutButton];
-        
     }
     return self;
 }
@@ -137,8 +120,6 @@
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://profile/272565539464226"]];
     } else if(button == self.twitterButton) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"twitter://user?screen_name=UTCompSci"]];
-    } else if(button == self.logoutButton) {
-        
     }
 }
 
@@ -183,11 +164,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if(!indexPath.row == 5) {
+    if(indexPath.row != 5) {
         self.activeRow = indexPath.row;
     }
-    
     [self.tableView reloadData];
     if(self.delegate && [self.delegate conformsToProtocol:@protocol(UTCSMenuViewControllerDelegate)] &&
        [self.delegate respondsToSelector:@selector(didSelectMenuOption:)])
@@ -204,7 +183,7 @@
         } else if(indexPath.row == 4) {
             option = UTCSMenuOptionDiskQuota;
         } else if(indexPath.row == 5) {
-            option = UTCSMenuOptionSettings;
+            option = UTCSMenuOptionLogout;
         }
         [self.delegate didSelectMenuOption:option];
     }
