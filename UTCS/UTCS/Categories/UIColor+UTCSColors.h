@@ -52,4 +52,6 @@
 
 + (UIColor *)utcsImageTintColor;
 
++ (UIColor *)utcsCalendarColor;
+
 @end

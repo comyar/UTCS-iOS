@@ -67,5 +67,10 @@
     return [UIColor colorWithWhite:0.11 alpha:0.5];
 }
 
++ (UIColor *)utcsCalendarColor
+{
+    return [UIColor colorWithRed:RGB(220) green:RGB(57) blue:RGB(38) alpha:1.0];
+}
+
 
 @end

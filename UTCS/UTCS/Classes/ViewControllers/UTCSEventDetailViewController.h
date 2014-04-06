@@ -12,7 +12,7 @@
 
 @class UTCSEvent;
 
-@interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate>
+@interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate, EKEventEditViewDelegate>
 
 @property (nonatomic) UTCSEvent *event;
 

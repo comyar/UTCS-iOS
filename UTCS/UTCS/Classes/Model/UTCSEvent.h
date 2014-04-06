@@ -55,6 +55,8 @@ extern NSString *const UTCSEventDetailNormalColor;
  */
 @property (strong, nonatomic) NSString            *HTMLDescription;
 
+@property (assign) BOOL                             allDay;
+
 /**
  */
 @property (strong, nonatomic) NSDate              *startDate;

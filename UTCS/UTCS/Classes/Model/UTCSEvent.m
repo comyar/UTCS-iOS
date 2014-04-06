@@ -33,6 +33,7 @@ NSString * const UTCSParseEventEndDate          = @"dateEnd";
         _startDate          = object[UTCSParseEventStartDate];
         _endDate            = object[UTCSParseEventEndDate];
         _HTMLDescription    = object[UTCSParseEventHTMLDescription];
+        _allDay             = object[@"allday"];
     }
     return self;
 }

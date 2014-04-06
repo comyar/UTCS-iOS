@@ -49,6 +49,8 @@ static const CGFloat dateLabelFontSize  = 28.0;
 
 @property (nonatomic) EKEventStore                      *eventStore;
 
+@property (nonatomic) EKEventEditViewController         *eventEditViewController;
+
 @end
 
 @implementation UTCSEventDetailViewController
@@ -68,7 +70,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
         
         self.dateFormatter = [NSDateFormatter new];
         self.dateFormatter.timeZone = [[NSTimeZone alloc]initWithName:@"GMT"];
-        self.dateFormatter.dateFormat = @"EEEE, MMM d";
+        self.dateFormatter.dateFormat = @"EEEE, MMMM d";
         
         self.dayDateFormatter = [NSDateFormatter new];
         self.dayDateFormatter.timeZone = [[NSTimeZone alloc]initWithName:@"GMT"];
@@ -80,7 +82,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
         [self.view addSubview:self.parallaxBlurHeaderScrollView];
         
         self.dateLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - 80.0, self.parallaxBlurHeaderScrollView.headerContainerView.width - 16.0, 80.0)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - 88.0, self.parallaxBlurHeaderScrollView.headerContainerView.width - 16.0, 80.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36];
             label.textColor = [UIColor whiteColor];
             label.adjustsFontSizeToFitWidth = YES;
@@ -147,31 +149,32 @@ static const CGFloat dateLabelFontSize  = 28.0;
 {
     _event = event;
     
-    self.dateLabel.attributedText = [self dateStringForStartDate:_event.startDate endDate:_event.endDate];
+    self.dateLabel.attributedText = [self dateStringForStartDate:_event.startDate endDate:_event.endDate allDay:_event.allDay];
+    
     
     self.locationLabel.text = _event.location;
     
     self.descriptionTextView.attributedText = ({
         NSMutableAttributedString *attributedText = [NSMutableAttributedString new];
         
-        NSString *nameString = [NSString stringWithFormat:@"%@\n\n", _event.name];
+        NSString *nameString = [NSString stringWithFormat:@"%@ \n\n", _event.name];
         NSAttributedString *name = [[NSAttributedString alloc]initWithString:nameString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor blackColor]}];
         
         [attributedText appendAttributedString:name];
         
         if(_event.location) {
-            NSString *locationString = [NSString stringWithFormat:@"Location : %@\n\n", _event.location];
+            NSString *locationString = [NSString stringWithFormat:@"Location : %@ \n\n", _event.location];
             NSAttributedString *location = [[NSAttributedString alloc]initWithString:locationString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor blackColor]}];
             [attributedText appendAttributedString:location];
         }
         
         if(_event.attributedDescription) {
-            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description\n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:14], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description \n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:14], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
             
             [attributedText appendAttributedString:descriptionHeader];
             [attributedText appendAttributedString:_event.attributedDescription];
         } else {
-            NSAttributedString *description = [[NSAttributedString alloc]initWithString:@"Description Unavailable\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+            NSAttributedString *description = [[NSAttributedString alloc]initWithString:@"Description Unavailable \n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
             [attributedText appendAttributedString:description];
         }
         
@@ -197,9 +200,17 @@ static const CGFloat dateLabelFontSize  = 28.0;
                 calendarEvent.location = self.event.location;
                 calendarEvent.startDate = self.event.startDate;
                 calendarEvent.endDate = self.event.endDate;
-                EKEventEditViewController *editViewController = [EKEventEditViewController new];
-                editViewController.event = calendarEvent;
-                [self presentViewController:editViewController animated:YES completion:nil];
+                
+                if(!self.eventEditViewController) {
+                    self.eventEditViewController = [EKEventEditViewController new];
+                    self.eventEditViewController.navigationBar.tintColor = [UIColor utcsCalendarColor];
+                    self.eventEditViewController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor utcsDarkGrayColor]};
+                    [self.eventEditViewController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBarBackground"]
+                                                                     forBarMetrics:UIBarMetricsDefault];
+                }
+                self.eventEditViewController.event = calendarEvent;
+                self.eventEditViewController.editViewDelegate = self;
+                [self presentViewController:self.eventEditViewController animated:YES completion:nil];
             } else {
                 [[[UIAlertView alloc]initWithTitle:@"Permission Needed" message:@"Allow UTCS to access your calendars by enabling it in your device settings." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil]show];
             }
@@ -212,7 +223,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
     }
 }
 
-- (NSAttributedString *)dateStringForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
+- (NSAttributedString *)dateStringForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay
 {
     NSString *startDateString = [self.dateFormatter stringFromDate:startDate];
     NSString *endDateString = [self.dateFormatter stringFromDate:endDate];
@@ -230,11 +241,16 @@ static const CGFloat dateLabelFontSize  = 28.0;
     NSAttributedString *attributedStartDate = [[NSAttributedString alloc]initWithString:startDateString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:36]}];
     [attributedDateString appendAttributedString:attributedStartDate];
     
-    NSString *timeString = [NSString stringWithFormat:@"\n%@ - %@", startTimeString, endTimeString];
+    NSString *timeString = [NSString stringWithFormat:@" \n%@ - %@", startTimeString, endTimeString];
     NSAttributedString *attributedTime = [[NSAttributedString alloc]initWithString:timeString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
     
     if([startDateString isEqualToString:endDateString]) {
-        [attributedDateString appendAttributedString:attributedTime];
+        if(allDay) {
+            NSAttributedString *attributedAllDay = [[NSAttributedString alloc]initWithString:@" \nAll Day" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
+            [attributedDateString appendAttributedString:attributedAllDay];
+        } else {
+            [attributedDateString appendAttributedString:attributedTime];
+        }
     } else {
         [attributedDateString appendAttributedString:attributedStartDate];
         
@@ -248,4 +264,8 @@ static const CGFloat dateLabelFontSize  = 28.0;
     return attributedDateString;
 }
 
+- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action
+{
+    [self dismissViewControllerAnimated:controller completion:nil];
+}
 @end
