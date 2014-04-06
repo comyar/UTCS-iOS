@@ -136,7 +136,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
             [attributedHTML addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
             [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
             [attributedContent.mutableString replaceOccurrencesOfString:@"	" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [attributedContent.mutableString length])];
-
         }
     }];
     
