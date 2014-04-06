@@ -199,10 +199,17 @@ static const CGFloat dateLabelFontSize  = 28.0;
                 calendarEvent.title = self.event.name;
                 calendarEvent.location = self.event.location;
                 calendarEvent.startDate = self.event.startDate;
-                calendarEvent.endDate = self.event.endDate;
+                if(_event.allDay) {
+                    calendarEvent.allDay = YES;
+                } else {
+                    calendarEvent.endDate = self.event.endDate;
+                }
+                
+                calendarEvent.calendar = [self.eventStore defaultCalendarForNewEvents];
                 
                 if(!self.eventEditViewController) {
                     self.eventEditViewController = [EKEventEditViewController new];
+                    self.eventEditViewController.eventStore = self.eventStore;
                     self.eventEditViewController.navigationBar.tintColor = [UIColor utcsCalendarColor];
                     self.eventEditViewController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:
                                                                                            [UIColor utcsDarkGrayColor]};
@@ -268,6 +275,6 @@ static const CGFloat dateLabelFontSize  = 28.0;
 
 - (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action
 {
-    [self dismissViewControllerAnimated:controller completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 @end
