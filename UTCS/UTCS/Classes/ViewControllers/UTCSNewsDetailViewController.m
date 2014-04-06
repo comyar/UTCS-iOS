@@ -174,7 +174,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     
     self.contentTextView.attributedText = newsStory.attributedContent;
     self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
-                                                              height:CGFLOAT_MAX].height;
+                                                              height:CGFLOAT_MAX].height + self.contentTextView.textContainerInset.top + self.contentTextView.textContainerInset.bottom;
     
     self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerContainerView.height;
     

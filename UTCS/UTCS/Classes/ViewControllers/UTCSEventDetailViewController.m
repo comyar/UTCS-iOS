@@ -182,7 +182,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
     });
     
     self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
-                                                              height:CGFLOAT_MAX].height;
+                                                              height:CGFLOAT_MAX].height + self.descriptionTextView.textContainerInset.top + self.descriptionTextView.textContainerInset.bottom;
     
     self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
 }
@@ -204,12 +204,14 @@ static const CGFloat dateLabelFontSize  = 28.0;
                 if(!self.eventEditViewController) {
                     self.eventEditViewController = [EKEventEditViewController new];
                     self.eventEditViewController.navigationBar.tintColor = [UIColor utcsCalendarColor];
-                    self.eventEditViewController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor utcsDarkGrayColor]};
+                    self.eventEditViewController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:
+                                                                                           [UIColor utcsDarkGrayColor]};
                     [self.eventEditViewController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBarBackground"]
                                                                      forBarMetrics:UIBarMetricsDefault];
+                    self.eventEditViewController.editViewDelegate = self;
                 }
                 self.eventEditViewController.event = calendarEvent;
-                self.eventEditViewController.editViewDelegate = self;
+                
                 [self presentViewController:self.eventEditViewController animated:YES completion:nil];
             } else {
                 [[[UIAlertView alloc]initWithTitle:@"Permission Needed" message:@"Allow UTCS to access your calendars by enabling it in your device settings." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil]show];
