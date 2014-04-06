@@ -6,35 +6,44 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+// View Controllers
 #import "UTCSDiskQuotaViewController.h"
+
+// Views
+#import "MBProgressHUD.h"
 #import "UTCSMenuButton.h"
 #import "MRCircularProgressView.h"
-#import "UIView+CZPositioning.h"
+
+// Models
 #import "UTCSSSHManager.h"
 #import "UTCSAccountManager.h"
-#import "UTCSDiskQuotaAuthenticationViewController.h"
-#import "UIColor+UTCSColors.h"
-#import "UIImage+CZTinting.h"
-#import "UIView+Shake.h"
-#import "MBProgressHUD.h"
 
+// Categories
+#import "UIView+Shake.h"
+#import "UIImage+CZTinting.h"
+#import "UIColor+UTCSColors.h"
+#import "UIView+CZPositioning.h"
+
+
+#pragma mark - UTCSDiskQuotaViewController Class Extension
 
 @interface UTCSDiskQuotaViewController ()
 
-// Label displaying the title of the view controller
-@property (nonatomic, getter = isEnteringCredentials) BOOL enteringCredentials;
-@property (nonatomic) UILabel                   *titleLabel;
-@property (nonatomic) UIView                    *diskQuotaContainerView;
-@property (nonatomic) UIView                    *diskQuotaAuthenticationContainerView;
-@property (nonatomic) UIImageView               *backgroundImageView;
-@property (nonatomic) CGFloat                   currentQuota;
+// Button used to display the menu view controller
 @property (nonatomic) UTCSMenuButton            *menuButton;
-@property (nonatomic) UIButton                  *updateButton;
-@property (nonatomic) MRCircularProgressView    *diskQuotaGaugeView;
-@property (nonatomic) UILabel                   *diskQuotaDetailLabel;
-@property (nonatomic) UILabel                   *updatedLabel;
-@property (nonatomic) UTCSDiskQuotaAuthenticationViewController *diskQuotaAuthenticationViewController;
 
+// Label displaying the title of the view controller
+@property (nonatomic) UILabel                   *titleLabel;
+
+// Image view used to display the background image
+@property (nonatomic) UIImageView               *backgroundImageView;
+
+// -----
+// @name Authentication Properties
+// -----
 
 // Button used to begin authentication
 @property (nonatomic) UIButton                  *loginButton;
@@ -51,7 +60,30 @@
 // Aesthetic view used to draw a separating line between the username and password text fields
 @property (nonatomic) UIView                    *textFieldSeparatorView;
 
+@property (nonatomic) UIView                    *authenticationContainerView;
+
+@property (nonatomic, getter = isEnteringCredentials) BOOL enteringCredentials;
+
+// -----
+// @name Disk Quota Properties
+// -----
+
+@property (nonatomic) CGFloat                   currentQuota;
+
+@property (nonatomic) UIView                    *diskQuotaContainerView;
+
+@property (nonatomic) UIButton                  *updateButton;
+
+@property (nonatomic) MRCircularProgressView    *diskQuotaGaugeView;
+
+@property (nonatomic) UILabel                   *diskQuotaDetailLabel;
+
+@property (nonatomic) UILabel                   *updatedLabel;
+
 @end
+
+
+#pragma mark - UTCSDiskQuotaViewController Implementation
 
 @implementation UTCSDiskQuotaViewController
 
@@ -66,7 +98,6 @@
         imageView;
     });
     
-    
     // Menu Button
     self.menuButton = ({
         UTCSMenuButton *button = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
@@ -75,21 +106,11 @@
         button;
     });
     
+    // Disk quota subviews
     [self initDiskQuotaSubviews];
-    [self initAuthenticationSubviews];
     
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-    [self adjustSubviewsWhileEditing:NO];
-}
-
-- (void)didAuthenticate
-{
-    [self.navigationController popToViewController:self animated:YES];
-    [self updateDiskQuota];
+    // Authentication subviews
+    [self initAuthenticationSubviews];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,19 +119,42 @@
     if([UTCSAccountManager password]) {
         self.diskQuotaContainerView.alpha = 1.0;
     } else {
-        self.diskQuotaAuthenticationContainerView.alpha = 1.0;
+        self.authenticationContainerView.alpha = 1.0;
     }
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [self adjustAuthenticationSubviewsWhileEditing:NO];
+}
+
+#pragma mark UIButton Methods
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.loginButton) {
+        [self.view endEditing:YES];
+        [self adjustAuthenticationSubviewsWhileEditing:NO];
+        [self authenticateWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
+    }
+}
+
+#pragma mark - Disk Quota
 
 - (void)updateDiskQuota
 {
     NSString *username = [UTCSAccountManager username];
     NSString *password = [UTCSAccountManager password];
+    [self updateDiskQuotaWithUsername:username password:password];
+}
+
+- (void)updateDiskQuotaWithUsername:(NSString *)username password:(NSString *)password
+{
     [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
         if(success) {
             [[UTCSSSHManager sharedSSHManager]executeCommand:@"chkquota" completion:^(NSString *response) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"%@", response);
                     CGFloat limit = [self diskLimitForResponse:response];
                     CGFloat usage = [self diskUsageForResponse:response];
                     self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.f / %0.2f", usage, limit];
@@ -155,14 +199,10 @@
     return usage;
 }
 
-
-
-#pragma mark - Disk Quota
-
 - (void)initDiskQuotaSubviews
 {
     self.diskQuotaContainerView = ({
-        UIView *view = [UIView new];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 44.0, self.view.width, self.view.height - 44.0)];
         view.backgroundColor = [UIColor clearColor];
         view.alpha = 0.0;
         [self.view addSubview:view];
@@ -209,20 +249,18 @@
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, self.view.height - 24, self.view.width, 24)];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor whiteColor];
         [self.diskQuotaContainerView addSubview:label];
         label;
     });
 }
 
-
 #pragma mark - Authentication
-
 
 - (void)initAuthenticationSubviews
 {
     // Disk quota authentication container view
-    self.diskQuotaAuthenticationContainerView = ({
+    self.authenticationContainerView = ({
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 44.0, self.view.width, self.view.height - 44.0)];
         view.backgroundColor = [UIColor clearColor];
         [self.view addSubview:view];
@@ -234,11 +272,11 @@
     self.loginContainerView = ({
         UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
         view.backgroundColor = [UIColor clearColor];
-        [self.diskQuotaAuthenticationContainerView addSubview:view];
+        [self.authenticationContainerView addSubview:view];
         view;
     });
     
-    // Titel label
+    // Title label
     self.titleLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.1 * self.view.height, self.view.width, 100)];
         label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:58.0];
@@ -323,51 +361,7 @@
     });
 }
 
-#pragma mark UIButton Methods
-
-- (void)didTouchUpInsideButton:(UIButton *)button
-{
-    if(button == self.loginButton) {
-        [self.view endEditing:YES];
-        [self adjustSubviewsWhileEditing:NO];
-        [self authenticateWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
-    }
-}
-
-#pragma mark UITextFieldDelegate Methods
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if(!self.enteringCredentials) {
-        [self adjustSubviewsWhileEditing:YES];
-    }
-    self.enteringCredentials = YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if(textField == self.passwordTextField) {
-        if(!self.enteringCredentials) {
-            [self adjustSubviewsWhileEditing:NO];
-        }
-    }
-    self.enteringCredentials = NO;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if(textField == self.usernameTextField) {
-        [self.passwordTextField becomeFirstResponder];
-    } else if(textField == self.passwordTextField) {
-        [self adjustSubviewsWhileEditing:NO];
-        [self authenticateWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
-    }
-    return YES;
-}
-
-#pragma mark Authentication Animation
-
-- (void)adjustSubviewsWhileEditing:(BOOL)editing
+- (void)adjustAuthenticationSubviewsWhileEditing:(BOOL)editing
 {
     CGPoint loginOffset = (editing)? CGPointMake(self.view.center.x, 0.5 * self.view.center.y) : self.view.center;
     CGFloat titleAlpha = (editing)? 0.0 : 1.0;
@@ -378,15 +372,19 @@
     } completion:nil];
 }
 
-#pragma mark Authentication
-
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if(success) {
-                [[UTCSSSHManager sharedSSHManager]disconnect];
+                [self.view endEditing:YES];
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.authenticationContainerView.alpha = 0.0;
+                    self.diskQuotaContainerView.alpha = 1.0;
+                }];
+                
+                [self updateDiskQuotaWithUsername:username password:password];
                 [UTCSAccountManager setUsername:username];
                 [UTCSAccountManager setPassword:password];
             } else {
@@ -395,6 +393,37 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     }];
+}
+
+#pragma mark UITextFieldDelegate Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(!self.enteringCredentials) {
+        [self adjustAuthenticationSubviewsWhileEditing:YES];
+    }
+    self.enteringCredentials = YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == self.passwordTextField) {
+        if(!self.enteringCredentials) {
+            [self adjustAuthenticationSubviewsWhileEditing:NO];
+        }
+    }
+    self.enteringCredentials = NO;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.usernameTextField) {
+        [self.passwordTextField becomeFirstResponder];
+    } else if(textField == self.passwordTextField) {
+        [self adjustAuthenticationSubviewsWhileEditing:NO];
+        [self authenticateWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
+    }
+    return YES;
 }
 
 @end

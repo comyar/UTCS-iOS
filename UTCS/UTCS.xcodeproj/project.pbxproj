@@ -64,7 +64,6 @@
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */; };
-		DDC676D418EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */; };
@@ -184,8 +183,6 @@
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDC676CF18EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsAuthenticationViewController.h; sourceTree = "<group>"; };
 		DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsAuthenticationViewController.m; sourceTree = "<group>"; };
-		DDC676D218EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDiskQuotaAuthenticationViewController.h; sourceTree = "<group>"; };
-		DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaAuthenticationViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
@@ -658,8 +655,6 @@
 			children = (
 				DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */,
 				DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */,
-				DDC676D218EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.h */,
-				DDC676D318EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m */,
 			);
 			name = DiskQuota;
 			sourceTree = "<group>";
@@ -817,7 +812,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD0F0D6D18EC39DE0088178C /* UTCSStateManager.m in Sources */,
-				DDC676D418EEF5130082C235 /* UTCSDiskQuotaAuthenticationViewController.m in Sources */,
 				DD44658318E5837600ED1153 /* UTCSSettingsViewController.m in Sources */,
 				DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */,
 				DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */,
