@@ -54,6 +54,31 @@
 
 @implementation UTCSDiskQuotaViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Background image view
+    self.backgroundImageView = ({
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"diskQuotaBackground"]tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay]];
+        [self.view addSubview:imageView];
+        imageView;
+    });
+    
+    
+    // Menu Button
+    self.menuButton = ({
+        UTCSMenuButton *button = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
+        button.lineColor = [UIColor whiteColor];
+        [self.view addSubview:button];
+        button;
+    });
+    
+    [self initDiskQuotaSubviews];
+    [self initAuthenticationSubviews];
+    
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
@@ -129,38 +154,19 @@
     return usage;
 }
 
-- (void)viewDidLoad
+
+
+#pragma mark - Disk Quota
+
+- (void)initDiskQuotaSubviews
 {
-    [super viewDidLoad];
-    
-    self.backgroundImageView = ({
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"diskQuotaBackground"]tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay]];
-        [self.view addSubview:imageView];
-        imageView;
-    });
-    
-    
-    // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
-    self.menuButton.lineColor = [UIColor whiteColor];
-    [self.view addSubview:self.menuButton];
-    
     self.diskQuotaContainerView = ({
-        UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
+        UIView *view = [UIView new];
         view.backgroundColor = [UIColor clearColor];
         view.alpha = 0.0;
         [self.view addSubview:view];
         view;
     });
-    
-    self.diskQuotaAuthenticationContainerView = ({
-        UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
-        view.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:view];
-        view.alpha = 0.0;
-        view;
-    });
-    
     
     self.diskQuotaGaugeView = ({
         MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectMake(0, 0, 0.7 * self.view.width,
@@ -206,17 +212,6 @@
         [self.diskQuotaContainerView addSubview:label];
         label;
     });
-    
-    
-    
-    
-}
-
-#pragma mark - Disk Quota
-
-- (void)initDiskQuotaSubviews
-{
-    
 }
 
 
@@ -225,6 +220,15 @@
 
 - (void)initAuthenticationSubviews
 {
+    // Disk quota authentication container view
+    self.diskQuotaAuthenticationContainerView = ({
+        UIView *view = [UIView new];
+        view.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:view];
+        view.alpha = 0.0;
+        view;
+    });
+    
     // Login container view
     self.loginContainerView = ({
         UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
@@ -236,7 +240,7 @@
     // Titel label
     self.titleLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.1 * self.view.height, self.view.width, 100)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:58];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:58.0];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"Disk Quota";
