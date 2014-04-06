@@ -1,5 +1,5 @@
 //
-//  UTCSLicenseViewController.h
+//  UTCSLicenseDetailViewController.h
 //  UTCS
 //
 //  Created by Comyar Zaheri on 4/6/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSLicenseViewController : UIViewController
+@interface UTCSLicenseDetailViewController : UIViewController
 
 @end

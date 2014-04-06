@@ -31,7 +31,7 @@
 
 @property (nonatomic) NSArray           *headers;
 
-@property (nonatomic) UTCSAboutViewController *aboutViewController;
+@property (nonatomic) UTCSAboutViewController   *aboutViewController;
 @property (nonatomic) UTCSLicenseViewController *licenseViewController;
 
 @end
