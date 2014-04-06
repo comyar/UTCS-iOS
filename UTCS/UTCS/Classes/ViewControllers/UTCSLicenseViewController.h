@@ -1,5 +1,5 @@
 //
-//  UTCSSettingsViewController.h
+//  UTCSLicenseViewController.h
 //  UTCS
 //
 //  Created by Comyar Zaheri on 4/6/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface UTCSLicenseViewController : UIViewController
 
 @end

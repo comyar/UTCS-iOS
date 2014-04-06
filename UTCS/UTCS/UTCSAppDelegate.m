@@ -19,6 +19,7 @@
 #import "UTCSVerticalMenuViewController.h"
 #import "UTCSWebViewController.h"
 #import "UTCSDiskQuotaViewController.h"
+#import "UTCSSettingsViewController.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -36,6 +37,8 @@
 @property (nonatomic) UINavigationController            *labsNavigationController;
 
 @property (nonatomic) UINavigationController            *directoryNavigationController;
+
+@property (nonatomic) UINavigationController            *settingsNavigationController;
 
 @property (nonatomic) UTCSAboutViewController           *aboutViewController;
 //
@@ -86,9 +89,10 @@
     self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     self.aboutViewController            = [UTCSAboutViewController new];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.eventsNavigationController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.settingsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
@@ -120,12 +124,8 @@
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionDiskQuota) {
         self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
-    } else if(option == UTCSMenuOptionLogout) {
-        [[[UIAlertView alloc]initWithTitle:@"Logout"
-                                   message:@"Are you sure?"
-                                  delegate:nil
-                         cancelButtonTitle:@"Cancel"
-                         otherButtonTitles:@"Yes", nil]show];
+    } else if(option == UTCSMenuOptionSettings) {
+        self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
 

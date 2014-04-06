@@ -73,10 +73,8 @@ static NSString * const host = @"weretaco.cs.utexas.edu";
         completion(nil);
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSString *response = [self.session.channel execute:command error:nil];
-        completion(response);
-    });
+    NSString *response = [self.session.channel execute:[command copy] error:nil];
+    completion(response);
 }
 
 - (void)disconnect

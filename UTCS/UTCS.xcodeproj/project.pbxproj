@@ -59,6 +59,10 @@
 		DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55D18F0EB8600EBDE06 /* EventKit.framework */; };
 		DD83B56018F0EC1300EBDE06 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */; };
 		DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */; };
+		DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView */; };
+		DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD */; };
+		DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering */; };
+		DD83B56E18F157C700EBDE06 /* UTCSLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B56D18F157C700EBDE06 /* UTCSLicenseViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -174,6 +178,11 @@
 		DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		DD83B56218F1353A00EBDE06 /* UTCSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSettingsViewController.h; sourceTree = "<group>"; };
 		DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSettingsViewController.m; sourceTree = "<group>"; };
+		DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MRCircularProgressView"; sourceTree = "<group>"; };
+		DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MBProgressHUD"; sourceTree = "<group>"; };
+		DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-FBShimmering"; sourceTree = "<group>"; };
+		DD83B56C18F157C700EBDE06 /* UTCSLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseViewController.h; sourceTree = "<group>"; };
+		DD83B56D18F157C700EBDE06 /* UTCSLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseViewController.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -198,7 +207,6 @@
 		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		DDF02DCE18CF548600C7D012 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
 		DDF02DCF18CF548600C7D012 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
 		DDF02DD018CF548600C7D012 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
 		DDF02DD118CF548600C7D012 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
@@ -524,7 +532,6 @@
 				DD83B56118F1352200EBDE06 /* Settings */,
 				DDC676CB18EC6DD30082C235 /* DiskQuota */,
 				DD4954D818EBAFA000BC928B /* Web */,
-				DD44658418E5837B00ED1153 /* About */,
 				DD44657B18E5833100ED1153 /* Directory */,
 				DD44657718E5832100ED1153 /* Labs */,
 				DD44657318E5815100ED1153 /* Events */,
@@ -594,6 +601,7 @@
 		DD83B55918F0B2FA00EBDE06 /* MRCircularProgressView */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView */,
 				DD83B55A18F0B2FA00EBDE06 /* MRCircularProgressView.h */,
 				DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */,
 			);
@@ -606,8 +614,19 @@
 			children = (
 				DD83B56218F1353A00EBDE06 /* UTCSSettingsViewController.h */,
 				DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */,
+				DD44658418E5837B00ED1153 /* About */,
+				DD83B56B18F157BA00EBDE06 /* License */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		DD83B56B18F157BA00EBDE06 /* License */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B56C18F157C700EBDE06 /* UTCSLicenseViewController.h */,
+				DD83B56D18F157C700EBDE06 /* UTCSLicenseViewController.m */,
+			);
+			name = License;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -643,6 +662,7 @@
 		DDC676B318EC3F6E0082C235 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD */,
 				DDC676B418EC3F950082C235 /* MBProgressHUD.h */,
 				DDC676B518EC3F950082C235 /* MBProgressHUD.m */,
 			);
@@ -688,7 +708,7 @@
 		DDF02DCD18CF548600C7D012 /* FBShimmering */ = {
 			isa = PBXGroup;
 			children = (
-				DDF02DCE18CF548600C7D012 /* FBShimmering-Prefix.pch */,
+				DD83B56918F1578800EBDE06 /* LICENSE-FBShimmering */,
 				DDF02DCF18CF548600C7D012 /* FBShimmering.h */,
 				DDF02DD018CF548600C7D012 /* FBShimmeringLayer.h */,
 				DDF02DD118CF548600C7D012 /* FBShimmeringLayer.m */,
@@ -798,9 +818,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering in Resources */,
 				DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
+				DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
+				DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +861,7 @@
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
+				DD83B56E18F157C700EBDE06 /* UTCSLicenseViewController.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DD83B55C18F0B2FA00EBDE06 /* MRCircularProgressView.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,

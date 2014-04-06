@@ -26,7 +26,6 @@
 #import "UIImage+CZTinting.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 
 #pragma mark - UTCSDiskQuotaViewController Class Extension
@@ -171,7 +170,6 @@
     [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
         if(success) {
             [[UTCSSSHManager sharedSSHManager]executeCommand:@"chkquota" completion:^(NSString *response) {
-                
                 CGFloat limit = [self diskLimitForResponse:response];
                 CGFloat usage = [self diskUsageForResponse:response];
                 NSString *command = [NSString stringWithFormat:@"finger %@", username];
@@ -185,8 +183,8 @@
                         self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.f / %0.0f", usage, limit];
                         [self.diskQuotaGaugeView setProgress:(usage/limit) animated:YES];
                         NSString *updatedTime = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                                               dateStyle:NSDateFormatterMediumStyle
-                                                                               timeStyle:NSDateFormatterMediumStyle];
+                                                                                dateStyle:NSDateFormatterMediumStyle
+                                                                                timeStyle:NSDateFormatterMediumStyle];
                         self.updatedLabel.text = [NSString stringWithFormat:@"Updated: %@", updatedTime];
                     });
                 }];
@@ -256,8 +254,8 @@
     });
     
     self.diskQuotaGaugeView = ({
-        MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectMake(0, 0, 0.7 * self.view.width,
-                                                                                               0.7 * self.view.width)];
+        MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectMake(0, 0, 0.625 * self.view.width,
+                                                                                               0.625 * self.view.width)];
         view.center = CGPointMake(self.diskQuotaContainerView.center.x, self.diskQuotaContainerView.center.y - self.diskQuotaContainerView.y);
         view.backgroundColor = [UIColor clearColor];
         view.progressColor = [UIColor whiteColor];
@@ -277,7 +275,7 @@
     });
     
     self.nameLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 96.0, self.diskQuotaContainerView.width, 24)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 90.0, self.diskQuotaContainerView.width, 24)];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         label.textAlignment = NSTextAlignmentCenter;
@@ -346,13 +344,13 @@
     
     // Username text field
     self.usernameTextField = ({
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.5 * CGRectGetWidth(self.view.bounds), 44)];
         textField.center = CGPointMake(self.authenticationContainerView.center.x,
                                        self.authenticationContainerView.center.y - 0.5 * CGRectGetHeight(textField.bounds) - 44.0);
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.textAlignment = NSTextAlignmentCenter;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.tintColor = [UIColor colorWithWhite:0.9 alpha:1.0];
         textField.textColor = [UIColor whiteColor];
         textField.returnKeyType = UIReturnKeyNext;
@@ -371,8 +369,8 @@
     
     // Textfield separator view
     self.textFieldSeparatorView = ({
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 0.5)];
-        view.backgroundColor = [UIColor whiteColor];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.5 * CGRectGetWidth(self.view.bounds), 0.5)];
+        view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         view.center = CGPointMake(self.authenticationContainerView.center.x,
                                   self.authenticationContainerView.center.y - 44.0);
         [self.authenticationContainerView addSubview:view];
@@ -381,13 +379,13 @@
     
     // Password text field
     self.passwordTextField = ({
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.5 * CGRectGetWidth(self.view.bounds), 44)];
         textField.center = CGPointMake(self.authenticationContainerView.center.x,
                                        self.authenticationContainerView.center.y + 0.5 * CGRectGetHeight(textField.bounds) - 44.0);
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.textAlignment = NSTextAlignmentCenter;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.textAlignment = NSTextAlignmentCenter;
         textField.tintColor = [UIColor colorWithWhite:0.9 alpha:1.0];
         textField.textColor = [UIColor whiteColor];
         textField.returnKeyType = UIReturnKeyDone;
@@ -410,7 +408,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(0.0, 0.0, 0.5 * self.authenticationContainerView.width, 44.0);
-        button.center = CGPointMake(self.authenticationContainerView.center.x, 1.4 * self.authenticationContainerView.center.y);
+        button.center = CGPointMake(self.authenticationContainerView.center.x, 1.25 * self.authenticationContainerView.center.y);
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.layer.borderColor = [UIColor whiteColor].CGColor;
         [button setTitle:@"Login" forState:UIControlStateNormal];
@@ -423,7 +421,7 @@
 
 - (void)adjustAuthenticationSubviewsWhileEditing:(BOOL)editing
 {
-    CGPoint loginOffset = (editing)? CGPointMake(self.view.center.x, 0.33 * self.view.center.y) : self.view.center;
+    CGPoint loginOffset = (editing)? CGPointMake(self.view.center.x, 0.5 * self.view.center.y) : self.view.center;
     CGFloat titleAlpha = (editing)? 0.0 : 1.0;
     
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -451,6 +449,7 @@
                 [self.authenticationContainerView shake:3 withDelta:16.0];
                 // Creates Vibration
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+
             }
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
