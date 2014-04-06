@@ -58,6 +58,7 @@
 		DD83B55C18F0B2FA00EBDE06 /* MRCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */; };
 		DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55D18F0EB8600EBDE06 /* EventKit.framework */; };
 		DD83B56018F0EC1300EBDE06 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */; };
+		DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -171,6 +172,8 @@
 		DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCircularProgressView.m; sourceTree = "<group>"; };
 		DD83B55D18F0EB8600EBDE06 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		DD83B56218F1353A00EBDE06 /* UTCSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSSettingsViewController.h; sourceTree = "<group>"; };
+		DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSettingsViewController.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -518,6 +521,7 @@
 		DD5B586D18D23DE100EEB474 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B56118F1352200EBDE06 /* Settings */,
 				DDC676CB18EC6DD30082C235 /* DiskQuota */,
 				DD4954D818EBAFA000BC928B /* Web */,
 				DD44658418E5837B00ED1153 /* About */,
@@ -595,6 +599,15 @@
 			);
 			name = MRCircularProgressView;
 			path = Libraries/MRCircularProgressView;
+			sourceTree = "<group>";
+		};
+		DD83B56118F1352200EBDE06 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B56218F1353A00EBDE06 /* UTCSSettingsViewController.h */,
+				DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -814,6 +827,7 @@
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
+				DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */,
 				DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */,
 				DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
