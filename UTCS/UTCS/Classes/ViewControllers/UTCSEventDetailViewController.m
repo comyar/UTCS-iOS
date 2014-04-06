@@ -47,6 +47,8 @@ static const CGFloat dateLabelFontSize  = 28.0;
 
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
+@property (nonatomic) EKEventStore                      *eventStore;
+
 @end
 
 @implementation UTCSEventDetailViewController
@@ -102,6 +104,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(0, 0, 20, 20);
             button.showsTouchWhenHighlighted = YES;
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             
             UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"addtocalendar"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
             imageView.tintColor = [UIColor whiteColor];
@@ -115,7 +118,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(0, 0, 20, 20);
             button.showsTouchWhenHighlighted = YES;
-            
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
             imageView.tintColor = [UIColor whiteColor];
             imageView.frame = button.bounds;
@@ -184,6 +187,23 @@ static const CGFloat dateLabelFontSize  = 28.0;
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.addToCalendarButton) {
+        if(!self.eventStore) {
+            self.eventStore = [EKEventStore new];
+        }
+        [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if(granted) {
+                EKEvent *calendarEvent = [EKEvent eventWithEventStore:self.eventStore];
+                calendarEvent.title = self.event.name;
+                calendarEvent.location = self.event.location;
+                calendarEvent.startDate = self.event.startDate;
+                calendarEvent.endDate = self.event.endDate;
+                EKEventEditViewController *editViewController = [EKEventEditViewController new];
+                editViewController.event = calendarEvent;
+                [self presentViewController:editViewController animated:YES completion:nil];
+            } else {
+                [[[UIAlertView alloc]initWithTitle:@"Permission Needed" message:@"Allow UTCS to access your calendars by enabling it in your device settings." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil]show];
+            }
+        }];
         
     } else if(button == self.shareButton) {
         

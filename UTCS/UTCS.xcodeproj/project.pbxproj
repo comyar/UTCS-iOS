@@ -354,13 +354,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DD0F0D6A18EC39D10088178C /* Settings */ = {
+		DD0F0D6A18EC39D10088178C /* StateManager */ = {
 			isa = PBXGroup;
 			children = (
 				DD0F0D6B18EC39DE0088178C /* UTCSStateManager.h */,
 				DD0F0D6C18EC39DE0088178C /* UTCSStateManager.m */,
 			);
-			name = Settings;
+			name = StateManager;
 			sourceTree = "<group>";
 		};
 		DD44657318E5815100ED1153 /* Events */ = {
@@ -479,7 +479,7 @@
 				DD83B54C18EF090400EBDE06 /* AccountManager */,
 				DD83B54818EEF92F00EBDE06 /* KeychainStore */,
 				DDC676B718EC55DB0082C235 /* SSHManager */,
-				DD0F0D6A18EC39D10088178C /* Settings */,
+				DD0F0D6A18EC39D10088178C /* StateManager */,
 				DD4954DC18EBB1FA00BC928B /* Application */,
 				DD4465A218E93D9600ED1153 /* Directory */,
 				DD4465A118E93D8C00ED1153 /* News */,
