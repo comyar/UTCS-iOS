@@ -34,6 +34,8 @@ NSString * const UTCSParseEventEndDate          = @"dateEnd";
         _endDate            = object[UTCSParseEventEndDate];
         _HTMLDescription    = object[UTCSParseEventHTMLDescription];
         _allDay             = object[@"allday"];
+        _tag                = object[@"type"];
+        
     }
     return self;
 }

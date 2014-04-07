@@ -85,13 +85,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

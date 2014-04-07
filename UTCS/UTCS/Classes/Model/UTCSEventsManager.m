@@ -9,6 +9,7 @@
 #import "UTCSEventsManager.h"
 #import "UTCSEvent.h"
 #import "UTCSEventTableViewCell.h"
+#import "UIColor+UTCSColors.h"
 
 
 typedef void (^ UTCSEventManagerCompletion) (NSArray *events, NSError *error);
@@ -21,8 +22,9 @@ NSString * const UTCSParseClassEvent                            = @"Event";
 
 @interface UTCSEventsManager ()
 @property (nonatomic) NSArray *events;
-@property (nonatomic) NSDateFormatter *monthDateFormatter;
-@property (nonatomic) NSDateFormatter *dayDateFormatter;
+@property (nonatomic) NSDateFormatter   *monthDateFormatter;
+@property (nonatomic) NSDateFormatter   *dayDateFormatter;
+@property (nonatomic) NSDictionary      *tagColorMapping;
 @end
 
 
@@ -42,6 +44,10 @@ NSString * const UTCSParseClassEvent                            = @"Event";
             formatter.dateFormat = @"dd";
             formatter;
         });
+        
+        
+        self.tagColorMapping = @{@"careers": [UIColor utcsEventCareersColor],
+                                 @"talks":[UIColor utcsEventTalkColor]};
     }
     return self;
 }
@@ -59,7 +65,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
     UTCSEvent *event = self.events[indexPath.row];
     cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
     cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
-    
+    cell.tagColor = self.tagColorMapping[event.tag];
     cell.textLabel.text = event.name;
     cell.detailTextLabel.text = event.location;
     

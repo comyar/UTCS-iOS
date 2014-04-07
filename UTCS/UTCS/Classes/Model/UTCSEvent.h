@@ -65,6 +65,8 @@ extern NSString *const UTCSEventDetailNormalColor;
  */
 @property (strong, nonatomic) NSDate              *endDate;
 
+@property (strong, nonatomic) NSString              *tag;
+
 /**
  */
 @property (strong, nonatomic) NSAttributedString  *attributedDescription;

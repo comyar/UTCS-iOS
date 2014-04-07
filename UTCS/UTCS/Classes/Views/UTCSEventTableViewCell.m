@@ -11,6 +11,8 @@
 static const CGFloat calendarDateWidth  = 64.0;
 static const CGFloat dayLabelFontSize   = 40.0;
 static const CGFloat monthLabelFontSize = 14.0;
+static const CGFloat tagLabelWidth      = 64.0;
+static const CGFloat tagLabelFontSize   = 14.0;
 
 @implementation UTCSEventTableViewCell
 
@@ -49,8 +51,19 @@ static const CGFloat monthLabelFontSize = 14.0;
         });
         [self.contentView addSubview:_dayLabel];
         
+        _tagLabel = ({
+            UILabel *label = [UILabel new];
+            label.frame = CGRectMake(0.0, 0.0, tagLabelWidth, tagLabelFontSize);
+            label.backgroundColor = [UIColor clearColor];
+            label.layer.masksToBounds = YES;
+            label.adjustsFontSizeToFitWidth = YES;
+            label.layer.cornerRadius = 4.0;
+            label.font = [UIFont fontWithName:@"HelveticaNeue" size:tagLabelFontSize];
+            label;
+        });
+        [self.contentView addSubview:_tagLabel];
         
-        
+        _tagColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -81,11 +94,32 @@ static const CGFloat monthLabelFontSize = 14.0;
     self.detailTextLabel.frame = ({
         CGRect frame = self.detailTextLabel.frame;
         frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
-        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth;
+        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - tagLabelWidth;
         frame;
     });
     
-    NSLog(@"%@", NSStringFromCGRect(self.dayLabel.frame));
+    self.tagLabel.frame = ({
+        CGRect frame = self.tagLabel.frame;
+        frame.origin.x = self.detailTextLabel.frame.origin.x + CGRectGetWidth(self.detailTextLabel.bounds);
+        frame;
+    });
+}
+
+- (void)setTagColor:(UIColor *)tagColor
+{
+    _tagColor = (tagColor)? tagColor : [UIColor whiteColor];
+    [self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [_tagColor set];
+    CGContextSetLineWidth(context, 6.0);
+    CGContextMoveToPoint(context, 0, 0);
+    CGContextAddLineToPoint(context, 0, CGRectGetHeight(self.bounds) );
+    CGContextStrokePath(context);
 }
 
 @end

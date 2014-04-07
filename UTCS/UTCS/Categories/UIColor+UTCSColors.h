@@ -54,4 +54,9 @@
 
 + (UIColor *)utcsCalendarColor;
 
+
++ (UIColor *)utcsEventCareersColor;
+
++ (UIColor *)utcsEventTalkColor;
+
 @end

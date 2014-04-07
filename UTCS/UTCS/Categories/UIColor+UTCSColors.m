@@ -73,4 +73,15 @@
 }
 
 
++ (UIColor *)utcsEventCareersColor
+{
+    return [UIColor colorWithRed:RGB(46) green:RGB(204) blue:RGB(113) alpha:1.0];
+}
+
++ (UIColor *)utcsEventTalkColor
+{
+    return [UIColor colorWithRed:RGB(52) green:RGB(153) blue:RGB(219) alpha:1.0];
+}
+
+
 @end
