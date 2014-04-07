@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
-#import <EventKitUI/EventKitUI.h>
 
 @class UTCSEvent;
 
-@interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate, EKEventEditViewDelegate>
+@interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate>
 
 @property (nonatomic) UTCSEvent *event;
 

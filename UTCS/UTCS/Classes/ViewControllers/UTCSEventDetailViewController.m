@@ -12,6 +12,7 @@
 #import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
 #import "UITextView+CZTextViewHeight.h"
+#import "EKEventEditViewController+HideStatusBar.h"
 
 
 /**
@@ -48,8 +49,6 @@ static const CGFloat dateLabelFontSize  = 28.0;
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
 @property (nonatomic) EKEventStore                      *eventStore;
-
-@property (nonatomic) EKEventEditViewController         *eventEditViewController;
 
 @property (nonatomic) UIActivityViewController          *activityViewController;
 
@@ -209,19 +208,9 @@ static const CGFloat dateLabelFontSize  = 28.0;
                 
                 calendarEvent.calendar = [self.eventStore defaultCalendarForNewEvents];
                 
-                if(!self.eventEditViewController) {
-                    self.eventEditViewController = [EKEventEditViewController new];
-                    self.eventEditViewController.eventStore = self.eventStore;
-                    self.eventEditViewController.navigationBar.tintColor = [UIColor utcsCalendarColor];
-                    self.eventEditViewController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:
-                                                                                           [UIColor utcsDarkGrayColor]};
-                    [self.eventEditViewController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBarBackground"]
-                                                                     forBarMetrics:UIBarMetricsDefault];
-                    self.eventEditViewController.editViewDelegate = self;
-                }
-                self.eventEditViewController.event = calendarEvent;
-                
-                [self presentViewController:self.eventEditViewController animated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc]initWithTitle:@"Add Event to Calendar" message:@"Do you want to add this event to your calendar?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil]show];
+                });
             } else {
                 [[[UIAlertView alloc]initWithTitle:@"Permission Needed" message:@"Allow UTCS to access your calendars by enabling it in your device settings." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil]show];
             }
