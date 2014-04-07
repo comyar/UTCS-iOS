@@ -26,6 +26,7 @@
 @property (nonatomic) UTCSDirectoryManager      *directoryManager;
 @property (nonatomic) UIButton                  *syncButton;
 @property (nonatomic) MBProgressHUD             *progressHUD;
+@property (nonatomic) NSArray                   *searchResults;
 
 @end
 
@@ -50,14 +51,15 @@
         
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
         self.searchBar.placeholder = @"Search Name";
-        self.searchBar.tintColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        self.searchBar.tintColor = [UIColor whiteColor];
         self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
         [self.view addSubview:self.searchBar];
         self.searchBar.showsScopeBar = YES;
-        self.searchBar.scopeButtonTitles = @[@"Faculty", @"Staff", @"Graduate"];
+        self.searchBar.scopeButtonTitles = @[@"All", @"Faculty", @"Staff", @"Graduate"];
         
-        self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
-        self.directoryManager.searchDisplayController.delegate = self.directoryManager;
+        self.directoryManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
+                                                                                         contentsController:self];
+        self.directoryManager.searchDisplayController.delegate = self;
         
         self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
@@ -160,7 +162,71 @@
     }];
 }
 
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.rowHeight = 64.0;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.alpha = 0.0;
+}
 
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    self.tableView.alpha = 1.0;
+}
 
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
+        self.searchResults = [self.directoryManager searchDirectoryWithSearchString:self.searchBar.text scope:scope];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [controller.searchResultsTableView reloadData];
+        });
+    });
+    
+    return NO;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    if([searchString length] == 0) {
+        self.searchResults = nil;
+        return YES;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString *scope = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
+        self.searchResults = [self.directoryManager searchDirectoryWithSearchString:searchString scope:scope];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [controller.searchResultsTableView reloadData];
+        });
+    });
+    return NO;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectorySearchTableViewCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    }
+    UTCSDirectoryPerson *person = self.searchResults[indexPath.row];
+    cell.textLabel.text = person.fullName;
+    cell.detailTextLabel.text = person.type;
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.searchResults count];
+}
 
 @end

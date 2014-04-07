@@ -11,16 +11,16 @@
 #import "UTCSStateManager.h"
 
 @interface UTCSDirectoryManager ()
-@property (nonatomic) NSArray *searchResults;
+@property (nonatomic) NSArray *flatDirectory;
 @end
 
 @implementation UTCSDirectoryManager
-
 
 - (instancetype)init
 {
     if(self = [super init]) {
         _directory = [UTCSStateManager directory];
+        _flatDirectory = [UTCSStateManager flatDirectory];
     }
     return self;
 }
@@ -32,6 +32,7 @@
     [query orderByAscending:@"lName"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray *directoryPeople = [NSMutableArray new];
+        NSMutableArray *flatDirectory = [NSMutableArray new];
         if(objects) {
             NSString *lastChar = nil;
             for(PFObject *object in objects) {
@@ -42,6 +43,8 @@
                    [person.firstName isEqualToString:@"visitor"]) {
                     continue;
                 }
+                
+                [flatDirectory addObject:person];
                 
                 NSString *firstChar = [person.lastName substringToIndex:1];
                 if([firstChar isEqualToString:lastChar]) {
@@ -58,16 +61,32 @@
                 }
             }
             _directory = directoryPeople;
+            _flatDirectory = flatDirectory;
+            
             if(completion) {
                 [UTCSStateManager setDirectory:_directory];
+                [UTCSStateManager setFlatDirectory:_flatDirectory];
                 completion(YES);
             }
+            
         } else {
             if(completion) {
                 completion(NO);
             }
         }
     }];
+}
+
+- (NSArray *)searchDirectoryWithSearchString:(NSString *)searchString scope:(NSString *)scope
+{
+    NSPredicate *predicate = nil;
+    if([scope isEqualToString:@"All"]) {
+        predicate = [NSPredicate predicateWithFormat:@"(firstName BEGINSWITH[cd] %@) or (lastName BEGINSWITH[cd] %@) or (fullName BEGINSWITH[cd] %@)", scope, searchString, searchString, searchString];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"(type = %@) AND ((firstName BEGINSWITH[cd] %@) or (lastName BEGINSWITH[cd] %@) or (fullName BEGINSWITH[cd] %@))", scope, searchString, searchString, searchString];
+    }
+    NSArray *searchResults = [self.flatDirectory filteredArrayUsingPredicate:predicate];
+    return searchResults;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +101,7 @@
     
     UTCSDirectoryPerson *person = nil;
     if(tableView == self.searchDisplayController.searchResultsTableView) {
-        person = self.searchResults[indexPath.section][indexPath.row];
+        
     } else {
         person = self.directory[indexPath.section][indexPath.row];
     }
@@ -109,23 +128,6 @@
 {
     UTCSDirectoryPerson *person = self.directory[section][0];
     return [[person.lastName substringToIndex:1]uppercaseString];
-}
-
-- (void)setSearchDisplayController:(UISearchDisplayController *)searchDisplayController
-{
-    _searchDisplayController = searchDisplayController;
-    _searchDisplayController.delegate = self;
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fullName like[cd] %@", searchString];
-    NSMutableArray *filteredPeople = [NSMutableArray new];
-    for(NSArray *peopleForLetter in self.directory) {
-        [filteredPeople addObject:[peopleForLetter filteredArrayUsingPredicate:predicate]];
-    }
-    self.searchResults = filteredPeople;
-    return YES;
 }
 
 @end

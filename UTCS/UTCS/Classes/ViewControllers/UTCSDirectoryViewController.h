@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UTCSDirectoryViewController : UIViewController <UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
+@interface UTCSDirectoryViewController : UIViewController <UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource>
 
 @end

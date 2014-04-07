@@ -14,4 +14,7 @@
 
 + (void)setDirectory:(NSArray *)directory;
 
++ (NSArray *)flatDirectory;
++ (void)setFlatDirectory:(NSArray *)flatDirectory;
+
 @end

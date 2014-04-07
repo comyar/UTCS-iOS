@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UTCSDirectoryManager : NSObject <UITableViewDataSource, UISearchDisplayDelegate>
+@interface UTCSDirectoryManager : NSObject <UITableViewDataSource>
 
 
 - (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion;
-
+- (NSArray *)searchDirectoryWithSearchString:(NSString *)searchString scope:(NSString *)scope;
 
 @property (nonatomic, readonly) NSArray         *directory;
 @property (nonatomic) UISearchDisplayController *searchDisplayController;

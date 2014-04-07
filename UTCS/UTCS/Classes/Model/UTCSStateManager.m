@@ -27,4 +27,21 @@
     }
 }
 
++ (void)setFlatDirectory:(NSArray *)flatDirectory
+{
+    if(flatDirectory) {
+        NSData *flatDirectoryData = [NSKeyedArchiver archivedDataWithRootObject:flatDirectory];
+        [[NSUserDefaults standardUserDefaults]setObject:flatDirectoryData forKey:@"flatDirectory"];
+    }
+}
+
++ (NSArray *)flatDirectory
+{
+    NSData *flatDirectory = [[NSUserDefaults standardUserDefaults]objectForKey:@"flatDirectory"];
+    if(flatDirectory) {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:flatDirectory];
+    }
+    return nil;
+}
+
 @end
