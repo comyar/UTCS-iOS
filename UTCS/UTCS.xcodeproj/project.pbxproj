@@ -65,7 +65,6 @@
 		DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */; };
 		DD83B57518F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */; };
 		DD83B57C18F16A1500EBDE06 /* App-About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B57B18F16A1500EBDE06 /* App-About.txt */; };
-		DD83B58018F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57F18F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -189,8 +188,6 @@
 		DD83B57318F15CCE00EBDE06 /* UTCSLicenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseDetailViewController.h; sourceTree = "<group>"; };
 		DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseDetailViewController.m; sourceTree = "<group>"; };
 		DD83B57B18F16A1500EBDE06 /* App-About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "App-About.txt"; path = "Assets/App-About.txt"; sourceTree = "<group>"; };
-		DD83B57E18F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EKEventEditViewController+HideStatusBar.h"; path = "Categories/EKEventEditViewController+HideStatusBar.h"; sourceTree = "<group>"; };
-		DD83B57F18F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "EKEventEditViewController+HideStatusBar.m"; path = "Categories/EKEventEditViewController+HideStatusBar.m"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
@@ -648,15 +645,6 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
-		DD83B57D18F2476E00EBDE06 /* EKEventEditViewController+HideStatusBar */ = {
-			isa = PBXGroup;
-			children = (
-				DD83B57E18F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.h */,
-				DD83B57F18F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.m */,
-			);
-			name = "EKEventEditViewController+HideStatusBar";
-			sourceTree = "<group>";
-		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,7 +657,6 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				DD83B57D18F2476E00EBDE06 /* EKEventEditViewController+HideStatusBar */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
 				DDA94B7D18C1FD8700DDF949 /* UIView+CZPositioning */,
@@ -913,7 +900,6 @@
 				DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				DDF02DD418CF548600C7D012 /* FBShimmeringLayer.m in Sources */,
-				DD83B58018F2479600EBDE06 /* EKEventEditViewController+HideStatusBar.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DD4954DF18EBB20B00BC928B /* UTCSApplication.m in Sources */,
 			);

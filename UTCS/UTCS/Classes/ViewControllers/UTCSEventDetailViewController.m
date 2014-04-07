@@ -12,7 +12,6 @@
 #import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
 #import "UITextView+CZTextViewHeight.h"
-#import "EKEventEditViewController+HideStatusBar.h"
 
 
 /**
@@ -20,6 +19,15 @@
  */
 static const CGFloat dateLabelFontSize  = 28.0;
 
+
+@implementation UIActivityViewController (HideStatusBar)
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+@end
 
 @interface UTCSEventDetailViewController ()
 
@@ -164,13 +172,13 @@ static const CGFloat dateLabelFontSize  = 28.0;
         [attributedText appendAttributedString:name];
         
         if(_event.location) {
-            NSString *locationString = [NSString stringWithFormat:@"Location : %@ \n\n", _event.location];
-            NSAttributedString *location = [[NSAttributedString alloc]initWithString:locationString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor blackColor]}];
+            NSString *locationString = [NSString stringWithFormat:@"%@ \n\n", _event.location];
+            NSAttributedString *location = [[NSAttributedString alloc]initWithString:locationString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
             [attributedText appendAttributedString:location];
         }
         
         if(_event.attributedDescription) {
-            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description \n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:14], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description \n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor utcsBurntOrangeColor]}];
             
             [attributedText appendAttributedString:descriptionHeader];
             [attributedText appendAttributedString:_event.attributedDescription];
@@ -184,6 +192,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
     
     self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
                                                               height:CGFLOAT_MAX].height + self.descriptionTextView.textContainerInset.top + self.descriptionTextView.textContainerInset.bottom;
+    self.descriptionTextView.height = MAX(self.descriptionTextView.height, 160);
     
     self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
 }
@@ -217,10 +226,25 @@ static const CGFloat dateLabelFontSize  = 28.0;
         }];
         
     } else if(button == self.shareButton) {
-        NSString *startDateString = [NSString stringWithFormat:@"\nStart : %@\n", [NSDateFormatter localizedStringFromDate:_event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
-        NSString *endDateString = [NSString stringWithFormat:@"End : %@\n", [NSDateFormatter localizedStringFromDate:_event.endDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
+        NSMutableArray *itemsToShare = [NSMutableArray new];
+        if(_event.name) {
+            [itemsToShare addObject:_event.name];
+        }
         
-        NSArray *itemsToShare = @[_event.name, _event.location, startDateString, endDateString, [_event.attributedDescription string]];
+        if(_event.startDate) {
+            NSString *startDateString = [NSString stringWithFormat:@"\nStart : %@\n", [NSDateFormatter localizedStringFromDate:_event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
+            [itemsToShare addObject:startDateString];
+        }
+        
+        if(_event.endDate) {
+            NSString *endDateString = [NSString stringWithFormat:@"End : %@\n", [NSDateFormatter localizedStringFromDate:_event.endDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
+            [itemsToShare addObject:endDateString];
+        }
+        
+        if(_event.attributedDescription) {
+            [itemsToShare addObject:[_event.attributedDescription string]];
+        }
+        
         self.activityViewController = [[UIActivityViewController alloc]initWithActivityItems:itemsToShare applicationActivities:nil];
         self.activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList, UIActivityTypeAssignToContact, UIActivityTypePostToVimeo, UIActivityTypeSaveToCameraRoll];
         [self presentViewController:self.activityViewController animated:YES completion:nil];
@@ -271,8 +295,4 @@ static const CGFloat dateLabelFontSize  = 28.0;
     return attributedDateString;
 }
 
-- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action
-{
-    [controller dismissViewControllerAnimated:YES completion:nil];
-}
 @end
