@@ -199,19 +199,15 @@
 - (NSString *)nameForResponse:(NSString *)response
 {
     NSString *name = nil;
-    NSLog(@"%@", response);
     NSArray *lines = [response componentsSeparatedByString:@"\n"];
-    NSLog(@"%@", lines);
     if([lines count] >= 1) {
         NSString *line = lines[0];
-        NSLog(@"%@", line);
         NSArray *components = [line componentsSeparatedByString:@":"];
         NSInteger lastIndex = [components count] - 1;
         if(lastIndex >= 0) {
             name = [components[lastIndex] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         }
     }
-    NSLog(@"%@", name);
     return name;
 }
 

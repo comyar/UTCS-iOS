@@ -65,13 +65,15 @@
 		DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57118F15CB800EBDE06 /* UTCSLicenseViewController.m */; };
 		DD83B57518F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */; };
 		DD83B57C18F16A1500EBDE06 /* App-About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B57B18F16A1500EBDE06 /* App-About.txt */; };
+		DD83B58A18F35DC000EBDE06 /* UTCSLabsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58918F35DC000EBDE06 /* UTCSLabsManager.m */; };
+		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
+		DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B518EC3F950082C235 /* MBProgressHUD.m */; };
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
-		DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */; };
@@ -188,7 +190,13 @@
 		DD83B57318F15CCE00EBDE06 /* UTCSLicenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLicenseDetailViewController.h; sourceTree = "<group>"; };
 		DD83B57418F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLicenseDetailViewController.m; sourceTree = "<group>"; };
 		DD83B57B18F16A1500EBDE06 /* App-About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "App-About.txt"; path = "Assets/App-About.txt"; sourceTree = "<group>"; };
+		DD83B58818F35DC000EBDE06 /* UTCSLabsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsManager.h; sourceTree = "<group>"; };
+		DD83B58918F35DC000EBDE06 /* UTCSLabsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsManager.m; sourceTree = "<group>"; };
+		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabMachine.h; sourceTree = "<group>"; };
+		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabMachine.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsTableViewCell.h; sourceTree = "<group>"; };
+		DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsTableViewCell.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -199,8 +207,6 @@
 		DDC676B918EC55F40082C235 /* UTCSSSHManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSSSHManager.m; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
-		DDC676CF18EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsAuthenticationViewController.h; sourceTree = "<group>"; };
-		DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsAuthenticationViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
@@ -379,8 +385,6 @@
 			children = (
 				DD44657818E5832E00ED1153 /* UTCSLabsViewController.h */,
 				DD44657918E5832E00ED1153 /* UTCSLabsViewController.m */,
-				DDC676CF18EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.h */,
-				DDC676D018EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m */,
 			);
 			name = Labs;
 			sourceTree = "<group>";
@@ -476,6 +480,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD83B58718F354C100EBDE06 /* Labs */,
 				DD83B54C18EF090400EBDE06 /* AccountManager */,
 				DD83B54818EEF92F00EBDE06 /* KeychainStore */,
 				DDC676B718EC55DB0082C235 /* SSHManager */,
@@ -508,6 +513,8 @@
 				DD44657118E5711400ED1153 /* UTCSMenuButton.m */,
 				DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */,
 				DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */,
+				DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */,
+				DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -643,6 +650,17 @@
 				DD83B57B18F16A1500EBDE06 /* App-About.txt */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		DD83B58718F354C100EBDE06 /* Labs */ = {
+			isa = PBXGroup;
+			children = (
+				DD83B58818F35DC000EBDE06 /* UTCSLabsManager.h */,
+				DD83B58918F35DC000EBDE06 /* UTCSLabsManager.m */,
+				DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */,
+				DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */,
+			);
+			name = Labs;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -861,7 +879,7 @@
 			files = (
 				DD0F0D6D18EC39DE0088178C /* UTCSStateManager.m in Sources */,
 				DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */,
-				DDC676D118EEF4FC0082C235 /* UTCSLabsAuthenticationViewController.m in Sources */,
+				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */,
 				DD83B57518F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m in Sources */,
 				DD44656318E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m in Sources */,
@@ -874,6 +892,7 @@
 				DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
+				DD83B58A18F35DC000EBDE06 /* UTCSLabsManager.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD83B55318EF1A5900EBDE06 /* UIView+Shake.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
@@ -901,6 +920,7 @@
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				DDF02DD418CF548600C7D012 /* FBShimmeringLayer.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
+				DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */,
 				DD4954DF18EBB20B00BC928B /* UTCSApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

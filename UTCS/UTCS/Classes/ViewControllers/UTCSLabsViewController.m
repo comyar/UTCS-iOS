@@ -11,15 +11,16 @@
 #import "UIImage+ImageEffects.h"
 #import "MBProgressHUD.h"
 #import "UTCSSSHManager.h"
-
+#import "UIView+CZPositioning.h"
+#import "UTCSLabsManager.h"
 
 @interface UTCSLabsViewController ()
 @property (nonatomic) UIImageView               *backgroundImageView;
 @property (nonatomic) UTCSMenuButton            *menuButton;
-@property (nonatomic) UITextField               *usernameTextField;
-@property (nonatomic) UITextField               *passwordTextField;
-@property (nonatomic) UIView                    *textFieldSeparatorView;
-@property (nonatomic) UIButton                  *loginButton;
+@property (nonatomic) UITableView               *tableView;
+@property (nonatomic) UISearchBar               *searchBar;
+@property (nonatomic) UIButton                  *scrollToTopButton;
+@property (nonatomic) UTCSLabsManager           *labsManager;
 @end
 
 @implementation UTCSLabsViewController
@@ -27,7 +28,36 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
+        self.labsManager = [UTCSLabsManager new];
+        
+        
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
+                                                     style:UITableViewStylePlain];
+        self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.rowHeight = 64.0;
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self.labsManager;
+        self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+        [self.view addSubview:self.tableView];
+        
+        self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
+        self.searchBar.placeholder = @"Unix Host Name";
+        self.searchBar.tintColor = [UIColor whiteColor];
+        self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        [self.view addSubview:self.searchBar];
+        self.searchBar.showsScopeBar = YES;
+        self.searchBar.scopeButtonTitles = @[@"Third Floor", @"Basement"];
+        
+        self.labsManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+        self.labsManager.searchDisplayController.delegate = self;
+        
+        self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
+        self.scrollToTopButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:self.scrollToTopButton];
+
     }
     return self;
 }
@@ -49,83 +79,48 @@
     // Menu Button
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
     [self.view addSubview:self.menuButton];
-    
-    self.usernameTextField = ({
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
-        textField.center = CGPointMake(self.view.center.x, self.view.center.y - 0.5 * CGRectGetHeight(textField.bounds));
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.textColor = [UIColor whiteColor];
-        textField.tintColor = [UIColor lightGrayColor];
-        textField.textAlignment = NSTextAlignmentCenter;
-        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"CS Username"];
-        [attributedPlaceholder addAttribute:NSForegroundColorAttributeName
-                                      value:[UIColor colorWithWhite:1.0 alpha:0.5]
-                                      range:NSMakeRange(0, [attributedPlaceholder length])];
-        textField.attributedPlaceholder = attributedPlaceholder;
-        textField;
-    });
-    [self.view addSubview:self.usernameTextField];
-    
-    self.textFieldSeparatorView = ({
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 0.5)];
-        view.center = self.view.center;
-        view.backgroundColor = [UIColor whiteColor];
-        view;
-    });
-    [self.view addSubview:self.textFieldSeparatorView];
-    
-    self.passwordTextField = ({
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.8 * CGRectGetWidth(self.view.bounds), 44)];
-        textField.center = CGPointMake(self.view.center.x, self.view.center.y + 0.5 * CGRectGetHeight(textField.bounds));
-        textField.textColor = [UIColor whiteColor];
-        textField.tintColor = [UIColor lightGrayColor];
-        textField.textAlignment = NSTextAlignmentCenter;
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        textField.secureTextEntry = YES;
-        NSMutableAttributedString *attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"Password"];
-        [attributedPlaceholder addAttribute:NSForegroundColorAttributeName
-                                      value:[UIColor colorWithWhite:1.0 alpha:0.5]
-                                      range:NSMakeRange(0, [attributedPlaceholder length])];
-        textField.attributedPlaceholder = attributedPlaceholder;
-        textField;
-    });
-    [self.view addSubview:self.passwordTextField];
-    
-    self.loginButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(0.0, 0.0, 0.75 * CGRectGetWidth(self.view.bounds), 44);
-        button.center = CGPointMake(self.view.center.x, 1.5 * self.view.center.y);
-        button.layer.borderColor = [UIColor whiteColor].CGColor;
-        button.layer.borderWidth = 1.0;
-        button.layer.cornerRadius = 6.0;
-        button.layer.masksToBounds = YES;
-        [button setTitle:@"Login" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
-    [self.view addSubview:self.loginButton];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.usernameTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
-    if(button == self.loginButton) {
-        [self.usernameTextField resignFirstResponder];
-        [self.passwordTextField resignFirstResponder];
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            
-            
-        });
+
+}
+
+- (void)didTouchDownInsideButton:(UIButton *)button
+{
+    if(button == self.scrollToTopButton) {
+        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
+    } else {
+        [self.labsManager.searchDisplayController setActive:NO animated:YES];
     }
 }
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0.0, self.tableView.y + 44.0, self.tableView.width, self.tableView.height - 44.0);
+    }];
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0.0, self.tableView.y - 44.0, self.tableView.width, self.tableView.height + 44.0);
+    }];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.rowHeight = 64.0;
+    tableView.delegate = self;
+    tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.alpha = 0.0;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    self.tableView.alpha = 1.0;
+}
+
 
 @end

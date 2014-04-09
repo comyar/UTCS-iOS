@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <NMSSH/NMSSH.h>
 
-@interface UTCSLabsViewController : UIViewController
+@interface UTCSLabsViewController : UIViewController <UITableViewDelegate, UISearchDisplayDelegate>
 
 @end
