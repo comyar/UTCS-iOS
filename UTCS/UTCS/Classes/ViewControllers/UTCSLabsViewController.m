@@ -123,7 +123,11 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
         self.searchResults = [self.labsManager searchLabsWithSearchString:self.searchBar.text scope:scope];
-        [controller.searchResultsTableView reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [controller.searchResultsTableView reloadData];
+        });
+        
     });
     
     return NO;
@@ -139,8 +143,13 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSString *scope = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
         self.searchResults = [self.labsManager searchLabsWithSearchString:searchString scope:scope];
-        [controller.searchResultsTableView reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [controller.searchResultsTableView reloadData];
+        });
+        
     });
+    
     return NO;
 }
 
@@ -148,20 +157,23 @@
 {
     tableView.rowHeight = 64.0;
     tableView.delegate = self;
+    tableView.dataSource = self;
     tableView.backgroundColor = [UIColor clearColor];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.alpha = 0.0;
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
 {
     self.tableView.alpha = 1.0;
+    self.searchResults = nil;
 }
 
 - (UTCSLabsTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UTCSLabsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSLabsTableViewCell"];
     if(!cell) {
-        cell = [[UTCSLabsTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSLabsTableViewCell"];
+        cell = [[UTCSLabsTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UTCSLabsTableViewCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];

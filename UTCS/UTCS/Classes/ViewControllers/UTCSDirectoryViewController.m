@@ -178,7 +178,6 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
         self.searchResults = [self.directoryManager searchDirectoryWithSearchString:self.searchBar.text scope:scope];
