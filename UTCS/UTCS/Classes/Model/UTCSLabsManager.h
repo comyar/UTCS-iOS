@@ -10,6 +10,10 @@
 
 @interface UTCSLabsManager : NSObject <UITableViewDataSource>
 
+- (void)syncLabsWithCompletion:(void (^)(BOOL success))completion;
+- (NSArray *)searchLabsWithSearchString:(NSString *)searchString scope:(NSString *)scope;
+
 @property (nonatomic) UISearchDisplayController *searchDisplayController;
+@property (nonatomic, readonly) NSArray *labMachines;
 
 @end

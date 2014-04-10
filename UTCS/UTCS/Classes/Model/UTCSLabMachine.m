@@ -22,8 +22,20 @@
         _hostname = object[@"name"];
         _occupied = [object[@"occupied"]boolValue];
         _labNumber = [object[@"labNumber"]integerValue];
+        _labName = [self labNameForLabNumber:_labNumber];
     }
     return self;
+}
+
+- (NSString *)labNameForLabNumber:(NSInteger)labNumber
+{
+    if(labNumber == UTCSTeachingLab) {
+        return @"Teaching Lab";
+    } else if(labNumber == UTCSBasementLab) {
+        return @"Basement Lab";
+    } else {
+        return @"Third Floor Lab";
+    }
 }
 
 @end

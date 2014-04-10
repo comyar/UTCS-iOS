@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(u_int8_t, Lab) {
-    TeachingLab = 0,
-    BasementLab,
-    ThirdFloorLab
+typedef NS_ENUM(u_int8_t, UTCSLab) {
+    UTCSTeachingLab = 0,
+    UTCSBasementLab,
+    UTCSThirdFloorLab
 };
 
 @interface UTCSLabMachine : NSObject
@@ -25,6 +25,7 @@ typedef NS_ENUM(u_int8_t, Lab) {
 
 @property (nonatomic) NSString *hostname;
 @property (nonatomic) NSInteger labNumber;
+@property (nonatomic) NSString *labName;
 @property (nonatomic) BOOL      occupied;
 
 

@@ -46,7 +46,7 @@
     
     self.textLabel.frame = CGRectMake(32, self.textLabel.frame.origin.y, CGRectGetWidth(self.textLabel.bounds), CGRectGetHeight(self.textLabel.bounds));
     
-    self.occupiedLabel.frame = CGRectMake(32, self.textLabel.frame.origin.y + CGRectGetHeight(self.textLabel.bounds), CGRectGetWidth(self.textLabel.bounds), CGRectGetHeight(self.textLabel.bounds));
+    self.occupiedLabel.frame = CGRectMake(32, self.textLabel.frame.origin.y + CGRectGetHeight(self.textLabel.bounds), CGRectGetWidth(self.bounds) - self.detailTextLabel.frame.origin.x, CGRectGetHeight(self.textLabel.bounds));
 }
 
 - (void)setIndicatorColor:(UIColor *)indicatorColor

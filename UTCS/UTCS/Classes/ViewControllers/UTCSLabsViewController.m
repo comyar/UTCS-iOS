@@ -13,6 +13,8 @@
 #import "UTCSSSHManager.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSLabsManager.h"
+#import "UTCSLabMachine.h"
+#import "UTCSLabsTableViewCell.h"
 
 @interface UTCSLabsViewController ()
 @property (nonatomic) UIImageView               *backgroundImageView;
@@ -21,6 +23,7 @@
 @property (nonatomic) UISearchBar               *searchBar;
 @property (nonatomic) UIButton                  *scrollToTopButton;
 @property (nonatomic) UTCSLabsManager           *labsManager;
+@property (nonatomic) NSArray                   *searchResults;
 @end
 
 @implementation UTCSLabsViewController
@@ -29,8 +32,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.labsManager = [UTCSLabsManager new];
-        
-        
+    
         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
                                                      style:UITableViewStylePlain];
         self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
@@ -38,16 +40,17 @@
         self.tableView.rowHeight = 64.0;
         self.tableView.delegate = self;
         self.tableView.dataSource = self.labsManager;
-        self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.allowsSelection = NO;
         [self.view addSubview:self.tableView];
         
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
-        self.searchBar.placeholder = @"Unix Host Name";
+        self.searchBar.placeholder = @"Unix Machine";
         self.searchBar.tintColor = [UIColor whiteColor];
         self.searchBar.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
         [self.view addSubview:self.searchBar];
         self.searchBar.showsScopeBar = YES;
-        self.searchBar.scopeButtonTitles = @[@"Third Floor", @"Basement"];
+        self.searchBar.scopeButtonTitles = @[@"Third Floor Lab", @"Basement Lab"];
         
         self.labsManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
         self.labsManager.searchDisplayController.delegate = self;
@@ -66,6 +69,11 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self.labsManager syncLabsWithCompletion:^(BOOL success) {
+        if(success) {
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)viewDidLoad
@@ -74,7 +82,7 @@
     
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     self.backgroundImageView.image = [[UIImage imageNamed:@"menuBackground"]applyDarkEffect];
-    [self.view addSubview:self.backgroundImageView];
+    [self.view insertSubview:self.backgroundImageView atIndex:0];
     
     // Menu Button
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
@@ -109,6 +117,33 @@
     }];
 }
 
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
+        self.searchResults = [self.labsManager searchLabsWithSearchString:self.searchBar.text scope:scope];
+        [controller.searchResultsTableView reloadData];
+    });
+    
+    return NO;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    if([searchString length] == 0) {
+        self.searchResults = nil;
+        return YES;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString *scope = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
+        self.searchResults = [self.labsManager searchLabsWithSearchString:searchString scope:scope];
+        [controller.searchResultsTableView reloadData];
+    });
+    return NO;
+}
+
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
     tableView.rowHeight = 64.0;
@@ -120,6 +155,28 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
 {
     self.tableView.alpha = 1.0;
+}
+
+- (UTCSLabsTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSLabsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSLabsTableViewCell"];
+    if(!cell) {
+        cell = [[UTCSLabsTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSLabsTableViewCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    }
+    UTCSLabMachine *labMachine = self.searchResults[indexPath.row];
+    cell.textLabel.text = labMachine.hostname;
+    cell.detailTextLabel.text = labMachine.labName;
+    cell.occupiedLabel.text = (labMachine.occupied)? @"Occupied" : @"Unoccupied";
+    cell.indicatorColor = (labMachine.occupied)? [UIColor redColor] : [UIColor greenColor];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.searchResults count];
 }
 
 
