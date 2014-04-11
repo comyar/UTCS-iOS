@@ -17,8 +17,6 @@
 @interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate>
 
 //
-@property (strong, nonatomic) UIWindow                      *window;
-
-- (void)didDismissWebViewController:(UTCSWebViewController *)webViewController;
+@property (nonatomic) UIWindow *window;
 
 @end

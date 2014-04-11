@@ -60,6 +60,10 @@
         self.scrollToTopButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
         [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:self.scrollToTopButton];
+        
+        // Menu Button
+        self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
+        [self.view addSubview:self.menuButton];
 
     }
     return self;
@@ -83,10 +87,6 @@
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     self.backgroundImageView.image = [[UIImage imageNamed:@"menuBackground"]applyDarkEffect];
     [self.view insertSubview:self.backgroundImageView atIndex:0];
-    
-    // Menu Button
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
-    [self.view addSubview:self.menuButton];
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button

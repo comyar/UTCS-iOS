@@ -111,9 +111,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row != 5) {
-        self.activeRow = indexPath.row;
-    }
+    self.activeRow = indexPath.row;
     [self.tableView reloadData];
     if(self.delegate && [self.delegate conformsToProtocol:@protocol(UTCSMenuViewControllerDelegate)] &&
        [self.delegate respondsToSelector:@selector(didSelectMenuOption:)])

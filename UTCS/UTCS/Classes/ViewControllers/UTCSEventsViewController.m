@@ -85,10 +85,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
     if(!self.hasAppeared) {
         self.utcsEventsShimmeringView.shimmering = YES;
         [self.eventManager updateEventsWithCompletion:^{
