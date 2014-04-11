@@ -21,7 +21,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.webView = [UIWebView new];
-        self.webView.scalesPageToFit = YES;
+        self.webView.scalesPageToFit = NO;
         [self.view addSubview:self.webView];
         
         self.navigationBar = [UINavigationBar new];

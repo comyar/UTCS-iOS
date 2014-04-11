@@ -26,6 +26,12 @@
 #import "UTCSVerticalMenuViewController.h"
 
 // -----
+// @name Models
+// -----
+
+#import "UTCSApplication.h"
+
+// -----
 // @name Categories
 // -----
 
@@ -94,6 +100,12 @@
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
+
+    ((UTCSApplication *)[UIApplication sharedApplication]).urlHandler = ^(NSURL *url){
+        self.webViewController.url = url;
+        [self.verticalMenuViewController presentViewController:self.webViewController animated:YES completion:nil];
+        return YES;
+    };
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = self.verticalMenuViewController;
