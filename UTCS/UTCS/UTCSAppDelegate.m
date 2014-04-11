@@ -2,7 +2,7 @@
 //  UTCSAppDelegate.m
 //  UTCS
 //
-//  Created by Henri Sweers on 1/23/14.
+//  Created by Comyar Zaheri on 1/23/14.
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
@@ -30,9 +30,6 @@
 // -----
 
 #import "UIColor+UTCSColors.h"
-
-
-#import "UTCSApplication.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -73,6 +70,8 @@
 
 @implementation UTCSAppDelegate
 
+#pragma mark UIApplicationDelegate Methods
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize Parse
@@ -93,7 +92,8 @@
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:[[UINavigationController alloc]initWithRootViewController:self.menuViewController] contentViewController:self.newsNavigationController];
+    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
+                                                                                  contentViewController:self.newsNavigationController];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = self.verticalMenuViewController;
@@ -101,16 +101,21 @@
     return YES;
 }
 
-- (void)configureAppearance
+- (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[UINavigationBar appearance]setShadowImage:[UIImage new]];
-    [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
-    [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
-    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
+
+//- (void)configureAppearance
+//{
+//    [[UINavigationBar appearance]setShadowImage:[UIImage new]];
+//    [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
+//    [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//    [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
+//    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
+//}
 
 #pragma mark UTCSMenuViewControllerDelegate Methods
 
@@ -129,16 +134,6 @@
     } else if(option == UTCSMenuOptionSettings) {
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
-}
-
-- (void)didDismissWebViewController:(UTCSWebViewController *)webViewController
-{
-    [webViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 

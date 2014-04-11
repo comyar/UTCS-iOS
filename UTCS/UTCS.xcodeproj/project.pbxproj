@@ -57,7 +57,6 @@
 		DD83B55318EF1A5900EBDE06 /* UIView+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B55218EF1A5900EBDE06 /* UIView+Shake.m */; };
 		DD83B55C18F0B2FA00EBDE06 /* MRCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B55B18F0B2FA00EBDE06 /* MRCircularProgressView.m */; };
 		DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55D18F0EB8600EBDE06 /* EventKit.framework */; };
-		DD83B56018F0EC1300EBDE06 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */; };
 		DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B56318F1353A00EBDE06 /* UTCSSettingsViewController.m */; };
 		DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56518F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt */; };
 		DD83B56818F1574200EBDE06 /* LICENSE-MBProgressHUD.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B56718F1574200EBDE06 /* LICENSE-MBProgressHUD.txt */; };
@@ -231,7 +230,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD83B56018F0EC1300EBDE06 /* EventKitUI.framework in Frameworks */,
 				DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */,
 				DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */,
 				DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */,
@@ -320,7 +318,7 @@
 		0B9A263C1891D5E30032DA03 /* UTCS */ = {
 			isa = PBXGroup;
 			children = (
-				DD83B57A18F169E400EBDE06 /* Assets */,
+				DD83B57A18F169E400EBDE06 /* Files */,
 				DDFD7DD618AA049A008F5A47 /* Resources.xcassets */,
 				DDEFABCE1897515800DAB5D7 /* AppDelegate */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
@@ -471,7 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				DD5B583918D239F900EEB474 /* Model */,
-				DD5B583E18D239F900EEB474 /* ViewControllers */,
+				DD5B583E18D239F900EEB474 /* Controllers */,
 				DD5B584F18D239F900EEB474 /* Views */,
 			);
 			path = Classes;
@@ -480,6 +478,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD64DACA18F88A940033D58B /* Menu */,
 				DD83B58718F354C100EBDE06 /* Labs */,
 				DD83B54C18EF090400EBDE06 /* AccountManager */,
 				DD83B54818EEF92F00EBDE06 /* KeychainStore */,
@@ -493,12 +492,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		DD5B583E18D239F900EEB474 /* ViewControllers */ = {
+		DD5B583E18D239F900EEB474 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				DD5B586D18D23DE100EEB474 /* Content */,
 				DD5B586C18D23DD200EEB474 /* Navigation */,
 			);
+			name = Controllers;
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
@@ -562,6 +562,13 @@
 				DD5B584A18D239F900EEB474 /* UTCSNewsDetailViewController.m */,
 			);
 			name = News;
+			sourceTree = "<group>";
+		};
+		DD64DACA18F88A940033D58B /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */ = {
@@ -644,12 +651,12 @@
 			name = License;
 			sourceTree = "<group>";
 		};
-		DD83B57A18F169E400EBDE06 /* Assets */ = {
+		DD83B57A18F169E400EBDE06 /* Files */ = {
 			isa = PBXGroup;
 			children = (
 				DD83B57B18F16A1500EBDE06 /* App-About.txt */,
 			);
-			name = Assets;
+			name = Files;
 			sourceTree = "<group>";
 		};
 		DD83B58718F354C100EBDE06 /* Labs */ = {

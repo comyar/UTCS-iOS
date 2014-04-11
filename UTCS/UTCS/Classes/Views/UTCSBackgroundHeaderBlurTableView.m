@@ -106,6 +106,4 @@ static const CGFloat navigationBarHeight = 44.0;
     self.tableView.backgroundColor = [UIColor clearColor];
 }
 
-
-
 @end

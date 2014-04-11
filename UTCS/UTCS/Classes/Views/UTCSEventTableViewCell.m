@@ -116,7 +116,7 @@ static const CGFloat tagLabelFontSize   = 14.0;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     [_tagColor set];
-    CGContextSetLineWidth(context, 6.0);
+    CGContextSetLineWidth(context, 4.0);
     CGContextMoveToPoint(context, 0, 0);
     CGContextAddLineToPoint(context, 0, CGRectGetHeight(self.bounds) );
     CGContextStrokePath(context);
