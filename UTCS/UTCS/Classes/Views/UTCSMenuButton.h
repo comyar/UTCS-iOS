@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UTCSButton.h"
 
-@interface UTCSMenuButton : UIButton
+@interface UTCSMenuButton : UTCSButton
 
 @property (nonatomic) UIColor *lineColor;
 

@@ -91,6 +91,8 @@
     
     // Initialize view controllers
     self.webViewController              = [UTCSWebViewController new];
+    self.webViewController.delegate     = self;
+    
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
     self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
@@ -128,6 +130,13 @@
 //    [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
 //    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
 //}
+
+#pragma mark UTCSWebViewControllerDelegate Methods
+
+- (void)webViewControllerDidRequestDismissal:(UTCSWebViewController *)webViewController
+{
+    [webViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark UTCSMenuViewControllerDelegate Methods
 

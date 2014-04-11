@@ -6,10 +6,36 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 
-@interface UTCSWebViewController : UIViewController
 
+@class UTCSWebViewController;
+
+
+/**
+ */
+@protocol UTCSWebViewControllerDelegate <NSObject>
+
+@required
+
+/**
+ */
+- (void)webViewControllerDidRequestDismissal:(UTCSWebViewController *)webViewController;
+
+@end
+
+
+/**
+ */
+@interface UTCSWebViewController : UIViewController <NSURLConnectionDataDelegate>
+
+/**
+ */
 @property (nonatomic) NSURL *url;
+
+/**
+ */
+@property (nonatomic) id<UTCSWebViewControllerDelegate> delegate;
 
 @end

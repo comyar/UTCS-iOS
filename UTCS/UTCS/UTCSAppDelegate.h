@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "UTCSMenuViewControllerDelegate.h"
-
-@class UTCSWebViewController;
+#import "UTCSWebViewController.h"
 
 /**
  */
-@interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate>
+@interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate, UTCSWebViewControllerDelegate>
 
 //
 @property (nonatomic) UIWindow *window;
