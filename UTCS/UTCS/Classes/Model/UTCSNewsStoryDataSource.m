@@ -6,13 +6,20 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSNewsStoryDataSource.h"
-#import "UIImage+ImageEffects.h"
-#import "UTCSNewsStory.h"
-#import "UIImage+CZTinting.h"
-#import <AVFoundation/AVFoundation.h>
-#import "UIImage+CZScaling.h"
 
+#pragma mark - Imports
+
+// Models
+#import "UTCSNewsStory.h"
+#import "UTCSNewsStoryDataSource.h"
+
+// Categories
+#import "UIImage+CZTinting.h"
+#import "UIImage+CZScaling.h"
+#import "UIImage+ImageEffects.h"
+
+
+#pragma mark - Constants
 
 static const CGFloat minHeaderImageWidth = 300.0;
 
@@ -23,15 +30,19 @@ NSString * const UTCSParseClassNews                     = @"NewsStory";
 const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 
-@implementation UTCSNewsStoryDataSource
+#pragma mark - UTCSNewsStoryDataSource Class Extension
 
-- (instancetype)init
-{
-    if(self = [super init]) {
-        
-    }
-    return self;
-}
+@interface UTCSNewsStoryDataSource ()
+
+// Overidden newsStories property
+@property (nonatomic) NSArray *newsStories;
+
+@end
+
+
+#pragma mark - UTCSNewsStoryDataSource Implementation
+
+@implementation UTCSNewsStoryDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -20,7 +20,10 @@
 - (void)updateNewsStoriesWithCompletion:(void (^)(void))completion;
 
 /**
+ Available UTCS news stories, or nil if no available news stories
+ 
+ May be nil if no news stories have been cached and no network connection is available
  */
-@property (nonatomic) NSArray *newsStories;
+@property (nonatomic, readonly) NSArray *newsStories;
 
 @end
