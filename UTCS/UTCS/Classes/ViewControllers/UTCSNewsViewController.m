@@ -255,8 +255,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selected = NO;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UTCSNewsStory *newsStory = self.newsStoryManager.newsStories[indexPath.row];
     
