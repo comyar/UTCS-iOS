@@ -10,6 +10,7 @@
 
 @interface UTCSButton : UIButton
 
+- (instancetype)initWithFrame:(CGRect)frame;
 - (void)didDragExit;
 - (void)didTouchDown;
 - (void)didTouchUpInside;

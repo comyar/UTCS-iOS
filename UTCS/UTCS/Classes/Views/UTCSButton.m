@@ -12,7 +12,7 @@ static const CGFloat animationDuration = 0.3;
 
 @implementation UTCSButton
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         [self addTarget:self action:@selector(didTouchDown) forControlEvents:UIControlEventTouchDown];

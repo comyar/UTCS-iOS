@@ -8,8 +8,24 @@
 
 #pragma mark - Imports
 
+// -----
+// @name View Controllers
+// -----
+
 #import "UTCSWebViewController.h"
+
+// -----
+// @name Views
+// -----
+
+#import "UTCSButton.h"
+
+// -----
+// @name Categories
+// -----
+
 #import "UIView+CZPositioning.h"
+#import "UIColor+UTCSColors.h"
 
 #pragma mark - Constants
 
@@ -28,7 +44,7 @@ static const CGFloat topControlViewHeight = 44.0;
 @property (nonatomic) NSMutableData *data;
 
 //
-@property (nonatomic) UIButton      *closeButton;
+@property (nonatomic) UTCSButton    *closeButton;
 
 //
 @property (nonatomic) CAShapeLayer  *progressLayer;
@@ -55,6 +71,7 @@ static const CGFloat topControlViewHeight = 44.0;
     
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0, topControlViewHeight, self.view.width, self.view.height - topControlViewHeight)];
+        webView.backgroundColor = [UIColor utcsDarkGrayColor];
         webView.scalesPageToFit = YES;
         [self.view addSubview:webView];
         webView;
@@ -62,18 +79,16 @@ static const CGFloat topControlViewHeight = 44.0;
     
     self.topControlView = ({
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, topControlViewHeight)];
-        view.backgroundColor = [UIColor blackColor];
+        view.backgroundColor = [UIColor utcsDarkGrayColor];
         
         self.closeButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(0, 0, 64, 44)];
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            button.frame = CGRectMake(0, 0, 64, 44);
-            button.showsTouchWhenHighlighted = YES;
             
             UIImage *closeImage = [[UIImage imageNamed:@"close"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:closeImage];
             imageView.tintColor = [UIColor whiteColor];
-            imageView.frame = CGRectMake(0, 0, 16, 16);
+            imageView.frame = CGRectMake(0, 0, 20, 20);
             imageView.center = button.center;
             [button addSubview:imageView];
             
@@ -85,6 +100,20 @@ static const CGFloat topControlViewHeight = 44.0;
         view;
     });
     
+    self.progressLayer = ({
+        CAShapeLayer *layer = [CAShapeLayer new];
+        layer.strokeColor = [UIColor utcsYellowColor].CGColor;
+        layer.lineWidth = 5.0;
+        layer.path = ({
+            UIBezierPath *path = [UIBezierPath bezierPath];
+            [path moveToPoint:CGPointMake(0.0, self.topControlView.height - 5.0)];
+            [path addLineToPoint:CGPointMake(self.topControlView.width, self.topControlView.height -5.0)];
+            path.CGPath;
+        });
+        layer;
+    });
+    
+    [self.topControlView.layer addSublayer:self.progressLayer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -126,13 +155,13 @@ static const CGFloat topControlViewHeight = 44.0;
 {
     self.response = response;
     if([self.response expectedContentLength] != NSURLResponseUnknownLength) {
-        NSLog(@"Expected Length: %lld", self.response.expectedContentLength);
-        self.data       = [[NSMutableData alloc]initWithCapacity:self.response.expectedContentLength];
+        self.data       = [[NSMutableData alloc]initWithCapacity:(NSUInteger)self.response.expectedContentLength];
         self.progress   = [NSProgress progressWithTotalUnitCount:self.response.expectedContentLength];
     } else {
         self.data       = [NSMutableData new];
         self.progress   = [NSProgress progressWithTotalUnitCount:100];
     }
+    self.progressLayer.strokeEnd = self.progress.fractionCompleted;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -143,12 +172,12 @@ static const CGFloat topControlViewHeight = 44.0;
         self.progress.completedUnitCount = 33;
     }
     [self.data appendData:data];
-    NSLog(@"%@", [self.progress localizedDescription]);
+    NSLog(@"data %lu", (unsigned long)data.length);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"Done");
+    self.progressLayer.strokeEnd = 1.0;
     [self.webView loadData:self.data
                   MIMEType:self.response.MIMEType
           textEncodingName:self.response.textEncodingName
