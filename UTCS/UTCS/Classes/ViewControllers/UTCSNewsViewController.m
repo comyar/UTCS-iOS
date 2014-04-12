@@ -40,7 +40,7 @@ static const CGFloat subtitleLabelFontSize          = 17.0;
 static const CGFloat updatedLabelFontSize           = 14.0;
 
 // Estimated height of table view cell
-static const CGFloat estiabledCellHeight            = 128.0;
+static const CGFloat estimatedCellHeight            = 128.0;
 
 // Estimated height of a table view cell's detail label
 static const CGFloat estimatedCellDetailLabelHeight = 80.0;
@@ -204,7 +204,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [super viewDidAppear:animated];
     
-    self.downArrowImageView.alpha = 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.downArrowImageView.alpha = 0.0;
+    }];
+    
     [self.activityIndicatorView startAnimating];
     self.utcsNewsShimmeringView.shimmering = YES;
     
@@ -247,7 +250,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return estiabledCellHeight;
+    return estimatedCellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
