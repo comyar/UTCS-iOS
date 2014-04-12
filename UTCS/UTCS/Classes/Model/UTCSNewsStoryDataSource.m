@@ -50,7 +50,13 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
     if(!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSNewsTableViewCell"];
         cell.backgroundColor = [UIColor clearColor];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = ({
+            UIImage *image = [[UIImage imageNamed:@"rightArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+            imageView.frame = CGRectMake(0.0, 0.0, 8.0, 16.0);
+            imageView.tintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            imageView;
+        });
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
         cell.textLabel.numberOfLines = 4;
         cell.textLabel.textColor = [UIColor whiteColor];

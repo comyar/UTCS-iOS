@@ -470,6 +470,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD4465A118E93D8C00ED1153 /* News */,
 				DD64DAD118F8BA110033D58B /* FileReader */,
 				DD64DACA18F88A940033D58B /* Menu */,
 				DD83B58718F354C100EBDE06 /* Labs */,
@@ -479,7 +480,6 @@
 				DD0F0D6A18EC39D10088178C /* StateManager */,
 				DD4954DC18EBB1FA00BC928B /* Application */,
 				DD4465A218E93D9600ED1153 /* Directory */,
-				DD4465A118E93D8C00ED1153 /* News */,
 				DD4465A018E93D8200ED1153 /* Events */,
 			);
 			path = Model;
