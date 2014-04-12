@@ -82,8 +82,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize Parse
-    [Parse setApplicationId:@"mPdTdFAb9WBPs2EOAQ8UmUGV03cFE7ZyruO3PhPJ"
-                  clientKey:@"JJf7dzHkAaawjGMSLPN7N2HXzfII3svZoCIqxx8V"];
+    [Parse setApplicationId:[UTCSFileReader valueForKey:@"ApplicationID" fromJSONobjectWithFileNamed:@"Parse-Keys" extension:@"json"]
+                  clientKey:[UTCSFileReader valueForKey:@"ClientKey" fromJSONobjectWithFileNamed:@"Parse-Keys" extension:@"json"]];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Initialize menu view controller
@@ -110,6 +110,7 @@
         return YES;
     };
     
+    [self configureAppearance];
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
@@ -121,16 +122,17 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
-//- (void)configureAppearance
-//{
-//    [[UINavigationBar appearance]setShadowImage:[UIImage new]];
-//    [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
-//    [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
-//    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-//    [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
-//    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
-//}
+- (void)configureAppearance
+{
+    [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
+    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
+    
+    [[UINavigationBar appearance]setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
+    [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
 
 #pragma mark UTCSWebViewControllerDelegate Methods
 
@@ -157,7 +159,5 @@
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
-
-
 
 @end
