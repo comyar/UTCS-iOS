@@ -44,6 +44,8 @@
 		DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */; };
 		DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */; };
 		DD64DAD018F8AAB50033D58B /* UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DACF18F8AAB50033D58B /* UTCSButton.m */; };
+		DD64DAD418F8BA2A0033D58B /* UTCSFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */; };
+		DD64DAD618F8BCD90033D58B /* Parse-Keys.json in Resources */ = {isa = PBXBuildFile; fileRef = DD64DAD518F8BCD90033D58B /* Parse-Keys.json */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
@@ -162,6 +164,9 @@
 		DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DD64DACE18F8AAB50033D58B /* UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSButton.h; sourceTree = "<group>"; };
 		DD64DACF18F8AAB50033D58B /* UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSButton.m; sourceTree = "<group>"; };
+		DD64DAD218F8BA2A0033D58B /* UTCSFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSFileReader.h; sourceTree = "<group>"; };
+		DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSFileReader.m; sourceTree = "<group>"; };
+		DD64DAD518F8BCD90033D58B /* Parse-Keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Parse-Keys.json"; path = "Assets/Parse-Keys.json"; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
 		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -481,6 +486,7 @@
 		DD5B583918D239F900EEB474 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD64DAD118F8BA110033D58B /* FileReader */,
 				DD64DACA18F88A940033D58B /* Menu */,
 				DD83B58718F354C100EBDE06 /* Labs */,
 				DD83B54C18EF090400EBDE06 /* AccountManager */,
@@ -576,6 +582,15 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		DD64DAD118F8BA110033D58B /* FileReader */ = {
+			isa = PBXGroup;
+			children = (
+				DD64DAD218F8BA2A0033D58B /* UTCSFileReader.h */,
+				DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */,
+			);
+			name = FileReader;
+			sourceTree = "<group>";
+		};
 		DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,6 +675,7 @@
 			isa = PBXGroup;
 			children = (
 				DD83B57B18F16A1500EBDE06 /* App-About.txt */,
+				DD64DAD518F8BCD90033D58B /* Parse-Keys.json */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -867,6 +883,7 @@
 				DD83B57C18F16A1500EBDE06 /* App-About.txt in Resources */,
 				DD83B56A18F1578800EBDE06 /* LICENSE-FBShimmering.txt in Resources */,
 				DD46451718CF64CF00E1DB5C /* libReveal.dylib in Resources */,
+				DD64DAD618F8BCD90033D58B /* Parse-Keys.json in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DD83B56618F1572E00EBDE06 /* LICENSE-MRCircularProgressView.txt in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
@@ -899,6 +916,7 @@
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDF02DD518CF548600C7D012 /* FBShimmeringView.m in Sources */,
 				DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */,
+				DD64DAD418F8BA2A0033D58B /* UTCSFileReader.m in Sources */,
 				DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */,
 				DDC676B618EC3F950082C235 /* MBProgressHUD.m in Sources */,
 				DD83B54F18EF091400EBDE06 /* UTCSAccountManager.m in Sources */,
