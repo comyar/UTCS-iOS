@@ -13,6 +13,9 @@
 #import "UTCSNewsStory.h"
 #import "UTCSNewsStoryDataSource.h"
 
+// Views
+#import "UTCSTableViewCell.h"
+
 // Categories
 #import "UIImage+CZTinting.h"
 #import "UIImage+CZScaling.h"
@@ -44,11 +47,12 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 @implementation UTCSNewsStoryDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UTCSTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSNewsTableViewCell"];
+    UTCSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSTableViewCell"];
     if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSNewsTableViewCell"];
+        cell = [[UTCSTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryView = ({
             UIImage *image = [[UIImage imageNamed:@"rightArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -64,9 +68,11 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         cell.detailTextLabel.numberOfLines = 4;
         cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     }
+    
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = [newsStory.attributedContent string];
+    
     return cell;
 }
 

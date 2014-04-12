@@ -46,6 +46,7 @@
 		DD64DAD018F8AAB50033D58B /* UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DACF18F8AAB50033D58B /* UTCSButton.m */; };
 		DD64DAD418F8BA2A0033D58B /* UTCSFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */; };
 		DD64DAD618F8BCD90033D58B /* Parse-Keys.json in Resources */ = {isa = PBXBuildFile; fileRef = DD64DAD518F8BCD90033D58B /* Parse-Keys.json */; };
+		DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD818F915040033D58B /* UTCSTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
@@ -160,6 +161,8 @@
 		DD64DAD218F8BA2A0033D58B /* UTCSFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSFileReader.h; sourceTree = "<group>"; };
 		DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSFileReader.m; sourceTree = "<group>"; };
 		DD64DAD518F8BCD90033D58B /* Parse-Keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Parse-Keys.json"; path = "Assets/Parse-Keys.json"; sourceTree = "<group>"; };
+		DD64DAD718F915040033D58B /* UTCSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSTableViewCell.h; sourceTree = "<group>"; };
+		DD64DAD818F915040033D58B /* UTCSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSTableViewCell.m; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
 		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -507,6 +510,8 @@
 				DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */,
 				DD64DACE18F8AAB50033D58B /* UTCSButton.h */,
 				DD64DACF18F8AAB50033D58B /* UTCSButton.m */,
+				DD64DAD718F915040033D58B /* UTCSTableViewCell.h */,
+				DD64DAD818F915040033D58B /* UTCSTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 				DD64DAD018F8AAB50033D58B /* UTCSButton.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsManager.m in Sources */,
+				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
 				DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,

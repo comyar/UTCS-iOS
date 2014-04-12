@@ -69,6 +69,7 @@ static const CGFloat topControlViewHeight = 44.0;
 {
     [super viewDidLoad];
     
+    // Web view
     self.webView = ({
         UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0.0, topControlViewHeight, self.view.width, self.view.height - topControlViewHeight)];
         webView.backgroundColor = [UIColor utcsDarkGrayColor];
@@ -77,6 +78,7 @@ static const CGFloat topControlViewHeight = 44.0;
         webView;
     });
     
+    // Top control view
     self.topControlView = ({
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, topControlViewHeight)];
         view.backgroundColor = [UIColor utcsDarkGrayColor];
@@ -113,7 +115,7 @@ static const CGFloat topControlViewHeight = 44.0;
         layer;
     });
     
-    [self.topControlView.layer addSublayer:self.progressLayer];
+//    [self.topControlView.layer addSublayer:self.progressLayer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
