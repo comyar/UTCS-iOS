@@ -9,12 +9,9 @@
 
 #pragma mark - Imports
 
-#import "UTCSAppDelegate.h"
 
-// -----
-// @name View controllers
-// -----
 
+// View controllers
 #import "UTCSWebViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSMenuViewController.h"
@@ -25,17 +22,12 @@
 #import "UTCSDirectoryViewController.h"
 #import "UTCSVerticalMenuViewController.h"
 
-// -----
-// @name Models
-// -----
-
+// Models
 #import "UTCSFileReader.h"
+#import "UTCSAppDelegate.h"
 #import "UTCSApplication.h"
 
-// -----
-// @name Categories
-// -----
-
+// Categories
 #import "UIColor+UTCSColors.h"
 
 
@@ -104,7 +96,7 @@
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
 
-    ((UTCSApplication *)[UIApplication sharedApplication]).urlHandler = ^(NSURL *url){
+    ((UTCSApplication *)[UIApplication sharedApplication]).urlHandler = ^(NSURL *url) {
         self.webViewController.url = url;
         [self.verticalMenuViewController presentViewController:self.webViewController animated:YES completion:nil];
         return YES;

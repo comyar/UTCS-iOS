@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSNewsStoryManager.h"
+#import "UTCSNewsStoryDataSource.h"
 #import "UIImage+ImageEffects.h"
 #import "UTCSNewsStory.h"
 #import "UIImage+CZTinting.h"
@@ -23,7 +23,7 @@ NSString * const UTCSParseClassNews                     = @"NewsStory";
 const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 
-@implementation UTCSNewsStoryManager
+@implementation UTCSNewsStoryDataSource
 
 - (instancetype)init
 {
@@ -59,7 +59,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
     return [self.newsStories count];
 }
 
-- (void)updateNewsStories:(void (^)(void))completion
+- (void)updateNewsStoriesWithCompletion:(void (^)(void))completion
 {
     [self newsStoriesWithCompletion:^(NSArray *newsStories, NSError *error) {
         if(newsStories) {

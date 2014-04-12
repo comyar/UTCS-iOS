@@ -78,7 +78,7 @@
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
-		DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */; };
+		DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */; };
 		DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */; };
 		DDF02B4518CE8C3800C7D012 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */; };
 		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
@@ -219,8 +219,8 @@
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561E318DC15C700C46480 /* UTCSVerticalMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewControllerDelegate.h; sourceTree = "<group>"; };
-		DDE561EA18DC441F00C46480 /* UTCSNewsStoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsStoryManager.h; sourceTree = "<group>"; };
-		DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsStoryManager.m; sourceTree = "<group>"; };
+		DDE561EA18DC441F00C46480 /* UTCSNewsStoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsStoryDataSource.h; sourceTree = "<group>"; };
+		DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsStoryDataSource.m; sourceTree = "<group>"; };
 		DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -438,8 +438,8 @@
 			children = (
 				DD5B583C18D239F900EEB474 /* UTCSNewsStory.h */,
 				DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */,
-				DDE561EA18DC441F00C46480 /* UTCSNewsStoryManager.h */,
-				DDE561EB18DC441F00C46480 /* UTCSNewsStoryManager.m */,
+				DDE561EA18DC441F00C46480 /* UTCSNewsStoryDataSource.h */,
+				DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -553,13 +553,13 @@
 		DD5B586D18D23DE100EEB474 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				DD5B586E18D23EDA00EEB474 /* News */,
 				DD83B56118F1352200EBDE06 /* Settings */,
 				DDC676CB18EC6DD30082C235 /* DiskQuota */,
 				DD4954D818EBAFA000BC928B /* Web */,
 				DD44657B18E5833100ED1153 /* Directory */,
 				DD44657718E5832100ED1153 /* Labs */,
 				DD44657318E5815100ED1153 /* Events */,
-				DD5B586E18D23EDA00EEB474 /* News */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -931,7 +931,7 @@
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DD83B55C18F0B2FA00EBDE06 /* MRCircularProgressView.m in Sources */,
-				DDE561EC18DC441F00C46480 /* UTCSNewsStoryManager.m in Sources */,
+				DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */,
 				DD83B54B18EEF94100EBDE06 /* UTCSKeychainStore.m in Sources */,
