@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UTCSTableViewCell.h"
 
-@interface UTCSEventTableViewCell : UITableViewCell
+@interface UTCSEventTableViewCell : UTCSTableViewCell
 
 @property (nonatomic) UIColor *tagColor;
 @property (nonatomic, readonly) UILabel *monthLabel;

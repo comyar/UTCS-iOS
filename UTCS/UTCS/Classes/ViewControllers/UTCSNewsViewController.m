@@ -51,6 +51,7 @@ static NSString * const backgroundImageName         = @"newsBackground";
 // Name of the blurred background image
 static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
+static const CGFloat animationDuration = 0.3;
 
 #pragma mark - UTCSNewsViewController Class Extension
 
@@ -192,6 +193,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     self.activityIndicatorView.center   = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
     
     self.updatedLabel.frame = CGRectMake(13.0, self.backgroundHeaderBlurTableView.header.height - self.backgroundHeaderBlurTableView.navigationBarHeight - updatedLabelFontSize - 8.0, self.backgroundHeaderBlurTableView.width - 16.0, 1.5 * updatedLabelFontSize);
+    
+    self.backgroundHeaderBlurTableView.userInteractionEnabled = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -265,6 +268,37 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     self.newsDetailViewController.newsStory = newsStory;
     
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self bounceCell:cell down:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self bounceCell:cell down:NO];
+}
+
+- (void)bounceCell:(UITableViewCell *)cell down:(BOOL)down
+{
+    [UIView animateWithDuration:animationDuration/3.0 animations:^{
+        cell.contentView.transform = (down)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:animationDuration/3.0 animations:^{
+            cell.contentView.transform = (down)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:animationDuration/3.0 animations:^{
+                cell.contentView.transform = (down)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
+            }];
+        }];
+    }];
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        cell.contentView.alpha = (down)? 0.5 : 1.0;
+    }];
 }
 
 @end
