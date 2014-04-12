@@ -53,7 +53,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         cell.accessoryView = ({
             UIImage *image = [[UIImage imageNamed:@"rightArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.frame = CGRectMake(0.0, 0.0, 8.0, 16.0);
             imageView.tintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             imageView;
         });
