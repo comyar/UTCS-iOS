@@ -1,0 +1,15 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, "6.0"
+
+target "UTCS" do
+pod 'MRCircularProgressView',:git => 'https://github.com/martinezdelariva/MRCircularProgressView'
+pod 'FRBSwatchist', :git => 'https://github.com/bradzeis/FRBSwatchist'
+pod 'MBProgressHUD', '~> 0.8'
+pod 'Shimmer', '~> 1.0.1'
+pod 'UIView+Shake', '~> 0.2'
+end
+
+target "UTCSTests" do
+
+end
+

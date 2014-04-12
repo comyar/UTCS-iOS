@@ -1,0 +1,28 @@
+PODS:
+  - FRBSwatchist (1.0.0)
+  - MBProgressHUD (0.8)
+  - MRCircularProgressView (0.1)
+  - Shimmer (1.0.1)
+  - UIView+Shake (0.2)
+
+DEPENDENCIES:
+  - FRBSwatchist (from `https://github.com/bradzeis/FRBSwatchist`)
+  - MBProgressHUD (~> 0.8)
+  - MRCircularProgressView (from `https://github.com/martinezdelariva/MRCircularProgressView`)
+  - Shimmer (~> 1.0.1)
+  - UIView+Shake (~> 0.2)
+
+EXTERNAL SOURCES:
+  FRBSwatchist:
+    :git: https://github.com/bradzeis/FRBSwatchist
+  MRCircularProgressView:
+    :git: https://github.com/martinezdelariva/MRCircularProgressView
+
+SPEC CHECKSUMS:
+  FRBSwatchist: bc312d54f3343366a4d03629864b316711e1cad1
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  MRCircularProgressView: 915074989df499e399f75d79e0a8a23e13c4c896
+  Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
+  UIView+Shake: 8303c6fe633cfecf4c6f1b6748aa76ab9bad2e35
+
+COCOAPODS: 0.29.0
