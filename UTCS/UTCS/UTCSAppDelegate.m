@@ -42,7 +42,21 @@
 @property (nonatomic) UTCSMenuViewController            *menuViewController;
 
 //
+@property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
+
+//
 @property (nonatomic) UTCSDiskQuotaViewController       *diskQuotaViewController;
+
+// -----
+// @name Content controllers
+// -----
+
+@property (nonatomic) UTCSNewsViewController            *newsViewController;
+
+
+// -----
+// @name Navigation controllers
+// -----
 
 //
 @property (nonatomic) UINavigationController            *labsNavigationController;
@@ -52,9 +66,6 @@
 
 //
 @property (nonatomic) UINavigationController            *eventsNavigationController;
-
-//
-@property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
 //
 @property (nonatomic) UINavigationController            *directoryNavigationController;
@@ -83,11 +94,12 @@
     self.menuViewController.delegate = self;
     
     // Initialize view controllers
+    self.newsViewController             = [UTCSNewsViewController new];
     self.webViewController              = [UTCSWebViewController new];
     self.webViewController.delegate     = self;
     
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
-    self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:self.newsViewController];
     self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
@@ -106,7 +118,18 @@
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
+    
+    NSLog(@"launch");
+    
     return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSLog(@"active");
+    if(self.verticalMenuViewController.contentViewController == self.newsNavigationController) {
+        [self.newsViewController update];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

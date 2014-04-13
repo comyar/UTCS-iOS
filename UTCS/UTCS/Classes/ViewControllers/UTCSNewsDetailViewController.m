@@ -41,31 +41,22 @@ static const CGFloat dateLabelFontSize  = 16.0;
 
 @interface UTCSNewsDetailViewController ()
 
-/**
- Label used to display the title of a news story
- */
+// Label used to display the title of a news story
 @property (nonatomic) UILabel                           *titleLabel;
 
-/**
- Label used to display the date of a news story
- */
+// Label used to display the date of a news story
 @property (nonatomic) UILabel                           *dateLabel;
 
-/**
- Text view used to display the news story
- */
+// Text view used to display the news story
 @property (nonatomic) UITextView                        *contentTextView;
 
-/**
- Scroll view used to display the content of the news story
- */
+// Scroll view used to display the content of the news story
 @property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
-/**
- Array of default header images
- */
+// Array of default header images
 @property (nonatomic) NSArray                           *defaultHeaderImages;
 
+//
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
 @end
@@ -79,7 +70,8 @@ static const CGFloat dateLabelFontSize  = 16.0;
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
-        self.defaultHeaderImages = @[@[[UIImage imageNamed:@"header"], [UIImage imageNamed:@"blurredHeader"]]];
+        self.defaultHeaderImages = @[@[[UIImage imageNamed:@"header"],
+                                       [UIImage imageNamed:@"blurredHeader"]]];
         
         self.scrollToTopButton = ({
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -156,6 +148,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     
     self.parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPointZero;
     
+    
     self.title = [NSDateFormatter localizedStringFromDate:_newsStory.date
                                                 dateStyle:NSDateFormatterLongStyle
                                                 timeStyle:NSDateFormatterNoStyle];
@@ -197,9 +190,6 @@ static const CGFloat dateLabelFontSize  = 16.0;
     }
     
     self.titleLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - (self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.y) - self.titleLabel.height;
-    
-    
-    
 }
 
 @end

@@ -43,7 +43,10 @@ static const CGFloat updatedLabelFontSize           = 14.0;
 static const CGFloat estimatedCellHeight            = 128.0;
 
 // Estimated height of a table view cell's detail label
-static const CGFloat estimatedCellDetailLabelHeight = 80.0;
+static const CGFloat estimatedCellDetailLabelHeight = 85.0;
+
+// Duration of animations managed by this view controller
+static const CGFloat animationDuration              = 0.3;
 
 // Name of the background image
 static NSString * const backgroundImageName         = @"newsBackground";
@@ -51,7 +54,6 @@ static NSString * const backgroundImageName         = @"newsBackground";
 // Name of the blurred background image
 static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
-static const CGFloat animationDuration = 0.3;
 
 #pragma mark - UTCSNewsViewController Class Extension
 
@@ -95,13 +97,16 @@ static const CGFloat animationDuration = 0.3;
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"News";
+        
         self.newsStoryManager = [UTCSNewsStoryDataSource new];
+        
+        
         
         // Background header blur table view
         self.backgroundHeaderBlurTableView = ({
             UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-            view.tableView.delegate = self;
-            view.tableView.dataSource = self.newsStoryManager;
+            view.tableView.delegate     = self;
+            view.tableView.dataSource   = self.newsStoryManager;
             view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
                                                                                            blendingMode:kCGBlendModeOverlay];
             view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
@@ -177,36 +182,35 @@ static const CGFloat animationDuration = 0.3;
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     
-    self.backgroundHeaderBlurTableView.frame = self.view.bounds;
+    self.backgroundHeaderBlurTableView.frame    = self.view.bounds;
     
-    self.utcsNewsShimmeringView.frame   = CGRectMake(0.0, 0.0, self.view.width, shimmeringViewFontSize);
-    self.utcsNewsShimmeringView.center  = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
+    self.utcsNewsShimmeringView.frame           = CGRectMake(0.0, 0.0, self.view.width, shimmeringViewFontSize);
+    self.utcsNewsShimmeringView.center          = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
     
-    self.utcsSubtitleLabel.frame        = CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize);
-    self.utcsSubtitleLabel.center       = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
+    self.utcsSubtitleLabel.frame                = CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize);
+    self.utcsSubtitleLabel.center               = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
     
-    self.downArrowImageView.center      = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
-    self.activityIndicatorView.center   = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
+    self.downArrowImageView.center              = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
+    self.activityIndicatorView.center           = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
     
     self.updatedLabel.frame = CGRectMake(13.0, self.backgroundHeaderBlurTableView.header.height - self.backgroundHeaderBlurTableView.navigationBarHeight - updatedLabelFontSize - 8.0, self.backgroundHeaderBlurTableView.width - 16.0, 1.5 * updatedLabelFontSize);
-    
-    self.backgroundHeaderBlurTableView.userInteractionEnabled = YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
+#pragma mark Update data source
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)update
 {
-    [super viewDidAppear:animated];
-    
     [UIView animateWithDuration:0.3 animations:^{
         self.downArrowImageView.alpha = 0.0;
     }];
@@ -258,6 +262,8 @@ static const CGFloat animationDuration = 0.3;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UTCSNewsStory *newsStory = self.newsStoryManager.newsStories[indexPath.row];
@@ -268,6 +274,7 @@ static const CGFloat animationDuration = 0.3;
     self.newsDetailViewController.newsStory = newsStory;
     
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
+    cell.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
