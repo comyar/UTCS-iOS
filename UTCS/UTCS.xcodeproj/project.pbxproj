@@ -17,8 +17,6 @@
 		0B9A26501891D5E30032DA03 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A264F1891D5E30032DA03 /* XCTest.framework */; };
 		0B9A26511891D5E30032DA03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A26361891D5E30032DA03 /* Foundation.framework */; };
 		0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
-		0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A26581891D5E30032DA03 /* InfoPlist.strings */; };
-		0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A265B1891D5E30032DA03 /* UTCSTests.m */; };
 		DD0F0D6D18EC39DE0088178C /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0F0D6C18EC39DE0088178C /* UTCSStateManager.m */; };
 		DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
@@ -104,9 +102,6 @@
 		0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSAppDelegate.m; sourceTree = "<group>"; };
 		0B9A264E1891D5E30032DA03 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9A264F1891D5E30032DA03 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		0B9A26571891D5E30032DA03 /* UTCSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCSTests-Info.plist"; sourceTree = "<group>"; };
-		0B9A26591891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0B9A265B1891D5E30032DA03 /* UTCSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSTests.m; sourceTree = "<group>"; };
 		4B51DDA83E634E69A1D85ECB /* libPods-UTCS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UTCS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95446C76F512403BA430A5AA /* Pods-UTCS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.xcconfig"; path = "Pods/Pods-UTCS.xcconfig"; sourceTree = "<group>"; };
 		DD0F0D6B18EC39DE0088178C /* UTCSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSStateManager.h; sourceTree = "<group>"; };
@@ -261,7 +256,6 @@
 			children = (
 				0B9A263C1891D5E30032DA03 /* UTCS */,
 				0B9A263D1891D5E30032DA03 /* Supporting Files */,
-				0B9A26551891D5E30032DA03 /* UTCSTests */,
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
 				95446C76F512403BA430A5AA /* Pods-UTCS.xcconfig */,
@@ -329,24 +323,6 @@
 			);
 			name = "Supporting Files";
 			path = UTCS;
-			sourceTree = "<group>";
-		};
-		0B9A26551891D5E30032DA03 /* UTCSTests */ = {
-			isa = PBXGroup;
-			children = (
-				0B9A265B1891D5E30032DA03 /* UTCSTests.m */,
-				0B9A26561891D5E30032DA03 /* Supporting Files */,
-			);
-			path = UTCSTests;
-			sourceTree = "<group>";
-		};
-		0B9A26561891D5E30032DA03 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0B9A26571891D5E30032DA03 /* UTCSTests-Info.plist */,
-				0B9A26581891D5E30032DA03 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DD0F0D6A18EC39D10088178C /* StateManager */ = {
@@ -821,7 +797,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B9A265A1891D5E30032DA03 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,7 +890,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B9A265C1891D5E30032DA03 /* UTCSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,14 +908,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				0B9A26401891D5E30032DA03 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0B9A26581891D5E30032DA03 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B9A26591891D5E30032DA03 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
