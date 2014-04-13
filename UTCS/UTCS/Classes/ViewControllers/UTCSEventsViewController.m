@@ -39,6 +39,8 @@
 @property (nonatomic) UILabel                               *updatedLabel;
 
 @property (nonatomic) UIButton                              *filterButton;
+
+@property (nonatomic) FPPopoverController                   *filterPopoverController;
  
 @end
 
@@ -81,7 +83,7 @@
         
         self.filterButton = ({
             UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(self.view.width - 66, 8, 64, 32)];
-            
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
             imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
@@ -104,6 +106,22 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if(button == self.filterButton) {
+        UITableViewController *tvc = [UITableViewController new];
+        
+        if(!self.filterPopoverController) {
+            self.filterPopoverController = [[FPPopoverController alloc]initWithViewController:tvc delegate:self];
+            self.filterPopoverController.border = NO;
+            self.filterPopoverController.alpha = 0.75;
+            self.filterPopoverController.tint = FPPopoverWhiteTint;
+        }
+        
+        [self.filterPopoverController presentPopoverFromView:self.filterButton];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -129,6 +147,13 @@
             
         }];
     }
+}
+
+#pragma mark FPPopoverViewControllerDelegate Methods
+
+- (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController
+{
+    NSLog(@"yolo");
 }
 
 #pragma mark UITableViewDelegate Methods
