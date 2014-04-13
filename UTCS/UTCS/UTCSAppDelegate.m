@@ -87,8 +87,6 @@
 {
     [self loadSwatches];
     
-    NSLog(@"%@", [FRBSwatchist stringForKey:@"Parse.ApplicationID"]);
-    
     // Initialize Parse
     [Parse setApplicationId:[FRBSwatchist stringForKey:@"Parse.ApplicationID"]
                   clientKey:[FRBSwatchist stringForKey:@"Parse.ClientKey"]];
@@ -98,17 +96,23 @@
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    // Initialize view controllers
+    // News
     self.newsViewController             = [UTCSNewsViewController new];
-    self.webViewController              = [UTCSWebViewController new];
-    self.webViewController.delegate     = self;
-    
-    self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:self.newsViewController];
-    self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
-    self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-    self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+        self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
+        self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+        self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
+        self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
+        self.webViewController              = [UTCSWebViewController new];
+        self.webViewController.delegate     = self;
+    });
+    
+    
+   
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
