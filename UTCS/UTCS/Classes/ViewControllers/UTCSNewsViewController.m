@@ -40,7 +40,7 @@ static const CGFloat subtitleLabelFontSize          = 17.0;
 static const CGFloat updatedLabelFontSize           = 14.0;
 
 // Estimated height of table view cell
-static const CGFloat estimatedCellHeight            = 128.0;
+static const CGFloat estimatedCellHeight            = 140.0;
 
 // Estimated height of a table view cell's detail label
 static const CGFloat estimatedCellDetailLabelHeight = 85.0;
@@ -99,8 +99,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         self.title = @"News";
         
         self.newsStoryManager = [UTCSNewsStoryDataSource new];
-        
-        
         
         // Background header blur table view
         self.backgroundHeaderBlurTableView = ({
@@ -221,10 +219,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         self.downArrowImageView.alpha = 0.0;
     }];
     
-    [self.activityIndicatorView startAnimating];
     self.utcsNewsShimmeringView.shimmering = YES;
+    [self.activityIndicatorView startAnimating];
     
-    // Update news stories if manager has no stories
+    // Update news stories
     [self.newsStoryManager updateNewsStoriesWithCompletion:^{
         [self.activityIndicatorView stopAnimating];
         self.utcsNewsShimmeringView.shimmering = NO;
@@ -258,6 +256,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
+    
     return MIN(ceilf(rect.size.height), estimatedCellDetailLabelHeight) + estimatedCellDetailLabelHeight;
 }
 

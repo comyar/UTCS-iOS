@@ -14,6 +14,9 @@
  */
 @interface UTCSNewsViewController : UIViewController <UITableViewDelegate>
 
+/**
+ Updates the news data source
+ */
 - (void)update;
 
 @end

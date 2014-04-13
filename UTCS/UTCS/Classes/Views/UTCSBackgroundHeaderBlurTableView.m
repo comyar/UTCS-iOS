@@ -49,7 +49,8 @@ static const CGFloat navigationBarHeight = 44.0;
         
         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - navigationBarHeight) style:UITableViewStylePlain];
         self.tableView.backgroundColor = [UIColor clearColor];
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
         self.tableView.tableHeaderView = self.header;
         [self addSubview:self.tableView];
         
