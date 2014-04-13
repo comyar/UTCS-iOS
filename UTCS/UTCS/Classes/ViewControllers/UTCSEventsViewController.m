@@ -18,6 +18,7 @@
 #import "FBShimmeringView.h"
 #import "UTCSEventsFilterTableViewController.h"
 
+
 @interface UTCSEventsViewController ()
 
 @property (nonatomic) UTCSEventsFilterTableViewController   *filterTableViewController;
@@ -43,7 +44,9 @@
 
 @property (nonatomic) UIButton                              *filterButton;
 
-@property (nonatomic) FPPopoverController                   *filterPopoverController;
+@property (nonatomic) WYPopoverController                   *filterPopoverController;
+
+
  
 @end
 
@@ -116,14 +119,32 @@
     if(button == self.filterButton) {
         
         if(!self.filterTableViewController) {
+            
             self.filterTableViewController = [UTCSEventsFilterTableViewController new];
-            self.filterPopoverController = [[FPPopoverController alloc]initWithViewController:self.filterTableViewController delegate:self];
-            self.filterPopoverController.tint = FPPopoverWhiteTint;
-            self.filterPopoverController.alpha = 0.8;
-            self.filterPopoverController.border = NO;
+            self.filterTableViewController.blurView.underlyingView = self.view;
+            self.filterPopoverController = [[WYPopoverController alloc]initWithContentViewController:self.filterTableViewController];
+            self.filterPopoverController.popoverContentSize = CGSizeMake(240.0, 360.0);
+            self.filterPopoverController.theme = ({
+                WYPopoverTheme *theme = [WYPopoverTheme theme];
+                theme.borderWidth = 1;
+                theme.overlayColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+                theme.innerStrokeColor = [UIColor clearColor];
+                theme.outerStrokeColor = [UIColor clearColor];
+                theme.fillTopColor = [UIColor clearColor];
+                theme.fillBottomColor = [UIColor clearColor];
+                theme.innerShadowColor = [UIColor clearColor];
+                theme.outerShadowColor = [UIColor clearColor];
+                theme.tintColor = [UIColor clearColor];
+                theme.glossShadowColor = [UIColor clearColor];
+                
+                theme;
+            });
+            self.filterPopoverController.delegate = self;
         }
-        
-        [self.filterPopoverController presentPopoverFromView:self.filterButton];
+        [self.filterPopoverController presentPopoverFromRect:self.filterButton.frame
+                                                      inView:self.view
+                                    permittedArrowDirections:WYPopoverArrowDirectionUp
+                                                    animated:YES];
     }
 }
 
@@ -150,13 +171,6 @@
             
         }];
     }
-}
-
-#pragma mark FPPopoverViewControllerDelegate Methods
-
-- (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController
-{
-    
 }
 
 #pragma mark UITableViewDelegate Methods

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FPPopoverController.h"
+#import "WYPopoverController.h"
 
-@interface UTCSEventsViewController : UIViewController <UITableViewDelegate, FPPopoverControllerDelegate>
+@interface UTCSEventsViewController : UIViewController <UITableViewDelegate, WYPopoverControllerDelegate>
 
 @end

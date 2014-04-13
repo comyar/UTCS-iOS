@@ -35,6 +35,7 @@
 		DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4954DA18EBAFAA00BC928B /* UTCSWebViewController.m */; };
 		DD4954DF18EBB20B00BC928B /* UTCSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4954DE18EBB20B00BC928B /* UTCSApplication.m */; };
 		DD4C7D0C18FA840700129A2E /* UTCSEventsFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */; };
+		DD4C7D1018FB118C00129A2E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4C7D0F18FB118C00129A2E /* Accelerate.framework */; };
 		DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
@@ -139,6 +140,7 @@
 		DD4954DE18EBB20B00BC928B /* UTCSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSApplication.m; sourceTree = "<group>"; };
 		DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventsFilterTableViewController.h; sourceTree = "<group>"; };
 		DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventsFilterTableViewController.m; sourceTree = "<group>"; };
+		DD4C7D0F18FB118C00129A2E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventTableViewCell.h; sourceTree = "<group>"; };
 		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventTableViewCell.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD4C7D1018FB118C00129A2E /* Accelerate.framework in Frameworks */,
 				DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */,
 				DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */,
 				DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */,
@@ -277,6 +280,7 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD4C7D0F18FB118C00129A2E /* Accelerate.framework */,
 				DD83B55F18F0EC1300EBDE06 /* EventKitUI.framework */,
 				DD83B55D18F0EB8600EBDE06 /* EventKit.framework */,
 				DD44658B18E5859F00ED1153 /* NMSSH.framework */,
