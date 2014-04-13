@@ -16,8 +16,11 @@
 #import "UIView+CZPositioning.h"
 #import "UTCSEventDetailViewController.h"
 #import "FBShimmeringView.h"
+#import "UTCSEventsFilterTableViewController.h"
 
 @interface UTCSEventsViewController ()
+
+@property (nonatomic) UTCSEventsFilterTableViewController   *filterTableViewController;
 
 @property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
 
@@ -111,13 +114,13 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.filterButton) {
-        UITableViewController *tvc = [UITableViewController new];
         
-        if(!self.filterPopoverController) {
-            self.filterPopoverController = [[FPPopoverController alloc]initWithViewController:tvc delegate:self];
-            self.filterPopoverController.border = NO;
-            self.filterPopoverController.alpha = 0.75;
+        if(!self.filterTableViewController) {
+            self.filterTableViewController = [UTCSEventsFilterTableViewController new];
+            self.filterPopoverController = [[FPPopoverController alloc]initWithViewController:self.filterTableViewController delegate:self];
             self.filterPopoverController.tint = FPPopoverWhiteTint;
+            self.filterPopoverController.alpha = 0.8;
+            self.filterPopoverController.border = NO;
         }
         
         [self.filterPopoverController presentPopoverFromView:self.filterButton];
@@ -153,7 +156,7 @@
 
 - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController
 {
-    NSLog(@"yolo");
+    
 }
 
 #pragma mark UITableViewDelegate Methods

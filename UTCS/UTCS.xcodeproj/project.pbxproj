@@ -34,6 +34,7 @@
 		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
 		DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4954DA18EBAFAA00BC928B /* UTCSWebViewController.m */; };
 		DD4954DF18EBB20B00BC928B /* UTCSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4954DE18EBB20B00BC928B /* UTCSApplication.m */; };
+		DD4C7D0C18FA840700129A2E /* UTCSEventsFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */; };
 		DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsStory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsStory.m */; };
@@ -136,6 +137,8 @@
 		DD4954DA18EBAFAA00BC928B /* UTCSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSWebViewController.m; sourceTree = "<group>"; };
 		DD4954DD18EBB20B00BC928B /* UTCSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSApplication.h; sourceTree = "<group>"; };
 		DD4954DE18EBB20B00BC928B /* UTCSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSApplication.m; sourceTree = "<group>"; };
+		DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventsFilterTableViewController.h; sourceTree = "<group>"; };
+		DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventsFilterTableViewController.m; sourceTree = "<group>"; };
 		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventTableViewCell.h; sourceTree = "<group>"; };
 		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventTableViewCell.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEvent.h; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 				DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */,
 				DD44659718E8254B00ED1153 /* UTCSEventDetailViewController.h */,
 				DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */,
+				DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */,
+				DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */,
 				DD83B57518F15CCE00EBDE06 /* UTCSLicenseDetailViewController.m in Sources */,
+				DD4C7D0C18FA840700129A2E /* UTCSEventsFilterTableViewController.m in Sources */,
 				DD44656318E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
