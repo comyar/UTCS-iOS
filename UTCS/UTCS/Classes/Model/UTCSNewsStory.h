@@ -23,7 +23,7 @@ extern NSString *const UTCSParseNewStoryHTML;
 
 /**
  */
-@interface UTCSNewsStory : NSObject
+@interface UTCSNewsStory : NSObject <NSCoding>
 
 + (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object;
 
@@ -37,26 +37,32 @@ extern NSString *const UTCSParseNewStoryHTML;
 // @name Properties
 // -----
 
+/**
+ */
 @property (nonatomic) UIImage                   *headerImage;
 
+/**
+ */
 @property (nonatomic) UIImage                   *blurredHeaderImage;
 
-//
+/**
+ */
 @property (nonatomic) NSString                  *title;
 
-//
+/**
+ */
 @property (nonatomic) NSString                  *text;
 
-//
+/**
+ */
 @property (nonatomic) NSDate                    *date;
 
-//
+/**
+ */
 @property (nonatomic) NSString                  *html;
 
-//
-@property (nonatomic) NSString                  *json;
-
-//
+/**
+ */
 @property (nonatomic) NSAttributedString        *attributedContent;
 
 @end

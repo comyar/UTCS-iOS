@@ -24,7 +24,7 @@
 
 #pragma mark - Constants
 
-static const CGFloat minHeaderImageWidth = 300.0;
+
 
 typedef void (^ UTCSNewStoryManagerCompletion) (NSArray *newsStories, NSError *error);
 
@@ -105,9 +105,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         if(objects) {
             for(PFObject *object in objects) {
                 UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
-                if([self setAttributedContentForNewsStory:newsStory]) {
-                    [newsStories addObject:newsStory];
-                }
+                [newsStories addObject:newsStory];
             }
             
             sortedNewsStories = [newsStories sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
@@ -119,57 +117,6 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         
         completion(sortedNewsStories, error);
     }];
-}
-
-- (BOOL)setAttributedContentForNewsStory:(UTCSNewsStory *)newsStory
-{
-    
-    NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[newsStory.html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
-    
-    if(!attributedHTML) {
-        return NO;
-    }
-    
-    
-    __block UIImage *headerImage = nil;
-    NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
-    [attributedHTML enumerateAttributesInRange:NSMakeRange(0, [attributedHTML length]) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-        
-        if(attrs[NSAttachmentAttributeName] && !headerImage) {
-            NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
-            UIImage *image = textAttachment.image;
-            if(textAttachment.fileWrapper.isRegularFile) {
-                image = [UIImage imageWithData:textAttachment.fileWrapper.regularFileContents];
-            }
-            if(image.size.width >= minHeaderImageWidth) {
-                headerImage = image;
-            }
-        } else {
-            UIFont *htmlFont = attrs[NSFontAttributeName];
-            NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"HelveticaNeue-Light";
-            UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.6 * htmlFont.pointSize];
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = 6.0;
-            paragraphStyle.paragraphSpacing = 16.0;
-            
-            [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
-            [attributedHTML addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-            [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
-            [attributedContent.mutableString replaceOccurrencesOfString:@"	" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [attributedContent.mutableString length])];
-        }
-    }];
-    
-    newsStory.headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay];
-    newsStory.blurredHeaderImage = [headerImage applyDarkEffect];
-
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"((\n|\r){2,})" options:0 error:nil];
-    [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
-    
-    newsStory.attributedContent = attributedContent;
-    
-    return YES;
 }
 
 

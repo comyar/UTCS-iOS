@@ -24,8 +24,9 @@
 // @name Categories
 // -----
 
-#import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
+#import "UIView+CZPositioning.h"
+
 
 #pragma mark - Constants
 
@@ -105,17 +106,17 @@ static const CGFloat topControlViewHeight = 44.0;
     self.progressLayer = ({
         CAShapeLayer *layer = [CAShapeLayer new];
         layer.strokeColor = [UIColor utcsYellowColor].CGColor;
-        layer.lineWidth = 5.0;
+        layer.lineWidth = 1.0;
         layer.path = ({
             UIBezierPath *path = [UIBezierPath bezierPath];
-            [path moveToPoint:CGPointMake(0.0, self.topControlView.height - 5.0)];
-            [path addLineToPoint:CGPointMake(self.topControlView.width, self.topControlView.height -5.0)];
+            [path moveToPoint:CGPointMake(0.0, self.topControlView.height - 1.0)];
+            [path addLineToPoint:CGPointMake(self.topControlView.width, self.topControlView.height - 1.0)];
             path.CGPath;
         });
         layer;
     });
     
-//    [self.topControlView.layer addSublayer:self.progressLayer];
+    [self.topControlView.layer addSublayer:self.progressLayer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -174,16 +175,15 @@ static const CGFloat topControlViewHeight = 44.0;
         self.progress.completedUnitCount = 33;
     }
     [self.data appendData:data];
-    NSLog(@"data %lu", (unsigned long)data.length);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    self.progressLayer.strokeEnd = 1.0;
     [self.webView loadData:self.data
                   MIMEType:self.response.MIMEType
           textEncodingName:self.response.textEncodingName
                    baseURL:self.response.URL];
+    self.progressLayer.strokeEnd = 1.0;
 }
 
 @end

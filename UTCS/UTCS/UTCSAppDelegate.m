@@ -112,8 +112,6 @@
     });
     
     
-   
-    
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
 
@@ -133,7 +131,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    NSLog(@"enter foreground");
     if(self.verticalMenuViewController.contentViewController == self.newsNavigationController) {
         [self.newsViewController update];
     } else if(self.verticalMenuViewController.contentViewController == self.eventsNavigationController) {
