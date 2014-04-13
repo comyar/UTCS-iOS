@@ -119,16 +119,17 @@
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
     
-    NSLog(@"launch");
-    
     return YES;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
+- (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    NSLog(@"active");
     if(self.verticalMenuViewController.contentViewController == self.newsNavigationController) {
         [self.newsViewController update];
+    } else if(self.verticalMenuViewController.contentViewController == self.eventsNavigationController) {
+        
+    } else if(self.verticalMenuViewController.contentViewController == self.labsNavigationController) {
+        
     }
 }
 
