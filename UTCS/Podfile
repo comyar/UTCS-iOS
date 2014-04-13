@@ -6,8 +6,8 @@ pod 'MRCircularProgressView',:git => 'https://github.com/martinezdelariva/MRCirc
 pod 'FRBSwatchist', :git => 'https://github.com/bradzeis/FRBSwatchist'
 pod 'MBProgressHUD', '~> 0.8'
 pod 'Shimmer', '~> 1.0.1'
-pod 'UIView+Shake', '~> 0.2'
 pod 'UIImage+ImageEffects', :git => 'https://github.com/utcsmad/UIImage-ImageEffects'
+pod 'UIView+Shake', '~> 0.2'
 end
 
 target "UTCSTests" do

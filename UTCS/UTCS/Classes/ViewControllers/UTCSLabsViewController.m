@@ -8,13 +8,14 @@
 
 #import "UTCSLabsViewController.h"
 #import "UTCSMenuButton.h"
-#import "UIImage+ImageEffects.h"
 #import "MBProgressHUD.h"
 #import "UTCSSSHManager.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSLabsManager.h"
 #import "UTCSLabMachine.h"
 #import "UTCSLabsTableViewCell.h"
+#import "UIImage+ImageEffects.h"
+
 
 @interface UTCSLabsViewController ()
 @property (nonatomic) UIImageView               *backgroundImageView;

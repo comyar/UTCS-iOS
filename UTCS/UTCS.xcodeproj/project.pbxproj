@@ -42,7 +42,6 @@
 		DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */; };
 		DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584A18D239F900EEB474 /* UTCSNewsDetailViewController.m */; };
 		DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */; };
-		DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */; };
 		DD64DAD018F8AAB50033D58B /* UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DACF18F8AAB50033D58B /* UTCSButton.m */; };
 		DD64DAD418F8BA2A0033D58B /* UTCSFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */; };
 		DD64DAD618F8BCD90033D58B /* Parse-Keys.json in Resources */ = {isa = PBXBuildFile; fileRef = DD64DAD518F8BCD90033D58B /* Parse-Keys.json */; };
@@ -72,6 +71,7 @@
 		DDC676BA18EC55F40082C235 /* UTCSSSHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676B918EC55F40082C235 /* UTCSSSHManager.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
+		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */; };
 		DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */; };
@@ -154,8 +154,6 @@
 		DD5B584B18D239F900EEB474 /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DD5B586718D23A0A00EEB474 /* UTCSMenuViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSMenuViewControllerDelegate.h; sourceTree = "<group>"; };
-		DD5B586918D23AFD00EEB474 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DD64DACE18F8AAB50033D58B /* UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSButton.h; sourceTree = "<group>"; };
 		DD64DACF18F8AAB50033D58B /* UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSButton.m; sourceTree = "<group>"; };
 		DD64DAD218F8BA2A0033D58B /* UTCSFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSFileReader.h; sourceTree = "<group>"; };
@@ -203,6 +201,8 @@
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
+		DDDC92D818FA0E1300D39A74 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561E318DC15C700C46480 /* UTCSVerticalMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -259,7 +259,6 @@
 		0B9A262A1891D5E30032DA03 = {
 			isa = PBXGroup;
 			children = (
-				DDF02FD118CF54AE00C7D012 /* Libraries */,
 				0B9A263C1891D5E30032DA03 /* UTCS */,
 				0B9A263D1891D5E30032DA03 /* Supporting Files */,
 				0B9A26551891D5E30032DA03 /* UTCSTests */,
@@ -586,16 +585,6 @@
 			name = "UIImage+CZScaling";
 			sourceTree = "<group>";
 		};
-		DD7968F718B5EB03009ADE2A /* ImageEffects */ = {
-			isa = PBXGroup;
-			children = (
-				DD5B586918D23AFD00EEB474 /* UIImage+ImageEffects.h */,
-				DD5B586A18D23AFD00EEB474 /* UIImage+ImageEffects.m */,
-			);
-			name = ImageEffects;
-			path = UTCS;
-			sourceTree = "<group>";
-		};
 		DD83B54818EEF92F00EBDE06 /* KeychainStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +657,7 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
 				DDA94B7D18C1FD8700DDF949 /* UIView+CZPositioning */,
@@ -713,6 +703,15 @@
 			name = "UITextView+CZTextViewHeight";
 			sourceTree = "<group>";
 		};
+		DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				DDDC92D818FA0E1300D39A74 /* UIImage+ImageEffects.h */,
+				DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */,
+			);
+			name = "UIImage+ImageEffects";
+			sourceTree = "<group>";
+		};
 		DDEFABCE1897515800DAB5D7 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,14 +719,6 @@
 				0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */,
 			);
 			name = AppDelegate;
-			sourceTree = "<group>";
-		};
-		DDF02FD118CF54AE00C7D012 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				DD7968F718B5EB03009ADE2A /* ImageEffects */,
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -889,6 +880,7 @@
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
 				DD83B58A18F35DC000EBDE06 /* UTCSLabsManager.m in Sources */,
+				DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
@@ -905,7 +897,6 @@
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsManager.m in Sources */,
 				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
-				DD5B586B18D23AFD00EEB474 /* UIImage+ImageEffects.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
@@ -974,6 +965,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -996,7 +988,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1018,6 +1010,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1033,7 +1026,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
