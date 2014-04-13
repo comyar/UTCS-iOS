@@ -23,6 +23,7 @@
 #import "UTCSVerticalMenuViewController.h"
 
 // Models
+#import "FRBSwatchist.h"
 #import "UTCSFileReader.h"
 #import "UTCSAppDelegate.h"
 #import "UTCSApplication.h"
@@ -84,9 +85,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self loadSwatches];
+    
+    NSLog(@"%@", [FRBSwatchist stringForKey:@"Parse.ApplicationID"]);
+    
     // Initialize Parse
-    [Parse setApplicationId:[UTCSFileReader valueForKey:@"ApplicationID" fromJSONobjectWithFileNamed:@"Parse-Keys" extension:@"json"]
-                  clientKey:[UTCSFileReader valueForKey:@"ClientKey" fromJSONobjectWithFileNamed:@"Parse-Keys" extension:@"json"]];
+    [Parse setApplicationId:[FRBSwatchist stringForKey:@"Parse.ApplicationID"]
+                  clientKey:[FRBSwatchist stringForKey:@"Parse.ClientKey"]];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Initialize menu view controller
@@ -149,6 +154,11 @@
     [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
     [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
+
+- (void)loadSwatches
+{
+    [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"Parse" withExtension:@"plist"] forName:@"Parse"];
 }
 
 #pragma mark UTCSWebViewControllerDelegate Methods

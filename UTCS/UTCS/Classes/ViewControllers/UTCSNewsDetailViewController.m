@@ -56,7 +56,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 // Array of default header images
 @property (nonatomic) NSArray                           *defaultHeaderImages;
 
-//
+// Button to scroll to the top of the scroll view
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
 @end
@@ -77,9 +77,9 @@ static const CGFloat dateLabelFontSize  = 16.0;
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
+            self.navigationItem.titleView = button;
             button;
         });
-        self.navigationItem.titleView = self.scrollToTopButton;
         
         // Parallax blur header scroll view
         self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
