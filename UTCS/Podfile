@@ -7,6 +7,7 @@ pod 'FRBSwatchist', :git => 'https://github.com/bradzeis/FRBSwatchist'
 pod 'MBProgressHUD', '~> 0.8'
 pod 'Shimmer', '~> 1.0.1'
 pod 'UIImage+ImageEffects', :git => 'https://github.com/utcsmad/UIImage-ImageEffects'
+pod 'FPPopover', :git => 'https://github.com/50pixels/FPPopover'
 pod 'UIView+Shake', '~> 0.2'
 end
 

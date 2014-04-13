@@ -516,12 +516,12 @@
 			isa = PBXGroup;
 			children = (
 				DD5B586E18D23EDA00EEB474 /* News */,
+				DD44657318E5815100ED1153 /* Events */,
 				DD83B56118F1352200EBDE06 /* Settings */,
 				DDC676CB18EC6DD30082C235 /* DiskQuota */,
 				DD4954D818EBAFA000BC928B /* Web */,
 				DD44657B18E5833100ED1153 /* Directory */,
 				DD44657718E5832100ED1153 /* Labs */,
-				DD44657318E5815100ED1153 /* Events */,
 			);
 			name = Content;
 			sourceTree = "<group>";

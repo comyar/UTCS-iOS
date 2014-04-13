@@ -1,4 +1,5 @@
 PODS:
+  - FPPopover (1.4.1)
   - FRBSwatchist (1.0.0)
   - MBProgressHUD (0.8)
   - MRCircularProgressView (0.1)
@@ -7,6 +8,7 @@ PODS:
   - UIView+Shake (0.2)
 
 DEPENDENCIES:
+  - FPPopover (from `https://github.com/50pixels/FPPopover`)
   - FRBSwatchist (from `https://github.com/bradzeis/FRBSwatchist`)
   - MBProgressHUD (~> 0.8)
   - MRCircularProgressView (from `https://github.com/martinezdelariva/MRCircularProgressView`)
@@ -15,6 +17,8 @@ DEPENDENCIES:
   - UIView+Shake (~> 0.2)
 
 EXTERNAL SOURCES:
+  FPPopover:
+    :git: https://github.com/50pixels/FPPopover
   FRBSwatchist:
     :git: https://github.com/bradzeis/FRBSwatchist
   MRCircularProgressView:
@@ -23,6 +27,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/utcsmad/UIImage-ImageEffects
 
 SPEC CHECKSUMS:
+  FPPopover: 0289b796c031d8f27bd221d93d282ffe23619893
   FRBSwatchist: bc312d54f3343366a4d03629864b316711e1cad1
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MRCircularProgressView: 915074989df499e399f75d79e0a8a23e13c4c896

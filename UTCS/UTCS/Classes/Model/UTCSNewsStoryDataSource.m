@@ -52,21 +52,14 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
     UTCSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSTableViewCell"];
     if(!cell) {
         cell = [[UTCSTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSTableViewCell"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.backgroundColor = [UIColor clearColor];
         cell.accessoryView = ({
             UIImage *image = [[UIImage imageNamed:@"rightArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
             imageView.tintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             imageView;
         });
-//        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
         cell.textLabel.numberOfLines = 4;
-//        cell.textLabel.textColor = [UIColor whiteColor];
-        
-//        cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
         cell.detailTextLabel.numberOfLines = 4;
-//        cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     }
     
     UTCSNewsStory *newsStory = self.newsStories[indexPath.row];

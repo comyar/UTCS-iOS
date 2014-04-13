@@ -25,9 +25,9 @@
 
 @property (nonatomic) BOOL hasAppeared;
 
-@property (nonatomic) UTCSMenuButton *menuButton;
+@property (nonatomic) UTCSMenuButton                        *menuButton;
 
-@property (nonatomic) UTCSEventDetailViewController *eventDetailViewController;
+@property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
 
 //
 @property (nonatomic) FBShimmeringView                      *utcsEventsShimmeringView;
@@ -37,6 +37,8 @@
 
 //
 @property (nonatomic) UILabel                               *updatedLabel;
+
+@property (nonatomic) UIButton                              *filterButton;
  
 @end
 
@@ -76,6 +78,19 @@
         });
         self.updatedLabel.alpha = 0.0;
         [self.backgroundHeaderBlurTableView.header addSubview:self.updatedLabel];
+        
+        self.filterButton = ({
+            UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(self.view.width - 66, 8, 64, 32)];
+            
+            UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+            imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
+            imageView.tintColor = [UIColor whiteColor];
+            [button addSubview:imageView];
+            
+            button;
+        });
+        [self.view addSubview:self.filterButton];
         
         // Menu Button
         self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
