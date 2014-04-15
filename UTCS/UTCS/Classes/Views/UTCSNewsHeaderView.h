@@ -16,7 +16,7 @@
 @property (nonatomic, readonly) UILabel                               *updatedLabel;
 
 // Label used to display a subtitle beneath the shimmering view
-@property (nonatomic, readonly) UILabel                               *utcsSubtitleLabel;
+@property (nonatomic, readonly) UILabel                               *subtitleLabel;
 
 // Image view used to render the down arrow
 @property (nonatomic, readonly) UIImageView                           *downArrowImageView;

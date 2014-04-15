@@ -163,7 +163,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         [UIView animateWithDuration:0.3 animations:^{
             self.headerView.updatedLabel.alpha         = 1.0;
-            self.headerView.utcsSubtitleLabel.alpha    = 1.0;
+            self.headerView.subtitleLabel.alpha    = 1.0;
             self.headerView.downArrowImageView.alpha   = ([self.newsStoryDataSource.newsStories count])? 1.0 : 0.0;
         }];
         
