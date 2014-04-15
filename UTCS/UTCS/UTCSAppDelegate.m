@@ -157,6 +157,7 @@
 - (void)loadSwatches
 {
     [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"Parse" withExtension:@"plist"] forName:@"Parse"];
+    [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"ThirdFloorLab" withExtension:@"plist"] forName:@"ThirdFloorLab"];
 }
 
 #pragma mark UTCSWebViewControllerDelegate Methods

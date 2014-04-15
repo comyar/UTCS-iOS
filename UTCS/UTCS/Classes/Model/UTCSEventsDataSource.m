@@ -95,7 +95,6 @@ NSString * const UTCSParseClassEvent                            = @"Event";
 
 - (void)filterEventsWithTag:(NSString *)tag
 {
-    NSLog(@"%@", tag);
     if([tag isEqualToString:@"All"]) {
         _filteredEvents = self.events;
     } else {
@@ -116,7 +115,6 @@ NSString * const UTCSParseClassEvent                            = @"Event";
         if(objects) {
             for(PFObject *object in objects) {
                 UTCSEvent *event = [UTCSEvent eventWithParseObject:object];
-                [self setAttributedDescriptionForEvent:event];
                 [events addObject:event];
             }
             
@@ -132,33 +130,6 @@ NSString * const UTCSParseClassEvent                            = @"Event";
 
 }
 
-- (void)setAttributedDescriptionForEvent:(UTCSEvent *)event
-{
-    NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[event.HTMLDescription dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
-    if(!attributedHTML) {
-        return;
-    }
-    
-    NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
-    [attributedHTML enumerateAttributesInRange:NSMakeRange(0, [attributedHTML length])
-                                       options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
-                                    usingBlock:
-     ^ (NSDictionary *attrs, NSRange range, BOOL *stop) {
-            UIFont *htmlFont = attrs[NSFontAttributeName];
-            NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"HelveticaNeue-Light";
-            UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.25 * htmlFont.pointSize];
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = 6.0;
-            paragraphStyle.paragraphSpacing = 16.0;
-             
-            [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
-            [attributedHTML addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-            [attributedContent appendAttributedString:[attributedHTML attributedSubstringFromRange:range]];
-     }];
 
-    event.attributedDescription = attributedContent;
-}
 
 @end

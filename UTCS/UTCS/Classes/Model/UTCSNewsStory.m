@@ -98,13 +98,13 @@ static const CGFloat minHeaderImageWidth = 300.0;
         }
     }];
     
-    self.headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay];
-    self.blurredHeaderImage = [headerImage applyDarkEffect];
+    _headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay];
+    _blurredHeaderImage = [headerImage applyDarkEffect];
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"((\n|\r){2,})" options:0 error:nil];
     [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
     
-    self.attributedContent = attributedContent;
+    _attributedContent = attributedContent;
 }
 
 @end

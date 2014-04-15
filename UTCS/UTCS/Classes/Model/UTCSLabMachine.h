@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(u_int8_t, UTCSLab) {
+typedef NS_ENUM(u_int8_t, UTCSLabTag) {
     UTCSTeachingLab = 0,
     UTCSBasementLab,
     UTCSThirdFloorLab

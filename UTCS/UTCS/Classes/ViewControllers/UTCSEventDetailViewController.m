@@ -256,6 +256,15 @@ static const CGFloat dateLabelFontSize  = 28.0;
 
 - (NSAttributedString *)dateStringForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay
 {
+    NSMutableAttributedString *attributedDateString = [NSMutableAttributedString new];
+    if(allDay) {
+        NSAttributedString *attributedAllDay = [[NSAttributedString alloc]initWithString:@" \nAll Day" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
+        [attributedDateString appendAttributedString:attributedAllDay];
+        return attributedDateString;
+    }
+
+    
+    
     NSString *startDateString = [self.dateFormatter stringFromDate:startDate];
     NSString *endDateString = [self.dateFormatter stringFromDate:endDate];
     
@@ -267,7 +276,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
                                                              dateStyle:NSDateFormatterNoStyle
                                                              timeStyle:NSDateFormatterShortStyle];
     
-    NSMutableAttributedString *attributedDateString = [NSMutableAttributedString new];
+    
     
     NSAttributedString *attributedStartDate = [[NSAttributedString alloc]initWithString:startDateString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:36]}];
     [attributedDateString appendAttributedString:attributedStartDate];
@@ -276,12 +285,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
     NSAttributedString *attributedTime = [[NSAttributedString alloc]initWithString:timeString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
     
     if([startDateString isEqualToString:endDateString]) {
-        if(allDay) {
-            NSAttributedString *attributedAllDay = [[NSAttributedString alloc]initWithString:@" \nAll Day" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
-            [attributedDateString appendAttributedString:attributedAllDay];
-        } else {
-            [attributedDateString appendAttributedString:attributedTime];
-        }
+        [attributedDateString appendAttributedString:attributedTime];
     } else {
         [attributedDateString appendAttributedString:attributedStartDate];
         

@@ -40,21 +40,19 @@
         self.scrollView = ({
             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0, 108.0, self.view.width, self.view.height - 108.0)];
             scrollView.pagingEnabled = YES;
+            scrollView.alwaysBounceHorizontal = YES;
             scrollView;
         });
         [self.view addSubview:self.scrollView];
         
         self.thirdFloorLabView = ({
             UTCSLabView *labView = [[UTCSLabView alloc]initWithFrame:self.scrollView.bounds];
+            labView.tag = UTCSThirdFloorLab;
             labView.dataSource = self.labsDataSource;
             labView;
         });
         [self.scrollView addSubview:self.thirdFloorLabView];
-        
-        
-        
-        
-        
+
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
         self.searchBar.placeholder = @"Unix Machine";
         self.searchBar.tintColor = [UIColor whiteColor];

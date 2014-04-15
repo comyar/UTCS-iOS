@@ -10,6 +10,7 @@
 #import "UTCSLabsTableViewCell.h"
 #import "UTCSLabMachine.h"
 #import "UTCSLabMachineView.h"
+#import "FRBSwatchist.h"
 
 @interface UTCSLabsDataSource ()
 @property (nonatomic) NSDictionary *labMachineMapping;
@@ -87,14 +88,20 @@
 - (UTCSLabMachineView *)labView:(UTCSLabView *)labView labMachineViewForIdentifier:(NSString *)identifier
 {
     UTCSLabMachineView *labMachineView = [labView dequeueLabMachineWithIdentifier:identifier];
-    labMachineView.center = CGPointMake(16.0, 16.0);
+    labMachineView.center = CGPointMake(arc4random() % 320, 100 + arc4random() % 320);
     labMachineView.backgroundColor = [UIColor redColor];
+    NSLog(@"%@", identifier);
     return labMachineView;
 }
 
 - (NSArray *)labMachineViewIdentifiersForLabView:(UTCSLabView *)labView
 {
-    return @[@"weretaco"];
+    NSLog(@"identifiers");
+    if(labView.tag == UTCSThirdFloorLab) {
+        NSLog(@"third floor");
+        return [FRBSwatchist objectForKey:@"ThirdFloorLab.Root"];
+    }
+    return nil;
 }
 
 @end

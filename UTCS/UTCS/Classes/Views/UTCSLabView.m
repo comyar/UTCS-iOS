@@ -46,6 +46,7 @@
 {
     NSArray *identifiers = [self.dataSource labMachineViewIdentifiersForLabView:self];
     for(NSString *identifier  in identifiers) {
+        NSLog(@"sadf%@", identifier);
         UTCSLabMachineView *labMachineView = [self.dataSource labView:self labMachineViewForIdentifier:identifier];
         [self addSubview:labMachineView];
     }
