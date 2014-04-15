@@ -9,14 +9,28 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+/**
+ */
 @interface UTCSBackgroundHeaderBlurTableView : UIView <UIGestureRecognizerDelegate>
 
-@property (nonatomic) UIImage                   *backgroundImage;
-
-@property (nonatomic) UIImage                   *backgroundBlurredImage;
-
+/**
+ View to display as the table view's header
+ */
 @property (nonatomic, readonly) UIView          *header;
 
+/**
+ Table view to display feed or list
+ */
 @property (nonatomic, readonly) UITableView     *tableView;
+
+/**
+ Image to display behind the table view
+ */
+@property (nonatomic) UIImage                   *backgroundImage;
+
+/**
+ Blurred image to display behind the table view as the user scrolls
+ */
+@property (nonatomic) UIImage                   *backgroundBlurredImage;
 
 @end

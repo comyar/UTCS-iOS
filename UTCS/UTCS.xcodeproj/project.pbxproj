@@ -475,6 +475,8 @@
 		DD5B584F18D239F900EEB474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD87615B18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.h */,
+				DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */,
 				DDDE0C6718FD8CE400C89D81 /* News */,
 				DD87615718FDA79B005FEE4E /* Events */,
 				DDDE0C6C18FD950200C89D81 /* Buttons */,
@@ -484,8 +486,6 @@
 				DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */,
 				DD44656118E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.h */,
 				DD44656218E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m */,
-				DD87615B18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.h */,
-				DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";

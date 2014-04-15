@@ -18,7 +18,7 @@
 
 @property (nonatomic) UITableView   *tableView;
 
-@property (nonatomic) UIView        *navigationSeparatorView;
+@property (nonatomic) CAShapeLayer  *navigationSeparatorLayer;
 
 @property (nonatomic) UIButton      *scrollToTopButton;
 
@@ -30,38 +30,66 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.bounds];
-        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.backgroundImageView.layer.masksToBounds = YES;
+        // Background image view
+        self.backgroundImageView = ({
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.bounds];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.layer.masksToBounds = YES;
+            imageView;
+        });
+        
+        // Background blurred image view
+        self.backgroundBlurredImageView = ({
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.bounds];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.layer.masksToBounds = YES;
+            imageView.alpha = 0.0;
+            imageView;
+        });
+        
+        // Header
+        self.header = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - 44.0)];
+        
+        // Table view
+        self.tableView = ({
+            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 44.0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - 44.0) style:UITableViewStylePlain];
+            [tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+            tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+            tableView.backgroundColor = [UIColor clearColor];
+            tableView.tableHeaderView = self.header;
+            tableView;
+        });
+        
+        // Navigation separator layer
+        self.navigationSeparatorLayer = ({
+            CAShapeLayer *layer = [CAShapeLayer new];
+            layer.strokeColor = [UIColor clearColor].CGColor;
+            layer.lineWidth = 0.5;
+            layer.path = ({
+                UIBezierPath *path = [UIBezierPath bezierPath];
+                [path moveToPoint:CGPointMake(0.0, 43.5)];
+                [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), 43.5)];
+                path.CGPath;
+            });
+            layer;
+        });
+        
+        // Scroll to top button
+        self.scrollToTopButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+            button.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), 44.0);
+            button;
+        });
+        
+        // Add subviews
         [self addSubview:self.backgroundImageView];
-        
-        self.backgroundBlurredImageView = [[UIImageView alloc]initWithFrame:self.bounds];
-        self.backgroundBlurredImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.backgroundBlurredImageView.layer.masksToBounds = YES;
-        self.backgroundBlurredImageView.alpha = 0.0;
         [self addSubview:self.backgroundBlurredImageView];
-        
-        self.header = [[UIView alloc]initWithFrame:self.bounds];
-        
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 44.0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - 44.0) style:UITableViewStylePlain];
-        self.tableView.backgroundColor = [UIColor clearColor];
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-        self.tableView.tableHeaderView = self.header;
         [self addSubview:self.tableView];
-        
-        self.navigationSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0.0, 44.0, CGRectGetWidth(self.bounds), 0.5)];
-        self.navigationSeparatorView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        self.navigationSeparatorView.alpha = 0.0;
-        [self addSubview:self.navigationSeparatorView];
-        
-        [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-        
-        self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
-        self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), 44.0);
+        [self.layer addSublayer:self.navigationSeparatorLayer];
         [self addSubview:self.scrollToTopButton];
-        
     }
     return self;
 }
@@ -84,7 +112,7 @@
 {
     CGFloat normalizedOffsetDelta = MAX(contentOffset.y / CGRectGetHeight(self.bounds), 0.0);
     self.backgroundBlurredImageView.alpha = MIN(1.0, 4.0 * normalizedOffsetDelta);
-    self.navigationSeparatorView.alpha = MIN(1.0, 2.0 * normalizedOffsetDelta);
+    self.navigationSeparatorLayer.strokeColor = [UIColor colorWithWhite:1.0 alpha:normalizedOffsetDelta].CGColor;
 }
 
 #pragma mark Setters
