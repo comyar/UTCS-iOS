@@ -44,9 +44,9 @@
 
 - (void)reloadData
 {
-    NSArray *identifiers = [self.dataSource labMachineViewIdentifiers];
+    NSArray *identifiers = [self.dataSource labMachineViewIdentifiersForLabView:self];
     for(NSString *identifier  in identifiers) {
-        UTCSLabMachineView *labMachineView = [self.dataSource labMachineViewForIdentifier:identifier];
+        UTCSLabMachineView *labMachineView = [self.dataSource labView:self labMachineViewForIdentifier:identifier];
         [self addSubview:labMachineView];
     }
 }

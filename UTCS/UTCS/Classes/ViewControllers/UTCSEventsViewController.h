@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WYPopoverController.h"
+#import "UTCSEventsFilterTableViewController.h"
 
-@interface UTCSEventsViewController : UIViewController <UITableViewDelegate, WYPopoverControllerDelegate>
+@interface UTCSEventsViewController : UIViewController <UITableViewDelegate, WYPopoverControllerDelegate, UTCSEventsFilterTableViewControllerDelegate>
 
 @end

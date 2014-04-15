@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UTCSEventsManager : NSObject <UITableViewDataSource>
+@interface UTCSEventsDataSource : NSObject <UITableViewDataSource>
 
 - (void)updateEventsWithCompletion:(void (^)(void))completion;
+- (void)filterEventsWithTag:(NSString *)tag;
 
-@property (nonatomic, readonly) NSArray *events;
+@property (nonatomic, readonly) NSArray *filteredEvents;
 
 @end

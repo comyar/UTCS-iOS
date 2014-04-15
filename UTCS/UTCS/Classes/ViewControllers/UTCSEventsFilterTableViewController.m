@@ -7,14 +7,12 @@
 //
 
 #import "UTCSEventsFilterTableViewController.h"
-#import "FXBlurView.h"
 #import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
 
 @interface UTCSEventsFilterTableViewController ()
 @property (nonatomic) NSArray *filters;
 @property (nonatomic) NSArray *filterColors;
-@property (nonatomic) FXBlurView *blurView;
 @property (nonatomic) UITableView *tableView;
 @end
 
@@ -46,6 +44,7 @@
             tableView.layer.cornerRadius = 8.0;
             tableView.layer.masksToBounds = YES;
             tableView.dataSource = self;
+            tableView.delegate = self;
             tableView;
         });
         [self.view addSubview:self.tableView];
@@ -59,7 +58,15 @@
     self.tableView.frame = self.view.bounds;
 }
 
-#pragma mark - UITableViewDataSource Methods
+#pragma mark UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.delegate eventsFilterTableViewController:self didSelectFilter:self.filters[indexPath.row]];
+}
+
+#pragma mark UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -6,16 +6,17 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSLabsManager.h"
+#import "UTCSLabsDataSource.h"
 #import "UTCSLabsTableViewCell.h"
 #import "UTCSLabMachine.h"
+#import "UTCSLabMachineView.h"
 
-@interface UTCSLabsManager ()
+@interface UTCSLabsDataSource ()
 @property (nonatomic) NSDictionary *labMachineMapping;
 @end
 
 
-@implementation UTCSLabsManager
+@implementation UTCSLabsDataSource
 
 - (instancetype)init
 {
@@ -77,14 +78,23 @@
 
 - (NSArray *)searchLabsWithSearchString:(NSString *)searchString scope:(NSString *)scope
 {
-    NSLog(@"Search: %@", searchString);
-    NSLog(@"Scope: %@", scope);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(labName = %@) AND (hostname BEGINSWITH[cd] %@)", scope, searchString];
-    NSArray *searchResults = [self.labMachines filteredArrayUsingPredicate:predicate];
-    for(UTCSLabMachine *machine in searchResults) {
-        NSLog(@"%@", machine.hostname);
-    }
-    return searchResults;
+    return [self.labMachines filteredArrayUsingPredicate:predicate];
+}
+
+#pragma mark UTCSLabViewDataSource Methods
+
+- (UTCSLabMachineView *)labView:(UTCSLabView *)labView labMachineViewForIdentifier:(NSString *)identifier
+{
+    UTCSLabMachineView *labMachineView = [labView dequeueLabMachineWithIdentifier:identifier];
+    labMachineView.center = CGPointMake(16.0, 16.0);
+    labMachineView.backgroundColor = [UIColor redColor];
+    return labMachineView;
+}
+
+- (NSArray *)labMachineViewIdentifiersForLabView:(UTCSLabView *)labView
+{
+    return @[@"weretaco"];
 }
 
 @end

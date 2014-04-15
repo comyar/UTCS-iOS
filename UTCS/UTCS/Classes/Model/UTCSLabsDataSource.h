@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UTCSLabView.h"
 
-@interface UTCSLabsManager : NSObject <UITableViewDataSource>
+@interface UTCSLabsDataSource : NSObject <UITableViewDataSource, UTCSLabViewDataSource>
 
 - (void)syncLabsWithCompletion:(void (^)(BOOL success))completion;
 - (NSArray *)searchLabsWithSearchString:(NSString *)searchString scope:(NSString *)scope;

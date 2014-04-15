@@ -13,8 +13,8 @@
 
 @protocol UTCSLabViewDataSource <NSObject>
 
-- (NSArray *)labMachineViewIdentifiers;
-- (UTCSLabMachineView *)labMachineViewForIdentifier:(NSString *)identifier;
+- (NSArray *)labMachineViewIdentifiersForLabView:(UTCSLabView *)labView;
+- (UTCSLabMachineView *)labView:(UTCSLabView *)labView labMachineViewForIdentifier:(NSString *)identifier;
 
 @end
 

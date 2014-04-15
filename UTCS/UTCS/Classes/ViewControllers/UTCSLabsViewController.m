@@ -11,20 +11,22 @@
 #import "MBProgressHUD.h"
 #import "UTCSSSHManager.h"
 #import "UIView+CZPositioning.h"
-#import "UTCSLabsManager.h"
+#import "UTCSLabsDataSource.h"
 #import "UTCSLabMachine.h"
 #import "UTCSLabsTableViewCell.h"
 #import "UIImage+ImageEffects.h"
-
+#import "UTCSLabView.h"
 
 @interface UTCSLabsViewController ()
 @property (nonatomic) UIImageView               *backgroundImageView;
 @property (nonatomic) UTCSMenuButton            *menuButton;
-@property (nonatomic) UITableView               *tableView;
 @property (nonatomic) UISearchBar               *searchBar;
 @property (nonatomic) UIButton                  *scrollToTopButton;
-@property (nonatomic) UTCSLabsManager           *labsManager;
+@property (nonatomic) UTCSLabsDataSource        *labsDataSource;
 @property (nonatomic) NSArray                   *searchResults;
+@property (nonatomic) UIScrollView              *scrollView;
+@property (nonatomic) UTCSLabView               *thirdFloorLabView;
+
 @end
 
 @implementation UTCSLabsViewController
@@ -32,18 +34,26 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.labsManager = [UTCSLabsManager new];
-    
-//        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
-//                                                     style:UITableViewStylePlain];
-//        self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
-//        self.tableView.backgroundColor = [UIColor clearColor];
-//        self.tableView.rowHeight = 64.0;
-//        self.tableView.delegate = self;
-//        self.tableView.dataSource = self.labsManager;
-//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        self.tableView.allowsSelection = NO;
-//        [self.view addSubview:self.tableView];
+        self.labsDataSource = [UTCSLabsDataSource new];
+        
+        
+        self.scrollView = ({
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0, 108.0, self.view.width, self.view.height - 108.0)];
+            scrollView.pagingEnabled = YES;
+            scrollView;
+        });
+        [self.view addSubview:self.scrollView];
+        
+        self.thirdFloorLabView = ({
+            UTCSLabView *labView = [[UTCSLabView alloc]initWithFrame:self.scrollView.bounds];
+            labView.dataSource = self.labsDataSource;
+            labView;
+        });
+        [self.scrollView addSubview:self.thirdFloorLabView];
+        
+        
+        
+        
         
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
         self.searchBar.placeholder = @"Unix Machine";
@@ -53,8 +63,8 @@
         self.searchBar.showsScopeBar = YES;
         self.searchBar.scopeButtonTitles = @[@"Third Floor Lab", @"Basement Lab"];
         
-        self.labsManager.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
-        self.labsManager.searchDisplayController.delegate = self;
+        self.labsDataSource.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+        self.labsDataSource.searchDisplayController.delegate = self;
         
         self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, self.view.width, 44.0);
@@ -74,10 +84,8 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    [self.labsManager syncLabsWithCompletion:^(BOOL success) {
-        if(success) {
-            [self.tableView reloadData];
-        }
+    [self.labsDataSource syncLabsWithCompletion:^(BOOL success) {
+        
     }];
 }
 
@@ -98,24 +106,10 @@
 - (void)didTouchDownInsideButton:(UIButton *)button
 {
     if(button == self.scrollToTopButton) {
-        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
+//        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     } else {
-        [self.labsManager.searchDisplayController setActive:NO animated:YES];
+        [self.labsDataSource.searchDisplayController setActive:NO animated:YES];
     }
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
-{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.frame = CGRectMake(0.0, self.tableView.y + 44.0, self.tableView.width, self.tableView.height - 44.0);
-    }];
-}
-
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
-{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.frame = CGRectMake(0.0, self.tableView.y - 44.0, self.tableView.width, self.tableView.height + 44.0);
-    }];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
@@ -123,7 +117,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
-        self.searchResults = [self.labsManager searchLabsWithSearchString:self.searchBar.text scope:scope];
+        self.searchResults = [self.labsDataSource searchLabsWithSearchString:self.searchBar.text scope:scope];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [controller.searchResultsTableView reloadData];
@@ -143,7 +137,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSString *scope = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
-        self.searchResults = [self.labsManager searchLabsWithSearchString:searchString scope:scope];
+        self.searchResults = [self.labsDataSource searchLabsWithSearchString:searchString scope:scope];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [controller.searchResultsTableView reloadData];
@@ -163,12 +157,12 @@
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.alpha = 0.0;
+    self.scrollView.alpha = 0.0;
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
 {
-    self.tableView.alpha = 1.0;
+    self.scrollView.alpha = 1.0;
     self.searchResults = nil;
 }
 

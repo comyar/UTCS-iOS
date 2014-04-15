@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSEventsManager.h"
+#import "UTCSEventsDataSource.h"
 #import "UTCSEvent.h"
 #import "UTCSEventTableViewCell.h"
 #import "UIColor+UTCSColors.h"
@@ -20,7 +20,7 @@ const NSTimeInterval kEarliestTimeIntervalForEvents             = -86400;
 NSString * const UTCSParseClassEvent                            = @"Event";
 
 
-@interface UTCSEventsManager ()
+@interface UTCSEventsDataSource ()
 @property (nonatomic) NSArray *events;
 @property (nonatomic) NSDateFormatter   *monthDateFormatter;
 @property (nonatomic) NSDateFormatter   *dayDateFormatter;
@@ -28,7 +28,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
 @end
 
 
-@implementation UTCSEventsManager
+@implementation UTCSEventsDataSource
 
 - (instancetype)init
 {
@@ -75,7 +75,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.events count];
+    return [self.filteredEvents count];
 }
 
 - (void)updateEventsWithCompletion:(void (^)(void))completion
@@ -83,11 +83,25 @@ NSString * const UTCSParseClassEvent                            = @"Event";
     [self eventsWithCompletion:^(NSArray *events, NSError *error) {
         if(events) {
             self.events = events;
+            if(!self.filteredEvents) {
+                _filteredEvents = self.events;
+            }
         }
         if(completion) {
             completion();
         }
     }];
+}
+
+- (void)filterEventsWithTag:(NSString *)tag
+{
+    NSLog(@"%@", tag);
+    if([tag isEqualToString:@"All"]) {
+        _filteredEvents = self.events;
+    } else {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"tag = %@", [tag lowercaseString]];
+        _filteredEvents = [self.events filteredArrayUsingPredicate:predicate];
+    }
 }
 
 - (void)eventsWithCompletion:(UTCSEventManagerCompletion)completion

@@ -11,7 +11,7 @@
 #import "UTCSMenuButton.h"
 #import "UIImage+CZTinting.h"
 #import "UIColor+UTCSColors.h"
-#import "UTCSEventsManager.h"
+#import "UTCSEventsDataSource.h"
 #import "UTCSEvent.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSEventDetailViewController.h"
@@ -25,7 +25,7 @@
 
 @property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
 
-@property (nonatomic) UTCSEventsManager *eventManager;
+@property (nonatomic) UTCSEventsDataSource *eventDataSource;
 
 @property (nonatomic) BOOL hasAppeared;
 
@@ -54,13 +54,13 @@
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"Events";
-        self.eventManager = [UTCSEventsManager new];
+        self.eventDataSource = [UTCSEventsDataSource new];
         
         self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
         self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"eventsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
         self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"eventsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
         self.backgroundHeaderBlurTableView.tableView.delegate = self;
-        self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventManager;
+        self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventDataSource;
         [self.view addSubview:self.backgroundHeaderBlurTableView];
         
         self.utcsEventsShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
@@ -118,7 +118,8 @@
         
         if(!self.filterTableViewController) {
             self.filterTableViewController = [UTCSEventsFilterTableViewController new];
-            self.filterTableViewController.blurView.underlyingView = self.view;
+            self.filterTableViewController.delegate = self;
+            
             self.filterPopoverController = [[WYPopoverController alloc]initWithContentViewController:self.filterTableViewController];
             self.filterPopoverController.popoverContentSize = CGSizeMake(200.0, 220.0);
             self.filterPopoverController.theme = ({
@@ -148,9 +149,9 @@
     [super viewDidAppear:animated];
     if(!self.hasAppeared) {
         self.utcsEventsShimmeringView.shimmering = YES;
-        [self.eventManager updateEventsWithCompletion:^{
+        [self.eventDataSource updateEventsWithCompletion:^{
             self.utcsEventsShimmeringView.shimmering = NO;
-            if([self.eventManager.events count] > 0) {
+            if([self.eventDataSource.filteredEvents count] > 0) {
                 self.hasAppeared = YES;
                 self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
                                           [NSDateFormatter localizedStringFromDate:[NSDate date]
@@ -172,7 +173,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEvent *event = self.eventManager.events[indexPath.row];
+    UTCSEvent *event = self.eventDataSource.filteredEvents[indexPath.row];
     
     // Estimate height of a news story title
     CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
@@ -193,10 +194,19 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
     
-    UTCSEvent *event = self.eventManager.events[indexPath.row];
+    UTCSEvent *event = self.eventDataSource.filteredEvents[indexPath.row];
     self.eventDetailViewController = [UTCSEventDetailViewController new];
     self.eventDetailViewController.event = event;
     [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
+}
+
+#pragma mark UTCSEventsFilterTableViewControllerDelegate Methods
+
+- (void)eventsFilterTableViewController:(UTCSEventsFilterTableViewController *)eventsFilterTableViewController didSelectFilter:(NSString *)filter
+{
+    [self.eventDataSource filterEventsWithTag:filter];
+    [self.filterPopoverController dismissPopoverAnimated:YES];
+    [self.backgroundHeaderBlurTableView.tableView reloadData];
 }
 
 

@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FXBlurView.h"
+@class UTCSEventsFilterTableViewController;
+
+@protocol UTCSEventsFilterTableViewControllerDelegate <NSObject>
+
+- (void)eventsFilterTableViewController:(UTCSEventsFilterTableViewController *)eventsFilterTableViewController didSelectFilter:(NSString *)filter;
+
+@end
 
 @interface UTCSEventsFilterTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, readonly) FXBlurView *blurView;
+@property (nonatomic) id<UTCSEventsFilterTableViewControllerDelegate> delegate;
 
 @end
