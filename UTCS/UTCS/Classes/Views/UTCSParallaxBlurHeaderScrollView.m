@@ -9,10 +9,10 @@
 #import "UTCSParallaxBlurHeaderScrollView.h"
 
 //
-const CGFloat parallaxFactor        = 0.5;
+static const CGFloat parallaxFactor        = 0.5;
 
 //
-const CGFloat navigationBarHeight   = 44.0;
+static const CGFloat navigationBarHeight   = 44.0;
 
 
 #pragma mark - UTCSNewsDetailView Class Extension

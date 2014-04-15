@@ -56,8 +56,8 @@
             [tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
             tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
             tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-            tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
             tableView.backgroundColor = [UIColor clearColor];
+            tableView.showsVerticalScrollIndicator = NO;
             tableView.tableHeaderView = self.header;
             tableView;
         });
