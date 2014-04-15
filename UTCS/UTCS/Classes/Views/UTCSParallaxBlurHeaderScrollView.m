@@ -42,20 +42,27 @@ static const CGFloat navigationBarHeight   = 44.0;
 {
     if (self = [super initWithFrame:frame]) {
         
-        _navigationBarHeight = navigationBarHeight;
+        self.headerImageView = ({
+            UIImageView *imageView = [UIImageView new];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.userInteractionEnabled = NO;
+            imageView;
+        });
         
-        self.headerImageView                        = [UIImageView new];
-        self.headerImageView.contentMode            = UIViewContentModeScaleAspectFill;
-        self.headerImageView.userInteractionEnabled = NO;
+        self.headerBlurredImageView = ({
+            UIImageView *imageView = [UIImageView new];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.userInteractionEnabled = NO;
+            imageView.alpha = 0.0;
+            imageView;
+        });
         
-        self.headerBlurredImageView                 = [UIImageView new];
-        self.headerBlurredImageView.alpha           = 0.0;
-        self.headerBlurredImageView.contentMode     = UIViewContentModeScaleAspectFill;
-        self.headerBlurredImageView.userInteractionEnabled = NO;
-        
-        self.headerContainerView                        = [UIView new];
-        self.headerContainerView.layer.masksToBounds    = YES;
-        self.headerContainerView.userInteractionEnabled = NO;
+        self.headerContainerView = ({
+            UIView *view = [UIView new];
+            view.layer.masksToBounds = YES;
+            view.userInteractionEnabled = NO;
+            view;
+        });
         
         [self.headerContainerView addSubview:self.headerImageView];
         [self.headerContainerView addSubview:self.headerBlurredImageView];

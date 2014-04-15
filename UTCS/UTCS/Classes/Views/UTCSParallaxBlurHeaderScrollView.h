@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
+@import UIKit;
+
+
+/**
+ */
 @interface UTCSParallaxBlurHeaderScrollView : UIView <UIScrollViewDelegate>
 
 /**
@@ -25,9 +29,5 @@
 /**
  */
 @property (nonatomic, readonly) UIScrollView *scrollView;
-
-/**
- */
-@property (nonatomic, readonly) CGFloat navigationBarHeight;
 
 @end
