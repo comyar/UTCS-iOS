@@ -26,14 +26,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.shimmeringView.contentView = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:48];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor whiteColor];
-            label.text = @"UTCS Events";
-            label;
-        });
+        ((UILabel *)self.shimmeringView.contentView).text = @"UTCS Events";
 
     }
     return self;

@@ -1,4 +1,23 @@
 PODS:
+  - AFNetworking (2.2.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.1):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.1)
+  - AFNetworking/Security (2.2.1)
+  - AFNetworking/Serialization (2.2.1)
+  - AFNetworking/UIKit (2.2.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - FRBSwatchist (1.0.0)
   - MBProgressHUD (0.8)
   - MRCircularProgressView (0.1)
@@ -8,6 +27,7 @@ PODS:
   - WYPopoverController (0.1.8)
 
 DEPENDENCIES:
+  - AFNetworking (~> 2.0)
   - FRBSwatchist (from `https://github.com/bradzeis/FRBSwatchist`)
   - MBProgressHUD (~> 0.8)
   - MRCircularProgressView (from `https://github.com/martinezdelariva/MRCircularProgressView`)
@@ -27,6 +47,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/nicolaschengdev/WYPopoverController
 
 SPEC CHECKSUMS:
+  AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
   FRBSwatchist: bc312d54f3343366a4d03629864b316711e1cad1
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MRCircularProgressView: 915074989df499e399f75d79e0a8a23e13c4c896

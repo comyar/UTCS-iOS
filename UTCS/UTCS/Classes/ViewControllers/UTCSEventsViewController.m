@@ -6,45 +6,76 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+// View controllers
 #import "UTCSEventsViewController.h"
-#import "UTCSBackgroundHeaderBlurTableView.h"
-#import "UTCSMenuButton.h"
-#import "UIImage+CZTinting.h"
-#import "UIColor+UTCSColors.h"
-#import "UTCSEventsDataSource.h"
-#import "UTCSEvent.h"
-#import "UIView+CZPositioning.h"
 #import "UTCSEventDetailViewController.h"
-#import "FBShimmeringView.h"
 #import "UTCSEventsFilterTableViewController.h"
 
+// Views
+#import "UTCSMenuButton.h"
+#import "UTCSEventsHeaderView.h"
+#import "UTCSBackgroundHeaderBlurTableView.h"
+
+// Models
+#import "UTCSEvent.h"
+#import "UTCSEventsDataSource.h"
+
+// Categories
+#import "UIImage+CZTinting.h"
+#import "UIColor+UTCSColors.h"
+#import "UIView+CZPositioning.h"
+
+
+#pragma mark - Constants
 
 // Name of the background image
-static NSString * const backgroundImageName         = @"newsBackground";
+static NSString * const backgroundImageName         = @"eventsBackground";
 
 // Name of the blurred background image
-static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
+static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred";
 
 
 #pragma mark - UTCSEventsViewController Class Extension
 
 @interface UTCSEventsViewController ()
 
-@property (nonatomic) UTCSEventsFilterTableViewController   *filterTableViewController;
-
-@property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
-
+//
 @property (nonatomic) UTCSEventsDataSource                  *eventsDataSource;
 
-@property (nonatomic) BOOL hasAppeared;
+//
+@property (nonatomic, getter = hasUpdatedWithAppear) BOOL   updatedWithAppear;
 
-@property (nonatomic) UTCSMenuButton                        *menuButton;
+// -----
+// @name View controllers
+// -----
 
+//
+@property (nonatomic) WYPopoverController                   *filterPopoverController;
+
+//
+@property (nonatomic) UTCSEventsFilterTableViewController   *filterTableViewController;
+
+//
 @property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
 
+// -----
+// @name Views
+// -----
+
+//
+@property (nonatomic) UTCSMenuButton                        *menuButton;
+
+//
 @property (nonatomic) UIButton                              *filterButton;
 
-@property (nonatomic) WYPopoverController                   *filterPopoverController;
+//
+@property (nonatomic) UTCSEventsHeaderView                  *headerView;
+
+//
+@property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
  
 @end
 
@@ -58,24 +89,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"Events";
         self.eventsDataSource = [UTCSEventsDataSource new];
-        
-        self.filterButton = ({
-            UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(self.view.width - 66, 8, 64, 32)];
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
-            imageView.tintColor = [UIColor whiteColor];
-            [button addSubview:imageView];
-            
-            button;
-        });
-        [self.view addSubview:self.filterButton];
-        
-        // Menu Button
-        self.menuButton = [UTCSMenuButton new];
-        [self.view addSubview:self.menuButton];
-        
     }
     return self;
 }
@@ -90,7 +103,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [super viewDidLoad];
     
-    
     // Background header blur table view
     self.backgroundHeaderBlurTableView = ({
         UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
@@ -104,16 +116,29 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         view;
     });
     
+    // Header view
+    self.headerView = [[UTCSEventsHeaderView alloc]initWithFrame:self.backgroundHeaderBlurTableView.header.bounds];
     
+    // Filter button
+    self.filterButton = ({
+        UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(self.view.width - 66, 8, 64, 32)];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
+        imageView.tintColor = [UIColor whiteColor];
+        [button addSubview:imageView];
+        
+        button;
+    });
     
-    self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"eventsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
-    self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"eventsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
-    self.backgroundHeaderBlurTableView.tableView.delegate = self;
-    self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventsDataSource;
+    // Menu Button
+    self.menuButton = [UTCSMenuButton new];
+    
+    [self.backgroundHeaderBlurTableView.header addSubview:self.headerView];
     [self.view addSubview:self.backgroundHeaderBlurTableView];
-
-    
-    
+    [self.view addSubview:self.filterButton];
+    [self.view addSubview:self.menuButton];
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button
@@ -151,26 +176,40 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if(!self.hasAppeared) {
-        self.utcsEventsShimmeringView.shimmering = YES;
-        [self.eventsDataSource updateEventsWithCompletion:^{
-            self.utcsEventsShimmeringView.shimmering = NO;
-            if([self.eventsDataSource.filteredEvents count] > 0) {
-                self.hasAppeared = YES;
-                self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
-                                          [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                                         dateStyle:NSDateFormatterLongStyle
-                                                                         timeStyle:NSDateFormatterMediumStyle]];
-                [self.backgroundHeaderBlurTableView.tableView reloadData];
-            }
-            
-            [UIView animateWithDuration:0.3 animations:^{
-                self.descriptionLabel.alpha = 1.0;
-                self.updatedLabel.alpha = 1.0;
-            }];
-            
-        }];
+    if(!self.updatedWithAppear) {
+        [self update];
     }
+}
+
+- (void)update
+{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.headerView.downArrowImageView.alpha = 0.0;
+    }];
+    
+    self.headerView.shimmeringView.shimmering = YES;
+    [self.headerView.activityIndicatorView startAnimating];
+    
+    [self.eventsDataSource updateEventsWithCompletion:^{
+        
+        self.headerView.shimmeringView.shimmering = NO;
+        [self.headerView.activityIndicatorView stopAnimating];
+        
+        if([self.eventsDataSource.filteredEvents count] > 0) {
+            self.updatedWithAppear = YES;
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
+                                                                    timeStyle:NSDateFormatterMediumStyle];
+            self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            [self.backgroundHeaderBlurTableView.tableView reloadData];
+        }
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.headerView.updatedLabel.alpha          = 1.0;
+            self.headerView.downArrowImageView.alpha    = ([self.eventsDataSource.filteredEvents count])? 1.0 : 0.0;
+        }];
+        
+    }];
 }
 
 #pragma mark UITableViewDelegate Methods

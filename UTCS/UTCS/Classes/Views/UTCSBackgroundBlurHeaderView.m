@@ -52,14 +52,14 @@ static const CGFloat updatedLabelFontSize   = 14.0;
         self.shimmeringView = ({
             FBShimmeringView *view = [[FBShimmeringView alloc]initWithFrame:CGRectZero];
             
-            view.contentView = ({
-                UILabel *label      = [[UILabel alloc]initWithFrame:view.bounds];
-                label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
-                label.textAlignment = NSTextAlignmentCenter;
-                label.textColor     = [UIColor whiteColor];
-                label.text          = @"UTCS News";
-                label;
-            });
+                view.contentView = ({
+                    UILabel *label      = [[UILabel alloc]initWithFrame:view.bounds];
+                    label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
+                    label.textAlignment = NSTextAlignmentCenter;
+                    label.textColor     = [UIColor whiteColor];
+                    label.adjustsFontSizeToFitWidth = YES;
+                    label;
+                });
             
             view;
         });

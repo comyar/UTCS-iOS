@@ -133,8 +133,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     // Menu Button
     self.menuButton = [UTCSMenuButton new];
     
-    [self.view addSubview:self.backgroundHeaderBlurTableView];
     [self.backgroundHeaderBlurTableView.header addSubview:self.headerView];
+    [self.view addSubview:self.backgroundHeaderBlurTableView];
     [self.view addSubview:self.menuButton];
 }
 
@@ -151,8 +151,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     
     // Update news stories
     [self.newsStoryDataSource updateNewsStoriesWithCompletion:^{
-        [self.headerView.activityIndicatorView stopAnimating];
+        NSLog(@"completion");
         self.headerView.shimmeringView.shimmering = NO;
+        [self.headerView.activityIndicatorView stopAnimating];
+        
         if([self.newsStoryDataSource.newsStories count] > 0) {
             self.updatedWithAppear = YES;
             NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
@@ -164,7 +166,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         [UIView animateWithDuration:0.3 animations:^{
             self.headerView.updatedLabel.alpha         = 1.0;
-            self.headerView.subtitleLabel.alpha    = 1.0;
+            self.headerView.subtitleLabel.alpha         = 1.0;
             self.headerView.downArrowImageView.alpha   = ([self.newsStoryDataSource.newsStories count])? 1.0 : 0.0;
         }];
         

@@ -38,14 +38,7 @@ static const CGFloat subtitleLabelFontSize  = 17.0;
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.shimmeringView.contentView = ({
-            UILabel *label      = [[UILabel alloc]initWithFrame:self.shimmeringView.bounds];
-            label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:CGRectGetHeight(self.shimmeringView.bounds)];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor     = [UIColor whiteColor];
-            label.text          = @"UTCS News";
-            label;
-        });
+        ((UILabel *)self.shimmeringView.contentView).text = @"UTCS News";
         
         // Subtitle label
         self.subtitleLabel = ({

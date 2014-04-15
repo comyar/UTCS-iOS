@@ -8,6 +8,7 @@ pod 'MBProgressHUD', '~> 0.8'
 pod 'Shimmer', '~> 1.0.1'
 pod 'UIImage+ImageEffects', :git => 'https://github.com/utcsmad/UIImage-ImageEffects'
 pod 'WYPopoverController', :git => 'https://github.com/nicolaschengdev/WYPopoverController'
+pod "AFNetworking", "~> 2.0"
 pod 'UIView+Shake', '~> 0.2'
 end
 

@@ -12,4 +12,6 @@
 
 @interface UTCSEventsViewController : UIViewController <UITableViewDelegate, WYPopoverControllerDelegate, UTCSEventsFilterTableViewControllerDelegate>
 
+- (void)update;
+
 @end
