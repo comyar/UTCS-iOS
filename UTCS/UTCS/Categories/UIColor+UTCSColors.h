@@ -59,4 +59,6 @@
 
 + (UIColor *)utcsEventTalkColor;
 
++ (UIColor *)utcsEventStudentOrgsColor;
+
 @end

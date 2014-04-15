@@ -10,7 +10,7 @@
 
 #import "FXBlurView.h"
 
-@interface UTCSEventsFilterTableViewController : UIViewController <UITableViewDataSource>
+@interface UTCSEventsFilterTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, readonly) FXBlurView *blurView;
 

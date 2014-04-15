@@ -47,7 +47,8 @@ NSString * const UTCSParseClassEvent                            = @"Event";
         
         
         self.tagColorMapping = @{@"careers": [UIColor utcsEventCareersColor],
-                                 @"talks":[UIColor utcsEventTalkColor]};
+                                 @"talks":[UIColor utcsEventTalkColor],
+                                 @"orgs":[UIColor utcsEventStudentOrgsColor]};
     }
     return self;
 }

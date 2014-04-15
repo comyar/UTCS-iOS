@@ -100,16 +100,13 @@
     self.newsViewController             = [UTCSNewsViewController new];
     self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:self.newsViewController];
     
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-        self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
-        self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-        self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
-        self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
-        self.webViewController              = [UTCSWebViewController new];
-        self.webViewController.delegate     = self;
-    });
+    self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
+    self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
+    self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
+    self.webViewController              = [UTCSWebViewController new];
+    self.webViewController.delegate     = self;
     
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController

@@ -83,5 +83,10 @@
     return [UIColor colorWithRed:RGB(52) green:RGB(153) blue:RGB(219) alpha:1.0];
 }
 
++ (UIColor *)utcsEventStudentOrgsColor
+{
+    return [UIColor colorWithRed:RGB(231) green:RGB(76) blue:RGB(60) alpha:1.0];
+}
+
 
 @end
