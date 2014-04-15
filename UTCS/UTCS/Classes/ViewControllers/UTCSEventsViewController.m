@@ -45,8 +45,6 @@
 @property (nonatomic) UIButton                              *filterButton;
 
 @property (nonatomic) WYPopoverController                   *filterPopoverController;
-
-
  
 @end
 
@@ -59,8 +57,8 @@
         self.eventManager = [UTCSEventsManager new];
         
         self.backgroundHeaderBlurTableView = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-        self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"menuBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
-        self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"menuBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+        self.backgroundHeaderBlurTableView.backgroundImage = [[UIImage imageNamed:@"eventsBackground"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
+        self.backgroundHeaderBlurTableView.backgroundBlurredImage = [[UIImage imageNamed:@"eventsBackground-blurred"]tintedImageWithColor:[UIColor utcsImageTintColor] blendingMode:kCGBlendModeOverlay];
         self.backgroundHeaderBlurTableView.tableView.delegate = self;
         self.backgroundHeaderBlurTableView.tableView.dataSource = self.eventManager;
         [self.view addSubview:self.backgroundHeaderBlurTableView];
@@ -119,14 +117,13 @@
     if(button == self.filterButton) {
         
         if(!self.filterTableViewController) {
-            
             self.filterTableViewController = [UTCSEventsFilterTableViewController new];
             self.filterTableViewController.blurView.underlyingView = self.view;
             self.filterPopoverController = [[WYPopoverController alloc]initWithContentViewController:self.filterTableViewController];
             self.filterPopoverController.popoverContentSize = CGSizeMake(200.0, 220.0);
             self.filterPopoverController.theme = ({
                 WYPopoverTheme *theme = [WYPopoverTheme theme];
-                theme.overlayColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+                theme.overlayColor = [UIColor colorWithWhite:0.0 alpha:0.5];
                 theme.innerStrokeColor = [UIColor clearColor];
                 theme.outerStrokeColor = [UIColor clearColor];
                 theme.fillTopColor = [UIColor colorWithWhite:1.0 alpha:0.95];
@@ -175,13 +172,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (3.0 * [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline].pointSize +
-            [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].pointSize) + 32.0;
+    UTCSEvent *event = self.eventManager.events[indexPath.row];
+    
+    // Estimate height of a news story title
+    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
+                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+                                                context:nil];
+    
+    return MIN(ceilf(rect.size.height), 128.0) + 40.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (3.0 * [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline].pointSize) + [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].pointSize;
+    return 168.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

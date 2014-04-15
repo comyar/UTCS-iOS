@@ -12,7 +12,3 @@ pod 'FXBlurView', :git => 'https://github.com/nicklockwood/FXBlurView'
 pod 'UIView+Shake', '~> 0.2'
 end
 
-target "UTCSTests" do
-
-end
-

@@ -34,16 +34,16 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.labsManager = [UTCSLabsManager new];
     
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
-                                                     style:UITableViewStylePlain];
-        self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
-        self.tableView.backgroundColor = [UIColor clearColor];
-        self.tableView.rowHeight = 64.0;
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self.labsManager;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.tableView.allowsSelection = NO;
-        [self.view addSubview:self.tableView];
+//        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 88.0, self.view.width, self.view.height - 108.0)
+//                                                     style:UITableViewStylePlain];
+//        self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
+//        self.tableView.backgroundColor = [UIColor clearColor];
+//        self.tableView.rowHeight = 64.0;
+//        self.tableView.delegate = self;
+//        self.tableView.dataSource = self.labsManager;
+//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        self.tableView.allowsSelection = NO;
+//        [self.view addSubview:self.tableView];
         
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
         self.searchBar.placeholder = @"Unix Machine";
@@ -86,7 +86,7 @@
     [super viewDidLoad];
     
     self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    self.backgroundImageView.image = [[UIImage imageNamed:@"menuBackground"]applyDarkEffect];
+    self.backgroundImageView.image = [[UIImage imageNamed:@"labsBackground-blurred"]applyDarkEffect];
     [self.view insertSubview:self.backgroundImageView atIndex:0];
 }
 
@@ -153,6 +153,8 @@
     
     return NO;
 }
+
+#pragma mark Search Results
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {

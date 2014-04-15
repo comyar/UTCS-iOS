@@ -11,23 +11,16 @@
 static const CGFloat calendarDateWidth  = 64.0;
 static const CGFloat dayLabelFontSize   = 40.0;
 static const CGFloat monthLabelFontSize = 14.0;
-static const CGFloat tagLabelWidth      = 64.0;
-static const CGFloat tagLabelFontSize   = 14.0;
 
 @implementation UTCSEventTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.textLabel.numberOfLines = 4;
         
-        self.backgroundColor = [UIColor clearColor];
-        self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.numberOfLines = 3;
-        
-        self.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-        self.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        self.detailTextLabel.numberOfLines = 1;
+        self.detailTextLabel.numberOfLines = 4;
+        self.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
         _monthLabel = ({
             UILabel *label = [UILabel new];
@@ -50,18 +43,6 @@ static const CGFloat tagLabelFontSize   = 14.0;
             label;
         });
         [self.contentView addSubview:_dayLabel];
-        
-        _tagLabel = ({
-            UILabel *label = [UILabel new];
-            label.frame = CGRectMake(0.0, 0.0, tagLabelWidth, tagLabelFontSize);
-            label.backgroundColor = [UIColor clearColor];
-            label.layer.masksToBounds = YES;
-            label.adjustsFontSizeToFitWidth = YES;
-            label.layer.cornerRadius = 4.0;
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:tagLabelFontSize];
-            label;
-        });
-        [self.contentView addSubview:_tagLabel];
         
         _tagColor = [UIColor whiteColor];
     }
@@ -86,21 +67,15 @@ static const CGFloat tagLabelFontSize   = 14.0;
     
     self.textLabel.frame = ({
         CGRect frame = self.textLabel.frame;
-        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
-        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - 8.0;
+        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds) + 4.0;
+        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - 16.0;
         frame;
     });
     
     self.detailTextLabel.frame = ({
         CGRect frame = self.detailTextLabel.frame;
-        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
-        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - tagLabelWidth;
-        frame;
-    });
-    
-    self.tagLabel.frame = ({
-        CGRect frame = self.tagLabel.frame;
-        frame.origin.x = self.detailTextLabel.frame.origin.x + CGRectGetWidth(self.detailTextLabel.bounds);
+        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds) + 4.0;
+        frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - 16.0;
         frame;
     });
 }
@@ -116,9 +91,9 @@ static const CGFloat tagLabelFontSize   = 14.0;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     [_tagColor set];
-    CGContextSetLineWidth(context, 4.0);
-    CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, 0, CGRectGetHeight(self.bounds) );
+    CGContextSetLineWidth(context, 2.0);
+    CGContextMoveToPoint(context, 0.0, 0.0);
+    CGContextAddLineToPoint(context, 0.0, CGRectGetHeight(self.bounds));
     CGContextStrokePath(context);
 }
 

@@ -24,19 +24,10 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.filters = @[@"All", @"Careers", @"Talks", @"Students Orgs"];
-        self.filterColors = @[[UIColor whiteColor],
+        self.filterColors = @[[UIColor clearColor],
                               [UIColor utcsEventCareersColor],
                               [UIColor utcsEventTalkColor],
                               [UIColor utcsEventStudentOrgsColor]];
-        self.blurView = ({
-            FXBlurView *blurView = [[FXBlurView alloc]initWithFrame:self.view.bounds];
-            blurView.tintColor = [UIColor whiteColor];
-            blurView.blurRadius = 20.0;
-            blurView.layer.cornerRadius = 8.0;
-            blurView.layer.masksToBounds = YES;
-            blurView;
-        });
-//        [self.view addSubview:self.blurView];
         
         self.tableView = ({
             UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -65,7 +56,6 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.blurView.frame = self.view.bounds;
     self.tableView.frame = self.view.bounds;
 }
 

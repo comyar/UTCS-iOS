@@ -43,6 +43,8 @@
 		DD64DAD418F8BA2A0033D58B /* UTCSFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD318F8BA2A0033D58B /* UTCSFileReader.m */; };
 		DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD818F915040033D58B /* UTCSTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
+		DD725BD418FD022600703DD5 /* UTCSLabMachineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD725BD318FD022600703DD5 /* UTCSLabMachineView.m */; };
+		DD725BD818FD033000703DD5 /* UTCSLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD725BD718FD033000703DD5 /* UTCSLabView.m */; };
 		DD7968FD18B60AE7009ADE2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FC18B60AE7009ADE2A /* Parse.framework */; };
 		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
 		DD79690118B60D57009ADE2A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690018B60D57009ADE2A /* AudioToolbox.framework */; };
@@ -148,6 +150,10 @@
 		DD64DAD818F915040033D58B /* UTCSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSTableViewCell.m; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
+		DD725BD218FD022600703DD5 /* UTCSLabMachineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabMachineView.h; sourceTree = "<group>"; };
+		DD725BD318FD022600703DD5 /* UTCSLabMachineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabMachineView.m; sourceTree = "<group>"; };
+		DD725BD618FD033000703DD5 /* UTCSLabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabView.h; sourceTree = "<group>"; };
+		DD725BD718FD033000703DD5 /* UTCSLabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabView.m; sourceTree = "<group>"; };
 		DD7968FC18B60AE7009ADE2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DD7968FE18B60D1F009ADE2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DD79690018B60D57009ADE2A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -458,6 +464,7 @@
 		DD5B584F18D239F900EEB474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD725BD518FD031A00703DD5 /* Labs */,
 				DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */,
 				DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */,
 				DD44656118E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.h */,
@@ -501,11 +508,11 @@
 			children = (
 				DD5B586E18D23EDA00EEB474 /* News */,
 				DD44657318E5815100ED1153 /* Events */,
+				DD44657718E5832100ED1153 /* Labs */,
 				DD83B56118F1352200EBDE06 /* Settings */,
 				DDC676CB18EC6DD30082C235 /* DiskQuota */,
 				DD4954D818EBAFA000BC928B /* Web */,
 				DD44657B18E5833100ED1153 /* Directory */,
-				DD44657718E5832100ED1153 /* Labs */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -544,6 +551,17 @@
 				DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */,
 			);
 			name = "UIImage+CZScaling";
+			sourceTree = "<group>";
+		};
+		DD725BD518FD031A00703DD5 /* Labs */ = {
+			isa = PBXGroup;
+			children = (
+				DD725BD618FD033000703DD5 /* UTCSLabView.h */,
+				DD725BD718FD033000703DD5 /* UTCSLabView.m */,
+				DD725BD218FD022600703DD5 /* UTCSLabMachineView.h */,
+				DD725BD318FD022600703DD5 /* UTCSLabMachineView.m */,
+			);
+			name = Labs;
 			sourceTree = "<group>";
 		};
 		DD83B54818EEF92F00EBDE06 /* KeychainStore */ = {
@@ -819,6 +837,7 @@
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DD4954DB18EBAFAA00BC928B /* UTCSWebViewController.m in Sources */,
 				DD83B58A18F35DC000EBDE06 /* UTCSLabsManager.m in Sources */,
+				DD725BD418FD022600703DD5 /* UTCSLabMachineView.m in Sources */,
 				DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
@@ -839,6 +858,7 @@
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
+				DD725BD818FD033000703DD5 /* UTCSLabView.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,

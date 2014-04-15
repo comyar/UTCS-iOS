@@ -14,6 +14,5 @@
 @property (nonatomic) UIColor *tagColor;
 @property (nonatomic, readonly) UILabel *monthLabel;
 @property (nonatomic, readonly) UILabel *dayLabel;
-@property (nonatomic, readonly) UILabel *tagLabel;
 
 @end

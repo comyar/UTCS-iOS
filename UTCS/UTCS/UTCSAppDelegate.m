@@ -110,7 +110,7 @@
     
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
-                                                                                  contentViewController:self.newsNavigationController];
+                                                                                  contentViewController:self.eventsNavigationController];
 
     ((UTCSApplication *)[UIApplication sharedApplication]).urlHandler = ^(NSURL *url) {
         self.webViewController.url = url;
