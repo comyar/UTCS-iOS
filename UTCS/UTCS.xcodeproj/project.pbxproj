@@ -14,9 +14,6 @@
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A26431891D5E30032DA03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A26421891D5E30032DA03 /* main.m */; };
 		0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */; };
-		0B9A26501891D5E30032DA03 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A264F1891D5E30032DA03 /* XCTest.framework */; };
-		0B9A26511891D5E30032DA03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A26361891D5E30032DA03 /* Foundation.framework */; };
-		0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		DD0F0D6D18EC39DE0088178C /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0F0D6C18EC39DE0088178C /* UTCSStateManager.m */; };
 		DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
@@ -81,16 +78,6 @@
 		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		0B9A26531891D5E30032DA03 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0B9A262B1891D5E30032DA03 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0B9A26321891D5E30032DA03;
-			remoteInfo = UTCS;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0B9A26331891D5E30032DA03 /* UTCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9A26361891D5E30032DA03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,7 +89,6 @@
 		0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
 		0B9A26451891D5E30032DA03 /* UTCSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSAppDelegate.h; sourceTree = "<group>"; };
 		0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSAppDelegate.m; sourceTree = "<group>"; };
-		0B9A264E1891D5E30032DA03 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9A264F1891D5E30032DA03 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4B51DDA83E634E69A1D85ECB /* libPods-UTCS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UTCS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95446C76F512403BA430A5AA /* Pods-UTCS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.xcconfig"; path = "Pods/Pods-UTCS.xcconfig"; sourceTree = "<group>"; };
@@ -244,16 +230,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0B9A264B1891D5E30032DA03 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0B9A26501891D5E30032DA03 /* XCTest.framework in Frameworks */,
-				0B9A26521891D5E30032DA03 /* UIKit.framework in Frameworks */,
-				0B9A26511891D5E30032DA03 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -272,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				0B9A26331891D5E30032DA03 /* UTCS.app */,
-				0B9A264E1891D5E30032DA03 /* UTCSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -736,24 +711,6 @@
 			productReference = 0B9A26331891D5E30032DA03 /* UTCS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0B9A264D1891D5E30032DA03 /* UTCSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0B9A26621891D5E30032DA03 /* Build configuration list for PBXNativeTarget "UTCSTests" */;
-			buildPhases = (
-				0B9A264A1891D5E30032DA03 /* Sources */,
-				0B9A264B1891D5E30032DA03 /* Frameworks */,
-				0B9A264C1891D5E30032DA03 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0B9A26541891D5E30032DA03 /* PBXTargetDependency */,
-			);
-			name = UTCSTests;
-			productName = UTCSTests;
-			productReference = 0B9A264E1891D5E30032DA03 /* UTCSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -775,9 +732,6 @@
 							};
 						};
 					};
-					0B9A264D1891D5E30032DA03 = {
-						TestTargetID = 0B9A26321891D5E30032DA03;
-					};
 				};
 			};
 			buildConfigurationList = 0B9A262E1891D5E30032DA03 /* Build configuration list for PBXProject "UTCS" */;
@@ -793,7 +747,6 @@
 			projectRoot = "";
 			targets = (
 				0B9A26321891D5E30032DA03 /* UTCS */,
-				0B9A264D1891D5E30032DA03 /* UTCSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -807,13 +760,6 @@
 				DDDC92DD18FA265200D39A74 /* Parse.plist in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0B9A264C1891D5E30032DA03 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,22 +850,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0B9A264A1891D5E30032DA03 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0B9A26541891D5E30032DA03 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0B9A26321891D5E30032DA03 /* UTCS */;
-			targetProxy = 0B9A26531891D5E30032DA03 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0B9A263F1891D5E30032DA03 /* InfoPlist.strings */ = {
@@ -1077,46 +1008,6 @@
 			};
 			name = Release;
 		};
-		0B9A26631891D5E30032DA03 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UTCS.app/UTCS";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "UTCSTests/UTCSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		0B9A26641891D5E30032DA03 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UTCS.app/UTCS";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UTCS/UTCS-Prefix.pch";
-				INFOPLIST_FILE = "UTCSTests/UTCSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1134,15 +1025,6 @@
 			buildConfigurations = (
 				0B9A26601891D5E30032DA03 /* Debug */,
 				0B9A26611891D5E30032DA03 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0B9A26621891D5E30032DA03 /* Build configuration list for PBXNativeTarget "UTCSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0B9A26631891D5E30032DA03 /* Debug */,
-				0B9A26641891D5E30032DA03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -166,7 +166,7 @@ const CGFloat animationDuration = 0.25;
     _menuViewController = menuViewController;
     _menuViewController.view.frame = self.view.bounds;
     [self.view addSubview:_menuViewController.view];
-    [self addChildViewController:menuViewController];
+    [self addChildViewController:_menuViewController];
     [_menuViewController didMoveToParentViewController:self];
     
     [self setNeedsStatusBarAppearanceUpdate];

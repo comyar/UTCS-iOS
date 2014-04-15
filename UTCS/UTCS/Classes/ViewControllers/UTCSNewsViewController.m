@@ -267,7 +267,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -279,19 +279,26 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     self.newsDetailViewController.newsStory = newsStory;
     
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
-    cell.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self bounceCell:cell down:YES];
+    cell.alpha = 0.5;
+//    [self bounceCell:cell down:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self bounceCell:cell down:NO];
+    cell.alpha = 1.0;
+//    [self bounceCell:cell down:NO];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    [self bounceCell:cell down:NO];
 }
 
 - (void)bounceCell:(UITableViewCell *)cell down:(BOOL)down
