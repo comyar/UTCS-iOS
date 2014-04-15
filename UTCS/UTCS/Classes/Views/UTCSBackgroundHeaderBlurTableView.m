@@ -8,21 +8,33 @@
 
 #import "UTCSBackgroundHeaderBlurTableView.h"
 
+
+#pragma mark - UTCSBackgroundHeaderBlurTableView Class Extension
+
 @interface UTCSBackgroundHeaderBlurTableView ()
 
-@property (nonatomic) UIImageView   *backgroundImageView;
-
-@property (nonatomic) UIImageView   *backgroundBlurredImageView;
-
+//
 @property (nonatomic) UIView        *header;
 
+//
 @property (nonatomic) UITableView   *tableView;
 
+//
+@property (nonatomic) UIImageView   *backgroundImageView;
+
+//
+@property (nonatomic) UIImageView   *backgroundBlurredImageView;
+
+//
 @property (nonatomic) CAShapeLayer  *navigationSeparatorLayer;
 
+//
 @property (nonatomic) UIButton      *scrollToTopButton;
 
 @end
+
+
+#pragma mark - UTCSBackgroundHeaderBlurTableView Implementation
 
 @implementation UTCSBackgroundHeaderBlurTableView
 
@@ -96,7 +108,9 @@
 
 - (void)didTouchDownInsideButton:(UIButton *)button
 {
-    [self.tableView scrollRectToVisible:CGRectMake(0.0, .0, 1.0, 1.0) animated:YES];
+    if(button == self.scrollToTopButton) {
+        [self.tableView scrollRectToVisible:CGRectMake(0.0, .0, 1.0, 1.0) animated:YES];
+    }
 }
 
 #pragma mark Update
@@ -120,15 +134,15 @@
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
     _backgroundImage = backgroundImage;
-    self.backgroundImageView.image = _backgroundImage;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    _backgroundImageView.image = _backgroundImage;
+    _tableView.backgroundColor = (backgroundImage)? [UIColor clearColor] : [UIColor blackColor];
 }
 
 - (void)setBackgroundBlurredImage:(UIImage *)backgroundBlurredImage
 {
     _backgroundBlurredImage = backgroundBlurredImage;
-    self.backgroundBlurredImageView.image = _backgroundBlurredImage;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    _backgroundBlurredImageView.image = _backgroundBlurredImage;
+    _tableView.backgroundColor = (backgroundBlurredImage)? [UIColor clearColor] : [UIColor blackColor];
 }
 
 @end
