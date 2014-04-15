@@ -10,36 +10,18 @@
 @import UIKit;
 @class FBShimmeringView;
 
+#import "UTCSBackgroundBlurHeaderView.h"
+
 
 /**
  UTCSNewsHeaderView is the header view of the background blur table view displaying 
  the list of available news stories.
  */
-@interface UTCSNewsHeaderView : UIView
-
-/**
- Label used to display the time the news stories were updated
- */
-@property (nonatomic, readonly) UILabel                               *updatedLabel;
+@interface UTCSNewsHeaderView : UTCSBackgroundBlurHeaderView
 
 /** 
  Label used to display a subtitle beneath the shimmering view
  */
-@property (nonatomic, readonly) UILabel                               *subtitleLabel;
-
-/**
- Image view used to render the down arrow
- */
-@property (nonatomic, readonly) UIImageView                           *downArrowImageView;
-
-/**
- Activity indicator used to indicate the news stories are updating
- */
-@property (nonatomic, readonly) UIActivityIndicatorView               *activityIndicatorView;
-
-/**
- Shimmering view used to indicate loading of news articles
- */
-@property (nonatomic, readonly) FBShimmeringView                      *shimmeringView;
+@property (nonatomic, readonly) UILabel *subtitleLabel;
 
 @end

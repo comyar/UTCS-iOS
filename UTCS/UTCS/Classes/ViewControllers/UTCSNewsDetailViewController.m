@@ -26,14 +26,11 @@
 
 #pragma mark - Constants
 
-/**
- Font size of the title label
- */
+
+// Font size of the title label
 static const CGFloat titleLabelFontSize = 28.0;
 
-/**
- Font size of the date label
- */
+// Font size of the date label
 static const CGFloat dateLabelFontSize  = 16.0;
 
 

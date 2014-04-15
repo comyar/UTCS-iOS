@@ -62,6 +62,8 @@
 		DD83B57C18F16A1500EBDE06 /* App-About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD83B57B18F16A1500EBDE06 /* App-About.txt */; };
 		DD83B58A18F35DC000EBDE06 /* UTCSLabsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
+		DD87615A18FDA7A6005FEE4E /* UTCSEventsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87615918FDA7A6005FEE4E /* UTCSEventsHeaderView.m */; };
+		DD87615D18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
@@ -181,6 +183,10 @@
 		DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsDataSource.m; sourceTree = "<group>"; };
 		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabMachine.h; sourceTree = "<group>"; };
 		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabMachine.m; sourceTree = "<group>"; };
+		DD87615818FDA7A6005FEE4E /* UTCSEventsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventsHeaderView.h; sourceTree = "<group>"; };
+		DD87615918FDA7A6005FEE4E /* UTCSEventsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventsHeaderView.m; sourceTree = "<group>"; };
+		DD87615B18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSBackgroundBlurHeaderView.h; sourceTree = "<group>"; };
+		DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSBackgroundBlurHeaderView.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsTableViewCell.h; sourceTree = "<group>"; };
 		DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsTableViewCell.m; sourceTree = "<group>"; };
@@ -469,14 +475,17 @@
 		DD5B584F18D239F900EEB474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDDE0C6718FD8CE400C89D81 /* News */,
+				DD87615718FDA79B005FEE4E /* Events */,
 				DDDE0C6C18FD950200C89D81 /* Buttons */,
 				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
-				DDDE0C6718FD8CE400C89D81 /* News */,
 				DD725BD518FD031A00703DD5 /* Labs */,
 				DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */,
 				DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */,
 				DD44656118E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.h */,
 				DD44656218E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m */,
+				DD87615B18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.h */,
+				DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -619,6 +628,15 @@
 				DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */,
 			);
 			name = Labs;
+			sourceTree = "<group>";
+		};
+		DD87615718FDA79B005FEE4E /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				DD87615818FDA7A6005FEE4E /* UTCSEventsHeaderView.h */,
+				DD87615918FDA7A6005FEE4E /* UTCSEventsHeaderView.m */,
+			);
+			name = Events;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -863,6 +881,7 @@
 				DD44656318E4B08900ED1153 /* UTCSBackgroundHeaderBlurTableView.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
+				DD87615A18FDA7A6005FEE4E /* UTCSEventsHeaderView.m in Sources */,
 				DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */,
 				DD64DAD418F8BA2A0033D58B /* UTCSFileReader.m in Sources */,
 				DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */,
@@ -891,6 +910,7 @@
 				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
+				DD87615D18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
 				DD725BD818FD033000703DD5 /* UTCSLabView.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,

@@ -16,34 +16,16 @@
 
 #pragma mark - Constants
 
-// Font size of the shimmering view
-static const CGFloat shimmeringViewFontSize = 50.0;
-
 // Font size of the subtitle label
 static const CGFloat subtitleLabelFontSize  = 17.0;
-
-// Font size of the updated label
-static const CGFloat updatedLabelFontSize   = 14.0;
 
 
 #pragma mark - UTCSNewsHeaderView Class Extension
 
 @interface UTCSNewsHeaderView ()
 
-// Label used to display the time the news stories were updated
-@property (nonatomic) UILabel                               *updatedLabel;
-
 // Label used to display a subtitle beneath the shimmering view
 @property (nonatomic) UILabel                               *subtitleLabel;
-
-// Image view used to render the down arrow
-@property (nonatomic) UIImageView                           *downArrowImageView;
-
-// Activity indicator used to indicate the news stories are updating
-@property (nonatomic) UIActivityIndicatorView               *activityIndicatorView;
-
-// Shimmering view used to indicate loading of news articles
-@property (nonatomic) FBShimmeringView                      *shimmeringView;
 
 @end
 
@@ -56,20 +38,13 @@ static const CGFloat updatedLabelFontSize   = 14.0;
 {
     if (self = [super initWithFrame:frame]) {
         
-        // Shimmering view
-        self.shimmeringView = ({
-            FBShimmeringView *view = [[FBShimmeringView alloc]initWithFrame:CGRectZero];
-            
-                view.contentView = ({
-                    UILabel *label      = [[UILabel alloc]initWithFrame:view.bounds];
-                    label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
-                    label.textAlignment = NSTextAlignmentCenter;
-                    label.textColor     = [UIColor whiteColor];
-                    label.text          = @"UTCS News";
-                    label;
-                });
-            
-            view;
+        self.shimmeringView.contentView = ({
+            UILabel *label      = [[UILabel alloc]initWithFrame:self.shimmeringView.bounds];
+            label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:CGRectGetHeight(self.shimmeringView.bounds)];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor     = [UIColor whiteColor];
+            label.text          = @"UTCS News";
+            label;
         });
         
         // Subtitle label
@@ -83,34 +58,8 @@ static const CGFloat updatedLabelFontSize   = 14.0;
             label;
         });
         
-        // Down arrow image view
-        self.downArrowImageView = ({
-            UIImage *image = [[UIImage imageNamed:@"downArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.tintColor = [UIColor whiteColor];
-            imageView.alpha = 0.0;
-            imageView;
-        });
-        
-        // Activity indicator view
-        self.activityIndicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        
-        // Updated label
-        self.updatedLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:updatedLabelFontSize];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.alpha = 0.0;
-            [self addSubview:label];
-            label;
-        });
-        
         // Add subviews
-        [self addSubview:self.shimmeringView];
         [self addSubview:self.subtitleLabel];
-        [self addSubview:self.downArrowImageView];
-        [self addSubview:self.activityIndicatorView];
-        [self addSubview:self.updatedLabel];
     }
     return self;
 }
@@ -119,24 +68,9 @@ static const CGFloat updatedLabelFontSize   = 14.0;
 {
     [super layoutSubviews];
     
-    // Shimmering view
-    self.shimmeringView.frame           = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), shimmeringViewFontSize);
-    self.shimmeringView.center          = CGPointMake(self.center.x, 0.7 * self.center.y);
-    
     // Subtitle label
-    self.subtitleLabel.frame            = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
-    self.subtitleLabel.center           = CGPointMake(self.center.x, 0.85 * self.center.y);
-    
-    // Down arrow image view
-    self.downArrowImageView.frame       = CGRectMake(0.0, 0.0, 32, 16);
-    self.downArrowImageView.center      = CGPointMake(self.center.x, 1.5 * self.center.y);
-    
-    // Activity indicator view
-    self.activityIndicatorView.center   = CGPointMake(self.center.x, 1.5 * self.center.y);
-    
-    // Update label
-    self.updatedLabel.frame             = CGRectMake(13.0, CGRectGetHeight(self.bounds) - 44.0 - updatedLabelFontSize - 8.0,
-                                                     CGRectGetWidth(self.bounds) - 16.0, 1.5 * updatedLabelFontSize);
+    self.subtitleLabel.frame    = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
+    self.subtitleLabel.center   = CGPointMake(self.center.x, 0.85 * self.center.y);
 }
 
 @end
