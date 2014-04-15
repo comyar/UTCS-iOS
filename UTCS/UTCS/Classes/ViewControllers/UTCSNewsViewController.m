@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #pragma mark - Imports
 
 // View controllers
@@ -31,8 +32,6 @@
 
 #pragma mark - Constants
 
-
-
 // Estimated height of table view cell
 static const CGFloat estimatedCellHeight            = 140.0;
 
@@ -52,6 +51,9 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 #pragma mark - UTCSNewsViewController Class Extension
 
 @interface UTCSNewsViewController ()
+
+//
+@property (nonatomic, getter = hasUpdatedWithAppear) BOOL   updatedWithAppear;
 
 // -----
 // @name Views
@@ -88,31 +90,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"News";
-        
         self.newsStoryDataSource = [UTCSNewsStoryDataSource new];
-        
-        // Background header blur table view
-        self.backgroundHeaderBlurTableView = ({
-            UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-            view.tableView.delegate     = self;
-            view.tableView.dataSource   = self.newsStoryDataSource;
-            view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                           blendingMode:kCGBlendModeOverlay];
-            view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                                  blendingMode:kCGBlendModeOverlay];
-            [self.view addSubview:view];
-            view;
-        });
-        
-        self.headerView = ({
-            UTCSNewsHeaderView *view = [[UTCSNewsHeaderView alloc]initWithFrame:self.backgroundHeaderBlurTableView.header.bounds];
-            [self.backgroundHeaderBlurTableView.header addSubview:view];
-            view;
-        });
-        
-        // Menu Button
-        self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2.0, 8.0, 56.0, 32.0)];
-        [self.view addSubview:self.menuButton];
     }
     return self;
 }
@@ -120,21 +98,44 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    if(!self.updatedWithAppear) {
+        [self update];
+    }
 }
 
-- (void)viewDidLayoutSubviews
+- (void)viewDidLoad
 {
-    [super viewDidLayoutSubviews];
+    [super viewDidLoad];
     
-    self.backgroundHeaderBlurTableView.frame    = self.view.bounds;
+    // Background header blur table view
+    self.backgroundHeaderBlurTableView = ({
+        UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
+        view.tableView.delegate     = self;
+        view.tableView.dataSource   = self.newsStoryDataSource;
+        view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
+                                                                                       blendingMode:kCGBlendModeOverlay];
+        view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
+                                                                                              blendingMode:kCGBlendModeOverlay];
+        
+        view;
+    });
+    
+    // Header view
+    self.headerView = [[UTCSNewsHeaderView alloc]initWithFrame:self.backgroundHeaderBlurTableView.header.bounds];
+    
+    // Menu Button
+    self.menuButton = [UTCSMenuButton new];
+    
+    [self.view addSubview:self.backgroundHeaderBlurTableView];
+    [self.backgroundHeaderBlurTableView.header addSubview:self.headerView];
+    [self.view addSubview:self.menuButton];
 }
 
 #pragma mark Update data source
@@ -153,10 +154,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         [self.headerView.activityIndicatorView stopAnimating];
         self.headerView.shimmeringView.shimmering = NO;
         if([self.newsStoryDataSource.newsStories count] > 0) {
-            self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
-                                      [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                                     dateStyle:NSDateFormatterLongStyle
-                                                                     timeStyle:NSDateFormatterMediumStyle]];
+            self.updatedWithAppear = YES;
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
+                                                                    timeStyle:NSDateFormatterMediumStyle];
+            self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
         } else {
             self.headerView.updatedLabel.text = @"No news stories available.";
         }
@@ -193,8 +194,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UTCSNewsStory *newsStory = self.newsStoryDataSource.newsStories[indexPath.row];

@@ -9,8 +9,9 @@
 
 #pragma mark - Imports
 
-#import "UTCSNewsHeaderView.h"
+// Views
 #import "FBShimmeringView.h"
+#import "UTCSNewsHeaderView.h"
 
 
 #pragma mark - Constants
@@ -104,6 +105,7 @@ static const CGFloat updatedLabelFontSize   = 14.0;
             label;
         });
         
+        // Add subviews
         [self addSubview:self.shimmeringView];
         [self addSubview:self.subtitleLabel];
         [self addSubview:self.downArrowImageView];
@@ -117,20 +119,24 @@ static const CGFloat updatedLabelFontSize   = 14.0;
 {
     [super layoutSubviews];
     
-    self.shimmeringView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), shimmeringViewFontSize);
-    self.shimmeringView.center = CGPointMake(self.center.x, 0.7 * self.center.y);
+    // Shimmering view
+    self.shimmeringView.frame           = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), shimmeringViewFontSize);
+    self.shimmeringView.center          = CGPointMake(self.center.x, 0.7 * self.center.y);
     
-    self.subtitleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
-    self.subtitleLabel.center = CGPointMake(self.center.x, 0.85 * self.center.y);
+    // Subtitle label
+    self.subtitleLabel.frame            = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
+    self.subtitleLabel.center           = CGPointMake(self.center.x, 0.85 * self.center.y);
     
-    self.downArrowImageView.frame = CGRectMake(0.0, 0.0, 32, 16);
-    self.downArrowImageView.center = CGPointMake(self.center.x, 1.5 * self.center.y);
+    // Down arrow image view
+    self.downArrowImageView.frame       = CGRectMake(0.0, 0.0, 32, 16);
+    self.downArrowImageView.center      = CGPointMake(self.center.x, 1.5 * self.center.y);
     
+    // Activity indicator view
+    self.activityIndicatorView.center   = CGPointMake(self.center.x, 1.5 * self.center.y);
     
-    self.activityIndicatorView.center = CGPointMake(self.center.x, 1.5 * self.center.y);
-    
-    self.updatedLabel.frame = CGRectMake(13.0, CGRectGetHeight(self.bounds) - 44.0 - updatedLabelFontSize - 8.0,
-                                         CGRectGetWidth(self.bounds) - 16.0, 1.5 * updatedLabelFontSize);
+    // Update label
+    self.updatedLabel.frame             = CGRectMake(13.0, CGRectGetHeight(self.bounds) - 44.0 - updatedLabelFontSize - 8.0,
+                                                     CGRectGetWidth(self.bounds) - 16.0, 1.5 * updatedLabelFontSize);
 }
 
 @end
