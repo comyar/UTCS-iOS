@@ -96,7 +96,7 @@
             
             button;
         });
-//        [self.view addSubview:self.filterButton];
+        [self.view addSubview:self.filterButton];
         
         // Menu Button
         self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];

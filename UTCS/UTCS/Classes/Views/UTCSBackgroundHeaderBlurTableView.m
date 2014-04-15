@@ -8,9 +8,6 @@
 
 #import "UTCSBackgroundHeaderBlurTableView.h"
 
-static const CGFloat navigationBarHeight = 44.0;
-
-
 @interface UTCSBackgroundHeaderBlurTableView ()
 
 @property (nonatomic) UIImageView   *backgroundImageView;
@@ -32,7 +29,6 @@ static const CGFloat navigationBarHeight = 44.0;
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        _navigationBarHeight = navigationBarHeight;
         
         self.backgroundImageView = [[UIImageView alloc]initWithFrame:self.bounds];
         self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -47,14 +43,14 @@ static const CGFloat navigationBarHeight = 44.0;
         
         self.header = [[UIView alloc]initWithFrame:self.bounds];
         
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - navigationBarHeight) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 44.0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - 44.0) style:UITableViewStylePlain];
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
         self.tableView.tableHeaderView = self.header;
         [self addSubview:self.tableView];
         
-        self.navigationSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.bounds), 0.5)];
+        self.navigationSeparatorView = [[UIView alloc]initWithFrame:CGRectMake(0.0, 44.0, CGRectGetWidth(self.bounds), 0.5)];
         self.navigationSeparatorView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         self.navigationSeparatorView.alpha = 0.0;
         [self addSubview:self.navigationSeparatorView];
@@ -63,7 +59,7 @@ static const CGFloat navigationBarHeight = 44.0;
         
         self.scrollToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.scrollToTopButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
-        self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), navigationBarHeight);
+        self.scrollToTopButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.bounds), 44.0);
         [self addSubview:self.scrollToTopButton];
         
     }

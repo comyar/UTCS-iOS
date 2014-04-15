@@ -72,6 +72,7 @@
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDDC92DD18FA265200D39A74 /* Parse.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDDC92DC18FA265200D39A74 /* Parse.plist */; };
 		DDDE0C6618FD1E4A00C89D81 /* ThirdFloorLab.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDDE0C6518FD1E4A00C89D81 /* ThirdFloorLab.plist */; };
+		DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */; };
 		DDF02B4318CE8C2E00C7D012 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */; };
@@ -197,6 +198,8 @@
 		DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DDDC92DC18FA265200D39A74 /* Parse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Parse.plist; path = Swatches/Parse.plist; sourceTree = "<group>"; };
 		DDDE0C6518FD1E4A00C89D81 /* ThirdFloorLab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThirdFloorLab.plist; path = Swatches/ThirdFloorLab.plist; sourceTree = "<group>"; };
+		DDDE0C6818FD8CFF00C89D81 /* UTCSNewsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNewsHeaderView.h; sourceTree = "<group>"; };
+		DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNewsHeaderView.m; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561E318DC15C700C46480 /* UTCSVerticalMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 		DD5B584F18D239F900EEB474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDDE0C6718FD8CE400C89D81 /* News */,
 				DD725BD518FD031A00703DD5 /* Labs */,
 				DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */,
 				DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */,
@@ -701,6 +705,15 @@
 			name = Swatches;
 			sourceTree = "<group>";
 		};
+		DDDE0C6718FD8CE400C89D81 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DDDE0C6818FD8CFF00C89D81 /* UTCSNewsHeaderView.h */,
+				DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
 		DDEFABCE1897515800DAB5D7 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +860,7 @@
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
+				DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */,

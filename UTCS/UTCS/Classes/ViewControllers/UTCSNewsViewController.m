@@ -15,6 +15,7 @@
 // Views
 #import "UTCSMenuButton.h"
 #import "FBShimmeringView.h"
+#import "UTCSNewsHeaderView.h"
 #import "UTCSBackgroundHeaderBlurTableView.h"
 
 // Categories
@@ -30,14 +31,7 @@
 
 #pragma mark - Constants
 
-// Font size of the shimmering view
-static const CGFloat shimmeringViewFontSize         = 50.0;
 
-// Font size of the subtitle label
-static const CGFloat subtitleLabelFontSize          = 17.0;
-
-// Font size of the updated label
-static const CGFloat updatedLabelFontSize           = 14.0;
 
 // Estimated height of table view cell
 static const CGFloat estimatedCellHeight            = 140.0;
@@ -59,32 +53,29 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @interface UTCSNewsViewController ()
 
+// -----
+// @name Views
+// -----
+
 // Button used to show/hide the menu view
 @property (nonatomic) UIButton                              *menuButton;
 
-// Label used to display the time the news stories were updated
-@property (nonatomic) UILabel                               *updatedLabel;
-
-// Label used to display a subtitle beneath the shimmering view
-@property (nonatomic) UILabel                               *utcsSubtitleLabel;
-
-// Image view used to render the down arrow
-@property (nonatomic) UIImageView                           *downArrowImageView;
-
-// Activity indicator used to indicate the news stories are updating
-@property (nonatomic) UIActivityIndicatorView               *activityIndicatorView;
-
-// Shimmering view used to indicate loading of news articles
-@property (nonatomic) FBShimmeringView                      *utcsNewsShimmeringView;
-
-// Manager used to update the news stories and is the data source for the table view
-@property (nonatomic) UTCSNewsStoryDataSource                  *newsStoryManager;
-
-// View controller used to display a specific news story
-@property (nonatomic) UTCSNewsDetailViewController          *newsDetailViewController;
+//
+@property (nonatomic) UTCSNewsHeaderView                    *headerView;
 
 // View used to display the table of news stories as well as a blurring header
 @property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
+
+
+// -----
+// @name View Controllers
+// -----
+
+// Manager used to update the news stories and is the data source for the table view
+@property (nonatomic) UTCSNewsStoryDataSource               *newsStoryDataSource;
+
+// View controller used to display a specific news story
+@property (nonatomic) UTCSNewsDetailViewController          *newsDetailViewController;
 
 @end
 
@@ -98,13 +89,13 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"News";
         
-        self.newsStoryManager = [UTCSNewsStoryDataSource new];
+        self.newsStoryDataSource = [UTCSNewsStoryDataSource new];
         
         // Background header blur table view
         self.backgroundHeaderBlurTableView = ({
             UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
             view.tableView.delegate     = self;
-            view.tableView.dataSource   = self.newsStoryManager;
+            view.tableView.dataSource   = self.newsStoryDataSource;
             view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
                                                                                            blendingMode:kCGBlendModeOverlay];
             view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
@@ -113,64 +104,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
             view;
         });
         
-        // Shimmering view
-        self.utcsNewsShimmeringView = ({
-            FBShimmeringView *view = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, shimmeringViewFontSize)];
-            view.center = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
-            
-            view.contentView = ({
-                UILabel *label      = [[UILabel alloc]initWithFrame:self.utcsNewsShimmeringView.bounds];
-                label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
-                label.textAlignment = NSTextAlignmentCenter;
-                label.textColor     = [UIColor whiteColor];
-                label.text          = @"UTCS News";
-                label;
-            });
-            
+        self.headerView = ({
+            UTCSNewsHeaderView *view = [[UTCSNewsHeaderView alloc]initWithFrame:self.backgroundHeaderBlurTableView.header.bounds];
             [self.backgroundHeaderBlurTableView.header addSubview:view];
             view;
-        });
-        
-        // Subtitle label
-        self.utcsSubtitleLabel = ({
-            UILabel *label      = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize)];
-            label.font          = [UIFont fontWithName:@"HelveticaNeue" size:subtitleLabelFontSize];
-            label.center        = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
-            label.text          = @"What Starts Here Changes the World";
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
-            label.alpha         = 0.0;
-            [self.backgroundHeaderBlurTableView.header addSubview:label];
-            label;
-        });
-        
-        // Down arrow image view
-        self.downArrowImageView = ({
-            UIImage *image = [[UIImage imageNamed:@"downArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.frame = CGRectMake(0.0, 0.0, 32, 16);
-            imageView.tintColor = [UIColor whiteColor];
-            imageView.alpha = 0.0;
-            [self.backgroundHeaderBlurTableView.header addSubview:imageView];
-            imageView;
-        });
-        
-        // Activity indicator view
-        self.activityIndicatorView = ({
-            UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            view.center = CGPointMake(self.view.center.x, 1.5 * self.view.center.y);
-            [self.backgroundHeaderBlurTableView.header addSubview:view];
-            view;
-        });
-        
-        // Updated label
-        self.updatedLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(13.0, self.backgroundHeaderBlurTableView.header.height - self.backgroundHeaderBlurTableView.navigationBarHeight - updatedLabelFontSize - 8.0, self.backgroundHeaderBlurTableView.width - 16.0, 1.5 * updatedLabelFontSize)];
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:updatedLabelFontSize];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.alpha = 0.0;
-            [self.backgroundHeaderBlurTableView.header addSubview:label];
-            label;
         });
         
         // Menu Button
@@ -198,17 +135,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [super viewDidLayoutSubviews];
     
     self.backgroundHeaderBlurTableView.frame    = self.view.bounds;
-    
-    self.utcsNewsShimmeringView.frame           = CGRectMake(0.0, 0.0, self.view.width, shimmeringViewFontSize);
-    self.utcsNewsShimmeringView.center          = CGPointMake(self.view.center.x, 0.7 * self.view.center.y);
-    
-    self.utcsSubtitleLabel.frame                = CGRectMake(0, 0, self.view.width, 1.5 * subtitleLabelFontSize);
-    self.utcsSubtitleLabel.center               = CGPointMake(self.view.center.x, 0.85 * self.view.center.y);
-    
-    self.downArrowImageView.center              = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
-    self.activityIndicatorView.center           = CGPointMake(self.view.center.x, 1.33 * self.view.center.y);
-    
-    self.updatedLabel.frame = CGRectMake(13.0, self.backgroundHeaderBlurTableView.header.height - self.backgroundHeaderBlurTableView.navigationBarHeight - updatedLabelFontSize - 8.0, self.backgroundHeaderBlurTableView.width - 16.0, 1.5 * updatedLabelFontSize);
 }
 
 #pragma mark Update data source
@@ -216,29 +142,29 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)update
 {
     [UIView animateWithDuration:0.3 animations:^{
-        self.downArrowImageView.alpha = 0.0;
+        self.headerView.downArrowImageView.alpha = 0.0;
     }];
     
-    self.utcsNewsShimmeringView.shimmering = YES;
-    [self.activityIndicatorView startAnimating];
+    self.headerView.shimmeringView.shimmering = YES;
+    [self.headerView.activityIndicatorView startAnimating];
     
     // Update news stories
-    [self.newsStoryManager updateNewsStoriesWithCompletion:^{
-        [self.activityIndicatorView stopAnimating];
-        self.utcsNewsShimmeringView.shimmering = NO;
-        if([self.newsStoryManager.newsStories count] > 0) {
-            self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
+    [self.newsStoryDataSource updateNewsStoriesWithCompletion:^{
+        [self.headerView.activityIndicatorView stopAnimating];
+        self.headerView.shimmeringView.shimmering = NO;
+        if([self.newsStoryDataSource.newsStories count] > 0) {
+            self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@",
                                       [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                                      dateStyle:NSDateFormatterLongStyle
                                                                      timeStyle:NSDateFormatterMediumStyle]];
         } else {
-            self.updatedLabel.text = @"No news stories available.";
+            self.headerView.updatedLabel.text = @"No news stories available.";
         }
         
         [UIView animateWithDuration:0.3 animations:^{
-            self.updatedLabel.alpha         = 1.0;
-            self.utcsSubtitleLabel.alpha    = 1.0;
-            self.downArrowImageView.alpha   = ([self.newsStoryManager.newsStories count])? 1.0 : 0.0;
+            self.headerView.updatedLabel.alpha         = 1.0;
+            self.headerView.utcsSubtitleLabel.alpha    = 1.0;
+            self.headerView.downArrowImageView.alpha   = ([self.newsStoryDataSource.newsStories count])? 1.0 : 0.0;
         }];
         
         [self.backgroundHeaderBlurTableView.tableView reloadData];
@@ -249,7 +175,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSNewsStory *newsStory = self.newsStoryManager.newsStories[indexPath.row];
+    UTCSNewsStory *newsStory = self.newsStoryDataSource.newsStories[indexPath.row];
     
     // Estimate height of a news story title
     CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
@@ -271,7 +197,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UTCSNewsStory *newsStory = self.newsStoryManager.newsStories[indexPath.row];
+    UTCSNewsStory *newsStory = self.newsStoryDataSource.newsStories[indexPath.row];
     
     if(!self.newsDetailViewController) {
         self.newsDetailViewController = [UTCSNewsDetailViewController new];
@@ -284,21 +210,25 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.alpha = 0.5;
-//    [self bounceCell:cell down:YES];
+    [self bounceCell:cell down:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.alpha = 1.0;
-//    [self bounceCell:cell down:NO];
+    [self bounceCell:cell down:NO];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    [self bounceCell:cell down:NO];
+    [self bounceCell:cell down:NO];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.alpha = 1.0;
+    cell.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
 }
 
 - (void)bounceCell:(UITableViewCell *)cell down:(BOOL)down
