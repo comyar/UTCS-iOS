@@ -6,18 +6,22 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 /**
- UTCSNewsStoryDataSource 
  */
-@interface UTCSNewsStoryDataSource : NSObject <UITableViewDataSource>
+typedef void (^UTCSNewsArticleDataSourceCompletion) (NSDate *updated);
+
+/**
+ UTCSNewsArticleDataSource
+ */
+@interface UTCSNewsArticleDataSource : NSObject <UITableViewDataSource>
 
 /**
  Asynchronously updates the news stories
  @param completion Completion handler block to execute when update finishes
  */
-- (void)updateNewsStoriesWithCompletion:(void (^)(void))completion;
+- (void)updateNewsArticlesWithCompletion:(UTCSNewsArticleDataSourceCompletion)completion;
 
 /**
  Available UTCS news stories, or nil if no available news stories

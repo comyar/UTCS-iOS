@@ -11,8 +11,9 @@
 
 // Models
 #import "UTCSNewsArticle.h"
-#import "UTCSNewsStoryDataSource.h"
+#import "UTCSCacheManager.h"
 #import "UTCSDataRequestServicer.h"
+#import "UTCSNewsArticleDataSource.h"
 
 // Views
 #import "UTCSTableViewCell.h"
@@ -23,9 +24,18 @@
 #import "UIImage+ImageEffects.h"
 
 
+#pragma mark - Constants
+
+// Key used to cache news articles
+static NSString * const articlesCacheKey            = @"articles";
+
+// Minimum time between updates, in seconds
+static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
+
+
 #pragma mark - UTCSNewsStoryDataSource Class Extension
 
-@interface UTCSNewsStoryDataSource ()
+@interface UTCSNewsArticleDataSource ()
 
 // Overidden newsStories property
 @property (nonatomic) NSArray *newsArticles;
@@ -38,7 +48,7 @@
 
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
-@implementation UTCSNewsStoryDataSource
+@implementation UTCSNewsArticleDataSource
 
 - (instancetype)init
 {
@@ -82,9 +92,26 @@
 
 #pragma mark Using a News Story Data Source
 
-- (void)updateNewsStoriesWithCompletion:(void (^)(void))completion
+- (void)updateNewsArticlesWithCompletion:(UTCSNewsArticleDataSourceCompletion)completion
 {
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSNewsService withKey:articlesCacheKey];
+    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    
+    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+        NSLog(@"News: Cache hit");
+        self.newsArticles = cache[UTCSCacheValuesName];
+        
+        if (completion) {
+            completion(metaData.timestamp);
+        }
+        return;
+    }
+    
+    NSLog(@"News: Cache miss");
+    
+    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews
+                                            argument:nil
+                                             success:^(NSDictionary *meta, NSDictionary *values) {
         if ([meta[@"service"] isEqualToString:UTCSNewsService] && meta[@"success"]) {
             
             NSMutableArray *articles = [NSMutableArray new];
@@ -98,10 +125,12 @@
             }
             
             self.newsArticles = articles;
+            
+            [UTCSCacheManager cacheObject:self.newsArticles forService:UTCSNewsService withKey:articlesCacheKey];
         }
         
         if (completion) {
-            completion();
+            completion([NSDate date]);
         }
     } failure:nil];
 }

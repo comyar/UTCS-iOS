@@ -13,13 +13,18 @@
 
 
 // Key for the meta data object in the cache dictionary
-extern NSString * const UTCSCacheMetaName;
+extern NSString * const UTCSCacheMetaDataName;
 
 // Key for the original cached object in the cache dictionary
 extern NSString * const UTCSCacheValuesName;
 
 
 /**
+ The UTCSCacheManager provides a simple-to-use API for caching objects 
+ to disk for services within the app (News, Events, etc). 
+ 
+ While UTCSCacheManager does support the caching of single objects, it is intended to 
+ be used to cache collections, such as NSArray or NSDictionary.
  */
 @interface UTCSCacheManager : NSObject
 

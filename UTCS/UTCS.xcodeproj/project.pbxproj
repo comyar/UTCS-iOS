@@ -62,7 +62,7 @@
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
-		DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */; };
+		DDE561EC18DC441F00C46480 /* UTCSNewsArticleDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsArticleDataSource.m */; };
 		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
 		DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */; };
 		DDFD7DD718AA049A008F5A47 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD7DD618AA049A008F5A47 /* Resources.xcassets */; };
@@ -175,8 +175,8 @@
 		DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsHeaderView.m; path = Views/UTCSNewsHeaderView.m; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
-		DDE561EA18DC441F00C46480 /* UTCSNewsStoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsStoryDataSource.h; path = Model/UTCSNewsStoryDataSource.h; sourceTree = "<group>"; };
-		DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsStoryDataSource.m; path = Model/UTCSNewsStoryDataSource.m; sourceTree = "<group>"; };
+		DDE561EA18DC441F00C46480 /* UTCSNewsArticleDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsArticleDataSource.h; path = Model/UTCSNewsArticleDataSource.h; sourceTree = "<group>"; };
+		DDE561EB18DC441F00C46480 /* UTCSNewsArticleDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsArticleDataSource.m; path = Model/UTCSNewsArticleDataSource.m; sourceTree = "<group>"; };
 		DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -374,8 +374,8 @@
 			children = (
 				DD5B583C18D239F900EEB474 /* UTCSNewsArticle.h */,
 				DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */,
-				DDE561EA18DC441F00C46480 /* UTCSNewsStoryDataSource.h */,
-				DDE561EB18DC441F00C46480 /* UTCSNewsStoryDataSource.m */,
+				DDE561EA18DC441F00C46480 /* UTCSNewsArticleDataSource.h */,
+				DDE561EB18DC441F00C46480 /* UTCSNewsArticleDataSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -833,7 +833,7 @@
 				DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
-				DDE561EC18DC441F00C46480 /* UTCSNewsStoryDataSource.m in Sources */,
+				DDE561EC18DC441F00C46480 /* UTCSNewsArticleDataSource.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD8761781902826C005FEE4E /* UTCSDataRequestServicer.m in Sources */,
 				DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */,

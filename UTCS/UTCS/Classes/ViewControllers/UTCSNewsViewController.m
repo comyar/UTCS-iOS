@@ -27,7 +27,7 @@
 
 // Models
 #import "UTCSNewsArticle.h"
-#import "UTCSNewsStoryDataSource.h"
+#import "UTCSNewsArticleDataSource.h"
 
 
 #pragma mark - Constants
@@ -71,7 +71,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 // -----
 
 // Manager used to update the news stories and is the data source for the table view
-@property (nonatomic) UTCSNewsStoryDataSource               *newsStoryDataSource;
+@property (nonatomic) UTCSNewsArticleDataSource               *newsStoryDataSource;
 
 // View controller used to display a specific news story
 @property (nonatomic) UTCSNewsDetailViewController          *newsDetailViewController;
@@ -87,7 +87,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"News";
-        self.newsStoryDataSource = [UTCSNewsStoryDataSource new];
+        self.newsStoryDataSource = [UTCSNewsArticleDataSource new];
     }
     return self;
 }
@@ -145,12 +145,13 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [self.headerView.activityIndicatorView startAnimating];
     
     // Update news stories
-    [self.newsStoryDataSource updateNewsStoriesWithCompletion:^{
+    [self.newsStoryDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
         self.headerView.shimmeringView.shimmering = NO;
         [self.headerView.activityIndicatorView stopAnimating];
         
         if([self.newsStoryDataSource.newsArticles count] > 0) {
-            NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
+                                                                    dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
             self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
         } else {
