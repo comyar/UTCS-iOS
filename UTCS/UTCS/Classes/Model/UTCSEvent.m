@@ -80,7 +80,7 @@ static NSString * const foodKey                     = @"food";
 
 - (void)setAttributedDescriptionWithHTML:(NSString *)html
 {
-    if (!html) {
+    if (!html || [html isEqual:[NSNull null]]) {
         _attributedDescription = nil;
         return;
     }

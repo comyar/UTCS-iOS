@@ -17,11 +17,19 @@ typedef void (^UTCSNewsArticleDataSourceCompletion) (NSDate *updated);
  */
 @interface UTCSNewsArticleDataSource : NSObject <UITableViewDataSource>
 
+// -----
+// @name Updating
+// -----
+
 /**
  Asynchronously updates the news stories
  @param completion Completion handler block to execute when update finishes
  */
 - (void)updateNewsArticlesWithCompletion:(UTCSNewsArticleDataSourceCompletion)completion;
+
+// -----
+// @name Properties
+// -----
 
 /**
  Available UTCS news stories, or nil if no available news stories

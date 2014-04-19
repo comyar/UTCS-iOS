@@ -53,10 +53,11 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.dateFormatter = [NSDateFormatter new];
-        
-        // Ex: 2014-04-19 14:27:47
-        self.dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        self.dateFormatter = ({
+            NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss"; // Ex: 2014-04-19 14:27:47
+            dateFormatter;
+        });
     }
     return self;
 }
@@ -98,7 +99,6 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
     UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-        NSLog(@"News: Cache hit");
         self.newsArticles = cache[UTCSCacheValuesName];
         
         if (completion) {
@@ -107,20 +107,19 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
         return;
     }
     
-    NSLog(@"News: Cache miss");
-    
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews
-                                            argument:nil
-                                             success:^(NSDictionary *meta, NSDictionary *values) {
+    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
         if ([meta[@"service"] isEqualToString:UTCSNewsService] && meta[@"success"]) {
             
             NSMutableArray *articles = [NSMutableArray new];
             for (NSDictionary *articleData in values) {
-                UTCSNewsArticle *article = [UTCSNewsArticle new];
-                article.title   = articleData[@"title"];
-                article.html    = articleData[@"html"];
-                article.url     = articleData[@"url"];
-                article.date    = [self.dateFormatter dateFromString:articleData[@"date"]];
+                UTCSNewsArticle *article    = [UTCSNewsArticle new];
+                article.title               = (articleData[@"title"]    == [NSNull null])? nil : articleData[@"title"];
+                article.html                = (articleData[@"html"]     == [NSNull null])? nil : articleData[@"html"];
+                article.url                 = (articleData[@"url"]      == [NSNull null])? nil : articleData[@"url"];
+                
+                NSString *dateString        = (articleData[@"date"]     == [NSNull null])? nil : articleData[@"date"];
+                article.date                = [self.dateFormatter dateFromString:dateString];
+                
                 [articles addObject:article];
             }
             
@@ -132,7 +131,11 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
         if (completion) {
             completion([NSDate date]);
         }
-    } failure:nil];
+    } failure:^(NSError *error) {
+        if (completion) {
+            completion(metaData.timestamp);
+        }
+    }];
 }
 
 

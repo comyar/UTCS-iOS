@@ -21,7 +21,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.filters = @[@"All", @"Careers", @"Talks", @"Students Orgs"];
+        self.filters = @[@"All", @"Careers", @"Talks", @"Orgs"];
         self.filterColors = @[[UIColor clearColor],
                               [UIColor utcsEventCareersColor],
                               [UIColor utcsEventTalkColor],

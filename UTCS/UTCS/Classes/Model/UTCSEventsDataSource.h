@@ -6,13 +6,42 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
+@import Foundation;
+
+
+/**
+ */
+typedef void (^UTCSEventsDataSourceCompletion) (NSDate *updated);
+
+
+/**
+ UTCSEventsDataSource
+ */
 @interface UTCSEventsDataSource : NSObject <UITableViewDataSource>
 
-- (void)updateEventsWithCompletion:(void (^)(void))completion;
-- (void)filterEventsWithTag:(NSString *)tag;
+// -----
+// @name Updating
+// -----
 
+/**
+ */
+- (void)updateEventsWithCompletion:(UTCSEventsDataSourceCompletion)completion;
+
+// -----
+// @name Using a UTCSEventsDataSource
+// -----
+
+/**
+ */
+- (void)filterEventsByType:(NSString *)type;
+
+// -----
+// @name Properties
+// -----
+
+/**
+ */
 @property (nonatomic, readonly) NSArray *filteredEvents;
 
 @end

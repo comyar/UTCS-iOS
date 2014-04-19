@@ -42,11 +42,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 @interface UTCSEventsViewController ()
 
-//
+// Data source for the eventss
 @property (nonatomic) UTCSEventsDataSource                  *eventsDataSource;
-
-//
-@property (nonatomic, getter = hasUpdatedWithAppear) BOOL   updatedWithAppear;
 
 // -----
 // @name View controllers
@@ -99,9 +96,16 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self update];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Background header blur table view
     self.backgroundHeaderBlurTableView = ({
@@ -141,6 +145,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [self.view addSubview:self.menuButton];
 }
 
+#pragma mark Buttons
+
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.filterButton) {
@@ -173,14 +179,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if(!self.updatedWithAppear) {
-        [self update];
-    }
-}
-
 - (void)update
 {
     
@@ -191,14 +189,14 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     self.headerView.shimmeringView.shimmering = YES;
     [self.headerView.activityIndicatorView startAnimating];
     
-    [self.eventsDataSource updateEventsWithCompletion:^{
+    [self.eventsDataSource updateEventsWithCompletion: ^ (NSDate *updated) {
         
         self.headerView.shimmeringView.shimmering = NO;
         [self.headerView.activityIndicatorView stopAnimating];
         
         if([self.eventsDataSource.filteredEvents count] > 0) {
-            self.updatedWithAppear = YES;
-            NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
+                                                                    dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
             self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
             [self.backgroundHeaderBlurTableView.tableView reloadData];
@@ -247,7 +245,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)eventsFilterTableViewController:(UTCSEventsFilterTableViewController *)eventsFilterTableViewController didSelectFilter:(NSString *)filter
 {
-    [self.eventsDataSource filterEventsWithTag:filter];
+    [self.eventsDataSource filterEventsByType:filter];
     [self.filterPopoverController dismissPopoverAnimated:YES];
     [self.backgroundHeaderBlurTableView.tableView reloadData];
 }

@@ -74,7 +74,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
 
 - (void)configureNewsStoryWithHTML:(NSString *)html
 {
-    if (!html) {
+    if (!html || [html isEqual:[NSNull null]]) {
         _headerImage        = nil;
         _headerBlurredImage = nil;
         _attributedContent  = nil;

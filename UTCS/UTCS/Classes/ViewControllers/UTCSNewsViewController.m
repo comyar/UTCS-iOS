@@ -70,11 +70,11 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 // @name View Controllers
 // -----
 
-// Manager used to update the news stories and is the data source for the table view
-@property (nonatomic) UTCSNewsArticleDataSource               *newsStoryDataSource;
+// Data source used for the news articles
+@property (nonatomic) UTCSNewsArticleDataSource         *newsStoryDataSource;
 
 // View controller used to display a specific news story
-@property (nonatomic) UTCSNewsDetailViewController          *newsDetailViewController;
+@property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
 
 @end
 
@@ -101,13 +101,13 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self update];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Background header blur table view
     self.backgroundHeaderBlurTableView = ({
@@ -133,7 +133,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [self.view addSubview:self.menuButton];
 }
 
-#pragma mark Update data source
+#pragma mark Updating
 
 - (void)update
 {
@@ -197,7 +197,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     if(!self.newsDetailViewController) {
         self.newsDetailViewController = [UTCSNewsDetailViewController new];
     }
-    self.newsDetailViewController.newsStory = newsStory;
+    self.newsDetailViewController.newsArticle = newsStory;
     
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
 }

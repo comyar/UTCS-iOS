@@ -26,7 +26,6 @@
 
 #pragma mark - Constants
 
-
 // Font size of the title label
 static const CGFloat titleLabelFontSize = 28.0;
 
@@ -119,6 +118,20 @@ static const CGFloat dateLabelFontSize  = 16.0;
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+#pragma mark Buttons
+
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.scrollToTopButton) {
@@ -126,34 +139,27 @@ static const CGFloat dateLabelFontSize  = 16.0;
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-}
-
 #pragma mark Setters
 
-- (void)setNewsStory:(UTCSNewsArticle *)newsStory
+- (void)setNewsArticle:(UTCSNewsArticle *)newsStory
 {
-    if(newsStory == _newsStory) {
+    if(newsStory == _newsArticle) {
         return;
     }
     
-    _newsStory = newsStory;
+    _newsArticle = newsStory;
     
     self.parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPointZero;
     
     
-    self.title = [NSDateFormatter localizedStringFromDate:_newsStory.date
+    self.title = [NSDateFormatter localizedStringFromDate:_newsArticle.date
                                                 dateStyle:NSDateFormatterLongStyle
                                                 timeStyle:NSDateFormatterNoStyle];
     
     // Set header image
-    if(_newsStory.headerImage) {
-        self.parallaxBlurHeaderScrollView.headerImage           = _newsStory.headerImage;
-        self.parallaxBlurHeaderScrollView.headerBlurredImage    = _newsStory.headerBlurredImage;
+    if(_newsArticle.headerImage) {
+        self.parallaxBlurHeaderScrollView.headerImage           = _newsArticle.headerImage;
+        self.parallaxBlurHeaderScrollView.headerBlurredImage    = _newsArticle.headerBlurredImage;
     } else {
         // Choose a random default header
         NSInteger index = arc4random() % [self.defaultHeaderImages count];
@@ -172,14 +178,14 @@ static const CGFloat dateLabelFontSize  = 16.0;
     
     
     // Set date label
-    self.dateLabel.text = [NSDateFormatter localizedStringFromDate:_newsStory.date
+    self.dateLabel.text = [NSDateFormatter localizedStringFromDate:_newsArticle.date
                                                          dateStyle:NSDateFormatterLongStyle
                                                          timeStyle:NSDateFormatterNoStyle];
     self.dateLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.height - 8.0;
     
     // Set title label
     self.titleLabel.frame = CGRectMake(8.0, 44.0, self.view.width - 16.0, 0.0);
-    self.titleLabel.text = _newsStory.title;
+    self.titleLabel.text = _newsArticle.title;
     [self.titleLabel sizeToFit];
     
     if(self.titleLabel.height > self.parallaxBlurHeaderScrollView.headerContainerView.height - 44.0 - self.dateLabel.height) {
