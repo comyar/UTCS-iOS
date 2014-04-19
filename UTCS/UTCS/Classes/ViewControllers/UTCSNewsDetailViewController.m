@@ -16,7 +16,7 @@
 #import "UTCSParallaxBlurHeaderScrollView.h"
 
 // Models
-#import "UTCSNewsStory.h"
+#import "UTCSNewsArticle.h"
 
 // Categories
 #import "UIColor+UTCSColors.h"
@@ -135,7 +135,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 
 #pragma mark Setters
 
-- (void)setNewsStory:(UTCSNewsStory *)newsStory
+- (void)setNewsStory:(UTCSNewsArticle *)newsStory
 {
     if(newsStory == _newsStory) {
         return;

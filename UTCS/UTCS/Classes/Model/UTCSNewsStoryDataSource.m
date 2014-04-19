@@ -10,8 +10,9 @@
 #pragma mark - Imports
 
 // Models
-#import "UTCSNewsStory.h"
+#import "UTCSNewsArticle.h"
 #import "UTCSNewsStoryDataSource.h"
+#import "UTCSDataRequestServicer.h"
 
 // Views
 #import "UTCSTableViewCell.h"
@@ -22,23 +23,12 @@
 #import "UIImage+ImageEffects.h"
 
 
-#pragma mark - Constants
-
-
-
-typedef void (^ UTCSNewStoryManagerCompletion) (NSArray *newsStories, NSError *error);
-
-NSString * const UTCSParseClassNews                     = @"NewsStory";
-
-const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
-
-
 #pragma mark - UTCSNewsStoryDataSource Class Extension
 
 @interface UTCSNewsStoryDataSource ()
 
 // Overidden newsStories property
-@property (nonatomic) NSArray *newsStories;
+@property (nonatomic) NSArray *newsArticles;
 
 @end
 
@@ -46,6 +36,8 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
 @implementation UTCSNewsStoryDataSource
+
+#pragma mark UITableViewDataSource Methods
 
 - (UTCSTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -62,7 +54,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
         cell.detailTextLabel.numberOfLines = 4;
     }
     
-    UTCSNewsStory *newsStory = self.newsStories[indexPath.row];
+    UTCSNewsArticle *newsStory = self.newsArticles[indexPath.row];
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = [newsStory.attributedContent string];
     
@@ -71,24 +63,32 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.newsStories count];
+    return [self.newsArticles count];
 }
+
+#pragma mark Using a News Story Data Source
 
 - (void)updateNewsStoriesWithCompletion:(void (^)(void))completion
 {
-    [self newsStoriesWithCompletion:^(NSArray *newsStories, NSError *error) {
-        if(newsStories) {
-            self.newsStories = newsStories;
+    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews argument:nil success:^(NSDictionary *JSON) {
+        NSDictionary *meta = JSON[@"meta"];
+        if ([meta[@"service"] isEqualToString:@"news"] && meta[@"success"]) {
+            NSMutableArray *articles = [NSMutableArray new];
+            for (NSDictionary *articleData in JSON[@"values"]) {
+                UTCSNewsArticle *article = [UTCSNewsArticle new];
+                article.title = articleData[@"title"];
+                article.html = articleData[@"html"];
+                article.url = articleData[@"url"];
+                [articles addObject:article];
+            }
+            
+            self.newsArticles = articles;
         }
-        if(completion) {
+        
+        if (completion) {
             completion();
         }
-    }];
-}
-
-- (void)newsStoriesWithCompletion:(UTCSNewStoryManagerCompletion)completion
-{
-
+    } failure:nil];
 }
 
 

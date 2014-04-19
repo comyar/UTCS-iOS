@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class UTCSNewsStory;
+@class UTCSNewsArticle;
 
 /**
  */
@@ -16,6 +16,6 @@
 
 /**
  */
-@property (strong, nonatomic) UTCSNewsStory *newsStory;
+@property (strong, nonatomic) UTCSNewsArticle *newsStory;
 
 @end

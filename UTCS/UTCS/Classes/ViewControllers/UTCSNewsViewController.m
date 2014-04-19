@@ -26,7 +26,7 @@
 #import "UIImage+ImageEffects.h"
 
 // Models
-#import "UTCSNewsStory.h"
+#import "UTCSNewsArticle.h"
 #import "UTCSNewsStoryDataSource.h"
 
 
@@ -155,7 +155,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         self.headerView.shimmeringView.shimmering = NO;
         [self.headerView.activityIndicatorView stopAnimating];
         
-        if([self.newsStoryDataSource.newsStories count] > 0) {
+        if([self.newsStoryDataSource.newsArticles count] > 0) {
             self.updatedWithAppear = YES;
             NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
@@ -167,7 +167,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         [UIView animateWithDuration:0.3 animations:^{
             self.headerView.updatedLabel.alpha         = 1.0;
             self.headerView.subtitleLabel.alpha         = 1.0;
-            self.headerView.downArrowImageView.alpha   = ([self.newsStoryDataSource.newsStories count])? 1.0 : 0.0;
+            self.headerView.downArrowImageView.alpha   = ([self.newsStoryDataSource.newsArticles count])? 1.0 : 0.0;
         }];
         
         [self.backgroundHeaderBlurTableView.tableView reloadData];
@@ -178,7 +178,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSNewsStory *newsStory = self.newsStoryDataSource.newsStories[indexPath.row];
+    UTCSNewsArticle *newsStory = self.newsStoryDataSource.newsArticles[indexPath.row];
     
     // Estimate height of a news story title
     CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
@@ -198,7 +198,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UTCSNewsStory *newsStory = self.newsStoryDataSource.newsStories[indexPath.row];
+    UTCSNewsArticle *newsStory = self.newsStoryDataSource.newsArticles[indexPath.row];
     
     if(!self.newsDetailViewController) {
         self.newsDetailViewController = [UTCSNewsDetailViewController new];

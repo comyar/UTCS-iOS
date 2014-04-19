@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSNewsStory.h"
+#import "UTCSNewsArticle.h"
 #import "UIImage+ImageEffects.h"
 #import "UIImage+CZTinting.h"
 
@@ -24,7 +24,7 @@ static const CGFloat minHeaderImageWidth = 300.0;
 
 #pragma mark - UTCSNewsStory Implementation
 
-@implementation UTCSNewsStory
+@implementation UTCSNewsArticle
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -37,6 +37,12 @@ static const CGFloat minHeaderImageWidth = 300.0;
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     
+}
+
+- (void)setHtml:(NSString *)html
+{
+    _html = html;
+    [self configureNewsStoryWithHTML:_html];
 }
 
 - (void)configureNewsStoryWithHTML:(NSString *)html

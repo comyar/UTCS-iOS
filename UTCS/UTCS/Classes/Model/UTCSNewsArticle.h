@@ -12,7 +12,7 @@
 
 /**
  */
-@interface UTCSNewsStory : NSObject <NSCoding>
+@interface UTCSNewsArticle : NSObject <NSCoding>
 
 // -----
 // @name Properties
@@ -32,7 +32,7 @@
 
 /**
  */
-@property (nonatomic) NSString                  *text;
+@property (nonatomic) NSString                  *url;
 
 /**
  */

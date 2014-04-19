@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, UTCSDataRequestType) {
 
 /**
  */
-typedef void (^UTCSDataRequestServicerSuccess)(id *data, NSError *error);
+typedef void (^UTCSDataRequestServicerSuccess)(NSDictionary *JSON);
 
 /**
  */
