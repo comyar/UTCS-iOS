@@ -426,10 +426,10 @@
 		DD87616318FDFE9F005FEE4E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DD44658818E584A200ED1153 /* UTCSEventsDataSource.h */,
-				DD44658918E584A200ED1153 /* UTCSEventsDataSource.m */,
 				DD5B583A18D239F900EEB474 /* UTCSEvent.h */,
 				DD5B583B18D239F900EEB474 /* UTCSEvent.m */,
+				DD44658818E584A200ED1153 /* UTCSEventsDataSource.h */,
+				DD44658918E584A200ED1153 /* UTCSEventsDataSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -571,11 +571,11 @@
 			isa = PBXGroup;
 			children = (
 				DD87615E18FDFE45005FEE4E /* News */,
+				DD87616218FDFE97005FEE4E /* Events */,
 				DD8761661900FC4F005FEE4E /* Labs */,
 				DD87616A1900FCA4005FEE4E /* Settings */,
 				DD87616D1900FCD5005FEE4E /* Disk Quota */,
 				DD87616F1900FCEF005FEE4E /* Directory */,
-				DD87616218FDFE97005FEE4E /* Events */,
 			);
 			name = Modules;
 			sourceTree = "<group>";

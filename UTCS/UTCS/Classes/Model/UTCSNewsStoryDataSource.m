@@ -30,12 +30,24 @@
 // Overidden newsStories property
 @property (nonatomic) NSArray *newsArticles;
 
+// Date formatter
+@property (nonatomic) NSDateFormatter *dateFormatter;
+
 @end
 
 
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
 @implementation UTCSNewsStoryDataSource
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.dateFormatter = [NSDateFormatter new];
+        self.dateFormatter.dateFormat = @"";
+    }
+    return self;
+}
 
 #pragma mark UITableViewDataSource Methods
 
@@ -70,15 +82,16 @@
 
 - (void)updateNewsStoriesWithCompletion:(void (^)(void))completion
 {
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews argument:nil success:^(NSDictionary *JSON) {
-        NSDictionary *meta = JSON[@"meta"];
-        if ([meta[@"service"] isEqualToString:@"news"] && meta[@"success"]) {
+    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+        if ([meta[@"service"] isEqualToString:UTCSNewsService] && meta[@"success"]) {
+            
             NSMutableArray *articles = [NSMutableArray new];
-            for (NSDictionary *articleData in JSON[@"values"]) {
+            for (NSDictionary *articleData in values) {
                 UTCSNewsArticle *article = [UTCSNewsArticle new];
-                article.title = articleData[@"title"];
-                article.html = articleData[@"html"];
-                article.url = articleData[@"url"];
+                article.title   = articleData[@"title"];
+                article.html    = articleData[@"html"];
+                article.url     = articleData[@"url"];
+                article.date    = [self.dateFormatter dateFromString:articleData[@"date"]];
                 [articles addObject:article];
             }
             

@@ -16,12 +16,12 @@
 #pragma mark - Constants
 
 // Encoding keys
-static NSString *labKey         = @"lab";
-static NSString *nameKey        = @"name";
-static NSString *uptimeKey      = @"uptime";
-static NSString *statusKey      = @"status";
-static NSString *occupiedKey    = @"occupied";
-static NSString *loadKey        = @"load";
+static NSString * const labKey         = @"lab";
+static NSString * const nameKey        = @"name";
+static NSString * const uptimeKey      = @"uptime";
+static NSString * const statusKey      = @"status";
+static NSString * const occupiedKey    = @"occupied";
+static NSString * const loadKey        = @"load";
 
 
 #pragma mark - UTCSLabMachine Implementation

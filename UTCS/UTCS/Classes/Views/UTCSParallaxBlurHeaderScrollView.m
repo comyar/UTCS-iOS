@@ -101,6 +101,11 @@ static const CGFloat parallaxFactor = 0.5;
     
     _headerImage = headerImage;
     self.headerImageView.image = _headerImage;
+    self.headerImageView.frame = ({
+        CGRect frame = self.headerImageView.frame;
+        frame.size.height = _headerImage.size.height;
+        frame;
+    });
     [self layoutIfNeeded];
 }
 
@@ -112,6 +117,11 @@ static const CGFloat parallaxFactor = 0.5;
     
     _headerBlurredImage = headerBlurredImage;
     self.headerBlurredImageView.image = _headerBlurredImage;
+    self.headerBlurredImageView.frame = ({
+        CGRect frame = self.headerBlurredImageView.frame;
+        frame.size.height = _headerBlurredImage.size.height;
+        frame;
+    });
     [self layoutIfNeeded];
 }
 

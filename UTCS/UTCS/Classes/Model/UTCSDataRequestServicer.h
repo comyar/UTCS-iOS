@@ -19,9 +19,15 @@ typedef NS_ENUM(NSInteger, UTCSDataRequestType) {
     UTCSDataRequestDiskQuota
 };
 
+extern NSString *UTCSNewsService;
+extern NSString *UTCSEventsService;
+extern NSString *UTCSLabsService;
+extern NSString *UTCSDirectoryService;
+extern NSString *UTCSDiskQuotaService;
+
 /**
  */
-typedef void (^UTCSDataRequestServicerSuccess)(NSDictionary *JSON);
+typedef void (^UTCSDataRequestServicerSuccess)(NSDictionary *meta, NSDictionary *values);
 
 /**
  */

@@ -6,61 +6,64 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-extern NSString * const UTCSParseEventName;
-extern NSString * const UTCSParseEventContactName;
-extern NSString * const UTCSParseEventContactEmail;
-extern NSString * const UTCSParseEventLocation;
-extern NSString * const UTCSParseEventHTMLDescription;
-extern NSString * const UTCSParseEventStartDate;
-extern NSString * const UTCSParseEventEndDate;
-
-extern NSString *const UTCSEventDetailBoldFont;
-extern NSString *const UTCSEventDetailBoldColor;
-extern NSString *const UTCSEventDetailNormalFont;
-extern NSString *const UTCSEventDetailNormalColor;
+@import Foundation;
 
 
 /**
  */
-@interface UTCSEvent : NSObject
+@interface UTCSEvent : NSObject <NSCoding>
 
-
-/**
- */
-@property (strong, nonatomic) NSString            *name;
-
-/**
- */
-@property (strong, nonatomic) NSString            *contactName;
+// -----
+// @name Properties
+// -----
 
 /**
  */
-@property (strong, nonatomic) NSString            *contactEmail;
+@property (nonatomic) NSString              *name;
 
 /**
  */
-@property (strong, nonatomic) NSString            *location;
+@property (nonatomic) NSString              *contactName;
 
 /**
  */
-@property (strong, nonatomic) NSString            *HTMLDescription;
-
-@property (assign) BOOL                             allDay;
+@property (nonatomic) NSString              *contactEmail;
 
 /**
  */
-@property (strong, nonatomic) NSDate              *startDate;
+@property (nonatomic) NSString              *location;
 
 /**
  */
-@property (strong, nonatomic) NSDate              *endDate;
-
-@property (strong, nonatomic) NSString              *tag;
+@property (nonatomic) NSString              *description;
 
 /**
  */
-@property (strong, nonatomic) NSAttributedString  *attributedDescription;
+@property (nonatomic) NSAttributedString    *attributedDescription;
+
+/**
+ */
+@property (nonatomic) NSString              *type;
+
+/**
+ */
+@property (nonatomic) NSString              *link;
+
+/**
+ */
+@property (nonatomic) NSDate                *startDate;
+
+/**
+ */
+@property (nonatomic) NSDate                *endDate;
+
+/**
+ */
+@property (nonatomic) BOOL                  allDay;
+
+/**
+ */
+@property (nonatomic) BOOL                  food;
 
 @end

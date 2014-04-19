@@ -16,11 +16,12 @@
 #pragma mark - Constants
 static NSString *requestURL         = @"http://www.cs.utexas.edu/~czaheri/cgi-bin/utcs.scgi";
 static NSString *requestKey         = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADC";
-static NSString *newsService        = @"news";
-static NSString *eventsService      = @"events";
-static NSString *labsService        = @"labs";
-static NSString *directoryService   = @"directory";
-static NSString *diskQuotaService   = @"quota";
+
+NSString *UTCSNewsService        = @"news";
+NSString *UTCSEventsService      = @"events";
+NSString *UTCSLabsService        = @"labs";
+NSString *UTCSDirectoryService   = @"directory";
+NSString *UTCSDiskQuotaService   = @"quota";
 
 #pragma mark - UTCSDataRequestServicer Implementation
 
@@ -37,10 +38,12 @@ static NSString *diskQuotaService   = @"quota";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *JSON = (NSDictionary *)responseObject;
+        NSDictionary *JSON      = (NSDictionary *)responseObject;
+        NSDictionary *meta      = JSON[@"meta"];
+        NSDictionary *values    = JSON[@"values"];
         
         if (success) {
-            success(JSON);
+            success(meta, values);
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -64,15 +67,15 @@ static NSString *diskQuotaService   = @"quota";
     NSString *post = [NSString stringWithFormat:@"key=%@", requestKey];
     
     if (dataRequestType == UTCSDataRequestNews) {
-        service = newsService;
+        service = UTCSNewsService;
     } else if (dataRequestType == UTCSDataRequestEvents) {
-        service = eventsService;
+        service = UTCSEventsService;
     } else if (dataRequestType == UTCSDataRequestLabs) {
-        service = labsService;
+        service = UTCSLabsService;
     } else if (dataRequestType == UTCSDataRequestDirectory) {
-        service = directoryService;
+        service = UTCSDirectoryService;
     } else if (dataRequestType == UTCSDataRequestDiskQuota) {
-        service = diskQuotaService;
+        service = UTCSDiskQuotaService;
         if (!argument) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"UTCS Disk Quota service requires arguments"
@@ -81,7 +84,7 @@ static NSString *diskQuotaService   = @"quota";
         post = [post stringByAppendingString:[NSString stringWithFormat:@"&arg=%@", argument]];
     }
     
-    post = [post stringByAppendingString:[NSString stringWithFormat:@"&service=%@", newsService]];
+    post = [post stringByAppendingString:[NSString stringWithFormat:@"&service=%@", service]];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setURL:[NSURL URLWithString:requestURL]];
