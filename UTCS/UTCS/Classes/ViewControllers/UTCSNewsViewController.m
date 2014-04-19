@@ -52,9 +52,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @interface UTCSNewsViewController ()
 
-//
-@property (nonatomic, getter = hasUpdatedWithAppear) BOOL   updatedWithAppear;
-
 // -----
 // @name Views
 // -----
@@ -105,9 +102,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [super viewDidAppear:animated];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    if(!self.updatedWithAppear) {
-        [self update];
-    }
+    [self update];
 }
 
 - (void)viewDidLoad
@@ -151,12 +146,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     
     // Update news stories
     [self.newsStoryDataSource updateNewsStoriesWithCompletion:^{
-        NSLog(@"completion");
         self.headerView.shimmeringView.shimmering = NO;
         [self.headerView.activityIndicatorView stopAnimating];
         
         if([self.newsStoryDataSource.newsArticles count] > 0) {
-            self.updatedWithAppear = YES;
             NSString *updateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
             self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];

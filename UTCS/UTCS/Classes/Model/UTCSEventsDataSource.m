@@ -66,7 +66,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
     UTCSEvent *event = self.events[indexPath.row];
     cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
     cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
-    cell.tagColor = self.tagColorMapping[event.tag];
+//    cell.tagColor = self.tagColorMapping[event.tag];
     cell.textLabel.text = event.name;
     cell.detailTextLabel.text = event.location;
     

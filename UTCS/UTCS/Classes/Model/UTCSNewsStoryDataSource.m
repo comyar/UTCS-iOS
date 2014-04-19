@@ -44,7 +44,9 @@
 {
     if (self = [super init]) {
         self.dateFormatter = [NSDateFormatter new];
-        self.dateFormatter.dateFormat = @"";
+        
+        // Ex: 2014-04-19 14:27:47
+        self.dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     }
     return self;
 }

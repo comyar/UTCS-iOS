@@ -51,6 +51,8 @@
 		DD87615A18FDA7A6005FEE4E /* UTCSEventsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87615918FDA7A6005FEE4E /* UTCSEventsHeaderView.m */; };
 		DD87615D18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */; };
 		DD8761781902826C005FEE4E /* UTCSDataRequestServicer.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8761771902826C005FEE4E /* UTCSDataRequestServicer.m */; };
+		DD8989A319031231000F1041 /* UTCSCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A219031231000F1041 /* UTCSCacheManager.m */; };
+		DD8989A61903141C000F1041 /* UTCSCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
@@ -152,6 +154,10 @@
 		DD87615C18FDAC96005FEE4E /* UTCSBackgroundBlurHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSBackgroundBlurHeaderView.m; sourceTree = "<group>"; };
 		DD8761761902826C005FEE4E /* UTCSDataRequestServicer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSDataRequestServicer.h; sourceTree = "<group>"; };
 		DD8761771902826C005FEE4E /* UTCSDataRequestServicer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDataRequestServicer.m; sourceTree = "<group>"; };
+		DD8989A119031231000F1041 /* UTCSCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSCacheManager.h; path = Model/UTCSCacheManager.h; sourceTree = "<group>"; };
+		DD8989A219031231000F1041 /* UTCSCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSCacheManager.m; path = Model/UTCSCacheManager.m; sourceTree = "<group>"; };
+		DD8989A41903141C000F1041 /* UTCSCacheMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSCacheMetaData.h; path = Model/UTCSCacheMetaData.h; sourceTree = "<group>"; };
+		DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSCacheMetaData.m; path = Model/UTCSCacheMetaData.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsTableViewCell.h; sourceTree = "<group>"; };
 		DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsTableViewCell.m; sourceTree = "<group>"; };
@@ -277,6 +283,7 @@
 				DD0F0D6C18EC39DE0088178C /* UTCSStateManager.m */,
 			);
 			name = StateManager;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD44659018E7EA5500ED1153 /* UIColor+CZTinting */ = {
@@ -291,30 +298,11 @@
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DD89899D1903113B000F1041 /* Services */,
 				DD87617419028219005FEE4E /* Modules */,
-				DD5B583918D239F900EEB474 /* Model */,
-				DD5B583E18D239F900EEB474 /* Controllers */,
 				DD5B584F18D239F900EEB474 /* Views */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		DD5B583918D239F900EEB474 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DD87617519028247005FEE4E /* DataRequestServicer */,
-				DD0F0D6A18EC39D10088178C /* StateManager */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		DD5B583E18D239F900EEB474 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				DD5B586C18D23DD200EEB474 /* Navigation */,
-			);
-			name = Controllers;
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		DD5B584F18D239F900EEB474 /* Views */ = {
@@ -335,12 +323,11 @@
 		DD5B586C18D23DD200EEB474 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				DD5B584718D239F900EEB474 /* UTCSMenuViewController.h */,
-				DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */,
-				DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */,
-				DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */,
+				DD89899F1903116A000F1041 /* Menu */,
+				DD89899E19031159000F1041 /* Vertical Menu */,
 			);
 			name = Navigation;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */ = {
@@ -570,6 +557,7 @@
 		DD87617419028219005FEE4E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				DD5B586C18D23DD200EEB474 /* Navigation */,
 				DD87615E18FDFE45005FEE4E /* News */,
 				DD87616218FDFE97005FEE4E /* Events */,
 				DD8761661900FC4F005FEE4E /* Labs */,
@@ -587,6 +575,46 @@
 				DD8761771902826C005FEE4E /* UTCSDataRequestServicer.m */,
 			);
 			name = DataRequestServicer;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD89899D1903113B000F1041 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD8989A01903120C000F1041 /* CacheManager */,
+				DD87617519028247005FEE4E /* DataRequestServicer */,
+				DD0F0D6A18EC39D10088178C /* StateManager */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		DD89899E19031159000F1041 /* Vertical Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */,
+				DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */,
+			);
+			name = "Vertical Menu";
+			sourceTree = "<group>";
+		};
+		DD89899F1903116A000F1041 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DD5B584718D239F900EEB474 /* UTCSMenuViewController.h */,
+				DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		DD8989A01903120C000F1041 /* CacheManager */ = {
+			isa = PBXGroup;
+			children = (
+				DD8989A41903141C000F1041 /* UTCSCacheMetaData.h */,
+				DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */,
+				DD8989A119031231000F1041 /* UTCSCacheManager.h */,
+				DD8989A219031231000F1041 /* UTCSCacheManager.m */,
+			);
+			name = CacheManager;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -814,6 +842,7 @@
 				DD64DAD018F8AAB50033D58B /* UTCSButton.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,
+				DD8989A61903141C000F1041 /* UTCSCacheMetaData.m in Sources */,
 				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
@@ -822,6 +851,7 @@
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
+				DD8989A319031231000F1041 /* UTCSCacheManager.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
