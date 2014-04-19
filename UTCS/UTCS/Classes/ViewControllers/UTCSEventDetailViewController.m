@@ -6,19 +6,25 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+// View Controllers
 #import "UTCSEventDetailViewController.h"
+
+// Views
 #import "UTCSParallaxBlurHeaderScrollView.h"
+
+// Models
 #import "UTCSEvent.h"
-#import "UIView+CZPositioning.h"
+
+// Categories
 #import "UIColor+UTCSColors.h"
+#import "UIView+CZPositioning.h"
 #import "UITextView+CZTextViewHeight.h"
 
 
-/**
- Font size of the date label
- */
-static const CGFloat dateLabelFontSize  = 28.0;
-
+#pragma mark - UIActivityViewController HideStatusBar Category
 
 @implementation UIActivityViewController (HideStatusBar)
 
@@ -29,38 +35,48 @@ static const CGFloat dateLabelFontSize  = 28.0;
 
 @end
 
+
+#pragma mark - UTCSEventDetailViewController Class Extension
+
 @interface UTCSEventDetailViewController ()
 
+//
 @property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
-
+//
 @property (nonatomic) UILabel                           *dateLabel;
 
+//
 @property (nonatomic) NSDateFormatter                   *dateFormatter;
 
+//
 @property (nonatomic) NSDateFormatter                   *dayDateFormatter;
 
-/**
- Label used to display the date of a news story
- */
+// Label used to display the date of a news story
 @property (nonatomic) UILabel                           *locationLabel;
 
-/**
- Text view used to display the news story
- */
+// Text view used to display the news story
 @property (nonatomic) UITextView                        *descriptionTextView;
 
+//
 @property (nonatomic) UIButton                          *addToCalendarButton;
 
+//
 @property (nonatomic) UIButton                          *shareButton;
 
+//
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
+//
 @property (nonatomic) EKEventStore                      *eventStore;
 
+//
 @property (nonatomic) UIActivityViewController          *activityViewController;
 
 @end
+
+
+#pragma mark - UTCSEventDetailViewController Implementation
 
 @implementation UTCSEventDetailViewController
 
@@ -68,14 +84,6 @@ static const CGFloat dateLabelFontSize  = 28.0;
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
-        
-        self.scrollToTopButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
-            button;
-        });
-        self.navigationItem.titleView = self.scrollToTopButton;
         
         self.dateFormatter = [NSDateFormatter new];
         self.dateFormatter.timeZone = [[NSTimeZone alloc]initWithName:@"GMT"];
@@ -152,6 +160,14 @@ static const CGFloat dateLabelFontSize  = 28.0;
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.scrollToTopButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
+        button;
+    });
+    self.navigationItem.titleView = self.scrollToTopButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -164,8 +180,7 @@ static const CGFloat dateLabelFontSize  = 28.0;
 {
     _event = event;
     
-    self.dateLabel.attributedText = [self dateStringForStartDate:_event.startDate endDate:_event.endDate allDay:_event.allDay];
-    
+    self.dateLabel.attributedText = [self dateStringForEvent:_event];
     
     self.locationLabel.text = _event.location;
     
@@ -203,106 +218,38 @@ static const CGFloat dateLabelFontSize  = 28.0;
     self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
 }
 
+#pragma mark Share
+
+- (void)sharedEvent:(UTCSEvent *)event
+{
+    
+}
+
+#pragma mark Calendar
+
+- (void)addEventToCalendar:(UTCSEvent *)event
+{
+    
+}
+
+#pragma mark Buttons
+
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.addToCalendarButton) {
-        if(!self.eventStore) {
-            self.eventStore = [EKEventStore new];
-        }
-        [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if(granted) {
-                EKEvent *calendarEvent = [EKEvent eventWithEventStore:self.eventStore];
-                calendarEvent.title = self.event.name;
-                calendarEvent.location = self.event.location;
-                calendarEvent.startDate = self.event.startDate;
-                if(_event.allDay) {
-                    calendarEvent.allDay = YES;
-                } else {
-                    calendarEvent.endDate = self.event.endDate;
-                }
-                
-                calendarEvent.calendar = [self.eventStore defaultCalendarForNewEvents];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[[UIAlertView alloc]initWithTitle:@"Add Event to Calendar" message:@"Do you want to add this event to your calendar?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil]show];
-                });
-            } else {
-                [[[UIAlertView alloc]initWithTitle:@"Permission Needed" message:@"Allow UTCS to access your calendars by enabling it in your device settings." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil]show];
-            }
-        }];
+        [self addEventToCalendar:self.event];
         
     } else if(button == self.shareButton) {
-        NSMutableArray *itemsToShare = [NSMutableArray new];
-        if(_event.name) {
-            [itemsToShare addObject:_event.name];
-        }
-        
-        if(_event.startDate) {
-            NSString *startDateString = [NSString stringWithFormat:@"\nStart : %@\n", [NSDateFormatter localizedStringFromDate:_event.startDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
-            [itemsToShare addObject:startDateString];
-        }
-        
-        if(_event.endDate) {
-            NSString *endDateString = [NSString stringWithFormat:@"End : %@\n", [NSDateFormatter localizedStringFromDate:_event.endDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterShortStyle]];
-            [itemsToShare addObject:endDateString];
-        }
-        
-        if(_event.attributedDescription) {
-            [itemsToShare addObject:[_event.attributedDescription string]];
-        }
-        
-        self.activityViewController = [[UIActivityViewController alloc]initWithActivityItems:itemsToShare applicationActivities:nil];
-        self.activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList, UIActivityTypeAssignToContact, UIActivityTypePostToVimeo, UIActivityTypeSaveToCameraRoll];
-        [self presentViewController:self.activityViewController animated:YES completion:nil];
+        [self sharedEvent:self.event];
         
     } else if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
 }
 
-- (NSAttributedString *)dateStringForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay
+- (NSAttributedString *)dateStringForEvent:(UTCSEvent *)event
 {
-    NSMutableAttributedString *attributedDateString = [NSMutableAttributedString new];
-    if(allDay) {
-        NSAttributedString *attributedAllDay = [[NSAttributedString alloc]initWithString:@" \nAll Day" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
-        [attributedDateString appendAttributedString:attributedAllDay];
-        return attributedDateString;
-    }
-
-    
-    
-    NSString *startDateString = [self.dateFormatter stringFromDate:startDate];
-    NSString *endDateString = [self.dateFormatter stringFromDate:endDate];
-    
-    NSString *startTimeString = [NSDateFormatter localizedStringFromDate:startDate
-                                                               dateStyle:NSDateFormatterNoStyle
-                                                               timeStyle:NSDateFormatterShortStyle];
-    
-    NSString *endTimeString = [NSDateFormatter localizedStringFromDate:endDate
-                                                             dateStyle:NSDateFormatterNoStyle
-                                                             timeStyle:NSDateFormatterShortStyle];
-    
-    
-    
-    NSAttributedString *attributedStartDate = [[NSAttributedString alloc]initWithString:startDateString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:36]}];
-    [attributedDateString appendAttributedString:attributedStartDate];
-    
-    NSString *timeString = [NSString stringWithFormat:@" \n%@ - %@", startTimeString, endTimeString];
-    NSAttributedString *attributedTime = [[NSAttributedString alloc]initWithString:timeString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:24], NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]}];
-    
-    if([startDateString isEqualToString:endDateString]) {
-        [attributedDateString appendAttributedString:attributedTime];
-    } else {
-        [attributedDateString appendAttributedString:attributedStartDate];
-        
-        NSString *endDayString = [NSString stringWithFormat:@" - %@", [self.dayDateFormatter stringFromDate:endDate]];
-        
-        NSAttributedString *attributedEndDay = [[NSAttributedString alloc]initWithString:endDayString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:36]}];
-        
-        [attributedDateString appendAttributedString:attributedEndDay];
-        [attributedDateString appendAttributedString:attributedTime];
-    }
-    return attributedDateString;
+    return nil;
 }
 
 @end

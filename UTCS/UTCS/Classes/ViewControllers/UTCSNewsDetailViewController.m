@@ -83,8 +83,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
         
         // Title label
         self.titleLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 44.0,
-                                                                      self.view.width - 16.0, 0.0)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 44.0, self.view.width - 16.0, 0.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:titleLabelFontSize];
             label.textColor = [UIColor whiteColor];
             label.adjustsFontSizeToFitWidth = YES;
