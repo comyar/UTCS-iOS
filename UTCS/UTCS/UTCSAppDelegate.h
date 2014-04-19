@@ -10,13 +10,12 @@
 @import UIKit;
 @import QuartzCore;
 
-#import "UTCSWebViewController.h"
 #import "UTCSMenuViewController.h"
 
 
 /**
  UTCSAppDelegate
  */
-@interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate, UTCSWebViewControllerDelegate>
+@interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate>
 
 @end

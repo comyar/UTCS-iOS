@@ -16,17 +16,16 @@ typedef NS_ENUM(u_int8_t, UTCSLabTag) {
 
 @interface UTCSLabMachine : NSObject
 
-+ (UTCSLabMachine *)labMachineWithParseObject:(PFObject *)object;
+@property (nonatomic) NSString *lab;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *status;
+@property (nonatomic) NSString *uptime;
 
+@property (nonatomic) CGFloat   load;
+@property (nonatomic) NSInteger users;
 
-/**
- */
-- (instancetype)initWithParseObject:(PFObject *)object;
-
-@property (nonatomic) NSString *hostname;
-@property (nonatomic) NSInteger labNumber;
-@property (nonatomic) NSString *labName;
 @property (nonatomic) BOOL      occupied;
+
 
 
 @end

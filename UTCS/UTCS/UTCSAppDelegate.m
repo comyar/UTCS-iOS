@@ -10,7 +10,6 @@
 #pragma mark - Imports
 
 // View controllers
-#import "UTCSWebViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSMenuViewController.h"
 #import "UTCSNewsViewController.h"
@@ -22,9 +21,7 @@
 
 // Models
 #import "FRBSwatchist.h"
-#import "UTCSFileReader.h"
 #import "UTCSAppDelegate.h"
-#import "UTCSApplication.h"
 
 // Categories
 #import "UIColor+UTCSColors.h"
@@ -39,9 +36,6 @@
 // -----
 
 @property (nonatomic) UTCSNewsViewController            *newsViewController;
-
-//
-@property (nonatomic) UTCSWebViewController             *webViewController;
 
 //
 @property (nonatomic) UTCSMenuViewController            *menuViewController;
@@ -107,15 +101,6 @@
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
 
-    ((UTCSApplication *)[UIApplication sharedApplication]).urlHandler = ^(NSURL *url) {
-        if(!self.webViewController) {
-            self.webViewController = [UTCSWebViewController new];
-            self.webViewController.delegate = self;
-        }
-        self.webViewController.url = url;
-        [self.verticalMenuViewController presentViewController:self.webViewController animated:YES completion:nil];
-        return YES;
-    };
     
     [self configureAppearance];
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
@@ -157,13 +142,6 @@
 {
     [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"Parse" withExtension:@"plist"] forName:@"Parse"];
     [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"ThirdFloorLab" withExtension:@"plist"] forName:@"ThirdFloorLab"];
-}
-
-#pragma mark UTCSWebViewControllerDelegate Methods
-
-- (void)webViewControllerDidRequestDismissal:(UTCSWebViewController *)webViewController
-{
-    [webViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods
