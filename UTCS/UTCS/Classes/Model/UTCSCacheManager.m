@@ -44,15 +44,12 @@ NSString * const UTCSCacheValuesName    = @"UTCSCacheValuesName";
     }
     
     UTCSCacheMetaData *metaData = [UTCSCacheManager metaDataForService:service];
-    NSString *primaryKey = [UTCSCacheManager primaryKeyForService:service forKey:key];
+    NSDictionary *cache = @{UTCSCacheMetaName : metaData, UTCSCacheValuesName : object};
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cache];
     
-    if ([object conformsToProtocol:@protocol(NSFastEnumeration)]) {
-        NSDictionary *cache = @{UTCSCacheMetaName : metaData, UTCSCacheValuesName : object};
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cache];
-        [[NSUserDefaults standardUserDefaults]setObject:data forKey:primaryKey];
-    } else {
-        [[NSUserDefaults standardUserDefaults]setObject:object forKey:primaryKey];
-    }
+    NSString *primaryKey = [UTCSCacheManager primaryKeyForService:service forKey:key];
+    [[NSUserDefaults standardUserDefaults]setObject:data forKey:primaryKey];
+    
 }
 
 #pragma mark Private
