@@ -27,54 +27,7 @@
 
 - (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"DirectoryItem"];
-    query.limit = 1000;
-    [query orderByAscending:@"lName"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSMutableArray *directoryPeople = [NSMutableArray new];
-        NSMutableArray *flatDirectory = [NSMutableArray new];
-        if(objects) {
-            NSString *lastChar = nil;
-            for(PFObject *object in objects) {
-                UTCSDirectoryPerson *person = [UTCSDirectoryPerson directoryPersonWithParseObject:object];
-                if(!person.fullName ||
-                   [person.firstName isEqualToString:@"undergrad"] ||
-                   [person.firstName isEqualToString:@"post"] ||
-                   [person.firstName isEqualToString:@"visitor"]) {
-                    continue;
-                }
-                
-                [flatDirectory addObject:person];
-                
-                NSString *firstChar = [person.lastName substringToIndex:1];
-                if([firstChar isEqualToString:lastChar]) {
-                    NSMutableArray *letter = [directoryPeople lastObject];
-                    if(!letter) {
-                        letter = [NSMutableArray new];
-                    }
-                    [letter addObject:person];
-                } else {
-                    NSMutableArray *letter = [NSMutableArray new];
-                    [letter addObject:person];
-                    [directoryPeople addObject:letter];
-                    lastChar = firstChar;
-                }
-            }
-            _directory = directoryPeople;
-            _flatDirectory = flatDirectory;
-            
-            if(completion) {
-                [UTCSStateManager setDirectory:_directory];
-                [UTCSStateManager setFlatDirectory:_flatDirectory];
-                completion(YES);
-            }
-            
-        } else {
-            if(completion) {
-                completion(NO);
-            }
-        }
-    }];
+
 }
 
 - (NSArray *)searchDirectoryWithSearchString:(NSString *)searchString scope:(NSString *)scope

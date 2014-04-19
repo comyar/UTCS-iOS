@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UTCSApplication.h"
 #import "UTCSAppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, NSStringFromClass([UTCSApplication class]), NSStringFromClass([UTCSAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([UTCSAppDelegate class]));
     }
 }

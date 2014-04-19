@@ -88,28 +88,7 @@ const NSTimeInterval kEarliestTimeIntervalForNews       = INT32_MIN;
 
 - (void)newsStoriesWithCompletion:(UTCSNewStoryManagerCompletion)completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:UTCSParseClassNews];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    [query whereKey:UTCSParseNewsStoryDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:kEarliestTimeIntervalForNews]];
-    
-    [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
-        NSArray *sortedNewsStories = nil;
-        NSMutableArray *newsStories = [NSMutableArray new];
-        if(objects) {
-            for(PFObject *object in objects) {
-                UTCSNewsStory *newsStory = [UTCSNewsStory newsStoryWithParseObject:object];
-                [newsStories addObject:newsStory];
-            }
-            
-            sortedNewsStories = [newsStories sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
-                UTCSNewsStory *story1 = (UTCSNewsStory *)obj1;
-                UTCSNewsStory *story2 = (UTCSNewsStory *)obj2;
-                return [story2.date compare:story1.date];
-            }];
-        }
-        
-        completion(sortedNewsStories, error);
-    }];
+
 }
 
 

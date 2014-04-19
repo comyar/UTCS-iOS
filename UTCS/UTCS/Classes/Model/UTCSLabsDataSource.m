@@ -9,7 +9,6 @@
 #import "UTCSLabsDataSource.h"
 #import "UTCSLabsTableViewCell.h"
 #import "UTCSLabMachine.h"
-#import "UTCSLabMachineView.h"
 #import "FRBSwatchist.h"
 
 @interface UTCSLabsDataSource ()
@@ -35,11 +34,6 @@
         cell = [[UTCSLabsTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UTCSLabsTableViewCell"];
     }
     
-    UTCSLabMachine *labMachine = self.labMachines[indexPath.row];
-    cell.textLabel.text = labMachine.hostname;
-    cell.detailTextLabel.text = labMachine.labName;
-    cell.occupiedLabel.text = (labMachine.occupied)? @"Occupied" : @"Unoccupied";
-    cell.indicatorColor = (labMachine.occupied)? [UIColor redColor] : [UIColor greenColor];
     
     return cell;
 }
@@ -51,57 +45,13 @@
 
 - (void)syncLabsWithCompletion:(void (^)(BOOL success))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"LabMachine"];
-    query.limit = 1000;
-    [query orderByAscending:@"name"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSMutableArray *labMachines = [NSMutableArray new];
-        if(objects) {
-            for(PFObject *object in objects) {
-                UTCSLabMachine *labMachine = [UTCSLabMachine labMachineWithParseObject:object];
-                [labMachines addObject:labMachine];
-            }
-            
-            _labMachines = labMachines;
-            
-            if(completion) {
-                // Save lab data
-                completion(YES);
-            }
-            
-        } else {
-            if(completion) {
-                completion(NO);
-            }
-        }
-    }];
+
 }
 
 - (NSArray *)searchLabsWithSearchString:(NSString *)searchString scope:(NSString *)scope
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(labName = %@) AND (hostname BEGINSWITH[cd] %@)", scope, searchString];
     return [self.labMachines filteredArrayUsingPredicate:predicate];
-}
-
-#pragma mark UTCSLabViewDataSource Methods
-
-- (UTCSLabMachineView *)labView:(UTCSLabView *)labView labMachineViewForIdentifier:(NSString *)identifier
-{
-    UTCSLabMachineView *labMachineView = [labView dequeueLabMachineWithIdentifier:identifier];
-    labMachineView.center = CGPointMake(arc4random() % 320, 100 + arc4random() % 320);
-    labMachineView.backgroundColor = [UIColor redColor];
-    NSLog(@"%@", identifier);
-    return labMachineView;
-}
-
-- (NSArray *)labMachineViewIdentifiersForLabView:(UTCSLabView *)labView
-{
-    NSLog(@"identifiers");
-    if(labView.tag == UTCSThirdFloorLab) {
-        NSLog(@"third floor");
-        return [FRBSwatchist objectForKey:@"ThirdFloorLab.Root"];
-    }
-    return nil;
 }
 
 @end

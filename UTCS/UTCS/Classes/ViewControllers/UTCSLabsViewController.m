@@ -9,13 +9,11 @@
 #import "UTCSLabsViewController.h"
 #import "UTCSMenuButton.h"
 #import "MBProgressHUD.h"
-#import "UTCSSSHManager.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSLabsDataSource.h"
 #import "UTCSLabMachine.h"
 #import "UTCSLabsTableViewCell.h"
 #import "UIImage+ImageEffects.h"
-#import "UTCSLabView.h"
 
 @interface UTCSLabsViewController ()
 @property (nonatomic) UIImageView               *backgroundImageView;
@@ -25,7 +23,6 @@
 @property (nonatomic) UTCSLabsDataSource        *labsDataSource;
 @property (nonatomic) NSArray                   *searchResults;
 @property (nonatomic) UIScrollView              *scrollView;
-@property (nonatomic) UTCSLabView               *thirdFloorLabView;
 
 @end
 
@@ -44,14 +41,6 @@
             scrollView;
         });
         [self.view addSubview:self.scrollView];
-        
-        self.thirdFloorLabView = ({
-            UTCSLabView *labView = [[UTCSLabView alloc]initWithFrame:self.scrollView.bounds];
-            labView.tag = UTCSThirdFloorLab;
-            labView.dataSource = self.labsDataSource;
-            labView;
-        });
-        [self.scrollView addSubview:self.thirdFloorLabView];
 
         self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
         self.searchBar.placeholder = @"Unix Machine";
@@ -173,11 +162,8 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
-    UTCSLabMachine *labMachine = self.searchResults[indexPath.row];
-    cell.textLabel.text = labMachine.hostname;
-    cell.detailTextLabel.text = labMachine.labName;
-    cell.occupiedLabel.text = (labMachine.occupied)? @"Occupied" : @"Unoccupied";
-    cell.indicatorColor = (labMachine.occupied)? [UIColor redColor] : [UIColor greenColor];
+
+    
     return cell;
 }
 

@@ -6,26 +6,47 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-typedef NS_ENUM(u_int8_t, UTCSLabTag) {
-    UTCSTeachingLab = 0,
-    UTCSBasementLab,
-    UTCSThirdFloorLab
-};
 
-@interface UTCSLabMachine : NSObject
+/**
+ UTCSLabMachine represents a single machine located in one the 
+ UTCS labs.
+ */
+@interface UTCSLabMachine : NSObject <NSCoding>
 
+// -----
+// @name Properties
+// -----
+
+/**
+ Name of the lab the machine is in
+ */
 @property (nonatomic) NSString *lab;
+
+/**
+ Name of the machine
+ */
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSString *status;
+
+/**
+ Uptime of the machine
+ */
 @property (nonatomic) NSString *uptime;
 
-@property (nonatomic) CGFloat   load;
-@property (nonatomic) NSInteger users;
+/**
+ Status of the machine (up or down)
+ */
+@property (nonatomic) NSString *status;
 
-@property (nonatomic) BOOL      occupied;
+/**
+ YES if the machine is physically occupied
+ */
+@property (nonatomic) BOOL occupied;
 
-
+/**
+ Current load on the machine
+ */
+@property (nonatomic) CGFloat load;
 
 @end

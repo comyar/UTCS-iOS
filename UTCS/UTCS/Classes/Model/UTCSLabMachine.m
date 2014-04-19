@@ -6,36 +6,52 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+// Models
 #import "UTCSLabMachine.h"
 
 
+#pragma mark - Constants
+
+// Encoding keys
+static NSString *labKey         = @"lab";
+static NSString *nameKey        = @"name";
+static NSString *uptimeKey      = @"uptime";
+static NSString *statusKey      = @"status";
+static NSString *occupiedKey    = @"occupied";
+static NSString *loadKey        = @"load";
+
+
+#pragma mark - UTCSLabMachine Implementation
+
 @implementation UTCSLabMachine
 
-+ (UTCSLabMachine *)labMachineWithParseObject:(PFObject *)object
-{
-    return [[UTCSLabMachine alloc]initWithParseObject:object];
-}
+#pragma mark NSCoding Methods
 
-- (instancetype)initWithParseObject:(PFObject *)object
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if(self = [super init]) {
-        _hostname = object[@"name"];
-        _occupied = [object[@"occupied"]boolValue];
-        _labNumber = [object[@"labNumber"]integerValue];
-        _labName = [self labNameForLabNumber:_labNumber];
+        self.lab        = [aDecoder decodeObjectForKey:labKey];
+        self.name       = [aDecoder decodeObjectForKey:nameKey];
+        self.uptime     = [aDecoder decodeObjectForKey:uptimeKey];
+        self.status     = [aDecoder decodeObjectForKey:statusKey];
+        self.occupied   = [aDecoder decodeBoolForKey:occupiedKey];
+        self.load       = [aDecoder decodeFloatForKey:loadKey];
+        
     }
     return self;
 }
 
-- (NSString *)labNameForLabNumber:(NSInteger)labNumber
+- (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    if(labNumber == UTCSTeachingLab) {
-        return @"Teaching Lab";
-    } else if(labNumber == UTCSBasementLab) {
-        return @"Basement Lab";
-    } else {
-        return @"Third Floor Lab";
-    }
+    [aCoder encodeObject:self.lab       forKey:labKey];
+    [aCoder encodeObject:self.name      forKey:nameKey];
+    [aCoder encodeObject:self.uptime    forKey:uptimeKey];
+    [aCoder encodeObject:self.status    forKey:statusKey];
+    [aCoder encodeBool:self.occupied    forKey:occupiedKey];
+    [aCoder encodeFloat:self.load       forKey:loadKey];
 }
 
 @end

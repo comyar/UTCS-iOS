@@ -18,8 +18,6 @@
 #import "MRCircularProgressView.h"
 
 // Models
-#import "UTCSSSHManager.h"
-#import "UTCSAccountManager.h"
 
 // Categories
 #import "UIView+Shake.h"
@@ -132,11 +130,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if([UTCSAccountManager password]) {
-        self.diskQuotaContainerView.alpha = 1.0;
-    } else {
-        self.authenticationContainerView.alpha = 1.0;
-    }
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -160,40 +154,12 @@
 
 - (void)updateDiskQuota
 {
-    NSString *username = [UTCSAccountManager username];
-    NSString *password = [UTCSAccountManager password];
-    [self updateDiskQuotaWithUsername:username password:password];
+
 }
 
 - (void)updateDiskQuotaWithUsername:(NSString *)username password:(NSString *)password
 {
-    [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
-        if(success) {
-            [[UTCSSSHManager sharedSSHManager]executeCommand:@"chkquota" completion:^(NSString *response) {
-                CGFloat limit = [self diskLimitForResponse:response];
-                CGFloat usage = [self diskUsageForResponse:response];
-                NSString *command = [NSString stringWithFormat:@"finger %@", username];
-                [[UTCSSSHManager sharedSSHManager]executeCommand:command completion:^(NSString *response) {
-                    [[UTCSSSHManager sharedSSHManager]disconnect];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        NSString *name = [self nameForResponse:response];
-                        [UTCSAccountManager setName:name];
-                        self.nameLabel.text = name;
-                        self.usernameLabel.text = username;
-                        self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.f / %0.0f", usage, limit];
-                        [self.diskQuotaGaugeView setProgress:(usage/limit) animated:YES];
-                        NSString *updatedTime = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                                                dateStyle:NSDateFormatterMediumStyle
-                                                                                timeStyle:NSDateFormatterMediumStyle];
-                        self.updatedLabel.text = [NSString stringWithFormat:@"Updated: %@", updatedTime];
-                    });
-                }];
-            }];
-        } else {
-            self.updatedLabel.text = @"Update Failed. Check Your Network Connection.";
-            [[UTCSSSHManager sharedSSHManager]disconnect];
-        }
-    }];
+
 }
 
 - (NSString *)nameForResponse:(NSString *)response
@@ -429,27 +395,7 @@
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[UTCSSSHManager sharedSSHManager]connectWithUsername:username password:password completion:^(BOOL success) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if(success) {
-                [self.view endEditing:YES];
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.authenticationContainerView.alpha = 0.0;
-                    self.diskQuotaContainerView.alpha = 1.0;
-                }];
-            
-                [self updateDiskQuotaWithUsername:username password:password];
-                [UTCSAccountManager setUsername:username];
-                [UTCSAccountManager setPassword:password];
-            } else {
-                [self.authenticationContainerView shake:3 withDelta:16.0];
-                // Creates Vibration
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 
-            }
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
-    }];
 }
 
 #pragma mark UITextFieldDelegate Methods

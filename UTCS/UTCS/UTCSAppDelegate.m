@@ -20,7 +20,6 @@
 #import "UTCSVerticalMenuViewController.h"
 
 // Models
-#import "FRBSwatchist.h"
 #import "UTCSAppDelegate.h"
 
 // Categories
@@ -77,13 +76,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self loadSwatches];
-    
-    // Initialize Parse
-    [Parse setApplicationId:[FRBSwatchist stringForKey:@"Parse.ApplicationID"]
-                  clientKey:[FRBSwatchist stringForKey:@"Parse.ClientKey"]];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
     // Initialize menu view controller
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
@@ -136,12 +128,6 @@
     [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
     [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-}
-
-- (void)loadSwatches
-{
-    [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"Parse" withExtension:@"plist"] forName:@"Parse"];
-    [FRBSwatchist loadSwatch:[[NSBundle mainBundle]URLForResource:@"ThirdFloorLab" withExtension:@"plist"] forName:@"ThirdFloorLab"];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods

@@ -7,13 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
 
 @interface UTCSDirectoryPerson : NSObject <NSCoding>
 
-+ (UTCSDirectoryPerson *)directoryPersonWithParseObject:(PFObject *)object;
-
-- (instancetype)initWithParseObject:(PFObject *)object;
 
 @property (nonatomic, readonly) NSString *fullName;
 @property (nonatomic, readonly) NSString *firstName;

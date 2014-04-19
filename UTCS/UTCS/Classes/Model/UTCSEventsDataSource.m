@@ -105,28 +105,7 @@ NSString * const UTCSParseClassEvent                            = @"Event";
 
 - (void)eventsWithCompletion:(UTCSEventManagerCompletion)completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:UTCSParseClassEvent];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    [query whereKey:UTCSParseEventEndDate greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow:kEarliestTimeIntervalForEvents]];
-    [query orderByAscending:@"date"];
-    [query findObjectsInBackgroundWithBlock: ^ (NSArray *objects, NSError *error) {
-        NSArray *sortedEvents = nil;
-        NSMutableArray *events = [NSMutableArray new];
-        if(objects) {
-            for(PFObject *object in objects) {
-                UTCSEvent *event = [UTCSEvent eventWithParseObject:object];
-                [events addObject:event];
-            }
-            
-            sortedEvents = [events sortedArrayUsingComparator: ^ NSComparisonResult(id obj1, id obj2) {
-                UTCSEvent *event1 = (UTCSEvent *)obj1;
-                UTCSEvent *event2 = (UTCSEvent *)obj2;
-                return [event1.startDate compare:event2.startDate];
-            }];
-        }
-        
-        completion(sortedEvents, error);
-    }];
+
 
 }
 

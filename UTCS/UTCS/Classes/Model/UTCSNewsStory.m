@@ -10,9 +10,7 @@
 #import "UIImage+ImageEffects.h"
 #import "UIImage+CZTinting.h"
 
-NSString * const UTCSParseNewsStoryTitle    = @"title";
-NSString * const UTCSParseNewsStoryDate     = @"date";
-NSString * const UTCSParseNewsStoryHTML     = @"text";
+
 
 NSString * const UTCSNewsStoryCodingTitle               = @"title";
 NSString * const UTCSNewsStoryCodingText                = @"text";
@@ -27,22 +25,6 @@ static const CGFloat minHeaderImageWidth = 300.0;
 #pragma mark - UTCSNewsStory Implementation
 
 @implementation UTCSNewsStory
-
-+ (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object
-{
-    return [[UTCSNewsStory alloc]initWithParseObject:object];
-}
-
-- (instancetype)initWithParseObject:(PFObject *)object
-{
-    if(self = [super init]) {
-        _title              = object[UTCSParseNewsStoryTitle];
-        _date               = object[UTCSParseNewsStoryDate];
-        _html               = object[UTCSParseNewsStoryHTML];
-        [self configureNewsStoryWithHTML:_html];
-    }
-    return self;
-}
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {

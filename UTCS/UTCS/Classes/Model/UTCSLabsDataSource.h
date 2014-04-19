@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "UTCSLabView.h"
+@import Foundation;
 
-@interface UTCSLabsDataSource : NSObject <UITableViewDataSource, UTCSLabViewDataSource>
+@interface UTCSLabsDataSource : NSObject <UITableViewDataSource>
 
 - (void)syncLabsWithCompletion:(void (^)(BOOL success))completion;
 - (NSArray *)searchLabsWithSearchString:(NSString *)searchString scope:(NSString *)scope;
@@ -18,3 +17,4 @@
 @property (nonatomic, readonly) NSArray *labMachines;
 
 @end
+

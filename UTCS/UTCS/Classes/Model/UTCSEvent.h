@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
 
 extern NSString * const UTCSParseEventName;
 extern NSString * const UTCSParseEventContactName;
@@ -27,13 +26,6 @@ extern NSString *const UTCSEventDetailNormalColor;
  */
 @interface UTCSEvent : NSObject
 
-/**
- */
-+ (UTCSEvent *)eventWithParseObject:(PFObject *)object;
-
-/**
- */
-- (instancetype)initWithParseObject:(PFObject *)object;
 
 /**
  */

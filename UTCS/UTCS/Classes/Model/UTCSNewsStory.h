@@ -6,32 +6,13 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-/**
- */
-extern NSString *const UTCSParseNewsStoryTitle;
-
-/**
- */
-extern NSString *const UTCSParseNewsStoryDate;
-
-/**
- */
-extern NSString *const UTCSParseNewStoryHTML;
+@import Foundation;
 
 
 /**
  */
 @interface UTCSNewsStory : NSObject <NSCoding>
-
-+ (UTCSNewsStory *)newsStoryWithParseObject:(PFObject *)object;
-
-
-/**
- */
-- (instancetype)initWithParseObject:(PFObject *)object;
-
 
 // -----
 // @name Properties

@@ -18,29 +18,6 @@ NSString * const UTCSParseEventEndDate          = @"dateEnd";
 
 @implementation UTCSEvent
 
-+ (UTCSEvent *)eventWithParseObject:(PFObject *)object
-{
-    return [[UTCSEvent alloc]initWithParseObject:object];
-}
-
-- (instancetype)initWithParseObject:(PFObject *)object
-{
-    if(self = [super init]) {
-        _name               = object[UTCSParseEventName];
-        _contactName        = object[UTCSParseEventContactName];
-        _contactEmail       = object[UTCSParseEventContactEmail];
-        _location           = object[UTCSParseEventLocation];
-        _startDate          = object[UTCSParseEventStartDate];
-        _endDate            = object[UTCSParseEventEndDate];
-        _HTMLDescription    = object[UTCSParseEventHTMLDescription];
-        _allDay             = object[@"allday"];
-        _tag                = object[@"type"];
-        [self setAttributedDescriptionForWithHTML:_HTMLDescription];
-        
-    }
-    return self;
-}
-
 - (void)setAttributedDescriptionForWithHTML:(NSString *)htmlDescription
 {
     NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[htmlDescription dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
