@@ -99,7 +99,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+    if ([self.eventsDataSource.filteredEvents count] == 0) {
+        [self update];
+    }
 }
 
 - (void)viewDidLoad
@@ -132,7 +134,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
         imageView.tintColor = [UIColor whiteColor];
         [button addSubview:imageView];
-        
         button;
     });
     
@@ -181,7 +182,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)update
 {
-    
     [UIView animateWithDuration:0.3 animations:^{
         self.headerView.downArrowImageView.alpha = 0.0;
     }];
@@ -216,13 +216,13 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     UTCSEvent *event = self.eventsDataSource.filteredEvents[indexPath.row];
     
-    // Estimate height of a news story title
+    // Estimate height of event name
     CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
     
-    return MIN(ceilf(rect.size.height), 128.0) + 40.0;
+    return MIN(ceilf(rect.size.height), 128.0) + 56.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

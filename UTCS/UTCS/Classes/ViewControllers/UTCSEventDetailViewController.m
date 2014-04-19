@@ -148,6 +148,12 @@ static const CGFloat dateLabelFontSize  = 28.0;
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

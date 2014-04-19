@@ -71,7 +71,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 // -----
 
 // Data source used for the news articles
-@property (nonatomic) UTCSNewsArticleDataSource         *newsStoryDataSource;
+@property (nonatomic) UTCSNewsArticleDataSource         *newsArticleDataSource;
 
 // View controller used to display a specific news story
 @property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
@@ -87,7 +87,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"News";
-        self.newsStoryDataSource = [UTCSNewsArticleDataSource new];
+        self.newsArticleDataSource = [UTCSNewsArticleDataSource new];
     }
     return self;
 }
@@ -101,7 +101,9 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+    if ([self.newsArticleDataSource.newsArticles count] == 0) {
+        [self update];
+    }
 }
 
 - (void)viewDidLoad
@@ -113,7 +115,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     self.backgroundHeaderBlurTableView = ({
         UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
         view.tableView.delegate     = self;
-        view.tableView.dataSource   = self.newsStoryDataSource;
+        view.tableView.dataSource   = self.newsArticleDataSource;
         view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
                                                                                        blendingMode:kCGBlendModeOverlay];
         view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
@@ -145,11 +147,11 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [self.headerView.activityIndicatorView startAnimating];
     
     // Update news stories
-    [self.newsStoryDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
+    [self.newsArticleDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
         self.headerView.shimmeringView.shimmering = NO;
         [self.headerView.activityIndicatorView stopAnimating];
         
-        if([self.newsStoryDataSource.newsArticles count] > 0) {
+        if([self.newsArticleDataSource.newsArticles count] > 0) {
             NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
@@ -161,7 +163,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         [UIView animateWithDuration:0.3 animations:^{
             self.headerView.updatedLabel.alpha         = 1.0;
             self.headerView.subtitleLabel.alpha         = 1.0;
-            self.headerView.downArrowImageView.alpha   = ([self.newsStoryDataSource.newsArticles count])? 1.0 : 0.0;
+            self.headerView.downArrowImageView.alpha   = ([self.newsArticleDataSource.newsArticles count])? 1.0 : 0.0;
         }];
         
         [self.backgroundHeaderBlurTableView.tableView reloadData];
@@ -172,7 +174,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSNewsArticle *newsStory = self.newsStoryDataSource.newsArticles[indexPath.row];
+    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
     
     // Estimate height of a news story title
     CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
@@ -192,7 +194,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UTCSNewsArticle *newsStory = self.newsStoryDataSource.newsArticles[indexPath.row];
+    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
     
     if(!self.newsDetailViewController) {
         self.newsDetailViewController = [UTCSNewsDetailViewController new];
