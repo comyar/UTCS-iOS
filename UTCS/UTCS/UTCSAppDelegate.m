@@ -9,8 +9,6 @@
 
 #pragma mark - Imports
 
-
-
 // View controllers
 #import "UTCSWebViewController.h"
 #import "UTCSLabsViewController.h"
@@ -36,6 +34,12 @@
 
 @interface UTCSAppDelegate ()
 
+// -----
+// @name Content controllers
+// -----
+
+@property (nonatomic) UTCSNewsViewController            *newsViewController;
+
 //
 @property (nonatomic) UTCSWebViewController             *webViewController;
 
@@ -47,13 +51,6 @@
 
 //
 @property (nonatomic) UTCSDiskQuotaViewController       *diskQuotaViewController;
-
-// -----
-// @name Content controllers
-// -----
-
-@property (nonatomic) UTCSNewsViewController            *newsViewController;
-
 
 // -----
 // @name Navigation controllers
@@ -80,6 +77,7 @@
 #pragma mark - UTCSAppDelegate Implementation
 
 @implementation UTCSAppDelegate
+@synthesize window;
 
 #pragma mark UIApplicationDelegate Methods
 
@@ -105,14 +103,15 @@
     self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
-    self.webViewController              = [UTCSWebViewController new];
-    self.webViewController.delegate     = self;
-    
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
 
     ((UTCSApplication *)[UIApplication sharedApplication]).urlHandler = ^(NSURL *url) {
+        if(!self.webViewController) {
+            self.webViewController = [UTCSWebViewController new];
+            self.webViewController.delegate = self;
+        }
         self.webViewController.url = url;
         [self.verticalMenuViewController presentViewController:self.webViewController animated:YES completion:nil];
         return YES;

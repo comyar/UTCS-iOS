@@ -6,9 +6,29 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "UTCSMenuViewControllerDelegate.h"
+@import UIKit;
 
+
+typedef NS_ENUM(NSInteger, UTCSMenuOptions) {
+    UTCSMenuOptionNews = 0,
+    UTCSMenuOptionEvents,
+    UTCSMenuOptionLabs,
+    UTCSMenuOptionDirectory,
+    UTCSMenuOptionDiskQuota,
+    UTCSMenuOptionSettings
+};
+
+/**
+ */
+@protocol UTCSMenuViewControllerDelegate <NSObject>
+
+@optional
+
+/**
+ */
+- (void)didSelectMenuOption:(UTCSMenuOptions)option;
+
+@end
 
 
 

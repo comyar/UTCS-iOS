@@ -11,6 +11,7 @@
 
 
 /**
+ UTCSParallaxBlurHeaderScrollView
  */
 @interface UTCSParallaxBlurHeaderScrollView : UIView <UIScrollViewDelegate>
 

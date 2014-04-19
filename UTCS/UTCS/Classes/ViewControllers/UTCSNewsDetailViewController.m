@@ -84,7 +84,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
         
         // Title label
         self.titleLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.navigationBarHeight,
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 44.0,
                                                                       self.view.width - 16.0, 0.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:titleLabelFontSize];
             label.textColor = [UIColor whiteColor];
@@ -178,12 +178,12 @@ static const CGFloat dateLabelFontSize  = 16.0;
     self.dateLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.height - 8.0;
     
     // Set title label
-    self.titleLabel.frame = CGRectMake(8.0, self.parallaxBlurHeaderScrollView.navigationBarHeight, self.view.width - 16.0, 0.0);
+    self.titleLabel.frame = CGRectMake(8.0, 44.0, self.view.width - 16.0, 0.0);
     self.titleLabel.text = _newsStory.title;
     [self.titleLabel sizeToFit];
     
-    if(self.titleLabel.height > self.parallaxBlurHeaderScrollView.headerContainerView.height - self.parallaxBlurHeaderScrollView.navigationBarHeight - self.dateLabel.height) {
-        self.titleLabel.height = self.parallaxBlurHeaderScrollView.headerContainerView.height - self.parallaxBlurHeaderScrollView.navigationBarHeight - self.dateLabel.height;
+    if(self.titleLabel.height > self.parallaxBlurHeaderScrollView.headerContainerView.height - 44.0 - self.dateLabel.height) {
+        self.titleLabel.height = self.parallaxBlurHeaderScrollView.headerContainerView.height - 44.0 - self.dateLabel.height;
     }
     
     self.titleLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - (self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.y) - self.titleLabel.height;

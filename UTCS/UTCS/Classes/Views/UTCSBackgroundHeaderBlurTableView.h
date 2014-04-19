@@ -12,6 +12,7 @@
 
 
 /**
+ UTCSBackgroundHeaderBlurTableView 
  */
 @interface UTCSBackgroundHeaderBlurTableView : UIView <UIGestureRecognizerDelegate>
 

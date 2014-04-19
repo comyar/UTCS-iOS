@@ -6,16 +6,17 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "UTCSMenuViewControllerDelegate.h"
+
+@import UIKit;
+@import QuartzCore;
+
 #import "UTCSWebViewController.h"
+#import "UTCSMenuViewController.h"
+
 
 /**
+ UTCSAppDelegate
  */
 @interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate, UTCSWebViewControllerDelegate>
-
-//
-@property (nonatomic) UIWindow *window;
 
 @end

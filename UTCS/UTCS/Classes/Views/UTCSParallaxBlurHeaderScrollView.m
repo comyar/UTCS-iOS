@@ -6,13 +6,17 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+// Views
 #import "UTCSParallaxBlurHeaderScrollView.h"
 
-//
-static const CGFloat parallaxFactor        = 0.5;
 
-//
-static const CGFloat navigationBarHeight   = 44.0;
+#pragma mark - Constants
+
+// Factor by which the header translation is slowed down
+static const CGFloat parallaxFactor = 0.5;
 
 
 #pragma mark - UTCSNewsDetailView Class Extension
@@ -42,6 +46,10 @@ static const CGFloat navigationBarHeight   = 44.0;
 {
     if (self = [super initWithFrame:frame]) {
         
+        // Header mask
+        self.headerMask = [CAShapeLayer new];
+        
+        // Header image view
         self.headerImageView = ({
             UIImageView *imageView = [UIImageView new];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -49,6 +57,7 @@ static const CGFloat navigationBarHeight   = 44.0;
             imageView;
         });
         
+        // Header blurred image view
         self.headerBlurredImageView = ({
             UIImageView *imageView = [UIImageView new];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -57,6 +66,7 @@ static const CGFloat navigationBarHeight   = 44.0;
             imageView;
         });
         
+        // Header container view
         self.headerContainerView = ({
             UIView *view = [UIView new];
             view.layer.masksToBounds = YES;
@@ -64,17 +74,19 @@ static const CGFloat navigationBarHeight   = 44.0;
             view;
         });
         
+        // Scroll view
+        self.scrollView = ({
+            UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
+            scrollView.alwaysBounceVertical = YES;
+            scrollView.delegate = self;
+            scrollView;
+        });
+        
+        // Add subviews
+        [self addSubview:self.scrollView];
         [self.headerContainerView addSubview:self.headerImageView];
         [self.headerContainerView addSubview:self.headerBlurredImageView];
         [self addSubview:self.headerContainerView];
-        
-        self.scrollView = [[UIScrollView alloc]initWithFrame:frame];
-        self.scrollView.alwaysBounceVertical = YES;
-        self.scrollView.delegate = self;
-        [self addSubview:self.scrollView];
-        
-        self.headerMask = [CAShapeLayer new];
-        
     }
     return self;
 }
@@ -89,7 +101,7 @@ static const CGFloat navigationBarHeight   = 44.0;
     
     _headerImage = headerImage;
     self.headerImageView.image = _headerImage;
-    [self updateSubviews];
+    [self layoutIfNeeded];
 }
 
 - (void)setHeaderBlurredImage:(UIImage *)headerBlurredImage
@@ -100,19 +112,20 @@ static const CGFloat navigationBarHeight   = 44.0;
     
     _headerBlurredImage = headerBlurredImage;
     self.headerBlurredImageView.image = _headerBlurredImage;
-    [self updateSubviews];
+    [self layoutIfNeeded];
 }
 
 #pragma mark Layout Subviews
 
-- (void)updateSubviews
+- (void)layoutSubviews
 {
     [super layoutSubviews];
+    self.scrollView.frame               = self.bounds;
     self.headerContainerView.frame      = CGRectMake(0.0, -parallaxFactor * self.scrollView.contentOffset.y,
                                                      CGRectGetWidth(self.bounds), _headerImage.size.height);
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
-    self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight), CGRectGetWidth(self.scrollView.bounds), navigationBarHeight)]CGPath];
+    self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0), CGRectGetWidth(self.scrollView.bounds), 44.0)]CGPath];
 }
 
 #pragma mark UIScrollViewDelegate Methods
@@ -121,7 +134,8 @@ static const CGFloat navigationBarHeight   = 44.0;
 {
     if(scrollView == self.scrollView) {
         if(scrollView.contentOffset.y > 0) {
-            if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
+            
+            if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - 44.0) {
                 self.headerContainerView.frame = ({
                     CGRect frame = self.headerContainerView.frame;
                     frame.origin.y = -parallaxFactor * scrollView.contentOffset.y;
@@ -129,16 +143,19 @@ static const CGFloat navigationBarHeight   = 44.0;
                 });
                 self.headerContainerView.layer.mask = nil;
                 [self bringSubviewToFront:self.scrollView];
+                
             } else {
+                
                 self.headerContainerView.frame = ({
                     CGRect frame = self.headerContainerView.frame;
-                    frame.origin.y = -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight);
+                    frame.origin.y = -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0);
                     frame;
                 });
                 self.headerContainerView.layer.mask = self.headerMask;
                 [self bringSubviewToFront:self.headerContainerView];
             }
         } else {
+            
             self.headerContainerView.frame = ({
                 CGRect frame = self.headerContainerView.frame;
                 frame.origin.y = 0.0;
