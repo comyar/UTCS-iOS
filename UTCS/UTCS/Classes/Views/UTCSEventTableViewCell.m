@@ -11,6 +11,7 @@
 static const CGFloat calendarDateWidth  = 64.0;
 static const CGFloat dayLabelFontSize   = 40.0;
 static const CGFloat monthLabelFontSize = 14.0;
+static const CGFloat typeStripeWidth    = 2.0;
 
 @implementation UTCSEventTableViewCell
 
@@ -41,6 +42,16 @@ static const CGFloat monthLabelFontSize = 14.0;
             label;
         });
         [self.contentView addSubview:_dayLabel];
+        
+        _typeStripeLayer = ({
+            CAShapeLayer *layer = [CAShapeLayer layer];
+            layer.path = [UIBezierPath bezierPathWithRect:CGRectMake(0.0, 0.0, typeStripeWidth, CGRectGetHeight(self.bounds))].CGPath;
+            layer.fillColor     = [UIColor whiteColor].CGColor;
+            layer.strokeStart   = 0.0;
+            layer.strokeEnd     = 1.0;
+            layer;
+        });
+        [self.layer addSublayer:_typeStripeLayer];
     }
     return self;
 }
@@ -74,6 +85,8 @@ static const CGFloat monthLabelFontSize = 14.0;
         frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - 16.0;
         frame;
     });
+    
+    self.typeStripeLayer.path = [UIBezierPath bezierPathWithRect:CGRectMake(0.0, 0.0, typeStripeWidth, CGRectGetHeight(self.bounds))].CGPath;
 }
 
 @end

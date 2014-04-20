@@ -18,7 +18,7 @@
 // Views
 #import "UTCSEventTableViewCell.h"
 
-// Categoris
+// Categories
 #import "UIColor+UTCSColors.h"
 
 
@@ -101,8 +101,12 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     UTCSEvent *event = self.filteredEvents[indexPath.row];
     cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
     cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
-//    cell.typeColor = self.typeColorMapping[event.type];
+    
+    UIColor *typeColor = self.typeColorMapping[event.type];
+    cell.typeStripeLayer.fillColor = (typeColor) ? typeColor.CGColor : [UIColor whiteColor].CGColor;
+
     cell.textLabel.text = event.name;
+    
     cell.detailTextLabel.text = event.location;
     
     return cell;
@@ -153,8 +157,8 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
                 NSString *endDateString = (eventData[@"endDate"] == [NSNull null])? nil : eventData[@"endDate"];
                 event.endDate       = [self.dateFormatter dateFromString:endDateString];
                 
-                event.allDay        = eventData[@"allDay"];
-                event.food          = eventData[@"food"];
+                event.allDay        = [eventData[@"allDay"]boolValue];
+                event.food          = [eventData[@"food"]boolValue];
                 
                 [events addObject:event];
             }

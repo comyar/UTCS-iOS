@@ -87,6 +87,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"News";
+        self.automaticallyAdjustsScrollViewInsets = NO;
         self.newsArticleDataSource = [UTCSNewsArticleDataSource new];
     }
     return self;
@@ -109,7 +110,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Background header blur table view
     self.backgroundHeaderBlurTableView = ({
@@ -208,7 +208,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [cell setHighlighted:NO animated:NO];
     cell.alpha = 0.8;
-    cell.transform = CGAffineTransformMakeScale(0.95, 0.95);
+    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
     [UIView animateWithDuration:animationDuration animations:^{
         cell.alpha = 1.0;
         cell.transform = CGAffineTransformMakeScale(1.0, 1.0);

@@ -30,6 +30,7 @@
 
 - (BOOL)prefersStatusBarHidden
 {
+    // Hide the status bar on a UIActivityViewController
     return YES;
 }
 
@@ -52,10 +53,10 @@
 //
 @property (nonatomic) NSDateFormatter                   *dayDateFormatter;
 
-// Label used to display the date of a news story
+// Label used to display the date of the event
 @property (nonatomic) UILabel                           *locationLabel;
 
-// Text view used to display the news story
+// Text view used to display the event
 @property (nonatomic) UITextView                        *descriptionTextView;
 
 //
@@ -73,6 +74,8 @@
 //
 @property (nonatomic) NSCalendar                        *calendar;
 
+@property (nonatomic) NSDateFormatter                   *startDateFormatter;
+
 //
 @property (nonatomic) UIActivityViewController          *activityViewController;
 
@@ -86,91 +89,117 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
         self.view.backgroundColor = [UIColor whiteColor];
-        
-        self.dateFormatter = [NSDateFormatter new];
-        self.dateFormatter.timeZone = [[NSTimeZone alloc]initWithName:@"GMT"];
-        self.dateFormatter.dateFormat = @"EEEE, MMMM d";
-        
-        self.dayDateFormatter = [NSDateFormatter new];
-        self.dayDateFormatter.timeZone = [[NSTimeZone alloc]initWithName:@"GMT"];
-        self.dayDateFormatter.dateFormat = @"d";
-        
-        self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
-        self.parallaxBlurHeaderScrollView.headerImage = [UIImage imageNamed:@"header"];
-        self.parallaxBlurHeaderScrollView.headerBlurredImage = [UIImage imageNamed:@"blurredHeader"];
-        [self.view addSubview:self.parallaxBlurHeaderScrollView];
-        
-        self.dateLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, self.parallaxBlurHeaderScrollView.headerContainerView.height - 88.0, self.parallaxBlurHeaderScrollView.headerContainerView.width - 16.0, 80.0)];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36];
-            label.textColor = [UIColor whiteColor];
-            label.adjustsFontSizeToFitWidth = YES;
-            label.numberOfLines = 2;
-            [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
-            label;
+        self.startDateFormatter = ({
+            NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            dateFormatter.dateFormat = @"MMM d, h:mm a";
+            dateFormatter;
         });
-        
-        self.descriptionTextView = ({
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0, self.parallaxBlurHeaderScrollView.headerContainerView.height, self.view.width, 0.0)];
-            textView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypePhoneNumber | UIDataDetectorTypeAddress;
-            textView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
-            textView.textColor = [UIColor utcsGrayColor];
-            textView.scrollEnabled = NO;
-            textView.editable = NO;
-            textView;
-        });
-        [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
-        
-        self.addToCalendarButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(0, 0, 20, 20);
-            button.showsTouchWhenHighlighted = YES;
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"addtocalendar"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-            imageView.tintColor = [UIColor whiteColor];
-            imageView.frame = button.bounds;
-            [button addSubview:imageView];
-            
-            button;
-        });
-        
-        self.shareButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(0, 0, 20, 20);
-            button.showsTouchWhenHighlighted = YES;
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-            imageView.tintColor = [UIColor whiteColor];
-            imageView.frame = button.bounds;
-            [button addSubview:imageView];
-            
-            button;
-        });
-        
-        UIBarButtonItem *spacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        spacer.width = 20.0;
-        self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],
-                                                    spacer,
-                                                    [[UIBarButtonItem alloc]initWithCustomView:self.addToCalendarButton]];
-        
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)initializeSubviews
 {
-    [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.parallaxBlurHeaderScrollView];
     
+    // Location label
+    self.locationLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 88.0, self.view.width - 16.0, 80.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
+        label.textColor = [UIColor whiteColor];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.numberOfLines = 2;
+        [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
+        label;
+    });
+    
+    // Date label
+    self.dateLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 40.0, self.view.width - 16.0, 40.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
+        label.textColor = [UIColor whiteColor];
+        label.adjustsFontSizeToFitWidth = YES;
+        [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
+        label;
+    });
+    
+    
+    // Description text view
+    self.descriptionTextView = ({
+        UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0, kUTCSParallaxBlurHeaderHeight, self.view.width, 0.0)];
+        textView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypePhoneNumber | UIDataDetectorTypeAddress;
+        textView.textContainerInset = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+        textView.textColor = [UIColor utcsGrayColor];
+        textView.scrollEnabled = NO;
+        textView.editable = NO;
+        textView;
+    });
+    [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
+    
+    // Add to calendar button
+    self.addToCalendarButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, 20, 20);
+        button.showsTouchWhenHighlighted = YES;
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"events"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        [button addSubview:imageView];
+        button;
+    });
+    
+    // Share button
+    self.shareButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, 20, 20);
+        button.showsTouchWhenHighlighted = YES;
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        [button addSubview:imageView];
+        button;
+    });
+    
+    UIBarButtonItem *spacer = ({
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                                      target:nil
+                                                                                      action:nil];
+        barButtonItem.width = 20.0;
+        barButtonItem;
+    });
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],spacer,
+                                                [[UIBarButtonItem alloc]initWithCustomView:self.addToCalendarButton]];
+    
+    // Scroll to top button
     self.scrollToTopButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
+        self.navigationItem.titleView = button;
         button;
     });
-    self.navigationItem.titleView = self.scrollToTopButton;
+}
+
+- (void)configureWithEvent:(UTCSEvent *)event
+{
+    self.locationLabel.text = event.location;
+    self.dateLabel.text = [self dateStringForEvent:event];
+    
+    // Choose header image
+    self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:@"header"];
+    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"blurredHeader"];
+    
+    
+    
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -179,11 +208,17 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+#pragma mark Setters
+
 - (void)setEvent:(UTCSEvent *)event
 {
     _event = event;
     
-    self.dateLabel.attributedText = [self dateStringForEvent:_event];
+    if ([self.view.subviews count] == 0) {
+        [self initializeSubviews];
+    }
+    
+    [self configureWithEvent:self.event];
 }
 
 #pragma mark Share
@@ -217,26 +252,17 @@
 
 #pragma mark Helper
 
-- (NSAttributedString *)dateStringForEvent:(UTCSEvent *)event
+- (NSString *)dateStringForEvent:(UTCSEvent *)event
 {
     // All day event
     if (event.allDay) {
-        
-        NSLog(@"All day event");
         
         NSString *startDateString = [NSDateFormatter localizedStringFromDate:event.startDate
                                                                    dateStyle:NSDateFormatterLongStyle
                                                                    timeStyle:NSDateFormatterNoStyle];
         
-        NSString *combinedDateString = [NSString stringWithFormat:@"%@ All Day", startDateString];
-        NSMutableAttributedString *attributedDateString = [[NSMutableAttributedString alloc]initWithString:combinedDateString];
-        [attributedDateString addAttribute:NSForegroundColorAttributeName
-                                     value:[UIColor colorWithWhite:1.0 alpha:0.8]
-                                     range:NSMakeRange(0, [attributedDateString length])];
-        [attributedDateString addAttribute:NSFontAttributeName
-                                     value:[UIFont fontWithName:@"HelveticaNeue-Light" size:28]
-                                     range:NSMakeRange(0, [attributedDateString length])];
-        return attributedDateString;
+        NSString *combinedDateString = [NSString stringWithFormat:@"%@ - All Day", startDateString];
+        return combinedDateString;
     }
     
     // Initialize calendar
@@ -251,9 +277,7 @@
                                                      options:NSWrapCalendarComponents];
     
     // Default to using the endDateString for a same day event
-    NSString *startDateString = [NSDateFormatter localizedStringFromDate:event.startDate
-                                                               dateStyle:NSDateFormatterMediumStyle
-                                                               timeStyle:NSDateFormatterShortStyle];
+    NSString *startDateString = [self.startDateFormatter stringFromDate:event.startDate];
     NSString *endDateString = [NSDateFormatter localizedStringFromDate:event.endDate
                                                              dateStyle:NSDateFormatterNoStyle
                                                              timeStyle:NSDateFormatterShortStyle];
@@ -268,15 +292,7 @@
     // Combine the date strings and create attributed string
     NSString *combinedDateString = [NSString stringWithFormat:@"%@ - %@", startDateString, endDateString];
     
-    NSMutableAttributedString *attributedDateString = [[NSMutableAttributedString alloc]initWithString:combinedDateString];
-    [attributedDateString addAttribute:NSForegroundColorAttributeName
-                                 value:[UIColor colorWithWhite:1.0 alpha:0.8]
-                                 range:NSMakeRange(0, [attributedDateString length])];
-    [attributedDateString addAttribute:NSFontAttributeName
-                                 value:[UIFont fontWithName:@"HelveticaNeue-Light" size:24]
-                                 range:NSMakeRange(0, [attributedDateString length])];
-    
-    return attributedDateString;
+    return combinedDateString;
 }
 
 @end

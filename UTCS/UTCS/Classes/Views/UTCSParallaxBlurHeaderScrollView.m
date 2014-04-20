@@ -19,7 +19,7 @@
 static const CGFloat parallaxFactor = 0.5;
 
 // Height of the header image
-static const CGFloat headerImageHeight = 284.0;
+const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
 
 
 #pragma mark - UTCSNewsDetailView Class Extension
@@ -131,7 +131,7 @@ static const CGFloat headerImageHeight = 284.0;
     [super layoutSubviews];
     self.scrollView.frame               = self.bounds;
     self.headerContainerView.frame      = CGRectMake(0.0, -parallaxFactor * self.scrollView.contentOffset.y,
-                                                     CGRectGetWidth(self.bounds), headerImageHeight);
+                                                     CGRectGetWidth(self.bounds), kUTCSParallaxBlurHeaderHeight);
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
     self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0), CGRectGetWidth(self.scrollView.bounds), 44.0)]CGPath];

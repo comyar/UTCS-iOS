@@ -2,12 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "today-50.png"
+      "filename" : "calendar@2x.png"
     }
   ],
   "info" : {

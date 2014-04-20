@@ -9,6 +9,7 @@
 
 @import UIKit;
 
+extern const CGFloat kUTCSParallaxBlurHeaderHeight;
 
 /**
  UTCSParallaxBlurHeaderScrollView

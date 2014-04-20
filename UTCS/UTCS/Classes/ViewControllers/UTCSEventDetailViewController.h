@@ -6,13 +6,19 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <EventKit/EventKit.h>
+
+@import UIKit;
+@import EventKit;
 
 @class UTCSEvent;
 
+
+/**
+ */
 @interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate>
 
+/**
+ */
 @property (nonatomic) UTCSEvent *event;
 
 @end

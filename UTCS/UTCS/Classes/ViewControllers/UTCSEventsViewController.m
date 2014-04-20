@@ -31,6 +31,9 @@
 
 #pragma mark - Constants
 
+// Duration of animations performed by this view controller
+static const CGFloat animationDuration              = 0.3;
+
 // Name of the background image
 static NSString * const backgroundImageName         = @"eventsBackground";
 
@@ -222,7 +225,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
     
-    return MIN(ceilf(rect.size.height), 128.0) + 56.0;
+    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -241,6 +244,17 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setHighlighted:NO animated:NO];
+    cell.alpha = 0.8;
+    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
+    [UIView animateWithDuration:animationDuration animations:^{
+        cell.alpha = 1.0;
+        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    }];
+}
+
 #pragma mark UTCSEventsFilterTableViewControllerDelegate Methods
 
 - (void)eventsFilterTableViewController:(UTCSEventsFilterTableViewController *)eventsFilterTableViewController didSelectFilter:(NSString *)filter
@@ -249,6 +263,5 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [self.filterPopoverController dismissPopoverAnimated:YES];
     [self.backgroundHeaderBlurTableView.tableView reloadData];
 }
-
 
 @end
