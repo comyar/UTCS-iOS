@@ -27,7 +27,8 @@ static NSString * const headerImageKey          = @"headerImage";
 static NSString * const headerBlurredImageKey   = @"headerBlurredImage";
 
 // Minimum width of an image in a news article for it to become the header image
-static const CGFloat minHeaderImageWidth = 300.0;
+static const CGFloat minHeaderImageWidth    = 300.0;
+static const CGFloat minHeaderImageHeight   = 250.0;
 
 // Font to use for a news article's text
 static NSString * const articleFont = @"HelveticaNeue-Light";
@@ -109,7 +110,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
             }
             
             // If the image is large enough, use it as the header
-            if(image.size.width >= minHeaderImageWidth) {
+            if(image.size.width >= minHeaderImageWidth && image.size.height >= minHeaderImageHeight) {
                 headerImage = image;
             }
             
@@ -124,7 +125,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
             
             // Create a new font from the attributes
             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.6 * htmlFont.pointSize];
+            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.5 * htmlFont.pointSize];
             
             // Configure line/paragraph spacing
             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];

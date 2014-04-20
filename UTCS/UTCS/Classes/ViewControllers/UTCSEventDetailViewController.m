@@ -24,34 +24,28 @@
 #import "UITextView+CZTextViewHeight.h"
 
 
-#pragma mark - UIActivityViewController HideStatusBar Category
-
-@implementation UIActivityViewController (HideStatusBar)
-
-- (BOOL)prefersStatusBarHidden
-{
-    // Hide the status bar on a UIActivityViewController
-    return YES;
-}
-
-@end
-
-
 #pragma mark - UTCSEventDetailViewController Class Extension
 
 @interface UTCSEventDetailViewController ()
 
 //
-@property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
+@property (nonatomic) NSCalendar                        *calendar;
+
+//
+@property (nonatomic) NSDateFormatter                   *startDateFormatter;
+
+//
+@property (nonatomic) CAShapeLayer                      *contactSeparationLayer;
+
+// -----
+// @name Views
+// -----
+
+//
+@property (nonatomic) UILabel                           *nameLabel;
 
 //
 @property (nonatomic) UILabel                           *dateLabel;
-
-//
-@property (nonatomic) NSDateFormatter                   *dateFormatter;
-
-//
-@property (nonatomic) NSDateFormatter                   *dayDateFormatter;
 
 // Label used to display the date of the event
 @property (nonatomic) UILabel                           *locationLabel;
@@ -69,15 +63,7 @@
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
 //
-@property (nonatomic) EKEventStore                      *eventStore;
-
-//
-@property (nonatomic) NSCalendar                        *calendar;
-
-@property (nonatomic) NSDateFormatter                   *startDateFormatter;
-
-//
-@property (nonatomic) UIActivityViewController          *activityViewController;
+@property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
 @end
 
@@ -105,11 +91,22 @@
     self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.parallaxBlurHeaderScrollView];
     
+    // Title label
+    self.nameLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 0.0, self.view.width - 16.0, 0.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:22];
+        label.textColor = [UIColor whiteColor];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.numberOfLines = 0;
+        label;
+    });
+    [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:self.nameLabel];
+    
     // Location label
     self.locationLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 88.0, self.view.width - 16.0, 80.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
-        label.textColor = [UIColor whiteColor];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 56.0, self.view.width - 16.0, 24.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
         label.adjustsFontSizeToFitWidth = YES;
         label.numberOfLines = 2;
         [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
@@ -118,14 +115,13 @@
     
     // Date label
     self.dateLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 40.0, self.view.width - 16.0, 40.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
-        label.textColor = [UIColor whiteColor];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 32.0, self.view.width - 16.0, 32.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
         label.adjustsFontSizeToFitWidth = YES;
         [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
         label;
     });
-    
     
     // Description text view
     self.descriptionTextView = ({
@@ -166,6 +162,7 @@
         button;
     });
     
+    // Share/Add to calendar buttons
     UIBarButtonItem *spacer = ({
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                                       target:nil
@@ -188,18 +185,42 @@
 
 - (void)configureWithEvent:(UTCSEvent *)event
 {
+    self.dateLabel.text     = [self dateStringForEvent:event];
+    if (!self.dateLabel.text) {
+        self.dateLabel.height = 0.0;
+    } else {
+        self.dateLabel.height = 32.0;
+    }
+    
     self.locationLabel.text = event.location;
-    self.dateLabel.text = [self dateStringForEvent:event];
+    if (!self.locationLabel.text) {
+        self.locationLabel.height = 0.0;
+    } else {
+        self.locationLabel.height = 24.0;
+    }
     
     // Choose header image
     self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:@"header"];
     self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"blurredHeader"];
     
     
+    // Configure name label
+    self.nameLabel.frame = CGRectMake(8.0, 0.0, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
+    self.nameLabel.text = event.name;
+    [self.nameLabel sizeToFit];
+    if(self.nameLabel.height > kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height) {
+        self.nameLabel.height = kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height;
+    }
+    self.nameLabel.y = self.locationLabel.y - self.nameLabel.height;
+
+    // Configure description text view
+    self.descriptionTextView.attributedText = [self descriptionForEvent:event];
+    self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
+                                                              height:CGFLOAT_MAX].height + self.descriptionTextView.textContainerInset.top + self.descriptionTextView.textContainerInset.bottom;
+    self.descriptionTextView.y = kUTCSParallaxBlurHeaderHeight;
     
-    
-    
-    
+    // Set parallax blur header scroll view content size
+    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + kUTCSParallaxBlurHeaderHeight);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -251,6 +272,41 @@
 }
 
 #pragma mark Helper
+
+- (NSAttributedString *)descriptionForEvent:(UTCSEvent *)event
+{
+    NSMutableAttributedString *attributedDescription = [NSMutableAttributedString new];
+    
+    if (event.attributedDescription) {
+        NSMutableAttributedString *descriptionTitle = [[NSMutableAttributedString alloc]initWithString:@"Description\n\n"];
+        
+        [descriptionTitle addAttribute:NSForegroundColorAttributeName
+                                 value:[UIColor utcsBurntOrangeColor]
+                                 range:NSMakeRange(0, [descriptionTitle length])];
+        
+        [descriptionTitle addAttribute:NSFontAttributeName
+                                    value:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]
+                                    range:NSMakeRange(0, [descriptionTitle length])];
+ 
+        [attributedDescription appendAttributedString:descriptionTitle];
+        [attributedDescription appendAttributedString:event.attributedDescription];
+        
+    } else {
+        NSMutableAttributedString *noDescriptionString = [[NSMutableAttributedString alloc]initWithString:@"Description Unavailable"];
+        
+        [noDescriptionString addAttribute:NSForegroundColorAttributeName
+                                    value:[UIColor colorWithWhite:0.5 alpha:0.5]
+                                    range:NSMakeRange(0, [noDescriptionString length])];
+        
+        [noDescriptionString addAttribute:NSFontAttributeName
+                                    value:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]
+                                    range:NSMakeRange(0, [noDescriptionString length])];
+        
+        [attributedDescription appendAttributedString:noDescriptionString];
+    }
+    
+    return attributedDescription;
+}
 
 - (NSString *)dateStringForEvent:(UTCSEvent *)event
 {

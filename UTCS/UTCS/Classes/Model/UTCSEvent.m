@@ -110,7 +110,7 @@ static NSString * const foodKey                     = @"food";
          
          // Create a new font from the attributes
          UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-         UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.25 * htmlFont.pointSize];
+         UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.5 * htmlFont.pointSize];
          
          // Configure line/paragraph spacing
          NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];

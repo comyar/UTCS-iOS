@@ -123,11 +123,12 @@
     [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
     [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
     
-    [[UINavigationBar appearance]setShadowImage:[UIImage new]];
-    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance]setBackgroundColor:[UIColor clearColor]];
-    [[UINavigationBar appearance]setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setShadowImage:[UIImage new]];
+    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setBackgroundColor:[UIColor clearColor]];
+    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setBackgroundImage:[UIImage new]
+                                                                                         forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods
