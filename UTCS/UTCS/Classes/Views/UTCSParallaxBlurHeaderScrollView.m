@@ -18,6 +18,9 @@
 // Factor by which the header translation is slowed down
 static const CGFloat parallaxFactor = 0.5;
 
+// Height of the header image
+static const CGFloat headerImageHeight = 284.0;
+
 
 #pragma mark - UTCSNewsDetailView Class Extension
 
@@ -93,6 +96,12 @@ static const CGFloat parallaxFactor = 0.5;
 
 #pragma mark Setter Methods
 
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    [self layoutIfNeeded];
+}
+
 - (void)setHeaderImage:(UIImage *)headerImage
 {
     if(headerImage == _headerImage) {
@@ -101,11 +110,6 @@ static const CGFloat parallaxFactor = 0.5;
     
     _headerImage = headerImage;
     self.headerImageView.image = _headerImage;
-    self.headerImageView.frame = ({
-        CGRect frame = self.headerImageView.frame;
-        frame.size.height = _headerImage.size.height;
-        frame;
-    });
     [self layoutIfNeeded];
 }
 
@@ -117,11 +121,6 @@ static const CGFloat parallaxFactor = 0.5;
     
     _headerBlurredImage = headerBlurredImage;
     self.headerBlurredImageView.image = _headerBlurredImage;
-    self.headerBlurredImageView.frame = ({
-        CGRect frame = self.headerBlurredImageView.frame;
-        frame.size.height = _headerBlurredImage.size.height;
-        frame;
-    });
     [self layoutIfNeeded];
 }
 
@@ -132,7 +131,7 @@ static const CGFloat parallaxFactor = 0.5;
     [super layoutSubviews];
     self.scrollView.frame               = self.bounds;
     self.headerContainerView.frame      = CGRectMake(0.0, -parallaxFactor * self.scrollView.contentOffset.y,
-                                                     CGRectGetWidth(self.bounds), _headerImage.size.height);
+                                                     CGRectGetWidth(self.bounds), headerImageHeight);
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
     self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0), CGRectGetWidth(self.scrollView.bounds), 44.0)]CGPath];

@@ -71,6 +71,9 @@
 @property (nonatomic) EKEventStore                      *eventStore;
 
 //
+@property (nonatomic) NSCalendar                        *calendar;
+
+//
 @property (nonatomic) UIActivityViewController          *activityViewController;
 
 @end
@@ -181,46 +184,11 @@
     _event = event;
     
     self.dateLabel.attributedText = [self dateStringForEvent:_event];
-    
-    self.locationLabel.text = _event.location;
-    
-    self.descriptionTextView.attributedText = ({
-        NSMutableAttributedString *attributedText = [NSMutableAttributedString new];
-        
-        NSString *nameString = [NSString stringWithFormat:@"%@ \n\n", _event.name];
-        NSAttributedString *name = [[NSAttributedString alloc]initWithString:nameString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor blackColor]}];
-        
-        [attributedText appendAttributedString:name];
-        
-        if(_event.location) {
-            NSString *locationString = [NSString stringWithFormat:@"%@ \n\n", _event.location];
-            NSAttributedString *location = [[NSAttributedString alloc]initWithString:locationString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
-            [attributedText appendAttributedString:location];
-        }
-        
-        if(_event.attributedDescription) {
-            NSAttributedString *descriptionHeader = [[NSAttributedString alloc]initWithString:@"Description \n\n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:16], NSForegroundColorAttributeName:[UIColor utcsBurntOrangeColor]}];
-            
-            [attributedText appendAttributedString:descriptionHeader];
-            [attributedText appendAttributedString:_event.attributedDescription];
-        } else {
-            NSAttributedString *description = [[NSAttributedString alloc]initWithString:@"Description Unavailable \n" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
-            [attributedText appendAttributedString:description];
-        }
-        
-        attributedText;
-    });
-    
-    self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
-                                                              height:CGFLOAT_MAX].height + self.descriptionTextView.textContainerInset.top + self.descriptionTextView.textContainerInset.bottom;
-    self.descriptionTextView.height = MAX(self.descriptionTextView.height, 160);
-    
-    self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + self.parallaxBlurHeaderScrollView.headerContainerView.height);
 }
 
 #pragma mark Share
 
-- (void)sharedEvent:(UTCSEvent *)event
+- (void)shareEvent:(UTCSEvent *)event
 {
     
 }
@@ -240,16 +208,75 @@
         [self addEventToCalendar:self.event];
         
     } else if(button == self.shareButton) {
-        [self sharedEvent:self.event];
+        [self shareEvent:self.event];
         
     } else if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
 }
 
+#pragma mark Helper
+
 - (NSAttributedString *)dateStringForEvent:(UTCSEvent *)event
 {
-    return nil;
+    // All day event
+    if (event.allDay) {
+        
+        NSLog(@"All day event");
+        
+        NSString *startDateString = [NSDateFormatter localizedStringFromDate:event.startDate
+                                                                   dateStyle:NSDateFormatterLongStyle
+                                                                   timeStyle:NSDateFormatterNoStyle];
+        
+        NSString *combinedDateString = [NSString stringWithFormat:@"%@ All Day", startDateString];
+        NSMutableAttributedString *attributedDateString = [[NSMutableAttributedString alloc]initWithString:combinedDateString];
+        [attributedDateString addAttribute:NSForegroundColorAttributeName
+                                     value:[UIColor colorWithWhite:1.0 alpha:0.8]
+                                     range:NSMakeRange(0, [attributedDateString length])];
+        [attributedDateString addAttribute:NSFontAttributeName
+                                     value:[UIFont fontWithName:@"HelveticaNeue-Light" size:28]
+                                     range:NSMakeRange(0, [attributedDateString length])];
+        return attributedDateString;
+    }
+    
+    // Initialize calendar
+    if (!self.calendar) {
+        self.calendar = [NSCalendar currentCalendar];
+    }
+    
+    // Find difference in days between start date and end date
+    NSDateComponents *components = [self.calendar components:NSCalendarUnitDay
+                                                    fromDate:event.startDate
+                                                      toDate:event.endDate
+                                                     options:NSWrapCalendarComponents];
+    
+    // Default to using the endDateString for a same day event
+    NSString *startDateString = [NSDateFormatter localizedStringFromDate:event.startDate
+                                                               dateStyle:NSDateFormatterMediumStyle
+                                                               timeStyle:NSDateFormatterShortStyle];
+    NSString *endDateString = [NSDateFormatter localizedStringFromDate:event.endDate
+                                                             dateStyle:NSDateFormatterNoStyle
+                                                             timeStyle:NSDateFormatterShortStyle];
+    
+    // If the event is over multiple days, update the endDateString
+    if ([components day] > 0) {
+        endDateString = [NSDateFormatter localizedStringFromDate:event.endDate
+                                                       dateStyle:NSDateFormatterMediumStyle
+                                                       timeStyle:NSDateFormatterShortStyle];
+    }
+    
+    // Combine the date strings and create attributed string
+    NSString *combinedDateString = [NSString stringWithFormat:@"%@ - %@", startDateString, endDateString];
+    
+    NSMutableAttributedString *attributedDateString = [[NSMutableAttributedString alloc]initWithString:combinedDateString];
+    [attributedDateString addAttribute:NSForegroundColorAttributeName
+                                 value:[UIColor colorWithWhite:1.0 alpha:0.8]
+                                 range:NSMakeRange(0, [attributedDateString length])];
+    [attributedDateString addAttribute:NSFontAttributeName
+                                 value:[UIFont fontWithName:@"HelveticaNeue-Light" size:24]
+                                 range:NSMakeRange(0, [attributedDateString length])];
+    
+    return attributedDateString;
 }
 
 @end
