@@ -15,7 +15,7 @@
 
 /**
  */
-@interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate>
+@interface UTCSEventDetailViewController : UIViewController <UITabBarDelegate, UIAlertViewDelegate>
 
 /**
  */

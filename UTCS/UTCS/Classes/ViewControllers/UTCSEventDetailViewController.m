@@ -28,23 +28,23 @@
 
 @interface UTCSEventDetailViewController ()
 
-//
+// Current calendar
 @property (nonatomic) NSCalendar                        *calendar;
 
-//
+// Date formatter for the event start date
 @property (nonatomic) NSDateFormatter                   *startDateFormatter;
 
-//
-@property (nonatomic) CAShapeLayer                      *contactSeparationLayer;
+// Event store
+@property (nonatomic) EKEventStore                      *eventStore;
 
 // -----
 // @name Views
 // -----
 
-//
+// Label used to display the name of the event
 @property (nonatomic) UILabel                           *nameLabel;
 
-//
+// Label used to display the date of the event
 @property (nonatomic) UILabel                           *dateLabel;
 
 // Label used to display the date of the event
@@ -53,17 +53,29 @@
 // Text view used to display the event
 @property (nonatomic) UITextView                        *descriptionTextView;
 
-//
-@property (nonatomic) UIButton                          *addToCalendarButton;
-
-//
+// Button used to share the event
 @property (nonatomic) UIButton                          *shareButton;
 
-//
+// Button used to add the event to calendar
+@property (nonatomic) UIButton                          *addToCalendarButton;
+
+// Button used to scroll to the top of the event detail
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
-//
+// Scroll view used to display the details of the event
 @property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
+
+@end
+
+
+#pragma mark - UIActivityViewController Category (UTCSHideStatusBar)
+
+@implementation UIActivityViewController (UTCSHideStatusBar)
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 @end
 
@@ -246,14 +258,71 @@
 
 - (void)shareEvent:(UTCSEvent *)event
 {
+    NSMutableArray *activityItems = [NSMutableArray new];
     
+    if (event.name) {
+        [activityItems addObject:[event.name stringByAppendingString:@"\n"]];
+    }
+    
+    if (event.location) {
+        [activityItems addObject:[event.location stringByAppendingString:@""]];
+    }
+    
+    if (self.dateLabel.text) {
+        [activityItems addObject:[self.dateLabel.text stringByAppendingString:@"\n"]];
+    }
+    
+    if (event.link) {
+        [activityItems addObject:event.link];
+    }
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems
+                                                                                        applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypeSaveToCameraRoll];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 #pragma mark Calendar
 
+- (void)askToAddEventToCalendar:(UTCSEvent *)event
+{
+    [[[UIAlertView alloc]initWithTitle:@"Add Event to Calendar"
+                               message:@"Add this event to your calendar?"
+                              delegate:self
+                     cancelButtonTitle:@"Cancel"
+                     otherButtonTitles:@"Yes", nil]show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) { // Yes
+        [self addEventToCalendar:self.event];
+    }
+}
+
 - (void)addEventToCalendar:(UTCSEvent *)event
 {
+    if (!self.eventStore) {
+        self.eventStore = [EKEventStore new];
+    }
     
+    EKEvent *calendarEvent = ({
+        EKEvent *calendarEvent = [EKEvent eventWithEventStore:self.eventStore];
+        calendarEvent.title     = event.name;
+        calendarEvent.startDate = event.startDate;
+        calendarEvent.location  = event.location;
+        
+        if (event.allDay) {
+            calendarEvent.allDay = YES;
+        } else {
+            calendarEvent.endDate = event.endDate;
+        }
+        
+        calendarEvent.calendar = [self.eventStore defaultCalendarForNewEvents];
+        calendarEvent;
+    });
+    
+    [self.eventStore saveEvent:calendarEvent span:EKSpanThisEvent commit:YES error:nil];
 }
 
 #pragma mark Buttons
@@ -261,8 +330,7 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.addToCalendarButton) {
-        [self addEventToCalendar:self.event];
-        
+        [self askToAddEventToCalendar:self.event];
     } else if(button == self.shareButton) {
         [self shareEvent:self.event];
         

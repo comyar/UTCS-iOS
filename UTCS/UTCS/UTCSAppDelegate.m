@@ -13,6 +13,7 @@
 #import "UTCSLabsViewController.h"
 #import "UTCSMenuViewController.h"
 #import "UTCSNewsViewController.h"
+#import "UTCSNavigationController.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSSettingsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
@@ -50,19 +51,19 @@
 // -----
 
 //
-@property (nonatomic) UINavigationController            *labsNavigationController;
+@property (nonatomic) UTCSNavigationController          *labsNavigationController;
 
 //
-@property (nonatomic) UINavigationController            *newsNavigationController;
+@property (nonatomic) UTCSNavigationController          *newsNavigationController;
 
 //
-@property (nonatomic) UINavigationController            *eventsNavigationController;
+@property (nonatomic) UTCSNavigationController          *eventsNavigationController;
 
 //
-@property (nonatomic) UINavigationController            *directoryNavigationController;
+@property (nonatomic) UTCSNavigationController          *directoryNavigationController;
 
 //
-@property (nonatomic) UINavigationController            *settingsNavigationController;
+@property (nonatomic) UTCSNavigationController          *settingsNavigationController;
 
 @end
 
@@ -82,12 +83,12 @@
     
     // News
     self.newsViewController             = [UTCSNewsViewController new];
-    self.newsNavigationController       = [[UINavigationController alloc]initWithRootViewController:self.newsViewController];
+    self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:self.newsViewController];
     
-    self.eventsNavigationController     = [[UINavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    self.labsNavigationController       = [[UINavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
-    self.directoryNavigationController  = [[UINavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-    self.settingsNavigationController   = [[UINavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
+    self.eventsNavigationController     = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    self.labsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
+    self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
@@ -123,12 +124,12 @@
     [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
     [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
     
-    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setShadowImage:[UIImage new]];
-    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setBackgroundColor:[UIColor clearColor]];
-    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setBackgroundImage:[UIImage new]
+    [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
+    [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundColor:[UIColor clearColor]];
+    [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundImage:[UIImage new]
                                                                                          forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods
