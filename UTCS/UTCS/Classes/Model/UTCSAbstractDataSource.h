@@ -6,8 +6,37 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
+@import Foundation;
+#import "UTCSDataRequestServicer.h"
+
+/**
+ */
+typedef void (^UTCSDataSourceCompletion) (id values, NSError *error);
+
+
+/**
+ */
 @interface UTCSAbstractDataSource : NSObject
+
+/**
+ */
+- (BOOL)shouldUpdate;
+
+/**
+ */
+- (void)updateWithCompletion:(UTCSDataSourceCompletion)completion;
+
+// -----
+// @name Property
+// -----
+
+/**
+ */
+@property (nonatomic) NSString              *service;
+
+/**
+ */
+@property (nonatomic) UTCSDataRequestType   requestType;
 
 @end

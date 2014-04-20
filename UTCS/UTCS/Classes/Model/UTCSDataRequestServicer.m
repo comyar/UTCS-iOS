@@ -22,6 +22,7 @@ NSString *UTCSEventsService      = @"events";
 NSString *UTCSLabsService        = @"labs";
 NSString *UTCSDirectoryService   = @"directory";
 NSString *UTCSDiskQuotaService   = @"quota";
+NSString *UTCSDataRequestServicerErrorDomain = @"UTCSDataRequestServicerError";
 
 #pragma mark - UTCSDataRequestServicer Implementation
 
