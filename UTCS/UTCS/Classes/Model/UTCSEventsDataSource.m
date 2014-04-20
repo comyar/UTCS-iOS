@@ -24,7 +24,7 @@
 
 #pragma mark - Constants
 
-// Key used to cache news articles
+// Key used to cache events
 static NSString * const eventsCacheKey      = @"events";
 
 // Minimum time between updates, in seconds

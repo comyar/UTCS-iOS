@@ -89,8 +89,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     
+    [self.directoryDataSource updateDirectoryWithCompletion:^(NSDate *updated) {
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 

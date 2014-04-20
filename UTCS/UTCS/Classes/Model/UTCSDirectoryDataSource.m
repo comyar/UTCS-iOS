@@ -6,11 +6,28 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+#pragma mark - Imports
+
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
 #import "UTCSStateManager.h"
+#import "UTCSCacheManager.h"
+#import "UTCSDataRequestServicer.h"
+
+#pragma mark - Constants
+
+// Key used to cache directory
+static NSString *directoryCacheKey = @"directory";
+
+// Key used to cache flat directory
+static NSString *flatDirectoryCacheKey = @"flatDirectory";
+
+// Minimum time between updates, in seconds
+static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
+
 
 @interface UTCSDirectoryDataSource ()
+@property (nonatomic) NSArray *directory;
 @property (nonatomic) NSArray *flatDirectory;
 @end
 
@@ -25,8 +42,61 @@
     return self;
 }
 
-- (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion
+- (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion
 {
+    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:directoryCacheKey];
+    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    
+    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+        NSLog(@"Directory : Cache hit");
+        
+        if (completion) {
+            completion(metaData.timestamp);
+        }
+        
+        return;
+    }
+    
+    NSLog(@"Events : Cache miss");
+    
+    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestEvents argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+        if ([meta[@"service"] isEqualToString:UTCSEventsService] && meta[@"success"]) {
+            NSMutableArray *directory = [NSMutableArray new];
+            NSMutableArray *flatDirectory = [NSMutableArray new];
+            
+            for (NSArray *letter in values) {
+                NSMutableArray *directoryLetter = [NSMutableArray new];
+                for (NSDictionary *personData in letter) {
+                    UTCSDirectoryPerson *person = [UTCSDirectoryPerson new];
+                    person.firstName    = personData[@"fName"];
+                    person.lastName     = personData[@"lName"];
+                    person.fullName     = personData[@"name"];
+                    person.office       = personData[@"location"];
+                    person.phoneNumber  = personData[@"phone"];
+                    [directoryLetter addObject:person];
+                    [flatDirectory addObject:person];
+                }
+                [directory addObject:directoryLetter];
+            }
+            
+            self.directory = directory;
+            self.flatDirectory = flatDirectory;
+            
+            [UTCSCacheManager cacheObject:self.directory forService:UTCSDirectoryService withKey:directoryCacheKey];
+            [UTCSCacheManager cacheObject:self.flatDirectory forService:UTCSDirectoryService withKey:flatDirectoryCacheKey];
+        }
+        
+        if (completion) {
+            completion([NSDate date]);
+        }
+        
+    } failure:^(NSError *error) {
+        
+        if (completion) {
+            completion(metaData.timestamp);
+        }
+        
+    }];
 
 }
 

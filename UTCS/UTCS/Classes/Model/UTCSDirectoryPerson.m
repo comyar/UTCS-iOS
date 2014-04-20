@@ -10,36 +10,27 @@
 
 @implementation UTCSDirectoryPerson
 
-
-- (NSString *)typeForParseType:(NSString *)parseType
-{
-    if([parseType isEqualToString:@"grad"]) {
-        return @"Graduate";
-    }
-    return [parseType capitalizedString];
-}
-
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if(self = [super init]) {
-        _fullName = [aDecoder decodeObjectForKey:@"name"];
-        _firstName = [aDecoder decodeObjectForKey:@"fName"];
-        _lastName = [aDecoder decodeObjectForKey:@"lName"];
-        _officeLocation = [aDecoder decodeObjectForKey:@"location"];
-        _phoneNumber = [aDecoder decodeObjectForKey:@"phone"];
-        _type = [aDecoder decodeObjectForKey:@"type"];
+        _fullName       = [aDecoder decodeObjectForKey:@"name"];
+        _firstName      = [aDecoder decodeObjectForKey:@"fName"];
+        _lastName       = [aDecoder decodeObjectForKey:@"lName"];
+        _office         = [aDecoder decodeObjectForKey:@"office"];
+        _phoneNumber    = [aDecoder decodeObjectForKey:@"phone"];
+        _type           = [aDecoder decodeObjectForKey:@"type"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_fullName forKey:@"name"];
-    [aCoder encodeObject:_firstName forKey:@"fName"];
-    [aCoder encodeObject:_lastName forKey:@"lName"];
-    [aCoder encodeObject:_officeLocation forKey:@"location"];
-    [aCoder encodeObject:_phoneNumber forKey:@"phone"];
-    [aCoder encodeObject:_type forKey:@"type"];
+    [aCoder encodeObject:_fullName          forKey:@"name"];
+    [aCoder encodeObject:_firstName         forKey:@"fName"];
+    [aCoder encodeObject:_lastName          forKey:@"lName"];
+    [aCoder encodeObject:_office            forKey:@"office"];
+    [aCoder encodeObject:_phoneNumber       forKey:@"phone"];
+    [aCoder encodeObject:_type              forKey:@"type"];
 }
 
 @end
