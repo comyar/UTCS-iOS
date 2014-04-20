@@ -17,10 +17,8 @@ static const CGFloat monthLabelFontSize = 14.0;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.textLabel.numberOfLines = 4;
-        
-        self.detailTextLabel.numberOfLines = 4;
-        self.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        self.textLabel.numberOfLines        = 4;
+        self.detailTextLabel.numberOfLines  = 2;
         
         _monthLabel = ({
             UILabel *label = [UILabel new];
@@ -43,8 +41,6 @@ static const CGFloat monthLabelFontSize = 14.0;
             label;
         });
         [self.contentView addSubview:_dayLabel];
-        
-        _tagColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -67,34 +63,17 @@ static const CGFloat monthLabelFontSize = 14.0;
     
     self.textLabel.frame = ({
         CGRect frame = self.textLabel.frame;
-        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds) + 4.0;
+        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
         frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - 16.0;
         frame;
     });
     
     self.detailTextLabel.frame = ({
         CGRect frame = self.detailTextLabel.frame;
-        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds) + 4.0;
+        frame.origin.x = self.dayLabel.frame.origin.x + CGRectGetWidth(self.dayLabel.bounds);
         frame.size.width = CGRectGetWidth(self.bounds) - self.dayLabel.frame.origin.x - calendarDateWidth - 16.0;
         frame;
     });
-}
-
-- (void)setTagColor:(UIColor *)tagColor
-{
-    _tagColor = (tagColor)? tagColor : [UIColor whiteColor];
-    [self setNeedsDisplay];
-}
-
-- (void)drawRect:(CGRect)rect
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    [_tagColor set];
-    CGContextSetLineWidth(context, 4.0);
-    CGContextMoveToPoint(context, 0.0, 0.0);
-    CGContextAddLineToPoint(context, 0.0, CGRectGetHeight(self.bounds));
-    CGContextStrokePath(context);
 }
 
 @end

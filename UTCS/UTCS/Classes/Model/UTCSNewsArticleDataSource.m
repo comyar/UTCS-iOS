@@ -37,7 +37,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 
 @interface UTCSNewsArticleDataSource ()
 
-// Overidden newsStories property
+// Array of news articles
 @property (nonatomic) NSArray *newsArticles;
 
 // Date formatter
@@ -116,7 +116,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
                 article.title               = (articleData[@"title"]    == [NSNull null])? nil : articleData[@"title"];
                 article.html                = (articleData[@"html"]     == [NSNull null])? nil : articleData[@"html"];
                 article.url                 = (articleData[@"url"]      == [NSNull null])? nil : articleData[@"url"];
-                
+    
                 NSString *dateString        = (articleData[@"date"]     == [NSNull null])? nil : articleData[@"date"];
                 article.date                = [self.dateFormatter dateFromString:dateString];
                 
@@ -131,6 +131,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
         if (completion) {
             completion([NSDate date]);
         }
+        
     } failure:^(NSError *error) {
         if (completion) {
             completion(metaData.timestamp);

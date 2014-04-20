@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, UTCSTableViewCellBounceDirection) {
+    UTCSTableViewCellBounceDirectionUp,
+    UTCSTableViewCellBounceDirectionDown
+};
+
+
 @interface UTCSTableViewCell : UITableViewCell
+
+- (void)bounceWithDirection:(UTCSTableViewCellBounceDirection)bounceDirection;
 
 @end

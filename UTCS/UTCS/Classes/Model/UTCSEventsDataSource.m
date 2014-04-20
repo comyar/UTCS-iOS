@@ -101,7 +101,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     UTCSEvent *event = self.filteredEvents[indexPath.row];
     cell.dayLabel.text = [self.dayDateFormatter stringFromDate:event.startDate];
     cell.monthLabel.text = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
-    cell.tagColor = self.typeColorMapping[event.type];
+//    cell.typeColor = self.typeColorMapping[event.type];
     cell.textLabel.text = event.name;
     cell.detailTextLabel.text = event.location;
     

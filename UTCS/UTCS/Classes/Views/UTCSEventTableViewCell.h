@@ -11,8 +11,8 @@
 
 @interface UTCSEventTableViewCell : UTCSTableViewCell
 
-@property (nonatomic) UIColor *tagColor;
-@property (nonatomic, readonly) UILabel *monthLabel;
-@property (nonatomic, readonly) UILabel *dayLabel;
+@property (nonatomic, readonly) CAShapeLayer    *typeStripe;
+@property (nonatomic, readonly) UILabel         *monthLabel;
+@property (nonatomic, readonly) UILabel         *dayLabel;
 
 @end

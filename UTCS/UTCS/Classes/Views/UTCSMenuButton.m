@@ -16,7 +16,7 @@ static const CGFloat goldenRatio = 1.618;
 
 - (instancetype)init
 {
-    return [self initWithFrame:CGRectMake(2.0, 8.0, 56.0, 32.0)];
+    return [self initWithFrame:CGRectMake(-4.0, 4.0, 76.0, 36.0)];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -39,6 +39,12 @@ static const CGFloat goldenRatio = 1.618;
 - (void)setLineColor:(UIColor *)lineColor
 {
     _lineColor = lineColor;
+    [self setNeedsDisplay];
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
     [self setNeedsDisplay];
 }
 

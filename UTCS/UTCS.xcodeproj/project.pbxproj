@@ -112,8 +112,8 @@
 		DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterTableViewController.h; path = ViewControllers/UTCSEventsFilterTableViewController.h; sourceTree = "<group>"; };
 		DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsFilterTableViewController.m; path = ViewControllers/UTCSEventsFilterTableViewController.m; sourceTree = "<group>"; };
 		DD4C7D0F18FB118C00129A2E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSEventTableViewCell.h; sourceTree = "<group>"; };
-		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSEventTableViewCell.m; sourceTree = "<group>"; };
+		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventTableViewCell.h; path = Views/UTCSEventTableViewCell.h; sourceTree = "<group>"; };
+		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventTableViewCell.m; path = Views/UTCSEventTableViewCell.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEvent.h; path = Model/UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEvent.m; path = Model/UTCSEvent.m; sourceTree = "<group>"; };
 		DD5B583C18D239F900EEB474 /* UTCSNewsArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsArticle.h; path = Model/UTCSNewsArticle.h; sourceTree = "<group>"; };
@@ -159,8 +159,8 @@
 		DD8989A41903141C000F1041 /* UTCSCacheMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSCacheMetaData.h; path = Model/UTCSCacheMetaData.h; sourceTree = "<group>"; };
 		DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSCacheMetaData.m; path = Model/UTCSCacheMetaData.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSLabsTableViewCell.h; sourceTree = "<group>"; };
-		DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSLabsTableViewCell.m; sourceTree = "<group>"; };
+		DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsTableViewCell.h; path = Views/UTCSLabsTableViewCell.h; sourceTree = "<group>"; };
+		DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsTableViewCell.m; path = Views/UTCSLabsTableViewCell.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -424,6 +424,8 @@
 		DD87616418FDFEA5005FEE4E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */,
+				DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */,
 				DD87615818FDA7A6005FEE4E /* UTCSEventsHeaderView.h */,
 				DD87615918FDA7A6005FEE4E /* UTCSEventsHeaderView.m */,
 			);
@@ -467,6 +469,8 @@
 		DD8761681900FC59005FEE4E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */,
+				DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -671,10 +675,6 @@
 			children = (
 				DD64DAD718F915040033D58B /* UTCSTableViewCell.h */,
 				DD64DAD818F915040033D58B /* UTCSTableViewCell.m */,
-				DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */,
-				DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */,
-				DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */,
-				DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */,
 			);
 			name = "TableView Cells";
 			sourceTree = "<group>";

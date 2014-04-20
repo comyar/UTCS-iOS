@@ -204,46 +204,14 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self bounceCell:cell down:YES];
-}
-
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self bounceCell:cell down:NO];
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self bounceCell:cell down:NO];
-}
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.alpha = 1.0;
-    cell.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-}
-
-- (void)bounceCell:(UITableViewCell *)cell down:(BOOL)down
-{
-    [UIView animateWithDuration:animationDuration/3.0 animations:^{
-        cell.contentView.transform = (down)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:animationDuration/3.0 animations:^{
-            cell.contentView.transform = (down)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:animationDuration/3.0 animations:^{
-                cell.contentView.transform = (down)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
-            }];
-        }];
-    }];
-    
+    [cell setHighlighted:NO animated:NO];
+    cell.alpha = 0.8;
+    cell.transform = CGAffineTransformMakeScale(0.95, 0.95);
     [UIView animateWithDuration:animationDuration animations:^{
-        cell.contentView.alpha = (down)? 0.5 : 1.0;
+        cell.alpha = 1.0;
+        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
 }
 
