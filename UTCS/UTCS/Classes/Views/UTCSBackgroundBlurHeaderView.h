@@ -17,6 +17,16 @@
  */
 @interface UTCSBackgroundBlurHeaderView : UIView
 
+// -----
+// @name Using a UTCSBackgroundBlurHeaderView
+// -----
+
+- (void)showActivityAnimation:(BOOL)show;
+
+// -----
+// @name Property
+// -----
+
 /**
  Shimmering view used to indicate loading of news articles
  */

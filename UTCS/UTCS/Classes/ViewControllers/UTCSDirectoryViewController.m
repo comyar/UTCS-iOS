@@ -6,27 +6,56 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+// View Controllers
 #import "UTCSDirectoryViewController.h"
-#import "UIImage+CZTinting.h"
-#import "UIColor+UTCSColors.h"
+
+// Views
+#import "MBProgressHUD.h"
 #import "UTCSMenuButton.h"
-#import "UIView+CZPositioning.h"
-#import "UIImage+ImageEffects.h"
+
+// Models
 #import "UTCSDirectoryPerson.h"
 #import "UTCSDirectoryDataSource.h"
-#import "MBProgressHUD.h"
+
+// Categories
+#import "UIImage+CZTinting.h"
+#import "UIColor+UTCSColors.h"
+#import "UIView+CZPositioning.h"
+#import "UIImage+ImageEffects.h"
+
+
+#pragma mark - UTCSDirectoryViewController Class Extension
 
 @interface UTCSDirectoryViewController ()
 
+// Background image view
 @property (nonatomic) UIImageView               *backgroundImageView;
+
+// Menu button
 @property (nonatomic) UTCSMenuButton            *menuButton;
+
+// Table view listing the people in the directory
 @property (nonatomic) UITableView               *tableView;
+
+// Search bar
 @property (nonatomic) UISearchBar               *searchBar;
+
+// Button to scroll to the top of the table view
 @property (nonatomic) UIButton                  *scrollToTopButton;
+
+// Data source
 @property (nonatomic) UTCSDirectoryDataSource   *directoryDataSource;
+
+// Search results
 @property (nonatomic) NSArray                   *searchResults;
 
 @end
+
+
+#pragma mark - UTCSDirectoryViewController Implementation
 
 @implementation UTCSDirectoryViewController
 
@@ -66,7 +95,7 @@
         [self.view addSubview:self.scrollToTopButton];
         
         // Menu Button
-        self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(2, 8, 56, 32)];
+        self.menuButton = [UTCSMenuButton new];
         [self.menuButton addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:self.menuButton];
     }
@@ -89,16 +118,26 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    
-    [self.directoryDataSource updateDirectoryWithCompletion:^(NSDate *updated) {
-        [self.tableView reloadData];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    if ([self.directoryDataSource directoryNeedsUpdate]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        [self.directoryDataSource updateDirectoryWithCompletion:^ {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.tableView.alpha = 1.0;
+                self.searchBar.alpha = 1.0;
+            }];
+            
+            [self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }
 }
 
-
+- (void)update
+{
+    
+}
 
 
 - (void)didTouchDownInsideButton:(UIButton *)button

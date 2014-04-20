@@ -10,12 +10,14 @@
 
 /**
  */
-typedef void (^UTCSDirectoryDataSourceCompletion) (NSDate *updated);
+typedef void (^UTCSDirectoryDataSourceCompletion) ();
 
 
 @interface UTCSDirectoryDataSource : NSObject <UITableViewDataSource>
 
-
+/**
+ */
+- (BOOL)directoryNeedsUpdate;
 
 /**
  */

@@ -42,9 +42,21 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
     return self;
 }
 
-- (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion
+- (BOOL)directoryNeedsUpdate
 {
     NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:directoryCacheKey];
+    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    
+    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion
+{
+    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSDirectoryService withKey:directoryCacheKey];
     UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
@@ -57,10 +69,10 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
         return;
     }
     
-    NSLog(@"Events : Cache miss");
+    NSLog(@"Directory : Cache miss");
     
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestEvents argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
-        if ([meta[@"service"] isEqualToString:UTCSEventsService] && meta[@"success"]) {
+    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestDirectory argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+        if ([meta[@"service"] isEqualToString:UTCSDirectoryService] && meta[@"success"]) {
             NSMutableArray *directory = [NSMutableArray new];
             NSMutableArray *flatDirectory = [NSMutableArray new];
             
@@ -73,6 +85,7 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
                     person.fullName     = personData[@"name"];
                     person.office       = personData[@"location"];
                     person.phoneNumber  = personData[@"phone"];
+                    person.type         = personData[@"type"];
                     [directoryLetter addObject:person];
                     [flatDirectory addObject:person];
                 }
@@ -87,13 +100,13 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
         }
         
         if (completion) {
-            completion([NSDate date]);
+            completion();
         }
         
     } failure:^(NSError *error) {
         
         if (completion) {
-            completion(metaData.timestamp);
+            completion();
         }
         
     }];

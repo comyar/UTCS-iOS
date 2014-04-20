@@ -65,7 +65,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 // View used to display the table of news stories as well as a blurring header
 @property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
 
-
 // -----
 // @name View Controllers
 // -----
@@ -139,17 +138,12 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)update
 {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.headerView.downArrowImageView.alpha = 0.0;
-    }];
-    
-    self.headerView.shimmeringView.shimmering = YES;
-    [self.headerView.activityIndicatorView startAnimating];
+    [self.headerView showActivityAnimation:YES];
     
     // Update news stories
     [self.newsArticleDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
-        self.headerView.shimmeringView.shimmering = NO;
-        [self.headerView.activityIndicatorView stopAnimating];
+        
+        [self.headerView showActivityAnimation:NO];
         
         if([self.newsArticleDataSource.newsArticles count] > 0) {
             NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
@@ -161,9 +155,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         }
         
         [UIView animateWithDuration:0.3 animations:^{
-            self.headerView.updatedLabel.alpha         = 1.0;
-            self.headerView.subtitleLabel.alpha         = 1.0;
-            self.headerView.downArrowImageView.alpha   = ([self.newsArticleDataSource.newsArticles count])? 1.0 : 0.0;
+            self.headerView.subtitleLabel.alpha = 1.0;
         }];
         
         [self.backgroundHeaderBlurTableView.tableView reloadData];

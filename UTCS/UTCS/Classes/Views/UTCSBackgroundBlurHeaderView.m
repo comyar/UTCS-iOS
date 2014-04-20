@@ -95,6 +95,22 @@ static const CGFloat updatedLabelFontSize   = 14.0;
     return self;
 }
 
+- (void)showActivityAnimation:(BOOL)show
+{
+    if (show) {
+        [self.activityIndicatorView startAnimating];
+    } else {
+        [self.activityIndicatorView stopAnimating];
+    }
+    
+    self.shimmeringView.shimmering = show;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.updatedLabel.alpha = 1.0;
+        self.downArrowImageView.alpha = (show)? 0.0 : 1.0;;
+    }];
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
