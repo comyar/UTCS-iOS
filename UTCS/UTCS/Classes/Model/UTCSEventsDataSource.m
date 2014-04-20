@@ -51,7 +51,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 @property (nonatomic) NSDictionary      *typeColorMapping;
 
 // Date formatter
-@property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic) NSDateFormatter   *dateFormatter;
 
 @end
 

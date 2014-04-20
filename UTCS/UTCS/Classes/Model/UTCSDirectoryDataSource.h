@@ -8,10 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UTCSDirectoryManager : NSObject <UITableViewDataSource>
+/**
+ */
+typedef void (^UTCSDirectoryDataSourceCompletion) (NSDate *updated);
 
 
-- (void)syncDirectoryWithCompletion:(void (^)(BOOL success))completion;
+@interface UTCSDirectoryDataSource : NSObject <UITableViewDataSource>
+
+
+
+/**
+ */
+- (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion;
+
+
 - (NSArray *)searchDirectoryWithSearchString:(NSString *)searchString scope:(NSString *)scope;
 
 @property (nonatomic, readonly) NSArray         *directory;

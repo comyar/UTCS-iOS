@@ -26,7 +26,7 @@
 		DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44658918E584A200ED1153 /* UTCSEventsDataSource.m */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */; };
-		DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */; };
+		DD44659C18E93D3500ED1153 /* UTCSDirectoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659B18E93D3500ED1153 /* UTCSDirectoryDataSource.m */; };
 		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
 		DD4C7D0C18FA840700129A2E /* UTCSEventsFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */; };
 		DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */; };
@@ -106,8 +106,8 @@
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
 		DD44659718E8254B00ED1153 /* UTCSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventDetailViewController.h; path = ViewControllers/UTCSEventDetailViewController.h; sourceTree = "<group>"; };
 		DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventDetailViewController.m; path = ViewControllers/UTCSEventDetailViewController.m; sourceTree = "<group>"; };
-		DD44659A18E93D3500ED1153 /* UTCSDirectoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryManager.h; path = Model/UTCSDirectoryManager.h; sourceTree = "<group>"; };
-		DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryManager.m; path = Model/UTCSDirectoryManager.m; sourceTree = "<group>"; };
+		DD44659A18E93D3500ED1153 /* UTCSDirectoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSource.h; path = Model/UTCSDirectoryDataSource.h; sourceTree = "<group>"; };
+		DD44659B18E93D3500ED1153 /* UTCSDirectoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSource.m; path = Model/UTCSDirectoryDataSource.m; sourceTree = "<group>"; };
 		DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryPerson.h; path = Model/UTCSDirectoryPerson.h; sourceTree = "<group>"; };
 		DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryPerson.m; path = Model/UTCSDirectoryPerson.m; sourceTree = "<group>"; };
 		DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterTableViewController.h; path = ViewControllers/UTCSEventsFilterTableViewController.h; sourceTree = "<group>"; };
@@ -548,8 +548,8 @@
 		DD8761701900FD02005FEE4E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DD44659A18E93D3500ED1153 /* UTCSDirectoryManager.h */,
-				DD44659B18E93D3500ED1153 /* UTCSDirectoryManager.m */,
+				DD44659A18E93D3500ED1153 /* UTCSDirectoryDataSource.h */,
+				DD44659B18E93D3500ED1153 /* UTCSDirectoryDataSource.m */,
 				DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */,
 				DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */,
 			);
@@ -572,8 +572,8 @@
 				DD87615E18FDFE45005FEE4E /* News */,
 				DD87616218FDFE97005FEE4E /* Events */,
 				DD8761661900FC4F005FEE4E /* Labs */,
-				DD87616A1900FCA4005FEE4E /* Settings */,
 				DD87616D1900FCD5005FEE4E /* Disk Quota */,
+				DD87616A1900FCA4005FEE4E /* Settings */,
 				DD87616F1900FCEF005FEE4E /* Directory */,
 			);
 			name = Modules;
@@ -834,7 +834,7 @@
 				DD83B58A18F35DC000EBDE06 /* UTCSLabsDataSource.m in Sources */,
 				DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
-				DD44659C18E93D3500ED1153 /* UTCSDirectoryManager.m in Sources */,
+				DD44659C18E93D3500ED1153 /* UTCSDirectoryDataSource.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
 				DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */,

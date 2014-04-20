@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSDirectoryManager.h"
+#import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
 #import "UTCSStateManager.h"
 
-@interface UTCSDirectoryManager ()
+@interface UTCSDirectoryDataSource ()
 @property (nonatomic) NSArray *flatDirectory;
 @end
 
-@implementation UTCSDirectoryManager
+@implementation UTCSDirectoryDataSource
 
 - (instancetype)init
 {
