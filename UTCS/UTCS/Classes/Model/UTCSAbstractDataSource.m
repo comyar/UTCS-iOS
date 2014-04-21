@@ -7,7 +7,7 @@
 //
 
 #import "UTCSAbstractDataSource.h"
-
+#import "UTCSAbstractDataSourceParser.h"
 
 #pragma mark - UTCSAbstractDataSource Implementation
 
@@ -20,7 +20,7 @@
                                  userInfo:nil];
 }
 
-- (void)updateWithCompletion:(UTCSDataSourceCompletion)completion
+- (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion
 {
     if (!self.service) {
         if (completion) {
@@ -29,10 +29,13 @@
         return;
     }
     
-    [UTCSDataRequestServicer sendDataRequestWithType:self.requestType argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+    [UTCSDataRequestServicer sendDataRequestWithType:self.requestType argument:argument success:^(NSDictionary *meta, NSDictionary *values) {
         if ([meta[@"service"]isEqualToString:self.service] && meta[@"success"]) {
+            
+            id data = [self.dataSourceParser parseValues:values];
+            
             if (completion) {
-                completion(values, nil);
+                completion(data, nil);
             }
         } else {
             if (completion) {

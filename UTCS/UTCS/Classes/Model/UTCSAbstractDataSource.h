@@ -10,10 +10,12 @@
 @import Foundation;
 #import "UTCSDataRequestServicer.h"
 
+@class UTCSAbstractDataSourceParser;
+
 /**
  */
-typedef void (^UTCSDataSourceCompletion) (id values, NSError *error);
-
+typedef void (^UTCSDataSourceCompletion) (id data, NSError *error);
+typedef NSString UTCSServiceName;
 
 /**
  */
@@ -25,7 +27,7 @@ typedef void (^UTCSDataSourceCompletion) (id values, NSError *error);
 
 /**
  */
-- (void)updateWithCompletion:(UTCSDataSourceCompletion)completion;
+- (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion;
 
 // -----
 // @name Property
@@ -33,10 +35,14 @@ typedef void (^UTCSDataSourceCompletion) (id values, NSError *error);
 
 /**
  */
-@property (nonatomic) NSString              *service;
+@property (nonatomic) UTCSServiceName               *service;
 
 /**
  */
-@property (nonatomic) UTCSDataRequestType   requestType;
+@property (nonatomic) UTCSDataRequestType           requestType;
+
+/**
+ */
+@property (nonatomic) UTCSAbstractDataSourceParser *dataSourceParser;
 
 @end

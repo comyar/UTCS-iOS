@@ -9,14 +9,14 @@
 @import UIKit;
 @class FBShimmeringView;
 
-#import "UTCSBackgroundBlurHeaderView.h"
+#import "UTCSActivityHeaderView.h"
 
 
 /**
  UTCSNewsHeaderView is the header view of the background blur table view displaying 
  the list of available news stories.
  */
-@interface UTCSNewsHeaderView : UTCSBackgroundBlurHeaderView
+@interface UTCSNewsHeaderView : UTCSActivityHeaderView
 
 /** 
  Label used to display a subtitle beneath the shimmering view

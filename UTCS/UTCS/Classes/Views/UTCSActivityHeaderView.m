@@ -10,7 +10,7 @@
 #pragma mark - Imports
 
 // Views
-#import "UTCSBackgroundBlurHeaderView.h"
+#import "UTCSActivityHeaderView.h"
 
 
 #pragma mark - Constants
@@ -24,7 +24,7 @@ static const CGFloat updatedLabelFontSize   = 14.0;
 
 #pragma mark - UTCSBackgroundBlurHeaderView Class Extension
 
-@interface UTCSBackgroundBlurHeaderView ()
+@interface UTCSActivityHeaderView ()
 
 // Shimmering view used to indicate loading of news articles
 @property (nonatomic) FBShimmeringView                      *shimmeringView;
@@ -43,7 +43,7 @@ static const CGFloat updatedLabelFontSize   = 14.0;
 
 #pragma mark - UTCSBackgroundBlurHeaderView Implementation
 
-@implementation UTCSBackgroundBlurHeaderView
+@implementation UTCSActivityHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

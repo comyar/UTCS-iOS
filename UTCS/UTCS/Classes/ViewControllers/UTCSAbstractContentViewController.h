@@ -6,10 +6,14 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 @import UIKit;
 
 @class UTCSAbstractDataSource;
 
+
+/**
+ */
 @interface UTCSAbstractContentViewController : UIViewController
 
 // -----
@@ -18,14 +22,15 @@
 
 /**
  */
-- (void)update;
+- (void)updateWithArgument:(NSString *)argument;
 
 // -----
 // @name Properties
 // -----
 
 /**
+ Data source for the view controller
  */
-@property (nonatomic) UTCSAbstractDataSource *dataSource;
+@property (nonatomic) UTCSAbstractDataSource        *dataSource;
 
 @end

@@ -8,10 +8,10 @@
 
 @import UIKit;
 
-#import "UTCSBackgroundBlurHeaderView.h"
+#import "UTCSActivityHeaderView.h"
 
 /**
  */
-@interface UTCSEventsHeaderView : UTCSBackgroundBlurHeaderView
+@interface UTCSEventsHeaderView : UTCSActivityHeaderView
 
 @end

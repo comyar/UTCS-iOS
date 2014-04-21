@@ -6,13 +6,28 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
 #import "UTCSAbstractContentViewController.h"
+#import "UTCSAbstractDataSource.h"
 
-@interface UTCSAbstractContentViewController ()
 
-@end
+#pragma mark - UTCSAbstractContentViewController Implementation
 
 @implementation UTCSAbstractContentViewController
+
+- (void)updateWithArgument:(NSString *)argument
+{
+    if ([self.dataSource shouldUpdate]) {
+        [self.dataSource updateWithArgument:argument completion:^(id values, NSError *error) {
+            if (values) {
+                
+            } else {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+        }];
+    }
+}
 
 
 @end

@@ -15,7 +15,7 @@
 /**
  UTCSBackgroundBlurHeaderView 
  */
-@interface UTCSBackgroundBlurHeaderView : UIView
+@interface UTCSActivityHeaderView : UIView
 
 // -----
 // @name Using a UTCSBackgroundBlurHeaderView
