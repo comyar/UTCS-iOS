@@ -11,17 +11,27 @@
 
 #import "UTCSDataRequestServicer.h"
 
-@class UTCSAbstractDataSourceCache;
-@class UTCSAbstractDataSourceParser;
+@class UTCSDataSourceCache;
+@class UTCSDataSourceParser;
 
 /**
  */
 typedef void (^UTCSDataSourceCompletion) (BOOL success);
 typedef NSString UTCSServiceName;
 
+
+@class UTCSDataSource;
+
+@protocol UTCSDataSourceDelegate <NSObject>
+
+- (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource;
+
+@end
+
 /**
+ UTCSDataSource is an abstract class 
  */
-@interface UTCSAbstractDataSource : NSObject
+@interface UTCSDataSource : NSObject
 
 // -----
 // @name Creating a UTCSAbstractDataSource
@@ -49,11 +59,11 @@ typedef NSString UTCSServiceName;
 
 /**
  */
-@property (nonatomic) UTCSAbstractDataSourceParser  *dataSourceParser;
+@property (nonatomic) UTCSDataSourceParser  *dataSourceParser;
 
 /**
  */
-@property (nonatomic) UTCSAbstractDataSourceCache   *dataSourceCache;
+@property (nonatomic) UTCSDataSourceCache   *dataSourceCache;
 
 /**
  */
@@ -70,5 +80,9 @@ typedef NSString UTCSServiceName;
 /**
  */
 @property (nonatomic, readonly) NSTimeInterval      minimumTimeBetweenUpdates;
+
+/**
+ */
+@property (weak, nonatomic) id<UTCSDataSourceDelegate>    delegate;
 
 @end

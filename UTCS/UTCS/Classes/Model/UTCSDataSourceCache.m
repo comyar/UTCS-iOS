@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractDataSourceCache.h"
+#import "UTCSDataSourceCache.h"
 
 
 NSString * const UTCSDataSourceCacheValuesName    = @"UTCSDataSourceCacheValuesName";
@@ -14,7 +14,7 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
 
 #pragma mark - UTCSAbstractDataSourceCache Implementation
 
-@implementation UTCSAbstractDataSourceCache
+@implementation UTCSDataSourceCache
 
 #pragma mark Creating a UTCSAbstractDataSourceCache
 

@@ -15,15 +15,16 @@ extern NSString * const UTCSDataSourceCacheMetaDataName;
 // Key for the original cached object in the cache dictionary
 extern NSString * const UTCSDataSourceCacheValuesName;
 
+@class UTCSDataSourceCache;
 
 /**
- UTCSAbstractDataSourceCache is an abstract class that provides a simple-to-use API 
+ UTCSDataSourceCache is an abstract class that provides a simple-to-use API
  for a data source to cache objects.
  
- While UTCSAbstractDataSourceCache does support the caching of single objects, it is intended to
+ While UTCSDataSourceCache does support the caching of single objects, it is intended to
  be used to cache collections, such as NSArray or NSDictionary.
  */
-@interface UTCSAbstractDataSourceCache : NSObject
+@interface UTCSDataSourceCache : NSObject
 
 // -----
 // @name Creating a UTCSAbstractDataSourceCache

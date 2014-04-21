@@ -9,7 +9,7 @@
 
 @import UIKit;
 
-#import "UTCSAbstractDataSource.h"
+#import "UTCSDataSource.h"
 
 
 /**
@@ -31,6 +31,6 @@
 /**
  Data source for the view controller
  */
-@property (nonatomic) UTCSAbstractDataSource        *dataSource;
+@property (nonatomic) UTCSDataSource        *dataSource;
 
 @end

@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractDataSource.h"
+#import "UTCSDataSource.h"
 
 /**
  UTCSNewsArticleDataSource
  */
-@interface UTCSNewsDataSource : UTCSAbstractDataSource <UITableViewDataSource>
+@interface UTCSNewsDataSource : UTCSDataSource <UITableViewDataSource>
 
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractDataSourceParser.h"
+#import "UTCSDataSourceParser.h"
 
-@implementation UTCSAbstractDataSourceParser
+@implementation UTCSDataSourceParser
 
 @end

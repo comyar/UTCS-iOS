@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UTCSAbstractDataSourceParser : NSObject
+@interface UTCSDataSourceParser : NSObject
 
 // -----
 // @name Using a UTCSAbstractDataSourceParser

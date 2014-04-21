@@ -6,19 +6,20 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractDataSource.h"
-#import "UTCSAbstractDataSourceParser.h"
-#import "UTCSAbstractDataSourceCache.h"
+#import "UTCSDataSource.h"
+#import "UTCSDataSourceParser.h"
+#import "UTCSDataSourceCache.h"
 #import "UTCSDataSourceCacheMetaData.h"
 
 #pragma mark - UTCSAbstractDataSource Implementation
 
-@implementation UTCSAbstractDataSource
+@implementation UTCSDataSource
 
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super init]) {
         _service = service;
+        _minimumTimeBetweenUpdates = 3600.0;
     }
     return self;
 }
@@ -59,12 +60,22 @@
     [UTCSDataRequestServicer sendDataRequestWithType:0 argument:argument success:^(NSDictionary *meta, NSDictionary *values) {
         if ([meta[@"service"]isEqualToString:self.service] && meta[@"success"]) {
             
-            _data = [self.dataSourceParser parseValues:values];
-            _updated = [NSDate date];
+            _data       = [self.dataSourceParser parseValues:values];
+            _updated    = [NSDate date];
             
             if (completion) {
                 completion(YES);
             }
+            
+            if ([self.delegate conformsToProtocol:@protocol(UTCSDataSourceDelegate)] &&
+                [self.delegate respondsToSelector:@selector(objectsToCacheForDataSource:)]) {
+                NSDictionary *objects = [self.delegate objectsToCacheForDataSource:self];
+                
+                for (NSString *key in objects) {
+                    [self.dataSourceCache cacheObject:objects[key] withKey:key];
+                }
+            }
+            
         } else {
             if (completion) {
                 completion(NO);
