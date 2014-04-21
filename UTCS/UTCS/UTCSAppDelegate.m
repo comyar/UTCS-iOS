@@ -103,17 +103,6 @@
     return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    if(self.verticalMenuViewController.contentViewController == self.newsNavigationController) {
-        [self.newsViewController update];
-    } else if(self.verticalMenuViewController.contentViewController == self.eventsNavigationController) {
-        
-    } else if(self.verticalMenuViewController.contentViewController == self.labsNavigationController) {
-        
-    }
-}
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [[NSUserDefaults standardUserDefaults]synchronize];

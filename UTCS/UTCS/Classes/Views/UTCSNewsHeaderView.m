@@ -43,7 +43,9 @@ static const CGFloat subtitleLabelFontSize  = 17.0;
         // Subtitle label
         self.subtitleLabel = ({
             UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
+            label.frame         = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
             label.font          = [UIFont fontWithName:@"HelveticaNeue" size:subtitleLabelFontSize];
+            label.center        = CGPointMake(self.center.x, 0.85 * self.center.y);
             label.text          = @"What Starts Here Changes the World";
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];

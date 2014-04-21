@@ -11,20 +11,50 @@
 
 
 #pragma mark - UTCSAbstractHeaderTable
+
 @interface UTCSAbstractHeaderTableViewController ()
 
 @end
 
-@implementation UTCSAbstractHeaderTableViewController
 
-- (void)setBackgroundImage:(UIImage *)backgroundImage
+#pragma mark - UTCSAbstractHeaderTableViewController Implementation
+
+@implementation UTCSAbstractHeaderTableViewController
+@synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
+
+#pragma mark Update
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    
+    if([keyPath isEqualToString:@"contentOffset"]) {
+        [self updateWithContentOffset:self.tableView.contentOffset];
+    }
 }
 
-- (void)setBackgroundBlurredImage:(UIImage *)backgroundBlurredImage
+- (void)updateWithContentOffset:(CGPoint)contentOffset
 {
-    
+    CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
+    self.backgroundBlurredImageView.alpha = MIN(1.0, 4.0 * normalizedOffsetDelta);
+}
+
+#pragma mark Setters
+
+- (void)setActivityHeaderView:(UTCSActivityHeaderView *)activityHeaderView
+{
+    _activityHeaderView             = activityHeaderView;
+    self.tableView.tableHeaderView  = _activityHeaderView;
+}
+
+#pragma mark Getters
+
+- (UIImageView *)backgroundBlurredImageView
+{
+    if (!_backgroundBlurredImageView) {
+        _backgroundBlurredImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
+    }
+
+    return _backgroundBlurredImageView;
 }
 
 @end

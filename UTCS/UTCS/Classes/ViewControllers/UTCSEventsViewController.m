@@ -17,7 +17,6 @@
 // Views
 #import "UTCSMenuButton.h"
 #import "UTCSEventsHeaderView.h"
-#import "UTCSBackgroundHeaderBlurTableView.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -73,9 +72,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 //
 @property (nonatomic) UTCSEventsHeaderView                  *headerView;
-
-//
-@property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
  
 @end
 
@@ -111,42 +107,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    // Background header blur table view
-    self.backgroundHeaderBlurTableView = ({
-        UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-        view.tableView.delegate     = self;
-        view.tableView.dataSource   = self.eventsDataSource;
-        view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                       blendingMode:kCGBlendModeOverlay];
-        view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                              blendingMode:kCGBlendModeOverlay];
-        
-        view;
-    });
-    
-    // Header view
-    self.headerView = [[UTCSEventsHeaderView alloc]initWithFrame:self.backgroundHeaderBlurTableView.header.bounds];
-    
-    // Filter button
-    self.filterButton = ({
-        UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(self.view.width - 66, 8, 64, 32)];
-        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-        imageView.center = CGPointMake(0.5 * button.width, 0.5 * button.height);
-        imageView.tintColor = [UIColor whiteColor];
-        [button addSubview:imageView];
-        button;
-    });
-    
-    // Menu Button
-    self.menuButton = [UTCSMenuButton new];
-    
-    [self.backgroundHeaderBlurTableView.header addSubview:self.headerView];
-    [self.view addSubview:self.backgroundHeaderBlurTableView];
+
+
     [self.view addSubview:self.filterButton];
-    [self.view addSubview:self.menuButton];
 }
 
 #pragma mark Buttons
@@ -202,7 +165,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
             self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
-            [self.backgroundHeaderBlurTableView.tableView reloadData];
         }
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -220,12 +182,13 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     UTCSEvent *event = self.eventsDataSource.filteredEvents[indexPath.row];
     
     // Estimate height of event name
-    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
-                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
-                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
-                                                context:nil];
-    
-    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
+//    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self..tableView.width, CGFLOAT_MAX)
+//                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+//                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+//                                                context:nil];
+//    
+//    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
+    return 0.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,7 +224,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     [self.eventsDataSource filterEventsByType:filter];
     [self.filterPopoverController dismissPopoverAnimated:YES];
-    [self.backgroundHeaderBlurTableView.tableView reloadData];
 }
 
 @end

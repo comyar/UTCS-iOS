@@ -15,9 +15,7 @@
 
 // Views
 #import "UTCSMenuButton.h"
-#import "FBShimmeringView.h"
 #import "UTCSNewsHeaderView.h"
-#import "UTCSBackgroundHeaderBlurTableView.h"
 
 // Categories
 #import "UIImage+CZTinting.h"
@@ -52,22 +50,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @interface UTCSNewsViewController ()
 
-// -----
-// @name Views
-// -----
-
-// Button used to show/hide the menu view
-@property (nonatomic) UIButton                              *menuButton;
-
-//
-@property (nonatomic) UTCSNewsHeaderView                    *headerView;
-
-// View used to display the table of news stories as well as a blurring header
-@property (nonatomic) UTCSBackgroundHeaderBlurTableView     *backgroundHeaderBlurTableView;
-
-// -----
-// @name View Controllers
-// -----
+// Header view of the table view
+@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
 
 // Data source used for the news articles
 @property (nonatomic) UTCSNewsArticleDataSource         *newsArticleDataSource;
@@ -85,80 +69,48 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.title = @"News";
-        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.view.backgroundColor = [UIColor redColor];
         self.newsArticleDataSource = [UTCSNewsArticleDataSource new];
+        
+        self.backgroundImageView.image = [UIImage imageNamed:backgroundImageName];
+        self.backgroundBlurredImageView.image = [UIImage imageNamed:backgroundBlurredImageName];
     }
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if ([self.newsArticleDataSource.newsArticles count] == 0) {
-        [self update];
-    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Background header blur table view
-    self.backgroundHeaderBlurTableView = ({
-        UTCSBackgroundHeaderBlurTableView *view = [[UTCSBackgroundHeaderBlurTableView alloc]initWithFrame:self.view.bounds];
-        view.tableView.delegate     = self;
-        view.tableView.dataSource   = self.newsArticleDataSource;
-        view.backgroundImage        = [[UIImage imageNamed:backgroundImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                       blendingMode:kCGBlendModeOverlay];
-        view.backgroundBlurredImage = [[UIImage imageNamed:backgroundBlurredImageName]tintedImageWithColor:[UIColor utcsImageTintColor]
-                                                                                              blendingMode:kCGBlendModeOverlay];
-        
-        view;
-    });
-    
-    // Header view
-    self.headerView = [[UTCSNewsHeaderView alloc]initWithFrame:self.backgroundHeaderBlurTableView.header.bounds];
-    
-    // Menu Button
-    self.menuButton = [UTCSMenuButton new];
-    
-    [self.backgroundHeaderBlurTableView.header addSubview:self.headerView];
-    [self.view addSubview:self.backgroundHeaderBlurTableView];
-    [self.view addSubview:self.menuButton];
+    self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self update];
 }
 
 #pragma mark Updating
 
 - (void)update
 {
-    [self.headerView showActivityAnimation:YES];
+    [self.activityHeaderView showActivityAnimation:YES];
     
     // Update news stories
     [self.newsArticleDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
         
-        [self.headerView showActivityAnimation:NO];
+        [self.activityHeaderView showActivityAnimation:NO];
         
         if([self.newsArticleDataSource.newsArticles count] > 0) {
             NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
-            self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
         } else {
-            self.headerView.updatedLabel.text = @"No news stories available.";
+            self.activityHeaderView.updatedLabel.text = @"No news stories available.";
         }
         
-        [UIView animateWithDuration:0.3 animations:^{
-            self.headerView.subtitleLabel.alpha = 1.0;
-        }];
-        
-        [self.backgroundHeaderBlurTableView.tableView reloadData];
+        [self.tableView reloadData];
     }];
 }
 
@@ -169,7 +121,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
     
     // Estimate height of a news story title
-    CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.backgroundHeaderBlurTableView.tableView.width, CGFLOAT_MAX)
+    CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];

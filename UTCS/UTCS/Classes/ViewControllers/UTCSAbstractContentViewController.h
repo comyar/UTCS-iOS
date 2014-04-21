@@ -9,7 +9,7 @@
 
 @import UIKit;
 
-@class UTCSAbstractDataSource;
+#import "UTCSAbstractDataSource.h"
 
 
 /**
@@ -22,7 +22,7 @@
 
 /**
  */
-- (void)updateWithArgument:(NSString *)argument;
+- (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion;
 
 // -----
 // @name Properties

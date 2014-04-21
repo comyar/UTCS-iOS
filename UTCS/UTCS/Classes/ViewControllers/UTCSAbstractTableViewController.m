@@ -13,34 +13,34 @@
 
 @interface UTCSAbstractTableViewController ()
 
-//
-@property (nonatomic) UITableView   *tableView;
-
-//
-@property (nonatomic) UIButton      *scrollToTopButton;
-
-//
-@property (nonatomic) UIImageView   *backgroundImageView;
-
 @end
 
 
 #pragma mark - UTCSAbstractTableViewController Implementation
 
 @implementation UTCSAbstractTableViewController
+@synthesize tableView           = _tableView;
+@synthesize backgroundImageView = _backgroundImageView;
 
-- (void)loadView
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self.view = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    
-    _tableView = ({
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds
-                                                             style:UITableViewStylePlain];
-        tableView.backgroundColor = [UIColor blackColor];
-        tableView;
-    });
-    
-    [self.view addSubview:_tableView];
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    return self;
+}
+
+#pragma mark Getters
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds
+                                                 style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_tableView];
+    }
+    return _tableView;
 }
 
 - (UIImageView *)backgroundImageView

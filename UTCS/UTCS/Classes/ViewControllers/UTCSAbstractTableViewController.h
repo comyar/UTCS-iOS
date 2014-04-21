@@ -18,11 +18,11 @@
 
 /**
  */
-@property (nonatomic, readonly) UIImageView *backgroundImageView;
+@property (nonatomic, readonly) UITableView *tableView;
 
 /**
  */
-@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, readonly) UIImageView *backgroundImageView;
 
 
 @end

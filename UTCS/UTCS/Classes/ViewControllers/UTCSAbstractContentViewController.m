@@ -9,7 +9,6 @@
 
 #pragma mark - Imports
 #import "UTCSAbstractContentViewController.h"
-#import "UTCSAbstractDataSource.h"
 #import "UTCSMenuButton.h"
 
 
@@ -27,7 +26,6 @@
 
 @implementation UTCSAbstractContentViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,18 +34,10 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
 }
 
-
-
-- (void)updateWithArgument:(NSString *)argument
+- (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion
 {
     if ([self.dataSource shouldUpdate]) {
-        [self.dataSource updateWithArgument:argument completion:^(id values, NSError *error) {
-            if (values) {
-                
-            } else {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-        }];
+        [self.dataSource updateWithArgument:argument completion:completion];
     }
 }
 

@@ -9,7 +9,6 @@
 
 #pragma mark - Imports
 
-// Views
 #import "UTCSActivityHeaderView.h"
 
 

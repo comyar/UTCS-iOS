@@ -13,12 +13,12 @@
 
 
 /**
- UTCSBackgroundBlurHeaderView 
+ UTCSActivityHeaderView
  */
 @interface UTCSActivityHeaderView : UIView
 
 // -----
-// @name Using a UTCSBackgroundBlurHeaderView
+// @name Using a UTCSActivityHeaderView
 // -----
 
 - (void)showActivityAnimation:(BOOL)show;
@@ -28,12 +28,14 @@
 // -----
 
 /**
- Shimmering view used to indicate loading of news articles
+ Shimmering view used to indicate updating
+ 
+ The content view of the shimmer view is a UILabel
  */
 @property (nonatomic, readonly) FBShimmeringView                      *shimmeringView;
 
 /**
- Activity indicator used to indicate the news stories are updating
+ Activity indicator used to indicate updating
  */
 @property (nonatomic, readonly) UIActivityIndicatorView               *activityIndicatorView;
 

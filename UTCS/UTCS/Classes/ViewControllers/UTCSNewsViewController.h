@@ -7,22 +7,13 @@
 //
 
 
-@import UIKit;
-@import QuartzCore;
+#import "UTCSAbstractHeaderTableViewController.h"
 
 
 /**
  UTCSNewsViewController displays all the available news articles in a simple table
  */
-@interface UTCSNewsViewController : UIViewController <UITableViewDelegate>
+@interface UTCSNewsViewController : UTCSAbstractHeaderTableViewController
 
-// -----
-// @name Updating
-// -----
-
-/**
- Updates the news data source
- */
-- (void)update;
 
 @end

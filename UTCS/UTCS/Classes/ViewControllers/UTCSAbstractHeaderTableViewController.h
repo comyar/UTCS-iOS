@@ -10,6 +10,7 @@
 
 @class UTCSActivityHeaderView;
 
+
 /**
  */
 @interface UTCSAbstractHeaderTableViewController : UTCSAbstractTableViewController
@@ -20,10 +21,10 @@
 
 /**
  */
-@property (nonatomic) UIImage                   *backgroundBlurredImage;
+@property (nonatomic) UTCSActivityHeaderView    *activityHeaderView;
 
 /**
  */
-@property (nonatomic) UTCSActivityHeaderView    *activityHeaderView;
+@property (nonatomic, readonly) UIImageView     *backgroundBlurredImageView;
 
 @end
