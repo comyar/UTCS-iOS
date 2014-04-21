@@ -15,7 +15,6 @@
 
 // Views
 #import "UTCSMenuButton.h"
-#import "UTCSEventsHeaderView.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -64,7 +63,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
         
-        self.activityHeaderView = [[UTCSEventsHeaderView alloc]initWithFrame:self.tableView.bounds];
+        self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
+        ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
+        
     }
     return self;
 }
@@ -88,24 +89,24 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)update
 {
-    [self.activityHeaderView showActiveAnimation:YES];
+    [self.activeHeaderView showActiveAnimation:YES];
     
-    [self.dataSource updateWithArgument:nil completion:^(BOOL success) {
+    [self updateWithArgument:nil completion:^(BOOL success) {
         
-        [self.activityHeaderView showActiveAnimation:NO];
+        [self.activeHeaderView showActiveAnimation:NO];
         
         if([self.dataSource.data count] > 0) {
             NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
-            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
         } else {
             
             if (!success) {
                 // Show frowny face
             }
             
-            self.activityHeaderView.updatedLabel.text = @"No Events Available";
+            self.activeHeaderView.updatedLabel.text = @"No Events Available";
         }
         
         [self.tableView reloadData];

@@ -90,6 +90,8 @@
     // Events
     self.eventsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     
+    self.directoryNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
     

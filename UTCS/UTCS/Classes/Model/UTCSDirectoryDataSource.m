@@ -10,19 +10,13 @@
 
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
-#import "UTCSStateManager.h"
-#import "UTCSDataRequestServicer.h"
+#import "UTCSDirectoryDataSourceParser.h"
+#import "UTCSDataSourceCache.h"
+
 
 #pragma mark - Constants
 
-// Key used to cache directory
-static NSString *directoryCacheKey = @"directory";
 
-// Key used to cache flat directory
-static NSString *flatDirectoryCacheKey = @"flatDirectory";
-
-// Minimum time between updates, in seconds
-static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
 
 
 @interface UTCSDirectoryDataSource ()
@@ -32,96 +26,25 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
 
 @implementation UTCSDirectoryDataSource
 
-- (instancetype)init
+- (instancetype)initWithService:(NSString *)service
 {
-    if(self = [super init]) {
-        _directory = [UTCSStateManager directory];
-        _flatDirectory = [UTCSStateManager flatDirectory];
+    if (self = [super initWithService:service]) {
+        self.minimumTimeBetweenUpdates = 2592000.0;  // 30 days
+        self.cache = [[UTCSDataSourceCache alloc]initWithService:service];
+        self.parser = [UTCSDirectoryDataSourceParser new];
     }
     return self;
 }
 
-- (BOOL)directoryNeedsUpdate
+- (void)buildFlatDirectory
 {
-//    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:directoryCacheKey];
-//    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
-    
-//    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-//        return NO;
-//    }
-    
-    return YES;
-}
-
-- (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion
-{
-//    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSDirectoryService withKey:directoryCacheKey];
-//    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
-//    
-//    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-//        NSLog(@"Directory : Cache hit");
-//        
-//        if (completion) {
-//            completion(metaData.timestamp);
-//        }
-//        
-//        return;
-//    }
-//    
-//    NSLog(@"Directory : Cache miss");
-//    
-//    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestDirectory argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
-//        if ([meta[@"service"] isEqualToString:UTCSDirectoryService] && meta[@"success"]) {
-//            NSMutableArray *directory = [NSMutableArray new];
-//            NSMutableArray *flatDirectory = [NSMutableArray new];
-//            
-//            for (NSArray *letter in values) {
-//                NSMutableArray *directoryLetter = [NSMutableArray new];
-//                for (NSDictionary *personData in letter) {
-//                    UTCSDirectoryPerson *person = [UTCSDirectoryPerson new];
-//                    person.firstName    = personData[@"fName"];
-//                    person.lastName     = personData[@"lName"];
-//                    person.fullName     = personData[@"name"];
-//                    person.office       = personData[@"location"];
-//                    person.phoneNumber  = personData[@"phone"];
-//                    person.type         = personData[@"type"];
-//                    [directoryLetter addObject:person];
-//                    [flatDirectory addObject:person];
-//                }
-//                [directory addObject:directoryLetter];
-//            }
-//            
-//            self.directory = directory;
-//            self.flatDirectory = flatDirectory;
-//            
-//            [UTCSCacheManager cacheObject:self.directory forService:UTCSDirectoryService withKey:directoryCacheKey];
-//            [UTCSCacheManager cacheObject:self.flatDirectory forService:UTCSDirectoryService withKey:flatDirectoryCacheKey];
-//        }
-//        
-//        if (completion) {
-//            completion();
-//        }
-//        
-//    } failure:^(NSError *error) {
-//        
-//        if (completion) {
-//            completion();
-//        }
-//        
-//    }];
-
-}
-
-- (NSArray *)searchDirectoryWithSearchString:(NSString *)searchString scope:(NSString *)scope
-{
-    NSPredicate *predicate = nil;
-    if([scope isEqualToString:@"All"]) {
-        predicate = [NSPredicate predicateWithFormat:@"(firstName BEGINSWITH[cd] %@) or (lastName BEGINSWITH[cd] %@) or (fullName BEGINSWITH[cd] %@)", scope, searchString, searchString, searchString];
-    } else {
-        predicate = [NSPredicate predicateWithFormat:@"(type = %@) AND ((firstName BEGINSWITH[cd] %@) or (lastName BEGINSWITH[cd] %@) or (fullName BEGINSWITH[cd] %@))", scope, searchString, searchString, searchString];
+    NSMutableArray *flatDirectory = [NSMutableArray new];
+    for (NSArray *letter in self.data) {
+        for (UTCSDirectoryPerson *person in letter) {
+            [flatDirectory addObject:person];
+        }
     }
-    NSArray *searchResults = [self.flatDirectory filteredArrayUsingPredicate:predicate];
-    return searchResults;
+    _flatDirectory = flatDirectory;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,11 +58,7 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
     }
     
     UTCSDirectoryPerson *person = nil;
-    if(tableView == self.searchDisplayController.searchResultsTableView) {
-        
-    } else {
-        person = self.directory[indexPath.section][indexPath.row];
-    }
+    
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:cell.textLabel.font.pointSize] range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];

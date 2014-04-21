@@ -44,11 +44,11 @@
 
 #pragma mark Setters
 
-- (void)setActivityHeaderView:(UTCSActiveHeaderView *)activityHeaderView
+- (void)setActiveHeaderView:(UTCSActiveHeaderView *)activityHeaderView
 {
-    _activityHeaderView             = activityHeaderView;
-    _activityHeaderView.frame       = self.tableView.bounds;
-    self.tableView.tableHeaderView  = _activityHeaderView;
+    _activeHeaderView             = activityHeaderView;
+    _activeHeaderView.frame       = self.tableView.bounds;
+    self.tableView.tableHeaderView  = _activeHeaderView;
 }
 
 #pragma mark Getters

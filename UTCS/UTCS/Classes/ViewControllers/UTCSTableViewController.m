@@ -119,6 +119,7 @@
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds
                                                  style:UITableViewStylePlain];
+        _tableView.delegate         = self;
         _tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.1];
         _tableView.backgroundColor  = [UIColor clearColor];
         [self.view addSubview:_tableView];

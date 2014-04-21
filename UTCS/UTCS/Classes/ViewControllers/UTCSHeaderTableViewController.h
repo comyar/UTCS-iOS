@@ -7,8 +7,7 @@
 //
 
 #import "UTCSTableViewController.h"
-
-@class UTCSActiveHeaderView;
+#import "UTCSActiveHeaderView.h"
 
 
 /**
@@ -22,7 +21,7 @@
 
 /**
  */
-@property (nonatomic) UTCSActiveHeaderView    *activityHeaderView;
+@property (nonatomic) UTCSActiveHeaderView      *activeHeaderView;
 
 /**
  */

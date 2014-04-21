@@ -75,7 +75,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
-        self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+        self.activeHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
 }
@@ -90,24 +90,24 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)update
 {
-    [self.activityHeaderView showActiveAnimation:YES];
+    [self.activeHeaderView showActiveAnimation:YES];
     
-    [self.dataSource updateWithArgument:nil completion:^(BOOL success) {
+    [self updateWithArgument:nil completion:^(BOOL success) {
         
-        [self.activityHeaderView showActiveAnimation:NO];
+        [self.activeHeaderView showActiveAnimation:NO];
         
         if([self.dataSource.data count] > 0) {
             NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
-            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
         } else {
             
             if (!success) {
                 // Show frowny face, error message
             }
             
-            self.activityHeaderView.updatedLabel.text = @"No News Articles Available";
+            self.activeHeaderView.updatedLabel.text = @"No News Articles Available";
         }
         
         [self.tableView reloadData];

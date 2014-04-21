@@ -11,7 +11,7 @@
 /**
  UTCSTableViewController is an abstract class
  */
-@interface UTCSTableViewController : UTCSContentViewController
+@interface UTCSTableViewController : UTCSContentViewController <UITableViewDelegate>
 
 // -----
 // @name Properties

@@ -6,27 +6,14 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-/**
- */
-typedef void (^UTCSDirectoryDataSourceCompletion) ();
+#import "UTCSDataSource.h"
 
 
-@interface UTCSDirectoryDataSource : NSObject <UITableViewDataSource>
+@interface UTCSDirectoryDataSource : UTCSDataSource <UITableViewDataSource>
 
-/**
- */
-- (BOOL)directoryNeedsUpdate;
-
-/**
- */
-- (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion;
+- (void)buildFlatDirectory;
 
 
-- (NSArray *)searchDirectoryWithSearchString:(NSString *)searchString scope:(NSString *)scope;
-
-@property (nonatomic, readonly) NSArray         *directory;
-@property (nonatomic) UISearchDisplayController *searchDisplayController;
+@property (nonatomic, readonly) NSArray *flatDirectory;
 
 @end

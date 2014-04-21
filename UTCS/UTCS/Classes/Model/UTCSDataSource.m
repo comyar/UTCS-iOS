@@ -26,10 +26,14 @@
 
 - (BOOL)shouldUpdate
 {
-    NSString *reason = [NSString stringWithFormat:@"Cannont perform abstract selector %@", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:reason
-                                 userInfo:nil];
+    NSDictionary *cache = [self.cache objectWithKey:self.service];
+    UTCSDataSourceCacheMetaData *metaData = cache[UTCSDataSourceCacheMetaDataName];
+    
+    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < self.minimumTimeBetweenUpdates) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion
