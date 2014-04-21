@@ -34,15 +34,12 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    
     if([keyPath isEqualToString:@"contentOffset"]) {
-        [self updateWithContentOffset:self.tableView.contentOffset];
+        CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
+        self.backgroundBlurredImageView.alpha = MIN(1.0, 4.0 * normalizedOffsetDelta);
     }
-}
-
-- (void)updateWithContentOffset:(CGPoint)contentOffset
-{
-    CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
-    self.backgroundBlurredImageView.alpha = MIN(1.0, 4.0 * normalizedOffsetDelta);
 }
 
 #pragma mark Setters

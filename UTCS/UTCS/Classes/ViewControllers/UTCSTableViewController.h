@@ -19,6 +19,10 @@
 
 /**
  */
+@property (nonatomic) BOOL showsNavigationBarSeparatorLine;
+
+/**
+ */
 @property (nonatomic, readonly) UITableView *tableView;
 
 /**

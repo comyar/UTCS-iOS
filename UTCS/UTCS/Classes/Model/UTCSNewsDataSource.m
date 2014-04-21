@@ -26,7 +26,7 @@
 #pragma mark - Constants
 
 // Key used to cache news articles
-static NSString * const articlesCacheKey            = @"articles";
+static NSString * const articlesCacheKey = @"articles";
 
 
 #pragma mark - UTCSNewsStoryDataSource Class Extension
