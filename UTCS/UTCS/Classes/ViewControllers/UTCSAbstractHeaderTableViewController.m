@@ -22,6 +22,15 @@
 @implementation UTCSAbstractHeaderTableViewController
 @synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
 
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    return self;
+}
+
 #pragma mark Update
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -51,6 +60,7 @@
 {
     if (!_backgroundBlurredImageView) {
         _backgroundBlurredImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        _backgroundBlurredImageView.alpha = 0.0;    // alpha is initially 0.0 and affected only by content offset
         [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
     }
 
