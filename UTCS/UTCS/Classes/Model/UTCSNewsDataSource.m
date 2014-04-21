@@ -96,7 +96,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 - (void)updateNewsArticlesWithCompletion:(UTCSNewsArticleDataSourceCompletion)completion
 {
     NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSNewsService withKey:articlesCacheKey];
-    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
         self.newsArticles = cache[UTCSCacheValuesName];

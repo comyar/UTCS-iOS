@@ -185,7 +185,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 - (void)update
 {
     NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:diskQuotaCacheKey];
-    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
         NSLog(@"Quota : Cache hit");

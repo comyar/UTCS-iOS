@@ -50,7 +50,7 @@
 		DD87615D18FDAC96005FEE4E /* UTCSActivityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87615C18FDAC96005FEE4E /* UTCSActivityHeaderView.m */; };
 		DD8761781902826C005FEE4E /* UTCSDataRequestServicer.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8761771902826C005FEE4E /* UTCSDataRequestServicer.m */; };
 		DD8989A319031231000F1041 /* UTCSCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A219031231000F1041 /* UTCSCacheManager.m */; };
-		DD8989A61903141C000F1041 /* UTCSCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */; };
+		DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */; };
 		DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A81903C205000F1041 /* UTCSNavigationController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */; };
@@ -160,8 +160,8 @@
 		DD8761771902826C005FEE4E /* UTCSDataRequestServicer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSDataRequestServicer.m; sourceTree = "<group>"; };
 		DD8989A119031231000F1041 /* UTCSCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSCacheManager.h; path = Model/UTCSCacheManager.h; sourceTree = "<group>"; };
 		DD8989A219031231000F1041 /* UTCSCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSCacheManager.m; path = Model/UTCSCacheManager.m; sourceTree = "<group>"; };
-		DD8989A41903141C000F1041 /* UTCSCacheMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSCacheMetaData.h; path = Model/UTCSCacheMetaData.h; sourceTree = "<group>"; };
-		DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSCacheMetaData.m; path = Model/UTCSCacheMetaData.m; sourceTree = "<group>"; };
+		DD8989A41903141C000F1041 /* UTCSDataSourceCacheMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCacheMetaData.h; path = Model/UTCSDataSourceCacheMetaData.h; sourceTree = "<group>"; };
+		DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCacheMetaData.m; path = Model/UTCSDataSourceCacheMetaData.m; sourceTree = "<group>"; };
 		DD8989A71903C205000F1041 /* UTCSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNavigationController.h; sourceTree = "<group>"; };
 		DD8989A81903C205000F1041 /* UTCSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNavigationController.m; sourceTree = "<group>"; };
 		DD8989AA1903C3F3000F1041 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -625,8 +625,6 @@
 		DD8989A01903120C000F1041 /* CacheManager */ = {
 			isa = PBXGroup;
 			children = (
-				DD8989A41903141C000F1041 /* UTCSCacheMetaData.h */,
-				DD8989A51903141C000F1041 /* UTCSCacheMetaData.m */,
 				DD8989A119031231000F1041 /* UTCSCacheManager.h */,
 				DD8989A219031231000F1041 /* UTCSCacheManager.m */,
 			);
@@ -709,6 +707,8 @@
 		DDC2F5D819047775006011F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DD8989A41903141C000F1041 /* UTCSDataSourceCacheMetaData.h */,
+				DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */,
 				DDC2F5D91904778C006011F0 /* UTCSAbstractDataSource.h */,
 				DDC2F5DA1904778C006011F0 /* UTCSAbstractDataSource.m */,
 				DDC2F5DC190480C7006011F0 /* UTCSAbstractDataSourceParser.h */,
@@ -912,7 +912,7 @@
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DDC2F5DB1904778C006011F0 /* UTCSAbstractDataSource.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,
-				DD8989A61903141C000F1041 /* UTCSCacheMetaData.m in Sources */,
+				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,

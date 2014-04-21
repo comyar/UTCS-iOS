@@ -45,7 +45,7 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
 - (BOOL)directoryNeedsUpdate
 {
     NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:directoryCacheKey];
-    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
         return NO;
@@ -57,7 +57,7 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
 - (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion
 {
     NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSDirectoryService withKey:directoryCacheKey];
-    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
         NSLog(@"Directory : Cache hit");

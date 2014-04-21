@@ -10,7 +10,7 @@
 #pragma mark - Imports
 
 // Models
-#import "UTCSCacheMetaData.h"
+#import "UTCSDataSourceCacheMetaData.h"
 
 
 #pragma mark - Constants
@@ -22,7 +22,7 @@ static NSString * const timestampKey    = @"timestamp";
 
 #pragma mark - UTCSCacheMetaData Implementation
 
-@implementation UTCSCacheMetaData
+@implementation UTCSDataSourceCacheMetaData
 
 #pragma mark NSCoding Methods
 

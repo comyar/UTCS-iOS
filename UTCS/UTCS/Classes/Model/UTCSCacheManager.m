@@ -11,8 +11,9 @@
 
 
 #pragma mark - Constants
-NSString * const UTCSCacheMetaDataName  = @"UTCSCacheMetaDataName";
-NSString * const UTCSCacheValuesName    = @"UTCSCacheValuesName";
+NSString * const UTCSDataSourceCacheValuesName    = @"UTCSDataSourceCacheValuesName";
+NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDataName";
+
 
 
 #pragma mark - UTCSCacheManager Implementation
@@ -43,8 +44,8 @@ NSString * const UTCSCacheValuesName    = @"UTCSCacheValuesName";
         return;
     }
     
-    UTCSCacheMetaData *metaData = [UTCSCacheManager metaDataForService:service];
-    NSDictionary *cache = @{UTCSCacheMetaDataName : metaData, UTCSCacheValuesName : object};
+    UTCSDataSourceCacheMetaData *metaData = [UTCSCacheManager metaDataForService:service];
+    NSDictionary *cache = @{UTCSDataSourceCacheMetaDataName : metaData, UTCSDataSourceCacheValuesName : object};
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cache];
     
     NSString *primaryKey = [UTCSCacheManager primaryKeyForService:service forKey:key];
@@ -54,9 +55,9 @@ NSString * const UTCSCacheValuesName    = @"UTCSCacheValuesName";
 
 #pragma mark Private
 
-+ (UTCSCacheMetaData *)metaDataForService:(NSString *)service
++ (UTCSDataSourceCacheMetaData *)metaDataForService:(NSString *)service
 {
-    UTCSCacheMetaData *metaData = [UTCSCacheMetaData new];
+    UTCSDataSourceCacheMetaData *metaData = [UTCSDataSourceCacheMetaData new];
     metaData.service = service;
     metaData.timestamp = [NSDate date];
     return metaData;

@@ -120,7 +120,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 - (void)updateEventsWithCompletion:(UTCSEventsDataSourceCompletion)completion
 {
     NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:eventsCacheKey];
-    UTCSCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
         NSLog(@"Events : Cache hit");

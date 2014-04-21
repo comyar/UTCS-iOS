@@ -11,10 +11,10 @@
 
 
 /**
- UTCSCacheMetaData stores various metadata regarding specific objects cached by the
- UTCSCacheManager. 
+ UTCSCacheMetaData stores various metadata regarding specific objects cached by a
+ subclass of UTCSAbstractDataSourceCache.
  */
-@interface UTCSCacheMetaData : NSObject <NSCoding>
+@interface UTCSDataSourceCacheMetaData : NSObject <NSCoding>
 
 /**
  Service the data was cached for
