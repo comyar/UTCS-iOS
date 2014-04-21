@@ -10,7 +10,7 @@
 @import UIKit;
 
 #import "UTCSDataSource.h"
-
+#import "UTCSMenuButton.h"
 
 /**
  UTCSContentViewController is an abstract class
@@ -33,5 +33,10 @@
  Data source for the view controller
  */
 @property (nonatomic) UTCSDataSource        *dataSource;
+
+
+// Menu button
+@property (nonatomic, readonly) UTCSMenuButton *menuButton;
+
 
 @end

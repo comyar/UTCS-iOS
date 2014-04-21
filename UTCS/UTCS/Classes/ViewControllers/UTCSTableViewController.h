@@ -29,5 +29,8 @@
  */
 @property (nonatomic, readonly) UIImageView *backgroundImageView;
 
+/**
+ */
+@property (nonatomic, readonly) UIView      *gestureBar;
 
 @end
