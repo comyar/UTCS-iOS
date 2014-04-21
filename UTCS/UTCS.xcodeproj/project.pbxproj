@@ -59,6 +59,7 @@
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
 		DDA758921904D422007CD0DB /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA758911904D422007CD0DB /* Icons.xcassets */; };
 		DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */; };
+		DDA7589B1904EC32007CD0DB /* UTCSServiceStackFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA7589A1904EC32007CD0DB /* UTCSServiceStackFactory.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSAbstractContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSAbstractContentViewController.m */; };
@@ -175,6 +176,8 @@
 		DDA758911904D422007CD0DB /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCache.h; path = Model/UTCSDataSourceCache.h; sourceTree = "<group>"; };
 		DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCache.m; path = Model/UTCSDataSourceCache.m; sourceTree = "<group>"; };
+		DDA758991904EC32007CD0DB /* UTCSServiceStackFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSServiceStackFactory.h; path = Model/UTCSServiceStackFactory.h; sourceTree = "<group>"; };
+		DDA7589A1904EC32007CD0DB /* UTCSServiceStackFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSServiceStackFactory.m; path = Model/UTCSServiceStackFactory.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -715,6 +718,8 @@
 				DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */,
 				DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */,
 				DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */,
+				DDA758991904EC32007CD0DB /* UTCSServiceStackFactory.h */,
+				DDA7589A1904EC32007CD0DB /* UTCSServiceStackFactory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -889,6 +894,7 @@
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DD87615A18FDA7A6005FEE4E /* UTCSEventsHeaderView.m in Sources */,
+				DDA7589B1904EC32007CD0DB /* UTCSServiceStackFactory.m in Sources */,
 				DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */,
 				DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,

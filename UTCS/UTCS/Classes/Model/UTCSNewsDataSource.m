@@ -93,51 +93,6 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 
 #pragma mark Using a News Story Data Source
 
-- (void)updateNewsArticlesWithCompletion:(UTCSNewsArticleDataSourceCompletion)completion
-{
-    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSNewsService withKey:articlesCacheKey];
-    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
-    
-    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-        self.newsArticles = cache[UTCSCacheValuesName];
-        
-        if (completion) {
-            completion(metaData.timestamp);
-        }
-        return;
-    }
-    
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestNews argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
-        if ([meta[@"service"] isEqualToString:UTCSNewsService] && meta[@"success"]) {
-            
-            NSMutableArray *articles = [NSMutableArray new];
-            for (NSDictionary *articleData in values) {
-                UTCSNewsArticle *article    = [UTCSNewsArticle new];
-                article.title               = (articleData[@"title"]    == [NSNull null])? nil : articleData[@"title"];
-                article.html                = (articleData[@"html"]     == [NSNull null])? nil : articleData[@"html"];
-                article.url                 = (articleData[@"url"]      == [NSNull null])? nil : articleData[@"url"];
-    
-                NSString *dateString        = (articleData[@"date"]     == [NSNull null])? nil : articleData[@"date"];
-                article.date                = [self.dateFormatter dateFromString:dateString];
-                
-                [articles addObject:article];
-            }
-            
-            self.newsArticles = articles;
-            
-            [UTCSCacheManager cacheObject:self.newsArticles forService:UTCSNewsService withKey:articlesCacheKey];
-        }
-        
-        if (completion) {
-            completion([NSDate date]);
-        }
-        
-    } failure:^(NSError *error) {
-        if (completion) {
-            completion(metaData.timestamp);
-        }
-    }];
-}
 
 
 @end
