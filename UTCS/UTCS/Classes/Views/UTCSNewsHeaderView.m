@@ -49,7 +49,6 @@ static const CGFloat subtitleLabelFontSize  = 17.0;
             label.text          = @"What Starts Here Changes the World";
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
-            label.alpha         = 0.0;
             label;
         });
         

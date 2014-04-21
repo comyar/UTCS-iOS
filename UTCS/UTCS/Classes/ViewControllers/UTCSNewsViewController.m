@@ -73,6 +73,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         self.backgroundImageView.image = [UIImage imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image = [UIImage imageNamed:backgroundBlurredImageName];
+        self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
 }
@@ -80,7 +81,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

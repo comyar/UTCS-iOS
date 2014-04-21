@@ -14,12 +14,22 @@
 
 #pragma mark - Constants
 
+//
+static const CGFloat animationDuration      = 0.3;
+
 // Font size of the shimmering view
 static const CGFloat shimmeringViewFontSize = 50.0;
 
 // Font size of the updated label
 static const CGFloat updatedLabelFontSize   = 14.0;
 
+//
+static NSString * const shimmeringViewFontName  = @"HelveticaNeue-Bold";
+
+static NSString * const updateLabelFontName     = @"HelveticaNeue";
+
+//
+static NSString * const downArrowImageName      = @"downArrow";
 
 #pragma mark - UTCSBackgroundBlurHeaderView Class Extension
 
@@ -54,7 +64,7 @@ static const CGFloat updatedLabelFontSize   = 14.0;
             
                 view.contentView = ({
                     UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
-                    label.font          = [UIFont fontWithName:@"HelveticaNeue-Bold" size:shimmeringViewFontSize];
+                    label.font          = [UIFont fontWithName:shimmeringViewFontName size:shimmeringViewFontSize];
                     label.textAlignment = NSTextAlignmentCenter;
                     label.textColor     = [UIColor whiteColor];
                     label.adjustsFontSizeToFitWidth = YES;
@@ -66,10 +76,9 @@ static const CGFloat updatedLabelFontSize   = 14.0;
         
         // Down arrow image view
         self.downArrowImageView = ({
-            UIImage *image = [[UIImage imageNamed:@"downArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImage *image = [[UIImage imageNamed:downArrowImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
             imageView.tintColor = [UIColor whiteColor];
-            imageView.alpha = 0.0;
             imageView;
         });
         
@@ -79,7 +88,7 @@ static const CGFloat updatedLabelFontSize   = 14.0;
         // Updated label
         self.updatedLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:updatedLabelFontSize];
+            label.font = [UIFont fontWithName:updateLabelFontName size:updatedLabelFontSize];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.alpha = 0.0;
             label;
@@ -104,9 +113,9 @@ static const CGFloat updatedLabelFontSize   = 14.0;
     
     self.shimmeringView.shimmering = show;
     
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:animationDuration animations:^{
         self.updatedLabel.alpha = 1.0;
-        self.downArrowImageView.alpha = (show)? 0.0 : 1.0;;
+        self.downArrowImageView.alpha = (show)? 0.0 : 1.0;
     }];
 }
 
