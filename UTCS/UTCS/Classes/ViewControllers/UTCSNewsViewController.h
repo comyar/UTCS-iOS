@@ -13,7 +13,7 @@
 /**
  UTCSNewsViewController displays all the available news articles in a simple table
  */
-@interface UTCSNewsViewController : UTCSHeaderTableViewController
+@interface UTCSNewsViewController : UTCSHeaderTableViewController <UITableViewDelegate>
 
 
 @end

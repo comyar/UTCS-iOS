@@ -26,9 +26,14 @@
 // Models
 #import "UTCSNewsArticle.h"
 #import "UTCSNewsDataSource.h"
+#import "UTCSNewsDataSourceParser.h"
+#import "UTCSDataSourceCache.h"
 
 
 #pragma mark - Constants
+
+
+static NSString * const serviceName = @"news";
 
 // Estimated height of table view cell
 static const CGFloat estimatedCellHeight            = 140.0;
@@ -51,10 +56,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 @interface UTCSNewsViewController ()
 
 // Header view of the table view
-//@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
-
-// Data source used for the news articles
-@property (nonatomic) UTCSNewsDataSource         *newsArticleDataSource;
+@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
 
 // View controller used to display a specific news story
 @property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
@@ -66,20 +68,19 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @implementation UTCSNewsViewController
 
-
-+ (NSDictionary *)serviceStackConfiguration
-{
-    return @{UTCSServiceStackViewControllerClassName : @"UTCSNewsViewController"};
-}
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.newsArticleDataSource = [UTCSNewsDataSource new];
+        self.dataSource         = [[UTCSNewsDataSource alloc]initWithService:serviceName];
+        self.dataSource.parser  = [UTCSNewsDataSourceParser new];
+        self.dataSource.cache   = [[UTCSDataSourceCache alloc]initWithService:serviceName];
+        
+        self.tableView.delegate     = self;
+        self.tableView.dataSource   = (UTCSNewsDataSource *)self.dataSource;
         
         self.backgroundImageView.image = [UIImage imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image = [UIImage imageNamed:backgroundBlurredImageName];
-//        self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+        self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
 }
@@ -87,7 +88,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+//    self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     
 }
 
@@ -103,67 +104,68 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [self.activityHeaderView showActivityAnimation:YES];
     
-    // Update news stories
-//    [self.newsArticleDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
-//        
-//        [self.activityHeaderView showActivityAnimation:NO];
-//        
-//        if([self.newsArticleDataSource.newsArticles count] > 0) {
-//            NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
-//                                                                    dateStyle:NSDateFormatterLongStyle
-//                                                                    timeStyle:NSDateFormatterMediumStyle];
-//            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
-//        } else {
-//            self.activityHeaderView.updatedLabel.text = @"No news stories available.";
-//        }
-//        
-//        [self.tableView reloadData];
-//    }];
+    [self.dataSource updateWithArgument:nil completion:^(BOOL success) {
+        
+        NSLog(@"%@", self.dataSource.data);
+        
+        [self.activityHeaderView showActivityAnimation:NO];
+        
+        if([self.dataSource.data count] > 0) {
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
+                                                                    dateStyle:NSDateFormatterLongStyle
+                                                                    timeStyle:NSDateFormatterMediumStyle];
+            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+        } else {
+            self.activityHeaderView.updatedLabel.text = @"No News Articles Available";
+        }
+        
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark UITableViewDelegate Methods
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-////    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
-//    
-//    // Estimate height of a news story title
-//    CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
-//                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
-//                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
-//                                                context:nil];
-//    
-//    return MIN(ceilf(rect.size.height), estimatedCellDetailLabelHeight) + estimatedCellDetailLabelHeight;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return estimatedCellHeight;
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    
-//    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
-//    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSNewsArticle *article = self.dataSource.data[indexPath.row];
+    
+    // Estimate height of a news story title
+    CGRect rect = [article.title boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
+                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+                                                context:nil];
+    
+    return MIN(ceilf(rect.size.height), estimatedCellDetailLabelHeight) + estimatedCellDetailLabelHeight;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return estimatedCellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    UTCSNewsArticle *article = self.dataSource.data[indexPath.row];
+    
 //    if(!self.newsDetailViewController) {
 //        self.newsDetailViewController = [UTCSNewsDetailViewController new];
 //    }
-//    self.newsDetailViewController.newsArticle = newsStory;
-//    
+//    self.newsDetailViewController.newsArticle = article;
+    
 //    [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
-//}
-//
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [cell setHighlighted:NO animated:NO];
-//    cell.alpha = 0.8;
-//    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
-//    [UIView animateWithDuration:animationDuration animations:^{
-//        cell.alpha = 1.0;
-//        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
-//    }];
-//}
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setHighlighted:NO animated:NO];
+    cell.alpha = 0.8;
+    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
+    [UIView animateWithDuration:animationDuration animations:^{
+        cell.alpha = 1.0;
+        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    }];
+}
 
 @end

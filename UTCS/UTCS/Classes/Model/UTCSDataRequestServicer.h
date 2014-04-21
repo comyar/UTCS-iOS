@@ -11,38 +11,15 @@
 
 /**
  */
-typedef NS_ENUM(NSInteger, UTCSDataRequestType) {
-    UTCSDataRequestNews = 0,
-    UTCSDataRequestEvents,
-    UTCSDataRequestLabs,
-    UTCSDataRequestDirectory,
-    UTCSDataRequestDiskQuota
-};
-
-
-extern NSString *UTCSNewsService;
-extern NSString *UTCSEventsService;
-extern NSString *UTCSLabsService;
-extern NSString *UTCSDirectoryService;
-extern NSString *UTCSDiskQuotaService;
-extern NSString *UTCSDataRequestServicerErrorDomain;
-
-/**
- */
-typedef void (^UTCSDataRequestServicerSuccess)(NSDictionary *meta, NSDictionary *values);
-
-/**
- */
-typedef void (^UTCSDataRequestServicerFailure)(NSError *error);
+typedef void (^UTCSDataRequestServicerCompletion)(NSDictionary *meta, id values, NSError *error);
 
 
 /**
  */
 @interface UTCSDataRequestServicer : NSObject
 
-+ (void)sendDataRequestWithType:(UTCSDataRequestType)dataRequestType
-                       argument:(NSString *)argument
-                        success:(UTCSDataRequestServicerSuccess)success
-                        failure:(UTCSDataRequestServicerFailure)failure;
++ (void)sendDataRequestForService:(NSString *)service
+                         argument:(NSString *)argument
+                       completion:(UTCSDataRequestServicerCompletion)completion;
 
 @end

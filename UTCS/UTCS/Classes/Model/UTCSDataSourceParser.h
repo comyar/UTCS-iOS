@@ -19,4 +19,12 @@
 
 - (id)parseValues:(id)values;
 
+// -----
+// @name Properties
+// -----
+
+/**
+ */
+@property (nonatomic, readonly) NSDateFormatter *dateFormatter;
+
 @end

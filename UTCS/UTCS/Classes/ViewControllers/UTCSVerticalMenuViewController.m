@@ -106,6 +106,7 @@ const CGFloat animationDuration = 0.25;
     
     [self enableUserInteraction:NO forViewController:self.contentViewController];
     
+    [[UIApplication sharedApplication]setStatusBarHidden:NO];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 

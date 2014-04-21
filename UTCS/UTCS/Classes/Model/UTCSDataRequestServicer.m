@@ -17,75 +17,50 @@
 static NSString *requestURL         = @"http://www.cs.utexas.edu/~czaheri/cgi-bin/utcs.scgi";
 static NSString *requestKey         = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADC";
 
-NSString *UTCSNewsService        = @"news";
-NSString *UTCSEventsService      = @"events";
-NSString *UTCSLabsService        = @"labs";
-NSString *UTCSDirectoryService   = @"directory";
-NSString *UTCSDiskQuotaService   = @"quota";
 NSString *UTCSDataRequestServicerErrorDomain = @"UTCSDataRequestServicerError";
 
 #pragma mark - UTCSDataRequestServicer Implementation
 
 @implementation UTCSDataRequestServicer
 
-+ (void)sendDataRequestWithType:(UTCSDataRequestType)dataRequestType
-                       argument:(NSString *)argument
-                        success:(UTCSDataRequestServicerSuccess)success
-                        failure:(UTCSDataRequestServicerFailure)failure
++ (void)sendDataRequestForService:(NSString *)service
+                         argument:(NSString *)argument
+                          completion:(UTCSDataRequestServicerCompletion)completion
 {
-    NSURLRequest *request = [UTCSDataRequestServicer requestWithDataRequestType:dataRequestType
-                                                                       argument:argument];
+    if (!completion) {
+        return;
+    }
+    
+    
+    NSURLRequest *request = [UTCSDataRequestServicer requestWithService:service argument:argument];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *JSON      = (NSDictionary *)responseObject;
         NSDictionary *meta      = JSON[@"meta"];
-        NSDictionary *values    = JSON[@"values"];
+        id values               = JSON[@"values"];
         
-        if (success) {
-            success(meta, values);
-        }
+        completion(meta, values, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        if (failure) {
-            failure(error);
-        }
-        
+        completion(nil, nil, error);
+
     }];
     
     [operation start];
 }
 
-
-
-+ (NSURLRequest *)requestWithDataRequestType:(UTCSDataRequestType)dataRequestType argument:(NSString *)argument
++ (NSURLRequest *)requestWithService:(NSString *)service argument:(NSString *)argument
 {
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     
-    NSString *service = @"";
     NSString *post = [NSString stringWithFormat:@"key=%@", requestKey];
-    
-    if (dataRequestType == UTCSDataRequestNews) {
-        service = UTCSNewsService;
-    } else if (dataRequestType == UTCSDataRequestEvents) {
-        service = UTCSEventsService;
-    } else if (dataRequestType == UTCSDataRequestLabs) {
-        service = UTCSLabsService;
-    } else if (dataRequestType == UTCSDataRequestDirectory) {
-        service = UTCSDirectoryService;
-    } else if (dataRequestType == UTCSDataRequestDiskQuota) {
-        service = UTCSDiskQuotaService;
-        if (!argument) {
-            @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                           reason:@"UTCS Disk Quota service requires arguments"
-                                         userInfo:nil];
-        }
-        post = [post stringByAppendingString:[NSString stringWithFormat:@"&arg=%@", argument]];
-    }
-    
+
+    post = [post stringByAppendingString:[NSString stringWithFormat:@"&arg=%@", argument]];
     post = [post stringByAppendingString:[NSString stringWithFormat:@"&service=%@", service]];
+    
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setURL:[NSURL URLWithString:requestURL]];

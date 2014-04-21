@@ -26,19 +26,18 @@
 
 @implementation UTCSContentViewController
 
-+ (NSDictionary *)serviceStackConfiguration
-{
-    return nil;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(-16.0, 0.0, 76.0, 36.0)];
-    UIView *menuButtonContainer = [[UIView alloc]initWithFrame:self.menuButton.bounds];
-    [menuButtonContainer addSubview:self.menuButton];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menuButtonContainer];
+    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(0.0, 4.0, 76.0, 36.0)];
+    [self.view addSubview:self.menuButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.view bringSubviewToFront:self.menuButton];
 }
 
 - (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion

@@ -59,11 +59,11 @@ typedef NSString UTCSServiceName;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceParser  *dataSourceParser;
+@property (nonatomic) UTCSDataSourceParser  *parser;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceCache   *dataSourceCache;
+@property (nonatomic) UTCSDataSourceCache   *cache;
 
 /**
  */

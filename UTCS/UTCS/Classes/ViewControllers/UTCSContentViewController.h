@@ -10,21 +10,12 @@
 @import UIKit;
 
 #import "UTCSDataSource.h"
-#import "UTCSServiceStackFactory.h"
 
 
 /**
  UTCSContentViewController is an abstract class
  */
 @interface UTCSContentViewController : UIViewController
-
-// -----
-// @name Creating a UTCSAbstractContentViewController
-// -----
-
-/**
- */
-+ (NSDictionary *)serviceStackConfiguration;
 
 // -----
 // @name Using a UTCSAbstractContentViewController

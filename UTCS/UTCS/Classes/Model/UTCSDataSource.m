@@ -42,10 +42,12 @@
     }
     
     // Check cache
-    NSDictionary *cache = [self.dataSourceCache objectWithKey:self.service];
+    NSDictionary *cache = [self.cache objectWithKey:self.service];
     UTCSDataSourceCacheMetaData *metaData = cache[UTCSDataSourceCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < self.minimumTimeBetweenUpdates) {
+        
+        NSLog(@"Cache hit");
         
         _data = cache[UTCSDataSourceCacheValuesName];
         _updated = metaData.timestamp;
@@ -56,11 +58,13 @@
         return;
     }
     
+    NSLog(@"Cache miss");
+    
     // Make request
-    [UTCSDataRequestServicer sendDataRequestWithType:0 argument:argument success:^(NSDictionary *meta, NSDictionary *values) {
+    [UTCSDataRequestServicer sendDataRequestForService:self.service argument:argument completion:^(NSDictionary *meta, id values, NSError *error) {
         if ([meta[@"service"]isEqualToString:self.service] && meta[@"success"]) {
             
-            _data       = [self.dataSourceParser parseValues:values];
+            _data       = [self.parser parseValues:values];
             _updated    = [NSDate date];
             
             if (completion) {
@@ -72,7 +76,7 @@
                 NSDictionary *objects = [self.delegate objectsToCacheForDataSource:self];
                 
                 for (NSString *key in objects) {
-                    [self.dataSourceCache cacheObject:objects[key] withKey:key];
+                    [self.cache cacheObject:objects[key] withKey:key];
                 }
             }
             
@@ -80,10 +84,6 @@
             if (completion) {
                 completion(NO);
             }
-        }
-    } failure:^(NSError *error) {
-        if (completion) {
-            completion(NO);
         }
     }];
 }

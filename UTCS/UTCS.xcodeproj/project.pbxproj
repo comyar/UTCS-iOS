@@ -58,7 +58,7 @@
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
 		DDA758921904D422007CD0DB /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA758911904D422007CD0DB /* Icons.xcassets */; };
 		DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */; };
-		DDA7589B1904EC32007CD0DB /* UTCSServiceStackFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA7589A1904EC32007CD0DB /* UTCSServiceStackFactory.m */; };
+		DDA7589F1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
@@ -173,8 +173,8 @@
 		DDA758911904D422007CD0DB /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCache.h; path = Model/UTCSDataSourceCache.h; sourceTree = "<group>"; };
 		DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCache.m; path = Model/UTCSDataSourceCache.m; sourceTree = "<group>"; };
-		DDA758991904EC32007CD0DB /* UTCSServiceStackFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSServiceStackFactory.h; path = Model/UTCSServiceStackFactory.h; sourceTree = "<group>"; };
-		DDA7589A1904EC32007CD0DB /* UTCSServiceStackFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSServiceStackFactory.m; path = Model/UTCSServiceStackFactory.m; sourceTree = "<group>"; };
+		DDA7589D1904F9F7007CD0DB /* UTCSNewsDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDataSourceParser.h; path = Model/UTCSNewsDataSourceParser.h; sourceTree = "<group>"; };
+		DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsDataSourceParser.m; path = Model/UTCSNewsDataSourceParser.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -319,8 +319,9 @@
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DDA7589C1904F60A007CD0DB /* Services */,
+				DDC2F5D719047771006011F0 /* Views */,
 				DDC2F5D219047748006011F0 /* Abstract */,
-				DD87615E18FDFE45005FEE4E /* News */,
 				DD89899D1903113B000F1041 /* Services */,
 				DD87617419028219005FEE4E /* Features */,
 				DD5B584F18D239F900EEB474 /* Views */,
@@ -389,6 +390,8 @@
 				DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */,
 				DDE561EA18DC441F00C46480 /* UTCSNewsDataSource.h */,
 				DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */,
+				DDA7589D1904F9F7007CD0DB /* UTCSNewsDataSourceParser.h */,
+				DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -597,7 +600,6 @@
 		DD89899D1903113B000F1041 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DD8989A01903120C000F1041 /* CacheManager */,
 				DD87617519028247005FEE4E /* DataRequestServicer */,
 				DD0F0D6A18EC39D10088178C /* StateManager */,
 			);
@@ -622,13 +624,6 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
-		DD8989A01903120C000F1041 /* CacheManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = CacheManager;
-			sourceTree = "<group>";
-		};
 		DDA758891904D28D007CD0DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,6 +632,14 @@
 				DDA758911904D422007CD0DB /* Icons.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		DDA7589C1904F60A007CD0DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD87615E18FDFE45005FEE4E /* News */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -674,7 +677,6 @@
 			isa = PBXGroup;
 			children = (
 				DDC2F5D819047775006011F0 /* Models */,
-				DDC2F5D719047771006011F0 /* Views */,
 				DDC2F5D61904776A006011F0 /* Controllers */,
 			);
 			name = Abstract;
@@ -713,8 +715,6 @@
 				DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */,
 				DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */,
 				DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */,
-				DDA758991904EC32007CD0DB /* UTCSServiceStackFactory.h */,
-				DDA7589A1904EC32007CD0DB /* UTCSServiceStackFactory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -889,7 +889,6 @@
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DD87615A18FDA7A6005FEE4E /* UTCSEventsHeaderView.m in Sources */,
-				DDA7589B1904EC32007CD0DB /* UTCSServiceStackFactory.m in Sources */,
 				DD83B57218F15CB800EBDE06 /* UTCSLicenseViewController.m in Sources */,
 				DD83B56418F1353A00EBDE06 /* UTCSSettingsViewController.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
@@ -928,6 +927,7 @@
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
+				DDA7589F1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m in Sources */,
 				0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */,
 				DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */,
 			);

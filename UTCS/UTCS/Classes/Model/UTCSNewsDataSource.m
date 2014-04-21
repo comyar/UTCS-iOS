@@ -28,19 +28,10 @@
 // Key used to cache news articles
 static NSString * const articlesCacheKey            = @"articles";
 
-// Minimum time between updates, in seconds
-static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
-
 
 #pragma mark - UTCSNewsStoryDataSource Class Extension
 
 @interface UTCSNewsDataSource ()
-
-// Array of news articles
-@property (nonatomic) NSArray *newsArticles;
-
-// Date formatter
-@property (nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -48,18 +39,6 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
 @implementation UTCSNewsDataSource
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        self.dateFormatter = ({
-            NSDateFormatter *dateFormatter = [NSDateFormatter new];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss"; // Ex: 2014-04-19 14:27:47
-            dateFormatter;
-        });
-    }
-    return self;
-}
 
 #pragma mark UITableViewDataSource Methods
 
@@ -78,7 +57,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
         cell.detailTextLabel.numberOfLines = 4;
     }
     
-    UTCSNewsArticle *newsStory = self.newsArticles[indexPath.row];
+    UTCSNewsArticle *newsStory = self.data[indexPath.row];
     cell.textLabel.text = newsStory.title;
     cell.detailTextLabel.text = [newsStory.attributedContent string];
     
@@ -87,11 +66,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.newsArticles count];
+    return [self.data count];
 }
-
-#pragma mark Using a News Story Data Source
-
-
 
 @end

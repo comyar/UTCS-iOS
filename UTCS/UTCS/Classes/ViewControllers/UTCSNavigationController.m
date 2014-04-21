@@ -9,9 +9,23 @@
 
 #import "UTCSNavigationController.h"
 
+@implementation UINavigationBar (Size)
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(320, 44.0);
+}
+
+@end
 
 @implementation UTCSNavigationController
 
-// Nothing to do
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
+{
+    if (self = [super initWithRootViewController:rootViewController]) {
+        self.navigationBar.autoresizingMask = UIViewAutoresizingNone;
+    }
+    return self;
+}
 
 @end

@@ -12,8 +12,6 @@
 #import "UTCSNavigationController.h"
 #import "UTCSVerticalMenuViewController.h"
 
-#import "UTCSServiceStackFactory.h"
-
 // View controllers
 @class UTCSNewsViewController;
 @class UTCSLabsViewController;
@@ -84,23 +82,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Initialize menu view controller
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+//    [self configureAppearance];
+    
+    // Menu
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    
-    self.newsViewController = (UTCSNewsViewController *)[UTCSServiceStackFactory controllerForServiceStackConfiguration:[UTCSNewsViewController serviceStackConfiguration]];
+    // News
+    self.newsViewController = [UTCSNewsViewController new];
     self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:self.newsViewController];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];
-
     
-    [self configureAppearance];
-    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 
@@ -111,9 +108,6 @@
 
 - (void)configureAppearance
 {
-    [[UISearchBar appearance]setBackgroundImage:[UIImage new]];
-    [[UISearchBar appearance]setScopeBarBackgroundImage:[UIImage new]];
-    
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundColor:[UIColor clearColor]];
