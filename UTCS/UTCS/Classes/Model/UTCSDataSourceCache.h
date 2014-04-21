@@ -9,6 +9,8 @@
 
 @import Foundation;
 
+#import "UTCSDataSourceCacheMetaData.h"
+
 // Key for the meta data object in the cache dictionary
 extern NSString * const UTCSDataSourceCacheMetaDataName;
 
