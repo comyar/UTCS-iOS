@@ -14,13 +14,10 @@
 @interface UTCSTableViewController ()
 
 //
-@property (nonatomic) UIView *gestureBar;
+@property (nonatomic) UIButton              *gestureBar;
 
 //
-@property (nonatomic) UIView *navigationBarSeparatorLineView;
-
-//
-@property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic) UIView                *navigationBarSeparatorLineView;
 
 @end
 
@@ -46,19 +43,12 @@
     [super viewDidLoad];
     
     self.gestureBar = ({
-        UIView *view = [UIView new];
-        view.backgroundColor = [UIColor clearColor];
-        view;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchDown];
+        button.backgroundColor = [UIColor greenColor];
+        button;
     });
-    
-    self.tapGestureRecognizer = ({
-        UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                                           action:@selector(didRecognizerTapGesture:)];
-        gestureRecognizer.numberOfTapsRequired      = 1;
-        gestureRecognizer.numberOfTouchesRequired   = 1;
-        gestureRecognizer;
-    });
-    [self.gestureBar addGestureRecognizer:self.tapGestureRecognizer];
+    [self.view addSubview:self.gestureBar];
     
     self.navigationBarSeparatorLineView = ({
         UIView *view = [UIView new];
@@ -93,11 +83,21 @@
 
 #pragma mark Gesture Recognizer Methods
 
-- (void)didRecognizerTapGesture:(UITapGestureRecognizer *)gestureRecognizer
+- (void)didTouchUpInsideButton:(UIButton *)button
 {
-    if (gestureRecognizer == self.tapGestureRecognizer) {
+    if (button == self.gestureBar) {
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     }
+}
+
+#pragma mark UIGestureRecognizerDelegate Methods
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if ([gestureRecognizer locationInView:self.view].y <= CGRectGetHeight(self.navigationController.navigationBar.bounds)) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark Key-Value Observing Methods

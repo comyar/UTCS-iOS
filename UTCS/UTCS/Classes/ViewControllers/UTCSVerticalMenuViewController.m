@@ -10,23 +10,32 @@
 
 
 NSString * const UTCSVerticalMenuDisplayNotification = @"UTCSVerticalMenuDisplayNotification";
-const CGFloat animationDuration = 0.25;
+
+
+
+
+static const CGFloat snapBehaviorDamping            = 0.33;
+static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
+
+
 
 #pragma mark - UTCSVerticalMenuViewController Class Extension
 
 @interface UTCSVerticalMenuViewController ()
 
+//
 @property (nonatomic, getter = isShowingMenu) BOOL showingMenu;
 
+//
 @property (nonatomic) UITapGestureRecognizer        *tapGestureRecognizer;
 
+//
 @property (nonatomic) UIPanGestureRecognizer        *panGestureRecognizer;
 
+//
 @property (nonatomic) UIDynamicAnimator             *contentDynamicAnimator;
 
-@property (nonatomic) UISnapBehavior                *contentSnapUpBehavior;
-
-@property (nonatomic) UISnapBehavior                *contentSnapDownBehavior;
+@property (nonatomic) UISnapBehavior                *contentSnapBehavior;
 
 @property (nonatomic) UIDynamicItemBehavior         *contentDynamicItemBehavior;
 
@@ -59,17 +68,9 @@ const CGFloat animationDuration = 0.25;
     return self;
 }
 
-
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.contentDynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
 }
 
 #pragma mark Gesture Recognizers
@@ -93,15 +94,12 @@ const CGFloat animationDuration = 0.25;
         } else {
             if (self.contentViewController.view.frame.origin.y > self.view.center.y) {
                 [self showMenu];
-                NSLog(@"show menu");
             } else {
-                NSLog(@"hide menu");
                 [self hideMenu];
             }
         }
     }
 }
-
 
 - (void)didRecognizeTapGesture:(UITapGestureRecognizer *)gestureRecognizer
 {
@@ -120,11 +118,16 @@ const CGFloat animationDuration = 0.25;
         return self.isShowingMenu;
     } else if (gestureRecognizer == self.panGestureRecognizer) {
         CGPoint location = [gestureRecognizer locationInView:self.contentViewController.view];
-        if (location.y <= 44.0) {
+        if (location.y <= maximumYtoBeginRecognizePan) {
             return YES;
         }
     }
     return NO;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 #pragma mark Using a UTCSVerticalMenuViewController
@@ -140,43 +143,43 @@ const CGFloat animationDuration = 0.25;
 
 - (void)showMenu
 {
-    [self.contentDynamicAnimator removeBehavior:self.contentSnapUpBehavior];
+    [self.contentDynamicAnimator removeBehavior:self.contentSnapBehavior];
     
     self.contentDynamicAnimator     = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
     self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
     self.contentDynamicItemBehavior.allowsRotation = NO;
 
-    self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
+    self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                            snapToPoint:CGPointMake(self.view.center.x, 1.33 * CGRectGetHeight(self.view.bounds))];
-    self.contentSnapDownBehavior.damping = 0.33;
+    self.contentSnapBehavior.damping = snapBehaviorDamping;
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
-    [self.contentDynamicAnimator addBehavior:self.contentSnapDownBehavior];
+    [self.contentDynamicAnimator addBehavior:self.contentSnapBehavior];
     
     self.showingMenu = YES;
     
     [self enableUserInteraction:NO forViewController:self.contentViewController];
     
-    [[UIApplication sharedApplication]setStatusBarHidden:NO];
     [self setNeedsStatusBarAppearanceUpdate];
+    
 }
 
 - (void)hideMenu
 {
-    [self.contentDynamicAnimator removeBehavior:self.contentSnapDownBehavior];
+    [self.contentDynamicAnimator removeBehavior:self.contentSnapBehavior];
     
     self.contentDynamicAnimator     = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
     self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
     self.contentDynamicItemBehavior.allowsRotation = NO;
 
     
-    self.contentSnapUpBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
+    self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                          snapToPoint:self.view.center];
-    self.contentSnapUpBehavior.damping = 0.33;
+    self.contentSnapBehavior.damping = snapBehaviorDamping;
     
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
-    [self.contentDynamicAnimator addBehavior:self.contentSnapUpBehavior];
+    [self.contentDynamicAnimator addBehavior:self.contentSnapBehavior];
     
     self.showingMenu = NO;
     
@@ -240,6 +243,7 @@ const CGFloat animationDuration = 0.25;
         [self hideMenu];
         return;
     } else if(_contentViewController) {
+        [_contentViewController.view removeGestureRecognizer:self.panGestureRecognizer];
         [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
         [_contentViewController willMoveToParentViewController:nil];
         [_contentViewController.view removeFromSuperview];
