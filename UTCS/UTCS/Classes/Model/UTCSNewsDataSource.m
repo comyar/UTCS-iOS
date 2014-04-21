@@ -13,7 +13,7 @@
 #import "UTCSNewsArticle.h"
 #import "UTCSCacheManager.h"
 #import "UTCSDataRequestServicer.h"
-#import "UTCSNewsArticleDataSource.h"
+#import "UTCSNewsDataSource.h"
 
 // Views
 #import "UTCSTableViewCell.h"
@@ -35,7 +35,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 
 #pragma mark - UTCSNewsStoryDataSource Class Extension
 
-@interface UTCSNewsArticleDataSource ()
+@interface UTCSNewsDataSource ()
 
 // Array of news articles
 @property (nonatomic) NSArray *newsArticles;
@@ -48,7 +48,7 @@ static CGFloat minimumTimeBetweenUpdates            = 21600.0;  // 6 hours
 
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
-@implementation UTCSNewsArticleDataSource
+@implementation UTCSNewsDataSource
 
 - (instancetype)init
 {

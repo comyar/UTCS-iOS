@@ -58,6 +58,7 @@
 		DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
 		DDA758921904D422007CD0DB /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA758911904D422007CD0DB /* Icons.xcassets */; };
+		DDA758951904D7C4007CD0DB /* UTCSAbstractDataSourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* UTCSAbstractDataSourceCache.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSAbstractContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSAbstractContentViewController.m */; };
@@ -69,7 +70,7 @@
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
-		DDE561EC18DC441F00C46480 /* UTCSNewsArticleDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsArticleDataSource.m */; };
+		DDE561EC18DC441F00C46480 /* UTCSNewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */; };
 		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
 		DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
@@ -172,6 +173,8 @@
 		DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		DDA7588F1904D313007CD0DB /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = App.xcassets; path = Resources/App.xcassets; sourceTree = "<group>"; };
 		DDA758911904D422007CD0DB /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
+		DDA758931904D7C4007CD0DB /* UTCSAbstractDataSourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAbstractDataSourceCache.h; path = Model/UTCSAbstractDataSourceCache.h; sourceTree = "<group>"; };
+		DDA758941904D7C4007CD0DB /* UTCSAbstractDataSourceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSAbstractDataSourceCache.m; path = Model/UTCSAbstractDataSourceCache.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -194,8 +197,8 @@
 		DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsHeaderView.m; path = Views/UTCSNewsHeaderView.m; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
-		DDE561EA18DC441F00C46480 /* UTCSNewsArticleDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsArticleDataSource.h; path = Model/UTCSNewsArticleDataSource.h; sourceTree = "<group>"; };
-		DDE561EB18DC441F00C46480 /* UTCSNewsArticleDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsArticleDataSource.m; path = Model/UTCSNewsArticleDataSource.m; sourceTree = "<group>"; };
+		DDE561EA18DC441F00C46480 /* UTCSNewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDataSource.h; path = Model/UTCSNewsDataSource.h; sourceTree = "<group>"; };
+		DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsDataSource.m; path = Model/UTCSNewsDataSource.m; sourceTree = "<group>"; };
 		DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -317,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC2F5D219047748006011F0 /* Abstract */,
+				DD87615E18FDFE45005FEE4E /* News */,
 				DD89899D1903113B000F1041 /* Services */,
 				DD87617419028219005FEE4E /* Features */,
 				DD5B584F18D239F900EEB474 /* Views */,
@@ -371,9 +375,9 @@
 		DD87615E18FDFE45005FEE4E /* News */ = {
 			isa = PBXGroup;
 			children = (
-				DD87616118FDFE5A005FEE4E /* Controllers */,
-				DD87616018FDFE51005FEE4E /* Views */,
 				DD87615F18FDFE4A005FEE4E /* Models */,
+				DD87616018FDFE51005FEE4E /* Views */,
+				DD87616118FDFE5A005FEE4E /* Controllers */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -383,8 +387,8 @@
 			children = (
 				DD5B583C18D239F900EEB474 /* UTCSNewsArticle.h */,
 				DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */,
-				DDE561EA18DC441F00C46480 /* UTCSNewsArticleDataSource.h */,
-				DDE561EB18DC441F00C46480 /* UTCSNewsArticleDataSource.m */,
+				DDE561EA18DC441F00C46480 /* UTCSNewsDataSource.h */,
+				DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -571,7 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				DD5B586C18D23DD200EEB474 /* Navigation */,
-				DD87615E18FDFE45005FEE4E /* News */,
 				DD87616218FDFE97005FEE4E /* Events */,
 				DD8761661900FC4F005FEE4E /* Labs */,
 				DD87616D1900FCD5005FEE4E /* Disk Quota */,
@@ -674,9 +677,9 @@
 		DDC2F5D219047748006011F0 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				DDC2F5D61904776A006011F0 /* Controllers */,
 				DDC2F5D819047775006011F0 /* Models */,
 				DDC2F5D719047771006011F0 /* Views */,
+				DDC2F5D61904776A006011F0 /* Controllers */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -710,6 +713,8 @@
 				DDC2F5DA1904778C006011F0 /* UTCSAbstractDataSource.m */,
 				DDC2F5DC190480C7006011F0 /* UTCSAbstractDataSourceParser.h */,
 				DDC2F5DD190480C7006011F0 /* UTCSAbstractDataSourceParser.m */,
+				DDA758931904D7C4007CD0DB /* UTCSAbstractDataSourceCache.h */,
+				DDA758941904D7C4007CD0DB /* UTCSAbstractDataSourceCache.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -896,7 +901,7 @@
 				DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
-				DDE561EC18DC441F00C46480 /* UTCSNewsArticleDataSource.m in Sources */,
+				DDE561EC18DC441F00C46480 /* UTCSNewsDataSource.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
 				DD8761781902826C005FEE4E /* UTCSDataRequestServicer.m in Sources */,
 				DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */,
@@ -916,6 +921,7 @@
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
+				DDA758951904D7C4007CD0DB /* UTCSAbstractDataSourceCache.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.m in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSAbstractContentViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,

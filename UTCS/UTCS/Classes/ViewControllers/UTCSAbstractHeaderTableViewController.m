@@ -22,7 +22,6 @@
 @implementation UTCSAbstractHeaderTableViewController
 @synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
 
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {

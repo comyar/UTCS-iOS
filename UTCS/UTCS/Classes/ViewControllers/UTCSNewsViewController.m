@@ -25,7 +25,7 @@
 
 // Models
 #import "UTCSNewsArticle.h"
-#import "UTCSNewsArticleDataSource.h"
+#import "UTCSNewsDataSource.h"
 
 
 #pragma mark - Constants
@@ -51,10 +51,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 @interface UTCSNewsViewController ()
 
 // Header view of the table view
-@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
+//@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
 
 // Data source used for the news articles
-@property (nonatomic) UTCSNewsArticleDataSource         *newsArticleDataSource;
+@property (nonatomic) UTCSNewsDataSource         *newsArticleDataSource;
 
 // View controller used to display a specific news story
 @property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
@@ -69,11 +69,11 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.newsArticleDataSource = [UTCSNewsArticleDataSource new];
+        self.newsArticleDataSource = [UTCSNewsDataSource new];
         
         self.backgroundImageView.image = [UIImage imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image = [UIImage imageNamed:backgroundBlurredImageName];
-        self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+//        self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
 }
@@ -81,6 +81,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     
 }
 

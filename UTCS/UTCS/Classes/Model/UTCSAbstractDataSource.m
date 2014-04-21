@@ -8,10 +8,20 @@
 
 #import "UTCSAbstractDataSource.h"
 #import "UTCSAbstractDataSourceParser.h"
+#import "UTCSCacheManager.h"
+
 
 #pragma mark - UTCSAbstractDataSource Implementation
 
 @implementation UTCSAbstractDataSource
+
+- (instancetype)initWithService:(NSString *)service
+{
+    if (self = [super init]) {
+        _service = service;
+    }
+    return self;
+}
 
 - (BOOL)shouldUpdate
 {
@@ -30,7 +40,7 @@
         return;
     }
     
-    [UTCSDataRequestServicer sendDataRequestWithType:self.requestType argument:argument success:^(NSDictionary *meta, NSDictionary *values) {
+    [UTCSDataRequestServicer sendDataRequestWithType:0 argument:argument success:^(NSDictionary *meta, NSDictionary *values) {
         if ([meta[@"service"]isEqualToString:self.service] && meta[@"success"]) {
             
             _data = [self.dataSourceParser parseValues:values];
