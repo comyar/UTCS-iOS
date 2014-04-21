@@ -22,9 +22,6 @@
 //
 @property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
-//
-@property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
-
 @end
 
 
@@ -47,12 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.gestureBar = ({
         UIView *view = [UIView new];
         view.backgroundColor = [UIColor clearColor];
         view;
     });
-    [self.view addSubview:self.gestureBar];
     
     self.tapGestureRecognizer = ({
         UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self

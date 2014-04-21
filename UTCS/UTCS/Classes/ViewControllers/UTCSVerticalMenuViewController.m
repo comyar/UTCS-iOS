@@ -45,6 +45,9 @@ const CGFloat animationDuration = 0.25;
         self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizeTapGesture:)];
         self.tapGestureRecognizer.delegate = self;
         
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizerPanGesture:)];
+        self.panGestureRecognizer.delegate = self;
+        
         [self setMenuViewController:menuViewController];
         [self setContentViewController:contentViewController];
         
@@ -56,13 +59,7 @@ const CGFloat animationDuration = 0.25;
     return self;
 }
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    if(gestureRecognizer == self.tapGestureRecognizer) {
-        return self.isShowingMenu;
-    }
-    return YES;
-}
+
 
 - (void)dealloc
 {
@@ -75,6 +72,37 @@ const CGFloat animationDuration = 0.25;
     self.contentDynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
 }
 
+#pragma mark Gesture Recognizers
+
+- (void)didRecognizerPanGesture:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer == self.panGestureRecognizer) {
+        
+        static CGPoint initial;
+        
+        CGPoint translation = [gestureRecognizer translationInView:self.view];
+        
+        if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+            
+            initial = self.contentViewController.view.center;
+            
+        } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+            
+            self.contentViewController.view.center = CGPointMake(initial.x, initial.y + translation.y);
+            
+        } else {
+            if (self.contentViewController.view.frame.origin.y > self.view.center.y) {
+                [self showMenu];
+                NSLog(@"show menu");
+            } else {
+                NSLog(@"hide menu");
+                [self hideMenu];
+            }
+        }
+    }
+}
+
+
 - (void)didRecognizeTapGesture:(UITapGestureRecognizer *)gestureRecognizer
 {
     if(gestureRecognizer == self.tapGestureRecognizer) {
@@ -82,6 +110,21 @@ const CGFloat animationDuration = 0.25;
             [self hideMenu];
         }
     }
+}
+
+#pragma mark UIGestureRecognizerDelegate Methods
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if(gestureRecognizer == self.tapGestureRecognizer) {
+        return self.isShowingMenu;
+    } else if (gestureRecognizer == self.panGestureRecognizer) {
+        CGPoint location = [gestureRecognizer locationInView:self.contentViewController.view];
+        if (location.y <= 44.0) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark Using a UTCSVerticalMenuViewController
@@ -99,6 +142,14 @@ const CGFloat animationDuration = 0.25;
 {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapUpBehavior];
     
+    self.contentDynamicAnimator     = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
+    self.contentDynamicItemBehavior.allowsRotation = NO;
+
+    self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
+                                                           snapToPoint:CGPointMake(self.view.center.x, 1.33 * CGRectGetHeight(self.view.bounds))];
+    self.contentSnapDownBehavior.damping = 0.33;
+    
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapDownBehavior];
     
@@ -113,6 +164,16 @@ const CGFloat animationDuration = 0.25;
 - (void)hideMenu
 {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapDownBehavior];
+    
+    self.contentDynamicAnimator     = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
+    self.contentDynamicItemBehavior.allowsRotation = NO;
+
+    
+    self.contentSnapUpBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
+                                                         snapToPoint:self.view.center];
+    self.contentSnapUpBehavior.damping = 0.33;
+    
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapUpBehavior];
@@ -153,7 +214,7 @@ const CGFloat animationDuration = 0.25;
     }
 }
 
-#pragma mark Property Setters
+#pragma mark Setters
 
 - (void)setMenuViewController:(UIViewController *)menuViewController
 {
@@ -201,24 +262,15 @@ const CGFloat animationDuration = 0.25;
     }
 }
 
+#pragma mark Configure Content View Controller
+
 - (void)configureContentViewController:(UIViewController *)contentViewController
 {
     _contentViewController = contentViewController;
     [_contentViewController.view addGestureRecognizer:self.tapGestureRecognizer];
+    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
     
     [self setNeedsStatusBarAppearanceUpdate];
-    
-    self.contentDynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
-    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
-    self.contentDynamicItemBehavior.allowsRotation = NO;
-    
-    self.contentSnapUpBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                         snapToPoint:self.view.center];
-    self.contentSnapUpBehavior.damping = 0.33;
-    
-    self.contentSnapDownBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                           snapToPoint:CGPointMake(self.view.center.x, 1.33 * CGRectGetHeight(self.view.bounds))];
-    self.contentSnapDownBehavior.damping = 0.33;
 }
 
 @end

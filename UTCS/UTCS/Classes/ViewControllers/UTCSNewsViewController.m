@@ -106,8 +106,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     
     [self.dataSource updateWithArgument:nil completion:^(BOOL success) {
         
-        NSLog(@"%@", self.dataSource.data);
-        
         [self.activityHeaderView showActivityAnimation:NO];
         
         if([self.dataSource.data count] > 0) {
@@ -116,6 +114,11 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
                                                                     timeStyle:NSDateFormatterMediumStyle];
             self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
         } else {
+            
+            if (!success) {
+                // Show frowny face, error message
+            }
+            
             self.activityHeaderView.updatedLabel.text = @"No News Articles Available";
         }
         
