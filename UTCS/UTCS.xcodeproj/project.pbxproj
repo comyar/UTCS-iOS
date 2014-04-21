@@ -56,7 +56,7 @@
 		DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A81903C205000F1041 /* UTCSNavigationController.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA6858418F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */; };
-		DDA758881904BD84007CD0DB /* UTCSAbstractHeaderTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSAbstractHeaderTableController.m */; };
+		DDA758881904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSAbstractContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSAbstractContentViewController.m */; };
@@ -170,8 +170,8 @@
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA6858218F5AA0E00C4DF04 /* UTCSLabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsTableViewCell.h; path = Views/UTCSLabsTableViewCell.h; sourceTree = "<group>"; };
 		DDA6858318F5AA0E00C4DF04 /* UTCSLabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsTableViewCell.m; path = Views/UTCSLabsTableViewCell.m; sourceTree = "<group>"; };
-		DDA758861904BD84007CD0DB /* UTCSAbstractHeaderTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAbstractHeaderTableController.h; path = ViewControllers/UTCSAbstractHeaderTableController.h; sourceTree = "<group>"; };
-		DDA758871904BD84007CD0DB /* UTCSAbstractHeaderTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSAbstractHeaderTableController.m; path = ViewControllers/UTCSAbstractHeaderTableController.m; sourceTree = "<group>"; };
+		DDA758861904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAbstractHeaderTableViewController.h; path = ViewControllers/UTCSAbstractHeaderTableViewController.h; sourceTree = "<group>"; };
+		DDA758871904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSAbstractHeaderTableViewController.m; path = ViewControllers/UTCSAbstractHeaderTableViewController.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -692,8 +692,8 @@
 				DDC2F5D419047760006011F0 /* UTCSAbstractContentViewController.m */,
 				DDC2F5E51904BBDE006011F0 /* UTCSAbstractTableViewController.h */,
 				DDC2F5E61904BBDE006011F0 /* UTCSAbstractTableViewController.m */,
-				DDA758861904BD84007CD0DB /* UTCSAbstractHeaderTableController.h */,
-				DDA758871904BD84007CD0DB /* UTCSAbstractHeaderTableController.m */,
+				DDA758861904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.h */,
+				DDA758871904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -918,7 +918,7 @@
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
-				DDA758881904BD84007CD0DB /* UTCSAbstractHeaderTableController.m in Sources */,
+				DDA758881904BD84007CD0DB /* UTCSAbstractHeaderTableViewController.m in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSAbstractContentViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DD8989A319031231000F1041 /* UTCSCacheManager.m in Sources */,

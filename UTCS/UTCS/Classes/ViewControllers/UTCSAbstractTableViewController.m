@@ -8,42 +8,49 @@
 
 #import "UTCSAbstractTableViewController.h"
 
+
+#pragma mark - UTCSAbstractTableViewController Class Extension
+
 @interface UTCSAbstractTableViewController ()
+
+//
+@property (nonatomic) UITableView   *tableView;
+
+//
+@property (nonatomic) UIButton      *scrollToTopButton;
+
+//
+@property (nonatomic) UIImageView   *backgroundImageView;
 
 @end
 
+
+#pragma mark - UTCSAbstractTableViewController Implementation
+
 @implementation UTCSAbstractTableViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)loadView
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self.view = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    _tableView = ({
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds
+                                                             style:UITableViewStylePlain];
+        tableView.backgroundColor = [UIColor blackColor];
+        tableView;
+    });
+    
+    [self.view addSubview:_tableView];
+}
+
+- (UIImageView *)backgroundImageView
+{
+    if (!_backgroundImageView) {
+        _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        [self.view insertSubview:_backgroundImageView belowSubview:_tableView];
     }
-    return self;
+    
+    return _backgroundImageView;
 }
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

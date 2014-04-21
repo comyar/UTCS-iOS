@@ -8,13 +8,14 @@
 
 
 @import Foundation;
+
 #import "UTCSDataRequestServicer.h"
 
 @class UTCSAbstractDataSourceParser;
 
 /**
  */
-typedef void (^UTCSDataSourceCompletion) (id data, NSError *error);
+typedef void (^UTCSDataSourceCompletion) (BOOL success);
 typedef NSString UTCSServiceName;
 
 /**
@@ -44,5 +45,9 @@ typedef NSString UTCSServiceName;
 /**
  */
 @property (nonatomic) UTCSAbstractDataSourceParser *dataSourceParser;
+
+/**
+ */
+@property (nonatomic, readonly) id                  data;
 
 @end

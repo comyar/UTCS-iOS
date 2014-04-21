@@ -15,8 +15,9 @@
 
 - (BOOL)shouldUpdate
 {
+    NSString *reason = [NSString stringWithFormat:@"Cannont perform abstract selector %@", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:@"Cannot perform abstract selector shouldUpdate"
+                                   reason:reason
                                  userInfo:nil];
 }
 
@@ -24,7 +25,7 @@
 {
     if (!self.service) {
         if (completion) {
-            completion(nil, nil);
+            completion(NO);
         }
         return;
     }
@@ -32,19 +33,19 @@
     [UTCSDataRequestServicer sendDataRequestWithType:self.requestType argument:argument success:^(NSDictionary *meta, NSDictionary *values) {
         if ([meta[@"service"]isEqualToString:self.service] && meta[@"success"]) {
             
-            id data = [self.dataSourceParser parseValues:values];
+            _data = [self.dataSourceParser parseValues:values];
             
             if (completion) {
-                completion(data, nil);
+                completion(YES);
             }
         } else {
             if (completion) {
-                completion(nil, [NSError errorWithDomain:UTCSDataRequestServicerErrorDomain code:-1 userInfo:nil]);
+                completion(NO);
             }
         }
     } failure:^(NSError *error) {
         if (completion) {
-            completion(nil, error);
+            completion(NO);
         }
     }];
 }

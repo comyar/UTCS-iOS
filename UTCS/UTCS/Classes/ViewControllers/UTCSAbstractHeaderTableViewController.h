@@ -12,7 +12,7 @@
 
 /**
  */
-@interface UTCSAbstractHeaderTableController : UTCSAbstractTableViewController
+@interface UTCSAbstractHeaderTableViewController : UTCSAbstractTableViewController
 
 // -----
 // @name Properties

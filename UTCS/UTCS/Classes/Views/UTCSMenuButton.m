@@ -14,11 +14,6 @@ static const CGFloat goldenRatio = 1.618;
 
 @implementation UTCSMenuButton
 
-- (instancetype)init
-{
-    return [self initWithFrame:CGRectMake(-4.0, 4.0, 76.0, 36.0)];
-}
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {

@@ -18,7 +18,7 @@
 
 /**
  */
-@property (nonatomic) UIImage               *backgroundImage;
+@property (nonatomic, readonly) UIImageView *backgroundImageView;
 
 /**
  */
