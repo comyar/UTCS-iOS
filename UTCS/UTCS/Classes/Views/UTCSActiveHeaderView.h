@@ -15,13 +15,13 @@
 /**
  UTCSActivityHeaderView
  */
-@interface UTCSActivityHeaderView : UIView
+@interface UTCSActiveHeaderView : UIView
 
 // -----
 // @name Using a UTCSActivityHeaderView
 // -----
 
-- (void)showActivityAnimation:(BOOL)show;
+- (void)showActiveAnimation:(BOOL)show;
 
 // -----
 // @name Property

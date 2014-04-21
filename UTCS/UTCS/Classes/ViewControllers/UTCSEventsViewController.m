@@ -12,7 +12,6 @@
 // View controllers
 #import "UTCSEventsViewController.h"
 #import "UTCSEventDetailViewController.h"
-#import "UTCSEventsFilterTableViewController.h"
 
 // Views
 #import "UTCSMenuButton.h"
@@ -44,35 +43,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 @interface UTCSEventsViewController ()
 
-// Data source for the eventss
-@property (nonatomic) UTCSEventsDataSource                  *eventsDataSource;
-
-// -----
-// @name View controllers
-// -----
-
-//
-@property (nonatomic) WYPopoverController                   *filterPopoverController;
-
-//
-@property (nonatomic) UTCSEventsFilterTableViewController   *filterTableViewController;
-
 //
 @property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
 
-// -----
-// @name Views
-// -----
-
-//
-@property (nonatomic) UTCSMenuButton                        *menuButton;
-
-//
-@property (nonatomic) UIButton                              *filterButton;
-
-//
-@property (nonatomic) UTCSEventsHeaderView                  *headerView;
- 
 @end
 
 
@@ -83,8 +56,15 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.title = @"Events";
-        self.eventsDataSource = [UTCSEventsDataSource new];
+    
+        self.dataSource                 = [[UTCSEventsDataSource alloc]initWithService:@"events"];
+        self.tableView.dataSource       = (UTCSEventsDataSource *)self.dataSource;
+        self.tableView.delegate         = self;
+        
+        self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
+        self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
+        
+        self.activityHeaderView = [[UTCSEventsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
 }
@@ -98,79 +78,37 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([self.eventsDataSource.filteredEvents count] == 0) {
-        [self update];
-    }
+    [self update];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-
-
-    [self.view addSubview:self.filterButton];
-}
-
-#pragma mark Buttons
-
-- (void)didTouchUpInsideButton:(UIButton *)button
-{
-    if(button == self.filterButton) {
-        
-        if(!self.filterTableViewController) {
-            self.filterTableViewController = [UTCSEventsFilterTableViewController new];
-            self.filterTableViewController.delegate = self;
-            
-            self.filterPopoverController = [[WYPopoverController alloc]initWithContentViewController:self.filterTableViewController];
-            self.filterPopoverController.popoverContentSize = CGSizeMake(200.0, 220.0);
-            self.filterPopoverController.theme = ({
-                WYPopoverTheme *theme = [WYPopoverTheme theme];
-                theme.overlayColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-                theme.innerStrokeColor = [UIColor clearColor];
-                theme.outerStrokeColor = [UIColor clearColor];
-                theme.fillTopColor = [UIColor colorWithWhite:1.0 alpha:0.95];
-                theme.fillBottomColor = [UIColor colorWithWhite:1.0 alpha:.95];
-                theme.innerShadowColor = [UIColor clearColor];
-                theme.outerShadowColor = [UIColor clearColor];
-                theme.tintColor = [UIColor clearColor];
-                theme.glossShadowColor = [UIColor clearColor];
-                theme;
-            });
-            self.filterPopoverController.delegate = self;
-        }
-        [self.filterPopoverController presentPopoverFromRect:self.filterButton.frame
-                                                      inView:self.view
-                                    permittedArrowDirections:WYPopoverArrowDirectionUp
-                                                    animated:YES];
-    }
 }
 
 - (void)update
 {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.headerView.downArrowImageView.alpha = 0.0;
-    }];
+    [self.activityHeaderView showActiveAnimation:YES];
     
-    self.headerView.shimmeringView.shimmering = YES;
-    [self.headerView.activityIndicatorView startAnimating];
-    
-    [self.eventsDataSource updateEventsWithCompletion: ^ (NSDate *updated) {
+    [self.dataSource updateWithArgument:nil completion:^(BOOL success) {
         
-        self.headerView.shimmeringView.shimmering = NO;
-        [self.headerView.activityIndicatorView stopAnimating];
+        [self.activityHeaderView showActiveAnimation:NO];
         
-        if([self.eventsDataSource.filteredEvents count] > 0) {
-            NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
+        if([self.dataSource.data count] > 0) {
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
-            self.headerView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+        } else {
+            
+            if (!success) {
+                // Show frowny face
+            }
+            
+            self.activityHeaderView.updatedLabel.text = @"No Events Available";
         }
         
-        [UIView animateWithDuration:0.3 animations:^{
-            self.headerView.updatedLabel.alpha          = 1.0;
-            self.headerView.downArrowImageView.alpha    = ([self.eventsDataSource.filteredEvents count])? 1.0 : 0.0;
-        }];
+        [self.tableView reloadData];
         
     }];
 }
@@ -179,16 +117,15 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEvent *event = self.eventsDataSource.filteredEvents[indexPath.row];
+    UTCSEvent *event = self.dataSource.data[indexPath.row];
     
     // Estimate height of event name
-//    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self..tableView.width, CGFLOAT_MAX)
-//                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
-//                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
-//                                                context:nil];
-//    
-//    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
-    return 0.0;
+    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
+                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+                                                context:nil];
+    
+    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,13 +135,13 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selected = NO;
-    
-    UTCSEvent *event = self.eventsDataSource.filteredEvents[indexPath.row];
-    self.eventDetailViewController = [UTCSEventDetailViewController new];
-    self.eventDetailViewController.event = event;
-    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    cell.selected = NO;
+//    
+//    UTCSEvent *event = self.dataSource.data[indexPath.row];
+//    self.eventDetailViewController = [UTCSEventDetailViewController new];
+//    self.eventDetailViewController.event = event;
+//    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -216,14 +153,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         cell.alpha = 1.0;
         cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
-}
-
-#pragma mark UTCSEventsFilterTableViewControllerDelegate Methods
-
-- (void)eventsFilterTableViewController:(UTCSEventsFilterTableViewController *)eventsFilterTableViewController didSelectFilter:(NSString *)filter
-{
-    [self.eventsDataSource filterEventsByType:filter];
-    [self.filterPopoverController dismissPopoverAnimated:YES];
 }
 
 @end

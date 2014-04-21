@@ -7,7 +7,6 @@
 //
 
 #import "UTCSEventsHeaderView.h"
-#import "FBShimmeringView.h"
 
 
 #pragma mark - UTCSEventsHeaderView Class Extension
@@ -25,9 +24,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
         ((UILabel *)self.shimmeringView.contentView).text = @"UTCS Events";
-
     }
     return self;
 }

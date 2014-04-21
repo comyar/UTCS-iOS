@@ -7,41 +7,12 @@
 //
 
 
-@import Foundation;
-
-
-/**
- */
-typedef void (^UTCSEventsDataSourceCompletion) (NSDate *updated);
+#import "UTCSDataSource.h"
 
 
 /**
  UTCSEventsDataSource
  */
-@interface UTCSEventsDataSource : NSObject <UITableViewDataSource>
-
-// -----
-// @name Updating
-// -----
-
-/**
- */
-- (void)updateEventsWithCompletion:(UTCSEventsDataSourceCompletion)completion;
-
-// -----
-// @name Using a UTCSEventsDataSource
-// -----
-
-/**
- */
-- (void)filterEventsByType:(NSString *)type;
-
-// -----
-// @name Properties
-// -----
-
-/**
- */
-@property (nonatomic, readonly) NSArray *filteredEvents;
+@interface UTCSEventsDataSource : UTCSDataSource <UITableViewDataSource>
 
 @end

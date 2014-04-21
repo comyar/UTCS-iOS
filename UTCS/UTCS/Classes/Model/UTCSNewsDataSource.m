@@ -13,6 +13,8 @@
 #import "UTCSNewsArticle.h"
 #import "UTCSDataRequestServicer.h"
 #import "UTCSNewsDataSource.h"
+#import "UTCSNewsDataSourceParser.h"
+#import "UTCSDataSourceCache.h"
 
 // Views
 #import "UTCSTableViewCell.h"
@@ -39,6 +41,16 @@ static NSString * const articlesCacheKey = @"articles";
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
 @implementation UTCSNewsDataSource
+
+- (instancetype)initWithService:(NSString *)service
+{
+    if (self = [super initWithService:service]) {
+        self.parser = [UTCSNewsDataSourceParser new];
+        self.cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+    }
+    return self;
+}
+
 
 #pragma mark UITableViewDataSource Methods
 

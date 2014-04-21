@@ -9,7 +9,7 @@
 
 #pragma mark - Imports
 
-#import "UTCSActivityHeaderView.h"
+#import "UTCSActiveHeaderView.h"
 
 
 #pragma mark - Constants
@@ -33,7 +33,7 @@ static NSString * const downArrowImageName      = @"downArrow";
 
 #pragma mark - UTCSBackgroundBlurHeaderView Class Extension
 
-@interface UTCSActivityHeaderView ()
+@interface UTCSActiveHeaderView ()
 
 // Shimmering view used to indicate loading of news articles
 @property (nonatomic) FBShimmeringView                      *shimmeringView;
@@ -52,7 +52,7 @@ static NSString * const downArrowImageName      = @"downArrow";
 
 #pragma mark - UTCSBackgroundBlurHeaderView Implementation
 
-@implementation UTCSActivityHeaderView
+@implementation UTCSActiveHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -103,7 +103,7 @@ static NSString * const downArrowImageName      = @"downArrow";
     return self;
 }
 
-- (void)showActivityAnimation:(BOOL)show
+- (void)showActiveAnimation:(BOOL)show
 {
     if (show) {
         [self.activityIndicatorView startAnimating];

@@ -8,10 +8,11 @@
 
 @import UIKit;
 
-#import "UTCSActivityHeaderView.h"
+
+#import "UTCSActiveHeaderView.h"
 
 /**
  */
-@interface UTCSEventsHeaderView : UTCSActivityHeaderView
+@interface UTCSEventsHeaderView : UTCSActiveHeaderView
 
 @end

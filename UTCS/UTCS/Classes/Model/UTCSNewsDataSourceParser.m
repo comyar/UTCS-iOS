@@ -15,8 +15,9 @@
 
 @implementation UTCSNewsDataSourceParser
 
-- (id)parseValues:(NSArray *)values
+- (NSArray *)parseValues:(NSArray *)values
 {
+    NSAssert([values isKindOfClass:[NSArray class]], @"News data parser expects instance of NSArray");
     NSMutableArray *articles = [NSMutableArray new];
     for (NSDictionary *articleData in values) {
         UTCSNewsArticle *article = [UTCSNewsArticle new];

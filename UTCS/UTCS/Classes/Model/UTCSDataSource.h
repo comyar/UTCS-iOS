@@ -79,7 +79,7 @@ typedef NSString UTCSServiceName;
 
 /**
  */
-@property (nonatomic, readonly) NSTimeInterval      minimumTimeBetweenUpdates;
+@property (nonatomic) NSTimeInterval      minimumTimeBetweenUpdates;
 
 /**
  */

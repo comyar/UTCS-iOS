@@ -12,13 +12,10 @@
 #import "UTCSNavigationController.h"
 #import "UTCSVerticalMenuViewController.h"
 
-// View controllers
-@class UTCSNewsViewController;
-@class UTCSLabsViewController;
-@class UTCSNewsViewController;
-@class UTCSEventsViewController;
+
 
 #import "UTCSNewsViewController.h"
+#import "UTCSEventsViewController.h"
 
 #import "UTCSSettingsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
@@ -40,8 +37,6 @@
 // @name Content controllers
 // -----
 
-@property (nonatomic) UTCSNewsViewController            *newsViewController;
-
 //
 @property (nonatomic) UTCSMenuViewController            *menuViewController;
 
@@ -56,13 +51,13 @@
 // -----
 
 //
-@property (nonatomic) UTCSNavigationController          *labsNavigationController;
-
-//
 @property (nonatomic) UTCSNavigationController          *newsNavigationController;
 
 //
 @property (nonatomic) UTCSNavigationController          *eventsNavigationController;
+
+//
+@property (nonatomic) UTCSNavigationController          *labsNavigationController;
 
 //
 @property (nonatomic) UTCSNavigationController          *directoryNavigationController;
@@ -90,8 +85,10 @@
     self.menuViewController.delegate = self;
     
     // News
-    self.newsViewController = [UTCSNewsViewController new];
-    self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:self.newsViewController];
+    self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    
+    // Events
+    self.eventsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];

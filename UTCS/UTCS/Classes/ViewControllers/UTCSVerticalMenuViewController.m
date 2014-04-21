@@ -92,7 +92,8 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
             self.contentViewController.view.center = CGPointMake(initial.x, initial.y + translation.y);
             
         } else {
-            if (self.contentViewController.view.frame.origin.y > self.view.center.y) {
+            CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+            if (velocity.y > 0) {
                 [self showMenu];
             } else {
                 [self hideMenu];

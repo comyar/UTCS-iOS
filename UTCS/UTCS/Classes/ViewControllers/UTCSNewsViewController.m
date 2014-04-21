@@ -26,12 +26,9 @@
 // Models
 #import "UTCSNewsArticle.h"
 #import "UTCSNewsDataSource.h"
-#import "UTCSNewsDataSourceParser.h"
-#import "UTCSDataSourceCache.h"
 
 
 #pragma mark - Constants
-
 
 static NSString * const serviceName = @"news";
 
@@ -56,7 +53,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 @interface UTCSNewsViewController ()
 
 // Header view of the table view
-@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
+//@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
 
 // View controller used to display a specific news story
 @property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
@@ -71,25 +68,16 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.dataSource         = [[UTCSNewsDataSource alloc]initWithService:serviceName];
-        self.dataSource.parser  = [UTCSNewsDataSourceParser new];
-        self.dataSource.cache   = [[UTCSDataSourceCache alloc]initWithService:serviceName];
+        self.dataSource             = [[UTCSNewsDataSource alloc]initWithService:serviceName];
         
-        self.tableView.delegate     = self;
         self.tableView.dataSource   = (UTCSNewsDataSource *)self.dataSource;
+        self.tableView.delegate     = self;
         
-        self.backgroundImageView.image = [UIImage imageNamed:backgroundImageName];
-        self.backgroundBlurredImageView.image = [UIImage imageNamed:backgroundBlurredImageName];
+        self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
+        self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
         self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-//    self.activityHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -102,11 +90,11 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)update
 {
-    [self.activityHeaderView showActivityAnimation:YES];
+    [self.activityHeaderView showActiveAnimation:YES];
     
     [self.dataSource updateWithArgument:nil completion:^(BOOL success) {
         
-        [self.activityHeaderView showActivityAnimation:NO];
+        [self.activityHeaderView showActiveAnimation:NO];
         
         if([self.dataSource.data count] > 0) {
             NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated

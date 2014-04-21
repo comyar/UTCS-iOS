@@ -14,7 +14,7 @@
 @interface UTCSTableViewController ()
 
 //
-@property (nonatomic) UIButton              *gestureBar;
+@property (nonatomic) UIButton              *gestureButton;
 
 //
 @property (nonatomic) UIView                *navigationBarSeparatorLineView;
@@ -42,13 +42,13 @@
 {
     [super viewDidLoad];
     
-    self.gestureBar = ({
+    self.gestureButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
         button.backgroundColor = [UIColor greenColor];
         button;
     });
-    [self.view addSubview:self.gestureBar];
+    [self.view addSubview:self.gestureButton];
     
     self.navigationBarSeparatorLineView = ({
         UIView *view = [UIView new];
@@ -71,21 +71,23 @@
     
     CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.bounds);
     
-    self.gestureBar.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
-    [self.view insertSubview:self.gestureBar belowSubview:self.menuButton];
+    self.tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds),
+                                      CGRectGetHeight(self.view.bounds) - navigationBarHeight);
+    self.tableView.tableHeaderView.frame = self.tableView.bounds;
+    
+    self.gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
+    [self.view insertSubview:self.gestureButton belowSubview:self.menuButton];
     
     self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds), 0.5);
     [self.view bringSubviewToFront:self.navigationBarSeparatorLineView];
-    
-    self.tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - navigationBarHeight);
-    self.tableView.tableHeaderView.frame = self.tableView.bounds;
 }
 
-#pragma mark Gesture Recognizer Methods
+#pragma mark Buttons
 
-- (void)didTouchUpInsideButton:(UIButton *)button
+- (void)didTouchDownInsideButton:(UIButton *)button
 {
-    if (button == self.gestureBar) {
+    NSLog(@"scroll to top");
+    if (button == self.gestureButton) {
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     }
 }

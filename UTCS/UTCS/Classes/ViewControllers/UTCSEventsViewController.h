@@ -8,22 +8,13 @@
 
 @import UIKit;
 
-#import "WYPopoverController.h"
-#import "UTCSEventsFilterTableViewController.h"
+#import "UTCSHeaderTableViewController.h"
 
 
 /**
  UTCSEventsViewController displays all the available events in a simple table and allows filtering of events by type
  */
-@interface UTCSEventsViewController : UIViewController <UITableViewDelegate, WYPopoverControllerDelegate, UTCSEventsFilterTableViewControllerDelegate>
+@interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate>
 
-// -----
-// @name Updating
-// -----
-
-/**
- Updates the news data source
- */
-- (void)update;
 
 @end

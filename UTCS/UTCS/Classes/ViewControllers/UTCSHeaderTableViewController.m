@@ -7,7 +7,7 @@
 //
 
 #import "UTCSHeaderTableViewController.h"
-#import "UTCSActivityHeaderView.h"
+#import "UTCSActiveHeaderView.h"
 
 
 #pragma mark - UTCSAbstractHeaderTable
@@ -44,10 +44,11 @@
 
 #pragma mark Setters
 
-- (void)setActivityHeaderView:(UTCSActivityHeaderView *)activityHeaderView
+- (void)setActivityHeaderView:(UTCSActiveHeaderView *)activityHeaderView
 {
     _activityHeaderView             = activityHeaderView;
-    self.tableView.tableHeaderView  = activityHeaderView;
+    _activityHeaderView.frame       = self.tableView.bounds;
+    self.tableView.tableHeaderView  = _activityHeaderView;
 }
 
 #pragma mark Getters
