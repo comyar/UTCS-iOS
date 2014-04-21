@@ -69,7 +69,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.view.backgroundColor = [UIColor redColor];
         self.newsArticleDataSource = [UTCSNewsArticleDataSource new];
         
         self.backgroundImageView.image = [UIImage imageNamed:backgroundImageName];

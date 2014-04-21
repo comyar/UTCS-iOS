@@ -51,7 +51,7 @@
 - (void)setActivityHeaderView:(UTCSActivityHeaderView *)activityHeaderView
 {
     _activityHeaderView             = activityHeaderView;
-    self.tableView.tableHeaderView  = _activityHeaderView;
+    self.tableView.tableHeaderView  = activityHeaderView;
 }
 
 #pragma mark Getters

@@ -31,7 +31,9 @@
     [super viewDidLoad];
     
     self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(0.0, 0.0, 76.0, 36.0)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.menuButton];
+    UIView *menuButtonContainer = [[UIView alloc]initWithFrame:self.menuButton.bounds];
+    [menuButtonContainer addSubview:self.menuButton];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menuButtonContainer];
 }
 
 - (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion
