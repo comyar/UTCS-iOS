@@ -10,7 +10,7 @@
 #import "UTCSDataSource.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSDataSourceParser.h"
-#import "UTCSAbstractContentViewController.h"
+#import "UTCSContentViewController.h"
 
 NSString * const UTCSServiceStackViewControllerClassName     = @"UTCSServiceStackViewControllerName";
 NSString * const UTCSServiceStackDataSourceClassName         = @"UTCSServiceStackDataSourceName";
@@ -21,10 +21,10 @@ NSString * const UTCSServiceStackDataSourceCacheClassName    = @"UTCSServiceStac
 
 @implementation UTCSServiceStackFactory
 
-+ (UTCSAbstractContentViewController *)controllerForServiceStackConfiguration:(NSDictionary *)configuration
++ (UTCSContentViewController *)controllerForServiceStackConfiguration:(NSDictionary *)configuration
 {
     UTCSDataSource *dataSource = nil;
-    UTCSAbstractContentViewController *viewController = nil;
+    UTCSContentViewController *controller = nil;
     UTCSDataSourceParser *parser = nil;
     UTCSDataSourceCache *cache = nil;
     
@@ -37,7 +37,7 @@ NSString * const UTCSServiceStackDataSourceCacheClassName    = @"UTCSServiceStac
         }
         
         if ([key isEqualToString:UTCSServiceStackViewControllerClassName]) {
-            viewController = (UTCSAbstractContentViewController *)instance;
+            controller = (UTCSContentViewController *)instance;
         } else if ([key isEqualToString:UTCSServiceStackDataSourceClassName]) {
             dataSource = (UTCSDataSource *)instance;
         } else if ([key isEqualToString:UTCSServiceStackDataSourceParserClassName]) {
@@ -49,9 +49,9 @@ NSString * const UTCSServiceStackDataSourceCacheClassName    = @"UTCSServiceStac
     
     dataSource.dataSourceCache = cache;
     dataSource.dataSourceParser = parser;
-    viewController.dataSource = dataSource;
+    controller.dataSource = dataSource;
     
-    return viewController;
+    return controller;
 }
 
 + (id)instanceWithClassName:(NSString *)className

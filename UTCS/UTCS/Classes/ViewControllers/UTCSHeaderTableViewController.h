@@ -6,14 +6,15 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractTableViewController.h"
+#import "UTCSTableViewController.h"
 
 @class UTCSActivityHeaderView;
 
 
 /**
+ UTCSHeaderTableViewController is an abstract class
  */
-@interface UTCSAbstractHeaderTableViewController : UTCSAbstractTableViewController
+@interface UTCSHeaderTableViewController : UTCSTableViewController
 
 // -----
 // @name Properties

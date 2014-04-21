@@ -7,13 +7,13 @@
 //
 
 
-#import "UTCSAbstractHeaderTableViewController.h"
+#import "UTCSHeaderTableViewController.h"
 
 
 /**
  UTCSNewsViewController displays all the available news articles in a simple table
  */
-@interface UTCSNewsViewController : UTCSAbstractHeaderTableViewController
+@interface UTCSNewsViewController : UTCSHeaderTableViewController
 
 
 @end

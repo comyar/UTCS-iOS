@@ -18,7 +18,6 @@
 #import "MRCircularProgressView.h"
 
 // Models
-#import "UTCSCacheManager.h"
 #import "UTCSDataRequestServicer.h"
 
 // Categories
@@ -184,34 +183,34 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 
 - (void)update
 {
-    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:diskQuotaCacheKey];
-    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
-    
-    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-        NSLog(@"Quota : Cache hit");
-        
-        self.quota = cache[UTCSCacheValuesName];
-        [self updateUserInterfaceWithQuota:self.quota updated:metaData.timestamp];
-        
-        return;
-    }
-    
-    NSLog(@"Quota : Cache miss");
-    
-    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    progressHUD.mode = MBProgressHUDModeIndeterminate;
-    progressHUD.labelText = (metaData) ? @"Updating" : @"Downloading";
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestDiskQuota argument:@"czaheri" success:^(NSDictionary *meta, NSDictionary *values) {
-        if ([meta[@"service"] isEqualToString:UTCSDiskQuotaService] && meta[@"success"]) {
-            self.quota = values;
-            [UTCSCacheManager cacheObject:self.quota forService:UTCSDiskQuotaService withKey:diskQuotaCacheKey];
-            [self updateUserInterfaceWithQuota:self.quota updated:[NSDate date]];
-        }
-        [progressHUD hide:YES];
-    } failure:^(NSError *error) {
-        [self updateUserInterfaceWithQuota:cache[UTCSCacheValuesName] updated:[NSDate date]];
-        [progressHUD hide:YES];
-    }];
+//    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:diskQuotaCacheKey];
+//    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+//    
+//    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+//        NSLog(@"Quota : Cache hit");
+//        
+//        self.quota = cache[UTCSCacheValuesName];
+//        [self updateUserInterfaceWithQuota:self.quota updated:metaData.timestamp];
+//        
+//        return;
+//    }
+//    
+//    NSLog(@"Quota : Cache miss");
+//    
+//    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    progressHUD.mode = MBProgressHUDModeIndeterminate;
+//    progressHUD.labelText = (metaData) ? @"Updating" : @"Downloading";
+//    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestDiskQuota argument:@"czaheri" success:^(NSDictionary *meta, NSDictionary *values) {
+//        if ([meta[@"service"] isEqualToString:UTCSDiskQuotaService] && meta[@"success"]) {
+//            self.quota = values;
+//            [UTCSCacheManager cacheObject:self.quota forService:UTCSDiskQuotaService withKey:diskQuotaCacheKey];
+//            [self updateUserInterfaceWithQuota:self.quota updated:[NSDate date]];
+//        }
+//        [progressHUD hide:YES];
+//    } failure:^(NSError *error) {
+//        [self updateUserInterfaceWithQuota:cache[UTCSCacheValuesName] updated:[NSDate date]];
+//        [progressHUD hide:YES];
+//    }];
 }
 
 - (void)updateUserInterfaceWithQuota:(NSDictionary *)quota updated:(NSDate *)updated

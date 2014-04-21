@@ -6,11 +6,12 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractContentViewController.h"
+#import "UTCSContentViewController.h"
 
 /**
+ UTCSTableViewController is an abstract class
  */
-@interface UTCSAbstractTableViewController : UTCSAbstractContentViewController
+@interface UTCSTableViewController : UTCSContentViewController
 
 // -----
 // @name Properties

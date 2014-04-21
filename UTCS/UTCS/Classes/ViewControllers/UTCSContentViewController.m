@@ -8,13 +8,13 @@
 
 
 #pragma mark - Imports
-#import "UTCSAbstractContentViewController.h"
+#import "UTCSContentViewController.h"
 #import "UTCSMenuButton.h"
 
 
 #pragma mark - UTCSAbstractContentViewController Class Extension
 
-@interface UTCSAbstractContentViewController ()
+@interface UTCSContentViewController ()
 
 // Menu button
 @property (nonatomic) UTCSMenuButton *menuButton;
@@ -24,7 +24,12 @@
 
 #pragma mark - UTCSAbstractContentViewController Implementation
 
-@implementation UTCSAbstractContentViewController
+@implementation UTCSContentViewController
+
++ (NSDictionary *)serviceStackConfiguration
+{
+    return nil;
+}
 
 - (void)viewDidLoad
 {

@@ -11,7 +11,6 @@
 
 // Models
 #import "UTCSEvent.h"
-#import "UTCSCacheManager.h"
 #import "UTCSEventsDataSource.h"
 #import "UTCSDataRequestServicer.h"
 
@@ -119,66 +118,66 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 
 - (void)updateEventsWithCompletion:(UTCSEventsDataSourceCompletion)completion
 {
-    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:eventsCacheKey];
-    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
-    
-    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-        NSLog(@"Events : Cache hit");
-        
-        self.events = cache[UTCSCacheValuesName];
-        [self filterEventsByType:self.currentFilter];
-        
-        if (completion) {
-            completion(metaData.timestamp);
-        }
-        
-        return;
-    }
-    
-    NSLog(@"Events : Cache miss");
-    
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestEvents argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
-        if ([meta[@"service"] isEqualToString:UTCSEventsService] && meta[@"success"]) {
-            
-            NSMutableArray *events = [NSMutableArray new];
-            for (NSDictionary *eventData in values) {
-                UTCSEvent *event    = [UTCSEvent new];
-                event.name          = (eventData[@"name"] == [NSNull null])? nil : eventData[@"name"];
-                event.contactName   = (eventData[@"contactName"] == [NSNull null])? nil : eventData[@"contactName"];
-                event.contactEmail  = (eventData[@"contactEmail"] == [NSNull null])? nil : eventData[@"contactEmail"];
-                event.location      = (eventData[@"location"] == [NSNull null])? nil : eventData[@"location"];
-                event.description   = (eventData[@"description"] == [NSNull null])? nil : eventData[@"description"];
-                event.type          = (eventData[@"type"] == [NSNull null])? nil : eventData[@"type"];
-                event.link          = (eventData[@"link"] == [NSNull null])? nil : eventData[@"link"];
-                
-                NSString *startDateString = (eventData[@"startDate"] == [NSNull null])? nil : eventData[@"startDate"];
-                event.startDate     = [self.dateFormatter dateFromString:startDateString];
-                
-                NSString *endDateString = (eventData[@"endDate"] == [NSNull null])? nil : eventData[@"endDate"];
-                event.endDate       = [self.dateFormatter dateFromString:endDateString];
-                
-                event.allDay        = [eventData[@"allDay"]boolValue];
-                event.food          = [eventData[@"food"]boolValue];
-                
-                [events addObject:event];
-            }
-            
-            self.events = events;
-            [self filterEventsByType:self.currentFilter];
-            [UTCSCacheManager cacheObject:self.events forService:UTCSEventsService withKey:eventsCacheKey];
-        }
-        
-        if (completion) {
-            completion([NSDate date]);
-        }
-        
-    } failure:^(NSError *error) {
-        
-        if (completion) {
-            completion(metaData.timestamp);
-        }
-        
-    }];
+//    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:eventsCacheKey];
+//    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+//    
+//    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+//        NSLog(@"Events : Cache hit");
+//        
+//        self.events = cache[UTCSCacheValuesName];
+//        [self filterEventsByType:self.currentFilter];
+//        
+//        if (completion) {
+//            completion(metaData.timestamp);
+//        }
+//        
+//        return;
+////    }
+//
+//    NSLog(@"Events : Cache miss");
+//    
+//    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestEvents argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+//        if ([meta[@"service"] isEqualToString:UTCSEventsService] && meta[@"success"]) {
+//            
+//            NSMutableArray *events = [NSMutableArray new];
+//            for (NSDictionary *eventData in values) {
+//                UTCSEvent *event    = [UTCSEvent new];
+//                event.name          = (eventData[@"name"] == [NSNull null])? nil : eventData[@"name"];
+//                event.contactName   = (eventData[@"contactName"] == [NSNull null])? nil : eventData[@"contactName"];
+//                event.contactEmail  = (eventData[@"contactEmail"] == [NSNull null])? nil : eventData[@"contactEmail"];
+//                event.location      = (eventData[@"location"] == [NSNull null])? nil : eventData[@"location"];
+//                event.description   = (eventData[@"description"] == [NSNull null])? nil : eventData[@"description"];
+//                event.type          = (eventData[@"type"] == [NSNull null])? nil : eventData[@"type"];
+//                event.link          = (eventData[@"link"] == [NSNull null])? nil : eventData[@"link"];
+//                
+//                NSString *startDateString = (eventData[@"startDate"] == [NSNull null])? nil : eventData[@"startDate"];
+//                event.startDate     = [self.dateFormatter dateFromString:startDateString];
+//                
+//                NSString *endDateString = (eventData[@"endDate"] == [NSNull null])? nil : eventData[@"endDate"];
+//                event.endDate       = [self.dateFormatter dateFromString:endDateString];
+//                
+//                event.allDay        = [eventData[@"allDay"]boolValue];
+//                event.food          = [eventData[@"food"]boolValue];
+//                
+//                [events addObject:event];
+//            }
+//            
+//            self.events = events;
+//            [self filterEventsByType:self.currentFilter];
+//            [UTCSCacheManager cacheObject:self.events forService:UTCSEventsService withKey:eventsCacheKey];
+//        }
+//        
+//        if (completion) {
+//            completion([NSDate date]);
+//        }
+//        
+//    } failure:^(NSError *error) {
+//        
+//        if (completion) {
+//            completion(metaData.timestamp);
+//        }
+//        
+//    }];
 }
 
 - (void)filterEventsByType:(NSString *)type

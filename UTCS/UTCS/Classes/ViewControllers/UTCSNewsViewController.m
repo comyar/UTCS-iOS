@@ -66,6 +66,12 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @implementation UTCSNewsViewController
 
+
++ (NSDictionary *)serviceStackConfiguration
+{
+    return @{UTCSServiceStackViewControllerClassName : @"UTCSNewsViewController"};
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -98,66 +104,66 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [self.activityHeaderView showActivityAnimation:YES];
     
     // Update news stories
-    [self.newsArticleDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
-        
-        [self.activityHeaderView showActivityAnimation:NO];
-        
-        if([self.newsArticleDataSource.newsArticles count] > 0) {
-            NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
-                                                                    dateStyle:NSDateFormatterLongStyle
-                                                                    timeStyle:NSDateFormatterMediumStyle];
-            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
-        } else {
-            self.activityHeaderView.updatedLabel.text = @"No news stories available.";
-        }
-        
-        [self.tableView reloadData];
-    }];
+//    [self.newsArticleDataSource updateNewsArticlesWithCompletion:^ (NSDate *updated) {
+//        
+//        [self.activityHeaderView showActivityAnimation:NO];
+//        
+//        if([self.newsArticleDataSource.newsArticles count] > 0) {
+//            NSString *updateString = [NSDateFormatter localizedStringFromDate:updated
+//                                                                    dateStyle:NSDateFormatterLongStyle
+//                                                                    timeStyle:NSDateFormatterMediumStyle];
+//            self.activityHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+//        } else {
+//            self.activityHeaderView.updatedLabel.text = @"No news stories available.";
+//        }
+//        
+//        [self.tableView reloadData];
+//    }];
 }
 
 #pragma mark UITableViewDelegate Methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
-    
-    // Estimate height of a news story title
-    CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
-                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
-                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
-                                                context:nil];
-    
-    return MIN(ceilf(rect.size.height), estimatedCellDetailLabelHeight) + estimatedCellDetailLabelHeight;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return estimatedCellHeight;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
-    
-    if(!self.newsDetailViewController) {
-        self.newsDetailViewController = [UTCSNewsDetailViewController new];
-    }
-    self.newsDetailViewController.newsArticle = newsStory;
-    
-    [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [cell setHighlighted:NO animated:NO];
-    cell.alpha = 0.8;
-    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
-    [UIView animateWithDuration:animationDuration animations:^{
-        cell.alpha = 1.0;
-        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    }];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
+//    
+//    // Estimate height of a news story title
+//    CGRect rect = [newsStory.title boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
+//                                                options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+//                                             attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+//                                                context:nil];
+//    
+//    return MIN(ceilf(rect.size.height), estimatedCellDetailLabelHeight) + estimatedCellDetailLabelHeight;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return estimatedCellHeight;
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//    UTCSNewsArticle *newsStory = self.newsArticleDataSource.newsArticles[indexPath.row];
+//    
+//    if(!self.newsDetailViewController) {
+//        self.newsDetailViewController = [UTCSNewsDetailViewController new];
+//    }
+//    self.newsDetailViewController.newsArticle = newsStory;
+//    
+//    [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
+//}
+//
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [cell setHighlighted:NO animated:NO];
+//    cell.alpha = 0.8;
+//    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
+//    [UIView animateWithDuration:animationDuration animations:^{
+//        cell.alpha = 1.0;
+//        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
+//    }];
+//}
 
 @end

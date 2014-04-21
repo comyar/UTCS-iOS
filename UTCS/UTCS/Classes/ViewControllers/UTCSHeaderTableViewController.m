@@ -6,20 +6,20 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractHeaderTableViewController.h"
+#import "UTCSHeaderTableViewController.h"
 #import "UTCSActivityHeaderView.h"
 
 
 #pragma mark - UTCSAbstractHeaderTable
 
-@interface UTCSAbstractHeaderTableViewController ()
+@interface UTCSHeaderTableViewController ()
 
 @end
 
 
 #pragma mark - UTCSAbstractHeaderTableViewController Implementation
 
-@implementation UTCSAbstractHeaderTableViewController
+@implementation UTCSHeaderTableViewController
 @synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

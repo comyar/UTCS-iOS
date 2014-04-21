@@ -8,17 +8,24 @@
 
 
 #pragma mark - Imports
+#import "UTCSMenuViewController.h"
+#import "UTCSNavigationController.h"
+#import "UTCSVerticalMenuViewController.h"
+
+#import "UTCSServiceStackFactory.h"
 
 // View controllers
-#import "UTCSLabsViewController.h"
-#import "UTCSMenuViewController.h"
+@class UTCSNewsViewController;
+@class UTCSLabsViewController;
+@class UTCSNewsViewController;
+@class UTCSEventsViewController;
+
 #import "UTCSNewsViewController.h"
-#import "UTCSNavigationController.h"
-#import "UTCSEventsViewController.h"
+
 #import "UTCSSettingsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
 #import "UTCSDirectoryViewController.h"
-#import "UTCSVerticalMenuViewController.h"
+
 
 // Models
 #import "UTCSAppDelegate.h"
@@ -81,15 +88,9 @@
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    // News
-    self.newsViewController             = [UTCSNewsViewController new];
-    self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:self.newsViewController];
     
-    self.eventsNavigationController     = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    self.labsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSLabsViewController new]];
-    self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-    self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
-    self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
+    self.newsViewController = (UTCSNewsViewController *)[UTCSServiceStackFactory controllerForServiceStackConfiguration:[UTCSNewsViewController serviceStackConfiguration]];
+    self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:self.newsViewController];
     
     self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                   contentViewController:self.newsNavigationController];

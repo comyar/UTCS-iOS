@@ -9,15 +9,20 @@
 
 @import Foundation;
 
+
+@class UTCSContentViewController;
+
 extern NSString * const UTCSServiceStackViewControllerClassName;
 extern NSString * const UTCSServiceStackDataSourceClassName;
 extern NSString * const UTCSServiceStackDataSourceParserClassName;
 extern NSString * const UTCSServiceStackDataSourceCacheClassName;
 
+
+
 @interface UTCSServiceStackFactory : NSObject
 
 /**
  */
-+ (UIViewController *)controllerForServiceStackConfiguration:(NSDictionary *)configuration;
++ (UTCSContentViewController *)controllerForServiceStackConfiguration:(NSDictionary *)configuration;
 
 @end

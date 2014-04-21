@@ -11,7 +11,6 @@
 
 // Models
 #import "UTCSNewsArticle.h"
-#import "UTCSCacheManager.h"
 #import "UTCSDataRequestServicer.h"
 #import "UTCSNewsDataSource.h"
 

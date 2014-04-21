@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSAbstractTableViewController.h"
+#import "UTCSTableViewController.h"
 
 
 #pragma mark - UTCSAbstractTableViewController Class Extension
 
-@interface UTCSAbstractTableViewController ()
+@interface UTCSTableViewController ()
 
 @end
 
 
 #pragma mark - UTCSAbstractTableViewController Implementation
 
-@implementation UTCSAbstractTableViewController
+@implementation UTCSTableViewController
 @synthesize tableView           = _tableView;
 @synthesize backgroundImageView = _backgroundImageView;
 

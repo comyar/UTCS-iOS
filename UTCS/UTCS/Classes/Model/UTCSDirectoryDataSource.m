@@ -11,7 +11,6 @@
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
 #import "UTCSStateManager.h"
-#import "UTCSCacheManager.h"
 #import "UTCSDataRequestServicer.h"
 
 #pragma mark - Constants
@@ -44,72 +43,72 @@ static CGFloat minimumTimeBetweenUpdates    = 2592000.0;  // 30 days
 
 - (BOOL)directoryNeedsUpdate
 {
-    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:directoryCacheKey];
-    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+//    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSEventsService withKey:directoryCacheKey];
+//    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
     
-    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-        return NO;
-    }
+//    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+//        return NO;
+//    }
     
     return YES;
 }
 
 - (void)updateDirectoryWithCompletion:(UTCSDirectoryDataSourceCompletion)completion
 {
-    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSDirectoryService withKey:directoryCacheKey];
-    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
-    
-    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
-        NSLog(@"Directory : Cache hit");
-        
-        if (completion) {
-            completion(metaData.timestamp);
-        }
-        
-        return;
-    }
-    
-    NSLog(@"Directory : Cache miss");
-    
-    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestDirectory argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
-        if ([meta[@"service"] isEqualToString:UTCSDirectoryService] && meta[@"success"]) {
-            NSMutableArray *directory = [NSMutableArray new];
-            NSMutableArray *flatDirectory = [NSMutableArray new];
-            
-            for (NSArray *letter in values) {
-                NSMutableArray *directoryLetter = [NSMutableArray new];
-                for (NSDictionary *personData in letter) {
-                    UTCSDirectoryPerson *person = [UTCSDirectoryPerson new];
-                    person.firstName    = personData[@"fName"];
-                    person.lastName     = personData[@"lName"];
-                    person.fullName     = personData[@"name"];
-                    person.office       = personData[@"location"];
-                    person.phoneNumber  = personData[@"phone"];
-                    person.type         = personData[@"type"];
-                    [directoryLetter addObject:person];
-                    [flatDirectory addObject:person];
-                }
-                [directory addObject:directoryLetter];
-            }
-            
-            self.directory = directory;
-            self.flatDirectory = flatDirectory;
-            
-            [UTCSCacheManager cacheObject:self.directory forService:UTCSDirectoryService withKey:directoryCacheKey];
-            [UTCSCacheManager cacheObject:self.flatDirectory forService:UTCSDirectoryService withKey:flatDirectoryCacheKey];
-        }
-        
-        if (completion) {
-            completion();
-        }
-        
-    } failure:^(NSError *error) {
-        
-        if (completion) {
-            completion();
-        }
-        
-    }];
+//    NSDictionary *cache = [UTCSCacheManager cacheForService:UTCSDirectoryService withKey:directoryCacheKey];
+//    UTCSDataSourceCacheMetaData *metaData = cache[UTCSCacheMetaDataName];
+//    
+//    if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < minimumTimeBetweenUpdates) {
+//        NSLog(@"Directory : Cache hit");
+//        
+//        if (completion) {
+//            completion(metaData.timestamp);
+//        }
+//        
+//        return;
+//    }
+//    
+//    NSLog(@"Directory : Cache miss");
+//    
+//    [UTCSDataRequestServicer sendDataRequestWithType:UTCSDataRequestDirectory argument:nil success:^(NSDictionary *meta, NSDictionary *values) {
+//        if ([meta[@"service"] isEqualToString:UTCSDirectoryService] && meta[@"success"]) {
+//            NSMutableArray *directory = [NSMutableArray new];
+//            NSMutableArray *flatDirectory = [NSMutableArray new];
+//            
+//            for (NSArray *letter in values) {
+//                NSMutableArray *directoryLetter = [NSMutableArray new];
+//                for (NSDictionary *personData in letter) {
+//                    UTCSDirectoryPerson *person = [UTCSDirectoryPerson new];
+//                    person.firstName    = personData[@"fName"];
+//                    person.lastName     = personData[@"lName"];
+//                    person.fullName     = personData[@"name"];
+//                    person.office       = personData[@"location"];
+//                    person.phoneNumber  = personData[@"phone"];
+//                    person.type         = personData[@"type"];
+//                    [directoryLetter addObject:person];
+//                    [flatDirectory addObject:person];
+//                }
+//                [directory addObject:directoryLetter];
+//            }
+//            
+//            self.directory = directory;
+//            self.flatDirectory = flatDirectory;
+//            
+//            [UTCSCacheManager cacheObject:self.directory forService:UTCSDirectoryService withKey:directoryCacheKey];
+//            [UTCSCacheManager cacheObject:self.flatDirectory forService:UTCSDirectoryService withKey:flatDirectoryCacheKey];
+//        }
+//        
+//        if (completion) {
+//            completion();
+//        }
+//        
+//    } failure:^(NSError *error) {
+//        
+//        if (completion) {
+//            completion();
+//        }
+//        
+//    }];
 
 }
 
