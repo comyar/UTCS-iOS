@@ -84,16 +84,14 @@
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    // News
-    self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    // Navigation controllers
+    self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    self.eventsNavigationController     = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+    self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     
-    // Events
-    self.eventsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    
-    self.directoryNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-    
-    self.verticalMenuViewController = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
-                                                                                  contentViewController:self.newsNavigationController];
+    self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
+                                                                                      contentViewController:self.newsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];

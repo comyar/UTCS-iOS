@@ -93,11 +93,13 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
             
         } else {
             CGPoint velocity = [gestureRecognizer velocityInView:self.view];
-            if (velocity.y > 0) {
+            
+            if (velocity.y > 1000) {
                 [self showMenu];
             } else {
                 [self hideMenu];
             }
+            
         }
     }
 }

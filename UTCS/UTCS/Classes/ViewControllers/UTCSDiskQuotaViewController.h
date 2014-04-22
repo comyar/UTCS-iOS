@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
-@interface UTCSDiskQuotaViewController : UIViewController <UITextFieldDelegate>
+#import "UTCSContentViewController.h"
+
+@interface UTCSDiskQuotaViewController : UTCSContentViewController <UITextFieldDelegate>
 
 @end

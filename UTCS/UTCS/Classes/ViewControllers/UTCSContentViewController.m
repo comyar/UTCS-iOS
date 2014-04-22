@@ -25,12 +25,31 @@
 
 @implementation UTCSContentViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        _backgroundImageView    = [UIImageView new];
+        _menuButton             = [UTCSMenuButton new];
+        NSLog(@"content init");
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.menuButton = [[UTCSMenuButton alloc]initWithFrame:CGRectMake(0.0, 4.0, 76.0, 36.0)];
-    [self.view addSubview:self.menuButton];
+    [self.view addSubview:_backgroundImageView];
+    [self.view addSubview:_menuButton];
+    NSLog(@"content view did load");
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    self.backgroundImageView.frame = self.view.bounds;
+    self.menuButton.frame = CGRectMake(0.0, 4.0, 76.0, 36.0);
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -28,17 +28,22 @@
 - (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion;
 
 // -----
-// @name Properties
+// @name Propertiess
 // -----
 
 /**
  Data source for the view controller
  */
-@property (nonatomic) UTCSDataSource        *dataSource;
+@property (nonatomic) UTCSDataSource            *dataSource;
 
+/**
+ Menu button
+ */
+@property (nonatomic, readonly) UTCSMenuButton  *menuButton;
 
-// Menu button
-@property (nonatomic, readonly) UTCSMenuButton *menuButton;
+/**
+ */
+@property (nonatomic, readonly) UIImageView     *backgroundImageView;
 
 
 @end

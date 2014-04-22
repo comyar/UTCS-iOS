@@ -60,6 +60,9 @@
 		DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */; };
 		DDA758A51905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */; };
 		DDA758AF1905ED1D007CD0DB /* UTCSDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */; };
+		DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */; };
+		DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSSettingsManager.m */; };
+		DDA758BD19060867007CD0DB /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA758BC19060867007CD0DB /* Reveal.framework */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
@@ -178,6 +181,11 @@
 		DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSourceParser.m; path = Model/UTCSDirectoryDataSourceParser.m; sourceTree = "<group>"; };
 		DDA758AD1905ED1D007CD0DB /* UTCSDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceSearchController.h; path = Model/UTCSDataSourceSearchController.h; sourceTree = "<group>"; };
 		DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceSearchController.m; path = Model/UTCSDataSourceSearchController.m; sourceTree = "<group>"; };
+		DDA758B21905FCB6007CD0DB /* UTCSDiskQuotaDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaDataSource.h; path = Model/UTCSDiskQuotaDataSource.h; sourceTree = "<group>"; };
+		DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaDataSource.m; path = Model/UTCSDiskQuotaDataSource.m; sourceTree = "<group>"; };
+		DDA758B61905FDD0007CD0DB /* UTCSSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsManager.h; path = Model/UTCSSettingsManager.h; sourceTree = "<group>"; };
+		DDA758B71905FDD0007CD0DB /* UTCSSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsManager.m; path = Model/UTCSSettingsManager.m; sourceTree = "<group>"; };
+		DDA758BC19060867007CD0DB /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 				DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */,
 				DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */,
 				DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */,
+				DDA758BD19060867007CD0DB /* Reveal.framework in Frameworks */,
 				DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */,
 				DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */,
 				DD79690318B60D60009ADE2A /* CFNetwork.framework in Frameworks */,
@@ -254,6 +263,7 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDA758BC19060867007CD0DB /* Reveal.framework */,
 				DD8989AA1903C3F3000F1041 /* MessageUI.framework */,
 				DD4C7D0F18FB118C00129A2E /* Accelerate.framework */,
 				DD83B55D18F0EB8600EBDE06 /* EventKit.framework */,
@@ -525,6 +535,7 @@
 		DD87616D1900FCD5005FEE4E /* Disk Quota */ = {
 			isa = PBXGroup;
 			children = (
+				DDA758B11905FCA2007CD0DB /* Models */,
 				DD87616E1900FCDC005FEE4E /* Controllers */,
 			);
 			name = "Disk Quota";
@@ -574,7 +585,6 @@
 			isa = PBXGroup;
 			children = (
 				DD8761661900FC4F005FEE4E /* Labs */,
-				DD87616D1900FCD5005FEE4E /* Disk Quota */,
 				DD87616A1900FCA4005FEE4E /* Settings */,
 			);
 			name = Features;
@@ -621,9 +631,10 @@
 		DDA7589C1904F60A007CD0DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DD87616D1900FCD5005FEE4E /* Disk Quota */,
 				DD87615E18FDFE45005FEE4E /* News */,
-				DD87616F1900FCEF005FEE4E /* Directory */,
 				DD87616218FDFE97005FEE4E /* Events */,
+				DD87616F1900FCEF005FEE4E /* Directory */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -661,10 +672,29 @@
 		DDA758A91905E978007CD0DB /* Common Models */ = {
 			isa = PBXGroup;
 			children = (
-				DD87617519028247005FEE4E /* DataRequestServicer */,
+				DDA758B51905FDB6007CD0DB /* SettingsManager */,
 				DDA758A61905E78D007CD0DB /* Cache */,
+				DD87617519028247005FEE4E /* DataRequestServicer */,
 			);
 			name = "Common Models";
+			sourceTree = "<group>";
+		};
+		DDA758B11905FCA2007CD0DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DDA758B21905FCB6007CD0DB /* UTCSDiskQuotaDataSource.h */,
+				DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DDA758B51905FDB6007CD0DB /* SettingsManager */ = {
+			isa = PBXGroup;
+			children = (
+				DDA758B61905FDD0007CD0DB /* UTCSSettingsManager.h */,
+				DDA758B71905FDD0007CD0DB /* UTCSSettingsManager.m */,
+			);
+			name = SettingsManager;
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -937,9 +967,11 @@
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */,
+				DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
 				DDA758AF1905ED1D007CD0DB /* UTCSDataSourceSearchController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
+				DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				DDA7589F1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m in Sources */,
@@ -1068,7 +1100,11 @@
 					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
 					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1098,7 +1134,11 @@
 					"/Users/Comyar/Dropbox/Development/UTCS-iOS/UTCS",
 					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

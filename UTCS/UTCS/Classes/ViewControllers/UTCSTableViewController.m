@@ -26,14 +26,34 @@
 
 @implementation UTCSTableViewController
 @synthesize tableView           = _tableView;
-@synthesize backgroundImageView = _backgroundImageView;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         _showsNavigationBarSeparatorLine = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
-        [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        
+        _gestureButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
+            button;
+        });
+        
+        _tableView = ({
+            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+            tableView.delegate         = self;
+            tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.1];
+            tableView.backgroundColor  = [UIColor clearColor];
+            [tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+            tableView;
+        });
+        
+        _navigationBarSeparatorLineView = ({
+            UIView *view = [UIView new];
+            view.backgroundColor = [UIColor whiteColor];
+            view.alpha = 0.0;
+            view;
+        });
     }
     return self;
 }
@@ -42,21 +62,9 @@
 {
     [super viewDidLoad];
     
-    self.gestureButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(didTouchDownInsideButton:) forControlEvents:UIControlEventTouchDown];
-        button.backgroundColor = [UIColor greenColor];
-        button;
-    });
-    [self.view insertSubview:self.gestureButton belowSubview:self.menuButton];
-    
-    self.navigationBarSeparatorLineView = ({
-        UIView *view = [UIView new];
-        view.backgroundColor = [UIColor whiteColor];
-        view.alpha = 0.0;
-        view;
-    });
-    [self.view insertSubview:self.navigationBarSeparatorLineView aboveSubview:self.gestureButton];
+    [self.view insertSubview:_gestureButton belowSubview:self.menuButton];
+    [self.view insertSubview:_tableView belowSubview:self.gestureButton];
+    [self.view insertSubview:_navigationBarSeparatorLineView aboveSubview:self.gestureButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,31 +117,6 @@
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
         self.navigationBarSeparatorLineView.alpha = (self.showsNavigationBarSeparatorLine)? MIN(0.5, normalizedOffsetDelta) : 0.0;
     }
-}
-
-#pragma mark Getters
-
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds
-                                                 style:UITableViewStylePlain];
-        _tableView.delegate         = self;
-        _tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.1];
-        _tableView.backgroundColor  = [UIColor clearColor];
-        [self.view insertSubview:_tableView belowSubview:self.gestureButton];
-    }
-    return _tableView;
-}
-
-- (UIImageView *)backgroundImageView
-{
-    if (!_backgroundImageView) {
-        _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-        [self.view insertSubview:_backgroundImageView belowSubview:_tableView];
-    }
-    
-    return _backgroundImageView;
 }
 
 @end
