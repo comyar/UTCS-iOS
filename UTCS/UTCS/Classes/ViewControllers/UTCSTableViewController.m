@@ -73,7 +73,6 @@
     
     self.tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds),
                                       CGRectGetHeight(self.view.bounds) - navigationBarHeight);
-    self.tableView.tableHeaderView.frame = self.tableView.bounds;
     
     self.gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
     [self.view insertSubview:self.gestureButton belowSubview:self.menuButton];

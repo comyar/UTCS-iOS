@@ -30,6 +30,12 @@
     return self;
 }
 
+- (void)willMoveToParentViewController:(UIViewController *)parent
+{
+    [super willMoveToParentViewController:parent];
+    self.tableView.tableHeaderView.frame = self.tableView.bounds;
+}
+
 #pragma mark Update
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

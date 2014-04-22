@@ -81,10 +81,4 @@
     return [self.data count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    UTCSDirectoryPerson *person = self.data[section][0];
-    return [[person.lastName substringToIndex:1]uppercaseString];
-}
-
 @end

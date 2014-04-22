@@ -31,8 +31,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 // Search bar
 @property (nonatomic) UISearchBar               *searchBar;
 
-// Button to scroll to the top of the table view
-@property (nonatomic) UIButton                  *scrollToTopButton;
+@property (nonatomic) UIButton                  *searchButton;
 
 @end
 
@@ -46,7 +45,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
-        self.tableView.backgroundColor = [UIColor blackColor];
+        self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
         self.tableView.rowHeight = 64.0;
     }
     return self;
@@ -58,12 +57,25 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
     [self update];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.searchBar = ({
+        UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
+        searchBar.backgroundImage = [UIImage new];
+        searchBar.tintColor = [UIColor utcsBurntOrangeColor];
+        searchBar;
+    });
+    self.tableView.tableHeaderView = self.searchBar;
+    NSLog(@"view did load");
+}
+
 - (void)update
 {
     if ([self.dataSource shouldUpdate]) {
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
-        progressHUD.labelText = @"Syncing Directory...";
+        progressHUD.labelText = @"Syncing Directory";
         
         [self updateWithArgument:nil completion:^(BOOL success) {
             
@@ -77,6 +89,22 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     }
+}
+
+#pragma mark UITableViewDelegate Methpds
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UTCSDirectoryPerson *person = self.dataSource.data[section][0];
+    NSString *letter = [[person.lastName substringToIndex:1]uppercaseString];
+    return ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+        label.text = [NSString stringWithFormat:@"    %@", letter];
+        label.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+        label;
+    });
 }
 
 #pragma mark UTCSDataSourceCacheDelegate Methods
