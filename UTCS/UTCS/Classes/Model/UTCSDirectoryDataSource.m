@@ -13,7 +13,6 @@
 #import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
 
-
 #pragma mark - Constants
 
 
@@ -79,6 +78,17 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.data count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSMutableArray *letters = [NSMutableArray new];
+    for (NSArray *letter in self.data) {
+        UTCSDirectoryPerson *person = letter[0];
+        NSString *firstLetter = [[person.lastName substringToIndex:1]uppercaseString];
+        [letters addObject:firstLetter];
+    }
+    return letters;
 }
 
 @end
