@@ -33,6 +33,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 @property (nonatomic) UIButton                  *searchButton;
 
+@property (nonatomic) UISearchDisplayController *directorySearchDisplayController;
 @end
 
 
@@ -47,6 +48,19 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
         self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
         self.tableView.rowHeight = 64.0;
+        
+        self.searchBar = ({
+            UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
+            searchBar.backgroundImage = [UIImage new];
+            searchBar.tintColor = [UIColor utcsBurntOrangeColor];
+            searchBar.placeholder = @"Search Directory";
+            searchBar.scopeButtonTitles = @[@"All", @"Faculty", @"Staff", @"Graduates"];
+            searchBar.scopeBarBackgroundImage = [UIImage new];
+            searchBar;
+        });
+        self.tableView.tableHeaderView = self.searchBar;
+        
+        self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
     }
     return self;
 }
@@ -60,14 +74,8 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.searchBar = ({
-        UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
-        searchBar.backgroundImage = [UIImage new];
-        searchBar.tintColor = [UIColor utcsBurntOrangeColor];
-        searchBar;
-    });
-    self.tableView.tableHeaderView = self.searchBar;
-    NSLog(@"view did load");
+    
+    
 }
 
 - (void)update
