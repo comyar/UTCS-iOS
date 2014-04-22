@@ -9,7 +9,7 @@
 
 #import "UTCSDataSource.h"
 
-@interface UTCSLabsDataSource : UTCSDataSource <UITableViewDataSource>
+@interface UTCSLabsDataSource : UTCSDataSource
 
 
 @end
