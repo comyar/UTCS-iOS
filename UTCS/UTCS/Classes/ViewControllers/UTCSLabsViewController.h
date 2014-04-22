@@ -9,6 +9,6 @@
 
 #import "UTCSContentViewController.h"
 
-@interface UTCSLabsViewController : UTCSContentViewController <UITableViewDelegate, UISearchDisplayDelegate, UITableViewDataSource>
+@interface UTCSLabsViewController : UTCSContentViewController
 
 @end

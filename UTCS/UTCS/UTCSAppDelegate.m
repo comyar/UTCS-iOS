@@ -16,6 +16,7 @@
 
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
+#import "UTCSLabsViewController.h"
 
 #import "UTCSSettingsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
@@ -44,6 +45,9 @@
 @property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
 //
+@property (nonatomic) UTCSLabsViewController            *labsViewController;
+
+//
 @property (nonatomic) UTCSDiskQuotaViewController       *diskQuotaViewController;
 
 // -----
@@ -55,9 +59,6 @@
 
 //
 @property (nonatomic) UTCSNavigationController          *eventsNavigationController;
-
-//
-@property (nonatomic) UTCSNavigationController          *labsNavigationController;
 
 //
 @property (nonatomic) UTCSNavigationController          *directoryNavigationController;
@@ -88,6 +89,7 @@
     self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
     self.eventsNavigationController     = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    self.labsViewController             = [UTCSLabsViewController new];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
@@ -122,7 +124,7 @@
     } else if(option == UTCSMenuOptionEvents) {
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
     } else if(option == UTCSMenuOptionLabs) {
-        self.verticalMenuViewController.contentViewController = self.labsNavigationController;
+        self.verticalMenuViewController.contentViewController = self.labsViewController;
     } else if(option == UTCSMenuOptionDirectory) {
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionDiskQuota) {
