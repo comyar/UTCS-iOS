@@ -17,13 +17,16 @@
 #pragma mark - Constants
 
 
-
+#pragma mark - UTCSDirectoryDataSource Class Extension
 
 @interface UTCSDirectoryDataSource ()
-@property (nonatomic) NSArray *directory;
+
 @property (nonatomic) NSArray *flatDirectory;
+
 @end
 
+
+#pragma mark - UTCSDirectoryDataSource Implementation
 @implementation UTCSDirectoryDataSource
 
 - (instancetype)initWithService:(NSString *)service
@@ -57,7 +60,7 @@
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
     
-    UTCSDirectoryPerson *person = nil;
+    UTCSDirectoryPerson *person = self.data[indexPath.section][indexPath.row];
     
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
@@ -70,17 +73,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.directory[section] count];
+    return [self.data[section] count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.directory count];
+    return [self.data count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    UTCSDirectoryPerson *person = self.directory[section][0];
+    UTCSDirectoryPerson *person = self.data[section][0];
     return [[person.lastName substringToIndex:1]uppercaseString];
 }
 

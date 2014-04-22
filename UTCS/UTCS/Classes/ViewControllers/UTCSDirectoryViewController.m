@@ -47,6 +47,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
         self.tableView.backgroundColor = [UIColor blackColor];
+        self.tableView.rowHeight = 64.0;
     }
     return self;
 }

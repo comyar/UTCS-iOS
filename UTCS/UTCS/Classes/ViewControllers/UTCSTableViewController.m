@@ -48,7 +48,7 @@
         button.backgroundColor = [UIColor greenColor];
         button;
     });
-    [self.view addSubview:self.gestureButton];
+    [self.view insertSubview:self.gestureButton belowSubview:self.menuButton];
     
     self.navigationBarSeparatorLineView = ({
         UIView *view = [UIView new];
@@ -56,7 +56,7 @@
         view.alpha = 0.0;
         view;
     });
-    [self.view addSubview:self.navigationBarSeparatorLineView];
+    [self.view insertSubview:self.navigationBarSeparatorLineView aboveSubview:self.gestureButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -122,7 +122,7 @@
         _tableView.delegate         = self;
         _tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.1];
         _tableView.backgroundColor  = [UIColor clearColor];
-        [self.view addSubview:_tableView];
+        [self.view insertSubview:_tableView belowSubview:self.gestureButton];
     }
     return _tableView;
 }

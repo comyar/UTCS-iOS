@@ -59,6 +59,7 @@
 		DDA7589F1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */; };
 		DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */; };
 		DDA758A51905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */; };
+		DDA758AF1905ED1D007CD0DB /* UTCSDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
@@ -175,6 +176,8 @@
 		DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsDataSourceParser.m; path = Model/UTCSEventsDataSourceParser.m; sourceTree = "<group>"; };
 		DDA758A31905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSourceParser.h; path = Model/UTCSDirectoryDataSourceParser.h; sourceTree = "<group>"; };
 		DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSourceParser.m; path = Model/UTCSDirectoryDataSourceParser.m; sourceTree = "<group>"; };
+		DDA758AD1905ED1D007CD0DB /* UTCSDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceSearchController.h; path = Model/UTCSDataSourceSearchController.h; sourceTree = "<group>"; };
+		DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceSearchController.m; path = Model/UTCSDataSourceSearchController.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -309,26 +312,25 @@
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DDA758A71905E7B6007CD0DB /* ActiveHeaderView */,
-				DDA758A61905E78D007CD0DB /* Cache */,
 				DDC2F5D219047748006011F0 /* Abstract */,
+				DDA758A91905E978007CD0DB /* Common Models */,
+				DD5B584F18D239F900EEB474 /* Common Views */,
 				DD5B586C18D23DD200EEB474 /* Navigation */,
-				DD87617519028247005FEE4E /* DataRequestServicer */,
 				DDA7589C1904F60A007CD0DB /* Services */,
 				DD87617419028219005FEE4E /* Features */,
-				DD5B584F18D239F900EEB474 /* Views */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		DD5B584F18D239F900EEB474 /* Views */ = {
+		DD5B584F18D239F900EEB474 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
-				DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */,
-				DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */,
+				DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */,
+				DDA758A71905E7B6007CD0DB /* ActiveHeaderView */,
 				DDDE0C6C18FD950200C89D81 /* Buttons */,
 				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
 			);
+			name = "Common Views";
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -540,8 +542,8 @@
 		DD87616F1900FCEF005FEE4E /* Directory */ = {
 			isa = PBXGroup;
 			children = (
-				DD8761711900FD1C005FEE4E /* Controllers */,
 				DD8761701900FD02005FEE4E /* Models */,
+				DD8761711900FD1C005FEE4E /* Controllers */,
 			);
 			name = Directory;
 			sourceTree = "<group>";
@@ -619,9 +621,9 @@
 		DDA7589C1904F60A007CD0DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DD87615E18FDFE45005FEE4E /* News */,
 				DD87616F1900FCEF005FEE4E /* Directory */,
 				DD87616218FDFE97005FEE4E /* Events */,
-				DD87615E18FDFE45005FEE4E /* News */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -644,6 +646,25 @@
 				DD87615C18FDAC96005FEE4E /* UTCSActiveHeaderView.m */,
 			);
 			name = ActiveHeaderView;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */,
+				DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */,
+			);
+			name = ParallaxHeaderBlurScrollView;
+			sourceTree = "<group>";
+		};
+		DDA758A91905E978007CD0DB /* Common Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD87617519028247005FEE4E /* DataRequestServicer */,
+				DDA758A61905E78D007CD0DB /* Cache */,
+			);
+			name = "Common Models";
 			sourceTree = "<group>";
 		};
 		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
@@ -706,6 +727,8 @@
 				DDC2F5DA1904778C006011F0 /* UTCSDataSource.m */,
 				DDC2F5DC190480C7006011F0 /* UTCSDataSourceParser.h */,
 				DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */,
+				DDA758AD1905ED1D007CD0DB /* UTCSDataSourceSearchController.h */,
+				DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -915,6 +938,7 @@
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
+				DDA758AF1905ED1D007CD0DB /* UTCSDataSourceSearchController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
