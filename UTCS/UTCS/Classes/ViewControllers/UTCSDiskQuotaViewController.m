@@ -57,7 +57,7 @@ static NSString *diskQuotaCacheKey = @"quota";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
+        self.dataSource = [[UTCSDiskQuotaDataSource alloc]initWithService:@"quota"];
     }
     return self;
 }
@@ -68,16 +68,17 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
-    
     self.usernameTextField = ({
         UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44)];
         textField.placeholder = @"CS Unix Username";
+        textField.tintColor = [UIColor whiteColor];
         textField;
     });
     [self.view addSubview:self.usernameTextField];
     
     self.goButton = ({
         UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"goButton"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         imageView.tintColor = [UIColor whiteColor];
@@ -87,8 +88,6 @@ static NSString *diskQuotaCacheKey = @"quota";
         button;
     });
     [self.view addSubview:self.goButton];
-    
-    
     
     self.diskQuotaGaugeView = ({
         MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectMake(0, 0, 0.625 * self.view.width,
@@ -129,6 +128,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
+        label.alpha = 0.0;
         [self.view addSubview:label];
         label;
     });
@@ -146,20 +146,43 @@ static NSString *diskQuotaCacheKey = @"quota";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+}
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if (button == self.goButton) {
+        [self.view endEditing:YES];
+        [self update];
+    }
 }
 
 - (void)update
 {
+    NSLog(@"update");
     if ([self.dataSource shouldUpdate]) {
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Updating";
         
-        [self updateWithArgument:nil completion:^(BOOL success) {
-            
+        [self updateWithArgument:self.usernameTextField.text completion:^(BOOL success) {
+            NSLog(@"quota completion");
             if (success) {
+                self.nameLabel.text = self.dataSource.data[@"name"];
+                CGFloat limit = [self.dataSource.data[@"limit"]floatValue];
+                CGFloat usage = [self.dataSource.data[@"usage"]floatValue];
+                [self.diskQuotaGaugeView setProgress:(usage / limit) animated:YES];
+                self.diskQuotaDetailLabel.text = [NSString stringWithFormat:@"%0.0f / %0.0f", usage, limit];
                 
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.diskQuotaDetailLabel.alpha = 1.0;
+                    self.diskQuotaGaugeView.alpha = 1.0;
+                    self.unitLabel.alpha = 1.0;
+                }];
+                
+                NSString *updatedString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
+                                                                         dateStyle:NSDateFormatterLongStyle
+                                                                         timeStyle:NSDateFormatterMediumStyle];
+                self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updatedString];
             } else {
                 NSLog(@"quota failed");
             }

@@ -6,15 +6,11 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-@import Foundation;
 
-@interface UTCSLabsDataSource : NSObject <UITableViewDataSource>
+#import "UTCSDataSource.h"
 
-- (void)syncLabsWithCompletion:(void (^)(BOOL success))completion;
-- (NSArray *)searchLabsWithSearchString:(NSString *)searchString scope:(NSString *)scope;
+@interface UTCSLabsDataSource : UTCSDataSource <UITableViewDataSource>
 
-@property (nonatomic) UISearchDisplayController *searchDisplayController;
-@property (nonatomic, readonly) NSArray *labMachines;
 
 @end
 

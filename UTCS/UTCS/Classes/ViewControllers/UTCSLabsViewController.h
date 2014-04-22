@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface UTCSLabsViewController : UIViewController <UITableViewDelegate, UISearchDisplayDelegate, UITableViewDataSource>
+#import "UTCSContentViewController.h"
+
+@interface UTCSLabsViewController : UTCSContentViewController <UITableViewDelegate, UISearchDisplayDelegate, UITableViewDataSource>
 
 @end

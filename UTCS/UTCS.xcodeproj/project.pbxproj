@@ -63,6 +63,7 @@
 		DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */; };
 		DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSSettingsManager.m */; };
 		DDA758BD19060867007CD0DB /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA758BC19060867007CD0DB /* Reveal.framework */; };
+		DDA758C019063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758BF19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
@@ -186,6 +187,8 @@
 		DDA758B61905FDD0007CD0DB /* UTCSSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsManager.h; path = Model/UTCSSettingsManager.h; sourceTree = "<group>"; };
 		DDA758B71905FDD0007CD0DB /* UTCSSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsManager.m; path = Model/UTCSSettingsManager.m; sourceTree = "<group>"; };
 		DDA758BC19060867007CD0DB /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		DDA758BE19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaDataSourceParser.h; path = Model/UTCSDiskQuotaDataSourceParser.h; sourceTree = "<group>"; };
+		DDA758BF19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaDataSourceParser.m; path = Model/UTCSDiskQuotaDataSourceParser.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -584,7 +587,6 @@
 		DD87617419028219005FEE4E /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				DD8761661900FC4F005FEE4E /* Labs */,
 				DD87616A1900FCA4005FEE4E /* Settings */,
 			);
 			name = Features;
@@ -631,9 +633,10 @@
 		DDA7589C1904F60A007CD0DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DD87616D1900FCD5005FEE4E /* Disk Quota */,
+				DD8761661900FC4F005FEE4E /* Labs */,
 				DD87615E18FDFE45005FEE4E /* News */,
 				DD87616218FDFE97005FEE4E /* Events */,
+				DD87616D1900FCD5005FEE4E /* Disk Quota */,
 				DD87616F1900FCEF005FEE4E /* Directory */,
 			);
 			name = Services;
@@ -684,6 +687,8 @@
 			children = (
 				DDA758B21905FCB6007CD0DB /* UTCSDiskQuotaDataSource.h */,
 				DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */,
+				DDA758BE19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.h */,
+				DDA758BF19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -924,6 +929,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA758C019063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m in Sources */,
 				DDA758A51905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m in Sources */,
 				DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */,
 				DDC2F5E71904BBDE006011F0 /* UTCSTableViewController.m in Sources */,
