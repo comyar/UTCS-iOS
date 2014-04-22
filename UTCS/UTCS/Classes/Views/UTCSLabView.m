@@ -19,17 +19,19 @@
 - (instancetype)initWithFrame:(CGRect)frame numberOfMachines:(NSUInteger)machines
 {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor clearColor];
         
-        CGRect machineViewBounds = CGRectMake(0.0, 0.0, frame.size.width / 30.0, frame.size.width / 30.0);
+        CGRect machineViewBounds = CGRectMake(0.0, 0.0, frame.size.width / 20.0, frame.size.width / 20.0);
         
         NSMutableArray *machineViews = [NSMutableArray new];
         for (int i = 0; i < machines; ++i) {
             UTCSLabMachineView *machineView = [[UTCSLabMachineView alloc]initWithFrame:machineViewBounds];
+            machineView.hidden = YES;
+            [self addSubview:machineView];
             [machineViews addObject:machineView];
         }
         
         _machineViews = machineViews;
-        
     }
     return self;
 }

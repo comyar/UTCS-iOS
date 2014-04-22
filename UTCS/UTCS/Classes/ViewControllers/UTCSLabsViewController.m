@@ -15,11 +15,13 @@
 
 #import "UTCSLabMachineViewController.h"
 
+#import "UTCSThirdFloorLabViewLayout.h"
+#import "UTCSBasementLabViewLayout.h"
 
 
 #pragma mark - UTCSLabsViewController Class Extension
 
-@interface UTCSLabsViewController () 
+@interface UTCSLabsViewController ()
 
 //
 @property (nonatomic) UIPageViewController                  *pageViewController;
@@ -60,6 +62,14 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
+    
+    self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSThirdFloorLabViewLayout new]];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    
+    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSBasementLabViewLayout new]];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+
+    
     [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
@@ -80,10 +90,11 @@
         [self updateWithArgument:nil completion:^(BOOL success) {
             
             if (success) {
-//                NSDictionary *third = self.dataSource.data[@"third"];
-//                NSDictionary *basement = self.dataSource.data[@"basement"];
+                NSArray *third = self.dataSource.data[@"third"];
+                NSArray *basement = self.dataSource.data[@"basement"];
                 
-                // Pass to collection view data source
+                [self.thirdFloorLabViewController updateLabMachineViewsWithLabMachines:@[third[0]]];
+//                [self.basementLabViewController updateLabMachineViewsWithLabMachines:basement];
                 
             } else {
                 // Frowny face
@@ -98,7 +109,7 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     if (viewController == self.thirdFloorLabViewController) {
-        return self.thirdFloorLabViewController;
+        return self.basementLabViewController;
     }
     
     return nil;

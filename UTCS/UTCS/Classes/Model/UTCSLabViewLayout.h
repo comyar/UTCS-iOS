@@ -13,7 +13,7 @@
 @class UTCSLabView;
 
 
-@interface UTCSLabMachineViewLayout : NSObject
+@interface UTCSLabViewLayout : NSObject
 
 /**
  */
@@ -21,6 +21,6 @@
 
 /**
  */
-- (CGPoint)labMachineView:(UTCSLabView *)labView positionForLabMachine:(UTCSLabMachine *)labMachine;
+- (CGPoint)labView:(UTCSLabView *)labView positionForLabMachine:(UTCSLabMachine *)labMachine;
 
 @end

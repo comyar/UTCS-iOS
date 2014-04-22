@@ -13,6 +13,9 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 0.5 * frame.size.width;
         [self addTarget:self action:@selector(didTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;

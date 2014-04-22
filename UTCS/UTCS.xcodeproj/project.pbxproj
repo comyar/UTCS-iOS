@@ -67,7 +67,9 @@
 		DDA758DE190663CC007CD0DB /* UTCSLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758DD190663CC007CD0DB /* UTCSLabView.m */; };
 		DDA758E119066435007CD0DB /* UTCSLabMachineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E019066435007CD0DB /* UTCSLabMachineView.m */; };
 		DDA758E41906661E007CD0DB /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
-		DDA758E7190666E8007CD0DB /* UTCSLabMachineViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E6190666E8007CD0DB /* UTCSLabMachineViewLayout.m */; };
+		DDA758E7190666E8007CD0DB /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E6190666E8007CD0DB /* UTCSLabViewLayout.m */; };
+		DDA758EA1906711F007CD0DB /* UTCSThirdFloorLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E91906711F007CD0DB /* UTCSThirdFloorLabViewLayout.m */; };
+		DDA758ED190671C0007CD0DB /* UTCSBasementLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758EC190671C0007CD0DB /* UTCSBasementLabViewLayout.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
@@ -199,8 +201,12 @@
 		DDA758E019066435007CD0DB /* UTCSLabMachineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineView.m; path = Views/UTCSLabMachineView.m; sourceTree = "<group>"; };
 		DDA758E21906661D007CD0DB /* UTCSLabMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewController.h; path = ViewControllers/UTCSLabMachineViewController.h; sourceTree = "<group>"; };
 		DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineViewController.m; path = ViewControllers/UTCSLabMachineViewController.m; sourceTree = "<group>"; };
-		DDA758E5190666E8007CD0DB /* UTCSLabMachineViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewLayout.h; path = Model/UTCSLabMachineViewLayout.h; sourceTree = "<group>"; };
-		DDA758E6190666E8007CD0DB /* UTCSLabMachineViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineViewLayout.m; path = Model/UTCSLabMachineViewLayout.m; sourceTree = "<group>"; };
+		DDA758E5190666E8007CD0DB /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
+		DDA758E6190666E8007CD0DB /* UTCSLabViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabViewLayout.m; path = Model/UTCSLabViewLayout.m; sourceTree = "<group>"; };
+		DDA758E81906711F007CD0DB /* UTCSThirdFloorLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSThirdFloorLabViewLayout.h; path = Model/UTCSThirdFloorLabViewLayout.h; sourceTree = "<group>"; };
+		DDA758E91906711F007CD0DB /* UTCSThirdFloorLabViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSThirdFloorLabViewLayout.m; path = Model/UTCSThirdFloorLabViewLayout.m; sourceTree = "<group>"; };
+		DDA758EB190671C0007CD0DB /* UTCSBasementLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSBasementLabViewLayout.h; path = Model/UTCSBasementLabViewLayout.h; sourceTree = "<group>"; };
+		DDA758EC190671C0007CD0DB /* UTCSBasementLabViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSBasementLabViewLayout.m; path = Model/UTCSBasementLabViewLayout.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -499,8 +505,12 @@
 				DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */,
 				DDA758D019065BF5007CD0DB /* UTCSLabsDataSourceParser.h */,
 				DDA758D119065BF5007CD0DB /* UTCSLabsDataSourceParser.m */,
-				DDA758E5190666E8007CD0DB /* UTCSLabMachineViewLayout.h */,
-				DDA758E6190666E8007CD0DB /* UTCSLabMachineViewLayout.m */,
+				DDA758E5190666E8007CD0DB /* UTCSLabViewLayout.h */,
+				DDA758E6190666E8007CD0DB /* UTCSLabViewLayout.m */,
+				DDA758E81906711F007CD0DB /* UTCSThirdFloorLabViewLayout.h */,
+				DDA758E91906711F007CD0DB /* UTCSThirdFloorLabViewLayout.m */,
+				DDA758EB190671C0007CD0DB /* UTCSBasementLabViewLayout.h */,
+				DDA758EC190671C0007CD0DB /* UTCSBasementLabViewLayout.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -965,6 +975,7 @@
 				DDA758E41906661E007CD0DB /* UTCSLabMachineViewController.m in Sources */,
 				DD83B58A18F35DC000EBDE06 /* UTCSLabsDataSource.m in Sources */,
 				DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */,
+				DDA758ED190671C0007CD0DB /* UTCSBasementLabViewLayout.m in Sources */,
 				DDA758D219065BF5007CD0DB /* UTCSLabsDataSourceParser.m in Sources */,
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryDataSource.m in Sources */,
@@ -988,7 +999,7 @@
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
-				DDA758E7190666E8007CD0DB /* UTCSLabMachineViewLayout.m in Sources */,
+				DDA758E7190666E8007CD0DB /* UTCSLabViewLayout.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DDC2F5DE190480C7006011F0 /* UTCSDataSourceParser.m in Sources */,
 				DD87615D18FDAC96005FEE4E /* UTCSActiveHeaderView.m in Sources */,
@@ -997,6 +1008,7 @@
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
 				DDA758E119066435007CD0DB /* UTCSLabMachineView.m in Sources */,
+				DDA758EA1906711F007CD0DB /* UTCSThirdFloorLabViewLayout.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */,
 				DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,

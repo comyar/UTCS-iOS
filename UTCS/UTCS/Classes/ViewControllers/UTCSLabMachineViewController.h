@@ -10,15 +10,17 @@
 @import UIKit;
 
 
-#import "UTCSLabMachineViewLayout.h"
+#import "UTCSLabViewLayout.h"
 
 @interface UTCSLabMachineViewController : UIViewController
 
-- (instancetype)initWithLayout:(UTCSLabMachineViewLayout *)layout;
+- (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 
-- (void)layoutLabMachineViewsWithLabMachines:(NSArray *)labMachines;
+- (void)updateLabMachineViewsWithLabMachines:(NSArray *)labMachines;
 
 
-@property (nonatomic, readonly) UTCSLabMachineViewLayout *layout;
+@property (nonatomic, readonly) UTCSLabViewLayout   *layout;
+
+@property (nonatomic, readonly) UIImageView         *backgroundImageView;
 
 @end
