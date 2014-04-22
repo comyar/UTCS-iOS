@@ -10,11 +10,17 @@
 @import Foundation;
 
 @class UTCSLabMachine;
-@class UTCSLabMachineView;
+@class UTCSLabView;
 
 
 @interface UTCSLabMachineViewLayout : NSObject
 
-- (CGPoint)labMachineView:(UTCSLabMachineView *)labMachineView positionForLabMachine:(UTCSLabMachine *)labMachine;
+/**
+ */
+- (NSInteger)numberOfLabMachineViews;
+
+/**
+ */
+- (CGPoint)labMachineView:(UTCSLabView *)labView positionForLabMachine:(UTCSLabMachine *)labMachine;
 
 @end

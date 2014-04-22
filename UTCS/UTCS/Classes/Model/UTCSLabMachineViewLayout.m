@@ -10,4 +10,20 @@
 
 @implementation UTCSLabMachineViewLayout
 
+- (CGPoint)labMachineView:(UTCSLabMachineView *)labMachineView positionForLabMachine:(UTCSLabMachine *)labMachine
+{
+    NSString *reason = [NSString stringWithFormat:@"Cannot perform abstract selector %@", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:reason
+                                 userInfo:nil];
+}
+
+- (NSInteger)numberOfLabMachineViews
+{
+    NSString *reason = [NSString stringWithFormat:@"Cannot perform abstract selector %@", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:reason
+                                 userInfo:nil];
+}
+
 @end

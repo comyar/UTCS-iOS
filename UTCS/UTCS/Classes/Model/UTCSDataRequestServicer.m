@@ -15,7 +15,7 @@
 
 #pragma mark - Constants
 static NSString *requestURL         = @"http://www.cs.utexas.edu/~czaheri/cgi-bin/utcs.scgi";
-static NSString *requestKey         = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADC";
+static NSString *requestKey         = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADp";
 
 NSString *UTCSDataRequestServicerErrorDomain = @"UTCSDataRequestServicerError";
 

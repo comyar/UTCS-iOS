@@ -7,7 +7,6 @@
 //
 
 #import "UTCSLabsDataSource.h"
-#import "UTCSLabsTableViewCell.h"
 #import "UTCSLabMachine.h"
 #import "UTCSLabsDataSourceParser.h"
 #import "UTCSDataSourceCache.h"

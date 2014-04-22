@@ -9,8 +9,16 @@
 
 @import UIKit;
 
+
+#import "UTCSLabMachineViewLayout.h"
+
 @interface UTCSLabMachineViewController : UIViewController
 
+- (instancetype)initWithLayout:(UTCSLabMachineViewLayout *)layout;
 
+- (void)layoutLabMachineViewsWithLabMachines:(NSArray *)labMachines;
+
+
+@property (nonatomic, readonly) UTCSLabMachineViewLayout *layout;
 
 @end
