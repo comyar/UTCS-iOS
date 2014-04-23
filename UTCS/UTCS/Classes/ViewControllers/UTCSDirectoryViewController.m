@@ -44,10 +44,14 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
+        self.tableView.backgroundColor = [UIColor clearColor];
         self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
         self.tableView.rowHeight = 64.0;
+        self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+        self.tableView.sectionIndexColor = [UIColor whiteColor];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
@@ -75,6 +79,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 {
     [super viewDidLoad];
     
+    self.tableView.contentOffset = CGPointMake(0.0, -self.searchBar.height);
     
 }
 
