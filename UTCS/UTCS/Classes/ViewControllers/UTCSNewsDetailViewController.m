@@ -67,8 +67,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
-        self.defaultHeaderImages = @[@[[UIImage imageNamed:@"header"],
-                                       [UIImage imageNamed:@"blurredHeader"]]];
+        // self.defaultHeaderImages = @[@[[UIImage imageNamed:@"header"], [UIImage imageNamed:@"blurredHeader"]]];
     }
     return self;
 }
@@ -138,10 +137,10 @@ static const CGFloat dateLabelFontSize  = 16.0;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = newsArticle.headerBlurredImage;
     } else {
         // Choose a random default header
-        NSInteger index = arc4random() % [self.defaultHeaderImages count];
-        NSArray *headerImage = self.defaultHeaderImages[index];
-        self.parallaxBlurHeaderScrollView.headerImage           = headerImage[0];
-        self.parallaxBlurHeaderScrollView.headerBlurredImage    = headerImage[1];
+//        NSInteger index = arc4random() % [self.defaultHeaderImages count];
+//        NSArray *headerImage = self.defaultHeaderImages[index];
+//        self.parallaxBlurHeaderScrollView.headerImage           = headerImage[0];
+//        self.parallaxBlurHeaderScrollView.headerBlurredImage    = headerImage[1];
     }
 
     // Configure content text view

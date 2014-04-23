@@ -110,19 +110,20 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return [self.cardViewControllers count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UTCSCardCollectionViewCell" forIndexPath:indexPath];
-//
-//    
-//    UIViewController *viewController = self.cardViewControllers[indexPath.row];
-//    [viewController.view removeFromSuperview];
-//    viewController.view.frame = cell.bounds;
-//    [cell.contentView addSubview:viewController.view];
+
     
+    UIViewController *viewController = self.cardViewControllers[indexPath.row];
+    [viewController.view removeFromSuperview];
+    viewController.view.frame = cell.bounds;
+    [cell.contentView addSubview:viewController.view];
+    
+    cell.clipsToBounds = YES;
     cell.backgroundColor = (indexPath.row % 2)? [UIColor redColor] : [UIColor greenColor];
     
     return cell;

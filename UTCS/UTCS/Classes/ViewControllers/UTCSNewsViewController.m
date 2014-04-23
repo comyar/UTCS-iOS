@@ -138,14 +138,14 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    UTCSNewsArticle *article = self.dataSource.data[indexPath.row];
+    UTCSNewsArticle *article = self.dataSource.data[indexPath.row];
     
-//    if(!self.newsDetailViewController) {
-//        self.newsDetailViewController = [UTCSNewsDetailViewController new];
-//    }
-//    self.newsDetailViewController.newsArticle = article;
+    if(!self.newsDetailViewController) {
+        self.newsDetailViewController = [UTCSNewsDetailViewController new];
+    }
+    self.newsDetailViewController.newsArticle = article;
     
-//    [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
+    [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

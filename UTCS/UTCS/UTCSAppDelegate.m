@@ -79,7 +79,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-//    [self configureAppearance];
+    [self configureAppearance];
     
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
