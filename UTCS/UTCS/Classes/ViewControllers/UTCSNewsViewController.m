@@ -150,13 +150,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [cell setHighlighted:NO animated:NO];
-    cell.alpha = 0.8;
-    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
-    [UIView animateWithDuration:animationDuration animations:^{
-        cell.alpha = 1.0;
-        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    }];
+//    cell.alpha = 1.0;
+//    cell.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
 }
 
 @end

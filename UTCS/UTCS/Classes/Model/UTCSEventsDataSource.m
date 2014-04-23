@@ -97,8 +97,8 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     cell.dayLabel.text      = [self.dayDateFormatter stringFromDate:event.startDate];
     cell.monthLabel.text    = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
     
-    UIColor *typeColor      = self.typeColorMapping[event.type];
-    cell.typeStripeLayer.fillColor = (typeColor) ? typeColor.CGColor : [UIColor whiteColor].CGColor;
+    UIColor *typeColor = self.typeColorMapping[event.type];
+    cell.typeStripeLayer.fillColor = typeColor.CGColor;
 
     cell.textLabel.text         = event.name;
     cell.detailTextLabel.text   = event.location;

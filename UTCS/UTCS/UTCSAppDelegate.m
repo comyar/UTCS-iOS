@@ -93,7 +93,7 @@
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
-                                                                                      contentViewController:self.labsViewController];
+                                                                                      contentViewController:self.newsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
