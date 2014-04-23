@@ -18,13 +18,15 @@
 #import "UTCSThirdFloorLabViewLayout.h"
 #import "UTCSBasementLabViewLayout.h"
 
+#import "UTCSCardCollectionViewController.h"
+
 
 #pragma mark - UTCSLabsViewController Class Extension
 
 @interface UTCSLabsViewController ()
 
 //
-@property (nonatomic) UIPageViewController                  *pageViewController;
+@property (nonatomic) UTCSCardCollectionViewController      *cardCollectionViewController;
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
@@ -51,16 +53,12 @@
 {
     [super viewDidLoad];
     
-    self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                           options:@{UIPageViewControllerOptionInterPageSpacingKey: @(8.0)}];
-    self.pageViewController.view.backgroundColor = [UIColor blackColor];
-    self.pageViewController.dataSource = self;
+    self.cardCollectionViewController = [UTCSCardCollectionViewController new];
     
-    self.pageViewController.view.frame = self.view.bounds;
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
+    self.cardCollectionViewController.view.frame = self.view.bounds;
+    [self addChildViewController:self.cardCollectionViewController];
+    [self.view addSubview:self.cardCollectionViewController.view];
+    [self.cardCollectionViewController didMoveToParentViewController:self];
     
     
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSThirdFloorLabViewLayout new]];
@@ -70,7 +68,8 @@
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
 
     
-    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.cardCollectionViewController addChildViewControllerAsCard:self.thirdFloorLabViewController];
+    [self.cardCollectionViewController addChildViewControllerAsCard:self.basementLabViewController];
 }
 
 
@@ -82,28 +81,28 @@
 
 - (void)update
 {
-    if ([self.dataSource shouldUpdate]) {
-        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
-        progressHUD.mode = MBProgressHUDModeIndeterminate;
-        progressHUD.labelText = @"Updating";
-        
-        [self updateWithArgument:nil completion:^(BOOL success) {
-            
-            if (success) {
-                NSArray *third = self.dataSource.data[@"third"];
-                NSArray *basement = self.dataSource.data[@"basement"];
-                
-                [self.thirdFloorLabViewController updateLabMachineViewsWithLabMachines:@[third[0]]];
-//                [self.basementLabViewController updateLabMachineViewsWithLabMachines:basement];
-                
-            } else {
-                // Frowny face
-            }
-            
-            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
-            
-        }];
-    }
+//    if ([self.dataSource shouldUpdate]) {
+////        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
+////        progressHUD.mode = MBProgressHUDModeIndeterminate;
+////        progressHUD.labelText = @"Updating";
+//        
+//        [self updateWithArgument:nil completion:^(BOOL success) {
+//            
+//            if (success) {
+////                NSArray *third = self.dataSource.data[@"third"];
+////                NSArray *basement = self.dataSource.data[@"basement"];
+//                
+////                [self.thirdFloorLabViewController updateLabMachineViewsWithLabMachines:@[third[0]]];
+////                [self.basementLabViewController updateLabMachineViewsWithLabMachines:basement];
+//                
+//            } else {
+//                // Frowny face
+//            }
+//            
+////            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
+//            
+//        }];
+//    }
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController

@@ -15,6 +15,6 @@
  app without modifying the appearance of the UINavigationBar in classes such as MFMailComposeViewController. 
  UTCSNavigationController provides no extra functionality beyond UINavigationController.
  */
-@interface UTCSNavigationController : UINavigationController <UINavigationBarDelegate>
+@interface UTCSNavigationController : UINavigationController
 
 @end

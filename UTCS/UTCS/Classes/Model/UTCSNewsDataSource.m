@@ -51,7 +51,6 @@ static NSString * const articlesCacheKey = @"articles";
     return self;
 }
 
-
 #pragma mark UITableViewDataSource Methods
 
 - (UTCSTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

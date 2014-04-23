@@ -66,7 +66,7 @@
     
     // Make request
     [UTCSDataRequestServicer sendDataRequestForService:self.service argument:argument completion:^(NSDictionary *meta, id values, NSError *error) {
-        if ([meta[@"service"]isEqualToString:self.service] && meta[@"success"]) {
+        if ([meta[@"service"]isEqualToString:self.service] && [meta[@"success"]boolValue]) {
             
             _data       = [self.parser parseValues:values];
             _updated    = [NSDate date];
