@@ -152,6 +152,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.textAlignment = NSTextAlignmentCenter;
             label.text = @"☹";
+            label.alpha = 0.0;
             label;
         });
         
@@ -161,6 +162,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.text = @"Ouch! Something went wrong.\n\nPlease check your Unix username and network connection.";
             label.numberOfLines = 0;
+            label.alpha = 0.0;
             label;
         });
         
@@ -193,6 +195,18 @@ static NSString *diskQuotaCacheKey = @"quota";
     [self.view addSubview:self.frownyFaceLabel];
     [self.view addSubview:self.errorMessageLabel];
     
+    
+    CAShapeLayer *lineSeparatorLayer = ({
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.path = [UIBezierPath bezierPathWithRect:CGRectMake(0.1 * self.view.width, 88.0, 0.8 * self.view.width, 0.5)].CGPath;
+        layer.strokeColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+        layer.fillColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+        layer.strokeStart = 0.0;
+        layer.strokeEnd = 1.0;
+        layer;
+    });
+    [self.view.layer addSublayer:lineSeparatorLayer];
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -202,18 +216,18 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.usernameTextField.frame = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
     self.goButton.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
-    self.goButton.center = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
+    self.goButton.center = CGPointMake(0.85 * self.view.width, 0.9 * self.usernameTextField.center.y);
     
     self.quotaGaugeView.frame = CGRectMake(0, 0, 0.625 * self.view.width, 0.625 * self.view.width);
-    self.quotaGaugeView.center = self.view.center;
+    self.quotaGaugeView.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
     
     self.nameLabel.frame = CGRectMake(0.0, 128.0, self.view.width, 48);
     
     self.quotaDetailLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.quotaDetailLabel.center = CGPointMake(self.view.center.x, self.view.center.y - self.view.y);
+    self.quotaDetailLabel.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
     
     self.unitLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 14);
-    self.unitLabel.center = CGPointMake(self.view.center.x, 1.08 * self.view.center.y - self.view.y);
+    self.unitLabel.center = CGPointMake(self.view.center.x, 1.19 * self.view.center.y - self.view.y);
     
     self.updatedLabel.frame = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
@@ -253,31 +267,20 @@ static NSString *diskQuotaCacheKey = @"quota";
                 [self.quotaGaugeView setProgress:(usage / limit) animated:YES];
                 self.quotaDetailLabel.text = [NSString stringWithFormat:@"%0.0f / %0.0f", usage, limit];
                 
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.quotaDetailLabel.alpha = 1.0;
-                    self.quotaGaugeView.alpha = 1.0;
-                    self.unitLabel.alpha = 1.0;
-                }];
-                
                 NSString *updatedString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                          dateStyle:NSDateFormatterLongStyle
                                                                          timeStyle:NSDateFormatterMediumStyle];
                 self.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updatedString];
             } else {
-                
                 self.updatedLabel.text = @"Update Failed";
-                
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.frownyFaceLabel.alpha = 1.0;
-                    self.errorMessageLabel.alpha = 1.0;
-                    self.quotaGaugeView.alpha = 0.0;
-                    self.quotaDetailLabel.alpha = 0.0;
-                    self.unitLabel.alpha = 0.0;
-                }];
-                
             }
             
             [UIView animateWithDuration:0.3 animations:^{
+                self.frownyFaceLabel.alpha = !success;
+                self.errorMessageLabel.alpha = !success;
+                self.quotaGaugeView.alpha = success;
+                self.quotaDetailLabel.alpha = success;
+                self.unitLabel.alpha = success;
                 self.descriptionLabel.alpha = 0.0;
             }];
             
