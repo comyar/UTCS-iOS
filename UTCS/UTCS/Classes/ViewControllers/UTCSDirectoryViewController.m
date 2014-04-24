@@ -48,15 +48,8 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
-        self.view.backgroundColor = [UIColor clearColor];
-        self.tableView.backgroundColor = [UIColor clearColor];
-        
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
-        self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
         self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
-        self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
-        self.tableView.sectionIndexColor = [UIColor whiteColor];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
@@ -69,12 +62,17 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
             [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBarBackground"] forState:UIControlStateNormal];
             searchBar;
         });
+        
         self.tableView.tableHeaderView = self.searchBar;
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.sectionIndexColor = [UIColor whiteColor];
+        self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
         self.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
-        self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
-        self.directorySearchDisplayController.searchResultsDataSource = self.dataSource.searchController;
-        self.directorySearchDisplayController.searchResultsDelegate = self;
-        self.directorySearchDisplayController.delegate = self;
+        self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
+        
+        
+        self.dataSource.searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
+                                                                                                    contentsController:self];
     }
     return self;
 }
@@ -194,41 +192,6 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 {
     return @{directoryCacheKey: self.dataSource.data,
              flatDirectoryCacheKey :((UTCSDirectoryDataSource *)self.dataSource).flatDirectory};
-}
-
-#pragma mark UISearchDisplayDelegate Methods
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
-{
-    self.tableView.alpha = 0.0;
-    
-    tableView.backgroundColor = [UIColor clearColor];
-    tableView.delegate = self;
-    tableView.frame = self.tableView.frame;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
-{
-    self.tableView.alpha = 1.0;
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    NSString * scope = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
-    [self.dataSource.searchController searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
-        [self.searchDisplayController.searchResultsTableView reloadData];
-    }];
-    return NO;
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    NSString *searchString = self.searchBar.text;
-    NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
-    [self.dataSource.searchController searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
-        [self.searchDisplayController.searchResultsTableView reloadData];
-    }];
-    return NO;
 }
 
 @end

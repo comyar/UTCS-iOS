@@ -12,6 +12,10 @@
 #import "UTCSDirectoryPerson.h"
 
 
+@interface UTCSDirectoryDataSourceSearchController ()
+@property (nonatomic) NSIndexPath *selectedIndexPath;
+@end
+
 @implementation UTCSDirectoryDataSourceSearchController
 
 - (void)searchWithQuery:(NSString *)query scope:(NSString *)scope completion:(UTCSDataSourceSearchCompletion)completion
@@ -23,7 +27,12 @@
         return;
     }
     
-    NSLog(@"search");
+    self.selectedIndexPath = nil;
+    
+    if ([scope isEqualToString:@"All"]) {
+        scope = nil;
+    }
+    
     NSPredicate *predicate = nil;
     if (query && scope) {
         predicate = [NSPredicate predicateWithFormat:@"type = %@ AND (firstName BEGINSWITH[cd] %@ OR lastName BEGINSWITH[cd] %@)",
@@ -78,6 +87,72 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.searchResults count];
+}
+
+#pragma mark UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSDirectoryTableViewCell *previous = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:self.selectedIndexPath];
+    UTCSDirectoryTableViewCell *cell = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
+        self.selectedIndexPath = nil;
+        cell.showDetails = NO;
+    } else {
+        self.selectedIndexPath = indexPath;
+        cell.showDetails = YES;
+    }
+    previous.showDetails = NO;
+    
+    [tableView beginUpdates];
+    [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static const CGFloat height = 64.0;
+    
+    UTCSDirectoryPerson *person = ((UTCSDirectoryDataSource *)self.dataSource).flatDirectory[indexPath.row];
+    
+    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
+        
+        CGFloat selectedHeight = height;
+        if (person.office) {
+            selectedHeight += 16.0;
+        }
+        
+        if (person.phoneNumber) {
+            selectedHeight += 16.0;
+        }
+        
+        return selectedHeight;
+    }
+    
+    return height;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ((UTCSDirectoryTableViewCell *)cell).showDetails = NO;
+    if (self.selectedIndexPath && [indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
+        ((UTCSDirectoryTableViewCell *)cell).showDetails = YES;
+    }
+}
+
+#pragma mak UISearchDisplayDelegate Methods
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    [super searchDisplayController:controller willShowSearchResultsTableView:tableView];
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.frame = CGRectMake(0.0, 88.0, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds) - 88.0);
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    [super searchDisplayController:controller willHideSearchResultsTableView:tableView];
+    self.selectedIndexPath = nil;
 }
 
 @end

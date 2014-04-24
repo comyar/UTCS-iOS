@@ -12,12 +12,14 @@
 
 typedef void (^UTCSDataSourceSearchCompletion) (NSArray *searchResults);
 
-@interface UTCSDataSourceSearchController : NSObject <UITableViewDataSource>
+@interface UTCSDataSourceSearchController : NSObject <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
 - (void)searchWithQuery:(NSString *)query scope:(NSString *)scope completion:(UTCSDataSourceSearchCompletion)completion;
 
 @property (nonatomic) NSArray *searchResults;
 
-@property (weak ,nonatomic) UTCSDataSource *dataSource;
+@property (weak ,nonatomic) UTCSDataSource      *dataSource;
+@property (nonatomic) UISearchDisplayController *searchDisplayController;
+
 
 @end
