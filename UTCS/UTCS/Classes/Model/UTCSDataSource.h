@@ -11,8 +11,12 @@
 
 #import "UTCSDataRequestServicer.h"
 
+
+
 @class UTCSDataSourceCache;
 @class UTCSDataSourceParser;
+@class UTCSDataSourceSearchController;
+
 
 /**
  */
@@ -31,7 +35,7 @@ typedef NSString UTCSServiceName;
 /**
  UTCSDataSource is an abstract class 
  */
-@interface UTCSDataSource : NSObject
+@interface UTCSDataSource : NSObject <UISearchDisplayDelegate>
 
 // -----
 // @name Creating a UTCSAbstractDataSource
@@ -59,11 +63,15 @@ typedef NSString UTCSServiceName;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceParser  *parser;
+@property (nonatomic) UTCSDataSourceParser              *parser;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceCache   *cache;
+@property (nonatomic) UTCSDataSourceCache               *cache;
+
+/**
+ */
+@property (nonatomic) UTCSDataSourceSearchController    *searchController;
 
 /**
  */

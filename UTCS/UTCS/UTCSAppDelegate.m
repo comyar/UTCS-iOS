@@ -107,6 +107,10 @@
 
 - (void)configureAppearance
 {
+    NSDictionary *searchBarPlaceholderAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]};
+    NSAttributedString *searchBarPlaceholder = [[NSAttributedString alloc]initWithString:@"Search" attributes:searchBarPlaceholderAttributes];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]setAttributedPlaceholder:searchBarPlaceholder];
+    
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundColor:[UIColor clearColor]];

@@ -13,6 +13,7 @@
 #import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSDirectoryTableViewCell.h"
+#import "UTCSDirectoryDataSourceSearchController.h"
 
 #pragma mark - Constants
 
@@ -35,6 +36,8 @@
         self.minimumTimeBetweenUpdates = 2592000.0;  // 30 days
         self.cache = [[UTCSDataSourceCache alloc]initWithService:service];
         self.parser = [UTCSDirectoryDataSourceParser new];
+        self.searchController = [UTCSDirectoryDataSourceSearchController new];
+        self.searchController.dataSource = self;
     }
     return self;
 }

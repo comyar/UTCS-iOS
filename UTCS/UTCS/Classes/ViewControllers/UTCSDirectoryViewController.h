@@ -8,6 +8,6 @@
 
 #import "UTCSTableViewController.h"
 
-@interface UTCSDirectoryViewController : UTCSTableViewController <UTCSDataSourceDelegate>
+@interface UTCSDirectoryViewController : UTCSTableViewController <UISearchDisplayDelegate, UTCSDataSourceDelegate>
 
 @end

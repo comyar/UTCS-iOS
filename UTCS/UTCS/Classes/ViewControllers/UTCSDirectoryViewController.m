@@ -15,6 +15,7 @@
 #import "UIImage+CZTinting.h"
 #import "MBProgressHUD.h"
 #import "UTCSDirectoryTableViewCell.h"
+#import "UTCSDirectoryDataSourceSearchController.h"
 
 
 #pragma mark - Constants
@@ -62,13 +63,18 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
             searchBar.backgroundImage = [UIImage new];
             searchBar.tintColor = [UIColor utcsBurntOrangeColor];
             searchBar.placeholder = @"Search Directory";
-            searchBar.scopeButtonTitles = @[@"All", @"Faculty", @"Staff", @"Graduates"];
+            searchBar.scopeButtonTitles = @[@"All", @"Faculty", @"Staff", @"Graduate"];
             searchBar.scopeBarBackgroundImage = [UIImage new];
+            searchBar.tintColor = [UIColor whiteColor];
+            [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBarBackground"] forState:UIControlStateNormal];
             searchBar;
         });
         self.tableView.tableHeaderView = self.searchBar;
-        
+        self.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
         self.directorySearchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+        self.directorySearchDisplayController.searchResultsDataSource = self.dataSource.searchController;
+        self.directorySearchDisplayController.searchResultsDelegate = self;
+        self.directorySearchDisplayController.delegate = self;
     }
     return self;
 }
@@ -78,12 +84,6 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
     [super viewDidAppear:animated];
     self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
     [self update];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
 }
 
 - (void)update
@@ -108,10 +108,6 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
     }
 }
 
-
-
-
-
 #pragma mark UITableViewDelegate Methpds
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,8 +131,20 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static const CGFloat height = 64.0;
+    
+    UTCSDirectoryPerson *person = nil;
+    
+    if (tableView == self.tableView) {
+        person = self.dataSource.data[indexPath.section][indexPath.row];
+        
+    } else if (tableView == self.searchDisplayController.searchResultsTableView) {
+    
+        person = ((UTCSDirectoryDataSource *)self.dataSource).flatDirectory[indexPath.row];
+        
+    }
+    
     if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        UTCSDirectoryPerson *person = self.dataSource.data[indexPath.section][indexPath.row];
+        
         CGFloat selectedHeight = height;
         if (person.office) {
             selectedHeight += 16.0;
@@ -148,22 +156,28 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         
         return selectedHeight;
     }
+    
     return height;
 }
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UTCSDirectoryPerson *person = self.dataSource.data[section][0];
-    NSString *letter = [[person.lastName substringToIndex:1]uppercaseString];
-    return ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-        label.text = [NSString stringWithFormat:@"    %@", letter];
-        label.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
-        label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
-        label;
-    });
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [UIView new];
+    } else if (tableView == self.tableView) {
+        UTCSDirectoryPerson *person = self.dataSource.data[section][0];
+        NSString *letter = [[person.lastName substringToIndex:1]uppercaseString];
+        return ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
+            label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+            label.text = [NSString stringWithFormat:@"    %@", letter];
+            label.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+            label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+            label;
+        });
+    }
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -174,13 +188,47 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
     }
 }
 
-
 #pragma mark UTCSDataSourceCacheDelegate Methods
 
 - (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource
 {
     return @{directoryCacheKey: self.dataSource.data,
              flatDirectoryCacheKey :((UTCSDirectoryDataSource *)self.dataSource).flatDirectory};
+}
+
+#pragma mark UISearchDisplayDelegate Methods
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    self.tableView.alpha = 0.0;
+    
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.delegate = self;
+    tableView.frame = self.tableView.frame;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    self.tableView.alpha = 1.0;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSString * scope = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
+    [self.dataSource.searchController searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }];
+    return NO;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    NSString *searchString = self.searchBar.text;
+    NSString *scope = self.searchBar.scopeButtonTitles[searchOption];
+    [self.dataSource.searchController searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }];
+    return NO;
 }
 
 @end

@@ -58,7 +58,6 @@
 		DDA7589F1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */; };
 		DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */; };
 		DDA758A51905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */; };
-		DDA758AF1905ED1D007CD0DB /* UTCSDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */; };
 		DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */; };
 		DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSSettingsManager.m */; };
 		DDA758BD19060867007CD0DB /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA758BC19060867007CD0DB /* Reveal.framework */; };
@@ -72,6 +71,7 @@
 		DDA758ED190671C0007CD0DB /* UTCSBasementLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758EC190671C0007CD0DB /* UTCSBasementLabViewLayout.m */; };
 		DDA758F419081EEE007CD0DB /* UTCSCardCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758F319081EEE007CD0DB /* UTCSCardCollectionViewController.m */; };
 		DDA758FF19088F25007CD0DB /* UTCSDirectoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758FE19088F25007CD0DB /* UTCSDirectoryTableViewCell.m */; };
+		DDA759051908D8F6007CD0DB /* UTCSDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA759041908D8F6007CD0DB /* UTCSDataSourceSearchController.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
@@ -86,6 +86,7 @@
 		DDE561EC18DC441F00C46480 /* UTCSNewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */; };
 		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
 		DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */; };
+		DDFDB13E1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFDB13D1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,8 +187,6 @@
 		DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsDataSourceParser.m; path = Model/UTCSEventsDataSourceParser.m; sourceTree = "<group>"; };
 		DDA758A31905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSourceParser.h; path = Model/UTCSDirectoryDataSourceParser.h; sourceTree = "<group>"; };
 		DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSourceParser.m; path = Model/UTCSDirectoryDataSourceParser.m; sourceTree = "<group>"; };
-		DDA758AD1905ED1D007CD0DB /* UTCSDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceSearchController.h; path = Model/UTCSDataSourceSearchController.h; sourceTree = "<group>"; };
-		DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceSearchController.m; path = Model/UTCSDataSourceSearchController.m; sourceTree = "<group>"; };
 		DDA758B21905FCB6007CD0DB /* UTCSDiskQuotaDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaDataSource.h; path = Model/UTCSDiskQuotaDataSource.h; sourceTree = "<group>"; };
 		DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaDataSource.m; path = Model/UTCSDiskQuotaDataSource.m; sourceTree = "<group>"; };
 		DDA758B61905FDD0007CD0DB /* UTCSSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsManager.h; path = Model/UTCSSettingsManager.h; sourceTree = "<group>"; };
@@ -213,6 +212,8 @@
 		DDA758F319081EEE007CD0DB /* UTCSCardCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSCardCollectionViewController.m; path = ViewControllers/UTCSCardCollectionViewController.m; sourceTree = "<group>"; };
 		DDA758FD19088F25007CD0DB /* UTCSDirectoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryTableViewCell.h; path = Views/UTCSDirectoryTableViewCell.h; sourceTree = "<group>"; };
 		DDA758FE19088F25007CD0DB /* UTCSDirectoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryTableViewCell.m; path = Views/UTCSDirectoryTableViewCell.m; sourceTree = "<group>"; };
+		DDA759031908D8F6007CD0DB /* UTCSDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceSearchController.h; path = Model/UTCSDataSourceSearchController.h; sourceTree = "<group>"; };
+		DDA759041908D8F6007CD0DB /* UTCSDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceSearchController.m; path = Model/UTCSDataSourceSearchController.m; sourceTree = "<group>"; };
 		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
 		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
@@ -241,6 +242,8 @@
 		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		DDFDB13C1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSourceSearchController.h; path = Model/UTCSDirectoryDataSourceSearchController.h; sourceTree = "<group>"; };
+		DDFDB13D1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSourceSearchController.m; path = Model/UTCSDirectoryDataSourceSearchController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +598,8 @@
 				DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */,
 				DDA758A31905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.h */,
 				DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */,
+				DDFDB13C1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.h */,
+				DDFDB13D1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -817,8 +822,8 @@
 				DDC2F5DA1904778C006011F0 /* UTCSDataSource.m */,
 				DDC2F5DC190480C7006011F0 /* UTCSDataSourceParser.h */,
 				DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */,
-				DDA758AD1905ED1D007CD0DB /* UTCSDataSourceSearchController.h */,
-				DDA758AE1905ED1D007CD0DB /* UTCSDataSourceSearchController.m */,
+				DDA759031908D8F6007CD0DB /* UTCSDataSourceSearchController.h */,
+				DDA759041908D8F6007CD0DB /* UTCSDataSourceSearchController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1030,6 +1035,7 @@
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DDC2F5DE190480C7006011F0 /* UTCSDataSourceParser.m in Sources */,
 				DD87615D18FDAC96005FEE4E /* UTCSActiveHeaderView.m in Sources */,
+				DDFDB13E1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
@@ -1038,9 +1044,9 @@
 				DDA758E119066435007CD0DB /* UTCSLabMachineView.m in Sources */,
 				DDA758EA1906711F007CD0DB /* UTCSThirdFloorLabViewLayout.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */,
+				DDA759051908D8F6007CD0DB /* UTCSDataSourceSearchController.m in Sources */,
 				DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
-				DDA758AF1905ED1D007CD0DB /* UTCSDataSourceSearchController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
