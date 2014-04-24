@@ -12,6 +12,7 @@
 #import "UTCSDirectoryPerson.h"
 #import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
+#import "UTCSDirectoryTableViewCell.h"
 
 #pragma mark - Constants
 
@@ -49,11 +50,11 @@
     _flatDirectory = flatDirectory;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UTCSDirectoryTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
+    UTCSDirectoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
     if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
+        cell = [[UTCSDirectoryTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
@@ -68,6 +69,8 @@
     
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
+    cell.phoneNumberLabel.text = (person.phoneNumber)? [NSString stringWithFormat:@"Phone: %@", person.phoneNumber] : @"";
+    cell.officeLabel.text = (person.office)? [NSString stringWithFormat:@"Office: %@", person.office] : @"";
     return cell;
 }
 

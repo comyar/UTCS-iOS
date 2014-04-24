@@ -14,6 +14,7 @@
 #import "UIImage+ImageEffects.h"
 #import "UIImage+CZTinting.h"
 #import "MBProgressHUD.h"
+#import "UTCSDirectoryTableViewCell.h"
 
 
 #pragma mark - Constants
@@ -75,14 +76,13 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
     [self update];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableView.contentOffset = CGPointMake(0.0, 64.0);
     
 }
 
@@ -98,6 +98,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
             if (success) {
                 [((UTCSDirectoryDataSource *)self.dataSource) buildFlatDirectory];
                 [self.tableView reloadData];
+                self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
             } else {
                 NSLog(@"directory failed");
             }
@@ -115,11 +116,17 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UTCSDirectoryTableViewCell *previous = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:self.selectedIndexPath];
+    UTCSDirectoryTableViewCell *cell = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
     if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
         self.selectedIndexPath = nil;
+        cell.showDetails = NO;
     } else {
         self.selectedIndexPath = indexPath;
+        cell.showDetails = YES;
     }
+    previous.showDetails = NO;
     
     [tableView beginUpdates];
     [tableView endUpdates];
@@ -127,10 +134,21 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static const CGFloat height = 64.0;
     if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        return 128.0;
+        UTCSDirectoryPerson *person = self.dataSource.data[indexPath.section][indexPath.row];
+        CGFloat selectedHeight = height;
+        if (person.office) {
+            selectedHeight += 26.0;
+        }
+        
+        if (person.phoneNumber) {
+            selectedHeight += 26.0;
+        }
+        
+        return selectedHeight;
     }
-    return 64.0;
+    return height;
 }
 
 
