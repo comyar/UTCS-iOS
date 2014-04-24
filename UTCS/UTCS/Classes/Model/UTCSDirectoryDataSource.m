@@ -69,8 +69,9 @@
     
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
-    cell.phoneNumberLabel.text = (person.phoneNumber)? [NSString stringWithFormat:@"Phone: %@", person.phoneNumber] : @"";
+    cell.phoneNumberTextView.text = (person.phoneNumber)? [NSString stringWithFormat:@"Phone: %@", person.phoneNumber] : @"";
     cell.officeLabel.text = (person.office)? [NSString stringWithFormat:@"Office: %@", person.office] : @"";
+
     return cell;
 }
 

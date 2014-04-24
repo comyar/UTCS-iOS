@@ -16,10 +16,9 @@ extern NSString * const UTCSDirectoryAddToContactsNotification;
 
 @interface UTCSDirectoryTableViewCell : UITableViewCell
 
-@property (nonatomic) BOOL showDetails;
-@property (nonatomic, readonly) UILabel *officeLabel;
-@property (nonatomic, readonly) UILabel *phoneNumberLabel;
-@property (nonatomic, readonly) UTCSButton *addToContactsButton;
+@property (nonatomic) BOOL                  showDetails;
+@property (nonatomic, readonly) UILabel     *officeLabel;
+@property (nonatomic, readonly) UITextView  *phoneNumberTextView;
 
 
 @end

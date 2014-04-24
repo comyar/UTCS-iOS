@@ -16,13 +16,22 @@ NSString * const UTCSDirectoryAddToContactsNotification = @"UTCSDirectoryAddToCo
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _phoneNumberLabel = ({
-            UILabel *label = [UILabel new];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label;
+        _phoneNumberTextView = ({
+            UITextView *textView = [UITextView new];
+            textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+            textView.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            textView.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+            textView.backgroundColor = [UIColor clearColor];
+            textView.textContainerInset = UIEdgeInsetsZero;
+            textView.textContainer.lineFragmentPadding = 0;
+            textView.textAlignment = NSTextAlignmentLeft;
+            textView.contentInset = UIEdgeInsetsZero;
+            textView.tintColor = [UIColor whiteColor];
+            textView.scrollEnabled = NO;
+            textView.editable = NO;
+            textView;
         });
-        [self addSubview:_phoneNumberLabel];
+        [self addSubview:_phoneNumberTextView];
         
         _officeLabel = ({
             UILabel *label = [UILabel new];
@@ -31,18 +40,6 @@ NSString * const UTCSDirectoryAddToContactsNotification = @"UTCSDirectoryAddToCo
             label;
         });
         [self addSubview:_officeLabel];
-        
-        _addToContactsButton = ({
-            UTCSButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-            button.tintColor = [UIColor whiteColor];
-            button.layer.masksToBounds = YES;
-            button.layer.cornerRadius = 4.0;
-            button.layer.borderColor = [UIColor whiteColor].CGColor;
-            button.layer.borderWidth = 1.0;
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setTitle:@"Add To Contacts" forState:UIControlStateNormal];
-            button;
-        });
     }
     return self;
 }
@@ -55,14 +52,18 @@ NSString * const UTCSDirectoryAddToContactsNotification = @"UTCSDirectoryAddToCo
     
     self.detailTextLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, self.textLabel.frame.origin.y + CGRectGetHeight(self.textLabel.bounds), CGRectGetWidth(self.bounds), self.detailTextLabel.bounds.size.height);
     
+    self.officeLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, 4.0 + self.detailTextLabel.frame.origin.y + CGRectGetHeight(self.detailTextLabel.bounds), CGRectGetWidth(self.bounds) - self.detailTextLabel.frame.origin.x, 1.1 * self.officeLabel.font.pointSize);
     
-    self.officeLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, 8.0 + self.detailTextLabel.frame.origin.y + CGRectGetHeight(self.detailTextLabel.bounds), CGRectGetWidth(self.bounds) - self.detailTextLabel.frame.origin.x, 1.1 * self.officeLabel.font.pointSize);
     
-    self.phoneNumberLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, 8.0 + self.officeLabel.frame.origin.y + CGRectGetHeight(self.officeLabel.bounds), CGRectGetWidth(self.bounds) - self.detailTextLabel.frame.origin.x, 1.1 * self.phoneNumberLabel.font.pointSize);
+    self.phoneNumberTextView.frame = CGRectMake(self.detailTextLabel.frame.origin.x, 4.0 + self.officeLabel.frame.origin.y + CGRectGetHeight(self.officeLabel.bounds), CGRectGetWidth(self.bounds) - self.detailTextLabel.frame.origin.x, 16);
     
-    self.officeLabel.alpha = self.showDetails;
+    if (![self.officeLabel.text length]) {
+        self.phoneNumberTextView.frame = self.officeLabel.frame;
+    }
     
-    self.phoneNumberLabel.alpha = self.showDetails;
+    
+    self.officeLabel.alpha              = self.showDetails;
+    self.phoneNumberTextView.alpha      = self.showDetails;
     
 }
 

@@ -139,11 +139,11 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         UTCSDirectoryPerson *person = self.dataSource.data[indexPath.section][indexPath.row];
         CGFloat selectedHeight = height;
         if (person.office) {
-            selectedHeight += 26.0;
+            selectedHeight += 16.0;
         }
         
         if (person.phoneNumber) {
-            selectedHeight += 26.0;
+            selectedHeight += 16.0;
         }
         
         return selectedHeight;
@@ -164,6 +164,14 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label;
     });
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ((UTCSDirectoryTableViewCell *)cell).showDetails = NO;
+    if (self.selectedIndexPath && [indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
+        ((UTCSDirectoryTableViewCell *)cell).showDetails = YES;
+    }
 }
 
 
