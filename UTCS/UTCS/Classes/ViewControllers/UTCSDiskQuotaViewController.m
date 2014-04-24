@@ -41,7 +41,7 @@ static NSString *diskQuotaCacheKey = @"quota";
 
 @property (nonatomic) UILabel                   *updatedLabel;
 
-@property (nonatomic) UILabel                   *quotaDetailLabel;
+@property (nonatomic) UILabel                   *percentLabel;
 
 @property (nonatomic) MRCircularProgressView    *quotaGaugeView;
 
@@ -70,21 +70,25 @@ static NSString *diskQuotaCacheKey = @"quota";
             UITextField *textField = [[UITextField alloc]initWithFrame:CGRectZero];
             textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
             textField.autocorrectionType = UITextAutocorrectionTypeNo;
+            textField.returnKeyType = UIReturnKeyGo;
             textField.placeholder = @"CS Unix Username";
             textField.textColor = [UIColor whiteColor];
             textField.tintColor = [UIColor whiteColor];
+            textField.delegate = self;
             textField;
         });
         
         // Go button
         self.goButton = ({
-            UTCSButton *button = [[UTCSButton alloc]initWithFrame:CGRectZero];
+            UTCSButton *button = [UTCSButton buttonWithType:UIButtonTypeSystem];
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"goButton"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-            imageView.tintColor = [UIColor whiteColor];
-            [button addSubview:imageView];
-            
+            button.tintColor = [UIColor whiteColor];
+            button.layer.masksToBounds = YES;
+            button.layer.cornerRadius = 4.0;
+            button.layer.borderColor = [UIColor whiteColor].CGColor;
+            button.layer.borderWidth = 1.0;
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [button setTitle:@"Go" forState:UIControlStateNormal];
             button;
         });
         
@@ -93,7 +97,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectZero];
             view.backgroundColor = [UIColor clearColor];
             view.progressColor = [UIColor whiteColor];
-            view.progressArcWidth = 8.0;
+            view.progressArcWidth = 10.0;
             view.alpha = 0.0;
             view;
         });
@@ -101,15 +105,15 @@ static NSString *diskQuotaCacheKey = @"quota";
         // Name label
         self.nameLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:40];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:40];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
             label.textAlignment = NSTextAlignmentCenter;
             label.adjustsFontSizeToFitWidth = YES;
             label;
         });
         
         // Quota detail label
-        self.quotaDetailLabel = ({
+        self.percentLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
             label.textColor = [UIColor whiteColor];
@@ -148,7 +152,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         
         self.frownyFaceLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:128];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:128];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.textAlignment = NSTextAlignmentCenter;
             label.text = @"☹";
@@ -184,7 +188,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     [self.view addSubview:self.nameLabel];
     
-    [self.view addSubview:self.quotaDetailLabel];
+    [self.view addSubview:self.percentLabel];
     
     [self.view addSubview:self.unitLabel];
     
@@ -215,16 +219,16 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.usernameTextField.frame = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
-    self.goButton.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
-    self.goButton.center = CGPointMake(0.85 * self.view.width, 0.9 * self.usernameTextField.center.y);
+    self.goButton.frame = CGRectMake(0.0, 0.0, 50.0, 28.0);
+    self.goButton.center = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
     
     self.quotaGaugeView.frame = CGRectMake(0, 0, 0.625 * self.view.width, 0.625 * self.view.width);
     self.quotaGaugeView.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
     
     self.nameLabel.frame = CGRectMake(0.0, 128.0, self.view.width, 48);
     
-    self.quotaDetailLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.quotaDetailLabel.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
+    self.percentLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
+    self.percentLabel.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
     
     self.unitLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 14);
     self.unitLabel.center = CGPointMake(self.view.center.x, 1.19 * self.view.center.y - self.view.y);
@@ -251,6 +255,12 @@ static NSString *diskQuotaCacheKey = @"quota";
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.usernameTextField becomeFirstResponder];
+}
+
 - (void)update
 {
     if ([self.dataSource shouldUpdate]) {
@@ -265,7 +275,7 @@ static NSString *diskQuotaCacheKey = @"quota";
                 CGFloat limit = [self.dataSource.data[@"limit"]floatValue];
                 CGFloat usage = [self.dataSource.data[@"usage"]floatValue];
                 [self.quotaGaugeView setProgress:(usage / limit) animated:YES];
-                self.quotaDetailLabel.text = [NSString stringWithFormat:@"%0.0f / %0.0f", usage, limit];
+                self.percentLabel.text = [NSString stringWithFormat:@"%0.2f%%", 100 * (usage / limit) ];
                 
                 NSString *updatedString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                          dateStyle:NSDateFormatterLongStyle
@@ -279,7 +289,7 @@ static NSString *diskQuotaCacheKey = @"quota";
                 self.frownyFaceLabel.alpha = !success;
                 self.errorMessageLabel.alpha = !success;
                 self.quotaGaugeView.alpha = success;
-                self.quotaDetailLabel.alpha = success;
+                self.percentLabel.alpha = success;
                 self.unitLabel.alpha = success;
                 self.descriptionLabel.alpha = 0.0;
             }];
@@ -292,6 +302,13 @@ static NSString *diskQuotaCacheKey = @"quota";
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self update];
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

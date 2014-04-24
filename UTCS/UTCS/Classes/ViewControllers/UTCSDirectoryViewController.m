@@ -45,9 +45,11 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
+        self.view.backgroundColor = [UIColor clearColor];
+        self.tableView.backgroundColor = [UIColor clearColor];
+        
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
-        self.tableView.backgroundColor = [UIColor clearColor];
         self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
         self.tableView.rowHeight = 64.0;
         self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
@@ -79,7 +81,7 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 {
     [super viewDidLoad];
     
-    self.tableView.contentOffset = CGPointMake(0.0, -self.searchBar.height);
+    self.tableView.contentOffset = CGPointMake(0.0, 64.0);
     
 }
 
@@ -103,6 +105,10 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         }];
     }
 }
+
+
+
+
 
 #pragma mark UITableViewDelegate Methpds
 
