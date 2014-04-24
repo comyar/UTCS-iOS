@@ -28,6 +28,8 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 @interface UTCSDirectoryViewController ()
 
+@property (nonatomic) NSIndexPath               *selectedIndexPath;
+
 // Search bar
 @property (nonatomic) UISearchBar               *searchBar;
 
@@ -51,7 +53,6 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
         self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
-        self.tableView.rowHeight = 64.0;
         self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
         self.tableView.sectionIndexColor = [UIColor whiteColor];
         
@@ -111,6 +112,27 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 
 #pragma mark UITableViewDelegate Methpds
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
+        self.selectedIndexPath = nil;
+    } else {
+        self.selectedIndexPath = indexPath;
+    }
+    
+    [tableView beginUpdates];
+    [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
+        return 128.0;
+    }
+    return 64.0;
+}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

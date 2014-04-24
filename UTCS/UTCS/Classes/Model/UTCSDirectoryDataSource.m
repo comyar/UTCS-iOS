@@ -57,6 +57,7 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     UTCSDirectoryPerson *person = self.data[indexPath.section][indexPath.row];
