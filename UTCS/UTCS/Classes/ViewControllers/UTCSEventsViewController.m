@@ -32,10 +32,10 @@
 static const CGFloat animationDuration              = 0.3;
 
 // Name of the background image
-static NSString * const backgroundImageName         = @"eventsBackground2";
+static NSString * const backgroundImageName         = @"eventsBackground3";
 
 // Name of the blurred background image
-static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurred";
+static NSString * const backgroundBlurredImageName  = @"eventsBackground3-blurred";
 
 
 #pragma mark - UTCSEventsViewController Class Extension

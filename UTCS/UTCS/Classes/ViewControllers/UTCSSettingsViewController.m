@@ -10,10 +10,14 @@
 #import "UTCSBouncyTableViewCell.h"
 #import "UTCSSettingsManager.h"
 #import "UTCSSettingsDataSource.h"
+#import "UTCSSettingsLegalViewController.h"
+
 
 @interface UTCSSettingsViewController ()
 
 @property (nonatomic) UTCSSettingsDataSource    *dataSource;
+
+@property (nonatomic) UTCSSettingsLegalViewController *legalViewController;
 
 @end
 
@@ -45,10 +49,33 @@
     [super viewDidLayoutSubviews];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.legalViewController = nil;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            if (!self.legalViewController) {
+                self.legalViewController = [UTCSSettingsLegalViewController new];
+            }
+            [self.navigationController pushViewController:self.legalViewController animated:YES];
+        } else if (indexPath.row == 1) {
+            
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
