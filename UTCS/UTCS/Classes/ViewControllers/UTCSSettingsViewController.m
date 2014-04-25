@@ -36,7 +36,6 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        self.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
         self.dataSource = [UTCSSettingsDataSource new];
         self.tableView.dataSource = self.dataSource;
         self.tableView.delegate = self;

@@ -92,6 +92,7 @@
     self.labsViewController             = [UTCSLabsViewController new];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
+    self.settingsNavigationController.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.settingsNavigationController];

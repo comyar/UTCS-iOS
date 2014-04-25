@@ -37,7 +37,6 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        self.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
         self.dataSource = [UTCSSettingsLegalDataSource new];
         self.tableView.dataSource = self.dataSource;
         self.tableView.rowHeight = 50.0;
