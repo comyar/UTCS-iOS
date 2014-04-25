@@ -44,6 +44,9 @@
     return self;
 }
 
-
+- (NSArray*)visibleCells
+{
+    return [self.tableView visibleCells];
+}
 
 @end

@@ -62,10 +62,8 @@
     
     
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSThirdFloorLabViewLayout new]];
-    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSBasementLabViewLayout new]];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
 
     
     [self.cardCollectionViewController addChildViewControllerAsCard:self.thirdFloorLabViewController];
@@ -76,7 +74,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+//    [self update];
 }
 
 - (void)update
@@ -103,24 +101,6 @@
 //            
 //        }];
 //    }
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
-{
-    if (viewController == self.thirdFloorLabViewController) {
-        return self.basementLabViewController;
-    }
-    
-    return nil;
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-{
-    if (viewController == self.basementLabViewController) {
-        return self.thirdFloorLabViewController;
-    }
-    
-    return nil;
 }
 
 @end

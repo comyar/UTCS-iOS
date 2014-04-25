@@ -14,7 +14,7 @@
 #import "UTCSEventDetailViewController.h"
 
 // Views
-#import "UTCSMenuButton.h"
+#import "UTCSEventsFilterView.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -41,6 +41,12 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground3-blurre
 #pragma mark - UTCSEventsViewController Class Extension
 
 @interface UTCSEventsViewController ()
+
+//
+@property (nonatomic) UIButton                              *filterButton;
+
+//
+@property (nonatomic) UTCSEventsFilterView                  *filterView;
 
 //
 @property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
@@ -76,6 +82,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground3-blurre
         self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
         
+        
     }
     return self;
 }
@@ -95,7 +102,40 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground3-blurre
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.filterView = ({
+        UTCSEventsFilterView *view = [[UTCSEventsFilterView alloc]initWithFrame:self.view.bounds];
+        view.alpha = 0.0;
+        view;
+    });
+    
+    self.filterButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        button.frame = CGRectMake(self.view.width - 48.0, 4.0, 36.0, 36.0);
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button;
+    });
+    
+    
+    [self.view addSubview:self.filterButton];
+    [self.view bringSubviewToFront:self.filterButton];
+    [self.view insertSubview:self.filterView belowSubview:self.menuButton];
+    
 }
+
+#pragma mark Buttons
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if (button == self.filterButton) {
+        CGFloat alpha = (self.filterView.alpha)? 0.0 : 1.0;
+        [UIView animateWithDuration:animationDuration animations:^{
+            self.filterView.alpha = alpha;
+        }];
+    }
+}
+
+
+#pragma mark Updating
 
 - (void)update
 {

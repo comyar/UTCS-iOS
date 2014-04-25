@@ -27,7 +27,7 @@
 {
     if (self = [super init]) {
         _layout = layout;
-        _backgroundImageView = [UIImageView new];
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -35,14 +35,12 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    _backgroundImageView.frame = self.view.bounds;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.view addSubview:_backgroundImageView];
     
     NSInteger numberOfMachines = [self.layout numberOfLabMachineViews];
     

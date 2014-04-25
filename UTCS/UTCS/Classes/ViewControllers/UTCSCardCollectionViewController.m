@@ -33,12 +33,15 @@
         
         self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
         self.collectionView.alwaysBounceHorizontal = YES;
+        self.collectionView.alwaysBounceVertical = NO;
+        self.collectionView.showsHorizontalScrollIndicator = NO;
+        self.collectionView.showsVerticalScrollIndicator = NO;
         self.collectionView.backgroundColor = [UIColor clearColor];
         self.collectionView.pagingEnabled = YES;
         self.collectionView.dataSource = self;
         self.collectionView.delegate = self;
         
-        [self.view addGestureRecognizer:self.panGestureRecognizer];
+        
     }
     return self;
 }
@@ -52,49 +55,42 @@
     [self.view addSubview:self.collectionView];
     
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizePanGesture:)];
+    [self.view addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer == self.panGestureRecognizer) {
         
-        static CGSize initial;
+        static CGRect initial;
+        
         CGPoint translation = [gestureRecognizer translationInView:self.view];
-        CGFloat normalizedDelta = - (0.2 * translation.y) / self.view.height;
-        
-        
+        NSLog(@"%f", translation.y);
         
         if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-            initial = self.collectionView.bounds.size;
-            
+            initial = self.collectionView.frame;
         } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-            
-            
-            
-            self.collectionView.height = MIN(self.view.height, MAX(0.2 * self.view.height,
-                                                                   (1.0 + normalizedDelta) * self.collectionView.height));
-            self.collectionView.width = MAX(self.view.width, (1.0 + normalizedDelta) * self.collectionView.width);
+            CGFloat height = initial.size.height - translation.y;
+            self.collectionView.height = MAX(0.25 * self.view.height, MIN(1.1 * self.view.height, height));
+            self.collectionView.width = 2.0 * (self.collectionView.height / self.view.height) * self.view.width;
             self.collectionView.y = self.view.height - self.collectionView.height;
-            
+            self.collectionView.contentSize = CGSizeMake(self.collectionView.width, self.collectionView.height);
             [self.collectionView.collectionViewLayout invalidateLayout];
-            
         } else {
             
+            CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+            CGRect frame = CGRectMake(0.0, 0.0, 2.0 * self.view.width, self.view.height);
             
-            if (self.collectionView.height >= 0.6 * self.view.width) {
-                [UIView animateWithDuration:0.3 animations:^{
-                    [UIView animateWithDuration:0.3 animations:^{
-                        self.collectionView.height = self.view.height;
-                        self.collectionView.y = 0.0;
-                    }];
-                }];
-            } else {
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.collectionView.height = 0.5 * self.view.height;
-                    self.collectionView.y = 0.5 * self.view.height;
-                }];
+            if (velocity.y > 100) {
+                frame = CGRectMake(0.0, 0.5 * self.view.height, self.view.width, 0.5 * self.view.height);
             }
             
+            [UIView animateWithDuration:0.3 animations:^{
+                self.collectionView.frame = frame;
+                [self.collectionView.collectionViewLayout invalidateLayout];
+            } completion:^(BOOL finished) {
+                [self.collectionView.collectionViewLayout invalidateLayout];
+            }];
         }
          
     }
@@ -102,6 +98,11 @@
 
 - (void)addChildViewControllerAsCard:(UIViewController *)viewController
 {
+    viewController.view.layer.cornerRadius = 4.0;
+    viewController.view.layer.masksToBounds = YES;
+    
+    [self.collectionView.collectionViewLayout invalidateLayout];
+    
     [self.cardViewControllers addObject:viewController];
     [self.collectionView reloadData];
 }
@@ -124,19 +125,13 @@
     [cell.contentView addSubview:viewController.view];
     
     cell.clipsToBounds = YES;
-    cell.backgroundColor = (indexPath.row % 2)? [UIColor redColor] : [UIColor greenColor];
     
     return cell;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0.14 * collectionView.height, 0.0, 0.0, 0.0);
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(0.48 * collectionView.width, 0.86 * collectionView.height);
+    return CGSizeMake(0.49 * collectionView.width, 0.98 * collectionView.height);
 }
 
 

@@ -21,6 +21,4 @@
 
 @property (nonatomic, readonly) UTCSLabViewLayout   *layout;
 
-@property (nonatomic, readonly) UIImageView         *backgroundImageView;
-
 @end

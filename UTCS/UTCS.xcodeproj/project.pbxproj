@@ -50,6 +50,7 @@
 		DD9475A5190A33350049FB8B /* UTCSSettingsLegalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475A4190A33350049FB8B /* UTCSSettingsLegalDataSource.m */; };
 		DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475B1190A46350049FB8B /* UTCSNavigationControllerDelegate.m */; };
+		DD9475B9190A65970049FB8B /* UTCSEventsFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475B8190A65970049FB8B /* UTCSEventsFilterView.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */; };
@@ -177,6 +178,8 @@
 		DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSlideNavigationAnimator.m; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.m; sourceTree = SOURCE_ROOT; };
 		DD9475B0190A46350049FB8B /* UTCSNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNavigationControllerDelegate.h; path = UTCS/Classes/Model/UTCSNavigationControllerDelegate.h; sourceTree = SOURCE_ROOT; };
 		DD9475B1190A46350049FB8B /* UTCSNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNavigationControllerDelegate.m; path = UTCS/Classes/Model/UTCSNavigationControllerDelegate.m; sourceTree = SOURCE_ROOT; };
+		DD9475B7190A65970049FB8B /* UTCSEventsFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterView.h; path = Views/UTCSEventsFilterView.h; sourceTree = "<group>"; };
+		DD9475B8190A65970049FB8B /* UTCSEventsFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsFilterView.m; path = Views/UTCSEventsFilterView.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 			children = (
 				DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */,
 				DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */,
+				DD9475B7190A65970049FB8B /* UTCSEventsFilterView.h */,
+				DD9475B8190A65970049FB8B /* UTCSEventsFilterView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1068,6 +1073,7 @@
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */,
+				DD9475B9190A65970049FB8B /* UTCSEventsFilterView.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				DDA758FF19088F25007CD0DB /* UTCSDirectoryTableViewCell.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,

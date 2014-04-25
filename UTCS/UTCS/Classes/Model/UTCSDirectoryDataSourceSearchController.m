@@ -119,11 +119,11 @@
         
         CGFloat selectedHeight = height;
         if (person.office) {
-            selectedHeight += 16.0;
+            selectedHeight += 20.0;
         }
         
         if (person.phoneNumber) {
-            selectedHeight += 16.0;
+            selectedHeight += 20.0;
         }
         
         return selectedHeight;

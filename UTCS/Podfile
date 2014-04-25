@@ -3,12 +3,10 @@
 
 target "UTCS" do
 pod 'MRCircularProgressView',:git => 'https://github.com/martinezdelariva/MRCircularProgressView'
-pod 'FRBSwatchist', :git => 'https://github.com/bradzeis/FRBSwatchist'
 pod 'MBProgressHUD', '~> 0.8'
+pod "TOWebViewController", :git => 'https://github.com/TimOliver/TOWebViewController'
 pod 'Shimmer', '~> 1.0.1'
-pod 'WYPopoverController', :git => 'https://github.com/nicolaschengdev/WYPopoverController'
 pod "AFNetworking", "~> 2.0"
 pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
-pod 'UIView+Shake', '~> 0.2'
 end
 
