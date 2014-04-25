@@ -25,7 +25,6 @@
 		DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */; };
 		DD44659C18E93D3500ED1153 /* UTCSDirectoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659B18E93D3500ED1153 /* UTCSDirectoryDataSource.m */; };
 		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
-		DD4C7D0C18FA840700129A2E /* UTCSEventsFilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */; };
 		DD57BEAD18EADA550076EF20 /* UTCSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */; };
@@ -127,8 +126,6 @@
 		DD44659B18E93D3500ED1153 /* UTCSDirectoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSource.m; path = Model/UTCSDirectoryDataSource.m; sourceTree = "<group>"; };
 		DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryPerson.h; path = Model/UTCSDirectoryPerson.h; sourceTree = "<group>"; };
 		DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryPerson.m; path = Model/UTCSDirectoryPerson.m; sourceTree = "<group>"; };
-		DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterTableViewController.h; path = ViewControllers/UTCSEventsFilterTableViewController.h; sourceTree = "<group>"; };
-		DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsFilterTableViewController.m; path = ViewControllers/UTCSEventsFilterTableViewController.m; sourceTree = "<group>"; };
 		DD4C7D0F18FB118C00129A2E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventTableViewCell.h; path = Views/UTCSEventTableViewCell.h; sourceTree = "<group>"; };
 		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventTableViewCell.m; path = Views/UTCSEventTableViewCell.m; sourceTree = "<group>"; };
@@ -477,8 +474,6 @@
 				DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */,
 				DD44659718E8254B00ED1153 /* UTCSEventDetailViewController.h */,
 				DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */,
-				DD4C7D0A18FA840700129A2E /* UTCSEventsFilterTableViewController.h */,
-				DD4C7D0B18FA840700129A2E /* UTCSEventsFilterTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1019,7 +1014,6 @@
 				DD44659918E8254C00ED1153 /* UTCSEventDetailViewController.m in Sources */,
 				DDC2F5E71904BBDE006011F0 /* UTCSTableViewController.m in Sources */,
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
-				DD4C7D0C18FA840700129A2E /* UTCSEventsFilterTableViewController.m in Sources */,
 				DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,

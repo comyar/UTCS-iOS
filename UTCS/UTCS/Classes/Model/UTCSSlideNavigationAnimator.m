@@ -35,7 +35,7 @@
     toViewController.view.frame = toStartFrame;
     NSTimeInterval transitionDuration = [self transitionDuration:transitionContext];
     
-    [UIView animateWithDuration:transitionDuration delay:0.0 usingSpringWithDamping:0.75 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations: ^ {
+    [UIView animateWithDuration:transitionDuration delay:0.0 usingSpringWithDamping:0.85 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations: ^ {
         toViewController.view.frame     = toDestinationFrame;
         fromViewController.view.frame   = fromDestinationFrame;
 

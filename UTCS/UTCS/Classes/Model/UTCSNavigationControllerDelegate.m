@@ -29,42 +29,42 @@
         
         self.animator               = [UTCSSlideNavigationAnimator new];
         
-        self.panGestureRecognizer   = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizePanGesture:)];
+//        self.panGestureRecognizer   = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizePanGesture:)];
     }
     return self;
 }
 
 - (void)setNavigationController:(UTCSNavigationController *)navigationController
 {
-    [_navigationController.view removeGestureRecognizer:self.panGestureRecognizer];
+//    [_navigationController.view removeGestureRecognizer:self.panGestureRecognizer];
     _navigationController = navigationController;
-    [_navigationController.view addGestureRecognizer:self.panGestureRecognizer];
+//    [_navigationController.view addGestureRecognizer:self.panGestureRecognizer];
 }
 
-- (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    if (gestureRecognizer == self.panGestureRecognizer) {
-        UIView* view = self.navigationController.view;
-        if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-            CGPoint location = [gestureRecognizer locationInView:view];
-            if (location.x <  CGRectGetMidX(view.bounds) && self.navigationController.viewControllers.count > 1) { // left half
-                self.interactionController = [UIPercentDrivenInteractiveTransition new];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-            CGPoint translation = [gestureRecognizer translationInView:view];
-            CGFloat d = fabs(translation.x / CGRectGetWidth(view.bounds));
-            [self.interactionController updateInteractiveTransition:d];
-        } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-            if ([gestureRecognizer velocityInView:view].x > 0) {
-                [self.interactionController finishInteractiveTransition];
-            } else {
-                [self.interactionController cancelInteractiveTransition];
-            }
-            self.interactionController = nil;
-        }
-    }
-}
+//- (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer
+//{
+//    if (gestureRecognizer == self.panGestureRecognizer) {
+//        UIView* view = self.navigationController.view;
+//        if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+//            CGPoint location = [gestureRecognizer locationInView:view];
+//            if (location.x <  CGRectGetMidX(view.bounds) && self.navigationController.viewControllers.count > 1) { // left half
+//                self.interactionController = [UIPercentDrivenInteractiveTransition new];
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }
+//        } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+//            CGPoint translation = [gestureRecognizer translationInView:view];
+//            CGFloat d = fabs(translation.x / CGRectGetWidth(view.bounds));
+//            [self.interactionController updateInteractiveTransition:d];
+//        } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+//            if ([gestureRecognizer velocityInView:view].x > 0) {
+//                [self.interactionController finishInteractiveTransition];
+//            } else {
+//                [self.interactionController cancelInteractiveTransition];
+//            }
+//            self.interactionController = nil;
+//        }
+//    }
+//}
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                   animationControllerForOperation:(UINavigationControllerOperation)operation

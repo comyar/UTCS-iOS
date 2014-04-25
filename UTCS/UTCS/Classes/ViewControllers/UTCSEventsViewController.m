@@ -146,13 +146,14 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground3-blurre
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    cell.selected = NO;
-//    
-//    UTCSEvent *event = self.dataSource.data[indexPath.row];
-//    self.eventDetailViewController = [UTCSEventDetailViewController new];
-//    self.eventDetailViewController.event = event;
-//    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UTCSEvent *event = self.dataSource.data[indexPath.row];
+    if (!self.eventDetailViewController) {
+        self.eventDetailViewController = [UTCSEventDetailViewController new];
+    }
+    self.eventDetailViewController.event = event;
+    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
