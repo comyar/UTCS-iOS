@@ -146,7 +146,16 @@
 {
     [super searchDisplayController:controller willShowSearchResultsTableView:tableView];
     tableView.backgroundColor = [UIColor clearColor];
-    tableView.frame = CGRectMake(0.0, 88.0, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds) - 88.0);
+    tableView.frame = CGRectMake(0.0, CGRectGetHeight(self.searchDisplayController.searchBar.bounds) + 44.0, CGRectGetWidth(self.searchDisplayController.searchResultsTableView.bounds), CGRectGetHeight(self.searchDisplayController.searchResultsTableView.bounds) - CGRectGetHeight(self.searchDisplayController.searchBar.bounds));
+    
+    tableView.contentOffset = CGPointZero;
+    tableView.contentInset = UIEdgeInsetsZero;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
+{
+    NSLog(@"%@", NSStringFromCGRect(tableView.frame));
+    NSLog(@"%@", NSStringFromUIEdgeInsets(tableView.contentInset));
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
