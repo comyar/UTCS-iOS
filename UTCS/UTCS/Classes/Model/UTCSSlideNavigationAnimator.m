@@ -13,7 +13,7 @@
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
     NSLog(@"push transition duration");
-    return 0.5;
+    return 0.4;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -25,22 +25,20 @@
     [[transitionContext containerView] addSubview:toViewController.view];
     
     CGSize viewSize = [transitionContext containerView].bounds.size;
-    CGRect toStartFrame = CGRectMake((self.pushing)? 1.5 * viewSize.width : -1.5  * viewSize.width, 0.0,
+    CGRect toStartFrame = CGRectMake((self.pushing)? viewSize.width : -viewSize.width, 0.0,
                                  CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
     
-    CGRect toDestinationFrame   = fromViewController.view.frame;
-    CGRect fromDestinationFrame = CGRectMake((self.pushing)? -1.5 * viewSize.width : 1.5  * viewSize.width, 0.0,
+    CGRect toDestinationFrame   = CGRectMake(0.0, 0.0, CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
+    
+    CGRect fromDestinationFrame = CGRectMake((self.pushing)? -viewSize.width : viewSize.width, 0.0,
                                     CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
     
-    toViewController.view.alpha = 0.0;
     toViewController.view.frame = toStartFrame;
     NSTimeInterval transitionDuration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:transitionDuration animations:^{
         toViewController.view.frame     = toDestinationFrame;
-        toViewController.view.alpha     = 1.0;
         
         fromViewController.view.frame  = fromDestinationFrame;
-        fromViewController.view.alpha   = 0.0;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
