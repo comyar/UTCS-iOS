@@ -49,9 +49,9 @@ static const CGFloat animationDuration = 0.3;
 {
     [super setHighlighted:highlighted animated:animated];
     
-    if (highlighted) {
+    if (highlighted && animated) {
         [self bounceWithDirection:UTCSBouncyTableViewCellBounceDirectionDown];
-    } else {
+    } else if (animated) {
        [self bounceWithDirection:UTCSBouncyTableViewCellBounceDirectionUp];
     }
 }
