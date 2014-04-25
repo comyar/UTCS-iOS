@@ -79,7 +79,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    [self configureAppearance];
+    
     
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
@@ -97,6 +97,7 @@
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.settingsNavigationController];
     
+    [self configureAppearance];
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
     return YES;
@@ -112,6 +113,7 @@
     NSDictionary *searchBarPlaceholderAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]};
     NSAttributedString *searchBarPlaceholder = [[NSAttributedString alloc]initWithString:@"Search" attributes:searchBarPlaceholderAttributes];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]setAttributedPlaceholder:searchBarPlaceholder];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];

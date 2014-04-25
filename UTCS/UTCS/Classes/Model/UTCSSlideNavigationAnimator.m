@@ -12,13 +12,11 @@
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    NSLog(@"push transition duration");
     return 0.4;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    NSLog(@"push animation transition");
     UIViewController* toViewController      = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIViewController* fromViewController    = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
@@ -28,7 +26,8 @@
     CGRect toStartFrame = CGRectMake((self.pushing)? viewSize.width : -viewSize.width, 0.0,
                                  CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
     
-    CGRect toDestinationFrame   = CGRectMake(0.0, 0.0, CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
+    CGRect toDestinationFrame   = CGRectMake(0.0, 0.0, CGRectGetWidth(toViewController.view.bounds),
+                                             CGRectGetHeight(toViewController.view.bounds));
     
     CGRect fromDestinationFrame = CGRectMake((self.pushing)? -viewSize.width : viewSize.width, 0.0,
                                     CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));

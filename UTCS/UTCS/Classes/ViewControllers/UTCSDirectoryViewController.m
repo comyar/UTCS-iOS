@@ -64,12 +64,13 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
             searchBar.backgroundImage = [UIImage new];
-            searchBar.tintColor = [UIColor utcsBurntOrangeColor];
             searchBar.placeholder = @"Search Directory";
             searchBar.scopeButtonTitles = @[@"All", @"Faculty", @"Staff", @"Graduate"];
             searchBar.scopeBarBackgroundImage = [UIImage new];
             searchBar.tintColor = [UIColor whiteColor];
-            [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBarBackground"] forState:UIControlStateNormal];
+            searchBar.searchTextPositionAdjustment = UIOffsetMake(8.0, 0.0);
+            [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBarBackground"]
+                                            forState:UIControlStateNormal];
             searchBar;
         });
         
