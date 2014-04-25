@@ -18,21 +18,24 @@
 #import "UTCSThirdFloorLabViewLayout.h"
 #import "UTCSBasementLabViewLayout.h"
 
-#import "UTCSCardCollectionViewController.h"
-
+#import "UTCSLabsSearchViewController.h"
 
 #pragma mark - UTCSLabsViewController Class Extension
 
 @interface UTCSLabsViewController ()
 
 //
-@property (nonatomic) UTCSCardCollectionViewController      *cardCollectionViewController;
+@property (nonatomic) UIPageViewController                  *pageViewController;
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
+
+@property (nonatomic) UTCSLabsSearchViewController          *searchViewController;
+
+@property (nonatomic) UIPageControl                         *pageControl;
 
 @end
 
@@ -53,21 +56,37 @@
 {
     [super viewDidLoad];
     
-    self.cardCollectionViewController = [UTCSCardCollectionViewController new];
+    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
+    self.pageControl.numberOfPages = 3;
     
-    self.cardCollectionViewController.view.frame = self.view.bounds;
-    [self addChildViewController:self.cardCollectionViewController];
-    [self.view addSubview:self.cardCollectionViewController.view];
-    [self.cardCollectionViewController didMoveToParentViewController:self];
+    self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                           options:nil];
+    self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
+    
+    self.pageViewController.view.frame = self.view.bounds;
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
     
     
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSThirdFloorLabViewLayout new]];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSBasementLabViewLayout new]];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
 
+    self.searchViewController = [UTCSLabsSearchViewController new];
     
-    [self.cardCollectionViewController addChildViewControllerAsCard:self.thirdFloorLabViewController];
-    [self.cardCollectionViewController addChildViewControllerAsCard:self.basementLabViewController];
+    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController]
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
+    
+    [self.view addSubview:self.pageControl];
+    
 }
 
 
@@ -102,5 +121,48 @@
 //        }];
 //    }
 }
+
+#pragma mark UIPageViewControllerDataSource Methods
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    if (viewController == self.thirdFloorLabViewController) {
+        return self.basementLabViewController;
+    } else if (viewController == self.basementLabViewController) {
+        return self.searchViewController;
+    }
+    return nil;
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    if (viewController == self.searchViewController) {
+        return self.basementLabViewController;
+    } else if (viewController == self.basementLabViewController) {
+        return self.thirdFloorLabViewController;
+    }
+    return nil;
+}
+
+#pragma mak UIPageViewControllerDelegate Methods
+
+
+- (void)pageViewController:(UIPageViewController *)pageViewController
+        didFinishAnimating:(BOOL)finished
+   previousViewControllers:(NSArray *)previousViewControllers
+       transitionCompleted:(BOOL)completed
+{
+    if (completed) {
+        UIViewController *previous = [previousViewControllers firstObject];
+        UIViewController *current = [pageViewController.viewControllers firstObject];
+        if (current == self.searchViewController) {
+            // become first responder
+        } else if (previous == self.searchViewController) {
+            // resign first responder
+        }
+    }
+}
+
+
 
 @end

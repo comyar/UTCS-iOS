@@ -9,10 +9,10 @@
 
 @import UIKit;
 
-
+#import "UTCSContentViewController.h"
 #import "UTCSLabViewLayout.h"
 
-@interface UTCSLabMachineViewController : UIViewController
+@interface UTCSLabMachineViewController : UTCSContentViewController
 
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 

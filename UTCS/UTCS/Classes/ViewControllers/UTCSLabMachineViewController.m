@@ -27,7 +27,6 @@
 {
     if (self = [super init]) {
         _layout = layout;
-        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -40,13 +39,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.menuButton.hidden = YES;
     
     NSInteger numberOfMachines = [self.layout numberOfLabMachineViews];
     
     self.labView = [[UTCSLabView alloc]initWithFrame:CGRectMake(0.0, 44.0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - 44.0) numberOfMachines:numberOfMachines];
     
     [self.view addSubview:self.labView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)updateLabMachineViewsWithLabMachines:(NSArray *)labMachines
