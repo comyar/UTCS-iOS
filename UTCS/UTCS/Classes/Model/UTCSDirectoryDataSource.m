@@ -34,10 +34,10 @@
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
-        self.minimumTimeBetweenUpdates = 2592000.0;  // 30 days
-        self.cache = [[UTCSDataSourceCache alloc]initWithService:service];
-        self.parser = [UTCSDirectoryDataSourceParser new];
-        self.searchController = [UTCSDirectoryDataSourceSearchController new];
+        _minimumTimeBetweenUpdates = 2592000.0;  // 30 days
+        _cache = [[UTCSDataSourceCache alloc]initWithService:service];
+        _parser = [UTCSDirectoryDataSourceParser new];
+        _searchController = [UTCSDirectoryDataSourceSearchController new];
         self.searchController.dataSource = self;
     }
     return self;

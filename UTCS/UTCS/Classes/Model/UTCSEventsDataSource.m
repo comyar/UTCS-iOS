@@ -61,10 +61,10 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 - (instancetype)initWithService:(NSString *)service
 {
     if(self = [super initWithService:service]) {
-        self.parser = [UTCSEventsDataSourceParser new];
-        self.cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _parser = [UTCSEventsDataSourceParser new];
+        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
         
-        self.minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
+        _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
         
         self.monthDateFormatter = ({
             NSDateFormatter *formatter = [NSDateFormatter new];

@@ -14,6 +14,12 @@
 #pragma mark - UTCSAbstractDataSource Implementation
 
 @implementation UTCSDataSource
+@synthesize data = _data;
+@synthesize parser = _parser;
+@synthesize cache = _cache;
+@synthesize searchController = _searchController;
+@synthesize minimumTimeBetweenUpdates = _minimumTimeBetweenUpdates;
+
 
 - (instancetype)init
 {

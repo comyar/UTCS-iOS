@@ -16,8 +16,8 @@
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
-        self.cache  = [[UTCSDataSourceCache alloc]initWithService:service];
-        self.parser = [UTCSLabsDataSourceParser new];
+        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _parser = [UTCSLabsDataSourceParser new];
     }
     return self;
 }

@@ -12,7 +12,7 @@
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.4;
+    return 0.6;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -34,10 +34,11 @@
     
     toViewController.view.frame = toStartFrame;
     NSTimeInterval transitionDuration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:transitionDuration animations:^{
+    
+    [UIView animateWithDuration:transitionDuration delay:0.0 usingSpringWithDamping:0.75 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations: ^ {
         toViewController.view.frame     = toDestinationFrame;
-        
-        fromViewController.view.frame  = fromDestinationFrame;
+        fromViewController.view.frame   = fromDestinationFrame;
+
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];

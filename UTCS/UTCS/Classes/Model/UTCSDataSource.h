@@ -28,6 +28,7 @@ typedef NSString UTCSServiceName;
 
 @protocol UTCSDataSourceDelegate <NSObject>
 
+@optional
 - (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource;
 
 @end
@@ -36,6 +37,13 @@ typedef NSString UTCSServiceName;
  UTCSDataSource is an abstract class 
  */
 @interface UTCSDataSource : NSObject <UISearchDisplayDelegate>
+{
+    id _data;
+    UTCSDataSourceParser            *_parser;
+    UTCSDataSourceCache             *_cache;
+    UTCSDataSourceSearchController  *_searchController;
+    NSTimeInterval                  _minimumTimeBetweenUpdates;
+}
 
 // -----
 // @name Creating a UTCSAbstractDataSource
@@ -63,15 +71,15 @@ typedef NSString UTCSServiceName;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceParser              *parser;
+@property (nonatomic, readonly) UTCSDataSourceParser              *parser;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceCache               *cache;
+@property (nonatomic, readonly) UTCSDataSourceCache               *cache;
 
 /**
  */
-@property (nonatomic) UTCSDataSourceSearchController    *searchController;
+@property (nonatomic, readonly) UTCSDataSourceSearchController    *searchController;
 
 /**
  */
@@ -87,7 +95,7 @@ typedef NSString UTCSServiceName;
 
 /**
  */
-@property (nonatomic) NSTimeInterval      minimumTimeBetweenUpdates;
+@property (nonatomic, readonly) NSTimeInterval      minimumTimeBetweenUpdates;
 
 /**
  */

@@ -15,9 +15,9 @@
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
-        self.minimumTimeBetweenUpdates = 10800.0;  // 3 hours
-        self.parser = [UTCSDiskQuotaDataSourceParser new];
-        self.cache = [[UTCSDataSourceCache alloc]initWithService:service];
+        _minimumTimeBetweenUpdates = 10800.0;  // 3 hours
+        _parser = [UTCSDiskQuotaDataSourceParser new];
+        _cache = [[UTCSDataSourceCache alloc]initWithService:service];
     }
     return self;
 }

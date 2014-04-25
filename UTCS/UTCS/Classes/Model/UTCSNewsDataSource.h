@@ -8,6 +8,9 @@
 
 #import "UTCSDataSource.h"
 
+
+extern NSString * const UTCSNewsDataSourceCacheKey;
+
 /**
  UTCSNewsArticleDataSource
  */

@@ -17,7 +17,7 @@
 /**
  UTCSContentViewController is an abstract class
  */
-@interface UTCSContentViewController : UIViewController
+@interface UTCSContentViewController : UIViewController <UTCSDataSourceDelegate>
 
 // -----
 // @name Using a UTCSAbstractContentViewController

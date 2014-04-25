@@ -52,9 +52,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @interface UTCSNewsViewController ()
 
-// Header view of the table view
-//@property (nonatomic) UTCSNewsHeaderView                *activityHeaderView;
-
 // View controller used to display a specific news story
 @property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
 
@@ -124,6 +121,13 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     }];
 }
 
+#pragma mark UTCSDataSourceDelegate Methods
+
+- (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource
+{
+    return @{UTCSNewsDataSourceCacheKey: dataSource.data};
+}
+
 #pragma mark UITableViewDelegate Methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -172,8 +176,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    cell.alpha = 1.0;
-//    cell.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    cell.contentView.alpha = 0.5;
+    [UIView animateWithDuration:animationDuration animations:^{
+        cell.contentView.alpha = 1.0;
+    }];
 }
 
 @end

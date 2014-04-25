@@ -28,7 +28,7 @@
 #pragma mark - Constants
 
 // Key used to cache news articles
-static NSString * const articlesCacheKey = @"articles";
+NSString * const UTCSNewsDataSourceCacheKey = @"UTCSNewsDataSourceCacheKey";
 
 
 #pragma mark - UTCSNewsStoryDataSource Class Extension
@@ -45,8 +45,9 @@ static NSString * const articlesCacheKey = @"articles";
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
-        self.parser = [UTCSNewsDataSourceParser new];
-        self.cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _parser = [UTCSNewsDataSourceParser new];
+        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _data   = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
     }
     return self;
 }
