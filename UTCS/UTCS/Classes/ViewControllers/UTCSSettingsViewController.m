@@ -7,7 +7,7 @@
 //
 
 #import "UTCSSettingsViewController.h"
-#import "UTCSTableViewCell.h"
+#import "UTCSBouncyTableViewCell.h"
 #import "UTCSSettingsManager.h"
 #import "UTCSSettingsDataSource.h"
 

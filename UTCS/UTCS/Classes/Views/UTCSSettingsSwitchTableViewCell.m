@@ -20,6 +20,7 @@
         self.textLabel.textColor = [UIColor whiteColor];
         self.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         self.detailTextLabel.numberOfLines = 0;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }

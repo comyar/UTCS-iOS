@@ -17,7 +17,7 @@
 #import "UTCSDataSourceCache.h"
 
 // Views
-#import "UTCSTableViewCell.h"
+#import "UTCSBouncyTableViewCell.h"
 
 // Categories
 #import "UIImage+CZTinting.h"
@@ -53,11 +53,11 @@ static NSString * const articlesCacheKey = @"articles";
 
 #pragma mark UITableViewDataSource Methods
 
-- (UTCSTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSTableViewCell"];
+    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSTableViewCell"];
     if(!cell) {
-        cell = [[UTCSTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSTableViewCell"];
+        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSTableViewCell"];
         cell.accessoryView = ({
             UIImage *image = [[UIImage imageNamed:@"rightArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:image];

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UTCSTableViewCell.h"
+#import "UTCSBouncyTableViewCell.h"
 
-@interface UTCSEventTableViewCell : UTCSTableViewCell
+@interface UTCSEventTableViewCell : UTCSBouncyTableViewCell
 
 @property (nonatomic, readonly) CAShapeLayer    *typeStripeLayer;
 @property (nonatomic, readonly) UILabel         *monthLabel;

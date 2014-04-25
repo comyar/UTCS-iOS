@@ -7,7 +7,7 @@
 //
 
 #import "UTCSSettingsDataSource.h"
-#import "UTCSTableViewCell.h"
+#import "UTCSBouncyTableViewCell.h"
 #import "UTCSSettingsSwitchTableViewCell.h"
 #import "UTCSSettingsSwitchTableViewCell.h"
 
@@ -32,31 +32,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * const UTCSSettingsLabelTableViewCell = @"UTCSSettingsLabelTableViewCell";
-//    static NSString * const UTCSSettingsSwitchTableViewCell = @"UTCSSettingsSwitchTableViewCell";
-    
-    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             UTCSSettingsSwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSwitchTableViewCell"];
             if (!cell) {
                 cell = [[UTCSSettingsSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                              reuseIdentifier:@"UTCSSettingsSwitchTableViewCell"];
+                
             }
             cell.textLabel.text         = @"Event Notifications";
             cell.detailTextLabel.text   = @"Get notifications an hour before the start of starred events";
             return cell;
         }
     } else if (indexPath.section == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSSettingsLabelTableViewCell];
-        if (indexPath.row == 0) {
-            if (!cell) {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSSettingsLabelTableViewCell];
-            }
-            
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLabelTableViewCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                         reuseIdentifier:@"UTCSSettingsLabelTableViewCell"];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.textLabel.textColor = [UIColor whiteColor];
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+        cell.textLabel.text = self.infoTitles[indexPath.row];
+        return cell;
     }
-    
+    NSLog(@"%@", indexPath);
     return nil;
 }
 
@@ -64,6 +65,8 @@
 {
     if (section == 0) {
         return 1;
+    } else if (section == 1) {
+        return [self.infoTitles count];
     }
     return 0;
 }

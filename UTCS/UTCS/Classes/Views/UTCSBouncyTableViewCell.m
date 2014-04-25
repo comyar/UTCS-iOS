@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSTableViewCell.h"
+#import "UTCSBouncyTableViewCell.h"
 
 
 static const CGFloat animationDuration = 0.3;
 
-@implementation UTCSTableViewCell
+@implementation UTCSBouncyTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,22 +26,22 @@ static const CGFloat animationDuration = 0.3;
     return self;
 }
 
-- (void)bounceWithDirection:(UTCSTableViewCellBounceDirection)bounceDirection
+- (void)bounceWithDirection:(UTCSBouncyTableViewCellBounceDirection)bounceDirection
 {
     [UIView animateWithDuration:animationDuration/3.0 animations:^{
-        self.contentView.transform = (bounceDirection == UTCSTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
+        self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:animationDuration/3.0 animations:^{
-            self.contentView.transform = (bounceDirection == UTCSTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
+            self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:animationDuration/3.0 animations:^{
-                self.contentView.transform = (bounceDirection == UTCSTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
+                self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
             }];
         }];
     }];
     
     [UIView animateWithDuration:animationDuration animations:^{
-        self.contentView.alpha = (bounceDirection == UTCSTableViewCellBounceDirectionDown)? 0.5 : 1.0;
+        self.contentView.alpha = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? 0.5 : 1.0;
     }];
 }
 
@@ -50,9 +50,9 @@ static const CGFloat animationDuration = 0.3;
     [super setHighlighted:highlighted animated:animated];
     
     if (highlighted) {
-        [self bounceWithDirection:UTCSTableViewCellBounceDirectionDown];
+        [self bounceWithDirection:UTCSBouncyTableViewCellBounceDirectionDown];
     } else {
-       [self bounceWithDirection:UTCSTableViewCellBounceDirectionUp];
+       [self bounceWithDirection:UTCSBouncyTableViewCellBounceDirectionUp];
     }
 }
 
