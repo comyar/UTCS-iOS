@@ -8,12 +8,20 @@
 
 
 #import "UTCSNavigationController.h"
-#import "UTCSSlideNavigationAnimator.h"
+#import "UTCSNavigationControllerDelegate.h"
 
+
+
+
+@implementation UINavigationController (Retro)
+
+
+@end
 
 @interface UTCSNavigationController ()
-@property (nonatomic) UTCSSlideNavigationAnimator *animator;
-@property (nonatomic) UIPercentDrivenInteractiveTransition* interactionController;
+
+@property (nonatomic) UTCSNavigationControllerDelegate *navigationDelegate;
+
 @end
 
 
@@ -22,8 +30,10 @@
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
     if (self = [super initWithRootViewController:rootViewController]) {
-        self.animator = [UTCSSlideNavigationAnimator new];
-        self.interactionController = [UIPercentDrivenInteractiveTransition new];
+        self.navigationDelegate = [UTCSNavigationControllerDelegate new];
+        self.delegate = self.navigationDelegate;
+        self.navigationDelegate.navigationController = self;
+
         _backgroundImageView = [UIImageView new];
         [self.view addSubview:self.backgroundImageView];
         [self.view sendSubviewToBack:self.backgroundImageView];
@@ -31,28 +41,12 @@
     return self;
 }
 
+
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     self.backgroundImageView.frame = self.view.bounds;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
-{
-    if (operation == UINavigationControllerOperationPop) {
-        return self.animator;
-    }
-    return nil;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController
-{
-    return self.interactionController;
-}
 
 @end

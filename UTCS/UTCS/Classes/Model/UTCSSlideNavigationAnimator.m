@@ -1,5 +1,5 @@
 //
-//  UTCSSlideNavigationAnimator.m
+//  UTCSSlideNavigationPushAnimator.m
 //  UTCS
 //
 //  Created by Comyar Zaheri on 4/25/14.
@@ -12,23 +12,37 @@
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 1;
+    NSLog(@"push transition duration");
+    return 0.5;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    UIViewController* toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    [[transitionContext containerView] addSubview:toViewController.view];
-    toViewController.view.alpha = 0;
+    NSLog(@"push animation transition");
+    UIViewController* toViewController      = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController* fromViewController    = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        fromViewController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
-        toViewController.view.alpha = 1;
-    } completion:^(BOOL finished) {
-        fromViewController.view.transform = CGAffineTransformIdentity;
-        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+    [[transitionContext containerView] addSubview:toViewController.view];
+    
+    CGSize viewSize = [transitionContext containerView].bounds.size;
+    CGRect toStartFrame = CGRectMake((self.pushing)? 1.5 * viewSize.width : -1.5  * viewSize.width, 0.0,
+                                 CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
+    
+    CGRect toDestinationFrame   = fromViewController.view.frame;
+    CGRect fromDestinationFrame = CGRectMake((self.pushing)? -1.5 * viewSize.width : 1.5  * viewSize.width, 0.0,
+                                    CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
+    
+    toViewController.view.alpha = 0.0;
+    toViewController.view.frame = toStartFrame;
+    NSTimeInterval transitionDuration = [self transitionDuration:transitionContext];
+    [UIView animateWithDuration:transitionDuration animations:^{
+        toViewController.view.frame     = toDestinationFrame;
+        toViewController.view.alpha     = 1.0;
         
+        fromViewController.view.frame  = fromDestinationFrame;
+        fromViewController.view.alpha   = 0.0;
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
 }
 
