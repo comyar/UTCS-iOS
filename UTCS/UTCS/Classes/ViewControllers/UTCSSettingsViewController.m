@@ -7,8 +7,13 @@
 //
 
 #import "UTCSSettingsViewController.h"
+#import "UTCSTableViewCell.h"
+#import "UTCSSettingsManager.h"
+#import "UTCSSettingsDataSource.h"
 
 @interface UTCSSettingsViewController ()
+
+@property (nonatomic) UTCSSettingsDataSource *dataSource;
 
 @end
 
@@ -18,20 +23,39 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor lightGrayColor];
+        self.dataSource = [UTCSSettingsDataSource new];
+        self.tableView.dataSource = self.dataSource;
+        self.tableView.delegate = self;
     }
     return self;
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.tableView];
 }
 
-- (void)didReceiveMemoryWarning
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *title = self.dataSource.sectionTitles[section];
+    return ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), 16.0)];
+        label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+        label.text = [NSString stringWithFormat:@"  %@", title];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label;
+    });
 }
+
+
+
+
 
 @end

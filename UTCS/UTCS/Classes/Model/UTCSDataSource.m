@@ -15,6 +15,14 @@
 
 @implementation UTCSDataSource
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super init]) {

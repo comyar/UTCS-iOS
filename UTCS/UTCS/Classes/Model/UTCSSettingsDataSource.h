@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSDataSource.h"
 
-@interface UTCSSettingsDataSource : UTCSDataSource
+@import Foundation;
+
+@interface UTCSSettingsDataSource : NSObject <UITableViewDataSource>
+
+@property (nonatomic, readonly) NSArray *sectionTitles;
 
 @end

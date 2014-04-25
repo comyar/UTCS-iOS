@@ -94,7 +94,7 @@
     self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
-                                                                                      contentViewController:self.directoryNavigationController];
+                                                                                      contentViewController:self.settingsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
     [self.window makeKeyAndVisible];
