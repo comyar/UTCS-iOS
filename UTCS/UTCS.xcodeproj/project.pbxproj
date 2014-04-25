@@ -33,6 +33,7 @@
 		DD5B585B18D239F900EEB474 /* UTCSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584A18D239F900EEB474 /* UTCSNewsDetailViewController.m */; };
 		DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */; };
 		DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */; };
+		DD5CAF7B190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF7A190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.m */; };
 		DD64DAD018F8AAB50033D58B /* UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DACF18F8AAB50033D58B /* UTCSButton.m */; };
 		DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD818F915040033D58B /* UTCSTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
@@ -139,6 +140,8 @@
 		DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DD5CAF76190A087E0051F637 /* UTCSSettingsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsDataSource.h; path = Model/UTCSSettingsDataSource.h; sourceTree = "<group>"; };
 		DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsDataSource.m; path = Model/UTCSSettingsDataSource.m; sourceTree = "<group>"; };
+		DD5CAF79190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsSwitchTableViewCell.h; path = Views/UTCSSettingsSwitchTableViewCell.h; sourceTree = "<group>"; };
+		DD5CAF7A190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsSwitchTableViewCell.m; path = Views/UTCSSettingsSwitchTableViewCell.m; sourceTree = "<group>"; };
 		DD64DACE18F8AAB50033D58B /* UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSButton.h; sourceTree = "<group>"; };
 		DD64DACF18F8AAB50033D58B /* UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSButton.m; sourceTree = "<group>"; };
 		DD64DAD718F915040033D58B /* UTCSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSTableViewCell.h; sourceTree = "<group>"; };
@@ -769,6 +772,8 @@
 		DDC206F9190A04AA001DD1A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD5CAF79190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.h */,
+				DD5CAF7A190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1017,6 +1022,7 @@
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				DD64DAD918F915040033D58B /* UTCSTableViewCell.m in Sources */,
 				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
+				DD5CAF7B190A2B7C0051F637 /* UTCSSettingsSwitchTableViewCell.m in Sources */,
 				DDA758E7190666E8007CD0DB /* UTCSLabViewLayout.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DDC2F5DE190480C7006011F0 /* UTCSDataSourceParser.m in Sources */,

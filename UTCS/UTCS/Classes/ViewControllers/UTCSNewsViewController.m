@@ -65,9 +65,19 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @implementation UTCSNewsViewController
 
+- (instancetype)init
+{
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    if(self = [super initWithStyle:style]) {
         self.dataSource             = [[UTCSNewsDataSource alloc]initWithService:serviceName];
         
         self.tableView.dataSource   = (UTCSNewsDataSource *)self.dataSource;

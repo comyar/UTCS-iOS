@@ -8,6 +8,8 @@
 
 #import "UTCSSettingsDataSource.h"
 #import "UTCSTableViewCell.h"
+#import "UTCSSettingsSwitchTableViewCell.h"
+#import "UTCSSettingsSwitchTableViewCell.h"
 
 @interface UTCSSettingsDataSource ()
 
@@ -22,42 +24,45 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.sectionTitles = @[@"App", @"Info", @"Social"];
-        self.infoTitles = @[@"Legal", @"About"];
+        self.sectionTitles  = @[@"Settings", @"Info", @"Social"];
+        self.infoTitles     = @[@"Legal", @"About"];
     }
     return self;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsTableViewCell"];
-    if (!cell) {
-        cell = [[UTCSTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UTCSSettingsTableViewCell"];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
-    }
+    static NSString * const UTCSSettingsLabelTableViewCell = @"UTCSSettingsLabelTableViewCell";
+//    static NSString * const UTCSSettingsSwitchTableViewCell = @"UTCSSettingsSwitchTableViewCell";
+    
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            
+            UTCSSettingsSwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSwitchTableViewCell"];
+            if (!cell) {
+                cell = [[UTCSSettingsSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                                             reuseIdentifier:@"UTCSSettingsSwitchTableViewCell"];
+            }
+            cell.textLabel.text         = @"Event Notifications";
+            cell.detailTextLabel.text   = @"Get notifications an hour before the start of starred events";
+            return cell;
         }
     } else if (indexPath.section == 1) {
-        cell.textLabel.text = self.infoTitles[indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 2) {
-        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSSettingsLabelTableViewCell];
+        if (indexPath.row == 0) {
+            if (!cell) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSSettingsLabelTableViewCell];
+            }
+            
+        }
     }
     
-    return cell;
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1;
-    } else if (section == 1) {
-        return [self.infoTitles count];
-    } else if (section == 2) {
         return 1;
     }
     return 0;
@@ -66,6 +71,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.sectionTitles count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return self.sectionTitles[section];
 }
 
 @end

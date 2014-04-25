@@ -22,9 +22,21 @@
 @implementation UTCSHeaderTableViewController
 @synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
 
+- (instancetype)init
+{
+    NSLog(@"header table view controller init");
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    NSLog(@"header table view controller init");
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    if (self = [super initWithStyle:style]) {
         [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;

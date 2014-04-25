@@ -27,9 +27,22 @@
 @implementation UTCSTableViewController
 @synthesize tableView           = _tableView;
 
+- (instancetype)init
+{
+    NSLog(@"table view controller init");
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+     NSLog(@"table view controller init");
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    NSLog(@"table view init with style");
+    if (self = [super initWithNibName:nil bundle:nil]) {
         _showsNavigationBarSeparatorLine = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
         
@@ -40,7 +53,7 @@
         });
         
         _tableView = ({
-            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:style];
             tableView.delegate         = self;
             tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.1];
             tableView.backgroundColor  = [UIColor clearColor];
@@ -61,7 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"table view did load");
     [self.view insertSubview:_gestureButton belowSubview:self.menuButton];
     [self.view insertSubview:_tableView belowSubview:self.gestureButton];
     [self.view insertSubview:_navigationBarSeparatorLineView aboveSubview:self.gestureButton];

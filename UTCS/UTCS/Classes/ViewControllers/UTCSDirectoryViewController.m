@@ -45,11 +45,21 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 @implementation UTCSDirectoryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)init
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    if (self = [super initWithStyle:style]) {
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
-        self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
+        self.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground2-blurred"];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];

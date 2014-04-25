@@ -32,10 +32,10 @@
 static const CGFloat animationDuration              = 0.3;
 
 // Name of the background image
-static NSString * const backgroundImageName         = @"eventsBackground";
+static NSString * const backgroundImageName         = @"eventsBackground2";
 
 // Name of the blurred background image
-static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred";
+static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurred";
 
 
 #pragma mark - UTCSEventsViewController Class Extension
@@ -52,9 +52,19 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 @implementation UTCSEventsViewController
 
+- (instancetype)init
+{
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    if(self = [super initWithStyle:style]) {
     
         self.dataSource                 = [[UTCSEventsDataSource alloc]initWithService:@"events"];
         self.tableView.dataSource       = (UTCSEventsDataSource *)self.dataSource;

@@ -13,6 +13,9 @@
  */
 @interface UTCSTableViewController : UTCSContentViewController <UITableViewDelegate>
 
+
+- (instancetype)initWithStyle:(UITableViewStyle)style;
+
 // -----
 // @name Properties
 // -----

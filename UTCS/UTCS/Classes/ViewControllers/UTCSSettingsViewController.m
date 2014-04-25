@@ -13,16 +13,26 @@
 
 @interface UTCSSettingsViewController ()
 
-@property (nonatomic) UTCSSettingsDataSource *dataSource;
+@property (nonatomic) UTCSSettingsDataSource    *dataSource;
 
 @end
 
 @implementation UTCSSettingsViewController
 
+- (instancetype)init
+{
+    return [self initWithStyle:UITableViewStyleGrouped];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.view.backgroundColor = [UIColor lightGrayColor];
+    return [self initWithStyle:UITableViewStyleGrouped];
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    if (self = [super initWithStyle:style]) {
+        self.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
         self.dataSource = [UTCSSettingsDataSource new];
         self.tableView.dataSource = self.dataSource;
         self.tableView.delegate = self;
@@ -41,21 +51,14 @@
     [self.view addSubview:self.tableView];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *title = self.dataSource.sectionTitles[section];
-    return ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), 16.0)];
-        label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-        label.text = [NSString stringWithFormat:@"  %@", title];
-        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        label;
-    });
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        return 64.0;
+    }
+    
+    return 50;
 }
-
-
-
 
 
 @end
