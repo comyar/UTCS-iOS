@@ -36,13 +36,11 @@ static NSString *diskQuotaCacheKey = @"quota";
 
 @property (nonatomic) UILabel                   *nameLabel;
 
-@property (nonatomic) UILabel                   *unitLabel;
-
-@property (nonatomic) UILabel                   *usernameLabel;
-
 @property (nonatomic) UILabel                   *updatedLabel;
 
 @property (nonatomic) UILabel                   *percentLabel;
+
+@property (nonatomic) UILabel                   *quotaDetailLabel;
 
 @property (nonatomic) MRCircularProgressView    *quotaGaugeView;
 
@@ -56,7 +54,6 @@ static NSString *diskQuotaCacheKey = @"quota";
 
 @end
 
-
 #pragma mark - UTCSDiskQuotaViewController Implementation
 
 @implementation UTCSDiskQuotaViewController
@@ -69,13 +66,14 @@ static NSString *diskQuotaCacheKey = @"quota";
         // Username text field
         self.usernameTextField = ({
             JVFloatLabeledTextField *textField = [[JVFloatLabeledTextField alloc]initWithFrame:CGRectZero];
-            
             textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
             textField.autocorrectionType = UITextAutocorrectionTypeNo;
             textField.returnKeyType = UIReturnKeyGo;
-            textField.placeholder = @"CS Username";
+            textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"CS Username" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]}];
             textField.textColor = [UIColor whiteColor];
             textField.tintColor = [UIColor whiteColor];
+            textField.floatingLabelTextColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            textField.floatingLabelActiveTextColor = [UIColor whiteColor];
             textField.delegate = self;
             textField;
         });
@@ -99,7 +97,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectZero];
             view.backgroundColor = [UIColor clearColor];
             view.progressColor = [UIColor whiteColor];
-            view.progressArcWidth = 10.0;
+            view.progressArcWidth = 12.0;
             view.alpha = 0.0;
             view;
         });
@@ -107,7 +105,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         // Name label
         self.nameLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:40];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:32];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
             label.textAlignment = NSTextAlignmentCenter;
             label.adjustsFontSizeToFitWidth = YES;
@@ -123,14 +121,11 @@ static NSString *diskQuotaCacheKey = @"quota";
             label;
         });
         
-        // Unit label
-        self.unitLabel = ({
+        self.quotaDetailLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.text = @"MB";
-            label.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-            label.textColor = [UIColor whiteColor];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
             label.textAlignment = NSTextAlignmentCenter;
-            label.alpha = 0.0;
             label;
         });
         
@@ -148,7 +143,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.numberOfLines = 0;
-            label.text = @"Enter your CS Unix username to check your available disk quota.\n\nYour disk quota represents the amount of available disk space for your Unix account.";
+            label.text = @"Enter your CS username to check your available disk quota.\n\nYour disk quota represents the amount of available disk space for your Unix account.";
             label;
         });
         
@@ -166,7 +161,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.text = @"Ouch! Something went wrong.\n\nPlease check your Unix username and network connection.";
+            label.text = @"Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
             label.numberOfLines = 0;
             label.alpha = 0.0;
             label;
@@ -183,21 +178,13 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
 
     [self.view addSubview:self.usernameTextField];
-
     [self.view addSubview:self.goButton];
-    
     [self.view addSubview:self.quotaGaugeView];
-    
     [self.view addSubview:self.nameLabel];
-    
     [self.view addSubview:self.percentLabel];
-    
-    [self.view addSubview:self.unitLabel];
-    
+    [self.view addSubview:self.quotaDetailLabel];
     [self.view addSubview:self.updatedLabel];
-    
     [self.view addSubview:self.descriptionLabel];
-    
     [self.view addSubview:self.frownyFaceLabel];
     [self.view addSubview:self.errorMessageLabel];
     
@@ -224,22 +211,22 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.goButton.frame = CGRectMake(0.0, 0.0, 50.0, 28.0);
     self.goButton.center = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
     
-    self.quotaGaugeView.frame = CGRectMake(0, 0, 0.625 * self.view.width, 0.625 * self.view.width);
+    self.quotaGaugeView.frame = CGRectMake(0, 0, 0.44 * self.view.height, 0.44 * self.view.height);
     self.quotaGaugeView.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
     
-    self.nameLabel.frame = CGRectMake(0.0, 128.0, self.view.width, 48);
+    self.nameLabel.frame = CGRectMake(16.0, 0.2 * self.view.height, self.view.width - 32.0, 48);
     
     self.percentLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.percentLabel.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
+    self.percentLabel.center = CGPointMake(self.view.center.x, 1.05 * self.view.center.y);
     
-    self.unitLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 14);
-    self.unitLabel.center = CGPointMake(self.view.center.x, 1.19 * self.view.center.y - self.view.y);
+    self.quotaDetailLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
+    self.quotaDetailLabel.center = CGPointMake(self.view.center.x, 1.15 * self.view.center.y);
     
     self.updatedLabel.frame = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
     
     self.descriptionLabel.frame = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.descriptionLabel.center = self.view.center;
+    self.descriptionLabel.center = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
 
     
     self.frownyFaceLabel.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
@@ -253,7 +240,9 @@ static NSString *diskQuotaCacheKey = @"quota";
 {
     if (button == self.goButton) {
         [self.view endEditing:YES];
-        [self update];
+        if ([self.usernameTextField.text length]) {
+            [self update];
+        }
     }
 }
 
@@ -276,8 +265,14 @@ static NSString *diskQuotaCacheKey = @"quota";
                 self.nameLabel.text = self.dataSource.data[@"name"];
                 CGFloat limit = [self.dataSource.data[@"limit"]floatValue];
                 CGFloat usage = [self.dataSource.data[@"usage"]floatValue];
-                [self.quotaGaugeView setProgress:(usage / limit) animated:YES];
+                CGFloat percentUsage = (usage / limit);
+                
+                self.quotaGaugeView.progressColor = [UIColor colorWithHue:0.33 * percentUsage saturation:0.5 brightness:1.0 alpha:1.0];
+                
+                [self.quotaGaugeView setProgress:percentUsage animated:YES];
                 self.percentLabel.text = [NSString stringWithFormat:@"%0.2f%%", 100 * (usage / limit) ];
+                self.quotaDetailLabel.text = [NSString stringWithFormat:@"%.0f / %.0f MB", usage, limit];
+                
                 
                 NSString *updatedString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                          dateStyle:NSDateFormatterLongStyle
@@ -291,8 +286,8 @@ static NSString *diskQuotaCacheKey = @"quota";
                 self.frownyFaceLabel.alpha = !success;
                 self.errorMessageLabel.alpha = !success;
                 self.quotaGaugeView.alpha = success;
+                self.quotaDetailLabel.alpha = success;
                 self.percentLabel.alpha = success;
-                self.unitLabel.alpha = success;
                 self.descriptionLabel.alpha = 0.0;
             }];
             
