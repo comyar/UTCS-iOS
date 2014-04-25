@@ -16,6 +16,7 @@
 
 #import "MBProgressHUD.h"
 #import "MRCircularProgressView.h"
+#import "JVFloatLabeledTextField.h"
 
 // Categories
 #import "UIImage+CZTinting.h"
@@ -45,7 +46,7 @@ static NSString *diskQuotaCacheKey = @"quota";
 
 @property (nonatomic) MRCircularProgressView    *quotaGaugeView;
 
-@property (nonatomic) UITextField               *usernameTextField;
+@property (nonatomic) JVFloatLabeledTextField   *usernameTextField;
 
 @property (nonatomic) UILabel                   *frownyFaceLabel;
 
@@ -67,7 +68,8 @@ static NSString *diskQuotaCacheKey = @"quota";
         
         // Username text field
         self.usernameTextField = ({
-            UITextField *textField = [[UITextField alloc]initWithFrame:CGRectZero];
+            JVFloatLabeledTextField *textField = [[JVFloatLabeledTextField alloc]initWithFrame:CGRectZero];
+            
             textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
             textField.autocorrectionType = UITextAutocorrectionTypeNo;
             textField.returnKeyType = UIReturnKeyGo;

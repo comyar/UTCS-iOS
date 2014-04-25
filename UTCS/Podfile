@@ -8,6 +8,7 @@ pod 'MBProgressHUD', '~> 0.8'
 pod 'Shimmer', '~> 1.0.1'
 pod 'WYPopoverController', :git => 'https://github.com/nicolaschengdev/WYPopoverController'
 pod "AFNetworking", "~> 2.0"
+pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
 pod 'UIView+Shake', '~> 0.2'
 end
 

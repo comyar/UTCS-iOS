@@ -19,41 +19,41 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - FRBSwatchist (1.0.0)
+  - JVFloatLabeledTextField (0.0.7)
   - MBProgressHUD (0.8)
   - MRCircularProgressView (0.1)
   - Shimmer (1.0.1)
-  - UIImage+ImageEffects (1.0)
   - UIView+Shake (0.2)
   - WYPopoverController (0.1.8)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - FRBSwatchist (from `https://github.com/bradzeis/FRBSwatchist`)
+  - JVFloatLabeledTextField (from `https://github.com/jverdi/JVFloatLabeledTextField`)
   - MBProgressHUD (~> 0.8)
   - MRCircularProgressView (from `https://github.com/martinezdelariva/MRCircularProgressView`)
   - Shimmer (~> 1.0.1)
-  - UIImage+ImageEffects (from `https://github.com/utcsmad/UIImage-ImageEffects`)
   - UIView+Shake (~> 0.2)
   - WYPopoverController (from `https://github.com/nicolaschengdev/WYPopoverController`)
 
 EXTERNAL SOURCES:
   FRBSwatchist:
     :git: https://github.com/bradzeis/FRBSwatchist
+  JVFloatLabeledTextField:
+    :git: https://github.com/jverdi/JVFloatLabeledTextField
   MRCircularProgressView:
     :git: https://github.com/martinezdelariva/MRCircularProgressView
-  UIImage+ImageEffects:
-    :git: https://github.com/utcsmad/UIImage-ImageEffects
   WYPopoverController:
     :git: https://github.com/nicolaschengdev/WYPopoverController
 
 SPEC CHECKSUMS:
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
   FRBSwatchist: bc312d54f3343366a4d03629864b316711e1cad1
+  JVFloatLabeledTextField: 9e3e205143699e9b2119358688e99fe0787b5a97
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   MRCircularProgressView: 915074989df499e399f75d79e0a8a23e13c4c896
   Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
-  UIImage+ImageEffects: 077c142dd8c1662c5a2be75afb7768b7e491b10e
   UIView+Shake: 8303c6fe633cfecf4c6f1b6748aa76ab9bad2e35
   WYPopoverController: 938c6f14f0255204199c003853aba8475f3f239c
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1
