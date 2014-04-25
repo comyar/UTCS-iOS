@@ -91,6 +91,7 @@
     self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
     self.labsViewController             = [UTCSLabsViewController new];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
+    self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.directoryNavigationController];

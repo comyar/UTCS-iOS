@@ -2,12 +2,12 @@
 //  UTCSSettingsViewController.h
 //  UTCS
 //
-//  Created by Comyar Zaheri on 4/6/14.
+//  Created by Comyar Zaheri on 4/24/14.
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UTCSTableViewController.h"
 
-@interface UTCSSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface UTCSSettingsViewController : UTCSTableViewController
 
 @end
