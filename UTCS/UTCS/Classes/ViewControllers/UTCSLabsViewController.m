@@ -73,12 +73,12 @@
     self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
     
-    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout.plist"]];
+    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
 
     self.searchViewController = [UTCSLabsSearchViewController new];
     
-    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController]
+    [self.pageViewController setViewControllers:@[self.basementLabViewController]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
