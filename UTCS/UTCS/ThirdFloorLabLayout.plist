@@ -17,12 +17,75 @@
 	</dict>
 	<key>values</key>
 	<dict>
+		<key>three-musketeers</key>
+		<dict>
+			<key>x</key>
+			<real>277.29</real>
+			<key>y</key>
+			<integer>32</integer>
+		</dict>
+		<key>take-5</key>
+		<dict>
+			<key>x</key>
+			<real>234.63</real>
+			<key>y</key>
+			<integer>32</integer>
+		</dict>
+		<key>dummy1</key>
+		<dict>
+			<key>x</key>
+			<real>213.3</real>
+			<key>y</key>
+			<integer>32</integer>
+		</dict>
+		<key>reeses-peanut-butter-cups</key>
+		<dict>
+			<key>x</key>
+			<real>149.31</real>
+			<key>y</key>
+			<string>32</string>
+		</dict>
+		<key>sour-patch-kids</key>
+		<dict>
+			<key>x</key>
+			<real>170.64</real>
+			<key>y</key>
+			<string>32</string>
+		</dict>
 		<key>razzles</key>
 		<dict>
 			<key>x</key>
-			<integer>32</integer>
+			<real>21.33</real>
 			<key>y</key>
-			<integer>32</integer>
+			<integer>64</integer>
+		</dict>
+		<key>raisinets</key>
+		<dict>
+			<key>x</key>
+			<real>42.66</real>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>pulparindo</key>
+		<dict>
+			<key>x</key>
+			<real>63.99</real>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>pop-rocks</key>
+		<dict>
+			<key>x</key>
+			<real>85.31999999999999</real>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>pocky</key>
+		<dict>
+			<key>x</key>
+			<real>106.65</real>
+			<key>y</key>
+			<integer>64</integer>
 		</dict>
 	</dict>
 </dict>

@@ -13,11 +13,16 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor redColor];
-        self.layer.cornerRadius = 0.5 * frame.size.width;
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         self.layer.masksToBounds = YES;
     }
     return self;
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    self.layer.cornerRadius = 0.5 * frame.size.width;
 }
 
 @end

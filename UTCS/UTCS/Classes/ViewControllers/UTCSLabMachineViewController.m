@@ -7,7 +7,8 @@
 //
 
 #import "UTCSLabMachineViewController.h"
-
+#import "UTCSLabViewLayoutAttributes.h"
+#import "UTCSLabMachineView.h"
 #import "UTCSLabMachine.h"
 #import "UTCSLabView.h"
 
@@ -47,6 +48,18 @@
 - (void)setMachines:(NSArray *)machines
 {
     _machines = machines;
+    
+    for (UTCSLabMachine *machine in _machines) {
+        UTCSLabViewLayoutAttributes *layoutAttributes = [_layout layoutAttributesForLabMachineName:machine.name];
+        NSIndexPath *indexPath = layoutAttributes.indexPath;
+        UTCSLabMachineView *labMachineView = (UTCSLabMachineView *)self.labView.machineViews[indexPath.row];
+        if (machine.occupied) {
+            labMachineView.backgroundColor = [UIColor redColor];
+        } else {
+            labMachineView.backgroundColor = [UIColor greenColor];
+        }
+    }
+    
 }
 
 

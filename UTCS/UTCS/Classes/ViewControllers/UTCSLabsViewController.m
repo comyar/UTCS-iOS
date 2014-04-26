@@ -96,31 +96,31 @@
 
 - (void)update
 {
-//    if ([self.dataSource shouldUpdate]) {
-//        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
-//        progressHUD.mode = MBProgressHUDModeIndeterminate;
-//        progressHUD.labelText = @"Updating";
-//        
-//        [self updateWithArgument:nil completion:^(BOOL success) {
-//            
-//            if (success) {
-//                NSArray *third = self.dataSource.data[@"third"];
-//                NSArray *basement = self.dataSource.data[@"basement"];
-//                
-//                self.thirdFloorLabViewController.machines = third;
-//                
-//                NSLog(@"third : %ld", [third count]);
-//                NSLog(@"basement : %ld", [basement count]);
-//
-//                
-//            } else {
-//                // Frowny face
-//            }
-//            
-//            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
-//            
-//        }];
-//    }
+    if ([self.dataSource shouldUpdate]) {
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
+        progressHUD.mode = MBProgressHUDModeIndeterminate;
+        progressHUD.labelText = @"Updating";
+        
+        [self updateWithArgument:nil completion:^(BOOL success) {
+            
+            if (success) {
+                NSArray *third = self.dataSource.data[@"third"];
+                NSArray *basement = self.dataSource.data[@"basement"];
+                
+                self.thirdFloorLabViewController.machines = third;
+                
+                NSLog(@"third : %ld", [third count]);
+                NSLog(@"basement : %ld", [basement count]);
+
+                
+            } else {
+                // Frowny face
+            }
+
+            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
+            
+        }];
+    }
 }
 
 #pragma mark UIPageViewControllerDataSource Methods
