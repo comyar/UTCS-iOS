@@ -14,14 +14,10 @@
 #import "UTCSNewsDetailViewController.h"
 
 // Views
-#import "UTCSMenuButton.h"
 #import "UTCSNewsHeaderView.h"
 
 // Categories
-#import "UIImage+CZTinting.h"
 #import "UIColor+UTCSColors.h"
-#import "UIView+CZPositioning.h"
-#import "UIImage+ImageEffects.h"
 
 // Models
 #import "UTCSNewsArticle.h"
@@ -30,7 +26,8 @@
 
 #pragma mark - Constants
 
-static NSString * const serviceName = @"news";
+// Name of the service used by this view controller
+static NSString * const serviceName                 = @"news";
 
 // Estimated height of table view cell
 static const CGFloat estimatedCellHeight            = 140.0;
@@ -169,8 +166,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     if(!self.newsDetailViewController) {
         self.newsDetailViewController = [UTCSNewsDetailViewController new];
     }
-    self.newsDetailViewController.newsArticle = article;
     
+    self.newsDetailViewController.newsArticle = article;
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
 }
 

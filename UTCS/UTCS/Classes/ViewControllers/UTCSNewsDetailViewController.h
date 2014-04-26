@@ -8,12 +8,12 @@
 
 
 @import UIKit;
-
 @class UTCSNewsArticle;
 
 
 /**
- UTCSNewsDetailViewController displays a single news article
+ UTCSNewsDetailViewController is a concrete subclass of UIViewController that displays 
+ a single news article.
  */
 @interface UTCSNewsDetailViewController : UIViewController <UITextViewDelegate>
 
@@ -22,9 +22,9 @@
 // -----
 
 /**
- News article to display
+ News article to display.
  
- Should be set before presenting the view controller
+ Should be set before presenting this view controller.
  */
 @property (strong, nonatomic) UTCSNewsArticle *newsArticle;
 

@@ -549,7 +549,6 @@
 		DD87616D1900FCD5005FEE4E /* Disk Quota */ = {
 			isa = PBXGroup;
 			children = (
-				DD9475B3190A5DC90049FB8B /* Views */,
 				DDA758B11905FCA2007CD0DB /* Models */,
 				DD87616E1900FCDC005FEE4E /* Controllers */,
 			);
@@ -625,13 +624,6 @@
 				DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */,
 			);
 			name = Menu;
-			sourceTree = "<group>";
-		};
-		DD9475B3190A5DC90049FB8B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		DD9475C0190B22D30049FB8B /* Layouts */ = {

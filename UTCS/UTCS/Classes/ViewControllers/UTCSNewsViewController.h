@@ -11,9 +11,10 @@
 
 
 /**
- UTCSNewsViewController displays all the available news articles in a simple table
+ UTCSNewsViewController is a concrete subclass of UTCSHeaderTableViewController that displays
+ all the available news articles in a table view. UTCSNewsViewController is also the first
+ content view controller presented to the user on application launch.
  */
 @interface UTCSNewsViewController : UTCSHeaderTableViewController <UITableViewDelegate>
-
 
 @end
