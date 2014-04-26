@@ -78,7 +78,7 @@
 
     self.searchViewController = [UTCSLabsSearchViewController new];
     
-    [self.pageViewController setViewControllers:@[self.basementLabViewController]
+    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
