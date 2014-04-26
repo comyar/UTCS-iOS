@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSNewsDataSourceParser.h"
-#import "UTCSNewsArticle.h"
+#pragma mark - Imports
 
+// Models
+#import "UTCSNewsArticle.h"
+#import "UTCSNewsDataSourceParser.h"
 
 
 #pragma mark - UTCSNewsDataSourceParser Implementation
