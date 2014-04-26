@@ -32,27 +32,38 @@ static NSString *diskQuotaCacheKey = @"quota";
 
 @interface UTCSDiskQuotaViewController ()
 
+// Button used to request disk quota information
 @property (nonatomic) UTCSButton                *goButton;
 
+// Label used to display the user's name
 @property (nonatomic) UILabel                   *nameLabel;
 
+// Label used to display the updated time
 @property (nonatomic) UILabel                   *updatedLabel;
 
+// Label used to display the usage percentage
 @property (nonatomic) UILabel                   *percentLabel;
 
-@property (nonatomic) UILabel                   *quotaDetailLabel;
-
+// Progress view repurposed as gauge view (#yolo)
 @property (nonatomic) MRCircularProgressView    *quotaGaugeView;
 
-@property (nonatomic) JVFloatLabeledTextField   *usernameTextField;
-
+// Label used to display a frowny face in case of failure
 @property (nonatomic) UILabel                   *frownyFaceLabel;
 
-@property (nonatomic) UILabel                   *errorMessageLabel;
+// Label used to show more detailed disk quota information
+@property (nonatomic) UILabel                   *quotaDetailLabel;
 
+// Label used to describe what disk quota is on first usage
 @property (nonatomic) UILabel                   *descriptionLabel;
 
+// Label used to display the error message in case of failure
+@property (nonatomic) UILabel                   *errorMessageLabel;
+
+// Textfield used to input the user's username
+@property (nonatomic) JVFloatLabeledTextField   *usernameTextField;
+
 @end
+
 
 #pragma mark - UTCSDiskQuotaViewController Implementation
 
@@ -66,14 +77,16 @@ static NSString *diskQuotaCacheKey = @"quota";
         // Username text field
         self.usernameTextField = ({
             JVFloatLabeledTextField *textField = [[JVFloatLabeledTextField alloc]initWithFrame:CGRectZero];
+            textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"CS Username"
+                                                                             attributes:@{  NSForegroundColorAttributeName :
+                                                                                            [UIColor colorWithWhite:1.0 alpha:0.5]}];
+            textField.floatingLabelTextColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            textField.floatingLabelActiveTextColor = [UIColor whiteColor];
             textField.autocorrectionType = UITextAutocorrectionTypeNo;
-            textField.returnKeyType = UIReturnKeyGo;
-            textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"CS Username" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]}];
             textField.textColor = [UIColor whiteColor];
             textField.tintColor = [UIColor whiteColor];
-            textField.floatingLabelTextColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            textField.floatingLabelActiveTextColor = [UIColor whiteColor];
+            textField.returnKeyType = UIReturnKeyGo;
             textField.delegate = self;
             textField;
         });
@@ -82,13 +95,13 @@ static NSString *diskQuotaCacheKey = @"quota";
         self.goButton = ({
             UTCSButton *button = [UTCSButton buttonWithType:UIButtonTypeSystem];
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            button.layer.borderColor = [UIColor whiteColor].CGColor;
+            [button setTitle:@"Go" forState:UIControlStateNormal];
             button.tintColor = [UIColor whiteColor];
             button.layer.masksToBounds = YES;
             button.layer.cornerRadius = 4.0;
-            button.layer.borderColor = [UIColor whiteColor].CGColor;
             button.layer.borderWidth = 1.0;
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setTitle:@"Go" forState:UIControlStateNormal];
             button;
         });
         
@@ -133,8 +146,8 @@ static NSString *diskQuotaCacheKey = @"quota";
         self.updatedLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-            label.textAlignment = NSTextAlignmentCenter;
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            label.textAlignment = NSTextAlignmentCenter;
             label;
         });
         
@@ -160,8 +173,8 @@ static NSString *diskQuotaCacheKey = @"quota";
         self.errorMessageLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.text = @"Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.numberOfLines = 0;
             label.alpha = 0.0;
             label;
@@ -199,7 +212,6 @@ static NSString *diskQuotaCacheKey = @"quota";
         layer;
     });
     [self.view.layer addSublayer:lineSeparatorLayer];
-    
 }
 
 - (void)viewDidLayoutSubviews
@@ -208,33 +220,40 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.usernameTextField.frame = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
-    self.goButton.frame = CGRectMake(0.0, 0.0, 50.0, 28.0);
-    self.goButton.center = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
+    self.goButton.frame             = CGRectMake(0.0, 0.0, 50.0, 28.0);
+    self.goButton.center            = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
     
-    self.quotaGaugeView.frame = CGRectMake(0, 0, 0.44 * self.view.height, 0.44 * self.view.height);
-    self.quotaGaugeView.center = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
+    self.quotaGaugeView.frame       = CGRectMake(0, 0, 0.44 * self.view.height, 0.44 * self.view.height);
+    self.quotaGaugeView.center      = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
     
-    self.nameLabel.frame = CGRectMake(16.0, 0.2 * self.view.height, self.view.width - 32.0, 48);
+    self.nameLabel.frame            = CGRectMake(16.0, 0.2 * self.view.height, self.view.width - 32.0, 48);
     
-    self.percentLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.percentLabel.center = CGPointMake(self.view.center.x, 1.05 * self.view.center.y);
+    self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
+    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.05 * self.view.center.y);
     
-    self.quotaDetailLabel.frame = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
-    self.quotaDetailLabel.center = CGPointMake(self.view.center.x, 1.15 * self.view.center.y);
+    self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
+    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.15 * self.view.center.y);
     
-    self.updatedLabel.frame = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
+    self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
-    
-    self.descriptionLabel.frame = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.descriptionLabel.center = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
+    self.descriptionLabel.frame     = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
+    self.descriptionLabel.center    = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
 
     
-    self.frownyFaceLabel.frame = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
-    self.frownyFaceLabel.center = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+    self.frownyFaceLabel.frame      = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
+    self.frownyFaceLabel.center     = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
     
-    self.errorMessageLabel.frame = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.errorMessageLabel.center = CGPointMake(self.view.center.x, 1.24 * self.view.center.y);
+    self.errorMessageLabel.frame    = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
+    self.errorMessageLabel.center   = CGPointMake(self.view.center.x, 1.24 * self.view.center.y);
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.usernameTextField becomeFirstResponder];
+}
+
+#pragma mark Buttons
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
@@ -246,11 +265,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.usernameTextField becomeFirstResponder];
-}
+#pragma mark Updating
 
 - (void)update
 {
@@ -296,10 +311,14 @@ static NSString *diskQuotaCacheKey = @"quota";
     }
 }
 
+#pragma mark UIResponder Methods
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
 }
+
+#pragma mark UITextFieldDelegate Methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
