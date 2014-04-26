@@ -31,7 +31,6 @@
         _values = layoutDictionary[@"values"];
         _numberOfLabMachines = [_values count];
         
-        NSLog(@"num machines %ld", _numberOfLabMachines);
     }
     return self;
 }
@@ -41,8 +40,8 @@
     CGFloat heightMultiplier = CGRectGetHeight(labView.bounds) / [self.meta[@"maximumGridHeight"]floatValue];
     CGFloat widthMultiplier = CGRectGetWidth(labView.bounds) / [self.meta[@"maximumGridWidth"]floatValue];
     
-    CGFloat height = [self.meta[@"cellHeight"]floatValue];
-    CGFloat width = [self.meta[@"cellWidth"]floatValue];
+    CGFloat height = CGRectGetHeight(labView.bounds) / 28.25;
+    CGFloat width = height;
     
     NSUInteger index = 0;
     NSMutableDictionary *layoutAttributes = [NSMutableDictionary new];
@@ -64,7 +63,6 @@
     }
     self.layoutAttributes = layoutAttributes;
     self.indexPathLayoutAttributes = indexPathLayoutAttributes;
-    NSLog(@"layout prepared");
 }
 
 - (UTCSLabViewLayoutAttributes *)layoutAttributesForIndexPath:(NSIndexPath *)indexPath
