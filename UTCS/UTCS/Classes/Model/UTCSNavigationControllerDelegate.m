@@ -38,7 +38,7 @@
 {
     [_navigationController.view removeGestureRecognizer:self.panGestureRecognizer];
     _navigationController = navigationController;
-    [_navigationController.view addGestureRecognizer:self.panGestureRecognizer];
+//    [_navigationController.view addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)didRecognizePanGesture:(UIPanGestureRecognizer *)gestureRecognizer

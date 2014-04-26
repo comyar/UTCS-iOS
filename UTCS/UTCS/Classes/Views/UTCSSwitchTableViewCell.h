@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface UTCSSettingsSwitchTableViewCell : UITableViewCell
+@import UIKit;
+
+@interface UTCSSwitchTableViewCell : UITableViewCell
 
 @property (nonatomic, readonly) UISwitch *cellSwitch;
 

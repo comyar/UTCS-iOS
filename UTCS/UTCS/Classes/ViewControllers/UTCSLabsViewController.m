@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "UTCSLabsDataSource.h"
 #import "UTCSLabMachine.h"
-#import "UIImage+ImageEffects.h"
+#import "FBShimmeringView.h"
 
 #import "UTCSLabMachineViewController.h"
 
@@ -27,6 +27,10 @@
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
+
+@property (nonatomic) FBShimmeringView                      *thirdShimmeringView;
+
+@property (nonatomic) FBShimmeringView                      *basementShimmeringView;
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
@@ -72,6 +76,22 @@
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"]];
     self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
+    
+    self.thirdShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0.5 * self.view.width,
+                                                                                 0.3 * self.view.height,
+                                                                                 0.4 * self.view.width,
+                                                                                 0.6 * self.view.height)];
+    self.thirdShimmeringView.contentView = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:self.thirdShimmeringView.bounds];
+        label.text = @"Third\nFloor\nLab";
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label.numberOfLines = 0;
+        label;
+    });
+//    self.thirdShimmeringView.shimmering = YES;
+    [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];

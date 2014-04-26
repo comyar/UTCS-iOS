@@ -8,8 +8,9 @@
 
 #import "UTCSSettingsDataSource.h"
 #import "UTCSBouncyTableViewCell.h"
-#import "UTCSSettingsSwitchTableViewCell.h"
-#import "UTCSSettingsSwitchTableViewCell.h"
+#import "UTCSSwitchTableViewCell.h"
+#import "UTCSSegmentedControlTableViewCell.h"
+
 
 @interface UTCSSettingsDataSource ()
 
@@ -32,17 +33,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *returnCell;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            UTCSSettingsSwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSwitchTableViewCell"];
+            UTCSSwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSwitchTableViewCell"];
             if (!cell) {
-                cell = [[UTCSSettingsSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                cell = [[UTCSSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                              reuseIdentifier:@"UTCSSettingsSwitchTableViewCell"];
                 
             }
             cell.textLabel.text         = @"Event Notifications";
             cell.detailTextLabel.text   = @"Get notifications an hour before the start of starred events";
-            return cell;
+            returnCell = cell;
+        } else if (indexPath.row == 1) {
+            UTCSSegmentedControlTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSegmentedControlSTableViewCell"];
+            if (!cell) {
+                cell = [[UTCSSegmentedControlTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                                               reuseIdentifier:@"UTCSSettingsSegmentedControlSTableViewCell"];
+            }
+            cell.textLabel.text = @"Preferred Lab";
+            cell.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"Third Floor", @"Basement"]];
+            returnCell = cell;
         }
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLabelTableViewCell"];
@@ -55,16 +66,15 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         cell.textLabel.text = self.infoTitles[indexPath.row];
-        return cell;
+        returnCell = cell;
     }
-    NSLog(@"%@", indexPath);
-    return nil;
+    return returnCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1;
+        return 2;
     } else if (section == 1) {
         return [self.infoTitles count];
     }

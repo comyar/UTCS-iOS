@@ -6,14 +6,16 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSSettingsSwitchTableViewCell.h"
+#import "UTCSSwitchTableViewCell.h"
 
-@implementation UTCSSettingsSwitchTableViewCell
+@implementation UTCSSwitchTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _cellSwitch = [UISwitch new];
+        _cellSwitch.tintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        _cellSwitch.onTintColor = [UIColor whiteColor];
         [self.contentView addSubview:_cellSwitch];
         
         self.backgroundColor = [UIColor clearColor];
@@ -28,6 +30,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     self.textLabel.frame = CGRectMake(self.textLabel.frame.origin.x, 0.1 * self.bounds.size.height, 0.75 * CGRectGetWidth(self.bounds), self.textLabel.bounds.size.height);
     
     self.detailTextLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, self.textLabel.frame.origin.y + CGRectGetHeight(self.textLabel.bounds), 0.6 * CGRectGetWidth(self.bounds), self.detailTextLabel.bounds.size.height);
