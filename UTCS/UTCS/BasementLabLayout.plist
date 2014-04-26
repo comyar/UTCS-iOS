@@ -11,6 +11,41 @@
 	</dict>
 	<key>values</key>
 	<dict>
+		<key>disco-bandit</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>146</integer>
+		</dict>
+		<key>cuddlefish</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>122</integer>
+		</dict>
+		<key>stinking-cloud</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>122</integer>
+		</dict>
+		<key>steam-vortex</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>146</integer>
+		</dict>
+		<key>little-dog</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>146</integer>
+		</dict>
 		<key>ki-rin</key>
 		<dict>
 			<key>x</key>
