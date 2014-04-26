@@ -29,10 +29,12 @@
 // Key used to cache news articles
 NSString * const UTCSNewsDataSourceCacheKey             = @"UTCSNewsDataSourceCacheKey";
 
-static NSString * const cellAccessoryImageName          = @"rightArrow";
-
 // News table view cell identifier
 static NSString * const UTCSNewsTableViewCellIdentifier = @"UTCSNewsTableViewCell";
+
+// Name of the image to use for a table view cell's accessory view
+static NSString * const cellAccessoryImageName          = @"rightArrow";
+
 
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
@@ -43,7 +45,9 @@ static NSString * const UTCSNewsTableViewCellIdentifier = @"UTCSNewsTableViewCel
     if (self = [super initWithService:service]) {
         _parser = [UTCSNewsDataSourceParser new];
         _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
-        _data   = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
+        
+        NSDictionary *cache = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
+        _data = cache[UTCSDataSourceCacheValuesName];
     }
     return self;
 }
@@ -53,6 +57,7 @@ static NSString * const UTCSNewsTableViewCellIdentifier = @"UTCSNewsTableViewCel
 - (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSNewsTableViewCellIdentifier];
+    
     if(!cell) {
         cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSNewsTableViewCellIdentifier];
         cell.accessoryView = ({
@@ -65,9 +70,10 @@ static NSString * const UTCSNewsTableViewCellIdentifier = @"UTCSNewsTableViewCel
         cell.detailTextLabel.numberOfLines  = 4;
     }
     
-    UTCSNewsArticle *newsStory = self.data[indexPath.row];
-    cell.textLabel.text = newsStory.title;
-    cell.detailTextLabel.text = [newsStory.attributedContent string];
+    UTCSNewsArticle *newsStory  = self.data[indexPath.row];
+    
+    cell.textLabel.text         = newsStory.title;
+    cell.detailTextLabel.text   = [newsStory.attributedContent string];
     
     return cell;
 }

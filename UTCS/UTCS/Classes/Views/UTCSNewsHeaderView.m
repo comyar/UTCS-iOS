@@ -19,6 +19,12 @@
 // Font size of the subtitle label
 static const CGFloat subtitleLabelFontSize  = 17.0;
 
+// Font of the subtitle label
+static NSString * const subtitleLabelFont   = @"HelveticaNeue";
+
+// Text of the subtitle label
+static NSString * const subtitleText        = @"What Starts Here Changes the World";
+
 
 #pragma mark - UTCSNewsHeaderView Class Extension
 
@@ -44,11 +50,11 @@ static const CGFloat subtitleLabelFontSize  = 17.0;
         self.subtitleLabel = ({
             UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
             label.frame         = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
-            label.font          = [UIFont fontWithName:@"HelveticaNeue" size:subtitleLabelFontSize];
+            label.font          = [UIFont fontWithName:subtitleLabelFont size:subtitleLabelFontSize];
             label.center        = CGPointMake(self.center.x, 0.85 * self.center.y);
-            label.text          = @"What Starts Here Changes the World";
-            label.textAlignment = NSTextAlignmentCenter;
             label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text          = subtitleText;
             label;
         });
         

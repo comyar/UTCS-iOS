@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 @import UIKit;
 @class FBShimmeringView;
 
@@ -13,10 +14,14 @@
 
 
 /**
- UTCSNewsHeaderView is the header view of the background blur table view displaying 
- the list of available news stories.
+ UTCSNewsHeaderView is a subclass of UTCSActiveHeaderView used by UTCSNewsViewController as a 
+ table view header.
  */
 @interface UTCSNewsHeaderView : UTCSActiveHeaderView
+
+// -----
+// @name Properties
+// -----
 
 /** 
  Label used to display a subtitle beneath the shimmering view

@@ -11,7 +11,7 @@
 
 
 /**
- UTCSNewsArticle represents a single news article available on the UTCS News RSS feed.
+ UTCSNewsArticle is a concrete object that represents a single UTCS news article.
  */
 @interface UTCSNewsArticle : NSObject <NSCoding>
 
@@ -20,41 +20,43 @@
 // -----
 
 /**
- Title of the news article
+ Title of the news article.
  */
 @property (nonatomic) NSString                  *title;
 
 /**
- URL to the news article online
+ URL to the news article online.
  */
 @property (nonatomic) NSString                  *url;
 
 /**
- Date the news article was published
+ Date the news article was published.
  */
 @property (nonatomic) NSDate                    *date;
 
 /**
- HTML content of the news article
+ HTML content of the news article.
  */
 @property (nonatomic) NSString                  *html;
 
 /**
- Attributed content parsed from the HTML content
+ Attributed content parsed from the HTML content.
  */
 @property (nonatomic) NSAttributedString        *attributedContent;
 
 /**
  Header image of the news article. 
  
- Parsed from the HTML content, may be nil
+ Parsed from the HTML content. May be nil if an appropriately large
+ image is not found in the HTML of a news article.
  */
 @property (nonatomic) UIImage                   *headerImage;
 
 /**
  Blurred header image of the news article
  
- Parsed from the HTML content, may be nil
+ Parsed from the HTML content. May be nil if an appropriately large
+ image is not found in the HTML of a news article.
  */
 @property (nonatomic) UIImage                   *headerBlurredImage;
 
