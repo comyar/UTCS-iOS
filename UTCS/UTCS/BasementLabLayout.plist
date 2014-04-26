@@ -11,6 +11,111 @@
 	</dict>
 	<key>values</key>
 	<dict>
+		<key>ki-rin</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>122</integer>
+		</dict>
+		<key>floating-eye</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>146</integer>
+		</dict>
+		<key>fumble-boots</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>122</integer>
+		</dict>
+		<key>stab-bat</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>146</integer>
+		</dict>
+		<key>spectral-jellyfish</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>122</integer>
+		</dict>
+		<key>hockey-elemental</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>296</integer>
+		</dict>
+		<key>hostile-amoeba</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>272</integer>
+		</dict>
+		<key>hovering-sombrero</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>248</integer>
+		</dict>
+		<key>octopus-gardner</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>224</integer>
+		</dict>
+		<key>pickle-on-a-stick</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>200</integer>
+		</dict>
+		<key>sabretoothed-lime</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>146</integer>
+		</dict>
+		<key>skeletal-sommelier</key>
+		<dict>
+			<key>x</key>
+			<integer>45</integer>
+			<key>y</key>
+			<integer>122</integer>
+		</dict>
+		<key>comma-chameleon</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>tin-of-spinach</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>hezrou</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
 		<key>glass-piercer</key>
 		<dict>
 			<key>x</key>
@@ -28,7 +133,7 @@
 		<key>smarmy-pirate</key>
 		<dict>
 			<key>x</key>
-			<integer>58</integer>
+			<integer>45</integer>
 			<key>y</key>
 			<integer>98</integer>
 		</dict>

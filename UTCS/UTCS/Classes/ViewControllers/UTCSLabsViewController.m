@@ -108,6 +108,7 @@
                 NSArray *basement = self.dataSource.data[@"basement"];
                 
                 self.thirdFloorLabViewController.machines = third;
+                self.basementLabViewController.machines = basement;
                 
                 NSLog(@"third : %ld", [third count]);
                 NSLog(@"basement : %ld", [basement count]);
