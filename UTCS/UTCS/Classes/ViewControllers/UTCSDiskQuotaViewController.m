@@ -206,9 +206,6 @@ static NSString *diskQuotaCacheKey = @"quota";
 {
     [super viewDidLayoutSubviews];
     
-    
-    NSLog(@"view did layout");
-    
     self.usernameTextField.frame = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
     self.goButton.frame = CGRectMake(0.0, 0.0, 50.0, 28.0);

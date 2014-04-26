@@ -9,6 +9,11 @@
 
 #import "UTCSContentViewController.h"
 
+
+/**
+ UTCSDiskQuotaViewController is a concrete subclass of UTCSContentViewController that allows
+ a user to request their disk quota and visualizes disk quota information.
+ */
 @interface UTCSDiskQuotaViewController : UTCSContentViewController <UITextFieldDelegate>
 
 @end
