@@ -2,36 +2,47 @@
 //  UTCSLabView.m
 //  UTCS
 //
-//  Created by Comyar Zaheri on 4/22/14.
+//  Created by Comyar Zaheri on 4/25/14.
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
 #import "UTCSLabView.h"
+#import "UTCSLabMachineView.h"
+#import "UTCSLabViewLayout.h"
+#import "UTCSLabViewLayoutAttributes.h"
+
+@interface UTCSLabView ()
+@property (nonatomic) NSArray *machineViews;
+@end
 
 
 @implementation UTCSLabView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    return [self initWithFrame:frame numberOfMachines:0];
-}
-
-- (instancetype)initWithFrame:(CGRect)frame numberOfMachines:(NSUInteger)machines
+- (instancetype)initWithFrame:(CGRect)frame layout:(UTCSLabViewLayout *)layout
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor clearColor];
-        
-        CGRect machineViewBounds = CGRectMake(0.0, 0.0, frame.size.width / 20.0, frame.size.width / 20.0);
-        
+        _layout = layout;
         NSMutableArray *machineViews = [NSMutableArray new];
-        for (int i = 0; i < machines; ++i) {
-            UTCSLabMachineView *machineView = [[UTCSLabMachineView alloc]initWithFrame:machineViewBounds];
-            machineView.hidden = YES;
-            [self addSubview:machineView];
-            [machineViews addObject:machineView];
+        
+        [_layout prepareLayoutForLabView:self];
+        
+        for (int i = 0; i < _layout.numberOfLabMachines; ++i) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            UTCSLabViewLayoutAttributes *layoutAttributes = [_layout layoutAttributesForIndexPath:indexPath];
+            
+            NSLog(@"%@", NSStringFromCGSize(layoutAttributes.size));
+            
+            UTCSLabMachineView *labMachineView = [UTCSLabMachineView new];
+            labMachineView.frame = CGRectMake(0.0, 0.0, layoutAttributes.size.width, layoutAttributes.size.height);
+            labMachineView.center = layoutAttributes.center;
+            labMachineView.tag = indexPath.row;
+            
+            [machineViews addObject:labMachineView];
+            [self addSubview:labMachineView];
         }
         
-        _machineViews = machineViews;
+        self.machineViews = machineViews;
+        
     }
     return self;
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>meta</key>
+	<dict>
+		<key>cellHeight</key>
+		<integer>20</integer>
+		<key>cellWidth</key>
+		<integer>20</integer>
+		<key>navigationBarHeight</key>
+		<integer>44</integer>
+		<key>maximumGridHeight</key>
+		<integer>524</integer>
+		<key>maximumGridWidth</key>
+		<integer>320</integer>
+	</dict>
+	<key>values</key>
+	<dict>
+		<key>razzles</key>
+		<dict>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>32</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>

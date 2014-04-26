@@ -15,10 +15,8 @@
 
 #import "UTCSLabMachineViewController.h"
 
-#import "UTCSThirdFloorLabViewLayout.h"
-#import "UTCSBasementLabViewLayout.h"
-
 #import "UTCSLabsSearchViewController.h"
+
 
 #pragma mark - UTCSLabsViewController Class Extension
 
@@ -71,12 +69,12 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     
-    self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSThirdFloorLabViewLayout new]];
+    self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"]];
     self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
     
-    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[UTCSBasementLabViewLayout new]];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout.plist"]];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
 
     self.searchViewController = [UTCSLabsSearchViewController new];
     
@@ -93,30 +91,33 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self update];
+    [self update];
 }
 
 - (void)update
 {
 //    if ([self.dataSource shouldUpdate]) {
-////        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
-////        progressHUD.mode = MBProgressHUDModeIndeterminate;
-////        progressHUD.labelText = @"Updating";
+//        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
+//        progressHUD.mode = MBProgressHUDModeIndeterminate;
+//        progressHUD.labelText = @"Updating";
 //        
 //        [self updateWithArgument:nil completion:^(BOOL success) {
 //            
 //            if (success) {
-////                NSArray *third = self.dataSource.data[@"third"];
-////                NSArray *basement = self.dataSource.data[@"basement"];
+//                NSArray *third = self.dataSource.data[@"third"];
+//                NSArray *basement = self.dataSource.data[@"basement"];
 //                
-////                [self.thirdFloorLabViewController updateLabMachineViewsWithLabMachines:@[third[0]]];
-////                [self.basementLabViewController updateLabMachineViewsWithLabMachines:basement];
+//                self.thirdFloorLabViewController.machines = third;
+//                
+//                NSLog(@"third : %ld", [third count]);
+//                NSLog(@"basement : %ld", [basement count]);
+//
 //                
 //            } else {
 //                // Frowny face
 //            }
 //            
-////            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
+//            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
 //            
 //        }];
 //    }

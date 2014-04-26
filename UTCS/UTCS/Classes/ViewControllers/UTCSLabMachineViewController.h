@@ -12,13 +12,13 @@
 #import "UTCSContentViewController.h"
 #import "UTCSLabViewLayout.h"
 
+
 @interface UTCSLabMachineViewController : UTCSContentViewController
 
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 
-- (void)updateLabMachineViewsWithLabMachines:(NSArray *)labMachines;
 
-
-@property (nonatomic, readonly) UTCSLabViewLayout   *layout;
+@property (nonatomic) NSArray *machines;
+@property (nonatomic, readonly) UTCSLabViewLayout *layout;
 
 @end

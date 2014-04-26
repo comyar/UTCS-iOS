@@ -1,26 +1,24 @@
 //
-//  UTCSLabMachineViewLayout.h
+//  UTCSLabsCollectionViewLayout.h
 //  UTCS
 //
-//  Created by Comyar Zaheri on 4/22/14.
+//  Created by Comyar Zaheri on 4/25/14.
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
 
-@import Foundation;
-
-@class UTCSLabMachine;
+@import UIKit;
 @class UTCSLabView;
-
+@class UTCSLabViewLayoutAttributes;
 
 @interface UTCSLabViewLayout : NSObject
 
-/**
- */
-- (NSInteger)numberOfLabMachineViews;
+- (instancetype)initWithFilename:(NSString *)filename;
+- (void)prepareLayoutForLabView:(UTCSLabView *)labView;
 
-/**
- */
-- (CGPoint)labView:(UTCSLabView *)labView positionForLabMachine:(UTCSLabMachine *)labMachine;
+- (UTCSLabViewLayoutAttributes *)layoutAttributesForIndexPath:(NSIndexPath *)indexPath;
+- (UTCSLabViewLayoutAttributes *)layoutAttributesForLabMachineName:(NSString *)labMachineName;
+
+@property (nonatomic, readonly) NSInteger numberOfLabMachines;
 
 @end
