@@ -4,8 +4,6 @@
 <dict>
 	<key>meta</key>
 	<dict>
-		<key>navigationBarHeight</key>
-		<integer>44</integer>
 		<key>maximumGridHeight</key>
 		<integer>524</integer>
 		<key>maximumGridWidth</key>
@@ -13,6 +11,209 @@
 	</dict>
 	<key>values</key>
 	<dict>
+		<key>twix</key>
+		<dict>
+			<key>x</key>
+			<integer>302</integer>
+			<key>y</key>
+			<integer>136</integer>
+		</dict>
+		<key>turtles</key>
+		<dict>
+			<key>x</key>
+			<integer>302</integer>
+			<key>y</key>
+			<integer>112</integer>
+		</dict>
+		<key>turkish-delight</key>
+		<dict>
+			<key>x</key>
+			<integer>302</integer>
+			<key>y</key>
+			<integer>88</integer>
+		</dict>
+		<key>tootsie-rolls</key>
+		<dict>
+			<key>x</key>
+			<integer>302</integer>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>toblerone</key>
+		<dict>
+			<key>x</key>
+			<integer>302</integer>
+			<key>y</key>
+			<integer>40</integer>
+		</dict>
+		<key>sprees</key>
+		<dict>
+			<key>x</key>
+			<integer>262</integer>
+			<key>y</key>
+			<integer>136</integer>
+		</dict>
+		<key>squirrel-nut-zippers</key>
+		<dict>
+			<key>x</key>
+			<integer>262</integer>
+			<key>y</key>
+			<integer>112</integer>
+		</dict>
+		<key>starburst</key>
+		<dict>
+			<key>x</key>
+			<integer>262</integer>
+			<key>y</key>
+			<integer>88</integer>
+		</dict>
+		<key>sweethearts</key>
+		<dict>
+			<key>x</key>
+			<integer>262</integer>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>sweettarts</key>
+		<dict>
+			<key>x</key>
+			<integer>262</integer>
+			<key>y</key>
+			<integer>40</integer>
+		</dict>
+		<key>monitor-6</key>
+		<dict>
+			<key>x</key>
+			<integer>238</integer>
+			<key>y</key>
+			<integer>136</integer>
+		</dict>
+		<key>monitor-5</key>
+		<dict>
+			<key>x</key>
+			<integer>238</integer>
+			<key>y</key>
+			<integer>112</integer>
+		</dict>
+		<key>monitor-4</key>
+		<dict>
+			<key>x</key>
+			<integer>238</integer>
+			<key>y</key>
+			<integer>88</integer>
+		</dict>
+		<key>monitor-3</key>
+		<dict>
+			<key>x</key>
+			<integer>238</integer>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>monitor-2</key>
+		<dict>
+			<key>x</key>
+			<integer>238</integer>
+			<key>y</key>
+			<integer>40</integer>
+		</dict>
+		<key>salta-katten</key>
+		<dict>
+			<key>x</key>
+			<integer>198</integer>
+			<key>y</key>
+			<integer>136</integer>
+		</dict>
+		<key>seafoam</key>
+		<dict>
+			<key>x</key>
+			<integer>198</integer>
+			<key>y</key>
+			<integer>112</integer>
+		</dict>
+		<key>skittles</key>
+		<dict>
+			<key>x</key>
+			<integer>198</integer>
+			<key>y</key>
+			<integer>88</integer>
+		</dict>
+		<key>smarties</key>
+		<dict>
+			<key>x</key>
+			<integer>198</integer>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>snickers</key>
+		<dict>
+			<key>x</key>
+			<integer>198</integer>
+			<key>y</key>
+			<integer>40</integer>
+		</dict>
+		<key>salt-water-taffy</key>
+		<dict>
+			<key>x</key>
+			<integer>174</integer>
+			<key>y</key>
+			<integer>136</integer>
+		</dict>
+		<key>rollos</key>
+		<dict>
+			<key>x</key>
+			<integer>174</integer>
+			<key>y</key>
+			<integer>112</integer>
+		</dict>
+		<key>ritter-sport</key>
+		<dict>
+			<key>x</key>
+			<integer>174</integer>
+			<key>y</key>
+			<integer>88</integer>
+		</dict>
+		<key>ring-pops</key>
+		<dict>
+			<key>x</key>
+			<integer>174</integer>
+			<key>y</key>
+			<integer>64</integer>
+		</dict>
+		<key>riesen-chocolate-chews</key>
+		<dict>
+			<key>x</key>
+			<integer>174</integer>
+			<key>y</key>
+			<integer>40</integer>
+		</dict>
+		<key>pez</key>
+		<dict>
+			<key>x</key>
+			<integer>114</integer>
+			<key>y</key>
+			<integer>72</integer>
+		</dict>
+		<key>peeps</key>
+		<dict>
+			<key>x</key>
+			<integer>90</integer>
+			<key>y</key>
+			<integer>72</integer>
+		</dict>
+		<key>peanut-mms</key>
+		<dict>
+			<key>x</key>
+			<integer>66</integer>
+			<key>y</key>
+			<integer>72</integer>
+		</dict>
+		<key>payday</key>
+		<dict>
+			<key>x</key>
+			<integer>42</integer>
+			<key>y</key>
+			<integer>72</integer>
+		</dict>
 		<key>mounds</key>
 		<dict>
 			<key>x</key>
@@ -412,7 +613,7 @@
 			<key>y</key>
 			<integer>16</integer>
 		</dict>
-		<key>dummy1</key>
+		<key>monitor-1</key>
 		<dict>
 			<key>x</key>
 			<integer>238</integer>
@@ -424,7 +625,7 @@
 			<key>x</key>
 			<integer>174</integer>
 			<key>y</key>
-			<string>16</string>
+			<integer>16</integer>
 		</dict>
 		<key>sour-patch-kids</key>
 		<dict>
