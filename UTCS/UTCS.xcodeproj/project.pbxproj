@@ -656,10 +656,10 @@
 		DDA7589C1904F60A007CD0DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DD8761661900FC4F005FEE4E /* Labs */,
 				DD87615E18FDFE45005FEE4E /* News */,
 				DD87616218FDFE97005FEE4E /* Events */,
 				DD87616D1900FCD5005FEE4E /* Disk Quota */,
+				DD8761661900FC4F005FEE4E /* Labs */,
 				DD87616F1900FCEF005FEE4E /* Directory */,
 			);
 			name = Services;

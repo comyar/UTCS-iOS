@@ -8,7 +8,9 @@
 
 #import "UTCSDataSource.h"
 
-
+/**
+ Key to use to cache news articles
+ */
 extern NSString * const UTCSNewsDataSourceCacheKey;
 
 /**

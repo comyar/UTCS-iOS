@@ -11,10 +11,9 @@
 
 // Models
 #import "UTCSNewsArticle.h"
-#import "UTCSDataRequestServicer.h"
 #import "UTCSNewsDataSource.h"
-#import "UTCSNewsDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
+#import "UTCSNewsDataSourceParser.h"
 
 // Views
 #import "UTCSBouncyTableViewCell.h"
@@ -28,15 +27,12 @@
 #pragma mark - Constants
 
 // Key used to cache news articles
-NSString * const UTCSNewsDataSourceCacheKey = @"UTCSNewsDataSourceCacheKey";
+NSString * const UTCSNewsDataSourceCacheKey             = @"UTCSNewsDataSourceCacheKey";
 
+static NSString * const cellAccessoryImageName          = @"rightArrow";
 
-#pragma mark - UTCSNewsStoryDataSource Class Extension
-
-@interface UTCSNewsDataSource ()
-
-@end
-
+// News table view cell identifier
+static NSString * const UTCSNewsTableViewCellIdentifier = @"UTCSNewsTableViewCell";
 
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
@@ -56,17 +52,17 @@ NSString * const UTCSNewsDataSourceCacheKey = @"UTCSNewsDataSourceCacheKey";
 
 - (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSTableViewCell"];
+    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSNewsTableViewCellIdentifier];
     if(!cell) {
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSTableViewCell"];
+        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSNewsTableViewCellIdentifier];
         cell.accessoryView = ({
-            UIImage *image = [[UIImage imageNamed:@"rightArrow"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.tintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            UIImage *image          = [[UIImage imageNamed:cellAccessoryImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *imageView  = [[UIImageView alloc]initWithImage:image];
+            imageView.tintColor     = [UIColor colorWithWhite:1.0 alpha:0.5];
             imageView;
         });
-        cell.textLabel.numberOfLines = 4;
-        cell.detailTextLabel.numberOfLines = 4;
+        cell.textLabel.numberOfLines        = 4;
+        cell.detailTextLabel.numberOfLines  = 4;
     }
     
     UTCSNewsArticle *newsStory = self.data[indexPath.row];
