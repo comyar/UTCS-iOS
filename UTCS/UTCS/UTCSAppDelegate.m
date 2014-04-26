@@ -8,26 +8,20 @@
 
 
 #pragma mark - Imports
+
+// View Controllers
 #import "UTCSMenuViewController.h"
 #import "UTCSNavigationController.h"
 #import "UTCSVerticalMenuViewController.h"
-
-
-
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
-
-#import "UTCSSettingsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
 #import "UTCSDirectoryViewController.h"
-
+#import "UTCSSettingsViewController.h"
 
 // Models
 #import "UTCSAppDelegate.h"
-
-// Categories
-#import "UIColor+UTCSColors.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -80,7 +74,6 @@
 {
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
-    
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
@@ -107,6 +100,8 @@
 {
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
+
+#pragma mark Appearance
 
 - (void)configureAppearance
 {
