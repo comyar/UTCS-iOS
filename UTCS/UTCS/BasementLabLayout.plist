@@ -11,6 +11,76 @@
 	</dict>
 	<key>values</key>
 	<dict>
+		<key>monitor-5</key>
+		<dict>
+			<key>x</key>
+			<integer>194</integer>
+			<key>y</key>
+			<integer>440</integer>
+		</dict>
+		<key>titanothere</key>
+		<dict>
+			<key>x</key>
+			<integer>170</integer>
+			<key>y</key>
+			<integer>440</integer>
+		</dict>
+		<key>monitor-4</key>
+		<dict>
+			<key>x</key>
+			<integer>76</integer>
+			<key>y</key>
+			<integer>440</integer>
+		</dict>
+		<key>adorable-seal-larva</key>
+		<dict>
+			<key>x</key>
+			<integer>100</integer>
+			<key>y</key>
+			<integer>440</integer>
+		</dict>
+		<key>monitor-3</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>400</integer>
+		</dict>
+		<key>tinning-kit</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>376</integer>
+		</dict>
+		<key>twoflower</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>376</integer>
+		</dict>
+		<key>monitor-2</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>400</integer>
+		</dict>
+		<key>monitor-1</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>400</integer>
+		</dict>
+		<key>wand-of-wishing</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>376</integer>
+		</dict>
 		<key>hobopolis</key>
 		<dict>
 			<key>x</key>
