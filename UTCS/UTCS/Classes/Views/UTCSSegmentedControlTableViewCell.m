@@ -23,7 +23,7 @@
 - (void)setSegmentedControl:(UISegmentedControl *)segmentedControl
 {
     _segmentedControl = segmentedControl;
-    _segmentedControl.tintColor = [UIColor whiteColor];
+    _segmentedControl.tintColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     [self addSubview:_segmentedControl];
     [self setNeedsLayout];
 }
