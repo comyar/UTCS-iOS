@@ -125,6 +125,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.95]];
         [actionSheet setButtonTextColor:[UIColor whiteColor]];
         [actionSheet setTitleTextColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+        [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.25]];
         [actionSheet showInView:self.view];
     }
 }
