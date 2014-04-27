@@ -110,7 +110,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         // Meter view
         self.meterView = ({
             DPMeterView *view = [DPMeterView new];
-            view.trackTintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            view.trackTintColor = [UIColor colorWithWhite:1.0 alpha:0.2];
             view.shape = [PocketSVG pathFromSVGFileNamed:@"cloud"];
             view.meterType = DPMeterTypeLinearHorizontal;
             view.alpha = 0.0;
@@ -191,12 +191,38 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
+    self.usernameTextField.frame    = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
+    
+    self.goButton.frame             = CGRectMake(0.0, 0.0, 50.0, 28.0);
+    self.goButton.center            = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
+    
+    self.meterView.frame            = CGRectMake(0, 0, 160, 98);
+    self.meterView.center           = CGPointMake(self.view.center.x, 0.8 * self.view.center.y);
+    
+    self.nameLabel.frame            = CGRectMake(16.0, 1.1 * self.view.center.y, self.view.width - 32.0, 48);
+    
+    self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
+    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.35 * self.view.center.y);
+    
+    self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
+    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.45 * self.view.center.y);
+    
+    self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
+    
+    self.descriptionLabel.frame     = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
+    self.descriptionLabel.center    = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
+    
+    
+    self.frownyFaceLabel.frame      = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
+    self.frownyFaceLabel.center     = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+    
+    self.errorMessageLabel.frame    = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
+    self.errorMessageLabel.center   = CGPointMake(self.view.center.x, 1.24 * self.view.center.y);
     
     
     [self.view addSubview:self.usernameTextField];
     [self.view addSubview:self.goButton];
     [self.view addSubview:self.meterView];
-//    [self.view addSubview:self.quotaGaugeView];
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.percentLabel];
     [self.view addSubview:self.quotaDetailLabel];
@@ -222,33 +248,10 @@ static NSString *diskQuotaCacheKey = @"quota";
 {
     [super viewDidLayoutSubviews];
     
-    self.usernameTextField.frame    = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
-    self.goButton.frame             = CGRectMake(0.0, 0.0, 50.0, 28.0);
-    self.goButton.center            = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
+    NSLog(@"layout subviews");
     
-    self.meterView.frame            = CGRectMake(0, 0, 160, 98);
-    self.meterView.center           = CGPointMake(self.view.center.x, 0.8 * self.view.center.y);
-    
-    self.nameLabel.frame            = CGRectMake(16.0, 1.1 * self.view.center.y, self.view.width - 32.0, 48);
-    
-    self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.35 * self.view.center.y);
-    
-    self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
-    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.45 * self.view.center.y);
-    
-    self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
-    
-    self.descriptionLabel.frame     = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.descriptionLabel.center    = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
 
-    
-    self.frownyFaceLabel.frame      = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
-    self.frownyFaceLabel.center     = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-    
-    self.errorMessageLabel.frame    = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.errorMessageLabel.center   = CGPointMake(self.view.center.x, 1.24 * self.view.center.y);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -309,11 +312,13 @@ static NSString *diskQuotaCacheKey = @"quota";
             }
             
             [UIView animateWithDuration:0.3 animations:^{
+                
                 self.frownyFaceLabel.alpha      = !success;
                 self.errorMessageLabel.alpha    = !success;
                 self.quotaDetailLabel.alpha     = success;
                 self.percentLabel.alpha         = success;
                 self.meterView.alpha            = success;
+                self.nameLabel.alpha            = success;
                 self.descriptionLabel.alpha     = 0.0;
             }];
             
