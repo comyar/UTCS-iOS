@@ -15,9 +15,9 @@
 
 @interface UTCSSettingsViewController ()
 
-@property (nonatomic) UTCSSettingsDataSource    *dataSource;
+@property (nonatomic) UTCSSettingsDataSource            *dataSource;
 
-@property (nonatomic) UTCSSettingsLegalViewController *legalViewController;
+@property (nonatomic) UTCSSettingsLegalViewController   *legalViewController;
 
 @end
 

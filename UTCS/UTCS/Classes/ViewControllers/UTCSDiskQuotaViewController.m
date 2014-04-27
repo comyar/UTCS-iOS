@@ -15,11 +15,13 @@
 #import "UTCSDiskQuotaDataSource.h"
 
 #import "MBProgressHUD.h"
-#import "MRCircularProgressView.h"
 #import "JVFloatLabeledTextField.h"
+#import "PocketSVG.h"
+#import "DPMeterView.h"
 
 // Categories
 #import "UIImage+CZTinting.h"
+
 
 
 #pragma mark - Constants
@@ -44,8 +46,8 @@ static NSString *diskQuotaCacheKey = @"quota";
 // Label used to display the usage percentage
 @property (nonatomic) UILabel                   *percentLabel;
 
-// Progress view repurposed as gauge view (#yolo)
-@property (nonatomic) MRCircularProgressView    *quotaGaugeView;
+//
+@property (nonatomic) DPMeterView               *meterView;
 
 // Label used to display a frowny face in case of failure
 @property (nonatomic) UILabel                   *frownyFaceLabel;
@@ -105,12 +107,12 @@ static NSString *diskQuotaCacheKey = @"quota";
             button;
         });
         
-        // Quota circular view
-        self.quotaGaugeView = ({
-            MRCircularProgressView *view = [[MRCircularProgressView alloc]initWithFrame:CGRectZero];
-            view.backgroundColor = [UIColor clearColor];
-            view.progressColor = [UIColor whiteColor];
-            view.progressArcWidth = 12.0;
+        // Meter view
+        self.meterView = ({
+            DPMeterView *view = [DPMeterView new];
+            view.trackTintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+            view.shape = [PocketSVG pathFromSVGFileNamed:@"cloud"];
+            view.meterType = DPMeterTypeLinearHorizontal;
             view.alpha = 0.0;
             view;
         });
@@ -179,7 +181,6 @@ static NSString *diskQuotaCacheKey = @"quota";
             label.alpha = 0.0;
             label;
         });
-        
     }
     return self;
 }
@@ -189,10 +190,13 @@ static NSString *diskQuotaCacheKey = @"quota";
     [super viewDidLoad];
     
     self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
-
+    
+    
+    
     [self.view addSubview:self.usernameTextField];
     [self.view addSubview:self.goButton];
-    [self.view addSubview:self.quotaGaugeView];
+    [self.view addSubview:self.meterView];
+//    [self.view addSubview:self.quotaGaugeView];
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.percentLabel];
     [self.view addSubview:self.quotaDetailLabel];
@@ -218,21 +222,21 @@ static NSString *diskQuotaCacheKey = @"quota";
 {
     [super viewDidLayoutSubviews];
     
-    self.usernameTextField.frame = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
+    self.usernameTextField.frame    = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
     self.goButton.frame             = CGRectMake(0.0, 0.0, 50.0, 28.0);
     self.goButton.center            = CGPointMake(0.85 * self.view.width, self.usernameTextField.center.y);
     
-    self.quotaGaugeView.frame       = CGRectMake(0, 0, 0.44 * self.view.height, 0.44 * self.view.height);
-    self.quotaGaugeView.center      = CGPointMake(self.view.center.x, 1.1 * self.view.center.y);
+    self.meterView.frame            = CGRectMake(0, 0, 160, 98);
+    self.meterView.center           = CGPointMake(self.view.center.x, 0.8 * self.view.center.y);
     
-    self.nameLabel.frame            = CGRectMake(16.0, 0.2 * self.view.height, self.view.width - 32.0, 48);
+    self.nameLabel.frame            = CGRectMake(16.0, 1.1 * self.view.center.y, self.view.width - 32.0, 48);
     
     self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.05 * self.view.center.y);
+    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.35 * self.view.center.y);
     
     self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
-    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.15 * self.view.center.y);
+    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.45 * self.view.center.y);
     
     self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
@@ -251,6 +255,13 @@ static NSString *diskQuotaCacheKey = @"quota";
 {
     [super viewDidAppear:animated];
     [self.usernameTextField becomeFirstResponder];
+    [self.meterView startGravity];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.meterView stopGravity];
 }
 
 #pragma mark Buttons
@@ -282,11 +293,11 @@ static NSString *diskQuotaCacheKey = @"quota";
                 CGFloat usage = [self.dataSource.data[@"usage"]floatValue];
                 CGFloat percentUsage = (usage / limit);
                 
-                self.quotaGaugeView.progressColor = [UIColor colorWithHue:0.33 * percentUsage saturation:0.5 brightness:1.0 alpha:1.0];
-                
-                [self.quotaGaugeView setProgress:percentUsage animated:YES];
-                self.percentLabel.text = [NSString stringWithFormat:@"%0.2f%%", 100 * (usage / limit) ];
-                self.quotaDetailLabel.text = [NSString stringWithFormat:@"%.0f / %.0f MB", usage, limit];
+                self.meterView.progressTintColor = [UIColor whiteColor];
+                [self.meterView setProgress:percentUsage animated:YES];
+
+                self.percentLabel.text      = [NSString stringWithFormat:@"%0.2f%%", 100 * (usage / limit)];
+                self.quotaDetailLabel.text  = [NSString stringWithFormat:@"%.0f / %.0f MB", usage, limit];
                 
                 
                 NSString *updatedString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
@@ -298,12 +309,12 @@ static NSString *diskQuotaCacheKey = @"quota";
             }
             
             [UIView animateWithDuration:0.3 animations:^{
-                self.frownyFaceLabel.alpha = !success;
-                self.errorMessageLabel.alpha = !success;
-                self.quotaGaugeView.alpha = success;
-                self.quotaDetailLabel.alpha = success;
-                self.percentLabel.alpha = success;
-                self.descriptionLabel.alpha = 0.0;
+                self.frownyFaceLabel.alpha      = !success;
+                self.errorMessageLabel.alpha    = !success;
+                self.quotaDetailLabel.alpha     = success;
+                self.percentLabel.alpha         = success;
+                self.meterView.alpha            = success;
+                self.descriptionLabel.alpha     = 0.0;
             }];
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];

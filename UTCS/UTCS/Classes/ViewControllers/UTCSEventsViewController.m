@@ -12,9 +12,7 @@
 // View controllers
 #import "UTCSEventsViewController.h"
 #import "UTCSEventDetailViewController.h"
-
-// Views
-#import "UTCSEventsFilterView.h"
+#import "UTCSEventsFilterViewController.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -28,14 +26,17 @@
 
 #pragma mark - Constants
 
+// Name of the service used by this view controller
+static NSString * const serviceName                 = @"events";
+
 // Duration of animations performed by this view controller
 static const CGFloat animationDuration              = 0.3;
 
 // Name of the background image
-static NSString * const backgroundImageName         = @"eventsBackground2";
+static NSString * const backgroundImageName         = @"eventsBackground";
 
 // Name of the blurred background image
-static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurred";
+static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred";
 
 
 #pragma mark - UTCSEventsViewController Class Extension
@@ -46,8 +47,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
 @property (nonatomic) UIButton                              *filterButton;
 
 //
-@property (nonatomic) UTCSEventsFilterView                  *filterView;
-
+@property (nonatomic) UTCSEventsFilterViewController        *eventsFilterViewController;
 //
 @property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
 
@@ -71,8 +71,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if(self = [super initWithStyle:style]) {
-    
-        self.dataSource                 = [[UTCSEventsDataSource alloc]initWithService:@"events"];
+        self.dataSource                 = [[UTCSEventsDataSource alloc]initWithService:serviceName];
         self.tableView.dataSource       = (UTCSEventsDataSource *)self.dataSource;
         self.tableView.delegate         = self;
         
@@ -81,8 +80,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
         
         self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
-        
-        
     }
     return self;
 }
@@ -102,11 +99,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.filterView = ({
-        UTCSEventsFilterView *view = [[UTCSEventsFilterView alloc]initWithFrame:self.view.bounds];
-        view.alpha = 0.0;
-        view;
-    });
     
     self.filterButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
@@ -115,10 +107,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
         button;
     });
     
-    
     [self.view addSubview:self.filterButton];
     [self.view bringSubviewToFront:self.filterButton];
-    [self.view insertSubview:self.filterView belowSubview:self.menuButton];
     
 }
 
@@ -127,13 +117,16 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.filterButton) {
-        CGFloat alpha = (self.filterView.alpha)? 0.0 : 1.0;
-        [UIView animateWithDuration:animationDuration animations:^{
-            self.filterView.alpha = alpha;
-        }];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Filter"
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Done"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"All", @"Careers", @"Talks", @"Student Orgs", nil];
+        actionSheet.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+        [actionSheet showFromRect:self.filterButton.frame inView:self.view animated:YES];
     }
 }
-
 
 #pragma mark Updating
 
@@ -179,6 +172,18 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
     return MIN(ceilf(rect.size.height), 128.0) + 50.0;
 }
 
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:YES animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:NO animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 168.0;
@@ -198,13 +203,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground2-blurre
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [cell setHighlighted:NO animated:NO];
-    cell.alpha = 0.8;
-    cell.transform = CGAffineTransformMakeScale(0.98, 0.98);
+    cell.contentView.alpha = 0.5;
     [UIView animateWithDuration:animationDuration animations:^{
-        cell.alpha = 1.0;
-        cell.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        cell.contentView.alpha = 1.0;
     }];
 }
+
 
 @end

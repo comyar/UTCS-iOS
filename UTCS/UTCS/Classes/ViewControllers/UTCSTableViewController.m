@@ -74,7 +74,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"table view did load");
     [self.view insertSubview:_gestureButton belowSubview:self.menuButton];
     [self.view insertSubview:_tableView belowSubview:self.gestureButton];
     [self.view insertSubview:_navigationBarSeparatorLineView aboveSubview:self.gestureButton];
@@ -106,7 +105,6 @@
 
 - (void)didTouchDownInsideButton:(UIButton *)button
 {
-    NSLog(@"scroll to top");
     if (button == self.gestureButton) {
         [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
     }

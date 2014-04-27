@@ -50,7 +50,6 @@
 		DD9475A5190A33350049FB8B /* UTCSSettingsLegalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475A4190A33350049FB8B /* UTCSSettingsLegalDataSource.m */; };
 		DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475B1190A46350049FB8B /* UTCSNavigationControllerDelegate.m */; };
-		DD9475B9190A65970049FB8B /* UTCSEventsFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475B8190A65970049FB8B /* UTCSEventsFilterView.m */; };
 		DD9475BC190B17740049FB8B /* UTCSLabsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BB190B17740049FB8B /* UTCSLabsSearchViewController.m */; };
 		DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */; };
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
@@ -59,6 +58,8 @@
 		DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */; };
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
 		DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */; };
+		DD9475D8190CD3810049FB8B /* UTCSEventsFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D7190CD3810049FB8B /* UTCSEventsFilterViewController.m */; };
+		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */; };
@@ -180,8 +181,6 @@
 		DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSlideNavigationAnimator.m; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.m; sourceTree = SOURCE_ROOT; };
 		DD9475B0190A46350049FB8B /* UTCSNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNavigationControllerDelegate.h; path = UTCS/Classes/Model/UTCSNavigationControllerDelegate.h; sourceTree = SOURCE_ROOT; };
 		DD9475B1190A46350049FB8B /* UTCSNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNavigationControllerDelegate.m; path = UTCS/Classes/Model/UTCSNavigationControllerDelegate.m; sourceTree = SOURCE_ROOT; };
-		DD9475B7190A65970049FB8B /* UTCSEventsFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterView.h; path = Views/UTCSEventsFilterView.h; sourceTree = "<group>"; };
-		DD9475B8190A65970049FB8B /* UTCSEventsFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsFilterView.m; path = Views/UTCSEventsFilterView.m; sourceTree = "<group>"; };
 		DD9475BA190B17740049FB8B /* UTCSLabsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsSearchViewController.h; path = ViewControllers/UTCSLabsSearchViewController.h; sourceTree = "<group>"; };
 		DD9475BB190B17740049FB8B /* UTCSLabsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsSearchViewController.m; path = ViewControllers/UTCSLabsSearchViewController.m; sourceTree = "<group>"; };
 		DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
@@ -196,6 +195,9 @@
 		DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BasementLabLayout.plist; path = UTCS/BasementLabLayout.plist; sourceTree = SOURCE_ROOT; };
 		DD9475D0190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSegmentedControlTableViewCell.h; path = Views/UTCSSegmentedControlTableViewCell.h; sourceTree = "<group>"; };
 		DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSegmentedControlTableViewCell.m; path = Views/UTCSSegmentedControlTableViewCell.m; sourceTree = "<group>"; };
+		DD9475D6190CD3810049FB8B /* UTCSEventsFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterViewController.h; path = ViewControllers/UTCSEventsFilterViewController.h; sourceTree = "<group>"; };
+		DD9475D7190CD3810049FB8B /* UTCSEventsFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsFilterViewController.m; path = ViewControllers/UTCSEventsFilterViewController.m; sourceTree = "<group>"; };
+		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -470,8 +472,6 @@
 			children = (
 				DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */,
 				DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */,
-				DD9475B7190A65970049FB8B /* UTCSEventsFilterView.h */,
-				DD9475B8190A65970049FB8B /* UTCSEventsFilterView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -483,6 +483,8 @@
 				DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */,
 				DD44659718E8254B00ED1153 /* UTCSEventDetailViewController.h */,
 				DD44659818E8254C00ED1153 /* UTCSEventDetailViewController.m */,
+				DD9475D6190CD3810049FB8B /* UTCSEventsFilterViewController.h */,
+				DD9475D7190CD3810049FB8B /* UTCSEventsFilterViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -638,9 +640,18 @@
 			name = Layouts;
 			sourceTree = "<group>";
 		};
+		DD9475E0190CDFBC0049FB8B /* svg */ = {
+			isa = PBXGroup;
+			children = (
+				DD9475E7190CE5DF0049FB8B /* cloud.svg */,
+			);
+			name = svg;
+			sourceTree = "<group>";
+		};
 		DDA758891904D28D007CD0DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD9475E0190CDFBC0049FB8B /* svg */,
 				DDA7588F1904D313007CD0DB /* App.xcassets */,
 				DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */,
 				DDA758911904D422007CD0DB /* Icons.xcassets */,
@@ -965,6 +976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
+				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */,
@@ -1035,6 +1047,7 @@
 				DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */,
 				DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */,
 				DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */,
+				DD9475D8190CD3810049FB8B /* UTCSEventsFilterViewController.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD5CAF81190A325D0051F637 /* UTCSSettingsLegalViewController.m in Sources */,
 				DD9475A5190A33350049FB8B /* UTCSSettingsLegalDataSource.m in Sources */,
@@ -1073,7 +1086,6 @@
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSSettingsManager.m in Sources */,
-				DD9475B9190A65970049FB8B /* UTCSEventsFilterView.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				DDA758FF19088F25007CD0DB /* UTCSDirectoryTableViewCell.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
