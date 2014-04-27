@@ -57,7 +57,7 @@
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.dataSource.delegate = self;
         
-        self.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground2-blurred"];
+        self.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground-blurred"];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
@@ -73,12 +73,11 @@
         });
         
         self.tableView.tableHeaderView = self.searchBar;
-        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.alwaysBounceVertical = NO;
         self.tableView.sectionIndexColor = [UIColor whiteColor];
         self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
         self.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
-        
         
         self.dataSource.searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
                                                                                                     contentsController:self];
@@ -91,6 +90,8 @@
     [super viewDidAppear:animated];
     self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
     [self update];
+    
+    
 }
 
 - (void)update
@@ -102,12 +103,12 @@
         
         [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
-            if (success) {
+            if (success && !cacheHit) {
                 [((UTCSDirectoryDataSource *)self.dataSource) buildFlatDirectory];
                 [self.tableView reloadData];
                 self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
-            } else {
-                NSLog(@"directory failed");
+            } else if (!success && !cacheHit) {
+                // frowny face
             }
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -116,6 +117,15 @@
 }
 
 #pragma mark UITableViewDelegate Methpds
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offset = scrollView.contentOffset.y;
+    if (offset < 0.0 && [self.tableView.subviews count] > 0) {
+        UIView *subview = self.tableView.subviews[0];
+        subview.alpha = 0.0;
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
