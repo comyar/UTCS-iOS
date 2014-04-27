@@ -60,6 +60,7 @@
 		DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */; };
 		DD9475D8190CD3810049FB8B /* UTCSEventsFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D7190CD3810049FB8B /* UTCSEventsFilterViewController.m */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
+		DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */; };
@@ -198,6 +199,8 @@
 		DD9475D6190CD3810049FB8B /* UTCSEventsFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsFilterViewController.h; path = ViewControllers/UTCSEventsFilterViewController.h; sourceTree = "<group>"; };
 		DD9475D7190CD3810049FB8B /* UTCSEventsFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsFilterViewController.m; path = ViewControllers/UTCSEventsFilterViewController.m; sourceTree = "<group>"; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
+		DD9475EA190CEAA60049FB8B /* UTCSUpdateTextFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSUpdateTextFactory.h; path = Model/UTCSUpdateTextFactory.h; sourceTree = "<group>"; };
+		DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSUpdateTextFactory.m; path = Model/UTCSUpdateTextFactory.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -648,6 +651,15 @@
 			name = svg;
 			sourceTree = "<group>";
 		};
+		DD9475E9190CEA940049FB8B /* UpdateTextFactory */ = {
+			isa = PBXGroup;
+			children = (
+				DD9475EA190CEAA60049FB8B /* UTCSUpdateTextFactory.h */,
+				DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */,
+			);
+			name = UpdateTextFactory;
+			sourceTree = "<group>";
+		};
 		DDA758891904D28D007CD0DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,6 +745,7 @@
 		DDA758EF19081DF3007CD0DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DD9475E9190CEA940049FB8B /* UpdateTextFactory */,
 				DDA758B51905FDB6007CD0DB /* SettingsManager */,
 				DDA758A61905E78D007CD0DB /* Cache */,
 				DD87617519028247005FEE4E /* DataRequestServicer */,
@@ -1064,6 +1077,7 @@
 				DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */,
+				DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */,

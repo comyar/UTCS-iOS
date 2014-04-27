@@ -18,6 +18,8 @@
 #import "JVFloatLabeledTextField.h"
 #import "PocketSVG.h"
 #import "DPMeterView.h"
+#import "UTCSUpdateTextFactory.h"
+
 
 // Categories
 #import "UIImage+CZTinting.h"
@@ -158,7 +160,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             label.numberOfLines = 0;
-            label.text = @"Enter your CS username to check your available disk quota.\n\nYour disk quota represents the amount of available disk space for your Unix account.";
+            label.text = @"Enter your CS username to check your available disk quota.\n\nYour disk quota represents the amount of available disk space on your Unix account.";
             label;
         });
         
@@ -199,13 +201,13 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.meterView.frame            = CGRectMake(0, 0, 160, 98);
     self.meterView.center           = CGPointMake(self.view.center.x, 0.8 * self.view.center.y);
     
-    self.nameLabel.frame            = CGRectMake(16.0, 1.1 * self.view.center.y, self.view.width - 32.0, 48);
+    self.nameLabel.frame            = CGRectMake(16.0, self.view.center.y, self.view.width - 32.0, 48);
     
     self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.35 * self.view.center.y);
+    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.2 * self.view.center.y);
     
     self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
-    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.45 * self.view.center.y);
+    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.3 * self.view.center.y);
     
     self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
@@ -244,16 +246,6 @@ static NSString *diskQuotaCacheKey = @"quota";
     [self.view.layer addSublayer:lineSeparatorLayer];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    
-    NSLog(@"layout subviews");
-    
-
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -286,7 +278,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     if ([self.dataSource shouldUpdate]) {
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
-        progressHUD.labelText = @"Updating";
+        progressHUD.labelText = [UTCSUpdateTextFactory randomUpdateText];
         
         [self updateWithArgument:self.usernameTextField.text completion:^(BOOL success) {
             
