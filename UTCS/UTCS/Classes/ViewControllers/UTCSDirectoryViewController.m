@@ -55,6 +55,8 @@
 {
     if (self = [super initWithStyle:style]) {
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
+        self.dataSource.delegate = self;
+        
         self.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground2-blurred"];
         
         self.searchBar = ({

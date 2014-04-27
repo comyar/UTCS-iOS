@@ -43,6 +43,8 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
         _minimumTimeBetweenUpdates = 2592000.0;  // 30 days
         _cache = [[UTCSDataSourceCache alloc]initWithService:service];
         _parser = [UTCSDirectoryDataSourceParser new];
+        _primaryCacheKey = UTCSDirectoryCacheKey;
+        
         _searchController = [UTCSDirectoryDataSourceSearchController new];
         self.searchController.dataSource = self;
         
