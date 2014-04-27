@@ -21,7 +21,6 @@
 
 // Models
 #import "UTCSNewsArticle.h"
-#import "UTCSNewsDataSource.h"
 
 
 #pragma mark - Constants
@@ -73,6 +72,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     if(self = [super initWithStyle:style]) {
         self.dataSource             = [[UTCSNewsDataSource alloc]initWithService:serviceName];
+        self.dataSource.delegate    = self;
         
         self.tableView.dataSource   = (UTCSNewsDataSource *)self.dataSource;
         self.tableView.delegate     = self;
@@ -96,7 +96,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 {
     [self.activeHeaderView showActiveAnimation:YES];
     
-    [self updateWithArgument:nil completion:^(BOOL success) {
+    [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
         
         [self.activeHeaderView showActiveAnimation:NO];
         
@@ -109,12 +109,17 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
             
             if (!success) {
                 // Show frowny face, error message
+                self.activeHeaderView.updatedLabel.text = @"Update Failed. Please check your network connection.";
+            } else {
+                self.activeHeaderView.updatedLabel.text = @"No News Articles Available.";
             }
             
-            self.activeHeaderView.updatedLabel.text = @"No News Articles Available";
         }
         
-        [self.tableView reloadData];
+        if (success && !cacheHit) {
+            [self.tableView reloadData];
+        }
+        
     }];
 }
 

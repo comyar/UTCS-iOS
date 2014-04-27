@@ -19,11 +19,7 @@
 
 
 #pragma mark - Constants
-// Key used to cache directory
-static NSString *directoryCacheKey = @"directory";
 
-// Key used to cache flat directory
-static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 
 #pragma mark - UTCSDirectoryViewController Class Extension
@@ -100,9 +96,9 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
     if ([self.dataSource shouldUpdate]) {
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
-        progressHUD.labelText = @"Syncing Directory";
+        progressHUD.labelText = @"Syncing";
         
-        [self updateWithArgument:nil completion:^(BOOL success) {
+        [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
             if (success) {
                 [((UTCSDirectoryDataSource *)self.dataSource) buildFlatDirectory];
@@ -201,8 +197,8 @@ static NSString *flatDirectoryCacheKey = @"flatDirectory";
 
 - (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource
 {
-    return @{directoryCacheKey: self.dataSource.data,
-             flatDirectoryCacheKey :((UTCSDirectoryDataSource *)self.dataSource).flatDirectory};
+    return @{UTCSDirectoryCacheKey: self.dataSource.data,
+             UTCSDirectoryFlatCacheKey :((UTCSDirectoryDataSource *)self.dataSource).flatDirectory};
 }
 
 @end

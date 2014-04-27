@@ -33,7 +33,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.menuOptions = @[@"News", @"Events", @"Directory", @"Labs", @"Disk Quota", @"Settings"];
+        self.menuOptions = @[@"News", @"Events", @"Labs", @"Directory", @"Disk Quota", @"Settings"];
         self.title = @"Menu";
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -122,9 +122,9 @@
         } else if(indexPath.row == 1) {
             option = UTCSMenuOptionEvents;
         } else if(indexPath.row == 2) {
-            option = UTCSMenuOptionDirectory;
-        } else if(indexPath.row == 3) {
             option = UTCSMenuOptionLabs;
+        } else if(indexPath.row == 3) {
+            option = UTCSMenuOptionDirectory;
         } else if(indexPath.row == 4) {
             option = UTCSMenuOptionDiskQuota;
         } else if(indexPath.row == 5) {

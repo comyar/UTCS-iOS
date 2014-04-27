@@ -15,7 +15,13 @@
 #import "UTCSDirectoryTableViewCell.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
 
+
 #pragma mark - Constants
+// Key used to cache directory
+NSString * const UTCSDirectoryCacheKey      = @"UTCSDirectoryCacheKey";
+
+// Key used to cache flat directory
+NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
 
 
 #pragma mark - UTCSDirectoryDataSource Class Extension
@@ -39,6 +45,10 @@
         _parser = [UTCSDirectoryDataSourceParser new];
         _searchController = [UTCSDirectoryDataSourceSearchController new];
         self.searchController.dataSource = self;
+        
+        NSDictionary *cache = [_cache objectWithKey:UTCSDirectoryCacheKey];
+        _data = cache[UTCSDataSourceCacheValuesName];
+        NSLog(@"Directory Cache : %@", _data);
     }
     return self;
 }

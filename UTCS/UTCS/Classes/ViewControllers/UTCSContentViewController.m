@@ -62,6 +62,8 @@
 {
     if ([self.dataSource shouldUpdate]) {
         [self.dataSource updateWithArgument:argument completion:completion];
+    } else if (completion) {
+        completion(YES, YES);
     }
 }
 

@@ -8,6 +8,9 @@
 
 #import "UTCSDataSource.h"
 
+extern NSString * const UTCSDirectoryCacheKey;
+extern NSString * const UTCSDirectoryFlatCacheKey;
+
 /**
  */
 @interface UTCSDirectoryDataSource : UTCSDataSource <UITableViewDataSource>

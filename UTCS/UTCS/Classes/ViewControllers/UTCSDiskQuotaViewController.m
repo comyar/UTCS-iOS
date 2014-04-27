@@ -280,7 +280,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = [UTCSUpdateTextFactory randomUpdateText];
         
-        [self updateWithArgument:self.usernameTextField.text completion:^(BOOL success) {
+        [self updateWithArgument:self.usernameTextField.text completion:^(BOOL success, BOOL cacheHit) {
             
             if (success) {
                 self.nameLabel.text = self.dataSource.data[@"name"];

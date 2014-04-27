@@ -20,7 +20,7 @@
 
 /**
  */
-typedef void (^UTCSDataSourceCompletion) (BOOL success);
+typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 typedef NSString UTCSServiceName;
 
 
@@ -43,6 +43,8 @@ typedef NSString UTCSServiceName;
     UTCSDataSourceCache             *_cache;
     UTCSDataSourceSearchController  *_searchController;
     NSTimeInterval                  _minimumTimeBetweenUpdates;
+    NSString                        *_primaryCacheKey;
+    NSDate                          *_updated;
 }
 
 // -----
@@ -80,6 +82,10 @@ typedef NSString UTCSServiceName;
 /**
  */
 @property (nonatomic, readonly) UTCSDataSourceSearchController    *searchController;
+
+/**
+ */
+@property (nonatomic, readonly) NSString            *primaryCacheKey;
 
 /**
  */

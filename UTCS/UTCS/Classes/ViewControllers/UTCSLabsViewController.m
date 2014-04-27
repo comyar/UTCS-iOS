@@ -121,7 +121,7 @@
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Updating";
         
-        [self updateWithArgument:nil completion:^(BOOL success) {
+        [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
             if (success) {
                 NSArray *third = self.dataSource.data[@"third"];

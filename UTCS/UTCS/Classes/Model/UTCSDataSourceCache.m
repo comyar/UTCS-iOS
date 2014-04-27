@@ -39,6 +39,8 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
     
     NSString *primaryKey = [self primaryKeyForService:self.service forKey:key];
     
+    NSLog(@"Cache Request : %@", primaryKey);
+    
     NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:primaryKey];
     
     if (data) {
@@ -61,6 +63,8 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
     
     NSString *primaryKey = [self primaryKeyForService:self.service forKey:key];
     [[NSUserDefaults standardUserDefaults]setObject:data forKey:primaryKey];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    NSLog(@"Cached : %@", primaryKey);
 }
 
 #pragma mark Helper

@@ -17,6 +17,7 @@
 @synthesize data = _data;
 @synthesize parser = _parser;
 @synthesize cache = _cache;
+@synthesize primaryCacheKey = _primaryCacheKey;
 @synthesize searchController = _searchController;
 @synthesize minimumTimeBetweenUpdates = _minimumTimeBetweenUpdates;
 
@@ -40,7 +41,7 @@
 
 - (BOOL)shouldUpdate
 {
-    NSDictionary *cache = [self.cache objectWithKey:self.service];
+    NSDictionary *cache = [self.cache objectWithKey:self.primaryCacheKey];
     UTCSDataSourceCacheMetaData *metaData = cache[UTCSDataSourceCacheMetaDataName];
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < self.minimumTimeBetweenUpdates) {
@@ -54,14 +55,16 @@
 {
     if (!self.service) {
         if (completion) {
-            completion(NO);
+            completion(NO, NO);
         }
         return;
     }
     
     // Check cache
-    NSDictionary *cache = [self.cache objectWithKey:self.service];
+    NSDictionary *cache = [self.cache objectWithKey:self.primaryCacheKey];
     UTCSDataSourceCacheMetaData *metaData = cache[UTCSDataSourceCacheMetaDataName];
+    NSLog(@"%@", cache);
+    NSLog(@"%@", metaData.timestamp);
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < self.minimumTimeBetweenUpdates) {
         
@@ -71,7 +74,7 @@
         _updated = metaData.timestamp;
         
         if (completion) {
-            completion(YES);
+            completion(YES, YES);
         }
         return;
     }
@@ -86,7 +89,7 @@
             _updated    = [NSDate date];
             
             if (completion) {
-                completion(YES);
+                completion(YES, NO);
             }
             
             if ([self.delegate conformsToProtocol:@protocol(UTCSDataSourceDelegate)] &&
@@ -96,11 +99,13 @@
                 for (NSString *key in objects) {
                     [self.cache cacheObject:objects[key] withKey:key];
                 }
+            } else {
+                NSLog(@"%@ does not conform to data source protocol" , self.service);
             }
             
         } else {
             if (completion) {
-                completion(NO);
+                completion(NO, NO);
             }
         }
     }];

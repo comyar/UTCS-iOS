@@ -187,7 +187,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     [self.activeHeaderView showActiveAnimation:YES];
     
-    [self updateWithArgument:nil completion:^(BOOL success) {
+    [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
         [self.dataSource prepareFilter];
         [self.activeHeaderView showActiveAnimation:NO];
         

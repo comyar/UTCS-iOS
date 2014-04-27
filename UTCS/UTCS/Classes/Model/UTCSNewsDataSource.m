@@ -43,11 +43,17 @@ static NSString * const cellAccessoryImageName          = @"rightArrow";
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
+        _minimumTimeBetweenUpdates = 86400; // 24 hours
         _parser = [UTCSNewsDataSourceParser new];
         _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _primaryCacheKey = UTCSNewsDataSourceCacheKey;
         
         NSDictionary *cache = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
-        _data = cache[UTCSDataSourceCacheValuesName];
+        if (cache) {
+            UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
+            _data = cache[UTCSDataSourceCacheValuesName];
+            _updated = meta.timestamp;
+        }
     }
     return self;
 }
