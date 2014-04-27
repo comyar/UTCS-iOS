@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+@import UIKit;
 
 #import "UTCSAppDelegate.h"
 

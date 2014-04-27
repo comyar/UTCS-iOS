@@ -23,6 +23,10 @@
 #import "UIColor+UTCSColors.h"
 
 
+NSString * const UTCSEventsFilterRemoveName = @"UTCSEventsFilterRemoveName";
+NSString * const UTCSEventsFilterAddName    = @"UTCSEventsFilterAddName";
+
+
 #pragma mark - Constants
 
 // Key used to cache events
@@ -36,8 +40,11 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 
 @interface UTCSEventsDataSource ()
 
-// Array of all the events
-@property (nonatomic) NSArray           *events;
+//
+@property (nonatomic) NSString          *currentFilterType;
+
+//
+@property (nonatomic) NSMutableArray    *filteredEvents;
 
 // Date formatter for a 3-letter month name
 @property (nonatomic) NSDateFormatter   *monthDateFormatter;
@@ -85,6 +92,89 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     return self;
 }
 
+#pragma mark Filtering
+
+- (void)prepareFilter
+{
+    self.filteredEvents = [self.data mutableCopy];
+}
+
+- (NSDictionary *)filterEventsWithType:(NSString *)type
+{
+    NSMutableArray *add     = [NSMutableArray new];
+    NSMutableArray *remove  = [NSMutableArray new];
+    
+    type = [type lowercaseString];
+    
+    if ([type isEqualToString:@"all"]) {
+        
+        // Pretty inefficient but I'm lazy #yolo
+        for (UTCSEvent *event in self.data) {
+            if (![self.filteredEvents containsObject:event]) {
+                NSIndexPath *indexPath = nil;
+                for (int i = 0; [self.filteredEvents count]; ++i) {
+                    UTCSEvent *filterEvent = self.filteredEvents[i];
+                    if ([filterEvent.startDate timeIntervalSinceDate:event.startDate] <= 0.0) {
+                        [self.filteredEvents insertObject:event atIndex:i];
+                        indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                        break;
+                    }
+                }
+                
+                if (!indexPath) {
+                    indexPath = [NSIndexPath indexPathForRow:[self.filteredEvents count] inSection:0];
+                    [self.filteredEvents addObject:event];
+                }
+                [add addObject:indexPath];
+            }
+        }
+        
+        self.filteredEvents = [self.data mutableCopy];
+        
+    } else {
+        
+        for (int i = 0; i < [self.filteredEvents count]; ++i) {
+            UTCSEvent *event = self.filteredEvents[i];
+            if (![event.type isEqualToString:type]) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                [remove addObject:indexPath];
+                [self.filteredEvents removeObject:event];
+            }
+        }
+        
+        for (int i = 0; i < [self.data count]; ++i) {
+            UTCSEvent *event = self.data[i];
+            
+            if ([event.type isEqualToString:type] && ![self.filteredEvents containsObject:event]) {
+                NSIndexPath *indexPath = nil;
+                for (int i = 0; [self.filteredEvents count]; ++i) {
+                    UTCSEvent *filterEvent = self.filteredEvents[i];
+                    if ([filterEvent.startDate timeIntervalSinceDate:event.startDate] <= 0.0) {
+                        [self.filteredEvents insertObject:event atIndex:i];
+                        indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                        break;
+                    }
+                }
+                
+                if (!indexPath) {
+                    indexPath = [NSIndexPath indexPathForRow:[self.filteredEvents count] inSection:0];
+                    [self.filteredEvents addObject:event];
+                }
+                [add addObject:indexPath];
+            }
+            
+        }
+        
+    }
+    
+    self.currentFilterType = type;
+    
+    return @{UTCSEventsFilterAddName    : add,
+             UTCSEventsFilterRemoveName : remove};
+}
+
+#pragma mark UITableViewDataSource Methods
+
 - (UTCSEventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSEventTableViewCell"];
@@ -93,7 +183,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
         cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
     }
     
-    UTCSEvent *event        = self.data[indexPath.row];
+    UTCSEvent *event        = self.filteredEvents[indexPath.row];
     cell.dayLabel.text      = [self.dayDateFormatter stringFromDate:event.startDate];
     cell.monthLabel.text    = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
     
@@ -108,7 +198,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.data count];
+    return [self.filteredEvents count];
 }
 
 @end

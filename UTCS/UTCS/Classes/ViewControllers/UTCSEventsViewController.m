@@ -13,8 +13,6 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSEventDetailViewController.h"
 
-#import "IBActionSheet.h"
-
 // Models
 #import "UTCSEvent.h"
 #import "UTCSEventsDataSource.h"
@@ -44,11 +42,19 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 @interface UTCSEventsViewController ()
 
+@property (nonatomic) UTCSEventsDataSource                  *dataSource;
+
+@property (nonatomic) NSString                              *currentFilter;
+
+//
+@property (nonatomic) IBActionSheet                         *filterActionSheet;
+
 //
 @property (nonatomic) UIButton                              *filterButton;
 
 //
-//@property (nonatomic) UTCSEventsFilterViewController        *eventsFilterViewController;
+@property (nonatomic) NSArray                               *filterTypes;
+
 //
 @property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
 
@@ -81,6 +87,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         
         self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
+        
+        self.filterTypes = @[@"All", @"Careers", @"Talks", @"Student Orgs"];
     }
     return self;
 }
@@ -118,16 +126,59 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.filterButton) {
-        IBActionSheet *actionSheet = [[IBActionSheet alloc]initWithTitle:@"Filter Events" delegate:nil cancelButtonTitle:@"Done" destructiveButtonTitle:nil otherButtonTitles:@"All", @"Careers", @"Talks", @"Student Orgs", nil];
-        [actionSheet setTitleBackgroundColor:[UIColor clearColor]];
         
-        [actionSheet setTitleFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
-        [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.95]];
-        [actionSheet setButtonTextColor:[UIColor whiteColor]];
-        [actionSheet setTitleTextColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
-        [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.25]];
-        [actionSheet showInView:self.view];
+        if (!self.filterActionSheet) {
+            self.filterActionSheet = ({
+                IBActionSheet *actionSheet = [[IBActionSheet alloc]initWithTitle:@"Filter Events" delegate:self cancelButtonTitle:@"Done" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+                
+                for (NSString *type in self.filterTypes) {
+                    [actionSheet addButtonWithTitle:type];
+                }
+                
+                [actionSheet setTitleBackgroundColor:[UIColor clearColor]];
+                [actionSheet setTitleFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
+                [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.95]];
+                [actionSheet setButtonTextColor:[UIColor whiteColor]];
+                [actionSheet setTitleTextColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+                [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.25]];
+                actionSheet;
+            });
+        }
+        
+        [self.filterActionSheet showInView:self.view];
     }
+}
+
+#pragma mark IBActionSheetDelegate Methods
+
+- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex < [self.filterTypes count]) {
+        NSString *filterType = self.filterTypes[buttonIndex];
+        [self filterEventsWithType:filterType];
+    }
+}
+
+#pragma mark Filtering
+
+- (void)filterEventsWithType:(NSString *)type
+{
+    if (![type isEqualToString:self.currentFilter]) {
+        NSDictionary *indexPaths = [self.dataSource filterEventsWithType:type];
+        NSArray *addIndexPaths = indexPaths[UTCSEventsFilterAddName];
+        NSArray *removeIndexPaths = indexPaths[UTCSEventsFilterRemoveName];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertRowsAtIndexPaths:addIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+        
+        [self.tableView beginUpdates];
+        
+        [self.tableView endUpdates];
+    }
+    
+    self.currentFilter = type;
 }
 
 #pragma mark Updating
@@ -137,7 +188,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [self.activeHeaderView showActiveAnimation:YES];
     
     [self updateWithArgument:nil completion:^(BOOL success) {
-        
+        [self.dataSource prepareFilter];
         [self.activeHeaderView showActiveAnimation:NO];
         
         if([self.dataSource.data count] > 0) {

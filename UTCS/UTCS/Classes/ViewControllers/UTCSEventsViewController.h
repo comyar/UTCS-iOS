@@ -9,12 +9,12 @@
 @import UIKit;
 
 #import "UTCSHeaderTableViewController.h"
-
+#import "IBActionSheet.h"
 
 /**
  UTCSEventsViewController displays all the available events in a simple table and allows filtering of events by type
  */
-@interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate>
+@interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate, IBActionSheetDelegate>
 
 
 @end

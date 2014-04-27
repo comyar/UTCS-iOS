@@ -9,10 +9,15 @@
 
 #import "UTCSDataSource.h"
 
+extern NSString * const UTCSEventsFilterRemoveName;
+extern NSString * const UTCSEventsFilterAddName;
 
 /**
  UTCSEventsDataSource
  */
 @interface UTCSEventsDataSource : UTCSDataSource <UITableViewDataSource>
+
+- (void)prepareFilter;
+- (NSDictionary *)filterEventsWithType:(NSString *)type;
 
 @end
