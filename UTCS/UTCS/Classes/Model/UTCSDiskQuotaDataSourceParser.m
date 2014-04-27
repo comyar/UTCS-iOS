@@ -18,10 +18,13 @@
 
 - (NSDictionary *)parseValues:(NSDictionary *)values
 {
-    return @{@"name" :  (values[@"name"]    == [NSNull null])? nil : values[@"name"],
-             @"user" :  (values[@"user"]    == [NSNull null])? nil : values[@"user"],
-             @"limit" : (values[@"limit"]   == [NSNull null])? nil : values[@"limit"],
-             @"usage" : (values[@"usage"]   == [NSNull null])? nil : values[@"usage"]};
+    NSMutableDictionary *parsed = [NSMutableDictionary new];
+    for (NSString *key in values) {
+        if (values[key] != [NSNull null]) {
+            parsed[key] = values[key];
+        }
+    }
+    return parsed;
 }
 
 @end

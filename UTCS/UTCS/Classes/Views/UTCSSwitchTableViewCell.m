@@ -14,8 +14,7 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _cellSwitch = [UISwitch new];
-        _cellSwitch.tintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        _cellSwitch.onTintColor = [UIColor whiteColor];
+        _cellSwitch.onTintColor = [UIColor colorWithWhite:0.75 alpha:1.0];
         [self.contentView addSubview:_cellSwitch];
         
         self.backgroundColor = [UIColor clearColor];
