@@ -12,7 +12,8 @@
 // View controllers
 #import "UTCSEventsViewController.h"
 #import "UTCSEventDetailViewController.h"
-#import "UTCSEventsFilterViewController.h"
+
+#import "IBActionSheet.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -47,7 +48,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) UIButton                              *filterButton;
 
 //
-@property (nonatomic) UTCSEventsFilterViewController        *eventsFilterViewController;
+//@property (nonatomic) UTCSEventsFilterViewController        *eventsFilterViewController;
 //
 @property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
 
@@ -117,14 +118,14 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.filterButton) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Filter"
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"Done"
-                                                  destructiveButtonTitle:nil
-                                                       otherButtonTitles:@"All", @"Careers", @"Talks", @"Student Orgs", nil];
-        actionSheet.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-        [actionSheet showFromRect:self.filterButton.frame inView:self.view animated:YES];
+        IBActionSheet *actionSheet = [[IBActionSheet alloc]initWithTitle:@"Filter Events" delegate:nil cancelButtonTitle:@"Done" destructiveButtonTitle:nil otherButtonTitles:@"All", @"Careers", @"Talks", @"Student Orgs", nil];
+        [actionSheet setTitleBackgroundColor:[UIColor clearColor]];
+        
+        [actionSheet setTitleFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
+        [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.95]];
+        [actionSheet setButtonTextColor:[UIColor whiteColor]];
+        [actionSheet setTitleTextColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+        [actionSheet showInView:self.view];
     }
 }
 
