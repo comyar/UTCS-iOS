@@ -57,6 +57,7 @@ static const CGFloat animationDuration = 0.3;
         alphaAnimation = [POPSpringAnimation animation];
         alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
         alphaAnimation.springBounciness = 20.0;
+        alphaAnimation.springSpeed = 20.0;
         alphaAnimation.toValue = alphaValue;
         [self.contentView pop_addAnimation:alphaAnimation forKey:@"alpha"];
     }
@@ -67,6 +68,7 @@ static const CGFloat animationDuration = 0.3;
         springAnimation = [POPSpringAnimation animation];
         springAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewScaleXY];
         springAnimation.springBounciness = 20.0;
+        springAnimation.springSpeed = 20.0;
         springAnimation.toValue = scaleValue;
         springAnimation.delegate = self;
         [self.contentView pop_addAnimation:springAnimation forKey:@"bounce"];
