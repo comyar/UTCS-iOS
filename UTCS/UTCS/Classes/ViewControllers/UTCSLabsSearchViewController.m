@@ -22,9 +22,6 @@
         self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
         _searchController = [UTCSLabsDataSourceSearchController new];
         
-        
-        
-        
     }
     return self;
 }
@@ -48,6 +45,8 @@
         searchBar;
     });
     
+    [self.view addSubview:self.searchBar];
+    
     self.searchBarLineLayer = ({
         CAShapeLayer *layer = [CAShapeLayer layer];
         layer.path = [UIBezierPath bezierPathWithRect:CGRectMake(32.0, 88.0, self.searchBar.width - 64.0, 0.25)].CGPath;
@@ -58,12 +57,17 @@
         layer;
     });
     
-    [self.view.layer addSublayer:self.searchBarLineLayer];
+//    [self.view.layer addSublayer:self.searchBarLineLayer];
     
-    [self.view addSubview:self.searchBar];
+    
     
     _searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
                                                                                  contentsController:self];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 - (void)viewDidLayoutSubviews

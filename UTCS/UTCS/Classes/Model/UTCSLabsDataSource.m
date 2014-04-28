@@ -10,6 +10,7 @@
 #import "UTCSLabMachine.h"
 #import "UTCSLabsDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
+#import "UTCSLabsDataSourceSearchController.h"
 
 @implementation UTCSLabsDataSource
 
@@ -18,6 +19,8 @@
     if (self = [super initWithService:service]) {
         _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
         _parser = [UTCSLabsDataSourceParser new];
+        _searchController = [UTCSLabsDataSourceSearchController new];
+        _searchController.dataSource = self;
     }
     return self;
 }
