@@ -11,6 +11,11 @@
 
 static const CGFloat animationDuration = 0.3;
 
+@interface UTCSBouncyTableViewCell ()
+@property (nonatomic) CGRect originalContentBounds;
+@end
+
+
 @implementation UTCSBouncyTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -22,38 +27,60 @@ static const CGFloat animationDuration = 0.3;
         self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
         self.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
         self.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        self.originalContentBounds = self.bounds;
     }
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.originalContentBounds = self.bounds;
+}
+
 - (void)bounceWithDirection:(UTCSBouncyTableViewCellBounceDirection)bounceDirection
 {
-    [self.contentView pop_removeAllAnimations];
+    NSValue *scaleValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
     
-    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
     if (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown) {
-        springAnimation.toValue = @(0.925);
-    } else {
-        springAnimation.toValue = @(1.0);
+        scaleValue = [NSValue valueWithCGPoint:CGPointMake(0.925, 0.925)];
     }
     
-    [self.contentView pop_addAnimation:springAnimation forKey:@"bounce"];
+    NSNumber *alphaValue = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? @(0.5) : @(1.0);
     
-//    [UIView animateWithDuration:animationDuration/3.0 animations:^{
-//        self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:animationDuration/3.0 animations:^{
-//            self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:animationDuration/3.0 animations:^{
-//                self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
-//            }];
-//        }];
-//    }];
-//    
-//    [UIView animateWithDuration:animationDuration animations:^{
-//        self.contentView.alpha = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? 0.5 : 1.0;
-//    }];
+    POPSpringAnimation *springAnimation = [self.contentView pop_animationForKey:@"bounce"];
+    POPSpringAnimation *alphaAnimation = [self.contentView pop_animationForKey:@"alpha"];
+    
+    if (alphaAnimation) {
+        alphaAnimation.toValue = alphaValue;
+    } else {
+        alphaAnimation = [POPSpringAnimation animation];
+        alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
+        alphaAnimation.springBounciness = 20.0;
+        alphaAnimation.toValue = alphaValue;
+        [self.contentView pop_addAnimation:alphaAnimation forKey:@"alpha"];
+    }
+    
+    if (springAnimation) {
+        springAnimation.toValue = scaleValue;
+    } else {
+        springAnimation = [POPSpringAnimation animation];
+        springAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewScaleXY];
+        springAnimation.springBounciness = 20.0;
+        springAnimation.toValue = scaleValue;
+        springAnimation.delegate = self;
+        [self.contentView pop_addAnimation:springAnimation forKey:@"bounce"];
+    }
+}
+
+- (void)pop_animationDidStart:(POPAnimation *)anim
+{
+    NSLog(@"Did start pop animation : %@", anim);
+}
+
+- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
+{
+    NSLog(@"Did stop pop animation : %@", anim);
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
@@ -62,7 +89,7 @@ static const CGFloat animationDuration = 0.3;
     
     if (highlighted && animated) {
         [self bounceWithDirection:UTCSBouncyTableViewCellBounceDirectionDown];
-    } else if (animated) {
+    } else if (!highlighted & animated) {
        [self bounceWithDirection:UTCSBouncyTableViewCellBounceDirectionUp];
     }
 }

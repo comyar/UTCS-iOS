@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, UTCSBouncyTableViewCellBounceDirection) {
 };
 
 
-@interface UTCSBouncyTableViewCell : UITableViewCell
+@interface UTCSBouncyTableViewCell : UITableViewCell <POPAnimationDelegate>
 
 - (void)bounceWithDirection:(UTCSBouncyTableViewCellBounceDirection)bounceDirection;
 
