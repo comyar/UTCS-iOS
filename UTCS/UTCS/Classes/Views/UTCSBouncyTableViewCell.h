@@ -8,6 +8,7 @@
 
 
 @import UIKit;
+#import <POP/POP.h>
 
 typedef NS_ENUM(NSInteger, UTCSBouncyTableViewCellBounceDirection) {
     UTCSBouncyTableViewCellBounceDirectionUp,

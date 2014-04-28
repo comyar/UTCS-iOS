@@ -28,21 +28,32 @@ static const CGFloat animationDuration = 0.3;
 
 - (void)bounceWithDirection:(UTCSBouncyTableViewCellBounceDirection)bounceDirection
 {
-    [UIView animateWithDuration:animationDuration/3.0 animations:^{
-        self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:animationDuration/3.0 animations:^{
-            self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:animationDuration/3.0 animations:^{
-                self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
-            }];
-        }];
-    }];
+    [self.contentView pop_removeAllAnimations];
     
-    [UIView animateWithDuration:animationDuration animations:^{
-        self.contentView.alpha = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? 0.5 : 1.0;
-    }];
+    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    if (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown) {
+        springAnimation.toValue = @(0.925);
+    } else {
+        springAnimation.toValue = @(1.0);
+    }
+    
+    [self.contentView pop_addAnimation:springAnimation forKey:@"bounce"];
+    
+//    [UIView animateWithDuration:animationDuration/3.0 animations:^{
+//        self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.9, 0.9) : CGAffineTransformMakeScale(1.05, 1.05);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:animationDuration/3.0 animations:^{
+//            self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.95, 0.95) : CGAffineTransformMakeScale(0.975, 0.975);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:animationDuration/3.0 animations:^{
+//                self.contentView.transform = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? CGAffineTransformMakeScale(0.925, 0.925) : CGAffineTransformMakeScale(1.0, 1.0);
+//            }];
+//        }];
+//    }];
+//    
+//    [UIView animateWithDuration:animationDuration animations:^{
+//        self.contentView.alpha = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? 0.5 : 1.0;
+//    }];
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated

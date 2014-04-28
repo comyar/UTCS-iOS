@@ -22,6 +22,7 @@ PODS:
   - JVFloatLabeledTextField (0.0.7)
   - MBProgressHUD (0.8)
   - PocketSVG (0.5)
+  - pop (1.0.2)
   - Shimmer (1.0.1)
   - TOWebViewController (2.0.4)
 
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - JVFloatLabeledTextField (from `https://github.com/jverdi/JVFloatLabeledTextField`)
   - MBProgressHUD (~> 0.8)
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
+  - pop
   - Shimmer (~> 1.0.1)
   - TOWebViewController (from `https://github.com/TimOliver/TOWebViewController`)
 
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: 9e3e205143699e9b2119358688e99fe0787b5a97
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   PocketSVG: d9e6b6951adf25d3c1011e87296a89b5f5c99a29
+  pop: 55f6c972fbfb644dfcf1bd6892d001feaa32cc38
   Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
   TOWebViewController: f6d90b7b63b38e7abc81ecb3eb9fbe2b0d60906a
 
