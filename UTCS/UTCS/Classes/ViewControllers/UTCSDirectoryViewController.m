@@ -71,17 +71,6 @@
         });
         
         
-        self.searchButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIImage *image = [[UIImage imageNamed:@"search"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.tintColor = [UIColor whiteColor];
-            [button addSubview:imageView];
-            
-            button;
-        });
         
         self.tableView.tableHeaderView = self.searchBar;
         self.tableView.alwaysBounceVertical = NO;
@@ -106,13 +95,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view insertSubview:self.searchButton belowSubview:self.menuButton];
+    
+    self.searchButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = CGRectMake(self.view.width - 40.0, 11.0, 22, 22.0);
+        
+        UIImage *image = [[UIImage imageNamed:@"search"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        [button addSubview:imageView];
+        
+        button;
+    });
+    
+    [self.view addSubview:self.searchButton];
+    [self.view bringSubviewToFront:self.searchButton];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.searchButton.frame = CGRectMake(self.view.width - 40, 8.0, 36, 36);
 }
 
 #pragma mark Buttons
@@ -120,11 +124,10 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.searchButton) {
-        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
-        [self.searchDisplayController setActive:YES animated:YES];
+        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:NO];
+        [self.searchBar becomeFirstResponder];
     }
 }
-
 
 #pragma mark Updating
 
