@@ -15,7 +15,6 @@
 
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 
-
 @property (nonatomic) NSDictionary                  *machines;
 @property (nonatomic, readonly) UTCSLabViewLayout   *layout;
 

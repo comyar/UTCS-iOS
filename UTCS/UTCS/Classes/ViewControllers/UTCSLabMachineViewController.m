@@ -60,11 +60,13 @@
 - (UTCSLabMachineView *)labView:(UTCSLabView *)labView machineViewForIndexPath:(NSIndexPath *)indexPath name:(NSString *)name
 {
     UTCSLabMachineView *machineView = [labView dequeueMachineViewForIndexPath:indexPath];
-    if (!name) {
+    UTCSLabMachine *machine = self.machines[name];
+    if (!machine) {
         machineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     } else {
-        UTCSLabMachine *machine = self.machines[name];
-        if (machine.occupied) {
+        if (![[machine.status lowercaseString] isEqualToString:@"up"]) {
+            machineView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+        } else if (machine.occupied) {
             machineView.backgroundColor = [UIColor redColor];
         } else {
             machineView.backgroundColor = [UIColor greenColor];

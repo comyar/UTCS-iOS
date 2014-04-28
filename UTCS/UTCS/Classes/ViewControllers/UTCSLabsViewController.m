@@ -91,7 +91,8 @@
         label.numberOfLines = 0;
         label;
     });
-    self.thirdShimmeringView.shimmering = YES;
+    
+    
     [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
@@ -121,8 +122,11 @@
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Updating";
+        self.thirdShimmeringView.shimmering = YES;
         
         [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+            
+            self.thirdShimmeringView.shimmering = NO;
             
             if (success) {
                 NSDictionary *third      = self.dataSource.data[@"third"];
