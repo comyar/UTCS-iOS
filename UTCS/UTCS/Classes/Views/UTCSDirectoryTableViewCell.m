@@ -9,7 +9,6 @@
 #import "UTCSDirectoryTableViewCell.h"
 
 
-NSString * const UTCSDirectoryAddToContactsNotification = @"UTCSDirectoryAddToContactsNotification";
 
 @implementation UTCSDirectoryTableViewCell
 
@@ -60,11 +59,6 @@ NSString * const UTCSDirectoryAddToContactsNotification = @"UTCSDirectoryAddToCo
     if (![self.officeLabel.text length]) {
         self.phoneNumberTextView.frame = self.officeLabel.frame;
     }
-    
-    
-    self.officeLabel.alpha              = self.showDetails;
-    self.phoneNumberTextView.alpha      = self.showDetails;
-    
 }
 
 

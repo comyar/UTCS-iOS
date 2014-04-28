@@ -26,8 +26,6 @@
 
 @interface UTCSDirectoryViewController ()
 
-@property (nonatomic) NSIndexPath               *selectedIndexPath;
-
 // Search bar
 @property (nonatomic) UISearchBar               *searchBar;
 
@@ -72,6 +70,19 @@
             searchBar;
         });
         
+        
+        self.searchButton = ({
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIImage *image = [[UIImage imageNamed:@"search"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+            imageView.tintColor = [UIColor whiteColor];
+            [button addSubview:imageView];
+            
+            button;
+        });
+        
         self.tableView.tableHeaderView = self.searchBar;
         self.tableView.alwaysBounceVertical = NO;
         self.tableView.sectionIndexColor = [UIColor whiteColor];
@@ -90,9 +101,32 @@
     [super viewDidAppear:animated];
     self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
     [self update];
-    
-    
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.view insertSubview:self.searchButton belowSubview:self.menuButton];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.searchButton.frame = CGRectMake(self.view.width - 40, 8.0, 36, 36);
+}
+
+#pragma mark Buttons
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if (button == self.searchButton) {
+        [self.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:YES];
+        [self.searchDisplayController setActive:YES animated:YES];
+    }
+}
+
+
+#pragma mark Updating
 
 - (void)update
 {
@@ -127,27 +161,9 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UTCSDirectoryTableViewCell *previous = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:self.selectedIndexPath];
-    UTCSDirectoryTableViewCell *cell = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        self.selectedIndexPath = nil;
-        cell.showDetails = NO;
-    } else {
-        self.selectedIndexPath = indexPath;
-        cell.showDetails = YES;
-    }
-    previous.showDetails = NO;
-    
-    [tableView beginUpdates];
-    [tableView endUpdates];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static const CGFloat height = 64.0;
+    CGFloat height = 64.0;
     
     UTCSDirectoryPerson *person = nil;
     
@@ -160,18 +176,12 @@
         
     }
     
-    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        
-        CGFloat selectedHeight = height;
-        if (person.office) {
-            selectedHeight += 16.0;
-        }
-        
-        if (person.phoneNumber) {
-            selectedHeight += 16.0;
-        }
-        
-        return selectedHeight;
+    if (person.office) {
+        height += 16.0;
+    }
+    
+    if (person.phoneNumber) {
+        height += 16.0;
     }
     
     return height;
@@ -195,14 +205,6 @@
         });
     }
     return nil;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ((UTCSDirectoryTableViewCell *)cell).showDetails = NO;
-    if (self.selectedIndexPath && [indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        ((UTCSDirectoryTableViewCell *)cell).showDetails = YES;
-    }
 }
 
 #pragma mark UTCSDataSourceCacheDelegate Methods

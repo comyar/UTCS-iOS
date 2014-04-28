@@ -2,12 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "goButton@2x.png"
+      "filename" : "search@2x.png"
     }
   ],
   "info" : {

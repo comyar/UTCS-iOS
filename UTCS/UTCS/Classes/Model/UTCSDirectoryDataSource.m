@@ -49,8 +49,12 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
         self.searchController.dataSource = self;
         
         NSDictionary *cache = [_cache objectWithKey:UTCSDirectoryCacheKey];
-        _data = cache[UTCSDataSourceCacheValuesName];
-        NSLog(@"Directory Cache : %@", _data);
+        _data           = cache[UTCSDataSourceCacheValuesName];
+        
+        cache = [_cache objectWithKey:UTCSDirectoryFlatCacheKey];
+        _flatDirectory  = cache[UTCSDataSourceCacheValuesName];
+        
+        NSLog(@"%@", _flatDirectory);
     }
     return self;
 }

@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #import "UTCSLabsSearchViewController.h"
 
 @interface UTCSLabsSearchViewController ()
-
+@property (nonatomic) UISearchBar *searchBar;
 @end
 
 @implementation UTCSLabsSearchViewController
@@ -18,6 +19,11 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+        _searchController = [UTCSLabsDataSourceSearchController new];
+        
+        
+        
+        
     }
     return self;
 }
@@ -25,24 +31,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.menuButton.hidden = YES;
+    
+    
+    self.searchBar = ({
+        UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, 64.0)];
+        searchBar.backgroundImage = [UIImage new];
+        searchBar.placeholder = @"Search Labs";
+        searchBar.scopeButtonTitles = @[@"Third Floor", @"Basement"];
+        searchBar.scopeBarBackgroundImage = [UIImage new];
+        searchBar.tintColor = [UIColor whiteColor];
+        searchBar.searchTextPositionAdjustment = UIOffsetMake(8.0, 0.0);
+        [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBarBackground"]
+                                        forState:UIControlStateNormal];
+        searchBar;
+    });
+    
+    [self.view addSubview:self.searchBar];
+    
+    _searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
+                                                                                 contentsController:self];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidLayoutSubviews];
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

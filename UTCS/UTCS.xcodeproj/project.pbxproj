@@ -14,6 +14,7 @@
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
 		0B9A26431891D5E30032DA03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A26421891D5E30032DA03 /* main.m */; };
 		0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */; };
+		DD008CB4190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */; };
 		DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44657218E5711400ED1153 /* UTCSMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44657118E5711400ED1153 /* UTCSMenuButton.m */; };
@@ -110,6 +111,8 @@
 		0B9A264F1891D5E30032DA03 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4B51DDA83E634E69A1D85ECB /* libPods-UTCS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UTCS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95446C76F512403BA430A5AA /* Pods-UTCS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.xcconfig"; path = "Pods/Pods-UTCS.xcconfig"; sourceTree = "<group>"; };
+		DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceSearchController.h; path = Model/UTCSLabsDataSourceSearchController.h; sourceTree = "<group>"; };
+		DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsDataSourceSearchController.m; path = Model/UTCSLabsDataSourceSearchController.m; sourceTree = "<group>"; };
 		DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSParallaxBlurHeaderScrollView.h; sourceTree = "<group>"; };
 		DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSParallaxBlurHeaderScrollView.m; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -514,6 +517,8 @@
 				DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */,
 				DD9475C8190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.h */,
 				DD9475C9190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m */,
+				DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */,
+				DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1091,6 +1096,7 @@
 				DDFDB13E1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m in Sources */,
 				DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
+				DD008CB4190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,

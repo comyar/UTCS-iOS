@@ -19,6 +19,7 @@
 #import "UTCSLabsSearchViewController.h"
 
 
+
 #pragma mark - UTCSLabsViewController Class Extension
 
 @interface UTCSLabsViewController ()
@@ -99,8 +100,10 @@
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
 
     self.searchViewController = [UTCSLabsSearchViewController new];
+    self.searchViewController.searchController.dataSource = self.dataSource;
     
-    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController]
+    
+    [self.pageViewController setViewControllers:@[self.searchViewController]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];

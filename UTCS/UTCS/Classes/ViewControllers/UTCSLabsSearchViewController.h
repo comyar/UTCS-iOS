@@ -6,8 +6,13 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface UTCSLabsSearchViewController : UIViewController
+#import "UTCSContentViewController.h"
+
+#import "UTCSLabsDataSourceSearchController.h"
+
+@interface UTCSLabsSearchViewController : UTCSContentViewController
+
+@property (nonatomic, readonly) UTCSLabsDataSourceSearchController *searchController;
 
 @end

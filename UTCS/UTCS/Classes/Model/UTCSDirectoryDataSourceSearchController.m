@@ -12,9 +12,6 @@
 #import "UTCSDirectoryPerson.h"
 
 
-@interface UTCSDirectoryDataSourceSearchController ()
-@property (nonatomic) NSIndexPath *selectedIndexPath;
-@end
 
 @implementation UTCSDirectoryDataSourceSearchController
 
@@ -26,8 +23,6 @@
         }
         return;
     }
-    
-    self.selectedIndexPath = nil;
     
     if ([scope isEqualToString:@"All"]) {
         scope = nil;
@@ -91,53 +86,21 @@
 
 #pragma mark UITableViewDelegate Methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UTCSDirectoryTableViewCell *previous = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:self.selectedIndexPath];
-    UTCSDirectoryTableViewCell *cell = (UTCSDirectoryTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        self.selectedIndexPath = nil;
-        cell.showDetails = NO;
-    } else {
-        self.selectedIndexPath = indexPath;
-        cell.showDetails = YES;
-    }
-    previous.showDetails = NO;
-    
-    [tableView beginUpdates];
-    [tableView endUpdates];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static const CGFloat height = 64.0;
+    CGFloat height = 64.0;
     
     UTCSDirectoryPerson *person = ((UTCSDirectoryDataSource *)self.dataSource).flatDirectory[indexPath.row];
     
-    if ([indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        
-        CGFloat selectedHeight = height;
-        if (person.office) {
-            selectedHeight += 20.0;
-        }
-        
-        if (person.phoneNumber) {
-            selectedHeight += 20.0;
-        }
-        
-        return selectedHeight;
+    if (person.office) {
+        height += 20.0;
+    }
+    
+    if (person.phoneNumber) {
+        height += 20.0;
     }
     
     return height;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ((UTCSDirectoryTableViewCell *)cell).showDetails = NO;
-    if (self.selectedIndexPath && [indexPath compare:self.selectedIndexPath] == NSOrderedSame) {
-        ((UTCSDirectoryTableViewCell *)cell).showDetails = YES;
-    }
 }
 
 #pragma mak UISearchDisplayDelegate Methods
@@ -150,18 +113,6 @@
     
     tableView.contentOffset = CGPointZero;
     tableView.contentInset = UIEdgeInsetsZero;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
-{
-    NSLog(@"%@", NSStringFromCGRect(tableView.frame));
-    NSLog(@"%@", NSStringFromUIEdgeInsets(tableView.contentInset));
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
-{
-    [super searchDisplayController:controller willHideSearchResultsTableView:tableView];
-    self.selectedIndexPath = nil;
 }
 
 @end

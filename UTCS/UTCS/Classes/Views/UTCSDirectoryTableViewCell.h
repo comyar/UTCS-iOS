@@ -11,12 +11,8 @@
 
 #import "UTCSButton.h"
 
-extern NSString * const UTCSDirectoryAddToContactsNotification;
-
-
 @interface UTCSDirectoryTableViewCell : UITableViewCell
 
-@property (nonatomic) BOOL                  showDetails;
 @property (nonatomic, readonly) UILabel     *officeLabel;
 @property (nonatomic, readonly) UITextView  *phoneNumberTextView;
 
