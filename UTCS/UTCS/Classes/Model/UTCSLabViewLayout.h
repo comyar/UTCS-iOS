@@ -16,6 +16,7 @@
 - (instancetype)initWithFilename:(NSString *)filename;
 - (void)prepareLayoutForLabView:(UTCSLabView *)labView;
 
+- (NSString *)labMachineNameForIndexPath:(NSIndexPath *)indexPath;
 - (UTCSLabViewLayoutAttributes *)layoutAttributesForIndexPath:(NSIndexPath *)indexPath;
 - (UTCSLabViewLayoutAttributes *)layoutAttributesForLabMachineName:(NSString *)labMachineName;
 

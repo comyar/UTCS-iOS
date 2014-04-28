@@ -7,10 +7,7 @@
 //
 
 #import "UTCSLabMachineViewController.h"
-#import "UTCSLabViewLayoutAttributes.h"
-#import "UTCSLabMachineView.h"
 #import "UTCSLabMachine.h"
-#import "UTCSLabView.h"
 
 
 @interface UTCSLabMachineViewController ()
@@ -26,6 +23,10 @@
 {
     if (self = [super init]) {
         _layout = layout;
+        self.labView = [[UTCSLabView alloc]initWithFrame:CGRectZero layout:self.layout];
+        self.labView.frame = CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0);
+        self.labView.backgroundColor = [UIColor clearColor];
+        self.labView.dataSource = self;
     }
     return self;
 }
@@ -33,6 +34,8 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    
+    [self.labView invalidateLayout];
 }
 
 - (void)viewDidLoad
@@ -40,27 +43,34 @@
     [super viewDidLoad];
     self.menuButton.hidden = YES;
     
-    self.labView = [[UTCSLabView alloc]initWithFrame:CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0) layout:self.layout];
-    self.labView.backgroundColor = [UIColor clearColor];
+    [self.labView prepareLayout];
     [self.view addSubview:self.labView];
+    
 }
 
-- (void)setMachines:(NSArray *)machines
+- (void)setMachines:(NSDictionary *)machines
 {
     _machines = machines;
-    
-    for (UTCSLabMachine *machine in _machines) {
-        UTCSLabViewLayoutAttributes *layoutAttributes = [_layout layoutAttributesForLabMachineName:machine.name];
-        NSIndexPath *indexPath = layoutAttributes.indexPath;
-        UTCSLabMachineView *labMachineView = (UTCSLabMachineView *)self.labView.machineViews[indexPath.row];
-        if (machine.occupied) {
-            labMachineView.backgroundColor = [UIColor redColor];
-        } else {
-            labMachineView.backgroundColor = [UIColor greenColor];
-        }
-    }
-    
+    [self.labView invalidateLayout];
+    [self.labView reloadData];
 }
 
+#pragma mark UTCSLabViewDataSource Methods
+
+- (UTCSLabMachineView *)labView:(UTCSLabView *)labView machineViewForIndexPath:(NSIndexPath *)indexPath name:(NSString *)name
+{
+    UTCSLabMachineView *machineView = [labView dequeueMachineViewForIndexPath:indexPath];
+    if (!name) {
+        machineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    } else {
+        UTCSLabMachine *machine = self.machines[name];
+        if (machine.occupied) {
+            machineView.backgroundColor = [UIColor redColor];
+        } else {
+            machineView.backgroundColor = [UIColor greenColor];
+        }
+    }
+    return machineView;
+}
 
 @end

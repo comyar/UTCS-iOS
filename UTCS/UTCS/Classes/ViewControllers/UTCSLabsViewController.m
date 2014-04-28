@@ -12,6 +12,7 @@
 #import "UTCSLabsDataSource.h"
 #import "UTCSLabMachine.h"
 #import "FBShimmeringView.h"
+#import "UTCSUpdateTextFactory.h"
 
 #import "UTCSLabMachineViewController.h"
 
@@ -90,7 +91,7 @@
         label.numberOfLines = 0;
         label;
     });
-//    self.thirdShimmeringView.shimmering = YES;
+    self.thirdShimmeringView.shimmering = YES;
     [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
@@ -124,16 +125,15 @@
         [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
             if (success) {
-                NSArray *third = self.dataSource.data[@"third"];
-                NSArray *basement = self.dataSource.data[@"basement"];
+                NSDictionary *third      = self.dataSource.data[@"third"];
+                NSDictionary *basement   = self.dataSource.data[@"basement"];
                 
+                NSLog(@"third");
                 self.thirdFloorLabViewController.machines = third;
+                
+                NSLog(@"basement");
                 self.basementLabViewController.machines = basement;
-                
-                NSLog(@"third : %ld", [third count]);
-                NSLog(@"basement : %ld", [basement count]);
 
-                
             } else {
                 // Frowny face
             }

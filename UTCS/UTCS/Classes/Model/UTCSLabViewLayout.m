@@ -35,6 +35,17 @@
     return self;
 }
 
+- (NSString *)labMachineNameForIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSLabViewLayoutAttributes *layoutAttribute = [self layoutAttributesForIndexPath:indexPath];
+    for (NSString *key in self.layoutAttributes) {
+        if ([layoutAttribute isEqual:self.layoutAttributes[key]]) {
+            return key;
+        }
+    }
+    return nil;
+}
+
 - (void)prepareLayoutForLabView:(UTCSLabView *)labView
 {
     CGFloat heightMultiplier = CGRectGetHeight(labView.bounds) / [self.meta[@"maximumGridHeight"]floatValue];

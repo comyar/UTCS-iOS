@@ -7,18 +7,16 @@
 //
 
 
-@import UIKit;
-
 #import "UTCSContentViewController.h"
-#import "UTCSLabViewLayout.h"
+#import "UTCSLabView.h"
 
 
-@interface UTCSLabMachineViewController : UTCSContentViewController
+@interface UTCSLabMachineViewController : UTCSContentViewController <UTCSLabViewDataSource>
 
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 
 
-@property (nonatomic) NSArray *machines;
-@property (nonatomic, readonly) UTCSLabViewLayout *layout;
+@property (nonatomic) NSDictionary                  *machines;
+@property (nonatomic, readonly) UTCSLabViewLayout   *layout;
 
 @end

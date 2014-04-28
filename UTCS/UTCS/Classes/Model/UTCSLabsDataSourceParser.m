@@ -13,20 +13,20 @@
 
 - (NSDictionary *)parseValues:(NSDictionary *)values
 {
-    NSDictionary *third = values[@"third"];
-    NSDictionary *basement = values[@"basement"];
+    NSDictionary *third     = values[@"third"];
+    NSDictionary *basement  = values[@"basement"];
     
     
-    NSArray *thirdMachines = [self parseDataFromDictionary:third withLabName:@"third"];
-    NSArray *basementMachines = [self parseDataFromDictionary:basement withLabName:@"basement"];
+    NSDictionary *thirdMachines      = [self parseDataFromDictionary:third withLabName:@"third"];
+    NSDictionary *basementMachines   = [self parseDataFromDictionary:basement withLabName:@"basement"];
     
     return @{@"third" : thirdMachines,
              @"basement" : basementMachines};
 }
 
-- (NSArray *)parseDataFromDictionary:(NSDictionary *)dictionary withLabName:(NSString *)labName
+- (NSDictionary *)parseDataFromDictionary:(NSDictionary *)dictionary withLabName:(NSString *)labName
 {
-    NSMutableArray *machines = [NSMutableArray new];
+    NSMutableDictionary *machines = [NSMutableDictionary new];
     
     for (NSString *machineName in dictionary) {
         NSDictionary *machineData = dictionary[machineName];
@@ -37,7 +37,7 @@
         machine.occupied        = [machineData[@"occupied"]boolValue];
         machine.status          = machineData[@"status"];
         machine.uptime          = machineData[@"uptime"];
-        [machines addObject:machine];
+        machines[machineName] = machine;
     }
     
     return machines;

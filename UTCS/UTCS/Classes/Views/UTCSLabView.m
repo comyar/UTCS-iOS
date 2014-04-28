@@ -22,29 +22,56 @@
 {
     if (self = [super initWithFrame:frame]) {
         _layout = layout;
-        NSMutableArray *machineViews = [NSMutableArray new];
-        
-        [_layout prepareLayoutForLabView:self];
-        
-        for (int i = 0; i < _layout.numberOfLabMachines; ++i) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            UTCSLabViewLayoutAttributes *layoutAttributes = [_layout layoutAttributesForIndexPath:indexPath];
-            
-            NSLog(@"%@", NSStringFromCGSize(layoutAttributes.size));
-            
-            UTCSLabMachineView *labMachineView = [UTCSLabMachineView new];
-            labMachineView.frame = CGRectMake(0.0, 0.0, layoutAttributes.size.width, layoutAttributes.size.height);
-            labMachineView.center = layoutAttributes.center;
-            labMachineView.tag = indexPath.row;
-            
-            [machineViews addObject:labMachineView];
-            [self addSubview:labMachineView];
-        }
-        
-        self.machineViews = machineViews;
-        
+        [self prepareLayout];
     }
     return self;
+}
+
+- (void)invalidateLayout
+{
+    [self prepareLayout];
+}
+
+- (void)prepareLayout
+{
+    [_layout prepareLayoutForLabView:self];
+    
+    NSMutableArray *machineViews = [NSMutableArray new];
+    
+    for (int i = 0; i < _layout.numberOfLabMachines; ++i) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        
+        UTCSLabMachineView *labMachineView = [UTCSLabMachineView new];
+        labMachineView.tag = indexPath.row;
+        
+        [machineViews addObject:labMachineView];
+    }
+    
+    self.machineViews = machineViews;
+    
+}
+
+- (UTCSLabMachineView *)dequeueMachineViewForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.machineViews[indexPath.row];
+}
+
+- (void)reloadData
+{
+    NSInteger count = [self.machineViews count];
+    
+    for (int i = 0; i < count; ++i) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        NSString *machineName = [_layout labMachineNameForIndexPath:indexPath];
+        UTCSLabViewLayoutAttributes *layoutAttributes = [_layout layoutAttributesForIndexPath:indexPath];
+        UTCSLabMachineView *machineView = [self.dataSource labView:self machineViewForIndexPath:indexPath name:machineName];
+        
+        machineView.frame = CGRectMake(0.0, 0.0, layoutAttributes.size.width, layoutAttributes.size.height);
+        machineView.center = layoutAttributes.center;
+        machineView.tag = indexPath.row;
+        
+        [self addSubview:machineView];
+    }
 }
 
 @end
