@@ -96,7 +96,6 @@
     });
     
     
-    
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
     
@@ -157,10 +156,8 @@
                 NSDictionary *third      = self.dataSource.data[@"third"];
                 NSDictionary *basement   = self.dataSource.data[@"basement"];
                 
-                NSLog(@"third");
                 self.thirdFloorLabViewController.machines = third;
                 
-                NSLog(@"basement");
                 self.basementLabViewController.machines = basement;
 
             } else {

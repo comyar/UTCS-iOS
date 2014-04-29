@@ -132,12 +132,13 @@ static NSString *diskQuotaCacheKey = @"quota";
         // Quota detail label
         self.percentLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36];
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             label;
         });
         
+        // Quota detail label
         self.quotaDetailLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
             label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
@@ -203,17 +204,16 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.nameLabel.frame            = CGRectMake(16.0, self.view.center.y, self.view.width - 32.0, 48);
     
-    self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 24);
-    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.2 * self.view.center.y);
+    self.percentLabel.frame         = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 36);
+    self.percentLabel.center        = CGPointMake(self.view.center.x, 1.25 * self.view.center.y);
     
     self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
-    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.3 * self.view.center.y);
+    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.35 * self.view.center.y);
     
     self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
     self.descriptionLabel.frame     = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
     self.descriptionLabel.center    = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
-    
     
     self.frownyFaceLabel.frame      = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
     self.frownyFaceLabel.center     = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);

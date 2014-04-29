@@ -1238,7 +1238,7 @@
 					"-ObjC",
 					"-framework",
 					Reveal,
-					"-lstdc++",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1273,7 +1273,7 @@
 					"-ObjC",
 					"-framework",
 					Reveal,
-					"-lstdc++",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
