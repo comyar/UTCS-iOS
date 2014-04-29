@@ -6,17 +6,25 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+#import <POP/POP.h>
 #import "UTCSSlideNavigationAnimator.h"
+
+@interface UTCSSlideNavigationAnimator ()
+@property (nonatomic) id<UIViewControllerContextTransitioning> transitionContext;
+@end
+
 
 @implementation UTCSSlideNavigationAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.5;
+    return 0.0;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    
+    
     UIViewController* toViewController      = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIViewController* fromViewController    = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
@@ -33,15 +41,31 @@
                                     CGRectGetWidth(toViewController.view.bounds), CGRectGetHeight(toViewController.view.bounds));
     
     toViewController.view.frame = toStartFrame;
-    NSTimeInterval transitionDuration = [self transitionDuration:transitionContext];
     
-    [UIView animateWithDuration:transitionDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations: ^ {
-        toViewController.view.frame     = toDestinationFrame;
-        fromViewController.view.frame   = fromDestinationFrame;
+    POPSpringAnimation *toSpringAnimation = [POPSpringAnimation animation];
+    toSpringAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewFrame];
+    toSpringAnimation.toValue = [NSValue valueWithCGRect:toDestinationFrame];
+    toSpringAnimation.springBounciness = 5.0;
+    toSpringAnimation.springSpeed = 10.0;
+    toSpringAnimation.delegate = self;
+    
+    POPSpringAnimation *fromSpringAnimation = [POPSpringAnimation animation];
+    fromSpringAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewFrame];
+    fromSpringAnimation.toValue = [NSValue valueWithCGRect:fromDestinationFrame];
+    fromSpringAnimation.springBounciness = 5.0;
+    fromSpringAnimation.springSpeed = 10.0;
+    
+    self.transitionContext = transitionContext;
+    
+    
+    [toViewController.view pop_addAnimation:toSpringAnimation       forKey:@"toSpringAnimation"];
+    [fromViewController.view pop_addAnimation:fromSpringAnimation   forKey:@"fromSpringAnimation"];
+}
 
-    } completion:^(BOOL finished) {
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-    }];
+- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
+{
+    [self.transitionContext completeTransition:finished];
+    self.transitionContext = nil;
 }
 
 @end

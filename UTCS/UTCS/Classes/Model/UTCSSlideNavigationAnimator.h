@@ -8,8 +8,9 @@
 
 
 @import Foundation;
+#import <POP/POP.h>
 
-@interface UTCSSlideNavigationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface UTCSSlideNavigationAnimator : NSObject <UIViewControllerAnimatedTransitioning, POPAnimationDelegate>
 
 @property (nonatomic, getter = isPushing) BOOL pushing;
 
