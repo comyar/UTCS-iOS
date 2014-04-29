@@ -184,14 +184,29 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     }
     
     UTCSEvent *event        = self.filteredEvents[indexPath.row];
-    cell.dayLabel.text      = [self.dayDateFormatter stringFromDate:event.startDate];
-    cell.monthLabel.text    = [[self.monthDateFormatter stringFromDate:event.startDate]uppercaseString];
     
     UIColor *typeColor = self.typeColorMapping[event.type];
     cell.typeStripeLayer.fillColor = typeColor.CGColor;
-
+    
+    
+    NSString *detailText = [NSString string];
+    
+    if ([event.location length] > 0) {
+        detailText = [detailText stringByAppendingString:event.location];
+        if (event.startDate) {
+            detailText = [detailText stringByAppendingString:@"\n"];
+        }
+    }
+    
+    if (event.startDate) {
+        NSString  *dateString   = [NSDateFormatter localizedStringFromDate:event.startDate
+                                                                 dateStyle:NSDateFormatterLongStyle
+                                                                 timeStyle:NSDateFormatterShortStyle];
+        detailText = [detailText stringByAppendingString:dateString];
+    }
+    
     cell.textLabel.text         = event.name;
-    cell.detailTextLabel.text   = event.location;
+    cell.detailTextLabel.text   = detailText;
     
     return cell;
 }
