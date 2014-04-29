@@ -8,7 +8,6 @@
 
 #import "UTCSTableViewController.h"
 
-
 #pragma mark - UTCSAbstractTableViewController Class Extension
 
 @interface UTCSTableViewController ()
@@ -55,7 +54,8 @@
         _tableView = ({
             UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:style];
             tableView.delegate         = self;
-            tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.1];
+            tableView.separatorColor   = [UIColor colorWithWhite:1.0
+                                                           alpha:FBTweakValue(@"Table View Controller", @"Table View", @"Separator Alpha", 0.1)];
             tableView.backgroundColor  = [UIColor clearColor];
             [tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
             tableView;

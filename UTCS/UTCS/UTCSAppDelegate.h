@@ -11,11 +11,13 @@
 @import QuartzCore;
 
 #import "UTCSMenuViewController.h"
-
+#import <Tweaks/FBTweakShakeWindow.h>
 
 /**
  UTCSAppDelegate
  */
 @interface UTCSAppDelegate : UIResponder <UIApplicationDelegate, UTCSMenuViewControllerDelegate>
+
+@property (nonatomic)FBTweakShakeWindow *window;
 
 @end

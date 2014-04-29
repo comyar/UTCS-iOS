@@ -25,6 +25,7 @@ PODS:
   - pop (1.0.2)
   - Shimmer (1.0.1)
   - TOWebViewController (2.0.4)
+  - Tweaks (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - pop
   - Shimmer (~> 1.0.1)
   - TOWebViewController (from `https://github.com/TimOliver/TOWebViewController`)
+  - Tweaks
 
 EXTERNAL SOURCES:
   JVFloatLabeledTextField:
@@ -53,5 +55,6 @@ SPEC CHECKSUMS:
   pop: 55f6c972fbfb644dfcf1bd6892d001feaa32cc38
   Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
   TOWebViewController: f6d90b7b63b38e7abc81ecb3eb9fbe2b0d60906a
+  Tweaks: 425d49710c8b3b698a399d08e30a4336f216bbe9
 
 COCOAPODS: 0.32.1

@@ -11,7 +11,7 @@
 
 // Views
 #import "UTCSParallaxBlurHeaderScrollView.h"
-
+#import <Tweaks/FBTweakInline.h>
 
 #pragma mark - Constants
 
@@ -174,10 +174,11 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
             [self bringSubviewToFront:self.headerContainerView];
         }
         
-        self.headerBlurredImageView.alpha = MIN(1.0, 4.0 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
+        CGFloat multiplier = FBTweakValue(@"Parallax Header Blur View", @"Blur Image View", @"Multiplier", 4.0);
+        self.headerBlurredImageView.alpha = MIN(1.0, multiplier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
         for(UIView *subview in self.headerContainerView.subviews) {
             if(subview != self.headerBlurredImageView && subview != self.headerImageView) {
-                subview.alpha = 1.0 - MIN(1.0, 2.5 * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
+                subview.alpha = 1.0 - MIN(1.0, multiplier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
             }
         }
     }

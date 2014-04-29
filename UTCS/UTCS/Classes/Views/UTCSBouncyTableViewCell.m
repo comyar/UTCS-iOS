@@ -7,7 +7,7 @@
 //
 
 #import "UTCSBouncyTableViewCell.h"
-
+#import <Tweaks/FBTweakInline.h>
 
 @interface UTCSBouncyTableViewCell ()
 @property (nonatomic) CGRect originalContentBounds;
@@ -33,8 +33,10 @@
 {
     NSValue *scaleValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
     
+    CGFloat bounceDownScale = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Down Scale", 0.925);
+    
     if (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown) {
-        scaleValue = [NSValue valueWithCGPoint:CGPointMake(0.925, 0.925)];
+        scaleValue = [NSValue valueWithCGPoint:CGPointMake(bounceDownScale, bounceDownScale)];
     }
     
     NSNumber *alphaValue = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? @(0.5) : @(1.0);
@@ -47,8 +49,8 @@
     } else {
         alphaAnimation = [POPSpringAnimation animation];
         alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
-        alphaAnimation.springBounciness = 20.0;
-        alphaAnimation.springSpeed = 20.0;
+        alphaAnimation.springBounciness = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Spring Bounciness", 20.0);
+        alphaAnimation.springSpeed = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Spring Speed", 20.0);
         alphaAnimation.toValue = alphaValue;
         [self.contentView pop_addAnimation:alphaAnimation forKey:@"alpha"];
     }
@@ -58,8 +60,8 @@
     } else {
         springAnimation = [POPSpringAnimation animation];
         springAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewScaleXY];
-        springAnimation.springBounciness = 20.0;
-        springAnimation.springSpeed = 20.0;
+        springAnimation.springBounciness = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Spring Bounciness", 20.0);
+        springAnimation.springSpeed = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Spring Speed", 20.0);
         springAnimation.toValue = scaleValue;
         [self.contentView pop_addAnimation:springAnimation forKey:@"bounce"];
     }

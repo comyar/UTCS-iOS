@@ -63,12 +63,8 @@
     // Check cache
     NSDictionary *cache = [self.cache objectWithKey:self.primaryCacheKey];
     UTCSDataSourceCacheMetaData *metaData = cache[UTCSDataSourceCacheMetaDataName];
-    NSLog(@"%@", cache);
-    NSLog(@"%@", metaData.timestamp);
     
     if (metaData && [[NSDate date]timeIntervalSinceDate:metaData.timestamp] < self.minimumTimeBetweenUpdates) {
-        
-        NSLog(@"Cache hit");
         
         _data = cache[UTCSDataSourceCacheValuesName];
         _updated = metaData.timestamp;
@@ -78,8 +74,6 @@
         }
         return;
     }
-    
-    NSLog(@"Cache miss");
     
     // Make request
     [UTCSDataRequestServicer sendDataRequestForService:self.service argument:argument completion:^(NSDictionary *meta, id values, NSError *error) {

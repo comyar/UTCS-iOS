@@ -7,16 +7,13 @@
 //
 
 #import "UTCSVerticalMenuViewController.h"
+#import <Tweaks/FBTweakInline.h>
 
 
 NSString * const UTCSVerticalMenuDisplayNotification = @"UTCSVerticalMenuDisplayNotification";
 
 
-
-
-static const CGFloat snapBehaviorDamping            = 0.33;
 static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
-
 
 
 #pragma mark - UTCSVerticalMenuViewController Class Extension
@@ -94,7 +91,7 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
         } else {
             CGPoint velocity = [gestureRecognizer velocityInView:self.view];
             
-            if (velocity.y > 200) {
+            if (velocity.y > FBTweakValue(@"Vertical Menu", @"Pan Gesture", @"Velocity Threshold", 200.0)) {
                 [self showMenu];
             } else {
                 [self hideMenu];
@@ -154,7 +151,8 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 
     self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                            snapToPoint:CGPointMake(self.view.center.x, 1.33 * CGRectGetHeight(self.view.bounds))];
-    self.contentSnapBehavior.damping = snapBehaviorDamping;
+    
+    self.contentSnapBehavior.damping = FBTweakValue(@"Vertical Menu", @"Snap Behavior", @"Damping", 0.33);
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapBehavior];
@@ -178,7 +176,7 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
     
     self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                          snapToPoint:self.view.center];
-    self.contentSnapBehavior.damping = snapBehaviorDamping;
+    self.contentSnapBehavior.damping = FBTweakValue(@"Vertical Menu", @"Snap Behavior", @"Damping", 0.33);
     
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];

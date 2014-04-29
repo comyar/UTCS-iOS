@@ -8,6 +8,7 @@
 
 #import "UIButton+UTCSButton.h"
 #import "UTCSVerticalMenuViewController.h"
+#import <Tweaks/FBTweakInline.h>
 
 @implementation UIButton (UTCSButton)
 
@@ -60,8 +61,8 @@
     } else {
         springAnimation = [POPSpringAnimation animation];
         springAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewScaleXY];
-        springAnimation.springBounciness = 20.0;
-        springAnimation.springSpeed = 20.0;
+        springAnimation.springBounciness = FBTweakValue(@"UIButton", @"Bouncy Button", @"Spring Bounciness", 20.0);
+        springAnimation.springSpeed = FBTweakValue(@"UIButton", @"Bouncy Button", @"Spring Speed", 20.0);
         springAnimation.toValue = scaleValue;
         [self pop_addAnimation:springAnimation forKey:@"bounce"];
     }
@@ -72,8 +73,8 @@
     } else {
         alphaAnimation = [POPSpringAnimation animation];
         alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
-        alphaAnimation.springBounciness = 20.0;
-        alphaAnimation.springSpeed = 20.0;
+        alphaAnimation.springBounciness = FBTweakValue(@"UIButton", @"Bouncy Button", @"Spring Bounciness", 20.0);
+        alphaAnimation.springSpeed = FBTweakValue(@"UIButton", @"Bouncy Button", @"Spring Speed", 20.0);
         alphaAnimation.toValue = @(alpha);
         [self pop_addAnimation:alphaAnimation forKey:@"alpha"];
     }

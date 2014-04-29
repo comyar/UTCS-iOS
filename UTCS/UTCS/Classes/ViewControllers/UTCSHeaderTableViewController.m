@@ -24,13 +24,11 @@
 
 - (instancetype)init
 {
-    NSLog(@"header table view controller init");
     return [self initWithStyle:UITableViewStylePlain];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSLog(@"header table view controller init");
     return [self initWithStyle:UITableViewStylePlain];
 }
 
@@ -56,7 +54,8 @@
     
     if([keyPath isEqualToString:@"contentOffset"]) {
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
-        self.backgroundBlurredImageView.alpha = MIN(1.0, 4.0 * normalizedOffsetDelta);
+        CGFloat multiplier = FBTweakValue(@"Header Table View Controller", @"Background Blur Image View", @"Multipler", 4.0);
+        self.backgroundBlurredImageView.alpha = MIN(1.0, multiplier * normalizedOffsetDelta);
     }
 }
 

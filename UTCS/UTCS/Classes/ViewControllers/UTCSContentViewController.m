@@ -11,6 +11,7 @@
 #import "UTCSContentViewController.h"
 #import "UIButton+UTCSButton.h"
 
+
 #pragma mark - UTCSAbstractContentViewController Class Extension
 
 @interface UTCSContentViewController ()
@@ -30,7 +31,6 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         _backgroundImageView    = [UIImageView new];
         _menuButton             = [UIButton menuButton];
-        NSLog(@"content init");
     }
     return self;
 }
@@ -48,8 +48,9 @@
     [super viewDidLayoutSubviews];
     
     self.backgroundImageView.frame = self.view.bounds;
-    NSLog(@"menu button : %@", NSStringFromCGRect(self.menuButton.bounds));
     self.menuButton.center = CGPointMake(32.0, 22.0);
+    FBTweakBind(self.menuButton, centerX, @"Content View Controller", @"Menu Button", @"CenterX", 32.0);
+    FBTweakBind(self.menuButton, centerY, @"Content View Controller", @"Menu Button", @"CenterY", 22.0);
 }
 
 - (void)viewDidAppear:(BOOL)animated

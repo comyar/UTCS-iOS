@@ -12,6 +12,7 @@
 #import "UTCSDataSource.h"
 #import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
+#import <Tweaks/FBTweakInline.h>
 
 /**
  UTCSContentViewController is an abstract class

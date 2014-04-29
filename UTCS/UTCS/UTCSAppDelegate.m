@@ -23,6 +23,8 @@
 // Models
 #import "UTCSAppDelegate.h"
 
+#import <Tweaks/FBTweakInline.h>
+
 
 #pragma mark - UTCSAppDelegate Class Extension
 
@@ -72,7 +74,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    self.window = [[FBTweakShakeWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
@@ -109,7 +111,8 @@
     NSAttributedString *searchBarPlaceholder = [[NSAttributedString alloc]initWithString:@"Search" attributes:searchBarPlaceholderAttributes];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]setAttributedPlaceholder:searchBarPlaceholder];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
+    
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:FBTweakValue(@"UISearchBar", @"UITextField", @"Font Size", 20.0)]];
     
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];
