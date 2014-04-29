@@ -37,7 +37,7 @@ static NSString *diskQuotaCacheKey = @"quota";
 @interface UTCSDiskQuotaViewController ()
 
 // Button used to request disk quota information
-@property (nonatomic) UTCSButton                *goButton;
+@property (nonatomic) UIButton                  *goButton;
 
 // Label used to display the user's name
 @property (nonatomic) UILabel                   *nameLabel;
@@ -97,7 +97,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         
         // Go button
         self.goButton = ({
-            UTCSButton *button = [UTCSButton buttonWithType:UIButtonTypeSystem];
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             button.layer.borderColor = [UIColor whiteColor].CGColor;

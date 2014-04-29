@@ -10,7 +10,6 @@
 @import UIKit;
 
 #import "UTCSDataSource.h"
-#import "UTCSMenuButton.h"
 #import "UIView+CZPositioning.h"
 #import "UIColor+UTCSColors.h"
 
@@ -39,7 +38,7 @@
 /**
  Menu button
  */
-@property (nonatomic, readonly) UTCSMenuButton  *menuButton;
+@property (nonatomic, readonly) UIButton        *menuButton;
 
 /**
  */

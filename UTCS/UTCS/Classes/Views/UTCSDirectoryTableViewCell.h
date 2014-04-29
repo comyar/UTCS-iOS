@@ -9,8 +9,6 @@
 
 @import UIKit;
 
-#import "UTCSButton.h"
-
 @interface UTCSDirectoryTableViewCell : UITableViewCell
 
 @property (nonatomic, readonly) UILabel     *officeLabel;

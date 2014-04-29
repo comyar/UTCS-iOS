@@ -9,8 +9,6 @@
 #import "UTCSBouncyTableViewCell.h"
 
 
-static const CGFloat animationDuration = 0.3;
-
 @interface UTCSBouncyTableViewCell ()
 @property (nonatomic) CGRect originalContentBounds;
 @end
@@ -27,15 +25,8 @@ static const CGFloat animationDuration = 0.3;
         self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
         self.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
         self.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        self.originalContentBounds = self.bounds;
     }
     return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.originalContentBounds = self.bounds;
 }
 
 - (void)bounceWithDirection:(UTCSBouncyTableViewCellBounceDirection)bounceDirection
@@ -49,7 +40,7 @@ static const CGFloat animationDuration = 0.3;
     NSNumber *alphaValue = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? @(0.5) : @(1.0);
     
     POPSpringAnimation *springAnimation = [self.contentView pop_animationForKey:@"bounce"];
-    POPSpringAnimation *alphaAnimation = [self.contentView pop_animationForKey:@"alpha"];
+    POPSpringAnimation *alphaAnimation  = [self.contentView pop_animationForKey:@"alpha"];
     
     if (alphaAnimation) {
         alphaAnimation.toValue = alphaValue;
