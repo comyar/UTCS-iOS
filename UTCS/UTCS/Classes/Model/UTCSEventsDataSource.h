@@ -12,6 +12,8 @@
 extern NSString * const UTCSEventsFilterRemoveName;
 extern NSString * const UTCSEventsFilterAddName;
 
+extern NSString * const UTCSEventsDataSourceCacheKey;
+
 /**
  UTCSEventsDataSource
  */

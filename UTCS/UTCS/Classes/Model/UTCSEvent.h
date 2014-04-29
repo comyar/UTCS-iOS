@@ -8,7 +8,7 @@
 
 
 @import Foundation;
-
+@import EventKit;
 
 /**
  */
@@ -65,5 +65,13 @@
 /**
  */
 @property (nonatomic) BOOL                  food;
+
+/**
+ */
+@property (nonatomic) EKEvent               *calendarEvent;
+
+/**
+ */
+@property (nonatomic) BOOL                  starred;
 
 @end

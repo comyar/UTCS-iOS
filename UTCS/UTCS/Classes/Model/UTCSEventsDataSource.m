@@ -23,9 +23,9 @@
 #import "UIColor+UTCSColors.h"
 
 
-NSString * const UTCSEventsFilterRemoveName = @"UTCSEventsFilterRemoveName";
-NSString * const UTCSEventsFilterAddName    = @"UTCSEventsFilterAddName";
-
+NSString * const UTCSEventsFilterRemoveName     = @"UTCSEventsFilterRemoveName";
+NSString * const UTCSEventsFilterAddName        = @"UTCSEventsFilterAddName";
+NSString * const UTCSEventsDataSourceCacheKey   = @"UTCSEventsDataSourceCacheKey";
 
 #pragma mark - Constants
 

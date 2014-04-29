@@ -124,7 +124,7 @@
     self.searchViewController.searchController.dataSource = self.dataSource;
     
     
-    [self.pageViewController setViewControllers:@[self.basementLabViewController]
+    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];

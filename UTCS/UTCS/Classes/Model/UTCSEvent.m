@@ -27,6 +27,8 @@ static NSString * const startDateKey                = @"startDate";
 static NSString * const endDateKey                  = @"endDate";
 static NSString * const allDayKey                   = @"allDay";
 static NSString * const foodKey                     = @"food";
+static NSString * const starredKey                  = @"starred";
+static NSString * const calendarEventKey            = @"calendarKey";
 
 
 #pragma mark - UTCSEvent Implementation
@@ -50,6 +52,8 @@ static NSString * const foodKey                     = @"food";
         _endDate                = [aDecoder decodeObjectForKey:endDateKey];
         _allDay                 = [aDecoder decodeBoolForKey:allDayKey];
         _food                   = [aDecoder decodeBoolForKey:foodKey];
+        _calendarEvent          = [aDecoder decodeObjectForKey:calendarEventKey];
+        _starred                = [aDecoder decodeBoolForKey:starredKey];
     }
     return self;
 }
@@ -68,6 +72,8 @@ static NSString * const foodKey                     = @"food";
     [aCoder encodeObject:_endDate               forKey:endDateKey];
     [aCoder encodeBool:_allDay                  forKey:allDayKey];
     [aCoder encodeBool:_food                    forKey:foodKey];
+    [aCoder encodeObject:_calendarEvent         forKey:calendarEventKey];
+    [aCoder encodeBool:_starred                 forKey:starredKey];
 }
 
 #pragma mark Setters

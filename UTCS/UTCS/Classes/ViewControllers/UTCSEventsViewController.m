@@ -188,10 +188,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [self.activeHeaderView showActiveAnimation:YES];
     
     [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
-        [self.dataSource prepareFilter];
+        
         [self.activeHeaderView showActiveAnimation:NO];
         
         if([self.dataSource.data count] > 0) {
+            [self.dataSource prepareFilter];
             NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
@@ -205,8 +206,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
             self.activeHeaderView.updatedLabel.text = @"No Events Available";
         }
         
-        [self.tableView reloadData];
-        
+        if (success && !cacheHit) {
+            [self.tableView reloadData];
+        }
     }];
 }
 
@@ -260,6 +262,13 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [UIView animateWithDuration:animationDuration animations:^{
         cell.contentView.alpha = 1.0;
     }];
+}
+
+#pragma mark UTCSDataSourceDelegate Methods
+
+- (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource
+{
+    return @{UTCSEventsDataSourceCacheKey: dataSource.data};
 }
 
 

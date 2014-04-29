@@ -118,7 +118,7 @@
     
     // Location label
     self.locationLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 56.0, self.view.width - 16.0, 20.0)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 48.0, self.view.width - 16.0, 20.0)];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
@@ -131,7 +131,7 @@
     
     // Date label
     self.dateLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 32.0, self.view.width - 16.0, 20.0)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 24.0, self.view.width - 16.0, 20.0)];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
@@ -170,12 +170,15 @@
     // Share button
     self.shareButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, 20, 20);
         button.showsTouchWhenHighlighted = YES;
+        
+        button.frame = CGRectMake(0, 0, 44, 44);
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         imageView.tintColor = [UIColor whiteColor];
-        imageView.frame = button.bounds;
+        imageView.center = CGPointMake(0.5 * CGRectGetWidth(button.bounds), 0.5 * CGRectGetHeight(button.bounds));
+        
+        
         [button addSubview:imageView];
         button;
     });
@@ -207,14 +210,14 @@
     if (!self.dateLabel.text) {
         self.dateLabel.height = 0.0;
     } else {
-        self.dateLabel.height = 32.0;
+        self.dateLabel.height = 20.0;
     }
     
     self.locationLabel.text = event.location;
     if (!self.locationLabel.text) {
         self.locationLabel.height = 0.0;
     } else {
-        self.locationLabel.height = 24.0;
+        self.locationLabel.height = 20.0;
     }
     
     // Choose header image
@@ -226,10 +229,10 @@
     self.nameLabel.frame = CGRectMake(8.0, 0.0, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
     self.nameLabel.text = event.name;
     [self.nameLabel sizeToFit];
-    if(self.nameLabel.height > kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height) {
-        self.nameLabel.height = kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height;
+    if(self.nameLabel.height > kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height - 4.0) {
+        self.nameLabel.height = kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height - 4.0;
     }
-    self.nameLabel.y = self.locationLabel.y - self.nameLabel.height;
+    self.nameLabel.y = self.locationLabel.y - self.nameLabel.height - 4.0;
 
     // Configure description text view
     self.descriptionTextView.attributedText = [self descriptionForEvent:event];
@@ -329,6 +332,7 @@
     });
     
     [self.eventStore saveEvent:calendarEvent span:EKSpanThisEvent commit:YES error:nil];
+    self.event.calendarEvent = calendarEvent;
 }
 
 #pragma mark Buttons
@@ -336,7 +340,9 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if(button == self.addToCalendarButton) {
-        [self askToAddEventToCalendar:self.event];
+        if (!self.event.calendarEvent) {
+            [self askToAddEventToCalendar:self.event];
+        }
     } else if(button == self.shareButton) {
         [self shareEvent:self.event];
         

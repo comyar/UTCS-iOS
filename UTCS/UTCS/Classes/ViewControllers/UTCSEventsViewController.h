@@ -14,7 +14,7 @@
 /**
  UTCSEventsViewController displays all the available events in a simple table and allows filtering of events by type
  */
-@interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate, IBActionSheetDelegate>
+@interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate, IBActionSheetDelegate, UTCSDataSourceDelegate>
 
 
 @end
