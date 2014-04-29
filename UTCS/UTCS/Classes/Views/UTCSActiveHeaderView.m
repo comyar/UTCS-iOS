@@ -65,7 +65,9 @@ static NSString * const downArrowImageName      = @"downArrow";
                 view.contentView = ({
                     UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
                     label.font          = [UIFont fontWithName:shimmeringViewFontName size:shimmeringViewFontSize];
+                    label.shadowColor   = [UIColor colorWithWhite:0.0 alpha:0.5];
                     label.textAlignment = NSTextAlignmentCenter;
+                    label.shadowOffset  = CGSizeMake(0.0, 0.5);
                     label.textColor     = [UIColor whiteColor];
                     label.adjustsFontSizeToFitWidth = YES;
                     label;

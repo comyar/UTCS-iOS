@@ -53,7 +53,9 @@ static NSString * const subtitleText        = @"What Starts Here Changes the Wor
             label.font          = [UIFont fontWithName:subtitleLabelFont size:subtitleLabelFontSize];
             label.center        = CGPointMake(self.center.x, 0.85 * self.center.y);
             label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
+            label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
             label.textAlignment = NSTextAlignmentCenter;
+            label.shadowOffset = CGSizeMake(0.0, 0.5);
             label.text          = subtitleText;
             label;
         });

@@ -48,7 +48,7 @@ static NSString *diskQuotaCacheKey = @"quota";
 // Label used to display the usage percentage
 @property (nonatomic) UILabel                   *percentLabel;
 
-//
+// 
 @property (nonatomic) DPMeterView               *meterView;
 
 // Label used to display a frowny face in case of failure
@@ -192,7 +192,9 @@ static NSString *diskQuotaCacheKey = @"quota";
 {
     [super viewDidLoad];
     
-    self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+//    self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
     self.usernameTextField.frame    = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     

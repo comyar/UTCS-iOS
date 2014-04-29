@@ -55,7 +55,9 @@
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.dataSource.delegate = self;
         
-        self.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground-blurred"];
+        self.view.backgroundColor = [UIColor blackColor];
+        
+//        self.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground-blurred"];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];

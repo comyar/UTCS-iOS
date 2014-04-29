@@ -78,7 +78,8 @@
     
     
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"]];
-    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    self.thirdFloorLabViewController.view.backgroundColor = [UIColor blackColor];
+//    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
     
     
     self.thirdShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0.5 * self.view.width,
@@ -97,7 +98,8 @@
     
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
+    self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
+//    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
     
     self.basementShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(8.0,
                                                                                     0.75 * self.view.height,

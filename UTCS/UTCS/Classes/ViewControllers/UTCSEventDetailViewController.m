@@ -109,6 +109,8 @@
         label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:22];
         label.textColor = [UIColor whiteColor];
         label.adjustsFontSizeToFitWidth = YES;
+        label.shadowOffset = CGSizeMake(0.0, 0.5);
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.numberOfLines = 0;
         label;
     });
@@ -116,9 +118,11 @@
     
     // Location label
     self.locationLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 56.0, self.view.width - 16.0, 24.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 56.0, self.view.width - 16.0, 20.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+        label.shadowOffset = CGSizeMake(0.0, 0.5);
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.adjustsFontSizeToFitWidth = YES;
         label.numberOfLines = 2;
         [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
@@ -127,9 +131,11 @@
     
     // Date label
     self.dateLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 32.0, self.view.width - 16.0, 32.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 32.0, self.view.width - 16.0, 20.0)];
+        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+        label.shadowOffset = CGSizeMake(0.0, 0.5);
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.adjustsFontSizeToFitWidth = YES;
         [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
         label;
@@ -213,7 +219,7 @@
     
     // Choose header image
     self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:@"header"];
-    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"blurredHeader"];
+    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"header-blurred"];
     
     
     // Configure name label
