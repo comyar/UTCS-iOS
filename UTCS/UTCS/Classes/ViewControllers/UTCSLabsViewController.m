@@ -96,16 +96,34 @@
     });
     
     
-    [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
+    
+    self.basementShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(8.0,
+                                                                                    0.75 * self.view.height,
+                                                                                    self.view.width - 16.0,
+                                                                                    120)];
+    self.basementShimmeringView.contentView = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:self.basementShimmeringView.bounds];
+        label.text = @"Basement Lab";
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42.5];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label;
+    });
+    
+    
+    [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
+    [self.basementLabViewController.view addSubview:self.basementShimmeringView];
+    
+
 
     self.searchViewController = [UTCSLabsSearchViewController new];
     self.searchViewController.searchController.dataSource = self.dataSource;
     
     
-    [self.pageViewController setViewControllers:@[self.searchViewController]
+    [self.pageViewController setViewControllers:@[self.basementLabViewController]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
@@ -128,10 +146,12 @@
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Updating";
         self.thirdShimmeringView.shimmering = YES;
+        self.basementShimmeringView.shimmering = YES;
         
         [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
             self.thirdShimmeringView.shimmering = NO;
+            self.basementShimmeringView.shimmering = NO;
             
             if (success) {
                 NSDictionary *third      = self.dataSource.data[@"third"];

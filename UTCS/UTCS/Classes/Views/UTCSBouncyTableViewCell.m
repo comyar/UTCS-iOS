@@ -70,19 +70,8 @@ static const CGFloat animationDuration = 0.3;
         springAnimation.springBounciness = 20.0;
         springAnimation.springSpeed = 20.0;
         springAnimation.toValue = scaleValue;
-        springAnimation.delegate = self;
         [self.contentView pop_addAnimation:springAnimation forKey:@"bounce"];
     }
-}
-
-- (void)pop_animationDidStart:(POPAnimation *)anim
-{
-    NSLog(@"Did start pop animation : %@", anim);
-}
-
-- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
-{
-    NSLog(@"Did stop pop animation : %@", anim);
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
