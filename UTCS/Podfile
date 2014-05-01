@@ -11,5 +11,6 @@ pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 pod 'pop'
 pod 'Tweaks'
 pod 'DPMeterView', '0.0.1'
+
 end
 
