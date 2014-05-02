@@ -118,7 +118,9 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         if (success && !cacheHit) {
             [self.tableView reloadData];
+            
         }
+        
         
     }];
 }

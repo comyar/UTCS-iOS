@@ -48,6 +48,7 @@
 		DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A81903C205000F1041 /* UTCSNavigationController.m */; };
 		DD9402F9190F2F1C008E9814 /* EventHeaders.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD9402F8190F2F1C008E9814 /* EventHeaders.xcassets */; };
 		DD9402FC190F5CBB008E9814 /* UIButton+UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */; };
+		DD9402FE19135C87008E9814 /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD9402FD19135C87008E9814 /* Backgrounds.xcassets */; };
 		DD9475A5190A33350049FB8B /* UTCSSettingsLegalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475A4190A33350049FB8B /* UTCSSettingsLegalDataSource.m */; };
 		DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475B1190A46350049FB8B /* UTCSNavigationControllerDelegate.m */; };
@@ -64,7 +65,6 @@
 		DD9475F2190CF3D70049FB8B /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475F1190CF3D70049FB8B /* IBActionSheet.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
-		DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
 		DDA758921904D422007CD0DB /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA758911904D422007CD0DB /* Icons.xcassets */; };
 		DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */; };
@@ -178,6 +178,7 @@
 		DD9402F8190F2F1C008E9814 /* EventHeaders.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = EventHeaders.xcassets; path = Resources/EventHeaders.xcassets; sourceTree = "<group>"; };
 		DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+UTCSButton.h"; path = "UTCS/Classes/Model/UIButton+UTCSButton.h"; sourceTree = SOURCE_ROOT; };
 		DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+UTCSButton.m"; path = "UTCS/Classes/Model/UIButton+UTCSButton.m"; sourceTree = SOURCE_ROOT; };
+		DD9402FD19135C87008E9814 /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		DD9475A3190A33350049FB8B /* UTCSSettingsLegalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsLegalDataSource.h; path = Model/UTCSSettingsLegalDataSource.h; sourceTree = "<group>"; };
 		DD9475A4190A33350049FB8B /* UTCSSettingsLegalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsLegalDataSource.m; path = Model/UTCSSettingsLegalDataSource.m; sourceTree = "<group>"; };
 		DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSlideNavigationAnimator.h; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.h; sourceTree = SOURCE_ROOT; };
@@ -206,7 +207,6 @@
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
-		DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		DDA7588F1904D313007CD0DB /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = App.xcassets; path = Resources/App.xcassets; sourceTree = "<group>"; };
 		DDA758911904D422007CD0DB /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCache.h; path = Model/UTCSDataSourceCache.h; sourceTree = "<group>"; };
@@ -667,7 +667,7 @@
 			children = (
 				DD9475E0190CDFBC0049FB8B /* svg */,
 				DDA7588F1904D313007CD0DB /* App.xcassets */,
-				DDA7588C1904D2C8007CD0DB /* Backgrounds.xcassets */,
+				DD9402FD19135C87008E9814 /* Backgrounds.xcassets */,
 				DDA758911904D422007CD0DB /* Icons.xcassets */,
 				DD9402F8190F2F1C008E9814 /* EventHeaders.xcassets */,
 			);
@@ -994,8 +994,8 @@
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
+				DD9402FE19135C87008E9814 /* Backgrounds.xcassets in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
-				DDA7588D1904D2C8007CD0DB /* Backgrounds.xcassets in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
 				DDA758921904D422007CD0DB /* Icons.xcassets in Resources */,
 				DD9402F9190F2F1C008E9814 /* EventHeaders.xcassets in Resources */,
