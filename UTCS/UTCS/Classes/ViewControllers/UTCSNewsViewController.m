@@ -14,7 +14,7 @@
 #import "UTCSNewsDetailViewController.h"
 
 // Views
-#import "UTCSNewsHeaderView.h"
+#import "UTCSActiveHeaderView.h"
 
 // Categories
 #import "UIColor+UTCSColors.h"
@@ -79,7 +79,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
-        self.activeHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
+        
+        self.activeHeaderView                   = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
+        ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS News";
+        self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
     }
     return self;
 }

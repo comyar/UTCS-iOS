@@ -89,7 +89,6 @@
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
-		DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */; };
 		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
@@ -252,8 +251,6 @@
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDDC92D818FA0E1300D39A74 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		DDDE0C6818FD8CFF00C89D81 /* UTCSNewsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsHeaderView.h; path = Views/UTCSNewsHeaderView.h; sourceTree = "<group>"; };
-		DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsHeaderView.m; path = Views/UTCSNewsHeaderView.m; sourceTree = "<group>"; };
 		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561EA18DC441F00C46480 /* UTCSNewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDataSource.h; path = Model/UTCSNewsDataSource.h; sourceTree = "<group>"; };
@@ -410,7 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				DD87615F18FDFE4A005FEE4E /* Models */,
-				DD87616018FDFE51005FEE4E /* Views */,
 				DD87616118FDFE5A005FEE4E /* Controllers */,
 			);
 			name = News;
@@ -427,15 +423,6 @@
 				DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		DD87616018FDFE51005FEE4E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DDDE0C6818FD8CFF00C89D81 /* UTCSNewsHeaderView.h */,
-				DDDE0C6918FD8CFF00C89D81 /* UTCSNewsHeaderView.m */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		DD87616118FDFE5A005FEE4E /* Controllers */ = {
@@ -1063,7 +1050,6 @@
 				DD9475F2190CF3D70049FB8B /* IBActionSheet.m in Sources */,
 				DDC206F7190A0410001DD1A5 /* UTCSSettingsViewController.m in Sources */,
 				DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */,
-				DDDE0C6A18FD8CFF00C89D81 /* UTCSNewsHeaderView.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
 				DD5CAF81190A325D0051F637 /* UTCSSettingsLegalViewController.m in Sources */,
 				DD9475A5190A33350049FB8B /* UTCSSettingsLegalDataSource.m in Sources */,

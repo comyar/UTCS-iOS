@@ -23,6 +23,12 @@ static const CGFloat shimmeringViewFontSize = 50.0;
 // Font size of the updated label
 static const CGFloat updatedLabelFontSize   = 14.0;
 
+// Font size of the subtitle label
+static const CGFloat subtitleLabelFontSize  = 17.0;
+
+// Font of the subtitle label
+static NSString * const subtitleLabelFont       = @"HelveticaNeue";
+
 //
 static NSString * const shimmeringViewFontName  = @"HelveticaNeue-Bold";
 
@@ -76,6 +82,20 @@ static NSString * const downArrowImageName      = @"downArrow";
             view;
         });
         
+        // Subtitle label
+        self.subtitleLabel = ({
+            UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
+            label.frame         = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
+            label.font          = [UIFont fontWithName:subtitleLabelFont size:subtitleLabelFontSize];
+            label.center        = CGPointMake(self.center.x, 0.85 * self.center.y);
+            label.textColor     = [UIColor colorWithWhite:1.0 alpha:0.8];
+            label.shadowColor   = [UIColor colorWithWhite:0.0 alpha:0.5];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.shadowOffset  = CGSizeMake(0.0, 0.5);
+            label;
+        });
+        
+        
         // Down arrow image view
         self.downArrowImageView = ({
             UIImage *image = [[UIImage imageNamed:downArrowImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -98,6 +118,7 @@ static NSString * const downArrowImageName      = @"downArrow";
         
         // Add subviews
         [self addSubview:self.shimmeringView];
+        [self addSubview:self.subtitleLabel];
         [self addSubview:self.downArrowImageView];
         [self addSubview:self.activityIndicatorView];
         [self addSubview:self.updatedLabel];
@@ -128,6 +149,10 @@ static NSString * const downArrowImageName      = @"downArrow";
     // Shimmering view
     self.shimmeringView.frame           = CGRectMake(0.0, 0.0, 0.9 * CGRectGetWidth(self.bounds), shimmeringViewFontSize);
     self.shimmeringView.center          = CGPointMake(self.center.x, 0.7 * self.center.y);
+    
+    // Subtitle label
+    self.subtitleLabel.frame    = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
+    self.subtitleLabel.center   = CGPointMake(self.center.x, 0.85 * self.center.y);
     
     // Down arrow image view
     self.downArrowImageView.frame       = CGRectMake(0.0, 0.0, 32, 16);

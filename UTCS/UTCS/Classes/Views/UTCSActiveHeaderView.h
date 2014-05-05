@@ -32,21 +32,26 @@
  
  The content view of the shimmer view is a UILabel
  */
-@property (nonatomic, readonly) FBShimmeringView                      *shimmeringView;
+@property (nonatomic, readonly) FBShimmeringView                        *shimmeringView;
+
+/**
+ Label used to display a subtitle beneath the shimmering view
+ */
+@property (nonatomic) UILabel                                           *subtitleLabel;
 
 /**
  Activity indicator used to indicate updating
  */
-@property (nonatomic, readonly) UIActivityIndicatorView               *activityIndicatorView;
+@property (nonatomic, readonly) UIActivityIndicatorView                 *activityIndicatorView;
 
 /**
  Image view used to render the down arrow
  */
-@property (nonatomic, readonly) UIImageView                           *downArrowImageView;
+@property (nonatomic, readonly) UIImageView                             *downArrowImageView;
 
 /**
  Label used to display the time the news stories were updated
  */
-@property (nonatomic, readonly) UILabel                               *updatedLabel;
+@property (nonatomic, readonly) UILabel                                 *updatedLabel;
 
 @end
