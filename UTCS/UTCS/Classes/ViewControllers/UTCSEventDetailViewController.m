@@ -22,6 +22,7 @@
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "UITextView+CZTextViewHeight.h"
+#import "UIButton+UTCSButton.h"
 
 
 #pragma mark - UTCSEventDetailViewController Class Extension
@@ -57,7 +58,10 @@
 @property (nonatomic) UIButton                          *shareButton;
 
 // Button used to add the event to calendar
-@property (nonatomic) UIButton                          *addToCalendarButton;
+@property (nonatomic) UIButton                          *calendarButton;
+
+// Button used to star events
+@property (nonatomic) UIButton                          *starButton;
 
 // Button used to scroll to the top of the event detail
 @property (nonatomic) UIButton                          *scrollToTopButton;
@@ -153,17 +157,36 @@
     });
     [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
     
-    // Add to calendar button
-    self.addToCalendarButton = ({
+    
+    // Star button
+    self.starButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, 20, 20);
         button.showsTouchWhenHighlighted = YES;
+        button.frame = CGRectMake(0, 0, 44, 44);
+        
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"events"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         imageView.tintColor = [UIColor whiteColor];
         imageView.frame = button.bounds;
-//        [button addSubview:imageView];
+        
+        [button addSubview:imageView];
+        button;
+    });
+    
+    // Add to calendar button
+    self.calendarButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.showsTouchWhenHighlighted = YES;
+        button.frame = CGRectMake(0, 0, 44, 44);
+        
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"addToCalendar"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        
+        [button addSubview:imageView];
         button;
     });
     
@@ -183,16 +206,9 @@
         button;
     });
     
-    // Share/Add to calendar buttons
-    UIBarButtonItem *spacer = ({
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                                                      target:nil
-                                                                                      action:nil];
-        barButtonItem.width = 20.0;
-        barButtonItem;
-    });
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],spacer,
-                                                [[UIBarButtonItem alloc]initWithCustomView:self.addToCalendarButton]];
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],
+                                                [[UIBarButtonItem alloc]initWithCustomView:self.calendarButton],
+                                                [[UIBarButtonItem alloc]initWithCustomView:self.starButton]];
     
     // Scroll to top button
     self.scrollToTopButton = ({
@@ -344,7 +360,7 @@
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
-    if(button == self.addToCalendarButton) {
+    if(button == self.calendarButton) {
         if (!self.event.calendarEvent) {
             [self askToAddEventToCalendar:self.event];
         }
