@@ -16,7 +16,7 @@
 #import "MBProgressHUD.h"
 #import "UTCSDirectoryTableViewCell.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
-
+#import "UIButton+UTCSButton.h"
 
 #pragma mark - Constants
 
@@ -99,9 +99,9 @@
     [super viewDidLoad];
     
     self.searchButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *button = [UIButton bouncyButton];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        button.frame = CGRectMake(self.view.width - 40.0, 11.0, 22, 22.0);
+        button.frame = CGRectMake(self.view.width - 44.0, 0.0, 44.0, 44.0);
         
         UIImage *image = [[UIImage imageNamed:@"search"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
