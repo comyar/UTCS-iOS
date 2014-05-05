@@ -175,7 +175,7 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
             [self bringSubviewToFront:self.headerContainerView];
         }
         
-        CGFloat multiplier = FBTweakValue(@"Parallax Header Blur View", @"Blur Image View", @"Multiplier", 4.0);
+        CGFloat multiplier = FBTweakValue(@"Parallax Header Blur View", @"Blur Image View", @"Multiplier", 2.5);
         self.headerBlurredImageView.alpha = MIN(1.0, multiplier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
         for(UIView *subview in self.headerContainerView.subviews) {
             if(subview != self.headerBlurredImageView && subview != self.headerImageView) {

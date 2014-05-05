@@ -19,8 +19,7 @@
 {
     NSUInteger index = NSNotFound;
     if (!caseSensitive) {
-         substring = [substring lowercaseString];
-        index = [[self lowercaseString]rangeOfString:substring].location;
+        index = [self rangeOfString:substring options:NSCaseInsensitiveSearch].location;
     } else {
         index = [self rangeOfString:substring].location;
     }
