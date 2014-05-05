@@ -251,7 +251,6 @@ static NSString *diskQuotaCacheKey = @"quota";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.usernameTextField becomeFirstResponder];
     [self.meterView startGravity];
 }
 

@@ -97,6 +97,9 @@
     
     cell.textLabel.text         = self.menuOptions[indexPath.row];
     NSString *imageName         = [[cell.textLabel.text lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (indexPath.row == self.activeRow) {
+        imageName = [imageName stringByAppendingString:@"-active"];
+    }
     cell.imageView.image        = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     return cell;
