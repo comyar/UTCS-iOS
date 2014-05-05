@@ -112,22 +112,17 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 
 #pragma mark UIGestureRecognizerDelegate Methods
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if(gestureRecognizer == self.tapGestureRecognizer) {
-        return self.isShowingMenu;
-    } else if (gestureRecognizer == self.panGestureRecognizer) {
+    if (gestureRecognizer == self.panGestureRecognizer) {
         CGPoint location = [gestureRecognizer locationInView:self.contentViewController.view];
         if (location.y <= maximumYtoBeginRecognizePan) {
             return YES;
         }
+    } else if (gestureRecognizer == self.tapGestureRecognizer) {
+        return self.isShowingMenu;
     }
     return NO;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
 }
 
 #pragma mark Using a UTCSVerticalMenuViewController
@@ -273,7 +268,7 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 {
     _contentViewController = contentViewController;
     [_contentViewController.view addGestureRecognizer:self.tapGestureRecognizer];
-    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
+//    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
     
     [self setNeedsStatusBarAppearanceUpdate];
 }
