@@ -67,7 +67,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
-        self.defaultHeaderImages = @[@[@"header", @"header-blurred"]];
+        self.defaultHeaderImages = @[@"gdc-speedway", @"gdc-general"];
     }
     return self;
 }
@@ -139,9 +139,10 @@ static const CGFloat dateLabelFontSize  = 16.0;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = newsArticle.headerBlurredImage;
     } else {
         // Choose a random default header
+        
         NSInteger index = arc4random() % [self.defaultHeaderImages count];
-        NSString *headerName = self.defaultHeaderImages[index][0];
-        NSString *headerBlurredName = self.defaultHeaderImages[index][1];
+        NSString *headerName = self.defaultHeaderImages[index];
+        NSString *headerBlurredName = [headerName stringByAppendingString:@"-blurred"];
         self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerName];
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerBlurredName];
     }

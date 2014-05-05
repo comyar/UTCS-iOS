@@ -141,7 +141,6 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"%f", scrollView.contentOffset.y);
     if(scrollView == self.scrollView) {
         if(scrollView.contentOffset.y > 0) {
             

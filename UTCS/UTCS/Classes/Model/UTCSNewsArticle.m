@@ -154,8 +154,8 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
     [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
     
     // Tint and blur the header images
-    _headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.11 alpha:0.73] blendingMode:kCGBlendModeOverlay];
-    _headerBlurredImage = [headerImage applyDarkEffect];
+    _headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:0.75] blendingMode:kCGBlendModeOverlay];
+    _headerBlurredImage = [headerImage applyBlurWithRadius:20.0 tintColor:[UIColor colorWithWhite:0.1 alpha:0.75] saturationDeltaFactor:1.0 maskImage:nil];
     
     _attributedContent = attributedContent;
 }

@@ -87,6 +87,7 @@
 		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
 		DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */; };
 		DDC404721917D42400D17CBF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC404711917D42400D17CBF /* Icons.xcassets */; };
+		DDC404741918101500D17CBF /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC404731918101500D17CBF /* Default Headers.xcassets */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
@@ -248,6 +249,7 @@
 		DDC4046D1917CCE900D17CBF /* NSString+CZContains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CZContains.h"; path = "Categories/NSString+CZContains.h"; sourceTree = "<group>"; };
 		DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CZContains.m"; path = "Categories/NSString+CZContains.m"; sourceTree = "<group>"; };
 		DDC404711917D42400D17CBF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
+		DDC404731918101500D17CBF /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaViewController.h; path = ViewControllers/UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaViewController.m; path = ViewControllers/UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				DDC404711917D42400D17CBF /* Icons.xcassets */,
 				DD9402FD19135C87008E9814 /* Backgrounds.xcassets */,
 				DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */,
+				DDC404731918101500D17CBF /* Default Headers.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
+				DDC404741918101500D17CBF /* Default Headers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

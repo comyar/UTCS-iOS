@@ -41,6 +41,8 @@
 
 @property (nonatomic) NSDictionary                      *headerImageMapping;
 
+@property (nonatomic) NSArray                           *defaultHeaderImages;
+
 // -----
 // @name Views
 // -----
@@ -101,6 +103,8 @@
             dateFormatter.dateFormat = @"MMM d, h:mm a";
             dateFormatter;
         });
+        
+        self.defaultHeaderImages = @[@"gdc-speedway", @"gdc-general"];
         self.headerImageMapping = @{@"2.410":@"gdc-2,410",
                                     @"auditorium":@"gdc-auditorium",
                                     @"atrium":@"gdc-atrium"};
@@ -477,7 +481,9 @@
         return self.headerImageMapping[@"auditorium"];
     }
     
-    return self.headerImageMapping[@"atrium"];
+    
+    NSInteger index = arc4random() % [self.defaultHeaderImages count];
+    return self.defaultHeaderImages[index];
 }
 
 
