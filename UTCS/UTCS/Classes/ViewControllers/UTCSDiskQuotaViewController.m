@@ -23,6 +23,7 @@
 
 // Categories
 #import "UIImage+CZTinting.h"
+#import "UIButton+UTCSButton.h"
 
 
 
@@ -97,7 +98,7 @@ static NSString *diskQuotaCacheKey = @"quota";
         
         // Go button
         self.goButton = ({
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+            UIButton *button = [UIButton bouncyButton];
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             button.layer.borderColor = [UIColor whiteColor].CGColor;
