@@ -7,15 +7,33 @@
 //
 
 
-#import "UTCSContentViewController.h"
+@import UIKit;
+
 #import "UTCSLabView.h"
 
 
-@interface UTCSLabMachineViewController : UTCSContentViewController <UTCSLabViewDataSource>
+/**
+ */
+@interface UTCSLabMachineViewController : UIViewController <UTCSLabViewDataSource>
 
+/**
+ */
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 
+/**
+ */
 @property (nonatomic) NSDictionary                  *machines;
+
+/**
+ */
+@property (nonatomic) CGPoint                       imageOffset;
+
+/**
+ */
+@property (nonatomic, readonly) UIImageView         *backgroundImageView;
+
+/**
+ */
 @property (nonatomic, readonly) UTCSLabViewLayout   *layout;
 
 @end

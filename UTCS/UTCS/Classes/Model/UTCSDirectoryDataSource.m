@@ -53,8 +53,6 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
         
         cache = [_cache objectWithKey:UTCSDirectoryFlatCacheKey];
         _flatDirectory  = cache[UTCSDataSourceCacheValuesName];
-        
-        NSLog(@"%@", _flatDirectory);
     }
     return self;
 }

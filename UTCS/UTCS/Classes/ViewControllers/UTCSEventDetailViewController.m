@@ -163,7 +163,7 @@
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"events"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         imageView.tintColor = [UIColor whiteColor];
         imageView.frame = button.bounds;
-        [button addSubview:imageView];
+//        [button addSubview:imageView];
         button;
     });
     
@@ -221,8 +221,8 @@
     }
     
     // Choose header image
-    self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:@"header"];
-    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"header-blurred"];
+    self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:@"atrium"];
+    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"atrium-blurred"];
     
     
     // Configure name label
@@ -249,6 +249,11 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
+
+
+
+
 
 #pragma mark Setters
 

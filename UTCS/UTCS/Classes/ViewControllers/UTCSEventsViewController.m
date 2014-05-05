@@ -116,7 +116,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         button;
     });
     
-    [self.view addSubview:self.filterButton];
+//    [self.view addSubview:self.filterButton];
     [self.view bringSubviewToFront:self.filterButton];
     
 }

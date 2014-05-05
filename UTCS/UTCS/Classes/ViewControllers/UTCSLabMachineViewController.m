@@ -7,26 +7,42 @@
 //
 
 #import "UTCSLabMachineViewController.h"
+#import "UIView+CZPositioning.h"
 #import "UTCSLabMachine.h"
 
 
+#pragma mark - UTCSLabMachineViewController Class Extension
+
 @interface UTCSLabMachineViewController ()
 
-@property (nonatomic) UTCSLabView      *labView;
+@property (nonatomic) UIView            *backgroundContainer;
+
+@property (nonatomic) UTCSLabView       *labView;
 
 @end
 
+
+#pragma mark - UTCSLabMachineViewController Implementation
 
 @implementation UTCSLabMachineViewController
 
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout
 {
-    if (self = [super init]) {
+    if (self = [super initWithNibName:nil bundle:nil]) {
         _layout = layout;
         self.labView = [[UTCSLabView alloc]initWithFrame:CGRectZero layout:self.layout];
         self.labView.frame = CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0);
         self.labView.backgroundColor = [UIColor clearColor];
         self.labView.dataSource = self;
+        
+        self.backgroundContainer = [[UIView alloc]initWithFrame:self.view.bounds];
+        self.backgroundContainer.clipsToBounds = YES;
+        
+        _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        NSLog(@"%@", NSStringFromCGRect(_backgroundImageView.frame));
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.backgroundImageView.clipsToBounds = NO;
+        
     }
     return self;
 }
@@ -35,17 +51,33 @@
 {
     [super viewDidLayoutSubviews];
     
+    self.backgroundContainer.frame = self.view.bounds;
+    self.backgroundImageView.frame = self.view.bounds;
+    
     [self.labView invalidateLayout];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.menuButton.hidden = YES;
+    
+    
+    [self.backgroundContainer addSubview:self.backgroundImageView];
+    [self.view addSubview:self.backgroundContainer];
+    
     
     [self.labView prepareLayout];
     [self.view addSubview:self.labView];
     
+}
+
+- (void)setImageOffset:(CGPoint)imageOffset
+{
+    _imageOffset = imageOffset;
+    
+    CGRect frame = self.backgroundImageView.frame;
+    CGRect offsetFrame = CGRectOffset(frame, _imageOffset.x, _imageOffset.y);
+    self.backgroundImageView.frame = offsetFrame;
 }
 
 - (void)setMachines:(NSDictionary *)machines

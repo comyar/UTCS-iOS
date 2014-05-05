@@ -9,6 +9,7 @@ pod "AFNetworking", "~> 2.0"
 pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 pod 'pop'
+pod 'IntentKit'
 pod 'Tweaks'
 pod 'DPMeterView', '0.0.1'
 

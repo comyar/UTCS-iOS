@@ -66,8 +66,8 @@
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                            options:nil];
-    self.pageViewController.dataSource = self;
-    self.pageViewController.delegate = self;
+    self.pageViewController.dataSource  = self;
+    self.pageViewController.delegate    = self;
     
     self.pageViewController.view.frame = self.view.bounds;
     [self addChildViewController:self.pageViewController];
@@ -76,10 +76,9 @@
     
     self.pageViewController.view.backgroundColor = [UIColor blackColor];
     
-    
-    self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"]];
-    self.thirdFloorLabViewController.view.backgroundColor = [UIColor blackColor];
-//    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
+    self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
     
     
     self.thirdShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0.5 * self.view.width,
@@ -99,7 +98,7 @@
     
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
-//    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
     
     self.basementShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(8.0,
                                                                                     0.75 * self.view.height,
@@ -137,7 +136,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+//    [self update];
 }
 
 - (void)update
