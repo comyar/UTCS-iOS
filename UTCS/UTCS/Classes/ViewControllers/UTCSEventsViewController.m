@@ -87,6 +87,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         
         self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
+        self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
         
         self.filterTypes = @[@"All", @"Careers", @"Talks", @"Organizations"];
     }
