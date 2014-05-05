@@ -46,7 +46,6 @@
 		DD8761781902826C005FEE4E /* UTCSDataRequestServicer.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8761771902826C005FEE4E /* UTCSDataRequestServicer.m */; };
 		DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */; };
 		DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A81903C205000F1041 /* UTCSNavigationController.m */; };
-		DD9402F9190F2F1C008E9814 /* EventHeaders.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD9402F8190F2F1C008E9814 /* EventHeaders.xcassets */; };
 		DD9402FC190F5CBB008E9814 /* UIButton+UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */; };
 		DD9402FE19135C87008E9814 /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD9402FD19135C87008E9814 /* Backgrounds.xcassets */; };
 		DD9475A5190A33350049FB8B /* UTCSSettingsLegalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475A4190A33350049FB8B /* UTCSSettingsLegalDataSource.m */; };
@@ -86,6 +85,7 @@
 		DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5DA1904778C006011F0 /* UTCSDataSource.m */; };
 		DDC2F5DE190480C7006011F0 /* UTCSDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */; };
 		DDC2F5E71904BBDE006011F0 /* UTCSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5E61904BBDE006011F0 /* UTCSTableViewController.m */; };
+		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
@@ -174,7 +174,6 @@
 		DD8989A71903C205000F1041 /* UTCSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNavigationController.h; sourceTree = "<group>"; };
 		DD8989A81903C205000F1041 /* UTCSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNavigationController.m; sourceTree = "<group>"; };
 		DD8989AA1903C3F3000F1041 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		DD9402F8190F2F1C008E9814 /* EventHeaders.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = EventHeaders.xcassets; path = Resources/EventHeaders.xcassets; sourceTree = "<group>"; };
 		DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+UTCSButton.h"; path = "UTCS/Classes/Model/UIButton+UTCSButton.h"; sourceTree = SOURCE_ROOT; };
 		DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+UTCSButton.m"; path = "UTCS/Classes/Model/UIButton+UTCSButton.m"; sourceTree = SOURCE_ROOT; };
 		DD9402FD19135C87008E9814 /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
@@ -245,6 +244,7 @@
 		DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceParser.m; path = Model/UTCSDataSourceParser.m; sourceTree = "<group>"; };
 		DDC2F5E51904BBDE006011F0 /* UTCSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSTableViewController.h; path = ViewControllers/UTCSTableViewController.h; sourceTree = "<group>"; };
 		DDC2F5E61904BBDE006011F0 /* UTCSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSTableViewController.m; path = ViewControllers/UTCSTableViewController.m; sourceTree = "<group>"; };
+		DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Event Headers.xcassets"; path = "Resources/Event Headers.xcassets"; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaViewController.h; path = ViewControllers/UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaViewController.m; path = ViewControllers/UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
@@ -656,7 +656,7 @@
 				DDA7588F1904D313007CD0DB /* App.xcassets */,
 				DD9402FD19135C87008E9814 /* Backgrounds.xcassets */,
 				DDA758911904D422007CD0DB /* Icons.xcassets */,
-				DD9402F8190F2F1C008E9814 /* EventHeaders.xcassets */,
+				DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -750,7 +750,6 @@
 				DD9475F1190CF3D70049FB8B /* IBActionSheet.m */,
 				DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */,
 				DDA758A71905E7B6007CD0DB /* ActiveHeaderView */,
-				DDDE0C6C18FD950200C89D81 /* Buttons */,
 				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
 			);
 			name = Views;
@@ -777,6 +776,7 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */,
 				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
@@ -892,14 +892,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		DDDE0C6C18FD950200C89D81 /* Buttons */ = {
+		DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */ = {
 			isa = PBXGroup;
 			children = (
 				DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */,
 				DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */,
 			);
-			name = Buttons;
-			path = Views;
+			name = "UIButton+UTCSButton";
+			path = Classes/Views;
 			sourceTree = "<group>";
 		};
 		DDEFABCE1897515800DAB5D7 /* AppDelegate */ = {
@@ -978,6 +978,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
@@ -985,7 +986,6 @@
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
 				DDA758921904D422007CD0DB /* Icons.xcassets in Resources */,
-				DD9402F9190F2F1C008E9814 /* EventHeaders.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
