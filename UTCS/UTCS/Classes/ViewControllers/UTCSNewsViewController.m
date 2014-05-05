@@ -71,6 +71,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if(self = [super initWithStyle:style]) {
+        self.title = @"";
         self.dataSource             = [[UTCSNewsDataSource alloc]initWithService:serviceName];
         self.dataSource.delegate    = self;
         

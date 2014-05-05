@@ -128,7 +128,7 @@
     
     // Location label
     self.locationLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 48.0, self.view.width - 16.0, 20.0)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 24.0, self.view.width - 16.0, 20.0)];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
@@ -141,7 +141,7 @@
     
     // Date label
     self.dateLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 24.0, self.view.width - 16.0, 20.0)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 48.0, self.view.width - 16.0, 20.0)];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
@@ -257,7 +257,7 @@
     if(self.nameLabel.height > kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height - 4.0) {
         self.nameLabel.height = kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height - 4.0;
     }
-    self.nameLabel.y = self.locationLabel.y - self.nameLabel.height - 4.0;
+    self.nameLabel.y = self.dateLabel.y - self.nameLabel.height - 4.0;
 
     // Configure description text view
     self.descriptionTextView.attributedText = [self descriptionForEvent:event];
