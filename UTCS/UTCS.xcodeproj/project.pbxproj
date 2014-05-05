@@ -86,6 +86,7 @@
 		DDC2F5DE190480C7006011F0 /* UTCSDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5DD190480C7006011F0 /* UTCSDataSourceParser.m */; };
 		DDC2F5E71904BBDE006011F0 /* UTCSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5E61904BBDE006011F0 /* UTCSTableViewController.m */; };
 		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
+		DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */; };
 		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
@@ -245,6 +246,8 @@
 		DDC2F5E51904BBDE006011F0 /* UTCSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSTableViewController.h; path = ViewControllers/UTCSTableViewController.h; sourceTree = "<group>"; };
 		DDC2F5E61904BBDE006011F0 /* UTCSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSTableViewController.m; path = ViewControllers/UTCSTableViewController.m; sourceTree = "<group>"; };
 		DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Event Headers.xcassets"; path = "Resources/Event Headers.xcassets"; sourceTree = "<group>"; };
+		DDC4046D1917CCE900D17CBF /* NSString+CZContains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CZContains.h"; path = "Categories/NSString+CZContains.h"; sourceTree = "<group>"; };
+		DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CZContains.m"; path = "Categories/NSString+CZContains.m"; sourceTree = "<group>"; };
 		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaViewController.h; path = ViewControllers/UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaViewController.m; path = ViewControllers/UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
@@ -776,6 +779,7 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DDC404701917CCED00D17CBF /* NSString+CZContains */,
 				DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */,
 				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
@@ -862,6 +866,15 @@
 				DDA759041908D8F6007CD0DB /* UTCSDataSourceSearchController.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		DDC404701917CCED00D17CBF /* NSString+CZContains */ = {
+			isa = PBXGroup;
+			children = (
+				DDC4046D1917CCE900D17CBF /* NSString+CZContains.h */,
+				DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */,
+			);
+			name = "NSString+CZContains";
 			sourceTree = "<group>";
 		};
 		DDCA58E518BE4BA5001F543D /* UITextView+CZTextViewHeight */ = {
@@ -1067,6 +1080,7 @@
 				DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */,
 				DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,
+				DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */,
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */,
 				DD64DAD918F915040033D58B /* UTCSBouncyTableViewCell.m in Sources */,

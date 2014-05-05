@@ -23,6 +23,7 @@
 #import "UIView+CZPositioning.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UIButton+UTCSButton.h"
+#import "NSString+CZContains.h"
 
 
 #pragma mark - UTCSEventDetailViewController Class Extension
@@ -37,6 +38,8 @@
 
 // Event store
 @property (nonatomic) EKEventStore                      *eventStore;
+
+@property (nonatomic) NSDictionary                      *headerImageMapping;
 
 // -----
 // @name Views
@@ -98,6 +101,9 @@
             dateFormatter.dateFormat = @"MMM d, h:mm a";
             dateFormatter;
         });
+        self.headerImageMapping = @{@"2.410":@"gdc-2,410",
+                                    @"auditorium":@"gdc-auditorium",
+                                    @"atrium":@"gdc-atrium"};
     }
     return self;
 }
@@ -452,7 +458,26 @@
 
 - (NSString *)headerImageNameForEvent:(UTCSEvent *)event
 {
-    return @"atrium";
+    NSString *location = event.location;
+    
+    if (![location contains:@"gdc"]) {
+        // Choose random general image
+        // return
+    }
+    
+    if ([location contains:@"2.410"]) {
+        return self.headerImageMapping[@"2.410"];
+    }
+    
+    if ([location contains:@"atrium"]) {
+        return self.headerImageMapping[@"atrium"];
+    }
+    
+    if ([location contains:@"auditorium"]) {
+        return self.headerImageMapping[@"auditorium"];
+    }
+    
+    return self.headerImageMapping[@"atrium"];
 }
 
 
