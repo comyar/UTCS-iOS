@@ -25,9 +25,6 @@
 
 #import <Tweaks/FBTweakInline.h>
 
-// Categories
-#import "UIImage+CZCacheless.h"
-
 
 #pragma mark - UTCSAppDelegate Class Extension
 
@@ -90,7 +87,7 @@
     self.labsViewController             = [UTCSLabsViewController new];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
-    self.settingsNavigationController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"settingsBackground"];
+    self.settingsNavigationController.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.newsNavigationController];

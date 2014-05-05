@@ -57,7 +57,7 @@
         
         self.view.backgroundColor = [UIColor blackColor];
         
-        self.backgroundImageView.image = [UIImage cacheless_imageNamed:@"directoryBackground"];
+        self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];

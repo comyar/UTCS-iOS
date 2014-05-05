@@ -77,8 +77,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         self.tableView.dataSource   = (UTCSNewsDataSource *)self.dataSource;
         self.tableView.delegate     = self;
         
-        self.backgroundImageView.image          = [UIImage cacheless_imageNamed:backgroundImageName];
-        self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
+        self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
+        self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
         self.activeHeaderView = [[UTCSNewsHeaderView alloc]initWithFrame:self.tableView.bounds];
     }
     return self;
