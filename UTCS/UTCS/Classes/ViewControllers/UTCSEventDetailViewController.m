@@ -237,8 +237,11 @@
     }
     
     // Choose header image
-    self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:@"atrium"];
-    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:@"atrium-blurred"];
+    NSString *headerImageName = [self headerImageNameForEvent:event];
+    NSString *headerImageBlurredName = [headerImageName stringByAppendingString:@"-blurred"];
+    
+    self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerImageName];
+    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerImageBlurredName];
     
     
     // Configure name label
@@ -265,11 +268,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-
-
-
-
-
 
 #pragma mark Setters
 
@@ -451,5 +449,11 @@
     
     return combinedDateString;
 }
+
+- (NSString *)headerImageNameForEvent:(UTCSEvent *)event
+{
+    return @"atrium";
+}
+
 
 @end

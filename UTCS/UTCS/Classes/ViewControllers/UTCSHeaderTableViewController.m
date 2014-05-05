@@ -54,7 +54,7 @@
     
     if([keyPath isEqualToString:@"contentOffset"]) {
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
-        CGFloat multiplier = FBTweakValue(@"Header Table View Controller", @"Background Blur Image View", @"Multipler", 4.0);
+        CGFloat multiplier = FBTweakValue(@"Header Table View Controller", @"Background Blur Image View", @"Multipler", 2.0);
         self.backgroundBlurredImageView.alpha = MIN(1.0, multiplier * normalizedOffsetDelta);
     }
 }
