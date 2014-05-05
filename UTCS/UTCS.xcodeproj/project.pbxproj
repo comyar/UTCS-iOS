@@ -15,6 +15,7 @@
 		0B9A26431891D5E30032DA03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A26421891D5E30032DA03 /* main.m */; };
 		0B9A26471891D5E30032DA03 /* UTCSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */; };
 		DD008CB4190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */; };
+		DD19F04919175C7700BA672A /* UIImage+CZCacheless.m in Sources */ = {isa = PBXBuildFile; fileRef = DD19F04819175C7700BA672A /* UIImage+CZCacheless.m */; };
 		DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */; };
@@ -113,6 +114,8 @@
 		95446C76F512403BA430A5AA /* Pods-UTCS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.xcconfig"; path = "Pods/Pods-UTCS.xcconfig"; sourceTree = "<group>"; };
 		DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceSearchController.h; path = Model/UTCSLabsDataSourceSearchController.h; sourceTree = "<group>"; };
 		DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsDataSourceSearchController.m; path = Model/UTCSLabsDataSourceSearchController.m; sourceTree = "<group>"; };
+		DD19F04719175C7700BA672A /* UIImage+CZCacheless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZCacheless.h"; path = "Categories/UIImage+CZCacheless.h"; sourceTree = "<group>"; };
+		DD19F04819175C7700BA672A /* UIImage+CZCacheless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZCacheless.m"; path = "Categories/UIImage+CZCacheless.m"; sourceTree = "<group>"; };
 		DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSParallaxBlurHeaderScrollView.h; sourceTree = "<group>"; };
 		DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSParallaxBlurHeaderScrollView.m; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -358,6 +361,15 @@
 			);
 			name = "Supporting Files";
 			path = UTCS;
+			sourceTree = "<group>";
+		};
+		DD19F04619175C4000BA672A /* UIImage+CZCacheless */ = {
+			isa = PBXGroup;
+			children = (
+				DD19F04719175C7700BA672A /* UIImage+CZCacheless.h */,
+				DD19F04819175C7700BA672A /* UIImage+CZCacheless.m */,
+			);
+			name = "UIImage+CZCacheless";
 			sourceTree = "<group>";
 		};
 		DD44659018E7EA5500ED1153 /* UIColor+CZTinting */ = {
@@ -790,6 +802,7 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DD19F04619175C4000BA672A /* UIImage+CZCacheless */,
 				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
@@ -1078,6 +1091,7 @@
 				DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */,
 				DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
+				DD19F04919175C7700BA672A /* UIImage+CZCacheless.m in Sources */,
 				DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */,
 				DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,

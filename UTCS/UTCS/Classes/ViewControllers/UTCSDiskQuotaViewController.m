@@ -194,7 +194,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    self.backgroundImageView.image = [UIImage imageNamed:@"diskQuotaBackground"];
+    self.backgroundImageView.image = [UIImage cacheless_imageNamed:@"diskQuotaBackground"];
     
     self.usernameTextField.frame    = CGRectMake(0.125 * self.view.width, 44.0, 0.5 * self.view.width, 44);
     
