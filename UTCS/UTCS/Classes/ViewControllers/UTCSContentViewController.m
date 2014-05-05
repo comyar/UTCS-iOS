@@ -29,6 +29,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title              = @"";
         _backgroundImageView    = [UIImageView new];
         _menuButton             = [UIButton menuButton];
     }
