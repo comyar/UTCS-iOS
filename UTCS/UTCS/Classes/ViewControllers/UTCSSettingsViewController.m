@@ -58,13 +58,6 @@
     self.aboutViewController = nil;
 }
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.view addSubview:self.tableView];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

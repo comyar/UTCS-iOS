@@ -84,6 +84,8 @@
     self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
     self.eventsNavigationController     = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
     self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+    self.directoryNavigationController.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
+    
     self.labsViewController             = [UTCSLabsViewController new];
     self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
     self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];

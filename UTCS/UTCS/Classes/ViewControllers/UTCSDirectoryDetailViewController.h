@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSTableViewController.h"
 
+#import "UTCSTableViewController.h"
 @class UTCSDirectoryPerson;
 
-/**
- */
-@interface UTCSDirectoryDetailViewController : UTCSTableViewController
+@interface UTCSDirectoryDetailViewController : UTCSTableViewController <UITableViewDataSource>
 
-@property (nonatomic) UTCSDirectoryPerson *directoryPerson;
+@property (nonatomic) UTCSDirectoryPerson *person;
 
 @end

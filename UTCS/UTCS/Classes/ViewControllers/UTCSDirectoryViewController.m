@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
 #import "UIButton+UTCSButton.h"
+#import "UTCSDirectoryDetailViewController.h"
 
 
 #pragma mark - Constants
@@ -30,6 +31,8 @@
 @property (nonatomic) UISearchBar               *searchBar;
 
 @property (nonatomic) UIButton                  *searchButton;
+
+@property (nonatomic) UTCSDirectoryDetailViewController *detailViewController;
 
 @property (nonatomic) UISearchDisplayController *directorySearchDisplayController;
 
@@ -56,9 +59,7 @@
         self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
         self.dataSource.delegate = self;
         
-        self.view.backgroundColor = [UIColor blackColor];
-        
-        self.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
+        self.view.backgroundColor = [UIColor clearColor];
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
@@ -178,6 +179,18 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setHighlighted:NO animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSDirectoryPerson *person = self.dataSource.data[indexPath.section][indexPath.row];
+    
+    if (!self.detailViewController) {
+        self.detailViewController = [UTCSDirectoryDetailViewController new];
+    }
+    
+    self.detailViewController.person = person;
+    [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
