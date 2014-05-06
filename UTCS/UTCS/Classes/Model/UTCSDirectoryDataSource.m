@@ -12,8 +12,8 @@
 #import "UTCSDirectoryPerson.h"
 #import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
-#import "UTCSDirectoryTableViewCell.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
+#import "UTCSBouncyTableViewCell.h"
 
 
 #pragma mark - Constants
@@ -68,11 +68,11 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
     _flatDirectory = flatDirectory;
 }
 
-- (UTCSDirectoryTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSDirectoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
+    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
     if(!cell) {
-        cell = [[UTCSDirectoryTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
+        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
@@ -87,8 +87,6 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
     
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
-    cell.phoneNumberTextView.text = (person.phoneNumber)? person.phoneNumber : @"";
-    cell.officeLabel.text = (person.office)? person.office : @"";
 
     return cell;
 }

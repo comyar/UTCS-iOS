@@ -7,10 +7,9 @@
 //
 
 #import "UTCSDirectoryDataSourceSearchController.h"
-#import "UTCSDirectoryTableViewCell.h"
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
-
+#import "UTCSBouncyTableViewCell.h"
 
 
 @implementation UTCSDirectoryDataSourceSearchController
@@ -47,13 +46,13 @@
 
 #pragma mark UITableViewDataSource Methods
 
-- (UTCSDirectoryTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSDirectoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectorySearchTableViewCell"];
+    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectorySearchTableViewCell"];
     
     if (!cell) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectorySearchTableViewCell"];
-        cell = [[UTCSDirectoryTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
+        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor lightGrayColor];
@@ -69,8 +68,6 @@
     
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
-    cell.phoneNumberTextView.text = (person.phoneNumber)? person.phoneNumber : @"";
-    cell.officeLabel.text = (person.office)? person.office : @"";
     
     return cell;
 }
@@ -82,6 +79,23 @@
 
 #pragma mark UITableViewDelegate Methods
 
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:YES animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:NO animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 64.0;
+}
+
 #pragma mak UISearchDisplayDelegate Methods
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
@@ -92,7 +106,7 @@
     
     tableView.contentOffset = CGPointZero;
     tableView.contentInset = UIEdgeInsetsZero;
-    tableView.rowHeight = 96.0;
+    tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
 }
 
 @end

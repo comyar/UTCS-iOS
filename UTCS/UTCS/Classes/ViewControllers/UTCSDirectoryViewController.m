@@ -14,9 +14,9 @@
 #import "UIImage+ImageEffects.h"
 #import "UIImage+CZTinting.h"
 #import "MBProgressHUD.h"
-#import "UTCSDirectoryTableViewCell.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
 #import "UIButton+UTCSButton.h"
+
 
 #pragma mark - Constants
 
@@ -32,6 +32,7 @@
 @property (nonatomic) UIButton                  *searchButton;
 
 @property (nonatomic) UISearchDisplayController *directorySearchDisplayController;
+
 @end
 
 
@@ -80,7 +81,7 @@
         self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
         self.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
-        self.tableView.rowHeight = 96.0;
+        self.tableView.rowHeight = 64.0;
         
         self.dataSource.searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
                                                                                                     contentsController:self];
@@ -165,6 +166,18 @@
         UIView *subview = self.tableView.subviews[0];
         subview.alpha = 0.0;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:YES animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:NO animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
