@@ -44,58 +44,6 @@
     }
 }
 
-#pragma mark UITableViewDataSource Methods
-
-- (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectorySearchTableViewCell"];
-    
-    if (!cell) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectorySearchTableViewCell"];
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    
-    UTCSDirectoryPerson *person = self.searchResults[indexPath.row];
-    
-    NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
-    [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
-    [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:cell.textLabel.font.pointSize] range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];
-    
-    cell.textLabel.attributedText = attributedName;
-    cell.detailTextLabel.text = person.type;
-    
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.searchResults count];
-}
-
-#pragma mark UITableViewDelegate Methods
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setHighlighted:YES animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setHighlighted:NO animated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 64.0;
-}
-
 #pragma mak UISearchDisplayDelegate Methods
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
@@ -107,6 +55,7 @@
     tableView.contentOffset = CGPointZero;
     tableView.contentInset = UIEdgeInsetsZero;
     tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+    tableView.rowHeight = 64.0;
 }
 
 @end

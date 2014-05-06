@@ -86,6 +86,8 @@
         
         self.dataSource.searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
                                                                                                     contentsController:self];
+        self.dataSource.searchController.searchDisplayController.searchResultsDataSource = (UTCSDirectoryDataSource *)self.dataSource;
+        self.dataSource.searchController.searchDisplayController.searchResultsDelegate = self;
     }
     return self;
 }
@@ -183,7 +185,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSDirectoryPerson *person = self.dataSource.data[indexPath.section][indexPath.row];
+    UTCSDirectoryPerson *person = nil;
+    if (tableView == self.dataSource.searchController.searchDisplayController.searchResultsTableView) {
+        person = self.dataSource.searchController.searchResults[indexPath.row];
+    } else {
+        person = self.dataSource.data[indexPath.section][indexPath.row];
+    }
     
     if (!self.detailViewController) {
         self.detailViewController = [UTCSDirectoryDetailViewController new];
@@ -196,7 +203,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [UIView new];
+        return ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
+            label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+            label.text = [NSString stringWithFormat:@"    Search Results"];
+            label.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+            label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+            label;
+        });
     } else if (tableView == self.tableView) {
         UTCSDirectoryPerson *person = self.dataSource.data[section][0];
         NSString *letter = [[person.lastName substringToIndex:1]uppercaseString];
@@ -204,7 +218,7 @@
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
             label.text = [NSString stringWithFormat:@"    %@", letter];
-            label.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+            label.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
             label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
             label;
         });

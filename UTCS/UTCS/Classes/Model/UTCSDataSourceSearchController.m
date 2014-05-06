@@ -19,32 +19,12 @@
                                  userInfo:nil];
 }
 
-#pragma mark UITableViewDataSource Methods
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *reason = [NSString stringWithFormat:@"Cannot perform abstract selector %@", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:reason
-                                 userInfo:nil];
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSString *reason = [NSString stringWithFormat:@"Cannot perform abstract selector %@", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:reason
-                                 userInfo:nil];
-}
+#pragma mark Setters
 
 - (void)setSearchDisplayController:(UISearchDisplayController *)searchDisplayController
 {
     _searchDisplayController = searchDisplayController;
     _searchDisplayController.delegate = self;
-    _searchDisplayController.searchResultsDelegate = self;
-    _searchDisplayController.searchResultsDataSource = self;
-    _searchDisplayController.searchResultsTableView.delegate = self;
 }
 
 #pragma mark UISearchDisplayDelegate Methods
@@ -71,7 +51,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     NSString * scope = self.self.searchDisplayController.searchBar.scopeButtonTitles[self.searchDisplayController.searchBar.selectedScopeButtonIndex];
-    [self.dataSource.searchController searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
+    [self searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
     return NO;
@@ -81,7 +61,7 @@
 {
     NSString *searchString = self.searchDisplayController.searchBar.text;
     NSString *scope = self.self.searchDisplayController.searchBar.scopeButtonTitles[searchOption];
-    [self.dataSource.searchController searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
+    [self searchWithQuery:searchString scope:scope completion:^(NSArray *searchResults) {
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
     return NO;

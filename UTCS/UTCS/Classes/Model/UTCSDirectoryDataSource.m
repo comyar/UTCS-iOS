@@ -79,7 +79,13 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    UTCSDirectoryPerson *person = self.data[indexPath.section][indexPath.row];
+    UTCSDirectoryPerson *person = nil;
+    
+    if (tableView == self.searchController.searchDisplayController.searchResultsTableView) {
+        person = self.searchController.searchResults[indexPath.row];
+    } else {
+        person = self.data[indexPath.section][indexPath.row];
+    }
     
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
@@ -93,23 +99,35 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.data[section] count];
+    if (tableView == self.searchController.searchDisplayController.searchResultsTableView) {
+        return [self.searchController.searchResults count];
+    } else {
+        return [self.data[section] count];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.data count];
+    if (tableView == self.searchController.searchDisplayController.searchResultsTableView) {
+        return 1;
+    } else {
+        return [self.data count];
+    }
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSMutableArray *letters = [NSMutableArray new];
-    for (NSArray *letter in self.data) {
-        UTCSDirectoryPerson *person = letter[0];
-        NSString *firstLetter = [[person.lastName substringToIndex:1]uppercaseString];
-        [letters addObject:firstLetter];
+    if (tableView == self.searchController.searchDisplayController.searchResultsTableView) {
+        return nil;
+    } else {
+        NSMutableArray *letters = [NSMutableArray new];
+        for (NSArray *letter in self.data) {
+            UTCSDirectoryPerson *person = letter[0];
+            NSString *firstLetter = [[person.lastName substringToIndex:1]uppercaseString];
+            [letters addObject:firstLetter];
+        }
+        return letters;
     }
-    return letters;
 }
 
 @end
