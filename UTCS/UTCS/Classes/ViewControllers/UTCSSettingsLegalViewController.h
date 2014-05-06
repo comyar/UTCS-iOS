@@ -8,6 +8,6 @@
 
 #import "UTCSTableViewController.h"
 
-@interface UTCSSettingsLegalViewController : UTCSTableViewController
+@interface UTCSSettingsLegalViewController : UTCSTableViewController <UITableViewDataSource>
 
 @end

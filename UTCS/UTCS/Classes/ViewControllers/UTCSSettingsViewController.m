@@ -11,6 +11,7 @@
 #import "UTCSSettingsManager.h"
 #import "UTCSSettingsDataSource.h"
 #import "UTCSSettingsLegalViewController.h"
+#import "UTCSSettingsAboutViewController.h"
 
 
 @interface UTCSSettingsViewController ()
@@ -18,6 +19,8 @@
 @property (nonatomic) UTCSSettingsDataSource            *dataSource;
 
 @property (nonatomic) UTCSSettingsLegalViewController   *legalViewController;
+
+@property (nonatomic) UTCSSettingsAboutViewController   *aboutViewController;
 
 @end
 
@@ -52,6 +55,7 @@
 {
     [super didReceiveMemoryWarning];
     self.legalViewController = nil;
+    self.aboutViewController = nil;
 }
 
 
@@ -72,7 +76,10 @@
             }
             [self.navigationController pushViewController:self.legalViewController animated:YES];
         } else if (indexPath.row == 1) {
-            
+            if (!self.aboutViewController) {
+                self.aboutViewController = [UTCSSettingsAboutViewController new];
+            }
+            [self.navigationController pushViewController:self.aboutViewController animated:YES];
         }
     }
 }
