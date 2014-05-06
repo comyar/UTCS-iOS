@@ -55,7 +55,6 @@
     tableView.contentOffset = CGPointZero;
     tableView.contentInset = UIEdgeInsetsZero;
     tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-    tableView.rowHeight = 64.0;
 }
 
 @end

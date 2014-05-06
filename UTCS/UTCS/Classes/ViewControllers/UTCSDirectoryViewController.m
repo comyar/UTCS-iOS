@@ -92,10 +92,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
     [self update];
 }
 
@@ -119,11 +124,6 @@
     
     [self.view addSubview:self.searchButton];
     [self.view bringSubviewToFront:self.searchButton];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
 }
 
 #pragma mark Buttons
@@ -169,6 +169,11 @@
         UIView *subview = self.tableView.subviews[0];
         subview.alpha = 0.0;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 64.0;
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
