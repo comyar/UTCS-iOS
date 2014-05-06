@@ -87,8 +87,8 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
     
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
-    cell.phoneNumberTextView.text = (person.phoneNumber)? [NSString stringWithFormat:@"Phone: %@", person.phoneNumber] : @"";
-    cell.officeLabel.text = (person.office)? [NSString stringWithFormat:@"Office: %@", person.office] : @"";
+    cell.phoneNumberTextView.text = (person.phoneNumber)? person.phoneNumber : @"";
+    cell.officeLabel.text = (person.office)? person.office : @"";
 
     return cell;
 }

@@ -80,6 +80,7 @@
         self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
         self.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
+        self.tableView.rowHeight = 96.0;
         
         self.dataSource.searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
                                                                                                     contentsController:self];
@@ -165,33 +166,6 @@
         subview.alpha = 0.0;
     }
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat height = 64.0;
-    
-    UTCSDirectoryPerson *person = nil;
-    
-    if (tableView == self.tableView) {
-        person = self.dataSource.data[indexPath.section][indexPath.row];
-        
-    } else if (tableView == self.searchDisplayController.searchResultsTableView) {
-    
-        person = ((UTCSDirectoryDataSource *)self.dataSource).flatDirectory[indexPath.row];
-        
-    }
-    
-    if (person.office) {
-        height += 16.0;
-    }
-    
-    if (person.phoneNumber) {
-        height += 16.0;
-    }
-    
-    return height;
-}
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

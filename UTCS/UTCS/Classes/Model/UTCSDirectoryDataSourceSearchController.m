@@ -38,13 +38,11 @@
         predicate = [NSPredicate predicateWithFormat:@"type = %@", scope];
     }
     
-    NSLog(@"%@", predicate);
     UTCSDirectoryDataSource *dataSource = (UTCSDirectoryDataSource *)self.dataSource;
     self.searchResults = [dataSource.flatDirectory filteredArrayUsingPredicate:predicate];
     if (completion) {
         completion(self.searchResults);
     }
-    NSLog(@"%@", self.searchResults);
 }
 
 #pragma mark UITableViewDataSource Methods
@@ -65,16 +63,14 @@
     
     UTCSDirectoryPerson *person = self.searchResults[indexPath.row];
     
-    NSLog(@"%@", person);
-    
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:cell.textLabel.font.pointSize] range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];
     
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
-    cell.phoneNumberTextView.text = (person.phoneNumber)? [NSString stringWithFormat:@"Phone: %@", person.phoneNumber] : @"";
-    cell.officeLabel.text = (person.office)? [NSString stringWithFormat:@"Office: %@", person.office] : @"";
+    cell.phoneNumberTextView.text = (person.phoneNumber)? person.phoneNumber : @"";
+    cell.officeLabel.text = (person.office)? person.office : @"";
     
     return cell;
 }
@@ -86,23 +82,6 @@
 
 #pragma mark UITableViewDelegate Methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat height = 64.0;
-    
-    UTCSDirectoryPerson *person = ((UTCSDirectoryDataSource *)self.dataSource).flatDirectory[indexPath.row];
-    
-    if (person.office) {
-        height += 20.0;
-    }
-    
-    if (person.phoneNumber) {
-        height += 20.0;
-    }
-    
-    return height;
-}
-
 #pragma mak UISearchDisplayDelegate Methods
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
@@ -113,6 +92,7 @@
     
     tableView.contentOffset = CGPointZero;
     tableView.contentInset = UIEdgeInsetsZero;
+    tableView.rowHeight = 96.0;
 }
 
 @end
