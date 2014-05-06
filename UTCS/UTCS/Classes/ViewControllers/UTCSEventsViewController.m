@@ -21,6 +21,7 @@
 #import "UIImage+CZTinting.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
+#import "UIButton+UTCSButton.h"
 
 
 #pragma mark - Constants
@@ -89,7 +90,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
         self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
         
-        self.filterTypes = @[@"All", @"Careers", @"Talks", @"Organizations"];
+        self.filterTypes = @[@"All", @"Talks", @"Careers", @"Organizations"];
     }
     return self;
 }
@@ -111,13 +112,20 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     [super viewDidLoad];
     
     self.filterButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        button.frame = CGRectMake(self.view.width - 48.0, 4.0, 36.0, 36.0);
+        UIButton *button = [UIButton bouncyButton];
+        button.frame = CGRectMake(self.view.width - 44.0, 0.0, 44.0, 44.0);
+        
+        UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        [button addSubview:imageView];
+        
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
     
-//    [self.view addSubview:self.filterButton];
+    [self.view addSubview:self.filterButton];
     [self.view bringSubviewToFront:self.filterButton];
     
 }
@@ -130,7 +138,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         
         if (!self.filterActionSheet) {
             self.filterActionSheet = ({
-                IBActionSheet *actionSheet = [[IBActionSheet alloc]initWithTitle:@"Filter Events" delegate:self cancelButtonTitle:@"Done" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+                IBActionSheet *actionSheet = [[IBActionSheet alloc]initWithTitle:@"Filter Events by Type"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Done"
+                                                          destructiveButtonTitle:nil
+                                                               otherButtonTitles:nil, nil];
                 
                 for (NSString *type in self.filterTypes) {
                     [actionSheet addButtonWithTitle:type];
@@ -138,10 +150,10 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
                 
                 [actionSheet setTitleBackgroundColor:[UIColor clearColor]];
                 [actionSheet setTitleFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
-                [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.95]];
-                [actionSheet setButtonTextColor:[UIColor whiteColor]];
-                [actionSheet setTitleTextColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
-                [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.75 alpha:0.25]];
+                [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.9]];
+                [actionSheet setButtonTextColor:[UIColor blackColor]];
+                [actionSheet setTitleTextColor:[UIColor darkGrayColor]];
+                [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.05]];
                 actionSheet;
             });
         }

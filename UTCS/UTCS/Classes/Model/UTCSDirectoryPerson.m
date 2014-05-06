@@ -19,6 +19,7 @@
         _office         = [aDecoder decodeObjectForKey:@"office"];
         _phoneNumber    = [aDecoder decodeObjectForKey:@"phone"];
         _type           = [aDecoder decodeObjectForKey:@"type"];
+        _imageURL       = [aDecoder decodeObjectForKey:@"imageURL"];
     }
     return self;
 }
@@ -31,6 +32,7 @@
     [aCoder encodeObject:_office            forKey:@"office"];
     [aCoder encodeObject:_phoneNumber       forKey:@"phone"];
     [aCoder encodeObject:_type              forKey:@"type"];
+    [aCoder encodeObject:_imageURL          forKey:@"imageURL"];
 }
 
 @end

@@ -108,11 +108,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section != 0) {
+        return;
+    }
+    
     NSString *license = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     
     if (!self.licenseViewController) {
         self.licenseViewController = [UTCSSettingsLicenseViewController new];
+        NSLog(@"new license vc");
     }
+    
+    
     self.licenseViewController.license = license;
     [self.navigationController pushViewController:self.licenseViewController animated:YES];
 }

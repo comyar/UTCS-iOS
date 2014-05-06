@@ -26,6 +26,7 @@
             person.office       = personData[@"location"];
             person.phoneNumber  = personData[@"phone"];
             person.type         = personData[@"type"];
+            person.imageURL     = personData[@"image"];
             [directoryLetter addObject:person];
         }
         [directory addObject:directoryLetter];

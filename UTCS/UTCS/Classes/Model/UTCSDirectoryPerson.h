@@ -14,6 +14,7 @@
 @property (nonatomic) NSString *fullName;
 @property (nonatomic) NSString *firstName;
 @property (nonatomic) NSString *lastName;
+@property (nonatomic) NSString *imageURL;
 @property (nonatomic) NSString *office;
 @property (nonatomic) NSString *phoneNumber;
 @property (nonatomic) NSString *type;

@@ -32,6 +32,13 @@
     return self;
 }
 
+- (void)setLicense:(NSString *)license
+{
+    _license = license;
+    NSLog(@"license set : %@", _license);
+    [self.tableView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -71,6 +78,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }

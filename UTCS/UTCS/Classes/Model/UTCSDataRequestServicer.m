@@ -15,7 +15,7 @@
 
 #pragma mark - Constants
 static NSString *requestURL         = @"http://www.cs.utexas.edu/~mad/utcs/cgi-bin/utcs.scgi";
-static NSString *requestKey         = @"MIGfMA0GCSqGSIB3DQEBAQUAA4GNADp";
+static NSString *requestKey         = @"gwPtXjpDGgsKWyb8gLrq9OKVVa1dU2uE";
 
 NSString *UTCSDataRequestServicerErrorDomain = @"UTCSDataRequestServicerError";
 
@@ -58,7 +58,9 @@ NSString *UTCSDataRequestServicerErrorDomain = @"UTCSDataRequestServicerError";
     
     NSString *post = [NSString stringWithFormat:@"key=%@", requestKey];
 
-    post = [post stringByAppendingString:[NSString stringWithFormat:@"&arg=%@", argument]];
+    if (argument) {
+        post = [post stringByAppendingString:[NSString stringWithFormat:@"&arg=%@", argument]];
+    }
     post = [post stringByAppendingString:[NSString stringWithFormat:@"&service=%@", service]];
     
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding];
