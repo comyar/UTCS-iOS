@@ -21,7 +21,7 @@
 
 /**
  Window used by FBTweaks. Allows the tweak window to be presented when the device
- is shaked.
+ is shaked. Behaves similarly to a UIWindow in production.
  */
 @property (nonatomic) FBTweakShakeWindow *window;
 
