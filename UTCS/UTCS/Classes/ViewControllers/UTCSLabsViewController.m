@@ -133,7 +133,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self update];
+    [self update];
 }
 
 - (void)update

@@ -100,9 +100,9 @@
         if (![[machine.status lowercaseString] isEqualToString:@"up"]) {
             machineView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
         } else if (machine.occupied) {
-            machineView.backgroundColor = [UIColor redColor];
+            machineView.backgroundColor = [UIColor colorWithRed:1.000 green:0.163 blue:0.000 alpha:1.000];
         } else {
-            machineView.backgroundColor = [UIColor greenColor];
+            machineView.backgroundColor = [UIColor colorWithRed:0.348 green:1.000 blue:0.000 alpha:1.000];
         }
     }
     return machineView;
