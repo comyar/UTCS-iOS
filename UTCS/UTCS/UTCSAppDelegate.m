@@ -9,21 +9,19 @@
 
 #pragma mark - Imports
 
-// View Controllers
+#import "UTCSAppDelegate.h"
+#import <Tweaks/FBTweakInline.h>
+
 #import "UTCSMenuViewController.h"
 #import "UTCSNavigationController.h"
 #import "UTCSVerticalMenuViewController.h"
+
 #import "UTCSNewsViewController.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
 #import "UTCSDirectoryViewController.h"
 #import "UTCSSettingsViewController.h"
-
-// Models
-#import "UTCSAppDelegate.h"
-
-#import <Tweaks/FBTweakInline.h>
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -34,32 +32,32 @@
 // @name Content controllers
 // -----
 
-//
+// Menu view controller
 @property (nonatomic) UTCSMenuViewController            *menuViewController;
 
-//
+// Vertical menu view controller
 @property (nonatomic) UTCSVerticalMenuViewController    *verticalMenuViewController;
 
-//
+// Labs view controller
 @property (nonatomic) UTCSLabsViewController            *labsViewController;
 
-//
+// Disk quota view controller
 @property (nonatomic) UTCSDiskQuotaViewController       *diskQuotaViewController;
 
 // -----
 // @name Navigation controllers
 // -----
 
-//
+// Navigation controller containing the news view controller
 @property (nonatomic) UTCSNavigationController          *newsNavigationController;
 
-//
+// Navigation controller containing the events view controller
 @property (nonatomic) UTCSNavigationController          *eventsNavigationController;
 
-//
+// Navigation controller containing the directory view controller
 @property (nonatomic) UTCSNavigationController          *directoryNavigationController;
 
-//
+// Navigation controller containing the settings view controller
 @property (nonatomic) UTCSNavigationController          *settingsNavigationController;
 
 @end
@@ -68,7 +66,6 @@
 #pragma mark - UTCSAppDelegate Implementation
 
 @implementation UTCSAppDelegate
-@synthesize window;
 
 #pragma mark UIApplicationDelegate Methods
 

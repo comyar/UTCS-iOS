@@ -85,10 +85,6 @@
             
             cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
             cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-            cell.imageView.layer.cornerRadius = 32.0;
-            cell.imageView.layer.masksToBounds = YES;
-            cell.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-            cell.imageView.layer.borderWidth = 2.0;
             
             cell.backgroundColor = [UIColor clearColor];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -112,6 +108,7 @@
         cell.textLabel.text         = self.person.fullName;
         cell.detailTextLabel.text   = self.person.type;
         cell.imageView.image        = (self.facultyImage)? self.facultyImage : [UIImage imageNamed:[self.person.type lowercaseString]];
+        cell.imageView.layer.cornerRadius = 0.5 * cell.imageView.image.size.width;
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             NSString *text      = self.person.office;

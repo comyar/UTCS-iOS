@@ -8,8 +8,12 @@
 
 
 #import "UTCSTableViewController.h"
+
 @class UTCSDirectoryPerson;
 
+
+/**
+ */
 @interface UTCSDirectoryDetailViewController : UTCSTableViewController <UITableViewDataSource>
 
 @property (nonatomic) UTCSDirectoryPerson *person;
