@@ -14,7 +14,7 @@
 
 /**
  */
-@interface UTCSDirectoryDetailViewController : UTCSTableViewController <UITableViewDataSource>
+@interface UTCSDirectoryDetailViewController : UTCSTableViewController <UITableViewDataSource, UIAlertViewDelegate>
 
 @property (nonatomic) UTCSDirectoryPerson *person;
 

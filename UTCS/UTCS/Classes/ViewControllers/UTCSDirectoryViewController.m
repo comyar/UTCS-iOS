@@ -74,15 +74,12 @@
             searchBar;
         });
         
-        
-        
         self.tableView.tableHeaderView = self.searchBar;
         self.tableView.alwaysBounceVertical = NO;
         self.tableView.sectionIndexColor = [UIColor whiteColor];
         self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
         self.tableView.tableHeaderView.backgroundColor = [UIColor clearColor];
         self.tableView.dataSource = (UTCSDirectoryDataSource *)self.dataSource;
-        self.tableView.rowHeight = 64.0;
         
         self.dataSource.searchController.searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar
                                                                                                     contentsController:self];
@@ -90,12 +87,6 @@
         self.dataSource.searchController.searchDisplayController.searchResultsDelegate = self;
     }
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -124,6 +115,8 @@
     
     [self.view addSubview:self.searchButton];
     [self.view bringSubviewToFront:self.searchButton];
+    
+    self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
 }
 
 #pragma mark Buttons

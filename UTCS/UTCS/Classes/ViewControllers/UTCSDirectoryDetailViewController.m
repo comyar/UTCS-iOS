@@ -11,10 +11,17 @@
 #import "UIButton+UTCSButton.h"
 
 
+#pragma mark - UTCSDirectoryDetailViewController Class Extension
+
 @interface UTCSDirectoryDetailViewController ()
+
+//
 @property (nonatomic) UIImage *facultyImage;
+
 @end
 
+
+#pragma mark - UTCSDirectoryDetailViewController Implementation
 
 @implementation UTCSDirectoryDetailViewController
 
@@ -61,8 +68,7 @@
                 UIImage *image = [UIImage imageWithData:data];
                 if (person == self.person) {
                     self.facultyImage = image;
-                    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-                    cell.imageView.image = image;
+                    [self.tableView reloadData];
                 }
             }
         }];
@@ -91,17 +97,25 @@
         
         UIButton *callButton = ({
             UIButton *button = [UIButton bouncyButton];
+            button.frame = CGRectMake(0.0, 0.0, 50.0, 28.0);
+            button.center = CGPointMake(cell.width - button.width, cell.center.y);
             [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             button.layer.borderColor = [UIColor whiteColor].CGColor;
-            [button setTitle:@"Go" forState:UIControlStateNormal];
+            [button setTitle:@"Call" forState:UIControlStateNormal];
             button.tintColor = [UIColor whiteColor];
             button.layer.masksToBounds = YES;
             button.layer.cornerRadius = 4.0;
             button.layer.borderWidth = 1.0;
+            button.tag = NSIntegerMin;
             button;
         });
+        
+        [cell.contentView addSubview:callButton];
     }
+    
+    UIButton *callButton = (UIButton *)[cell.contentView viewWithTag:NSIntegerMin];
+    callButton.hidden = YES;
     
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
     cell.imageView.autoresizingMask = UIViewAutoresizingNone;
@@ -123,6 +137,10 @@
             cell.textLabel.text         = self.person.phoneNumber;
             cell.detailTextLabel.text   = @"Phone";
         }
+        
+        if ([cell.detailTextLabel.text isEqualToString:@"Phone"]) {
+            callButton.hidden = NO;
+        }
     }
     
     return cell;
@@ -130,6 +148,40 @@
 
 
 #pragma mark Buttons
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if (button.tag == NSIntegerMin) {
+        [[[UIAlertView alloc]initWithTitle:@"Confirm"
+                                  message:@"Are you sure you want to call?"
+                                 delegate:self
+                        cancelButtonTitle:@"Cancel"
+                        otherButtonTitles:@"Yes", nil]show];
+    }
+}
+
+#pragma mark UIAlertViewDelegate Methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString *phoneNumber = self.person.phoneNumber;
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNumber]];
+        if ([[UIApplication sharedApplication]canOpenURL:phoneURL]) {
+            [[UIApplication sharedApplication]openURL:phoneURL];
+        } else {
+#if !(TARGET_IPHONE_SIMULATOR)
+            [[[UIAlertView alloc]initWithTitle:@"Error"
+                                       message:@"Ouch! Looks like something went wrong. Please report a bug! "
+                                      delegate:self
+                             cancelButtonTitle:@"OK"
+                             otherButtonTitles:nil]show];
+#else
+            NSLog(@"iPhone Simulator cannot open URL : %@", phoneURL);
+#endif
+        }
+    }
+}
 
 #pragma mark UITableViewDataSource Methods
 
@@ -165,26 +217,6 @@
 }
 
 #pragma mark UITableViewDelegate Methods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
-}
-
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setHighlighted:YES animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setHighlighted:NO animated:YES];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
