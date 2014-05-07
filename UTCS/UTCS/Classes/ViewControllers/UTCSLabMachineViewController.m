@@ -33,16 +33,21 @@
         self.labView = [[UTCSLabView alloc]initWithFrame:CGRectZero layout:self.layout];
         self.labView.frame = CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0);
         self.labView.backgroundColor = [UIColor clearColor];
+        self.labView.alpha = 0.0;
         self.labView.dataSource = self;
         
         self.backgroundContainer = [[UIView alloc]initWithFrame:self.view.bounds];
         self.backgroundContainer.clipsToBounds = YES;
         
         _backgroundImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-        NSLog(@"%@", NSStringFromCGRect(_backgroundImageView.frame));
         self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.backgroundImageView.clipsToBounds = NO;
         
+        [self.backgroundContainer addSubview:self.backgroundImageView];
+        [self.view addSubview:self.backgroundContainer];
+        
+        [self.labView prepareLayout];
+        [self.view addSubview:self.labView];
     }
     return self;
 }
@@ -60,22 +65,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    [self.backgroundContainer addSubview:self.backgroundImageView];
-    [self.view addSubview:self.backgroundContainer];
-    
-    
-    [self.labView prepareLayout];
-    [self.view addSubview:self.labView];
-    
 }
 
 - (void)setImageOffset:(CGPoint)imageOffset
 {
     _imageOffset = imageOffset;
     
-    CGRect frame = self.backgroundImageView.frame;
+    CGRect frame = self.backgroundContainer.bounds;
     CGRect offsetFrame = CGRectOffset(frame, _imageOffset.x, _imageOffset.y);
     self.backgroundImageView.frame = offsetFrame;
 }
@@ -85,6 +81,11 @@
     _machines = machines;
     [self.labView invalidateLayout];
     [self.labView reloadData];
+    if (_machines) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.labView.alpha = 1.0;
+        }];
+    }
 }
 
 #pragma mark UTCSLabViewDataSource Methods

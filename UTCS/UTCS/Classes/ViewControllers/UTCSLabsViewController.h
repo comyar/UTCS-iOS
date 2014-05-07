@@ -9,6 +9,6 @@
 
 #import "UTCSContentViewController.h"
 
-@interface UTCSLabsViewController : UTCSContentViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface UTCSLabsViewController : UTCSContentViewController <UIScrollViewDelegate>
 
 @end

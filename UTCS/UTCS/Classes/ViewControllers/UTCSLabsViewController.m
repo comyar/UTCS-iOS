@@ -25,7 +25,7 @@
 @interface UTCSLabsViewController ()
 
 //
-@property (nonatomic) UIPageViewController                  *pageViewController;
+@property (nonatomic) UIScrollView *scrollView;
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
@@ -52,6 +52,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.dataSource = [[UTCSLabsDataSource alloc]initWithService:@"labs"];
+        
     }
     return self;
 }
@@ -60,27 +61,26 @@
 {
     [super viewDidLoad];
     
-    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
-    self.pageControl.numberOfPages = 3;
+    // Scroll View
+    self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    self.scrollView.contentSize = CGSizeMake(2.0 * self.view.width, self.view.height);
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor blackColor];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.delegate = self;
+    [self.view addSubview:self.scrollView];
     
-    self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                           options:nil];
-    self.pageViewController.dataSource  = self;
-    self.pageViewController.delegate    = self;
-    
-    self.pageViewController.view.frame = self.view.bounds;
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
-    
-    self.pageViewController.view.backgroundColor = [UIColor blackColor];
-    
+    // Third floor lab view controller
     UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
     self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
+    [self.scrollView addSubview:self.thirdFloorLabViewController.view];
+    [self addChildViewController:self.thirdFloorLabViewController];
+    [self.thirdFloorLabViewController didMoveToParentViewController:self];
     
-    
+    // Third shimmering view
     self.thirdShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0.5 * self.view.width,
                                                                                  0.3 * self.view.height,
                                                                                  0.4 * self.view.width,
@@ -94,12 +94,19 @@
         label.numberOfLines = 0;
         label;
     });
+    [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
     
     
+    // Basement view controller
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"basementLabsBackground"];
+    self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);
+    [self.scrollView addSubview:self.basementLabViewController.view];
+    [self addChildViewController:self.basementLabViewController];
+    [self.basementLabViewController didMoveToParentViewController:self];
     
+    // Basement shimmering view
     self.basementShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(8.0,
                                                                                     0.75 * self.view.height,
                                                                                     self.view.width - 16.0,
@@ -112,26 +119,16 @@
         label.textColor = [UIColor whiteColor];
         label;
     });
-    
-    
-    [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
     [self.basementLabViewController.view addSubview:self.basementShimmeringView];
     
-
-
-    self.searchViewController = [UTCSLabsSearchViewController new];
-    self.searchViewController.searchController.dataSource = self.dataSource;
     
     
-    [self.pageViewController setViewControllers:@[self.thirdFloorLabViewController]
-                                      direction:UIPageViewControllerNavigationDirectionForward
-                                       animated:NO
-                                     completion:nil];
     
+    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
+    self.pageControl.numberOfPages = 2;
     [self.view addSubview:self.pageControl];
     
 }
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -142,7 +139,7 @@
 - (void)update
 {
     if ([self.dataSource shouldUpdate]) {
-        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.pageViewController.view animated:YES];
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Updating";
         self.thirdShimmeringView.shimmering = YES;
@@ -165,53 +162,20 @@
                 // Frowny face
             }
 
-            [MBProgressHUD hideAllHUDsForView:self.pageViewController.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
         }];
     }
 }
 
-#pragma mark UIPageViewControllerDataSource Methods
+#pragma mark UIScrollViewDelegate Methods
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (viewController == self.thirdFloorLabViewController) {
-        return self.basementLabViewController;
-    } else if (viewController == self.basementLabViewController) {
-        return self.searchViewController;
-    }
-    return nil;
+    CGFloat thirdOffset     = 0.5 * scrollView.contentOffset.x;
+    CGFloat basementOffset  = 0.5 * (scrollView.contentOffset.x - self.view.width);
+    self.thirdFloorLabViewController.imageOffset = CGPointMake(thirdOffset, 0.0);
+    self.basementLabViewController.imageOffset = CGPointMake(basementOffset, 0.0);
 }
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-{
-    if (viewController == self.searchViewController) {
-        return self.basementLabViewController;
-    } else if (viewController == self.basementLabViewController) {
-        return self.thirdFloorLabViewController;
-    }
-    return nil;
-}
-
-#pragma mak UIPageViewControllerDelegate Methods
-
-
-- (void)pageViewController:(UIPageViewController *)pageViewController
-        didFinishAnimating:(BOOL)finished
-   previousViewControllers:(NSArray *)previousViewControllers
-       transitionCompleted:(BOOL)completed
-{
-    if (completed) {
-        UIViewController *previous = [previousViewControllers firstObject];
-        UIViewController *current = [pageViewController.viewControllers firstObject];
-        if (current == self.searchViewController) {
-            // become first responder
-        } else if (previous == self.searchViewController) {
-            // resign first responder
-        }
-    }
-}
-
-
 
 @end
