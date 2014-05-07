@@ -9,6 +9,7 @@
 #import "UTCSDirectoryDetailViewController.h"
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
+#import "UTCSDirectoryDetailTableViewCell.h"
 
 
 #pragma mark - UTCSDirectoryDetailViewController Class Extension
@@ -40,6 +41,7 @@
     if (self = [super initWithStyle:style]) {
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.scrollEnabled = NO;
     }
     return self;
 }
@@ -68,7 +70,9 @@
                 UIImage *image = [UIImage imageWithData:data];
                 if (person == self.person) {
                     self.facultyImage = image;
-                    [self.tableView reloadData];
+                    UITableViewCell *cell   = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+                    cell.imageView.image    = self.facultyImage;
+                    cell.imageView.layer.cornerRadius = 0.5 * cell.imageView.height;
                 }
             }
         }];
@@ -77,19 +81,21 @@
 
 #pragma mark UITableViewDataSource Methods
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UTCSDirectoryDetailTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+    UTCSDirectoryDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailTableViewCell"];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                     reuseIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+        cell = [[UTCSDirectoryDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                                      reuseIdentifier:@"UTCSDirectoryDetailTableViewCell"];
         
         cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
         cell.textLabel.numberOfLines = 2;
         
         cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        cell.imageView.autoresizingMask = UIViewAutoresizingNone;
         
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -117,14 +123,13 @@
     UIButton *callButton = (UIButton *)[cell.contentView viewWithTag:NSIntegerMin];
     callButton.hidden = YES;
     
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    cell.imageView.autoresizingMask = UIViewAutoresizingNone;
-    
     if (indexPath.section == 0) {
         cell.textLabel.text         = self.person.fullName;
         cell.detailTextLabel.text   = self.person.type;
         cell.imageView.image        = (self.facultyImage)? self.facultyImage : [UIImage imageNamed:[self.person.type lowercaseString]];
-        cell.imageView.layer.cornerRadius = 0.5 * cell.imageView.image.size.width;
+        
+        cell.imageView.layer.cornerRadius = 0.5 * cell.imageView.height;
+        cell.imageView.layer.masksToBounds = YES;
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             NSString *text      = self.person.office;

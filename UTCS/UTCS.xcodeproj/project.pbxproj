@@ -78,6 +78,7 @@
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDB694C21918D8B500C4B5E6 /* UTCSDirectoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB694C11918D8B500C4B5E6 /* UTCSDirectoryDetailViewController.m */; };
+		DDB6950B191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6950A191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.m */; };
 		DDC206F7190A0410001DD1A5 /* UTCSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC206F6190A0410001DD1A5 /* UTCSSettingsViewController.m */; };
 		DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5D419047760006011F0 /* UTCSContentViewController.m */; };
 		DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F5DA1904778C006011F0 /* UTCSDataSource.m */; };
@@ -235,6 +236,8 @@
 		DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CZPositioning.m"; path = "Categories/UIView+CZPositioning.m"; sourceTree = "<group>"; };
 		DDB694C01918D8B500C4B5E6 /* UTCSDirectoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDetailViewController.h; path = ViewControllers/UTCSDirectoryDetailViewController.h; sourceTree = "<group>"; };
 		DDB694C11918D8B500C4B5E6 /* UTCSDirectoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDetailViewController.m; path = ViewControllers/UTCSDirectoryDetailViewController.m; sourceTree = "<group>"; };
+		DDB69509191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDetailTableViewCell.h; path = Views/UTCSDirectoryDetailTableViewCell.h; sourceTree = "<group>"; };
+		DDB6950A191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDetailTableViewCell.m; path = Views/UTCSDirectoryDetailTableViewCell.m; sourceTree = "<group>"; };
 		DDC206F5190A0410001DD1A5 /* UTCSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsViewController.h; path = ViewControllers/UTCSSettingsViewController.h; sourceTree = "<group>"; };
 		DDC206F6190A0410001DD1A5 /* UTCSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsViewController.m; path = ViewControllers/UTCSSettingsViewController.m; sourceTree = "<group>"; };
 		DDC2F5D319047760006011F0 /* UTCSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSContentViewController.h; path = ViewControllers/UTCSContentViewController.h; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 		DDA758FC19088F11007CD0DB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDB69509191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.h */,
+				DDB6950A191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1071,6 +1076,7 @@
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
+				DDB6950B191A0AA700C4B5E6 /* UTCSDirectoryDetailTableViewCell.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,

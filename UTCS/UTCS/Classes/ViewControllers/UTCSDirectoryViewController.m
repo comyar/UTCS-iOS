@@ -27,6 +27,7 @@
 
 @interface UTCSDirectoryViewController ()
 
+@property (nonatomic, getter = hasAppeared) BOOL appeared;
 // Search bar
 @property (nonatomic) UISearchBar               *searchBar;
 
@@ -89,6 +90,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!self.hasAppeared) {
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
+        self.appeared = YES;
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -115,8 +125,6 @@
     
     [self.view addSubview:self.searchButton];
     [self.view bringSubviewToFront:self.searchButton];
-    
-    self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
 }
 
 #pragma mark Buttons
