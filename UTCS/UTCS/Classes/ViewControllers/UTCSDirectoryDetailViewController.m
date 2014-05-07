@@ -8,7 +8,8 @@
 
 #import "UTCSDirectoryDetailViewController.h"
 #import "UTCSDirectoryPerson.h"
-#import "UTCSBouncyTableViewCell.h"
+#import "UIButton+UTCSButton.h"
+
 
 @interface UTCSDirectoryDetailViewController ()
 @property (nonatomic) UIImage *facultyImage;
@@ -72,37 +73,38 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailTableViewCell"];
     
-    if (indexPath.section == 0 || indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailSubtitleTableViewCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                         reuseIdentifier:@"UTCSDirectoryDetailSubtitleTableViewCell"];
-            
-            cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-            cell.textLabel.numberOfLines = 2;
-            
-            cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-            
-            cell.backgroundColor = [UIColor clearColor];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        }
-    } else if (indexPath.section == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailDefaultTableViewCell"];
-        if (!cell) {
-            cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
-                                         reuseIdentifier:@"UTCSDirectoryDetailDefaultTableViewCell"];
-            
-            cell.textLabel.textColor = [UIColor whiteColor];
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-        }
-
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                     reuseIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+        
+        cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+        cell.textLabel.numberOfLines = 2;
+        
+        cell.detailTextLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        
+        UIButton *callButton = ({
+            UIButton *button = [UIButton bouncyButton];
+            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            button.layer.borderColor = [UIColor whiteColor].CGColor;
+            [button setTitle:@"Go" forState:UIControlStateNormal];
+            button.tintColor = [UIColor whiteColor];
+            button.layer.masksToBounds = YES;
+            button.layer.cornerRadius = 4.0;
+            button.layer.borderWidth = 1.0;
+            button;
+        });
     }
     
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    cell.imageView.autoresizingMask = UIViewAutoresizingNone;
     
     if (indexPath.section == 0) {
         cell.textLabel.text         = self.person.fullName;
@@ -121,19 +123,15 @@
             cell.textLabel.text         = self.person.phoneNumber;
             cell.detailTextLabel.text   = @"Phone";
         }
-    } else if (indexPath.section == 2) {
-        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-        cell.textLabel.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Add to Contacts";
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Call Phone";
-        }
     }
     
     return cell;
 }
+
+
+#pragma mark Buttons
+
+#pragma mark UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -149,23 +147,19 @@
             count++;
         }
         return count;
-    } else if (section == 2) {
-        return ([self.person.phoneNumber length])? 2 : 1;
     }
     return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
         return @"Information";
-    } else if (section == 2) {
-        return @"Actions";
     }
     return nil;
 }
@@ -176,11 +170,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 2 && indexPath.row == 0) {
-        // Add to contacts
-    } else if (indexPath.section == 2 && indexPath.row == 1) {
-        // Call
-    }
+    
 }
 
 
