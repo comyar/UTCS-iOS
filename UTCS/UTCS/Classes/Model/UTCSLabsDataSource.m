@@ -24,6 +24,7 @@ NSString * const UTCSLabsDataSourceCacheKey = @"UTCSLabsDataSourceCacheKey";
         _searchController = [UTCSLabsDataSourceSearchController new];
         _searchController.dataSource = self;
         _minimumTimeBetweenUpdates = 750; // 15 minutes
+        _primaryCacheKey = UTCSLabsDataSourceCacheKey;
         
         NSDictionary *cache = [self.cache objectWithKey:UTCSLabsDataSourceCacheKey];
         if (cache) {
