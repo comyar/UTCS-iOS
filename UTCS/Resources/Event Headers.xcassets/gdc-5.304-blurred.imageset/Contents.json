@@ -2,12 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "gdc-atrium-blurred@2x.png"
+      "filename" : "gdc-5.304-blurred@2x.png"
     }
   ],
   "info" : {

@@ -105,7 +105,13 @@
         });
         
         self.defaultHeaderImages = @[@"gdc-speedway", @"gdc-general"];
-        self.headerImageMapping = @{@"2.410":@"gdc-2,410",
+        self.headerImageMapping = @{@"1.304":@"gdc-1.304",
+                                    @"1.406":@"gdc-1.406",
+                                    @"2.410":@"gdc-2.410",
+                                    @"5.302":@"gdc-5.302",
+                                    @"5.304":@"gdc-5.304",
+                                    @"6.102":@"gdc-6.102",
+                                    @"6.302":@"gdc-6.302",
                                     @"auditorium":@"gdc-auditorium",
                                     @"atrium":@"gdc-atrium"};
     }
@@ -247,11 +253,13 @@
     }
     
     // Choose header image
-    NSString *headerImageName = [self headerImageNameForEvent:event];
-    NSString *headerImageBlurredName = [headerImageName stringByAppendingString:@"-blurred"];
+    NSString *headerImageName           = [self headerImageNameForEvent:event];
+    NSString *headerImageBlurredName    = [headerImageName stringByAppendingString:@"-blurred"];
     
     self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerImageName];
     self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerImageBlurredName];
+    
+    
     
     
     // Configure name label
@@ -464,23 +472,13 @@
 {
     NSString *location = event.location;
     
-    if (![location contains:@"gdc"]) {
-        // Choose random general image
-        // return
+    if ([location contains:@"gdc"]) {
+        for (NSString *key in self.headerImageMapping) {
+            if([location contains:key]) {
+                return self.headerImageMapping[key];
+            }
+        }
     }
-    
-    if ([location contains:@"2.410"]) {
-        return self.headerImageMapping[@"2.410"];
-    }
-    
-    if ([location contains:@"atrium"]) {
-        return self.headerImageMapping[@"atrium"];
-    }
-    
-    if ([location contains:@"auditorium"]) {
-        return self.headerImageMapping[@"auditorium"];
-    }
-    
     
     NSInteger index = arc4random() % [self.defaultHeaderImages count];
     return self.defaultHeaderImages[index];

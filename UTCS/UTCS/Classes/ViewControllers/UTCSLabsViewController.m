@@ -172,10 +172,14 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    NSInteger pageNumber = lround((MAX(0, scrollView.contentOffset.x)/self.view.width));
+    self.pageControl.currentPage = pageNumber;
+    
     CGFloat thirdOffset     = 0.5 * scrollView.contentOffset.x;
     CGFloat basementOffset  = 0.5 * (scrollView.contentOffset.x - self.view.width);
     self.thirdFloorLabViewController.imageOffset = CGPointMake(thirdOffset, 0.0);
     self.basementLabViewController.imageOffset = CGPointMake(basementOffset, 0.0);
+    
 }
 
 @end
