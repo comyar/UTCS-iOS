@@ -30,15 +30,13 @@
 //
 @property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
 
-@property (nonatomic) FBShimmeringView                      *thirdShimmeringView;
-
-@property (nonatomic) FBShimmeringView                      *basementShimmeringView;
-
 //
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
 
+//
 @property (nonatomic) UTCSLabsSearchViewController          *searchViewController;
 
+//
 @property (nonatomic) UIPageControl                         *pageControl;
 
 @end
@@ -80,21 +78,10 @@
     [self addChildViewController:self.thirdFloorLabViewController];
     [self.thirdFloorLabViewController didMoveToParentViewController:self];
     
-    // Third shimmering view
-    self.thirdShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(0.5 * self.view.width,
-                                                                                 0.3 * self.view.height,
-                                                                                 0.4 * self.view.width,
-                                                                                 0.6 * self.view.height)];
-    self.thirdShimmeringView.contentView = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:self.thirdShimmeringView.bounds];
-        label.text = @"Third\nFloor\nLab";
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        label.numberOfLines = 0;
-        label;
-    });
-    [self.thirdFloorLabViewController.view addSubview:self.thirdShimmeringView];
+    self.thirdFloorLabViewController.shimmeringView.frame = CGRectMake(0.5 * self.view.width,0.3 * self.view.height,
+                                                                       0.4 * self.view.width, 0.6 * self.view.height);
+    self.thirdFloorLabViewController.shimmeringView.contentView.frame = self.thirdFloorLabViewController.shimmeringView.bounds;
+    ((UILabel *)self.thirdFloorLabViewController.shimmeringView.contentView).text = @"Third\nFloor\n";
     
     
     // Basement view controller
@@ -106,25 +93,13 @@
     [self addChildViewController:self.basementLabViewController];
     [self.basementLabViewController didMoveToParentViewController:self];
     
-    // Basement shimmering view
-    self.basementShimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectMake(8.0,
-                                                                                    0.75 * self.view.height,
-                                                                                    self.view.width - 16.0,
-                                                                                    120)];
-    self.basementShimmeringView.contentView = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:self.basementShimmeringView.bounds];
-        label.text = @"Basement Lab";
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42.5];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        label;
-    });
-    [self.basementLabViewController.view addSubview:self.basementShimmeringView];
-    
-    
+    self.basementLabViewController.shimmeringView.frame = CGRectMake(8.0, 0.72 * self.view.height, self.view.width - 16.0, 120);
+    self.basementLabViewController.shimmeringView.contentView.frame = self.basementLabViewController.shimmeringView.bounds;
+    ((UILabel *)self.basementLabViewController.shimmeringView.contentView).text = @"Basement";
     
     
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
+    self.pageControl.userInteractionEnabled = NO;
     self.pageControl.numberOfPages = 2;
     [self.view addSubview:self.pageControl];
     
@@ -142,13 +117,13 @@
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Updating";
-        self.thirdShimmeringView.shimmering = YES;
-        self.basementShimmeringView.shimmering = YES;
+        self.thirdFloorLabViewController.shimmeringView.shimmering = YES;
+        self.basementLabViewController.shimmeringView.shimmering = YES;
         
         [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
-            self.thirdShimmeringView.shimmering = NO;
-            self.basementShimmeringView.shimmering = NO;
+            self.thirdFloorLabViewController.shimmeringView.shimmering = NO;
+            self.basementLabViewController.shimmeringView.shimmering = NO;
             
             if (success) {
                 NSDictionary *third      = self.dataSource.data[@"third"];
@@ -180,6 +155,13 @@
     self.thirdFloorLabViewController.imageOffset = CGPointMake(thirdOffset, 0.0);
     self.basementLabViewController.imageOffset = CGPointMake(basementOffset, 0.0);
     
+}
+
+#pragma mark UTCSDataSourceDelegate Methods
+
+- (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource
+{
+    return @{UTCSLabsDataSourceCacheKey: self.dataSource.data};
 }
 
 @end

@@ -9,6 +9,11 @@
 
 #import "UTCSDataSource.h"
 
+/**
+ Key to use to cache lab data
+ */
+extern NSString * const UTCSLabsDataSourceCacheKey;
+
 @interface UTCSLabsDataSource : UTCSDataSource
 
 

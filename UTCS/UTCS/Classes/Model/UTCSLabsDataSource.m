@@ -12,6 +12,8 @@
 #import "UTCSDataSourceCache.h"
 #import "UTCSLabsDataSourceSearchController.h"
 
+NSString * const UTCSLabsDataSourceCacheKey = @"UTCSLabsDataSourceCacheKey";
+
 @implementation UTCSLabsDataSource
 
 - (instancetype)initWithService:(NSString *)service
@@ -21,6 +23,14 @@
         _parser = [UTCSLabsDataSourceParser new];
         _searchController = [UTCSLabsDataSourceSearchController new];
         _searchController.dataSource = self;
+        _minimumTimeBetweenUpdates = 750; // 15 minutes
+        
+        NSDictionary *cache = [self.cache objectWithKey:UTCSLabsDataSourceCacheKey];
+        if (cache) {
+            UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
+            _data = cache[UTCSDataSourceCacheValuesName];
+            _updated = meta.timestamp;
+        }
     }
     return self;
 }

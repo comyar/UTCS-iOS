@@ -10,7 +10,7 @@
 @import UIKit;
 
 #import "UTCSLabView.h"
-
+#import "FBShimmeringView.h"
 
 /**
  */
@@ -27,6 +27,10 @@
 /**
  */
 @property (nonatomic) CGPoint                       imageOffset;
+
+/**
+ */
+@property (nonatomic) FBShimmeringView              *shimmeringView;
 
 /**
  */

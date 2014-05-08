@@ -46,6 +46,17 @@
         [self.backgroundContainer addSubview:self.backgroundImageView];
         [self.view addSubview:self.backgroundContainer];
         
+        self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectZero];
+        self.shimmeringView.contentView = ({
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor whiteColor];
+            label.numberOfLines = 0;
+            label;
+        });
+        [self.view addSubview:self.shimmeringView];
+        
         [self.labView prepareLayout];
         [self.view addSubview:self.labView];
     }
@@ -65,6 +76,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 - (void)setImageOffset:(CGPoint)imageOffset
@@ -100,9 +112,9 @@
         if (![[machine.status lowercaseString] isEqualToString:@"up"]) {
             machineView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
         } else if (machine.occupied) {
-            machineView.backgroundColor = [UIColor colorWithRed:1.000 green:0.163 blue:0.000 alpha:1.000];
+            machineView.backgroundColor = [UIColor colorWithRed:0.888 green:0.146 blue:0.020 alpha:1.000];
         } else {
-            machineView.backgroundColor = [UIColor colorWithRed:0.348 green:1.000 blue:0.000 alpha:1.000];
+            machineView.backgroundColor = [UIColor colorWithRed:0.324 green:0.935 blue:0.018 alpha:1.000];
         }
     }
     return machineView;
