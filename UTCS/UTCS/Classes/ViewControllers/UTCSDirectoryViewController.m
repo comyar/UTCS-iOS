@@ -61,6 +61,7 @@
         self.dataSource.delegate = self;
         
         self.view.backgroundColor = [UIColor clearColor];
+        self.showsNavigationBarSeparatorLine = NO;
         
         self.searchBar = ({
             UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 64.0)];
@@ -212,9 +213,9 @@
         return ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-            label.text = [NSString stringWithFormat:@"    Search Results"];
-            label.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-            label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+            label.text = [NSString stringWithFormat:@"   Search Results"];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+            label.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
             label;
         });
     } else if (tableView == self.tableView) {
@@ -223,9 +224,9 @@
         return ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-            label.text = [NSString stringWithFormat:@"    %@", letter];
-            label.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-            label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
+            label.text = [NSString stringWithFormat:@"   %@", letter];
+            label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+            label.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
             label;
         });
     }

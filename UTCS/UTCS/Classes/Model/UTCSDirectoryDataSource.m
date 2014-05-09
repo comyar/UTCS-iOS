@@ -91,6 +91,7 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
     [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:cell.textLabel.font.pointSize] range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];
     
+    cell.indentationLevel = 1;
     cell.textLabel.attributedText = attributedName;
     cell.detailTextLabel.text = person.type;
 
