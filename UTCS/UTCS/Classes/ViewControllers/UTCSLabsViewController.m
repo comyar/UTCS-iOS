@@ -72,16 +72,18 @@
     // Third floor lab view controller
     UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
-    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.thirdFloorLabViewController.view];
     [self addChildViewController:self.thirdFloorLabViewController];
     [self.thirdFloorLabViewController didMoveToParentViewController:self];
     
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    
     self.thirdFloorLabViewController.shimmeringView.frame = CGRectMake(0.5 * self.view.width,0.3 * self.view.height,
                                                                        0.4 * self.view.width, 0.6 * self.view.height);
     self.thirdFloorLabViewController.shimmeringView.contentView.frame = self.thirdFloorLabViewController.shimmeringView.bounds;
-    ((UILabel *)self.thirdFloorLabViewController.shimmeringView.contentView).text = @"Third\nFloor\n";
+    ((UILabel *)self.thirdFloorLabViewController.shimmeringView.contentView).text = @"Third Floor";
     
     
     // Basement view controller
@@ -99,6 +101,8 @@
     
     
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.userInteractionEnabled = NO;
     self.pageControl.numberOfPages = 2;
     [self.view addSubview:self.pageControl];

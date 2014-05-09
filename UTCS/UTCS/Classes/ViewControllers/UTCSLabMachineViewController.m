@@ -9,6 +9,7 @@
 #import "UTCSLabMachineViewController.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSLabMachine.h"
+#import "UTCSParallaxBlurHeaderScrollView.h"
 
 
 #pragma mark - UTCSLabMachineViewController Class Extension
@@ -18,6 +19,8 @@
 @property (nonatomic) UIView            *backgroundContainer;
 
 @property (nonatomic) UTCSLabView       *labView;
+
+
 
 @end
 
@@ -30,11 +33,7 @@
 {
     if (self = [super initWithNibName:nil bundle:nil]) {
         _layout = layout;
-        self.labView = [[UTCSLabView alloc]initWithFrame:CGRectZero layout:self.layout];
-        self.labView.frame = CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0);
-        self.labView.backgroundColor = [UIColor clearColor];
-        self.labView.alpha = 0.0;
-        self.labView.dataSource = self;
+        
         
         self.backgroundContainer = [[UIView alloc]initWithFrame:self.view.bounds];
         self.backgroundContainer.clipsToBounds = YES;
@@ -45,20 +44,30 @@
         
         [self.backgroundContainer addSubview:self.backgroundImageView];
         [self.view addSubview:self.backgroundContainer];
+
+        
+        self.labView = [[UTCSLabView alloc]initWithFrame:CGRectZero layout:self.layout];
+        self.labView.frame = CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0);
+        self.labView.backgroundColor = [UIColor clearColor];
+        self.labView.alpha = 0.0;
+        self.labView.dataSource = self;
+        [self.view addSubview:self.labView];
+        
         
         self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectZero];
         self.shimmeringView.contentView = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:36];
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor = [UIColor whiteColor];
             label.numberOfLines = 0;
             label;
         });
-        [self.view addSubview:self.shimmeringView];
+        
+        
+        
         
         [self.labView prepareLayout];
-        [self.view addSubview:self.labView];
     }
     return self;
 }
@@ -67,7 +76,6 @@
 {
     [super viewDidLayoutSubviews];
     
-    self.backgroundContainer.frame = self.view.bounds;
     self.backgroundImageView.frame = self.view.bounds;
     
     [self.labView invalidateLayout];
@@ -107,14 +115,14 @@
     UTCSLabMachineView *machineView = [labView dequeueMachineViewForIndexPath:indexPath];
     UTCSLabMachine *machine = self.machines[name];
     if (!machine) {
-        machineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        machineView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
     } else {
         if (![[machine.status lowercaseString] isEqualToString:@"up"]) {
-            machineView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+            machineView.layer.borderColor = [UIColor colorWithWhite:0.5 alpha:0.5].CGColor;
         } else if (machine.occupied) {
-            machineView.backgroundColor = [UIColor colorWithRed:0.888 green:0.146 blue:0.020 alpha:1.000];
+            machineView.layer.borderColor = [UIColor colorWithRed:0.888 green:0.146 blue:0.020 alpha:1.000].CGColor;
         } else {
-            machineView.backgroundColor = [UIColor colorWithRed:0.324 green:0.935 blue:0.018 alpha:1.000];
+            machineView.layer.borderColor = [UIColor colorWithRed:0.324 green:0.935 blue:0.018 alpha:1.000].CGColor;
         }
     }
     return machineView;

@@ -89,7 +89,7 @@
     self.settingsNavigationController.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
     
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
-                                                                                      contentViewController:self.directoryNavigationController];
+                                                                                      contentViewController:self.labsViewController];
     
     [self configureAppearance];
     self.window.rootViewController = self.verticalMenuViewController;

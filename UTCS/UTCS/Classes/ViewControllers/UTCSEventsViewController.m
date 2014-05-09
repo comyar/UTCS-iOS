@@ -113,8 +113,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     
     self.filterButton = ({
         UIButton *button = [UIButton bouncyButton];
-        button.frame = CGRectMake(self.view.width - 44.0, 0.0, 44.0, 44.0);
-        
+        button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.center = CGPointMake(self.view.width - 33.0, 22.0);
         UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
         imageView.tintColor = [UIColor whiteColor];

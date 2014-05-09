@@ -11,6 +11,7 @@
 
 #import "UTCSLabView.h"
 #import "FBShimmeringView.h"
+#import "UTCSParallaxBlurHeaderScrollView.h"
 
 /**
  */
@@ -32,9 +33,7 @@
  */
 @property (nonatomic) FBShimmeringView              *shimmeringView;
 
-/**
- */
-@property (nonatomic, readonly) UIImageView         *backgroundImageView;
+@property (nonatomic) UIImageView                   *backgroundImageView;
 
 /**
  */

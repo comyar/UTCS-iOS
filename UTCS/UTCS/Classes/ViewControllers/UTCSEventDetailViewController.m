@@ -484,5 +484,4 @@
     return self.defaultHeaderImages[index];
 }
 
-
 @end
