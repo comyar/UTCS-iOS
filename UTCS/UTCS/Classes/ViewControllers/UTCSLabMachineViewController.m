@@ -115,14 +115,14 @@
     UTCSLabMachineView *machineView = [labView dequeueMachineViewForIndexPath:indexPath];
     UTCSLabMachine *machine = self.machines[name];
     if (!machine) {
-        machineView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
+        machineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     } else {
         if (![[machine.status lowercaseString] isEqualToString:@"up"]) {
-            machineView.layer.borderColor = [UIColor colorWithWhite:0.5 alpha:0.5].CGColor;
+            machineView.backgroundColor= [UIColor colorWithWhite:0.5 alpha:0.5];
         } else if (machine.occupied) {
-            machineView.layer.borderColor = [UIColor colorWithRed:0.888 green:0.146 blue:0.020 alpha:1.000].CGColor;
+            machineView.backgroundColor = [UIColor colorWithRed:0.888 green:0.146 blue:0.020 alpha:1.000];
         } else {
-            machineView.layer.borderColor = [UIColor colorWithRed:0.324 green:0.935 blue:0.018 alpha:1.000].CGColor;
+            machineView.backgroundColor = [UIColor colorWithRed:0.324 green:0.935 blue:0.018 alpha:1.000];
         }
     }
     return machineView;

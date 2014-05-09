@@ -16,7 +16,6 @@
 
 #import "UTCSLabMachineViewController.h"
 
-#import "UTCSLabsSearchViewController.h"
 
 
 
@@ -32,9 +31,6 @@
 
 //
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
-
-//
-@property (nonatomic) UTCSLabsSearchViewController          *searchViewController;
 
 //
 @property (nonatomic) UIPageControl                         *pageControl;
@@ -73,12 +69,14 @@
     UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
     
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.thirdFloorLabViewController.view];
     [self addChildViewController:self.thirdFloorLabViewController];
     [self.thirdFloorLabViewController didMoveToParentViewController:self];
     
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    
     
     self.thirdFloorLabViewController.shimmeringView.frame = CGRectMake(0.5 * self.view.width,0.3 * self.view.height,
                                                                        0.4 * self.view.width, 0.6 * self.view.height);
@@ -89,7 +87,7 @@
     // Basement view controller
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"basementLabsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
     self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.basementLabViewController.view];
     [self addChildViewController:self.basementLabViewController];

@@ -13,9 +13,9 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.5].CGColor;
+        self.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.1].CGColor;
         self.layer.borderWidth = 1.0;
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         self.layer.masksToBounds = YES;
     }
     return self;
