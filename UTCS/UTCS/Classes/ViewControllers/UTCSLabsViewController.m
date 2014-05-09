@@ -7,32 +7,31 @@
 //
 
 
-#import "UTCSLabsViewController.h"
+#pragma mark - Imports
+
 #import "MBProgressHUD.h"
-#import "UTCSLabsDataSource.h"
 #import "UTCSLabMachine.h"
 #import "FBShimmeringView.h"
+#import "UTCSLabsDataSource.h"
 #import "UTCSUpdateTextFactory.h"
-
+#import "UTCSLabsViewController.h"
 #import "UTCSLabMachineViewController.h"
-
-
 
 
 #pragma mark - UTCSLabsViewController Class Extension
 
 @interface UTCSLabsViewController ()
 
-//
-@property (nonatomic) UIScrollView *scrollView;
+// Paging scroll view
+@property (nonatomic) UIScrollView                          *scrollView;
 
-//
+// View controller for the third floor lab map
 @property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
 
-//
+// View controller for the basement lab map
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
 
-//
+// Page control to indicate pages
 @property (nonatomic) UIPageControl                         *pageControl;
 
 @end
@@ -46,7 +45,6 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.dataSource = [[UTCSLabsDataSource alloc]initWithService:@"labs"];
-        
     }
     return self;
 }
@@ -69,61 +67,69 @@
     [self.view addSubview:self.scrollView];
     
     // Third floor lab view controller
-    UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
-    self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
-    
+    UTCSLabViewLayout *thirdLayout      = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
+    self.thirdFloorLabViewController    = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
     self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"newsBackground"];
     
+    // Add third floor lab view to scroll view
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.thirdFloorLabViewController.view];
     [self addChildViewController:self.thirdFloorLabViewController];
     [self.thirdFloorLabViewController didMoveToParentViewController:self];
     
-    
-    
+    // Configure third floor shimmering view
     self.thirdFloorLabViewController.shimmeringView.frame = CGRectMake(0.5 * self.view.width,0.3 * self.view.height,
                                                                        0.4 * self.view.width, 0.6 * self.view.height);
     self.thirdFloorLabViewController.shimmeringView.contentView.frame = self.thirdFloorLabViewController.shimmeringView.bounds;
     ((UILabel *)self.thirdFloorLabViewController.shimmeringView.contentView).text = @"Third Floor";
     
-    
     // Basement view controller
-    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
-    self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
+    UTCSLabViewLayout *basementLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"];
+    self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:basementLayout];
     self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
+    
+    // Add basement lab view to scroll view
     self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.basementLabViewController.view];
     [self addChildViewController:self.basementLabViewController];
     [self.basementLabViewController didMoveToParentViewController:self];
-    
+
+    // Configure basement shimmering view
     self.basementLabViewController.shimmeringView.frame = CGRectMake(8.0, 0.72 * self.view.height, self.view.width - 16.0, 120);
     self.basementLabViewController.shimmeringView.contentView.frame = self.basementLabViewController.shimmeringView.bounds;
     ((UILabel *)self.basementLabViewController.shimmeringView.contentView).text = @"Basement";
     
-    
+    // Page control
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.userInteractionEnabled = NO;
     self.pageControl.numberOfPages = 2;
     [self.view addSubview:self.pageControl];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self update];
+    if (YES) { // Check authentication here
+        [self update];
+    } else {
+        // Show authentication screen
+    }
+    
 }
 
 - (void)update
 {
     if ([self.dataSource shouldUpdate]) {
-        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        progressHUD.mode = MBProgressHUDModeIndeterminate;
-        progressHUD.labelText = @"Updating";
-        self.thirdFloorLabViewController.shimmeringView.shimmering = YES;
-        self.basementLabViewController.shimmeringView.shimmering = YES;
+        
+        // Show updating HUD
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.scrollView animated:YES];
+        hud.labelText = [UTCSUpdateTextFactory randomUpdateText];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        
+        // Shimmer lab map labels
+        self.thirdFloorLabViewController.shimmeringView.shimmering  = YES;
+        self.basementLabViewController.shimmeringView.shimmering    = YES;
+        
         
         [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
@@ -134,16 +140,14 @@
                 NSDictionary *third      = self.dataSource.data[@"third"];
                 NSDictionary *basement   = self.dataSource.data[@"basement"];
                 
-                self.thirdFloorLabViewController.machines = third;
-                
-                self.basementLabViewController.machines = basement;
+                self.thirdFloorLabViewController.machines   = third;
+                self.basementLabViewController.machines     = basement;
 
             } else {
-                // Frowny face
+                // Frowny face / Error message
             }
 
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            
+            [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
         }];
     }
 }
@@ -156,9 +160,10 @@
     self.pageControl.currentPage = pageNumber;
     
     CGFloat thirdOffset     = 0.5 * scrollView.contentOffset.x;
-    CGFloat basementOffset  = 0.5 * (scrollView.contentOffset.x - self.view.width);
-    self.thirdFloorLabViewController.imageOffset = CGPointMake(thirdOffset, 0.0);
-    self.basementLabViewController.imageOffset = CGPointMake(basementOffset, 0.0);
+    CGFloat basementOffset  = 0.5 * (scrollView.contentOffset.x - self.view.width); // Compensate for being on second page
+    
+    self.thirdFloorLabViewController.imageOffset    = CGPointMake(thirdOffset, 0.0);
+    self.basementLabViewController.imageOffset      = CGPointMake(basementOffset, 0.0);
     
 }
 
