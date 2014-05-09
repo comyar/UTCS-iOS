@@ -52,6 +52,9 @@ static const CGFloat dateLabelFontSize  = 16.0;
 // Array of default header images
 @property (nonatomic) NSArray                           *defaultHeaderImages;
 
+// Button to share news article
+@property (nonatomic) UIButton                          *shareButton;
+
 // Button to scroll to the top of the scroll view
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
@@ -67,7 +70,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
-        self.defaultHeaderImages = @[@"gdc-speedway", @"gdc-general"];
+        self.defaultHeaderImages = @[@"gdc-speedway"];
     }
     return self;
 }
@@ -86,6 +89,24 @@ static const CGFloat dateLabelFontSize  = 16.0;
         self.navigationItem.titleView = button;
         button;
     });
+    
+    // Share button
+    self.shareButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.showsTouchWhenHighlighted = YES;
+        
+        button.frame = CGRectMake(0, 0, 44, 44);
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.center = CGPointMake(0.5 * CGRectGetWidth(button.bounds), 0.5 * CGRectGetHeight(button.bounds));
+        
+        
+        [button addSubview:imageView];
+        button;
+    });
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton]];
+    
     
     // Title label
     self.titleLabel = ({
@@ -178,7 +199,30 @@ static const CGFloat dateLabelFontSize  = 16.0;
 {
     if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0.0, 0.0, 1, 1) animated:YES];
+    } else if (button == self.shareButton) {
+        // Share news
+        [self shareArticle:self.newsArticle];
     }
+}
+
+#pragma mark Sharing
+
+- (void)shareArticle:(UTCSNewsArticle *)article
+{
+    NSMutableArray *activityItems = [NSMutableArray new];
+    
+    if (article.title) {
+        [activityItems addObject:[article.title stringByAppendingString:@"\n"]];
+    }
+    
+    if (article.url) {
+        [activityItems addObject:article.url];
+    }
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems
+                                                                                        applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypeSaveToCameraRoll];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 #pragma mark Setters
