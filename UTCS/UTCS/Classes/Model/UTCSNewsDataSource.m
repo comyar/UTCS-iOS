@@ -9,16 +9,12 @@
 
 #pragma mark - Imports
 
-// Models
 #import "UTCSNewsArticle.h"
 #import "UTCSNewsDataSource.h"
 #import "UTCSDataSourceCache.h"
+#import "UTCSBouncyTableViewCell.h"
 #import "UTCSNewsDataSourceParser.h"
 
-// Views
-#import "UTCSBouncyTableViewCell.h"
-
-// Categories
 #import "UIImage+CZTinting.h"
 #import "UIImage+CZScaling.h"
 #import "UIImage+ImageEffects.h"

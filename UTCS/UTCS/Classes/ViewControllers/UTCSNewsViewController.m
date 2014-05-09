@@ -9,18 +9,12 @@
 
 #pragma mark - Imports
 
-// View controllers
+#import "UTCSNewsArticle.h"
+#import "UTCSActiveHeaderView.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSNewsDetailViewController.h"
 
-// Views
-#import "UTCSActiveHeaderView.h"
-
-// Categories
 #import "UIColor+UTCSColors.h"
-
-// Models
-#import "UTCSNewsArticle.h"
 
 
 #pragma mark - Constants

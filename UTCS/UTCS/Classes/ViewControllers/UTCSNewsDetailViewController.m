@@ -9,16 +9,10 @@
 
 #pragma mark - Imports
 
-// View Controllers
+#import "UTCSNewsArticle.h"
 #import "UTCSNewsDetailViewController.h"
-
-// Views
 #import "UTCSParallaxBlurHeaderScrollView.h"
 
-// Models
-#import "UTCSNewsArticle.h"
-
-// Categories
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "UITextView+CZTextViewHeight.h"
@@ -106,7 +100,6 @@ static const CGFloat dateLabelFontSize  = 16.0;
         button;
     });
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton]];
-    
     
     // Title label
     self.titleLabel = ({

@@ -9,10 +9,8 @@
 
 #pragma mark - Imports
 
-// Modesl
 #import "UTCSNewsArticle.h"
 
-// Categories
 #import "UIImage+CZTinting.h"
 #import "UIImage+ImageEffects.h"
 
@@ -21,6 +19,7 @@
 
 // NSCoding keys
 static NSString * const titleKey                = @"title";
+static NSString * const urlKey                  = @"url";
 static NSString * const dateKey                 = @"date";
 static NSString * const htmlKey                 = @"html";
 static NSString * const attributedContentKey    = @"attributedContent";
@@ -45,11 +44,13 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
 {
     if(self = [super init]) {
         _title              = [aDecoder decodeObjectForKey:titleKey];
+        _url                = [aDecoder decodeObjectForKey:urlKey];
         _date               = [aDecoder decodeObjectForKey:dateKey];
         _html               = [aDecoder decodeObjectForKey:htmlKey];
         _attributedContent  = [aDecoder decodeObjectForKey:attributedContentKey];
         _headerImage        = [aDecoder decodeObjectForKey:headerImageKey];
         _headerBlurredImage = [aDecoder decodeObjectForKey:headerBlurredImageKey];
+        
     }
     return self;
 }
@@ -57,6 +58,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_title                 forKey:titleKey];
+    [aCoder encodeObject:_url                   forKey:urlKey];
     [aCoder encodeObject:_date                  forKey:dateKey];
     [aCoder encodeObject:_html                  forKey:htmlKey];
     [aCoder encodeObject:_attributedContent     forKey:attributedContentKey];
