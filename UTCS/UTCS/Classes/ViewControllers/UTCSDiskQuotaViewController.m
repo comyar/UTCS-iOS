@@ -211,7 +211,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.percentLabel.center        = CGPointMake(self.view.center.x, 1.25 * self.view.center.y);
     
     self.quotaDetailLabel.frame     = CGRectMake(0.0, 0.0, 0.6 * self.view.width, 20);
-    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.35 * self.view.center.y);
+    self.quotaDetailLabel.center    = CGPointMake(self.view.center.x, 1.375 * self.view.center.y);
     
     self.updatedLabel.frame         = CGRectMake(0.0, self.view.height - 24, self.view.width, 24);
     
@@ -222,7 +222,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.frownyFaceLabel.center     = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
     
     self.errorMessageLabel.frame    = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.errorMessageLabel.center   = CGPointMake(self.view.center.x, 1.24 * self.view.center.y);
+    self.errorMessageLabel.center   = CGPointMake(self.view.center.x, 1.28 * self.view.center.y);
     
     
     [self.view addSubview:self.usernameTextField];
