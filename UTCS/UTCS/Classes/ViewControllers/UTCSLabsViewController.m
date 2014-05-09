@@ -72,7 +72,7 @@
     UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
     
-    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"newsBackground"];
     
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.thirdFloorLabViewController.view];
@@ -90,7 +90,7 @@
     // Basement view controller
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"basementLabsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
     self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.basementLabViewController.view];
     [self addChildViewController:self.basementLabViewController];
