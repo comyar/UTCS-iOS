@@ -17,6 +17,8 @@
 #import "UTCSLabsViewController.h"
 #import "UTCSLabMachineViewController.h"
 
+#import "UIButton+UTCSButton.h"
+
 
 #pragma mark - UTCSLabsViewController Class Extension
 
@@ -25,14 +27,17 @@
 // Paging scroll view
 @property (nonatomic) UIScrollView                          *scrollView;
 
-// View controller for the third floor lab map
-@property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
+// Page control to indicate pages
+@property (nonatomic) UIPageControl                         *pageControl;
+
+// Button to refresh lab data
+@property (nonatomic) UIButton                              *refreshButton;
 
 // View controller for the basement lab map
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
 
-// Page control to indicate pages
-@property (nonatomic) UIPageControl                         *pageControl;
+// View controller for the third floor lab map
+@property (nonatomic) UTCSLabMachineViewController          *thirdFloorLabViewController;
 
 @end
 
@@ -100,10 +105,30 @@
     ((UILabel *)self.basementLabViewController.shimmeringView.contentView).text = @"Basement";
     
     // Page control
-    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
-    self.pageControl.userInteractionEnabled = NO;
-    self.pageControl.numberOfPages = 2;
+    self.pageControl = ({
+        UIPageControl *control = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0, self.view.height - 32, self.view.width, 32)];
+        control.userInteractionEnabled = NO;
+        control.numberOfPages = 2;
+        control;
+    });
     [self.view addSubview:self.pageControl];
+    
+    // Refresh button
+    self.refreshButton = ({
+        UIButton *button = [UIButton bouncyButton];
+        button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.center = CGPointMake(self.view.width - 33.0, 22.0);
+        
+        UIImage *image = [[UIImage imageNamed:@"refresh"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        [button addSubview:imageView];
+        
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button;
+    });
+    [self.view addSubview:self.refreshButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -116,6 +141,8 @@
     }
     
 }
+
+#pragma mark Updating
 
 - (void)update
 {
@@ -149,6 +176,15 @@
 
             [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
         }];
+    }
+}
+
+#pragma mark Buttons
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if (button == self.refreshButton) {
+        
     }
 }
 
