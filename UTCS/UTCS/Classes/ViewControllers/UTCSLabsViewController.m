@@ -56,20 +56,23 @@
     [super viewDidLoad];
     
     // Scroll View
-    self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-    self.scrollView.contentSize = CGSizeMake(2.0 * self.view.width, self.view.height);
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.backgroundColor = [UIColor blackColor];
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.delegate = self;
+    self.scrollView = ({
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+        scrollView.contentSize = CGSizeMake(2.0 * self.view.width, self.view.height);
+        scrollView.backgroundColor = [UIColor blackColor];
+        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.showsVerticalScrollIndicator = NO;
+        scrollView.pagingEnabled = YES;
+        scrollView.delegate = self;
+        scrollView;
+    });
     [self.view addSubview:self.scrollView];
     
     // Third floor lab view controller
     UTCSLabViewLayout *thirdLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
     
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
     
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.thirdFloorLabViewController.view];
@@ -87,7 +90,7 @@
     // Basement view controller
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:[[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"]];
     self.basementLabViewController.view.backgroundColor = [UIColor blackColor];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"thirdLabsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"basementLabsBackground"];
     self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);
     [self.scrollView addSubview:self.basementLabViewController.view];
     [self addChildViewController:self.basementLabViewController];
