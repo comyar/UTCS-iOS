@@ -184,7 +184,7 @@
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.refreshButton) {
-        
+        [self update];
     }
 }
 

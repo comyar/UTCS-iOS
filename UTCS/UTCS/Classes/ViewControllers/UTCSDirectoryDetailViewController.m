@@ -9,15 +9,12 @@
 #import "UTCSDirectoryDetailViewController.h"
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
-#import "UTCSDirectoryDetailTableViewCell.h"
+#import "UIImageView+AFNetworking.h"
 
 
 #pragma mark - UTCSDirectoryDetailViewController Class Extension
 
 @interface UTCSDirectoryDetailViewController ()
-
-//
-@property (nonatomic) UIImage *facultyImage;
 
 @end
 
@@ -41,7 +38,6 @@
     if (self = [super initWithStyle:style]) {
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.tableView.scrollEnabled = NO;
     }
     return self;
 }
@@ -56,38 +52,18 @@
 - (void)setPerson:(UTCSDirectoryPerson *)person
 {
     _person = person;
-    self.facultyImage = nil;
     [self.tableView reloadData];
-    [self downloadImageForPerson:_person];
-}
-
-- (void)downloadImageForPerson:(UTCSDirectoryPerson *)person
-{
-    if ([person.imageURL length]) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:person.imageURL]];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            if (data) {
-                UIImage *image = [UIImage imageWithData:data];
-                if (person == self.person) {
-                    self.facultyImage = image;
-                    UITableViewCell *cell   = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-                    cell.imageView.image    = self.facultyImage;
-                    cell.imageView.layer.cornerRadius = 0.5 * cell.imageView.height;
-                }
-            }
-        }];
-    }
 }
 
 #pragma mark UITableViewDataSource Methods
 
-- (UTCSDirectoryDetailTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSDirectoryDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailTableViewCell"];
     
     if (!cell) {
-        cell = [[UTCSDirectoryDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                                      reuseIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                     reuseIdentifier:@"UTCSDirectoryDetailTableViewCell"];
         
         cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
         cell.textLabel.numberOfLines = 2;
@@ -126,10 +102,34 @@
     if (indexPath.section == 0) {
         cell.textLabel.text         = self.person.fullName;
         cell.detailTextLabel.text   = self.person.type;
-        cell.imageView.image        = (self.facultyImage)? self.facultyImage : [UIImage imageNamed:[self.person.type lowercaseString]];
         
-        cell.imageView.layer.cornerRadius = 0.5 * cell.imageView.height;
-        cell.imageView.layer.masksToBounds = YES;
+        if (self.person.imageURL) {
+            NSURL *url = [NSURL URLWithString:self.person.imageURL];
+            __weak UITableViewCell *weakCell = cell;
+            [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                CGFloat sizeFactor = MIN(MAX(64.0/image.size.width,1.0), MAX(64.0/image.size.height,1.0));
+                CGSize imageSize = CGSizeMake(sizeFactor * image.size.width, sizeFactor * image.size.height);
+                UIGraphicsBeginImageContextWithOptions(imageSize, NO, UIScreen.mainScreen.scale);
+                CGRect imageRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
+                [image drawInRect:imageRect];
+                weakCell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                
+                weakCell.imageView.layer.cornerRadius = 32.0;
+                weakCell.imageView.layer.masksToBounds = YES;
+                weakCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                [weakCell setNeedsLayout];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                // default image
+                weakCell.imageView.image = nil;
+            }];
+        } else {
+            cell.imageView.image = nil;
+        }
+        
+        [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+        
+    
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             NSString *text      = self.person.office;
