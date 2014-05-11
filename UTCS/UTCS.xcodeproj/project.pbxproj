@@ -135,7 +135,6 @@
 		DD44659B18E93D3500ED1153 /* UTCSDirectoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSource.m; path = Model/UTCSDirectoryDataSource.m; sourceTree = "<group>"; };
 		DD44659D18E93D7800ED1153 /* UTCSDirectoryPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryPerson.h; path = Model/UTCSDirectoryPerson.h; sourceTree = "<group>"; };
 		DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryPerson.m; path = Model/UTCSDirectoryPerson.m; sourceTree = "<group>"; };
-		DD4C7D0F18FB118C00129A2E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		DD57BEAB18EADA550076EF20 /* UTCSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventTableViewCell.h; path = Views/UTCSEventTableViewCell.h; sourceTree = "<group>"; };
 		DD57BEAC18EADA550076EF20 /* UTCSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventTableViewCell.m; path = Views/UTCSEventTableViewCell.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEvent.h; path = Model/UTCSEvent.h; sourceTree = "<group>"; };
@@ -205,7 +204,6 @@
 		DD95E72F191F29940062F4E9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		DD95E732191F2A6A0062F4E9 /* UIImage+Cacheless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cacheless.h"; path = "Categories/UIImage+Cacheless.h"; sourceTree = "<group>"; };
 		DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cacheless.m"; path = "Categories/UIImage+Cacheless.m"; sourceTree = "<group>"; };
-		DD95E735191F2EE70062F4E9 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -321,10 +319,8 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD95E735191F2EE70062F4E9 /* Reveal.framework */,
 				DD95E72F191F29940062F4E9 /* CoreMotion.framework */,
 				DD8989AA1903C3F3000F1041 /* MessageUI.framework */,
-				DD4C7D0F18FB118C00129A2E /* Accelerate.framework */,
 				DD83B55D18F0EB8600EBDE06 /* EventKit.framework */,
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
