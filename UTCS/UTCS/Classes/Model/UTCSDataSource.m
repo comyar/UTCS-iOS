@@ -55,14 +55,7 @@
 
 - (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion
 {
-    if (!self.service) {
-        if (completion) {
-            completion(NO, NO);
-        }
-        return;
-    }
-    
-    // Check cache
+    // Check cache's metadata to determine if minimum time since last update has passed
     NSDictionary *cache = [self.cache objectWithKey:self.primaryCacheKey];
     UTCSDataSourceCacheMetaData *metaData = cache[UTCSDataSourceCacheMetaDataName];
     
@@ -77,17 +70,19 @@
         return;
     }
     
-    // Make request
+    // Make an API request to update data
     [UTCSDataRequestServicer sendDataRequestForService:self.service argument:argument completion:^(NSDictionary *meta, id values, NSError *error) {
-        if ([meta[@"service"]isEqualToString:self.service] && [meta[@"success"]boolValue]) {
+        if ([meta[@"service"]isEqualToString:self.service] &&   // Check for matching service type and success
+            [meta[@"success"]boolValue]) {
             
-            _data       = [self.parser parseValues:values];
-            _updated    = [NSDate date];
+            _data       = [self.parser parseValues:values]; // Parse the downloaded data using the parser
+            _updated    = [NSDate date]; // Set the updated time
             
             if (completion) {
                 completion(YES, NO);
             }
             
+            // Cache objects to disk
             if ([self.delegate conformsToProtocol:@protocol(UTCSDataSourceDelegate)] &&
                 [self.delegate respondsToSelector:@selector(objectsToCacheForDataSource:)]) {
                 NSDictionary *objects = [self.delegate objectsToCacheForDataSource:self];
@@ -96,10 +91,12 @@
                     [self.cache cacheObject:objects[key] withKey:key];
                 }
             } else {
+                // DEBUG ONLY
                 NSLog(@"%@ does not conform to data source protocol" , self.service);
             }
             
         } else {
+            // Update failed with no cache hit
             if (completion) {
                 completion(NO, NO);
             }

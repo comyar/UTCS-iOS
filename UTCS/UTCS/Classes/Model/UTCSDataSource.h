@@ -32,7 +32,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 /**
  Asks the delegate for the set of objects that should be cached to disk.
  
- The keys in the dictionary are used to uniquely identify cached objects within a service. 
+ The keys in the dictionary are used to uniquely identify cached objects within a service.
  @param dataSource Data source requesting objects to cache
  @return Dictionary of objects to cache along with their associated keys, may be nil
  */
@@ -95,9 +95,11 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 - (BOOL)shouldUpdate;
 
 /**
- Performs an asnchronous API request to update the data source's data.
+ Performs an asnchronous API request to update the data source's data and attempts to
+ cache downloaded data to disk. Objects are cached to disk after the completion handler 
+ block is executed.
  @param argument    Argument required by the data source's service, may be nil
- @param completion  Handler block to execute on completion
+ @param completion  Handler block to execute on completion, may be nil
  */
 - (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion;
 
