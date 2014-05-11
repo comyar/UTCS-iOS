@@ -14,20 +14,20 @@
 #pragma mark - UTCSAbstractDataSource Implementation
 
 @implementation UTCSDataSource
-@synthesize data = _data;
-@synthesize parser = _parser;
-@synthesize cache = _cache;
-@synthesize primaryCacheKey = _primaryCacheKey;
-@synthesize searchController = _searchController;
-@synthesize minimumTimeBetweenUpdates = _minimumTimeBetweenUpdates;
+@synthesize data                        = _data;
+@synthesize parser                      = _parser;
+@synthesize cache                       = _cache;
+@synthesize primaryCacheKey             = _primaryCacheKey;
+@synthesize searchController            = _searchController;
+@synthesize minimumTimeBetweenUpdates   = _minimumTimeBetweenUpdates;
 
+#pragma mark Creating a UTCSDataSource
 
 - (instancetype)init
 {
-    if (self = [super init]) {
-        
-    }
-    return self;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:@"UTCSDataSource must be initialized with a service"
+                                 userInfo:nil];
 }
 
 - (instancetype)initWithService:(NSString *)service
@@ -38,6 +38,8 @@
     }
     return self;
 }
+
+#pragma mark Using a UTCSDataSource
 
 - (BOOL)shouldUpdate
 {
