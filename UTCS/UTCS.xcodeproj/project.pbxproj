@@ -111,7 +111,6 @@
 		0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
 		0B9A26451891D5E30032DA03 /* UTCSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSAppDelegate.h; sourceTree = "<group>"; };
 		0B9A26461891D5E30032DA03 /* UTCSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSAppDelegate.m; sourceTree = "<group>"; };
-		0B9A264F1891D5E30032DA03 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4B51DDA83E634E69A1D85ECB /* libPods-UTCS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UTCS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95446C76F512403BA430A5AA /* Pods-UTCS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.xcconfig"; path = "Pods/Pods-UTCS.xcconfig"; sourceTree = "<group>"; };
 		DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceSearchController.h; path = Model/UTCSLabsDataSourceSearchController.h; sourceTree = "<group>"; };
@@ -329,7 +328,6 @@
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
 				0B9A26381891D5E30032DA03 /* CoreGraphics.framework */,
 				0B9A263A1891D5E30032DA03 /* UIKit.framework */,
-				0B9A264F1891D5E30032DA03 /* XCTest.framework */,
 				4B51DDA83E634E69A1D85ECB /* libPods-UTCS.a */,
 			);
 			name = Frameworks;
