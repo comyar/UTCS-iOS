@@ -13,7 +13,7 @@
 
 #import "UIImage+CZTinting.h"
 #import "UIImage+ImageEffects.h"
-
+#import "UIImage+CZScaling.h"
 
 #pragma mark - Constants
 
@@ -157,7 +157,15 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
     
     // Tint and blur the header images
     _headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:0.75] blendingMode:kCGBlendModeOverlay];
-    _headerBlurredImage = [headerImage applyBlurWithRadius:20.0 tintColor:[UIColor colorWithWhite:0.1 alpha:0.75] saturationDeltaFactor:1.0 maskImage:nil];
+    _headerBlurredImage = [headerImage applyBlurWithRadius:20.0
+                                                 tintColor:[UIColor colorWithWhite:0.1 alpha:0.75]
+                                     saturationDeltaFactor:1.0
+                                                 maskImage:nil];
+    
+    if (_headerImage) {
+        _headerImage = [UIImage scaleImage:_headerImage toSize:CGSizeMake(320.0, 284.0)];
+        _headerBlurredImage = [UIImage scaleImage:_headerBlurredImage toSize:CGSizeMake(320.0, 284.0)];
+    }
     
     _attributedContent = attributedContent;
 }

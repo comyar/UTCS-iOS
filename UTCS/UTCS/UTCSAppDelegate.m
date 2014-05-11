@@ -83,6 +83,7 @@
     
     // Navigation controllers
     self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+    
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.newsNavigationController];
     
@@ -113,29 +114,29 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-    if (self.newsNavigationController != self.verticalMenuViewController.contentViewController) {
-        self.newsNavigationController = nil;
-    }
-    
-    if (self.eventsNavigationController != self.verticalMenuViewController.contentViewController) {
-        self.eventsNavigationController = nil;
-    }
-    
-    if (self.labsViewController != self.verticalMenuViewController.contentViewController) {
-        self.labsViewController = nil;
-    }
-    
-    if (self.directoryNavigationController != self.verticalMenuViewController.contentViewController) {
-        self.directoryNavigationController = nil;
-    }
-    
-    if (self.diskQuotaViewController != self.verticalMenuViewController.contentViewController) {
-        self.diskQuotaViewController = nil;
-    }
-    
-    if (self.settingsNavigationController != self.verticalMenuViewController.contentViewController) {
-        self.settingsNavigationController = nil;
-    }
+//    if (self.newsNavigationController != self.verticalMenuViewController.contentViewController) {
+//        self.newsNavigationController = nil;
+//    }
+//    
+//    if (self.eventsNavigationController != self.verticalMenuViewController.contentViewController) {
+//        self.eventsNavigationController = nil;
+//    }
+//    
+//    if (self.labsViewController != self.verticalMenuViewController.contentViewController) {
+//        self.labsViewController = nil;
+//    }
+//    
+//    if (self.directoryNavigationController != self.verticalMenuViewController.contentViewController) {
+//        self.directoryNavigationController = nil;
+//    }
+//    
+//    if (self.diskQuotaViewController != self.verticalMenuViewController.contentViewController) {
+//        self.diskQuotaViewController = nil;
+//    }
+//    
+//    if (self.settingsNavigationController != self.verticalMenuViewController.contentViewController) {
+//        self.settingsNavigationController = nil;
+//    }
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods

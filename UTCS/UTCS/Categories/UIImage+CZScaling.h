@@ -12,5 +12,6 @@
 
 - (UIImage *)imageScaledToFitWidth:(CGFloat)width;
 - (UIImage*)imageScaledByFactor:(CGFloat)scale;
++ (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)targetSize;
 
 @end

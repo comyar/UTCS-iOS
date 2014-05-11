@@ -48,4 +48,29 @@
     return scaledImage;
 }
 
++ (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)targetSize
+{
+    if (!image) {
+        return nil;
+    }
+    
+    CGFloat scaleFactor = 1.0;
+    
+    if (!((scaleFactor = (targetSize.width / image.size.width)) > (targetSize.height / image.size.height)))
+        scaleFactor = targetSize.height / image.size.height;
+    
+    UIGraphicsBeginImageContext(targetSize);
+    
+    CGRect rect = CGRectMake((targetSize.width - image.size.width * scaleFactor) / 2,
+                             (targetSize.height -  image.size.height * scaleFactor) / 2,
+                             image.size.width * scaleFactor, image.size.height * scaleFactor);
+    
+    [image drawInRect:rect];
+    
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
+}
+
 @end

@@ -151,6 +151,8 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if(newsArticle.headerImage) {
         self.parallaxBlurHeaderScrollView.headerImage           = newsArticle.headerImage;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = newsArticle.headerBlurredImage;
+        NSLog(@"%f, %f", newsArticle.headerImage.size.width, newsArticle.headerImage.size.height);
+        NSLog(@"%f, %f", newsArticle.headerBlurredImage.size.width, newsArticle.headerBlurredImage.size.height);
     } else {
         // Choose a random default header
         

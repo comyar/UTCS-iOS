@@ -28,19 +28,16 @@
 
 - (instancetype)init
 {
-    NSLog(@"table view controller init");
     return [self initWithStyle:UITableViewStylePlain];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-     NSLog(@"table view controller init");
     return [self initWithStyle:UITableViewStylePlain];
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
-    NSLog(@"table view init with style");
     if (self = [super initWithNibName:nil bundle:nil]) {
         _showsNavigationBarSeparatorLine = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -128,6 +125,13 @@
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
         self.navigationBarSeparatorLineView.alpha = (self.showsNavigationBarSeparatorLine)? MIN(0.5, normalizedOffsetDelta) : 0.0;
     }
+}
+
+#pragma mark Dealloc
+
+- (void)dealloc
+{
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 @end
