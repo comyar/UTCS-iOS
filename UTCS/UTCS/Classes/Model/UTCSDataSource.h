@@ -42,7 +42,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 
 
 /**
- UTCSDataSource is an abstract class used for performing asynchronous API requests for a 
+ UTCSDataSource is an abstract class used to perform asynchronous API requests for a 
  specific service. UTCSDataSource instances are associated with a single service (e.g. "news",
  "events", etc.) and perform generalized API requests for updating data belonging to services.
  

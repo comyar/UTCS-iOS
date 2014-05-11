@@ -13,7 +13,7 @@
 
 @interface UTCSDataSourceParser ()
 
-//
+// Date formatter used to parse updated date from the downloaded data
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
 @end
@@ -22,7 +22,6 @@
 #pragma mark - UTCSDataSourceParser Implementation
 
 @implementation UTCSDataSourceParser
-
 
 - (instancetype)init
 {
@@ -36,9 +35,14 @@
     return self;
 }
 
+#pragma mark Using a UTCSDataSourceParser
+
 - (id)parseValues:(id)values
 {
-    return nil;
+    NSString *reason = [NSString stringWithFormat:@"Cannot perform abstract selector %@", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:reason
+                                 userInfo:nil];
 }
 
 @end
