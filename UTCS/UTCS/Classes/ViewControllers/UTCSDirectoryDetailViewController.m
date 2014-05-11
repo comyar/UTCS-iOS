@@ -9,7 +9,7 @@
 #import "UTCSDirectoryDetailViewController.h"
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
-#import "UIImageView+AFNetworking.h"
+#import <AFNetworking/UIKit+AFNetworking.h>
 
 
 #pragma mark - UTCSDirectoryDetailViewController Class Extension
@@ -106,6 +106,7 @@
         if (self.person.imageURL) {
             NSURL *url = [NSURL URLWithString:self.person.imageURL];
             __weak UITableViewCell *weakCell = cell;
+            
             [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                 CGFloat sizeFactor = MIN(MAX(64.0/image.size.width,1.0), MAX(64.0/image.size.height,1.0));
                 CGSize imageSize = CGSizeMake(sizeFactor * image.size.width, sizeFactor * image.size.height);

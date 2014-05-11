@@ -1,34 +1,28 @@
 PODS:
-  - AFNetworking (2.2.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
+  - AFNetworking/NSURLConnection (2.2.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.1):
+  - AFNetworking/NSURLSession (2.2.3):
     - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.1)
-  - AFNetworking/Security (2.2.1)
-  - AFNetworking/Serialization (2.2.1)
-  - AFNetworking/UIKit (2.2.1):
+  - AFNetworking/Reachability (2.2.3)
+  - AFNetworking/Security (2.2.3)
+  - AFNetworking/Serialization (2.2.3)
+  - AFNetworking/UIKit (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DPMeterView (0.0.1)
   - JVFloatLabeledTextField (0.0.8)
   - MBProgressHUD (0.8)
   - PocketSVG (0.5)
-  - pop (1.0.2)
+  - pop (1.0.4)
   - Shimmer (1.0.1)
-  - Tweaks (1.0.0)
+  - Tweaks (1.1.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.0)
-  - DPMeterView (= 0.0.1)
+  - AFNetworking/Serialization (~> 2.0)
+  - AFNetworking/UIKit (~> 2.0)
+  - DPMeterView (~> 0.0.1)
   - JVFloatLabeledTextField (from `https://github.com/jverdi/JVFloatLabeledTextField`)
   - MBProgressHUD (~> 0.8)
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
@@ -43,13 +37,13 @@ EXTERNAL SOURCES:
     :git: https://github.com/arielelkin/PocketSVG
 
 SPEC CHECKSUMS:
-  AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
+  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   DPMeterView: 0cfa41936a00d60938cdfd8a298ce399bc1bbd53
   JVFloatLabeledTextField: 53177a74ff6f3f0dddd165cf6cab01d1e4433a9b
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   PocketSVG: d9e6b6951adf25d3c1011e87296a89b5f5c99a29
-  pop: 55f6c972fbfb644dfcf1bd6892d001feaa32cc38
+  pop: 63a4f5e8942077fed2efe195036ecc572c71c48c
   Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
-  Tweaks: 425d49710c8b3b698a399d08e30a4336f216bbe9
+  Tweaks: 9337b5c9466d828bd6d69af3ccc124097472efad
 
 COCOAPODS: 0.32.1

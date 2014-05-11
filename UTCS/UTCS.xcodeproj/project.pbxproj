@@ -36,8 +36,6 @@
 		DD5CAF81190A325D0051F637 /* UTCSSettingsLegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF80190A325D0051F637 /* UTCSSettingsLegalViewController.m */; };
 		DD64DAD918F915040033D58B /* UTCSBouncyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD818F915040033D58B /* UTCSBouncyTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
-		DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7968FE18B60D1F009ADE2A /* Security.framework */; };
-		DD79690318B60D60009ADE2A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690218B60D60009ADE2A /* CFNetwork.framework */; };
 		DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690618B60D78009ADE2A /* libz.dylib */; };
 		DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55D18F0EB8600EBDE06 /* EventKit.framework */; };
 		DD83B58A18F35DC000EBDE06 /* UTCSLabsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */; };
@@ -162,9 +160,6 @@
 		DD64DAD818F915040033D58B /* UTCSBouncyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSBouncyTableViewCell.m; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
-		DD7968FE18B60D1F009ADE2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		DD79690218B60D60009ADE2A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		DD79690418B60D69009ADE2A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DD79690618B60D78009ADE2A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DD83B55D18F0EB8600EBDE06 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		DD83B58818F35DC000EBDE06 /* UTCSLabsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSource.h; path = Model/UTCSLabsDataSource.h; sourceTree = "<group>"; };
@@ -290,8 +285,6 @@
 				DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */,
 				DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */,
 				DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */,
-				DD79690318B60D60009ADE2A /* CFNetwork.framework in Frameworks */,
-				DD7968FF18B60D1F009ADE2A /* Security.framework in Frameworks */,
 				DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */,
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
 				0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */,
@@ -333,9 +326,6 @@
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
 				DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */,
 				DD79690618B60D78009ADE2A /* libz.dylib */,
-				DD79690418B60D69009ADE2A /* CoreLocation.framework */,
-				DD79690218B60D60009ADE2A /* CFNetwork.framework */,
-				DD7968FE18B60D1F009ADE2A /* Security.framework */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
 				0B9A26381891D5E30032DA03 /* CoreGraphics.framework */,
@@ -1292,11 +1282,9 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-lc++",
 					"-mthumb",
-					"-ObjC",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1328,11 +1316,9 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-lc++",
 					"-mthumb",
-					"-ObjC",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
