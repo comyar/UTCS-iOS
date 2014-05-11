@@ -1,11 +1,12 @@
 # Uncomment this line to define a global platform for your project
 
-platform :ios, "7.0"
+
 
 target "UTCS" do
 pod 'MBProgressHUD', '~> 0.8'
 pod 'Shimmer', '~> 1.0.1'
 pod "AFNetworking", "~> 2.0"
+
 pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 pod 'pop'

@@ -29,9 +29,6 @@
 // Name of the service used by this view controller
 static NSString * const serviceName                 = @"events";
 
-// Duration of animations performed by this view controller
-static const CGFloat animationDuration              = 0.3;
-
 // Name of the background image
 static NSString * const backgroundImageName         = @"eventsBackground";
 

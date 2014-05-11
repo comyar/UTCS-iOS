@@ -28,9 +28,6 @@ static const CGFloat estimatedCellHeight            = 140.0;
 // Estimated height of a table view cell's detail label
 static const CGFloat estimatedCellDetailLabelHeight = 85.0;
 
-// Duration of animations performed by this view controller
-static const CGFloat animationDuration              = 0.3;
-
 // Name of the background image
 static NSString * const backgroundImageName         = @"newsBackground";
 
