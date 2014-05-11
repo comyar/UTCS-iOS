@@ -76,10 +76,14 @@
             [meta[@"success"]boolValue]) {
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+                NSLog(@"high queue");
                 _data       = [self.parser parseValues:values]; // Parse the downloaded data using the parser
+                NSLog(@"%@", _data);
                 _updated    = [NSDate date]; // Set the updated time
+                NSLog(@"%@", _updated);
                 
                 dispatch_sync(dispatch_get_main_queue(), ^{
+                    NSLog(@"main queue");
                     if (completion) {
                         completion(YES, NO);
                     }

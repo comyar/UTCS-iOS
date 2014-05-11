@@ -28,6 +28,12 @@ extern const CGFloat kUTCSParallaxBlurHeaderHeight;
  */
 @property (nonatomic) UIView        *headerContainerView;
 
+//
+@property (nonatomic, readonly) UIImageView   *headerImageView;
+
+//
+@property (nonatomic, readonly) UIImageView   *headerBlurredImageView;
+
 /**
  */
 @property (nonatomic, readonly) UIScrollView *scrollView;

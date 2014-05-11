@@ -39,6 +39,9 @@
  */
 @property (nonatomic) NSString                  *html;
 
+
+@property (nonatomic) NSArray                   *imageURLs;
+
 /**
  Attributed content parsed from the HTML content.
  */

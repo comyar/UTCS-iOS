@@ -132,6 +132,9 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource
 {
+    if (!dataSource.data) {
+        return nil;
+    }
     return @{UTCSNewsDataSourceCacheKey: dataSource.data};
 }
 

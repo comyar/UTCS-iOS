@@ -14,6 +14,9 @@
 #import "UIImage+CZTinting.h"
 #import "UIImage+ImageEffects.h"
 #import "UIImage+CZScaling.h"
+#import "NSAttributedString+Trim.h"
+
+
 
 #pragma mark - Constants
 
@@ -27,8 +30,7 @@ static NSString * const headerImageKey          = @"headerImage";
 static NSString * const headerBlurredImageKey   = @"headerBlurredImage";
 
 // Minimum width of an image in a news article for it to become the header image
-static const CGFloat minHeaderImageWidth    = 300.0;
-static const CGFloat minHeaderImageHeight   = 250.0;
+
 
 // Font to use for a news article's text
 static NSString * const articleFont = @"HelveticaNeue-Light";
@@ -79,45 +81,26 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
 - (void)configureNewsStoryWithHTML:(NSString *)html
 {
     if (!html || [html isEqual:[NSNull null]]) {
-        _headerImage        = nil;
-        _headerBlurredImage = nil;
-        _attributedContent  = nil;
         return;
     }
     
-    // Parse the HTML to construct an attributed string
-    NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
+    // Parsing HTMl must occur on main queue
+    __block NSMutableAttributedString *attributedHTML = nil;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        attributedHTML = [[[NSAttributedString alloc]initWithData:[html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
+    });
     
     if (!attributedHTML) {
-        _headerImage        = nil;
-        _headerBlurredImage = nil;
-        _attributedContent  = nil;
         return;
     }
     
-    __block UIImage *headerImage = nil;
     NSMutableAttributedString *attributedContent = [NSMutableAttributedString new];
     
     // Iterate over the attributed string
     [attributedHTML enumerateAttributesInRange:NSMakeRange(0, [attributedHTML length]) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
         
-        // Try to find a header image
-        if(attrs[NSAttachmentAttributeName] && !headerImage) {
-            NSTextAttachment *textAttachment = attrs[NSAttachmentAttributeName];
-            
-            // The header image could either be inside the file wrapper or set as the image property of
-            // the NSTextAttachment. Checking both.
-            UIImage *image = textAttachment.image;
-            if(textAttachment.fileWrapper.isRegularFile) {
-                image = [UIImage imageWithData:textAttachment.fileWrapper.regularFileContents];
-            }
-            
-            // If the image is large enough, use it as the header
-            if(image.size.width >= minHeaderImageWidth && image.size.height >= minHeaderImageHeight) {
-                headerImage = image;
-            }
-            
-        } else {
+        // If not an image or some other attachment
+        if(!attrs[NSAttachmentAttributeName]) {
             
             // Get the current font in the attributed string
             UIFont *htmlFont = attrs[NSFontAttributeName];
@@ -151,23 +134,11 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
         }
     }];
     
-    // Remove extra newlines
+    // Remove extra newlines and whitespace
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"((\n|\r){2,})" options:0 error:nil];
     [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
     
-    // Tint and blur the header images
-    _headerImage = [headerImage tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:0.75] blendingMode:kCGBlendModeOverlay];
-    _headerBlurredImage = [headerImage applyBlurWithRadius:20.0
-                                                 tintColor:[UIColor colorWithWhite:0.1 alpha:0.75]
-                                     saturationDeltaFactor:1.0
-                                                 maskImage:nil];
-    
-    if (_headerImage) {
-        _headerImage = [UIImage scaleImage:_headerImage toSize:CGSizeMake(320.0, 284.0)];
-        _headerBlurredImage = [UIImage scaleImage:_headerBlurredImage toSize:CGSizeMake(80.0, 71.0)];
-    }
-    
-    _attributedContent = attributedContent;
+    _attributedContent = [attributedContent attributedStringByTrimming:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 @end

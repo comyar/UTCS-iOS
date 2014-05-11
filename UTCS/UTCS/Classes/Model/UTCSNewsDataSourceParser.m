@@ -11,7 +11,15 @@
 
 #import "UTCSNewsDataSourceParser.h"
 #import "UTCSNewsArticle.h"
+#import "UIImage+CZScaling.h"
 
+#import "UIImage+ImageEffects.h"
+#import "UIImage+CZTinting.h"
+
+#pragma mark - Constants
+
+static const CGFloat minHeaderImageWidth    = 300.0;
+static const CGFloat minHeaderImageHeight   = 250.0;
 
 #pragma mark - UTCSNewsDataSourceParser Implementation
 
@@ -19,17 +27,49 @@
 
 - (NSArray *)parseValues:(NSArray *)values
 {
-    NSAssert([values isKindOfClass:[NSArray class]], @"News data parser expects instance of NSArray");
     NSMutableArray *articles = [NSMutableArray new];
     for (NSDictionary *articleData in values) {
         UTCSNewsArticle *article    = [UTCSNewsArticle new];
-        article.html                = articleData[@"html"];
+        article.html                = articleData[@"noImgHtml"];
         article.title               = articleData[@"title"];
         article.url                 = articleData[@"url"];
+        article.imageURLs           = articleData[@"imageUrls"];
         article.date                = [self.dateFormatter dateFromString:articleData[@"date"]];
+        [self setHeaderImageForArticle:article];
         [articles addObject:article];
     }
     return articles;
 }
+
+- (void)setHeaderImageForArticle:(UTCSNewsArticle *)article
+{
+    __block BOOL foundHeader = NO;
+    for (NSString *url in article.imageURLs) {
+        if (foundHeader) {
+            return;
+        }
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                UIImage *image = [UIImage imageWithData:data];
+                
+                if (image.size.width >= minHeaderImageWidth && image.size.height >= minHeaderImageHeight) {
+                    image = [UIImage scaleImage:image toSize:CGSizeMake(320.0, 284.0)];
+                    UIImage *blurredImage = [UIImage scaleImage:image toSize:CGSizeMake(80.0, 71.0)];
+                    
+                    article.headerImage = [image tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:0.75] blendingMode:kCGBlendModeOverlay];
+                    article.headerBlurredImage = [blurredImage applyBlurWithRadius:20.0
+                                                                         tintColor:[UIColor colorWithWhite:0.1 alpha:0.75]
+                                                             saturationDeltaFactor:1.5
+                                                                         maskImage:nil];
+                    foundHeader = YES;
+                }
+            }];
+            
+        });
+    }
+}
+
 
 @end
