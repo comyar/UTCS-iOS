@@ -95,7 +95,10 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)update
 {
-    [self.activeHeaderView showActiveAnimation:YES];
+    if ([self.dataSource shouldUpdate]) {
+        
+        [self.activeHeaderView showActiveAnimation:YES];
+    }
     
     [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
         
@@ -121,9 +124,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
             [self.tableView reloadData];
             
         }
-        
-        
     }];
+    
 }
 
 #pragma mark UTCSDataSourceDelegate Methods

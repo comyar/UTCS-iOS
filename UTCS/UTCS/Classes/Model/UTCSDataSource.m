@@ -75,25 +75,29 @@
         if ([meta[@"service"]isEqualToString:self.service] &&   // Check for matching service type and success
             [meta[@"success"]boolValue]) {
             
-            _data       = [self.parser parseValues:values]; // Parse the downloaded data using the parser
-            _updated    = [NSDate date]; // Set the updated time
-            
-            if (completion) {
-                completion(YES, NO);
-            }
-            
-            // Cache objects to disk
-            if ([self.delegate conformsToProtocol:@protocol(UTCSDataSourceDelegate)] &&
-                [self.delegate respondsToSelector:@selector(objectsToCacheForDataSource:)]) {
-                NSDictionary *objects = [self.delegate objectsToCacheForDataSource:self];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+                _data       = [self.parser parseValues:values]; // Parse the downloaded data using the parser
+                _updated    = [NSDate date]; // Set the updated time
                 
-                for (NSString *key in objects) {
-                    [self.cache cacheObject:objects[key] withKey:key];
-                }
-            } else {
-                // DEBUG ONLY
-                NSLog(@"%@ does not conform to data source protocol" , self.service);
-            }
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (completion) {
+                        completion(YES, NO);
+                    }
+                    
+                    // Cache objects to disk
+                    if ([self.delegate conformsToProtocol:@protocol(UTCSDataSourceDelegate)] &&
+                        [self.delegate respondsToSelector:@selector(objectsToCacheForDataSource:)]) {
+                        NSDictionary *objects = [self.delegate objectsToCacheForDataSource:self];
+                        
+                        for (NSString *key in objects) {
+                            [self.cache cacheObject:objects[key] withKey:key];
+                        }
+                    } else {
+                        // DEBUG ONLY
+                        NSLog(@"%@ does not conform to data source protocol" , self.service);
+                    }
+                });
+            });
             
         } else {
             // Update failed with no cache hit

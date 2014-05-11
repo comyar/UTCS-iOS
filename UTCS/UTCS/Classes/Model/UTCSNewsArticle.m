@@ -164,7 +164,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
     
     if (_headerImage) {
         _headerImage = [UIImage scaleImage:_headerImage toSize:CGSizeMake(320.0, 284.0)];
-        _headerBlurredImage = [UIImage scaleImage:_headerBlurredImage toSize:CGSizeMake(320.0, 284.0)];
+        _headerBlurredImage = [UIImage scaleImage:_headerBlurredImage toSize:CGSizeMake(80.0, 71.0)];
     }
     
     _attributedContent = attributedContent;

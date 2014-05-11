@@ -30,7 +30,10 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title              = @"";
+        
         _backgroundImageView    = [UIImageView new];
+        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        
         _menuButton             = [UIButton menuButton];
     }
     return self;

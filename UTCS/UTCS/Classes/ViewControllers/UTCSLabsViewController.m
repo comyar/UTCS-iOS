@@ -157,27 +157,27 @@
         // Shimmer lab map labels
         self.thirdFloorLabViewController.shimmeringView.shimmering  = YES;
         self.basementLabViewController.shimmeringView.shimmering    = YES;
-        
-        
-        [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
-            
-            self.thirdFloorLabViewController.shimmeringView.shimmering = NO;
-            self.basementLabViewController.shimmeringView.shimmering = NO;
-            
-            if (success) {
-                NSDictionary *third      = self.dataSource.data[@"third"];
-                NSDictionary *basement   = self.dataSource.data[@"basement"];
-                
-                self.thirdFloorLabViewController.machines   = third;
-                self.basementLabViewController.machines     = basement;
-
-            } else {
-                // Frowny face / Error message
-            }
-
-            [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
-        }];
     }
+    
+    [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+        
+        self.thirdFloorLabViewController.shimmeringView.shimmering = NO;
+        self.basementLabViewController.shimmeringView.shimmering = NO;
+        
+        if (success) {
+            NSDictionary *third      = self.dataSource.data[@"third"];
+            NSDictionary *basement   = self.dataSource.data[@"basement"];
+            
+            self.thirdFloorLabViewController.machines   = third;
+            self.basementLabViewController.machines     = basement;
+            
+        } else {
+            // Frowny face / Error message
+        }
+        
+        [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
+    }];
+
 }
 
 #pragma mark Buttons
