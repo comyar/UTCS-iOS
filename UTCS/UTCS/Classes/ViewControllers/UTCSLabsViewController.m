@@ -18,6 +18,7 @@
 #import "UTCSLabMachineViewController.h"
 
 #import "UIButton+UTCSButton.h"
+#import "UIImage+Cacheless.h"
 
 
 #pragma mark - UTCSLabsViewController Class Extension
@@ -74,7 +75,7 @@
     // Third floor lab view controller
     UTCSLabViewLayout *thirdLayout      = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController    = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
-    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage imageNamed:@"newsBackground"];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"newsBackground"];
     
     // Add third floor lab view to scroll view
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
@@ -91,7 +92,7 @@
     // Basement view controller
     UTCSLabViewLayout *basementLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"];
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:basementLayout];
-    self.basementLabViewController.backgroundImageView.image = [UIImage imageNamed:@"eventsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"eventsBackground"];
     
     // Add basement lab view to scroll view
     self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);

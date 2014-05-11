@@ -101,13 +101,6 @@
 
 - (void)configureAppearance
 {
-    NSDictionary *searchBarPlaceholderAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]};
-    NSAttributedString *searchBarPlaceholder = [[NSAttributedString alloc]initWithString:@"Search"
-                                                                              attributes:searchBarPlaceholderAttributes];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setAttributedPlaceholder:searchBarPlaceholder];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:FBTweakValue(@"UISearchBar", @"UITextField", @"Font Size", 20.0)]];
-    
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundColor:[UIColor clearColor]];
@@ -115,6 +108,8 @@
                                                                                          forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
+
+#pragma mark Memory Warnings
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
@@ -181,7 +176,6 @@
         }
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
-    [self configureAppearance];
 }
 
 @end

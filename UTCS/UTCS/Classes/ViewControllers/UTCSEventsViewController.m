@@ -22,6 +22,7 @@
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
 #import "UIButton+UTCSButton.h"
+#import "UIImage+Cacheless.h"
 
 
 #pragma mark - Constants
@@ -80,8 +81,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         self.tableView.dataSource       = (UTCSEventsDataSource *)self.dataSource;
         self.tableView.delegate         = self;
         
-        self.backgroundImageView.image          = [UIImage imageNamed:backgroundImageName];
-        self.backgroundBlurredImageView.image   = [UIImage imageNamed:backgroundBlurredImageName];
+        self.backgroundImageView.image          = [UIImage cacheless_imageNamed:backgroundImageName];
+        self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
         
         self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";

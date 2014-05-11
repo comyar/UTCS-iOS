@@ -47,7 +47,6 @@
 		DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */; };
 		DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A81903C205000F1041 /* UTCSNavigationController.m */; };
 		DD9402FC190F5CBB008E9814 /* UIButton+UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */; };
-		DD9402FE19135C87008E9814 /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD9402FD19135C87008E9814 /* Backgrounds.xcassets */; };
 		DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475B1190A46350049FB8B /* UTCSNavigationControllerDelegate.m */; };
 		DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */; };
@@ -62,6 +61,13 @@
 		DD9475F2190CF3D70049FB8B /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475F1190CF3D70049FB8B /* IBActionSheet.m */; };
 		DD95E730191F29940062F4E9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD95E72F191F29940062F4E9 /* CoreMotion.framework */; };
 		DD95E734191F2A6A0062F4E9 /* UIImage+Cacheless.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */; };
+		DD95E740191F377E0062F4E9 /* directoryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */; };
+		DD95E741191F377E0062F4E9 /* diskQuotaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73A191F377E0062F4E9 /* diskQuotaBackground@2x.png */; };
+		DD95E742191F377E0062F4E9 /* eventsBackground-blurred@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73B191F377E0062F4E9 /* eventsBackground-blurred@2x.png */; };
+		DD95E743191F377E0062F4E9 /* eventsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73C191F377E0062F4E9 /* eventsBackground@2x.png */; };
+		DD95E744191F377E0062F4E9 /* newsBackground-blurred@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73D191F377E0062F4E9 /* newsBackground-blurred@2x.png */; };
+		DD95E745191F377E0062F4E9 /* newsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73E191F377E0062F4E9 /* newsBackground@2x.png */; };
+		DD95E746191F377E0062F4E9 /* settingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73F191F377E0062F4E9 /* settingsBackground@2x.png */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
@@ -176,7 +182,6 @@
 		DD8989AA1903C3F3000F1041 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+UTCSButton.h"; path = "UTCS/Classes/Model/UIButton+UTCSButton.h"; sourceTree = SOURCE_ROOT; };
 		DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+UTCSButton.m"; path = "UTCS/Classes/Model/UIButton+UTCSButton.m"; sourceTree = SOURCE_ROOT; };
-		DD9402FD19135C87008E9814 /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSlideNavigationAnimator.h; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.h; sourceTree = SOURCE_ROOT; };
 		DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSlideNavigationAnimator.m; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.m; sourceTree = SOURCE_ROOT; };
 		DD9475B0190A46350049FB8B /* UTCSNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNavigationControllerDelegate.h; path = UTCS/Classes/Model/UTCSNavigationControllerDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -201,6 +206,13 @@
 		DD95E72F191F29940062F4E9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		DD95E732191F2A6A0062F4E9 /* UIImage+Cacheless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cacheless.h"; path = "Categories/UIImage+Cacheless.h"; sourceTree = "<group>"; };
 		DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cacheless.m"; path = "Categories/UIImage+Cacheless.m"; sourceTree = "<group>"; };
+		DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directoryBackground@2x.png"; sourceTree = "<group>"; };
+		DD95E73A191F377E0062F4E9 /* diskQuotaBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diskQuotaBackground@2x.png"; sourceTree = "<group>"; };
+		DD95E73B191F377E0062F4E9 /* eventsBackground-blurred@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventsBackground-blurred@2x.png"; sourceTree = "<group>"; };
+		DD95E73C191F377E0062F4E9 /* eventsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventsBackground@2x.png"; sourceTree = "<group>"; };
+		DD95E73D191F377E0062F4E9 /* newsBackground-blurred@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsBackground-blurred@2x.png"; sourceTree = "<group>"; };
+		DD95E73E191F377E0062F4E9 /* newsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsBackground@2x.png"; sourceTree = "<group>"; };
+		DD95E73F191F377E0062F4E9 /* settingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsBackground@2x.png"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -656,14 +668,37 @@
 			name = "UIImage+Cacheless";
 			sourceTree = "<group>";
 		};
+		DD95E737191F377E0062F4E9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DD95E738191F377E0062F4E9 /* Backgrounds */,
+			);
+			name = Images;
+			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		DD95E738191F377E0062F4E9 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */,
+				DD95E73A191F377E0062F4E9 /* diskQuotaBackground@2x.png */,
+				DD95E73B191F377E0062F4E9 /* eventsBackground-blurred@2x.png */,
+				DD95E73C191F377E0062F4E9 /* eventsBackground@2x.png */,
+				DD95E73D191F377E0062F4E9 /* newsBackground-blurred@2x.png */,
+				DD95E73E191F377E0062F4E9 /* newsBackground@2x.png */,
+				DD95E73F191F377E0062F4E9 /* settingsBackground@2x.png */,
+			);
+			path = Backgrounds;
+			sourceTree = "<group>";
+		};
 		DDA758891904D28D007CD0DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E737191F377E0062F4E9 /* Images */,
 				DDC4047B191886F000D17CBF /* Licenses */,
 				DD9475E0190CDFBC0049FB8B /* svg */,
 				DDA7588F1904D313007CD0DB /* App.xcassets */,
 				DDC404711917D42400D17CBF /* Icons.xcassets */,
-				DD9402FD19135C87008E9814 /* Backgrounds.xcassets */,
 				DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */,
 				DDC404731918101500D17CBF /* Default Headers.xcassets */,
 			);
@@ -1007,15 +1042,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */,
+				DD95E744191F377E0062F4E9 /* newsBackground-blurred@2x.png in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
-				DD9402FE19135C87008E9814 /* Backgrounds.xcassets in Resources */,
+				DD95E742191F377E0062F4E9 /* eventsBackground-blurred@2x.png in Resources */,
+				DD95E743191F377E0062F4E9 /* eventsBackground@2x.png in Resources */,
+				DD95E746191F377E0062F4E9 /* settingsBackground@2x.png in Resources */,
+				DD95E740191F377E0062F4E9 /* directoryBackground@2x.png in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
+				DD95E741191F377E0062F4E9 /* diskQuotaBackground@2x.png in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
 				DDC404741918101500D17CBF /* Default Headers.xcassets in Resources */,
+				DD95E745191F377E0062F4E9 /* newsBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
