@@ -11,8 +11,6 @@
 #import "UTCSDirectoryViewController.h"
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
-#import "UIImage+ImageEffects.h"
-#import "UIImage+CZTinting.h"
 #import "MBProgressHUD.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
 #import "UIButton+UTCSButton.h"

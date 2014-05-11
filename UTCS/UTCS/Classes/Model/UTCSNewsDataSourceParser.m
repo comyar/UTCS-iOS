@@ -18,6 +18,7 @@
 
 #pragma mark - Constants
 
+// Minimum width of an image in a news article for it to become the header image
 static const CGFloat minHeaderImageWidth    = 300.0;
 static const CGFloat minHeaderImageHeight   = 250.0;
 
@@ -48,8 +49,9 @@ static const CGFloat minHeaderImageHeight   = 250.0;
         if (foundHeader) {
             return;
         }
+        // Do synchronously on a background thread so update isn't finished until all headers are downloaded
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            
+            NSLog(@"sync block");
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
             [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                 UIImage *image = [UIImage imageWithData:data];
@@ -61,7 +63,7 @@ static const CGFloat minHeaderImageHeight   = 250.0;
                     article.headerImage = [image tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:0.75] blendingMode:kCGBlendModeOverlay];
                     article.headerBlurredImage = [blurredImage applyBlurWithRadius:20.0
                                                                          tintColor:[UIColor colorWithWhite:0.1 alpha:0.75]
-                                                             saturationDeltaFactor:1.5
+                                                             saturationDeltaFactor:1.8
                                                                          maskImage:nil];
                     foundHeader = YES;
                 }
@@ -69,6 +71,7 @@ static const CGFloat minHeaderImageHeight   = 250.0;
             
         });
     }
+    NSLog(@"end set header");
 }
 
 

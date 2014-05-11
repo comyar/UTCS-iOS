@@ -10,13 +10,7 @@
 #pragma mark - Imports
 
 #import "UTCSNewsArticle.h"
-
-#import "UIImage+CZTinting.h"
-#import "UIImage+ImageEffects.h"
-#import "UIImage+CZScaling.h"
 #import "NSAttributedString+Trim.h"
-
-
 
 #pragma mark - Constants
 
@@ -28,9 +22,7 @@ static NSString * const htmlKey                 = @"html";
 static NSString * const attributedContentKey    = @"attributedContent";
 static NSString * const headerImageKey          = @"headerImage";
 static NSString * const headerBlurredImageKey   = @"headerBlurredImage";
-
-// Minimum width of an image in a news article for it to become the header image
-
+static NSString * const imageURLsKey            = @"imageURLs";
 
 // Font to use for a news article's text
 static NSString * const articleFont = @"HelveticaNeue-Light";
@@ -52,7 +44,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
         _attributedContent  = [aDecoder decodeObjectForKey:attributedContentKey];
         _headerImage        = [aDecoder decodeObjectForKey:headerImageKey];
         _headerBlurredImage = [aDecoder decodeObjectForKey:headerBlurredImageKey];
-        
+        _imageURLs          = [aDecoder decodeObjectForKey:imageURLsKey];
     }
     return self;
 }
@@ -66,6 +58,7 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
     [aCoder encodeObject:_attributedContent     forKey:attributedContentKey];
     [aCoder encodeObject:_headerImage           forKey:headerImageKey];
     [aCoder encodeObject:_headerBlurredImage    forKey:headerBlurredImageKey];
+    [aCoder encodeObject:_imageURLs             forKey:imageURLsKey];
 }
 
 #pragma mark Setters

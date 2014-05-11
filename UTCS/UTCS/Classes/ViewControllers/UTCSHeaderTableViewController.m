@@ -75,6 +75,7 @@
     if (!_backgroundBlurredImageView) {
         _backgroundBlurredImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
         _backgroundBlurredImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _backgroundBlurredImageView.clipsToBounds = YES;
         _backgroundBlurredImageView.alpha = 0.0;    // alpha is initially 0.0 and affected only by content offset
         [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
     }

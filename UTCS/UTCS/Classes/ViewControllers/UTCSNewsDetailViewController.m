@@ -17,9 +17,6 @@
 #import "UIView+CZPositioning.h"
 #import "UITextView+CZTextViewHeight.h"
 
-
-#import <AFNetworking/UIKit+AFNetworking.h>
-
 #pragma mark - Constants
 
 // Font size of the title label
@@ -97,7 +94,6 @@ static const CGFloat dateLabelFontSize  = 16.0;
         imageView.tintColor = [UIColor whiteColor];
         imageView.center = CGPointMake(0.5 * CGRectGetWidth(button.bounds), 0.5 * CGRectGetHeight(button.bounds));
         
-        
         [button addSubview:imageView];
         button;
     });
@@ -153,8 +149,6 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if(newsArticle.headerImage) {
         self.parallaxBlurHeaderScrollView.headerImage           = newsArticle.headerImage;
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = newsArticle.headerBlurredImage;
-        NSLog(@"%f, %f", newsArticle.headerImage.size.width, newsArticle.headerImage.size.height);
-        NSLog(@"%f, %f", newsArticle.headerBlurredImage.size.width, newsArticle.headerBlurredImage.size.height);
     } else {
         // Choose a random default header
         

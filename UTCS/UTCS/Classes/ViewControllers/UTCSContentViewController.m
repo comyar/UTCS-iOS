@@ -33,6 +33,7 @@
         
         _backgroundImageView    = [UIImageView new];
         _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _backgroundImageView.clipsToBounds = YES;
         
         _menuButton             = [UIButton menuButton];
     }

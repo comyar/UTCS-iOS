@@ -10,7 +10,7 @@
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
-
+#import "UIImage+CZScaling.h"
 
 #pragma mark - UTCSDirectoryDetailViewController Class Extension
 
@@ -108,14 +108,7 @@
             __weak UITableViewCell *weakCell = cell;
             
             [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                CGFloat sizeFactor = MIN(MAX(64.0/image.size.width,1.0), MAX(64.0/image.size.height,1.0));
-                CGSize imageSize = CGSizeMake(sizeFactor * image.size.width, sizeFactor * image.size.height);
-                UIGraphicsBeginImageContextWithOptions(imageSize, NO, UIScreen.mainScreen.scale);
-                CGRect imageRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
-                [image drawInRect:imageRect];
-                weakCell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                
+                weakCell.imageView.image = [UIImage scaleImage:image toSize:CGSizeMake(64.0, 64.0)];
                 weakCell.imageView.layer.cornerRadius = 32.0;
                 weakCell.imageView.layer.masksToBounds = YES;
                 weakCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
