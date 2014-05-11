@@ -262,8 +262,6 @@
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561EA18DC441F00C46480 /* UTCSNewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDataSource.h; path = Model/UTCSNewsDataSource.h; sourceTree = "<group>"; };
 		DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsDataSource.m; path = Model/UTCSNewsDataSource.m; sourceTree = "<group>"; };
-		DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DDFDB13C1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSourceSearchController.h; path = Model/UTCSDirectoryDataSourceSearchController.h; sourceTree = "<group>"; };
@@ -323,8 +321,6 @@
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
 				DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */,
-				DDF02B4418CE8C3800C7D012 /* CoreVideo.framework */,
-				DDF02B4218CE8C2E00C7D012 /* CoreMedia.framework */,
 				DD79690618B60D78009ADE2A /* libz.dylib */,
 				DD79690418B60D69009ADE2A /* CoreLocation.framework */,
 				DD79690218B60D60009ADE2A /* CFNetwork.framework */,
