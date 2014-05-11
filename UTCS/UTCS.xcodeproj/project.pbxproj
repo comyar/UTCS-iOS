@@ -36,7 +36,6 @@
 		DD5CAF81190A325D0051F637 /* UTCSSettingsLegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF80190A325D0051F637 /* UTCSSettingsLegalViewController.m */; };
 		DD64DAD918F915040033D58B /* UTCSBouncyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD818F915040033D58B /* UTCSBouncyTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
-		DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD79690618B60D78009ADE2A /* libz.dylib */; };
 		DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD83B55D18F0EB8600EBDE06 /* EventKit.framework */; };
 		DD83B58A18F35DC000EBDE06 /* UTCSLabsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
@@ -160,7 +159,6 @@
 		DD64DAD818F915040033D58B /* UTCSBouncyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSBouncyTableViewCell.m; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
-		DD79690618B60D78009ADE2A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DD83B55D18F0EB8600EBDE06 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		DD83B58818F35DC000EBDE06 /* UTCSLabsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSource.h; path = Model/UTCSLabsDataSource.h; sourceTree = "<group>"; };
 		DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsDataSource.m; path = Model/UTCSLabsDataSource.m; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 				DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */,
 				DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */,
 				DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */,
-				DD79690718B60D78009ADE2A /* libz.dylib in Frameworks */,
 				DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */,
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
 				0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */,
@@ -325,7 +322,6 @@
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
 				DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */,
-				DD79690618B60D78009ADE2A /* libz.dylib */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
 				0B9A26381891D5E30032DA03 /* CoreGraphics.framework */,
