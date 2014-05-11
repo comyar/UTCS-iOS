@@ -128,12 +128,12 @@
         if (indexPath.row == 0) {
             NSString *text      = self.person.office;
             NSString *subtitle  = @"Office";
-            text        = ([text length])? text : self.person.phoneNumber;
+            text        = ([text length])? text : [self formattedPhoneNumberWithString:self.person.phoneNumber];
             subtitle    = ([text length])? subtitle : @"Phone";
             cell.textLabel.text         = text;
             cell.detailTextLabel.text   = subtitle;
         } else if (indexPath.row == 1) {
-            cell.textLabel.text         = self.person.phoneNumber;
+            cell.textLabel.text         = [self formattedPhoneNumberWithString:self.person.phoneNumber];
             cell.detailTextLabel.text   = @"Phone";
         }
         
@@ -143,6 +143,19 @@
     }
     
     return cell;
+}
+
+#pragma mark Formatting
+
+- (NSString *)formattedPhoneNumberWithString:(NSString *)phoneNumber
+{
+    if ([phoneNumber length] == 10) {
+        return [NSString stringWithFormat:@"(%@) %@ - %@",
+                [phoneNumber substringWithRange:NSMakeRange(0, 3)],
+                [phoneNumber substringWithRange:NSMakeRange(3, 3)],
+                [phoneNumber substringWithRange:NSMakeRange(6, 4)]];
+    }
+    return phoneNumber;
 }
 
 
@@ -173,7 +186,7 @@
             [[[UIAlertView alloc]initWithTitle:@"Error"
                                        message:@"Ouch! Looks like something went wrong. Please report a bug! "
                                       delegate:self
-                             cancelButtonTitle:@"OK"
+                             cancelButtonTitle:@"Meh, Ok"
                              otherButtonTitles:nil]show];
 #else
             NSLog(@"iPhone Simulator cannot open URL : %@", phoneURL);
