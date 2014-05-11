@@ -75,7 +75,7 @@
                                             forState:UIControlStateNormal];
             searchBar;
         });
-        
+
         self.tableView.tableHeaderView = self.searchBar;
         self.tableView.alwaysBounceVertical = NO;
         self.tableView.sectionIndexColor = [UIColor whiteColor];
@@ -97,6 +97,7 @@
     if (!self.hasAppeared) {
         self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
         self.appeared = YES;
+        [self configureAppearance];
     }
 }
 
@@ -219,7 +220,7 @@
         return ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width - 8.0, 16.0)];
             label.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-            label.text = [NSString stringWithFormat:@"   Search Results"];
+            label.text = [NSString stringWithFormat:@""];
             label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
             label.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
             label;
@@ -245,6 +246,31 @@
 {
     return @{UTCSDirectoryCacheKey: self.dataSource.data,
              UTCSDirectoryFlatCacheKey :((UTCSDirectoryDataSource *)self.dataSource).flatDirectory};
+}
+
+#pragma mark Appearance
+
+- (void)configureAppearance
+{
+    [self configureSearchBarWithRoot:self.searchBar];
+}
+
+- (void)configureSearchBarWithRoot:(UIView *)root
+{
+    if ([root isKindOfClass:[UITextField class]]) {
+        UITextField *textField = (UITextField *)root;
+        NSDictionary *searchBarPlaceholderAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]};
+        NSAttributedString *searchBarPlaceholder = [[NSAttributedString alloc]initWithString:@"Search"
+                                                                                  attributes:searchBarPlaceholderAttributes];
+        textField.attributedPlaceholder = searchBarPlaceholder;
+        textField.textColor = [UIColor whiteColor];
+        textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
+        textField.clearButtonMode = UITextFieldViewModeNever;
+    } else {
+        for (UIView *subview in root.subviews) {
+            [self configureSearchBarWithRoot:subview];
+        }
+    }
 }
 
 @end

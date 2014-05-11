@@ -23,6 +23,8 @@
 #import "UTCSDirectoryViewController.h"
 #import "UTCSSettingsViewController.h"
 
+#import "UIImage+Cacheless.h"
+
 
 #pragma mark - UTCSAppDelegate Class Extension
 
@@ -73,6 +75,8 @@
 {
     self.window = [[FBTweakShakeWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
+    
+    
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
@@ -82,8 +86,8 @@
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.newsNavigationController];
     
-    [self configureAppearance];
     self.window.rootViewController = self.verticalMenuViewController;
+    [self configureAppearance];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -100,7 +104,7 @@
     NSDictionary *searchBarPlaceholderAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]};
     NSAttributedString *searchBarPlaceholder = [[NSAttributedString alloc]initWithString:@"Search"
                                                                               attributes:searchBarPlaceholderAttributes];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]setAttributedPlaceholder:searchBarPlaceholder];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setAttributedPlaceholder:searchBarPlaceholder];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:FBTweakValue(@"UISearchBar", @"UITextField", @"Font Size", 20.0)]];
     
@@ -161,7 +165,8 @@
     } else if(option == UTCSMenuOptionDirectory) {
         if (!self.directoryNavigationController) {
             self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-            self.directoryNavigationController.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
+            self.directoryNavigationController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"directoryBackground"];
+            [self configureAppearance];
         }
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionDiskQuota) {
@@ -172,10 +177,11 @@
     } else if(option == UTCSMenuOptionSettings) {
         if (!self.settingsNavigationController) {
             self.settingsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
-            self.settingsNavigationController.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
+            self.settingsNavigationController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"settingsBackground"];
         }
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
+    [self configureAppearance];
 }
 
 @end
