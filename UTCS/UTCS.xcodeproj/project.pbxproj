@@ -98,7 +98,6 @@
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
 		DDE561EC18DC441F00C46480 /* UTCSNewsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */; };
-		DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */; };
 		DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */; };
 		DDFDB13E1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFDB13D1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m */; };
 /* End PBXBuildFile section */
@@ -266,7 +265,6 @@
 		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
 		DDE561EA18DC441F00C46480 /* UTCSNewsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsDataSource.h; path = Model/UTCSNewsDataSource.h; sourceTree = "<group>"; };
 		DDE561EB18DC441F00C46480 /* UTCSNewsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsDataSource.m; path = Model/UTCSNewsDataSource.m; sourceTree = "<group>"; };
-		DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DDFDB13C1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSourceSearchController.h; path = Model/UTCSDirectoryDataSourceSearchController.h; sourceTree = "<group>"; };
 		DDFDB13D1908D9C300914BCC /* UTCSDirectoryDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSourceSearchController.m; path = Model/UTCSDirectoryDataSourceSearchController.m; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				DD83B55E18F0EB8600EBDE06 /* EventKit.framework in Frameworks */,
 				DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */,
 				DDF02DC818CE9FAB00C7D012 /* OpenGLES.framework in Frameworks */,
-				DDF02B4918CE8C4B00C7D012 /* AVFoundation.framework in Frameworks */,
 				DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */,
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
 				0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */,
@@ -321,7 +318,6 @@
 				DD83B55D18F0EB8600EBDE06 /* EventKit.framework */,
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DDF02DC718CE9FAB00C7D012 /* OpenGLES.framework */,
-				DDF02B4818CE8C4B00C7D012 /* AVFoundation.framework */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
 				0B9A26381891D5E30032DA03 /* CoreGraphics.framework */,
