@@ -103,7 +103,7 @@
         cell.textLabel.text         = self.person.fullName;
         cell.detailTextLabel.text   = self.person.type;
         
-        if (self.person.imageURL) {
+        if (self.person.imageURL && !cell.imageView.image) {
             NSURL *url = [NSURL URLWithString:self.person.imageURL];
             __weak UITableViewCell *weakCell = cell;
             
@@ -114,11 +114,8 @@
                 weakCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [weakCell setNeedsLayout];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                // default image
                 weakCell.imageView.image = nil;
             }];
-        } else {
-            cell.imageView.image = nil;
         }
         
         [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
