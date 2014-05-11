@@ -128,6 +128,12 @@
     [self.view bringSubviewToFront:self.searchButton];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.detailViewController = nil;
+}
+
 #pragma mark Buttons
 
 - (void)didTouchUpInsideButton:(UIButton *)button

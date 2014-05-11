@@ -131,6 +131,12 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.eventDetailViewController = nil;
+}
+
 #pragma mark Buttons
 
 - (void)didTouchUpInsideButton:(UIButton *)button
@@ -268,14 +274,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     }
     self.eventDetailViewController.event = event;
     [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.contentView.alpha = 0.5;
-    [UIView animateWithDuration:animationDuration animations:^{
-        cell.contentView.alpha = 1.0;
-    }];
 }
 
 #pragma mark UTCSDataSourceDelegate Methods

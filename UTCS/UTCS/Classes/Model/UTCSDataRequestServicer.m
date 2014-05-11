@@ -9,7 +9,7 @@
 #pragma mark - Imports
 
 // Models
-#import "AFNetworking.h"
+#import <AFNetworking/AFHTTPRequestOperation.h>
 #import "UTCSDataRequestServicer.h"
 
 

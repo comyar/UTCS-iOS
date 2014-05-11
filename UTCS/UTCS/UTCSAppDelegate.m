@@ -79,17 +79,8 @@
     
     // Navigation controllers
     self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
-    self.eventsNavigationController     = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
-    self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
-    self.directoryNavigationController.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
-    
-    self.labsViewController             = [UTCSLabsViewController new];
-    self.diskQuotaViewController        = [UTCSDiskQuotaViewController new];
-    self.settingsNavigationController   = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
-    self.settingsNavigationController.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
-    
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
-                                                                                      contentViewController:self.directoryNavigationController];
+                                                                                      contentViewController:self.newsNavigationController];
     
     [self configureAppearance];
     self.window.rootViewController = self.verticalMenuViewController;
@@ -121,21 +112,68 @@
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    if (self.newsNavigationController != self.verticalMenuViewController.contentViewController) {
+        self.newsNavigationController = nil;
+    }
+    
+    if (self.eventsNavigationController != self.verticalMenuViewController.contentViewController) {
+        self.eventsNavigationController = nil;
+    }
+    
+    if (self.labsViewController != self.verticalMenuViewController.contentViewController) {
+        self.labsViewController = nil;
+    }
+    
+    if (self.directoryNavigationController != self.verticalMenuViewController.contentViewController) {
+        self.directoryNavigationController = nil;
+    }
+    
+    if (self.diskQuotaViewController != self.verticalMenuViewController.contentViewController) {
+        self.diskQuotaViewController = nil;
+    }
+    
+    if (self.settingsNavigationController != self.verticalMenuViewController.contentViewController) {
+        self.settingsNavigationController = nil;
+    }
+}
+
 #pragma mark UTCSMenuViewControllerDelegate Methods
 
 - (void)didSelectMenuOption:(UTCSMenuOptions)option
 {
     if(option == UTCSMenuOptionNews) {
+        if (!self.newsNavigationController) {
+            self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
+        }
         self.verticalMenuViewController.contentViewController = self.newsNavigationController;
     } else if(option == UTCSMenuOptionEvents) {
+        if (!self.eventsNavigationController) {
+            self.eventsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
+        }
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
     } else if(option == UTCSMenuOptionLabs) {
+        if (!self.labsViewController) {
+            self.labsViewController = [UTCSLabsViewController new];
+        }
         self.verticalMenuViewController.contentViewController = self.labsViewController;
     } else if(option == UTCSMenuOptionDirectory) {
+        if (!self.directoryNavigationController) {
+            self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
+            self.directoryNavigationController.backgroundImageView.image = [UIImage imageNamed:@"directoryBackground"];
+        }
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
     } else if(option == UTCSMenuOptionDiskQuota) {
+        if (!self.diskQuotaViewController) {
+            self.diskQuotaViewController = [UTCSDiskQuotaViewController new];
+        }
         self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
     } else if(option == UTCSMenuOptionSettings) {
+        if (!self.settingsNavigationController) {
+            self.settingsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
+            self.settingsNavigationController.backgroundImageView.image = [UIImage imageNamed:@"settingsBackground"];
+        }
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }

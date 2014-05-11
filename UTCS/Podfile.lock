@@ -19,44 +19,21 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DPMeterView (0.0.1)
-  - IntentKit (0.5.2):
-    - IntentKit/Core
-    - IntentKit/Facebook
-    - IntentKit/GPlus
-    - IntentKit/Mail
-    - IntentKit/Maps
-    - IntentKit/Twitter
-  - IntentKit/Core (0.5.2):
-    - MWLayoutHelpers
-  - IntentKit/Facebook (0.5.2):
-    - IntentKit/Core
-  - IntentKit/GPlus (0.5.2):
-    - IntentKit/Core
-  - IntentKit/Mail (0.5.2):
-    - IntentKit/Core
-  - IntentKit/Maps (0.5.2):
-    - IntentKit/Core
-  - IntentKit/Twitter (0.5.2):
-    - IntentKit/Core
   - JVFloatLabeledTextField (0.0.7)
   - MBProgressHUD (0.8)
-  - MWLayoutHelpers (1.1.0)
   - PocketSVG (0.5)
   - pop (1.0.2)
   - Shimmer (1.0.1)
-  - TOWebViewController (2.0.4)
   - Tweaks (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - DPMeterView (= 0.0.1)
-  - IntentKit
   - JVFloatLabeledTextField (from `https://github.com/jverdi/JVFloatLabeledTextField`)
   - MBProgressHUD (~> 0.8)
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
   - pop
   - Shimmer (~> 1.0.1)
-  - TOWebViewController (from `https://github.com/TimOliver/TOWebViewController`)
   - Tweaks
 
 EXTERNAL SOURCES:
@@ -64,20 +41,15 @@ EXTERNAL SOURCES:
     :git: https://github.com/jverdi/JVFloatLabeledTextField
   PocketSVG:
     :git: https://github.com/arielelkin/PocketSVG
-  TOWebViewController:
-    :git: https://github.com/TimOliver/TOWebViewController
 
 SPEC CHECKSUMS:
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
   DPMeterView: 0cfa41936a00d60938cdfd8a298ce399bc1bbd53
-  IntentKit: 6bf7b18f5d62b705c93b73256b8e612e0ac242d9
   JVFloatLabeledTextField: 9e3e205143699e9b2119358688e99fe0787b5a97
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  MWLayoutHelpers: 517f55a0e5e724dfec8630595606d869d4f5868e
   PocketSVG: d9e6b6951adf25d3c1011e87296a89b5f5c99a29
   pop: 55f6c972fbfb644dfcf1bd6892d001feaa32cc38
   Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
-  TOWebViewController: f6d90b7b63b38e7abc81ecb3eb9fbe2b0d60906a
   Tweaks: 425d49710c8b3b698a399d08e30a4336f216bbe9
 
 COCOAPODS: 0.32.1

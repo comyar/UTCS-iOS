@@ -87,6 +87,12 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     [self update];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.newsDetailViewController = nil;
+}
+
 #pragma mark Updating
 
 - (void)update
@@ -173,14 +179,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     
     self.newsDetailViewController.newsArticle = article;
     [self.navigationController pushViewController:self.newsDetailViewController animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.contentView.alpha = 0.5;
-    [UIView animateWithDuration:animationDuration animations:^{
-        cell.contentView.alpha = 1.0;
-    }];
 }
 
 @end
