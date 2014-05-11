@@ -169,7 +169,6 @@
 		DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCacheMetaData.m; path = Model/UTCSDataSourceCacheMetaData.m; sourceTree = "<group>"; };
 		DD8989A71903C205000F1041 /* UTCSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSNavigationController.h; sourceTree = "<group>"; };
 		DD8989A81903C205000F1041 /* UTCSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSNavigationController.m; sourceTree = "<group>"; };
-		DD8989AA1903C3F3000F1041 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+UTCSButton.h"; path = "UTCS/Classes/Model/UIButton+UTCSButton.h"; sourceTree = SOURCE_ROOT; };
 		DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+UTCSButton.m"; path = "UTCS/Classes/Model/UIButton+UTCSButton.m"; sourceTree = SOURCE_ROOT; };
 		DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSlideNavigationAnimator.h; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.h; sourceTree = SOURCE_ROOT; };
@@ -307,7 +306,6 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD8989AA1903C3F3000F1041 /* MessageUI.framework */,
 				DD83B55D18F0EB8600EBDE06 /* EventKit.framework */,
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
