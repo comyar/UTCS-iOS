@@ -17,6 +17,7 @@
 
 @property (nonatomic) NSArray       *sectionTitles;
 @property (nonatomic) NSArray       *infoTitles;
+@property (nonatomic) NSArray       *socialTitles;
 
 @end
 
@@ -27,6 +28,7 @@
     if (self = [super init]) {
         self.sectionTitles  = @[@"Settings", @"Info", @"Social"];
         self.infoTitles     = @[@"Legal", @"About"];
+        self.socialTitles   = @[@"Facebook", @"Twitter"];
     }
     return self;
 }
@@ -55,17 +57,27 @@
             cell.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"Third Floor", @"Basement"]];
             returnCell = cell;
         }
-    } else if (indexPath.section == 1) {
+    } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLabelTableViewCell"];
         if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
                                          reuseIdentifier:@"UTCSSettingsLabelTableViewCell"];
             cell.backgroundColor = [UIColor clearColor];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        cell.textLabel.text = self.infoTitles[indexPath.row];
+
+        if (indexPath.section == 1) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = self.infoTitles[indexPath.row];
+            cell.imageView.image = nil;
+        } else if (indexPath.section == 2) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.textLabel.text = self.socialTitles[indexPath.row];
+            NSString *imageName = [self.socialTitles[indexPath.row]lowercaseString];
+            cell.imageView.image = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            cell.imageView.tintColor = [UIColor whiteColor];
+        }
         returnCell = cell;
     }
     return returnCell;
@@ -77,6 +89,8 @@
         return 2;
     } else if (section == 1) {
         return [self.infoTitles count];
+    } else if (section == 2) {
+        return [self.socialTitles count];
     }
     return 0;
 }
