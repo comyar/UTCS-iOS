@@ -61,7 +61,11 @@
     
     UILocalNotification *notification = [UILocalNotification new];
     notification.fireDate = [event.startDate dateByAddingTimeInterval:(-3600)]; // one hour before
-    notification.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"CST"];
+    if (event.allDay) {
+        notification.fireDate = [event.startDate dateByAddingTimeInterval:28800]; // Make start date 8 am (add 8 hours)
+    }
+    
+    notification.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"CDT"];
     notification.alertBody = [NSString stringWithFormat:@"%@ starts in an hour!", event.name];
     notification.alertAction = @"View Event Details";
     notification.soundName = UILocalNotificationDefaultSoundName;
@@ -78,6 +82,12 @@
     [[UIApplication sharedApplication]scheduleLocalNotification:notification];
     
     [UTCSStateManager sharedManager].hasStarredEvent = YES;
+    
+#if DEBUG
+    NSArray *l = [[UIApplication sharedApplication]scheduledLocalNotifications];
+    NSLog(@"%@", l);
+#endif
+    
 }
 
 - (BOOL)containsEvent:(UTCSEvent *)event

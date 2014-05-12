@@ -7,7 +7,6 @@
 //
 
 #import "UTCSSettingsViewController.h"
-#import "UTCSBouncyTableViewCell.h"
 #import "UTCSStateManager.h"
 #import "UTCSSettingsDataSource.h"
 #import "UTCSSettingsLegalViewController.h"
@@ -44,11 +43,6 @@
         self.tableView.delegate = self;
     }
     return self;
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
 }
 
 - (void)didReceiveMemoryWarning

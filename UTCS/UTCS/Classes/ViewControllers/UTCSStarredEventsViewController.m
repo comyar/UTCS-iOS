@@ -9,12 +9,15 @@
 #import "UTCSStarredEventsViewController.h"
 #import "UIButton+UTCSButton.h"
 #import "UTCSStarredEventManager.h"
+#import "UTCSStarredEventsDataSource.h"
 
 // Name of the background image
 static NSString * const backgroundImageName         = @"eventsBackground-blurred";
 
 
 @interface UTCSStarredEventsViewController ()
+
+@property (nonatomic) UTCSStarredEventsDataSource *dataSource;
 
 @property (nonatomic) UIButton  *doneButton;
 
@@ -35,8 +38,10 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-//        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        self.backgroundImageView.alpha = 0.0;
+        
+        self.dataSource = [UTCSStarredEventsDataSource new];
+        
+        self.tableView.dataSource = self.dataSource;
     }
     return self;
 }
@@ -44,6 +49,7 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.menuButton.hidden = YES;
     
     self.doneButton = ({
@@ -58,24 +64,14 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
         button;
     });
     
-    UIView *overlay = [[UIView alloc]initWithFrame:self.view.bounds];
-    overlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    [self.view addSubview:overlay];
-    
     [self.view addSubview:self.doneButton];
     [self.view bringSubviewToFront:self.doneButton];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    self.backgroundImageView.alpha = 1.0;
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    self.backgroundImageView.alpha = 0.0;
-    [super viewWillDisappear:animated];
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didTouchUpInsideButton:(UIButton *)button

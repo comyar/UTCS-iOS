@@ -9,6 +9,6 @@
 
 @import Foundation;
 
-@interface UTCSEventsStarredDataSource : NSObject <UITableViewDataSource>
+@interface UTCSStarredEventsDataSource : NSObject <UITableViewDataSource>
 
 @end
