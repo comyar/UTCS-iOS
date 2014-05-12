@@ -11,7 +11,8 @@
 
 // View controllers
 #import "UTCSEventsViewController.h"
-#import "UTCSEventDetailViewController.h"
+#import "UTCSEventsDetailViewController.h"
+#import "UTCSEventsStarListViewController.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -49,13 +50,19 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) IBActionSheet                         *filterActionSheet;
 
 //
-@property (nonatomic) UIButton                              *filterButton;
-
-//
 @property (nonatomic) NSArray                               *filterTypes;
 
 //
-@property (nonatomic) UTCSEventDetailViewController         *eventDetailViewController;
+@property (nonatomic) UIButton                              *filterButton;
+
+//
+@property (nonatomic) UIButton                              *startListButton;
+
+//
+@property (nonatomic) UTCSEventsStarListViewController      *eventsStarListViewController;
+
+//
+@property (nonatomic) UTCSEventsDetailViewController         *eventDetailViewController;
 
 @end
 
@@ -124,9 +131,25 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         button;
     });
     
+    self.startListButton = ({
+        UIButton *button = [UIButton bouncyButton];
+        button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
+        button.center = CGPointMake(self.view.width - 88.0, 22.0);
+        
+        UIImage *image = [[UIImage imageNamed:@"starlist"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.tintColor = [UIColor whiteColor];
+        imageView.frame = button.bounds;
+        [button addSubview:imageView];
+        
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        button;
+    });
+    
+    [self.view addSubview:self.startListButton];
     [self.view addSubview:self.filterButton];
     [self.view bringSubviewToFront:self.filterButton];
-    
+    [self.view bringSubviewToFront:self.startListButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -164,6 +187,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         }
         
         [self.filterActionSheet showInView:self.view];
+    } else if (button == self.startListButton) {
+        if (!self.eventsStarListViewController) {
+            self.eventsStarListViewController = [UTCSEventsStarListViewController new];
+        }
+        [self.navigationController presentViewController:self.eventsStarListViewController animated:YES completion:nil];
     }
 }
 
@@ -268,7 +296,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     
     UTCSEvent *event = self.dataSource.data[indexPath.row];
     if (!self.eventDetailViewController) {
-        self.eventDetailViewController = [UTCSEventDetailViewController new];
+        self.eventDetailViewController = [UTCSEventsDetailViewController new];
     }
     self.eventDetailViewController.event = event;
     [self.navigationController pushViewController:self.eventDetailViewController animated:YES];

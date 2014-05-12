@@ -57,6 +57,8 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
  */
 @interface UTCSDataSource : NSObject <UISearchDisplayDelegate>
 {
+    @protected  // Protected ivars
+    
     id                              _data;                      // Downloaded data
     NSTimeInterval                  _minimumTimeBetweenUpdates; // Minimum time between updates
     

@@ -9,11 +9,10 @@
 
 @import Foundation;
 
-@interface UTCSSettingsManager : NSObject
+@interface UTCSStateManager : NSObject
 
-+ (UTCSSettingsManager *)sharedSettingsManager;
++ (UTCSStateManager *)sharedManager;
 
-
-@property (nonatomic) NSString *username;
+@property (nonatomic) NSArray *starredEventIDs;
 
 @end

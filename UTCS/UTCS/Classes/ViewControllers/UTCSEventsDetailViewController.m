@@ -10,7 +10,7 @@
 #pragma mark - Imports
 
 // View Controllers
-#import "UTCSEventDetailViewController.h"
+#import "UTCSEventsDetailViewController.h"
 
 // Views
 #import "UTCSParallaxBlurHeaderScrollView.h"
@@ -28,7 +28,7 @@
 
 #pragma mark - UTCSEventDetailViewController Class Extension
 
-@interface UTCSEventDetailViewController ()
+@interface UTCSEventsDetailViewController ()
 
 // Current calendar
 @property (nonatomic) NSCalendar                        *calendar;
@@ -39,8 +39,10 @@
 // Event store
 @property (nonatomic) EKEventStore                      *eventStore;
 
+//
 @property (nonatomic) NSDictionary                      *headerImageMapping;
 
+//
 @property (nonatomic) NSArray                           *defaultHeaderImages;
 
 // -----
@@ -61,9 +63,6 @@
 
 // Button used to share the event
 @property (nonatomic) UIButton                          *shareButton;
-
-// Button used to add the event to calendar
-@property (nonatomic) UIButton                          *calendarButton;
 
 // Button used to star events
 @property (nonatomic) UIButton                          *starButton;
@@ -91,7 +90,7 @@
 
 #pragma mark - UTCSEventDetailViewController Implementation
 
-@implementation UTCSEventDetailViewController
+@implementation UTCSEventsDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -190,22 +189,6 @@
         button;
     });
     
-    // Add to calendar button
-    self.calendarButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.showsTouchWhenHighlighted = YES;
-        button.frame = CGRectMake(0, 0, 44, 44);
-        
-        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"addToCalendar"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-        imageView.tintColor = [UIColor whiteColor];
-        imageView.frame = button.bounds;
-        
-        [button addSubview:imageView];
-        button;
-    });
-    
     // Share button
     self.shareButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -223,7 +206,6 @@
     });
     
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],
-                                                [[UIBarButtonItem alloc]initWithCustomView:self.calendarButton],
                                                 [[UIBarButtonItem alloc]initWithCustomView:self.starButton]];
     
     // Scroll to top button
@@ -328,61 +310,12 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
-#pragma mark Calendar
-
-- (void)askToAddEventToCalendar:(UTCSEvent *)event
-{
-    [[[UIAlertView alloc]initWithTitle:@"Add Event to Calendar"
-                               message:@"Add this event to your calendar?"
-                              delegate:self
-                     cancelButtonTitle:@"Cancel"
-                     otherButtonTitles:@"Yes", nil]show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) { // Yes
-        [self addEventToCalendar:self.event];
-    }
-}
-
-- (void)addEventToCalendar:(UTCSEvent *)event
-{
-    if (!self.eventStore) {
-        self.eventStore = [EKEventStore new];
-    }
-    
-    EKEvent *calendarEvent = ({
-        EKEvent *calendarEvent = [EKEvent eventWithEventStore:self.eventStore];
-        calendarEvent.title     = event.name;
-        calendarEvent.startDate = event.startDate;
-        calendarEvent.location  = event.location;
-        
-        if (event.allDay) {
-            calendarEvent.allDay = YES;
-        } else {
-            calendarEvent.endDate = event.endDate;
-        }
-        
-        calendarEvent.calendar = [self.eventStore defaultCalendarForNewEvents];
-        calendarEvent;
-    });
-    
-    [self.eventStore saveEvent:calendarEvent span:EKSpanThisEvent commit:YES error:nil];
-    self.event.calendarEvent = calendarEvent;
-}
-
 #pragma mark Buttons
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
-    if(button == self.calendarButton) {
-        if (!self.event.calendarEvent) {
-            [self askToAddEventToCalendar:self.event];
-        }
-    } else if(button == self.shareButton) {
+    if(button == self.shareButton) {
         [self shareEvent:self.event];
-        
     } else if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }

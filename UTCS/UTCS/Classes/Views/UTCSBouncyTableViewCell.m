@@ -41,16 +41,14 @@
     
     NSNumber *alphaValue = (bounceDirection == UTCSBouncyTableViewCellBounceDirectionDown)? @(0.5) : @(1.0);
     
-    POPSpringAnimation *springAnimation = [self.contentView pop_animationForKey:@"bounce"];
-    POPSpringAnimation *alphaAnimation  = [self.contentView pop_animationForKey:@"alpha"];
+    POPSpringAnimation  *springAnimation = [self.contentView pop_animationForKey:@"bounce"];
+    POPBasicAnimation   *alphaAnimation  = [self.contentView pop_animationForKey:@"alpha"];
     
     if (alphaAnimation) {
         alphaAnimation.toValue = alphaValue;
     } else {
-        alphaAnimation = [POPSpringAnimation animation];
+        alphaAnimation = [POPBasicAnimation animation];
         alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
-        alphaAnimation.springBounciness = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Spring Bounciness", 20.0);
-        alphaAnimation.springSpeed = FBTweakValue(@"UITableViewCell", @"Bouncy Cell", @"Spring Speed", 20.0);
         alphaAnimation.toValue = alphaValue;
         [self.contentView pop_addAnimation:alphaAnimation forKey:@"alpha"];
     }

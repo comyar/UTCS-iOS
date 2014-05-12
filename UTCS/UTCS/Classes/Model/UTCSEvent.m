@@ -92,8 +92,12 @@ static NSString * const calendarEventKey            = @"calendarKey";
     }
     
     // Parse the HTML to construct an attributed string
-    NSMutableAttributedString *attributedHTML = [[[NSAttributedString alloc]initWithData:[html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
-    
+    // Parsing HTMl must occur on main queue
+    __block NSMutableAttributedString *attributedHTML = nil;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        attributedHTML = [[[NSAttributedString alloc]initWithData:[html dataUsingEncoding:NSUTF32StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil]mutableCopy];
+    });
+                  
     if (!attributedHTML) {
         _attributedDescription = nil;
         return;

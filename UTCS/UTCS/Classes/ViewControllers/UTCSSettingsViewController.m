@@ -8,7 +8,7 @@
 
 #import "UTCSSettingsViewController.h"
 #import "UTCSBouncyTableViewCell.h"
-#import "UTCSSettingsManager.h"
+#import "UTCSStateManager.h"
 #import "UTCSSettingsDataSource.h"
 #import "UTCSSettingsLegalViewController.h"
 #import "UTCSSettingsAboutViewController.h"
@@ -73,6 +73,12 @@
                 self.aboutViewController = [UTCSSettingsAboutViewController new];
             }
             [self.navigationController pushViewController:self.aboutViewController animated:YES];
+        }
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            
+        } else if (indexPath.row == 1) {
+            
         }
     }
 }

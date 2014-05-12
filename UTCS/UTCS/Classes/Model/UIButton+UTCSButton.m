@@ -51,8 +51,7 @@
 - (void)bounceDown
 {
     POPSpringAnimation *springAnimation = [self pop_animationForKey:@"bounce"];
-    POPSpringAnimation *alphaAnimation = [self pop_animationForKey:@"alpha"];
-    
+    POPBasicAnimation *alphaAnimation = [self pop_animationForKey:@"alpha"];
     
     NSValue *scaleValue = [NSValue valueWithCGPoint:CGPointMake(0.9, 0.9)];
     
@@ -71,10 +70,8 @@
     if (alphaAnimation) {
         alphaAnimation.toValue = @(alpha);
     } else {
-        alphaAnimation = [POPSpringAnimation animation];
+        alphaAnimation = [POPBasicAnimation animation];
         alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
-        alphaAnimation.springBounciness = FBTweakValue(@"UIButton", @"Bouncy Button", @"Spring Bounciness", 20.0);
-        alphaAnimation.springSpeed = FBTweakValue(@"UIButton", @"Bouncy Button", @"Spring Speed", 20.0);
         alphaAnimation.toValue = @(alpha);
         [self pop_addAnimation:alphaAnimation forKey:@"alpha"];
     }
@@ -84,7 +81,7 @@
 - (void)reset
 {
     POPSpringAnimation *springAnimation = [self pop_animationForKey:@"bounce"];
-    POPSpringAnimation *alphaAnimation = [self pop_animationForKey:@"alpha"];
+    POPBasicAnimation   *alphaAnimation = [self pop_animationForKey:@"alpha"];
     
     
     NSValue *scaleValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
@@ -104,10 +101,8 @@
     if (alphaAnimation) {
         alphaAnimation.toValue = @(alpha);
     } else {
-        alphaAnimation = [POPSpringAnimation animation];
+        alphaAnimation = [POPBasicAnimation animation];
         alphaAnimation.property = [POPAnimatableProperty propertyWithName:kPOPViewAlpha];
-        alphaAnimation.springBounciness = 20.0;
-        alphaAnimation.springSpeed = 20.0;
         alphaAnimation.toValue = @(alpha);
         [self pop_addAnimation:alphaAnimation forKey:@"alpha"];
     }
