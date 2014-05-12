@@ -88,6 +88,8 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
         self.typeColorMapping = @{@"careers": [UIColor utcsEventCareersColor],
                                   @"talks"  : [UIColor utcsEventTalkColor],
                                   @"orgs"   : [UIColor utcsEventStudentOrgsColor]};
+        
+        self.currentFilterType = @"all";
     }
     return self;
 }
@@ -106,65 +108,52 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     
     type = [type lowercaseString];
     
-    if ([type isEqualToString:@"all"]) {
+    
+    if (![type isEqualToString:self.currentFilterType] &&
+        ![type isEqualToString:@"all"]) {
         
-        // Pretty inefficient but I'm lazy #yolo
-        for (UTCSEvent *event in self.data) {
-            if (![self.filteredEvents containsObject:event]) {
-                NSIndexPath *indexPath = nil;
-                for (int i = 0; [self.filteredEvents count]; ++i) {
-                    UTCSEvent *filterEvent = self.filteredEvents[i];
-                    if ([filterEvent.startDate timeIntervalSinceDate:event.startDate] <= 0.0) {
-                        [self.filteredEvents insertObject:event atIndex:i];
-                        indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                        break;
-                    }
-                }
-                
-                if (!indexPath) {
-                    indexPath = [NSIndexPath indexPathForRow:[self.filteredEvents count] inSection:0];
-                    [self.filteredEvents addObject:event];
-                }
-                [add addObject:indexPath];
-            }
-        }
         
-        self.filteredEvents = [self.data mutableCopy];
+        NSMutableArray *newFilteredEvents = [NSMutableArray new];
         
-    } else {
-        
-        for (int i = 0; i < [self.filteredEvents count]; ++i) {
+        // Remove events
+        NSInteger count = [self.filteredEvents count];
+        for (int i = 0; i < count; ++i) {
             UTCSEvent *event = self.filteredEvents[i];
             if (![event.type isEqualToString:type]) {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [remove addObject:indexPath];
-                [self.filteredEvents removeObject:event];
             }
         }
         
-        for (int i = 0; i < [self.data count]; ++i) {
+        // Add events
+        int index = 0;
+        for (UTCSEvent *event in self.data) {
+            if ([event.type isEqualToString:type]) {
+                if (![self.currentFilterType isEqualToString:@"all"]) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+                    [add addObject:indexPath];
+                    ++index;
+                }
+                [newFilteredEvents addObject:event];
+            }
+        }
+        
+        self.filteredEvents = newFilteredEvents;
+    } else if ([type isEqualToString:@"all"] &&
+               ![self.currentFilterType isEqualToString:@"all"]) {
+        
+        // Add events
+        NSInteger count = [self.data count];
+        
+        for (int i = 0; i < count; ++i) {
             UTCSEvent *event = self.data[i];
-            
-            if ([event.type isEqualToString:type] && ![self.filteredEvents containsObject:event]) {
-                NSIndexPath *indexPath = nil;
-                for (int i = 0; [self.filteredEvents count]; ++i) {
-                    UTCSEvent *filterEvent = self.filteredEvents[i];
-                    if ([filterEvent.startDate timeIntervalSinceDate:event.startDate] <= 0.0) {
-                        [self.filteredEvents insertObject:event atIndex:i];
-                        indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                        break;
-                    }
-                }
-                
-                if (!indexPath) {
-                    indexPath = [NSIndexPath indexPathForRow:[self.filteredEvents count] inSection:0];
-                    [self.filteredEvents addObject:event];
-                }
+            if (![self.filteredEvents containsObject:event]) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [add addObject:indexPath];
             }
-            
         }
         
+        self.filteredEvents = self.data;
     }
     
     self.currentFilterType = type;

@@ -59,7 +59,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) UIButton                              *starListButton;
 
 //
-@property (nonatomic) UTCSStarredEventsViewController      *starredEventsViewController;
+@property (nonatomic) UTCSStarredEventsViewController       *starredEventsViewController;
 
 //
 @property (nonatomic) UTCSEventsDetailViewController         *eventDetailViewController;
@@ -85,7 +85,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     if(self = [super initWithStyle:style]) {
         self.dataSource                 = [[UTCSEventsDataSource alloc]initWithService:serviceName];
-        self.dataSource.delegate = self;
+        self.dataSource.delegate        = self;
         self.tableView.dataSource       = (UTCSEventsDataSource *)self.dataSource;
         self.tableView.delegate         = self;
         
@@ -217,12 +217,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         NSArray *removeIndexPaths = indexPaths[UTCSEventsFilterRemoveName];
         
         [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView insertRowsAtIndexPaths:addIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
-        
-        [self.tableView beginUpdates];
-        
+        [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationRight];
+        [self.tableView insertRowsAtIndexPaths:addIndexPaths withRowAnimation:UITableViewRowAnimationLeft];
         [self.tableView endUpdates];
     }
     
@@ -233,31 +229,33 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)update
 {
-    [self.activeHeaderView showActiveAnimation:YES];
-    
-    [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+    if ([self.dataSource shouldUpdate]) {
+        [self.activeHeaderView showActiveAnimation:YES];
         
-        [self.activeHeaderView showActiveAnimation:NO];
-        
-        if([self.dataSource.data count] > 0) {
-            [self.dataSource prepareFilter];
-            NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
-                                                                    dateStyle:NSDateFormatterLongStyle
-                                                                    timeStyle:NSDateFormatterMediumStyle];
-            self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
-        } else {
+        [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
-            if (!success) {
-                // Show frowny face
+            [self.activeHeaderView showActiveAnimation:NO];
+            
+            if([self.dataSource.data count] > 0) {
+                [self.dataSource prepareFilter];
+                NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
+                                                                        dateStyle:NSDateFormatterLongStyle
+                                                                        timeStyle:NSDateFormatterMediumStyle];
+                self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            } else {
+                
+                if (!success) {
+                    // Show frowny face
+                }
+                
+                self.activeHeaderView.updatedLabel.text = @"No Events Available";
             }
             
-            self.activeHeaderView.updatedLabel.text = @"No Events Available";
-        }
-        
-        if (success && !cacheHit) {
-            [self.tableView reloadData];
-        }
-    }];
+            if (success && !cacheHit) {
+                [self.tableView reloadData];
+            }
+        }];
+    }
 }
 
 #pragma mark UITableViewDelegate Methods
