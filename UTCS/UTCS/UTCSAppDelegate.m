@@ -24,6 +24,7 @@
 #import "UTCSSettingsViewController.h"
 
 #import "UIImage+Cacheless.h"
+#import "UTCSStarredEventManager.h"
 
 
 #pragma mark - UTCSAppDelegate Class Extension
@@ -75,15 +76,12 @@
 {
     self.window = [[FBTweakShakeWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
-    
-    
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    // Navigation controllers
+    // View controllers
     self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
-    
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.newsNavigationController];
     
@@ -91,6 +89,11 @@
     [self configureAppearance];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [[UTCSStarredEventManager sharedManager]purgePastEvents];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -108,35 +111,6 @@
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundImage:[UIImage new]
                                                                                          forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-}
-
-#pragma mark Memory Warnings
-
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
-//    if (self.newsNavigationController != self.verticalMenuViewController.contentViewController) {
-//        self.newsNavigationController = nil;
-//    }
-//    
-//    if (self.eventsNavigationController != self.verticalMenuViewController.contentViewController) {
-//        self.eventsNavigationController = nil;
-//    }
-//    
-//    if (self.labsViewController != self.verticalMenuViewController.contentViewController) {
-//        self.labsViewController = nil;
-//    }
-//    
-//    if (self.directoryNavigationController != self.verticalMenuViewController.contentViewController) {
-//        self.directoryNavigationController = nil;
-//    }
-//    
-//    if (self.diskQuotaViewController != self.verticalMenuViewController.contentViewController) {
-//        self.diskQuotaViewController = nil;
-//    }
-//    
-//    if (self.settingsNavigationController != self.verticalMenuViewController.contentViewController) {
-//        self.settingsNavigationController = nil;
-//    }
 }
 
 #pragma mark UTCSMenuViewControllerDelegate Methods

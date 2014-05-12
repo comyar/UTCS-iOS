@@ -20,5 +20,6 @@
 - (void)addEvent:(UTCSEvent *)event;
 - (void)removeEvent:(UTCSEvent *)event;
 - (void)removeAllEvents;
+- (void)purgePastEvents;
 
 @end

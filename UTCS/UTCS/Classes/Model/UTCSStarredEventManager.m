@@ -25,7 +25,7 @@
 - (instancetype)_init
 {
     if (self = [super init]) {
-        
+        [self purgePastEvents];
     }
     return self;
 }
@@ -50,7 +50,6 @@
     if (!event || [self containsEvent:event]) {
         return;
     }
-    
     
     NSMutableArray *starredEvents = [[UTCSStateManager sharedManager].starredEvents mutableCopy];
     if (!starredEvents) {
@@ -82,12 +81,6 @@
     [[UIApplication sharedApplication]scheduleLocalNotification:notification];
     
     [UTCSStateManager sharedManager].hasStarredEvent = YES;
-    
-#if DEBUG
-    NSArray *l = [[UIApplication sharedApplication]scheduledLocalNotifications];
-    NSLog(@"%@", l);
-#endif
-    
 }
 
 - (BOOL)containsEvent:(UTCSEvent *)event
@@ -142,6 +135,15 @@
     [UTCSStateManager sharedManager].starredEvents = [NSArray new];
     [UTCSStateManager sharedManager].starredEventNotifications = [NSArray new];
     [[UIApplication sharedApplication]cancelAllLocalNotifications];
+}
+
+- (void)purgePastEvents
+{
+    for (UTCSEvent *event in [self allEvents]) {
+        if ([event.endDate timeIntervalSinceDate:[NSDate date]] < - 3600) { // purge after hour past end
+            [self removeEvent:event];
+        }
+    }
 }
 
 @end
