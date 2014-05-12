@@ -54,7 +54,6 @@
 		DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
 		DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */; };
-		DD9475F2190CF3D70049FB8B /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475F1190CF3D70049FB8B /* IBActionSheet.m */; };
 		DD95E734191F2A6A0062F4E9 /* UIImage+Cacheless.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */; };
 		DD95E740191F377E0062F4E9 /* directoryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */; };
 		DD95E741191F377E0062F4E9 /* diskQuotaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73A191F377E0062F4E9 /* diskQuotaBackground@2x.png */; };
@@ -195,8 +194,6 @@
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		DD9475EA190CEAA60049FB8B /* UTCSUpdateTextFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSUpdateTextFactory.h; path = Model/UTCSUpdateTextFactory.h; sourceTree = "<group>"; };
 		DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSUpdateTextFactory.m; path = Model/UTCSUpdateTextFactory.m; sourceTree = "<group>"; };
-		DD9475F0190CF3D70049FB8B /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
-		DD9475F1190CF3D70049FB8B /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
 		DD95E732191F2A6A0062F4E9 /* UIImage+Cacheless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cacheless.h"; path = "Categories/UIImage+Cacheless.h"; sourceTree = "<group>"; };
 		DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cacheless.m"; path = "Categories/UIImage+Cacheless.m"; sourceTree = "<group>"; };
 		DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directoryBackground@2x.png"; sourceTree = "<group>"; };
@@ -795,8 +792,6 @@
 		DDA758F019081DFE007CD0DB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DD9475F0190CF3D70049FB8B /* IBActionSheet.h */,
-				DD9475F1190CF3D70049FB8B /* IBActionSheet.m */,
 				DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */,
 				DDA758A71905E7B6007CD0DB /* ActiveHeaderView */,
 				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
@@ -1128,7 +1123,6 @@
 				DDC404801918879800D17CBF /* UTCSSettingsLicenseViewController.m in Sources */,
 				DD95E74D192091DA0062F4E9 /* UTCSStarredEventsViewController.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
-				DD9475F2190CF3D70049FB8B /* IBActionSheet.m in Sources */,
 				DDC206F7190A0410001DD1A5 /* UTCSSettingsViewController.m in Sources */,
 				DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,

@@ -49,7 +49,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) NSString                              *currentFilter;
 
 //
-@property (nonatomic) IBActionSheet                         *filterActionSheet;
+@property (nonatomic) UISegmentedControl                    *filterSegmentedControl;
 
 //
 @property (nonatomic) NSArray                               *filterTypes;
@@ -61,16 +61,13 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) UIImageView                           *filterButtonImageView;
 
 //
-@property (nonatomic) UIButton                              *filterButton;
-
-//
 @property (nonatomic) UIButton                              *starListButton;
 
 //
 @property (nonatomic) UTCSStarredEventsViewController       *starredEventsViewController;
 
 //
-@property (nonatomic) UTCSEventsDetailViewController         *eventDetailViewController;
+@property (nonatomic) UTCSEventsDetailViewController        *eventDetailViewController;
 
 @end
 
@@ -104,10 +101,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
         self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
         
-        self.filterTypes = @[@"All", @"Talks", @"Careers", @"Organizations"];
-        self.filterTypeColors = @{@"Talks":[UIColor utcsEventTalkColor],
+        self.filterTypes = @[@"All", @"Talks", @"Careers", @"Orgs"];
+        self.filterTypeColors = @{@"All":[UIColor whiteColor],
+                                  @"Talks":[UIColor utcsEventTalkColor],
                                   @"Careers":[UIColor utcsEventCareersColor],
-                                  @"Organizations":[UIColor utcsEventStudentOrgsColor]};
+                                  @"Orgs":[UIColor utcsEventStudentOrgsColor]};
     }
     return self;
 }
@@ -128,29 +126,10 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     [super viewDidLoad];
     
-    self.filterButton = ({
-        UIButton *button = [UIButton bouncyButton];
-        button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
-        button.center = CGPointMake(self.view.width - 33.0, 22.0);
-        
-        UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        
-        self.filterButtonImageView = ({
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-            imageView.tintColor = [UIColor whiteColor];
-            imageView.frame = button.bounds;
-            [button addSubview:imageView];
-            imageView;
-        });
-        
-        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
-    
     self.starListButton = ({
         UIButton *button = [UIButton bouncyButton];
         button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
-        button.center = CGPointMake(self.view.width - 88.0, 22.0);
+        button.center = CGPointMake(self.view.width - 33.0, 22.0);
         
         UIImage *image = [[UIImage imageNamed:@"starlist"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
@@ -163,8 +142,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     });
     
     [self.view addSubview:self.starListButton];
-    [self.view addSubview:self.filterButton];
-    [self.view bringSubviewToFront:self.filterButton];
     [self.view bringSubviewToFront:self.starListButton];
 }
 
@@ -174,41 +151,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     self.eventDetailViewController = nil;
 }
 
-#pragma mark Buttons
+#pragma mark Controls
 
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
-    if (button == self.filterButton) {
-        
-        if (!self.filterActionSheet) {
-            self.filterActionSheet = ({
-                IBActionSheet *actionSheet = [[IBActionSheet alloc]initWithTitle:@"Filter Events by Type"
-                                                                        delegate:self
-                                                               cancelButtonTitle:@"Done"
-                                                          destructiveButtonTitle:nil
-                                                               otherButtonTitles:nil, nil];
-                
-                for (NSString *type in self.filterTypes) {
-                    [actionSheet addButtonWithTitle:type];
-                }
-                
-                [actionSheet setTitleBackgroundColor:[UIColor clearColor]];
-                [actionSheet setTitleFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
-                [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.75]];
-                [actionSheet setButtonTextColor:[UIColor darkGrayColor]];
-                [actionSheet setTitleTextColor:[UIColor darkGrayColor]];
-                [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.05]];
-                
-                [actionSheet setButtonTextColor:self.filterTypeColors[@"Organizations"] forButtonAtIndex:1];
-                [actionSheet setButtonTextColor:self.filterTypeColors[@"Careers"] forButtonAtIndex:2];
-                [actionSheet setButtonTextColor:self.filterTypeColors[@"Talks"] forButtonAtIndex:3];
-                
-                actionSheet;
-            });
-        }
-        
-        [self.filterActionSheet showInView:self.view];
-    } else if (button == self.starListButton) {
+    if (button == self.starListButton) {
         if (!self.starredEventsViewController) {
             self.starredEventsViewController = [UTCSStarredEventsViewController new];
             self.starredEventsViewController.backgroundImageView.image = self.backgroundBlurredImageView.image;
@@ -217,16 +164,13 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     }
 }
 
-#pragma mark IBActionSheetDelegate Methods
-
-- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)didChangeValueForControl:(UIControl *)control
 {
-    if (buttonIndex < [self.filterTypes count]) {
-        NSString *filterType = self.filterTypes[buttonIndex];
+    if (control == self.filterSegmentedControl) {
+        NSInteger index = self.filterSegmentedControl.selectedSegmentIndex;
+        NSString *filterType = self.filterTypes[index];
         [self filterEventsWithType:filterType];
-        
-        UIColor *color = self.filterTypeColors[filterType];
-        self.filterButtonImageView.tintColor = (color)? color : [UIColor whiteColor];
+        self.filterSegmentedControl.tintColor = self.filterTypeColors[filterType];
     }
 }
 
@@ -282,6 +226,40 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 }
 
 #pragma mark UITableViewDelegate Methods
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        if (!self.filterSegmentedControl) {
+            self.filterSegmentedControl = ({
+                UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:self.filterTypes];
+                segmentedControl.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.75];
+                [segmentedControl addTarget:self action:@selector(didChangeValueForControl:) forControlEvents:UIControlEventValueChanged];
+                segmentedControl.frame = CGRectMake(8.0, 8.0, self.view.width - 16.0, 32.0);
+                segmentedControl.tintColor = [UIColor whiteColor];
+                segmentedControl.selectedSegmentIndex = 0;
+                segmentedControl.layer.cornerRadius = 4.0;
+                segmentedControl.layer.masksToBounds = YES;
+                segmentedControl;
+            });
+        }
+        
+        return ({
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.view.width, 32.0)];
+            [view addSubview:self.filterSegmentedControl];
+            view;
+        });
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 48.0;
+    }
+    return 0.0;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

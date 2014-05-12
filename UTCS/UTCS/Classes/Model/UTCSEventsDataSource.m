@@ -70,6 +70,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     if(self = [super initWithService:service]) {
         _parser = [UTCSEventsDataSourceParser new];
         _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _primaryCacheKey = UTCSEventsDataSourceCacheKey;
         
         _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
         
@@ -88,6 +89,13 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
         self.typeColorMapping = @{@"careers": [UIColor utcsEventCareersColor],
                                   @"talks"  : [UIColor utcsEventTalkColor],
                                   @"orgs"   : [UIColor utcsEventStudentOrgsColor]};
+        
+        NSDictionary *cache = [self.cache objectWithKey:UTCSEventsDataSourceCacheKey];
+        if (cache) {
+            UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
+            _data = cache[UTCSDataSourceCacheValuesName];
+            _updated = meta.timestamp;
+        }
     }
     return self;
 }
