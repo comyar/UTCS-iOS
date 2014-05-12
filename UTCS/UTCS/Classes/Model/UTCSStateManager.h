@@ -13,7 +13,8 @@
 
 + (UTCSStateManager *)sharedManager;
 
-@property (nonatomic) BOOL hasStarredEvent;
-@property (nonatomic) NSArray *starredEvents;
+@property (nonatomic) BOOL      hasStarredEvent;
+@property (nonatomic) NSArray   *starredEvents;
+@property (nonatomic) NSArray   *starredEventNotifications;
 
 @end

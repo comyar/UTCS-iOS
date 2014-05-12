@@ -335,7 +335,6 @@
         }
         self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [[UTCSStarredEventManager sharedManager]addEvent:event];
-        [UTCSStateManager sharedManager].hasStarredEvent = YES;
     } else {
         self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [[UTCSStarredEventManager sharedManager]removeEvent:event];

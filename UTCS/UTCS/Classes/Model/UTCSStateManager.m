@@ -11,6 +11,7 @@
 
 static NSString * const hasStarredEventKey  = @"hasStarredEvent";
 static NSString * const starredEventsKey     = @"starredEvents";
+static NSString * const starredEventNotificationsKey = @"starredEventNotifications";
 
 
 #pragma mark - UTCSSettingsManager Implementation
@@ -18,6 +19,7 @@ static NSString * const starredEventsKey     = @"starredEvents";
 @implementation UTCSStateManager
 @synthesize hasStarredEvent = _hasStarredEvent;
 @synthesize starredEvents = _starredEvents;
+@synthesize starredEventNotifications = _starredEventNotifications;
 
 - (instancetype)init
 {
@@ -32,6 +34,7 @@ static NSString * const starredEventsKey     = @"starredEvents";
     if (self = [super init]) {
         _hasStarredEvent = [[NSUserDefaults standardUserDefaults]boolForKey:hasStarredEventKey];
         _starredEvents = [self loadArrayWithKey:starredEventsKey];
+        _starredEventNotifications = [self loadArrayWithKey:starredEventNotificationsKey];
     }
     return self;
 }
@@ -50,21 +53,20 @@ static NSString * const starredEventsKey     = @"starredEvents";
 
 - (void)setStarredEvents:(NSArray *)starredEvents
 {
-    NSLog(@"Set starred events : %@", starredEvents);
     _starredEvents = starredEvents;
     [self saveArray:_starredEvents withKey:starredEventsKey];
 }
 
 - (void)setHasStarredEvent:(BOOL)hasStarredEvent
 {
-    NSLog(@"Set has starred event: %d", hasStarredEvent);
     _hasStarredEvent = hasStarredEvent;
     [[NSUserDefaults standardUserDefaults]setBool:_hasStarredEvent forKey:hasStarredEventKey];
 }
 
-- (BOOL)hasStarredEvent
+- (void)setStarredEventNotifications:(NSArray *)starredEventNotifications
 {
-    return _hasStarredEvent;
+    _starredEventNotifications = starredEventNotifications;
+    [self saveArray:_starredEventNotifications withKey:starredEventNotificationsKey];
 }
 
 #pragma mark Helpers

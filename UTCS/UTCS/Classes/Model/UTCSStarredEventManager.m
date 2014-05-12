@@ -51,6 +51,7 @@
         return;
     }
     
+    
     NSMutableArray *starredEvents = [[UTCSStateManager sharedManager].starredEvents mutableCopy];
     if (!starredEvents) {
         starredEvents = [NSMutableArray new];
@@ -58,7 +59,25 @@
     [starredEvents addObject:event];
     [UTCSStateManager sharedManager].starredEvents = starredEvents;
     
-    // Register notification
+    UILocalNotification *notification = [UILocalNotification new];
+    notification.fireDate = [event.startDate dateByAddingTimeInterval:(-3600)]; // one hour before
+    notification.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"CST"];
+    notification.alertBody = [NSString stringWithFormat:@"%@ starts in an hour!", event.name];
+    notification.alertAction = @"View Event Details";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.userInfo = @{@"eventID": event.eventID};
+    
+    NSMutableArray *starredEventNotifications = [[UTCSStateManager sharedManager].starredEventNotifications mutableCopy];
+    if (!starredEventNotifications) {
+        starredEventNotifications = [NSMutableArray new];
+    }
+    [starredEventNotifications addObject:notification];
+    [UTCSStateManager sharedManager].starredEventNotifications = starredEventNotifications;
+    
+    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
+    [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+    
+    [UTCSStateManager sharedManager].hasStarredEvent = YES;
 }
 
 - (BOOL)containsEvent:(UTCSEvent *)event
@@ -90,14 +109,29 @@
         [starredEvents removeObject:removeEvent];
     }
     
-    // unregister notification
+    UILocalNotification *removeNotification = nil;
+    NSMutableArray *starredEventNotifications = [[UTCSStateManager sharedManager].starredEventNotifications mutableCopy];
+    for (UILocalNotification *notification in starredEventNotifications) {
+        if ([notification.userInfo[@"eventID"] isEqualToString:event.eventID]) {
+            removeNotification = notification;
+            break;
+        }
+    }
+    
+    if (removeNotification) {
+        [[UIApplication sharedApplication]cancelLocalNotification:removeNotification];
+        [starredEventNotifications removeObject:removeNotification];
+    }
     
     [UTCSStateManager sharedManager].starredEvents = starredEvents;
+    [UTCSStateManager sharedManager].starredEventNotifications = starredEventNotifications;
 }
 
 - (void)removeAllEvents
 {
     [UTCSStateManager sharedManager].starredEvents = [NSArray new];
+    [UTCSStateManager sharedManager].starredEventNotifications = [NSArray new];
+    [[UIApplication sharedApplication]cancelAllLocalNotifications];
 }
 
 @end

@@ -35,7 +35,8 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        self.backgroundImageView.alpha = 0.0;
     }
     return self;
 }
@@ -57,12 +58,23 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
         button;
     });
     
+    UIView *overlay = [[UIView alloc]initWithFrame:self.view.bounds];
+    overlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    [self.view addSubview:overlay];
+    
     [self.view addSubview:self.doneButton];
     [self.view bringSubviewToFront:self.doneButton];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.backgroundImageView.alpha = 1.0;
+    [super viewDidAppear:animated];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
+    self.backgroundImageView.alpha = 0.0;
     [super viewWillDisappear:animated];
 }
 
