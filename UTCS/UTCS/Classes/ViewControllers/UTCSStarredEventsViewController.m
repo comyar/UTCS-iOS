@@ -10,6 +10,7 @@
 #import "UIButton+UTCSButton.h"
 #import "UTCSStarredEventManager.h"
 #import "UTCSStarredEventsDataSource.h"
+#import "UTCSEvent.h"
 
 // Name of the background image
 static NSString * const backgroundImageName         = @"eventsBackground-blurred";
@@ -27,7 +28,7 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 
 - (instancetype)init
 {
-    return [self initWithStyle:UITableViewStylePlain];
+    return [self initWithStyle:UITableViewStyleGrouped];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,8 +39,6 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        self.view.backgroundColor = [UIColor clearColor];
-        self.view.opaque = NO;
         self.backgroundImageView.alpha = 0.0;
         self.dataSource = [UTCSStarredEventsDataSource new];
         self.tableView.dataSource = self.dataSource;
@@ -52,6 +51,8 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
     [super viewDidLoad];
     
     self.menuButton.hidden = YES;
+    
+    self.tableView.editing = YES;
     
     self.doneButton = ({
         UIButton *button = [UIButton bouncyButton];
@@ -105,4 +106,37 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 {
     return YES;
 }
+
+#pragma mark UITableViewDelegate Methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTCSEvent *event = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+    
+    // Estimate height of event name
+    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
+                                           options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                        attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
+                                           context:nil];
+    
+    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:YES animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setHighlighted:NO animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 168.0;
+}
+
 @end

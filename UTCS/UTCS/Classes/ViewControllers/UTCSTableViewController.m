@@ -24,7 +24,7 @@
 #pragma mark - UTCSAbstractTableViewController Implementation
 
 @implementation UTCSTableViewController
-@synthesize tableView           = _tableView;
+@synthesize tableView = _tableView;
 
 - (instancetype)init
 {
@@ -74,6 +74,19 @@
     [self.view insertSubview:_gestureButton belowSubview:self.menuButton];
     [self.view insertSubview:_tableView belowSubview:self.gestureButton];
     [self.view insertSubview:_navigationBarSeparatorLineView aboveSubview:self.gestureButton];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    CGFloat navigationBarHeight = MAX(CGRectGetHeight(self.navigationController.navigationBar.bounds), 44.0);
+    self.tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds),
+                                      CGRectGetHeight(self.view.bounds) - navigationBarHeight);
+    
+    self.gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
+    
+    self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds), 0.5);
 }
 
 - (void)viewWillAppear:(BOOL)animated

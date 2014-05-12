@@ -42,8 +42,10 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 @interface UTCSEventsViewController ()
 
+//
 @property (nonatomic) UTCSEventsDataSource                  *dataSource;
 
+//
 @property (nonatomic) NSString                              *currentFilter;
 
 //
@@ -52,9 +54,10 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 //
 @property (nonatomic) NSArray                               *filterTypes;
 
+//
 @property (nonatomic) NSDictionary                          *filterTypeColors;
 
-
+//
 @property (nonatomic) UIImageView                           *filterButtonImageView;
 
 //

@@ -9,6 +9,7 @@
 #import "UTCSStarredEventsDataSource.h"
 #import "UTCSEvent.h"
 #import "UTCSStarredEventManager.h"
+#import "UTCSEventTableViewCell.h"
 
 @implementation UTCSStarredEventsDataSource
 
@@ -16,13 +17,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSStarredEventTableViewCell"];
+    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSEventTableViewCell"];
     
     if(!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSStarredEventTableViewCell"];
+        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
     }
     
-    UTCSEvent *event        = [UTCSStarredEventManager sharedManager].allEvents[indexPath.row];
+    UTCSEvent *event        = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+    
+    cell.typeStripeLayer.fillColor = [UIColor clearColor].CGColor;
+    
     
     NSString *detailText = [NSString string];
     
@@ -44,12 +48,19 @@
     cell.detailTextLabel.text   = detailText;
     
     return cell;
+
+    
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"starred table view %ld", [[UTCSStarredEventManager sharedManager].allEvents count]);
     return [[UTCSStarredEventManager sharedManager].allEvents count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
 @end
