@@ -51,6 +51,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.dataSource = [[UTCSLabsDataSource alloc]initWithService:@"labs"];
+        self.dataSource.delegate = self;
     }
     return self;
 }
@@ -75,7 +76,7 @@
     // Third floor lab view controller
     UTCSLabViewLayout *thirdLayout      = [[UTCSLabViewLayout alloc]initWithFilename:@"ThirdFloorLabLayout"];
     self.thirdFloorLabViewController    = [[UTCSLabMachineViewController alloc]initWithLayout:thirdLayout];
-    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"newsBackground"];
+    self.thirdFloorLabViewController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"thirdLabsBackground"];
     
     // Add third floor lab view to scroll view
     self.thirdFloorLabViewController.view.frame = CGRectMake(0.0, 0.0, self.view.width, self.view.height);
@@ -92,7 +93,7 @@
     // Basement view controller
     UTCSLabViewLayout *basementLayout = [[UTCSLabViewLayout alloc]initWithFilename:@"BasementLabLayout"];
     self.basementLabViewController = [[UTCSLabMachineViewController alloc]initWithLayout:basementLayout];
-    self.basementLabViewController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"eventsBackground"];
+    self.basementLabViewController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"basementLabsBackground"];
     
     // Add basement lab view to scroll view
     self.basementLabViewController.view.frame = CGRectMake(self.view.width, 0.0, self.view.width, self.view.height);

@@ -68,6 +68,8 @@
 		DD95E7501920964A0062F4E9 /* UTCSStarredEventsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74F1920964A0062F4E9 /* UTCSStarredEventsDataSource.m */; };
 		DD95E753192096880062F4E9 /* UTCSStarredEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E752192096880062F4E9 /* UTCSStarredEventManager.m */; };
 		DD95E7551920F4BA0062F4E9 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD95E7541920F4BA0062F4E9 /* Reveal.framework */; };
+		DD95E7581920F8780062F4E9 /* basementLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */; };
+		DD95E7591920F8780062F4E9 /* thirdLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
@@ -213,6 +215,8 @@
 		DD95E751192096880062F4E9 /* UTCSStarredEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStarredEventManager.h; path = Model/UTCSStarredEventManager.h; sourceTree = "<group>"; };
 		DD95E752192096880062F4E9 /* UTCSStarredEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStarredEventManager.m; path = Model/UTCSStarredEventManager.m; sourceTree = "<group>"; };
 		DD95E7541920F4BA0062F4E9 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basementLabsBackground@2x.png"; sourceTree = "<group>"; };
+		DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thirdLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -670,6 +674,8 @@
 		DD95E738191F377E0062F4E9 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */,
+				DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */,
 				DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */,
 				DD95E73A191F377E0062F4E9 /* diskQuotaBackground@2x.png */,
 				DD95E73B191F377E0062F4E9 /* eventsBackground-blurred@2x.png */,
@@ -1043,8 +1049,10 @@
 			files = (
 				DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */,
 				DD95E744191F377E0062F4E9 /* newsBackground-blurred@2x.png in Resources */,
+				DD95E7591920F8780062F4E9 /* thirdLabsBackground@2x.png in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
+				DD95E7581920F8780062F4E9 /* basementLabsBackground@2x.png in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				DD95E742191F377E0062F4E9 /* eventsBackground-blurred@2x.png in Resources */,
 				DD95E743191F377E0062F4E9 /* eventsBackground@2x.png in Resources */,

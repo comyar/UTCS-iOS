@@ -85,6 +85,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     if(self = [super initWithStyle:style]) {
         self.dataSource                 = [[UTCSEventsDataSource alloc]initWithService:serviceName];
+        self.dataSource.delegate = self;
         self.tableView.dataSource       = (UTCSEventsDataSource *)self.dataSource;
         self.tableView.delegate         = self;
         
