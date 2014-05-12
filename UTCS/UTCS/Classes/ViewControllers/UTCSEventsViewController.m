@@ -159,6 +159,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         if (!self.starredEventsViewController) {
             self.starredEventsViewController = [UTCSStarredEventsViewController new];
             self.starredEventsViewController.backgroundImageView.image = self.backgroundBlurredImageView.image;
+            self.starredEventsViewController.delegate = self;
         }
         [self.navigationController presentViewController:self.starredEventsViewController animated:YES completion:nil];
     }
@@ -225,6 +226,17 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     }
 }
 
+#pragma mark UTCSStarredEventsViewControllerDelegate Methods
+
+- (void)starredEventsViewController:(UTCSStarredEventsViewController *)starredEventsViewController didSelectEvent:(UTCSEvent *)event
+{
+    if (!self.eventDetailViewController) {
+        self.eventDetailViewController = [UTCSEventsDetailViewController new];
+    }
+    self.eventDetailViewController.event = event;
+    [self.navigationController pushViewController:self.eventDetailViewController animated:YES];
+}
+
 #pragma mark UITableViewDelegate Methods
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -233,7 +245,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         if (!self.filterSegmentedControl) {
             self.filterSegmentedControl = ({
                 UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:self.filterTypes];
-                segmentedControl.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.75];
+                segmentedControl.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.65];
                 [segmentedControl addTarget:self action:@selector(didChangeValueForControl:) forControlEvents:UIControlEventValueChanged];
                 segmentedControl.frame = CGRectMake(8.0, 8.0, self.view.width - 16.0, 32.0);
                 segmentedControl.tintColor = [UIColor whiteColor];

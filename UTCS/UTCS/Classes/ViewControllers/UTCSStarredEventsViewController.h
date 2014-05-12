@@ -8,6 +8,19 @@
 
 #import "UTCSTableViewController.h"
 
+@class UTCSEvent;
+@class UTCSStarredEventsViewController;
+
+@protocol UTCSStarredEventsViewControllerDelegate <NSObject>
+
+@optional
+- (void)starredEventsViewController:(UTCSStarredEventsViewController *)starredEventsViewController
+                     didSelectEvent:(UTCSEvent *)event;
+
+@end
+
 @interface UTCSStarredEventsViewController : UTCSTableViewController
+
+@property (nonatomic) id<UTCSStarredEventsViewControllerDelegate> delegate;
 
 @end

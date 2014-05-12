@@ -95,6 +95,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
             UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
             _data = cache[UTCSDataSourceCacheValuesName];
             _updated = meta.timestamp;
+            [self prepareFilter];
         }
     }
     return self;

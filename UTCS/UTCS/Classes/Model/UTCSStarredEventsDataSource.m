@@ -63,4 +63,15 @@
     return 1;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        UTCSEvent *event = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [[UTCSStarredEventManager sharedManager]removeEvent:event];
+        [tableView endUpdates];
+    }
+}
+
 @end

@@ -42,6 +42,7 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
         self.backgroundImageView.alpha = 0.0;
         self.dataSource = [UTCSStarredEventsDataSource new];
         self.tableView.dataSource = self.dataSource;
+        self.tableView.allowsSelectionDuringEditing = YES;
     }
     return self;
 }
@@ -134,9 +135,27 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
     [cell setHighlighted:NO animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        UTCSEvent *event = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+        
+        if ([self.delegate conformsToProtocol:@protocol(UTCSStarredEventsViewControllerDelegate)] &&
+            [self.delegate respondsToSelector:@selector(starredEventsViewController:didSelectEvent:)]) {
+            [self.delegate starredEventsViewController:self didSelectEvent:event];
+        }
+    }];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 168.0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Unstar";
 }
 
 @end
