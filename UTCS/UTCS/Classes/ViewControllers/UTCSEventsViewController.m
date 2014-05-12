@@ -193,7 +193,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
             self.starredEventsViewController = [UTCSStarredEventsViewController new];
             self.starredEventsViewController.backgroundImageView.image = self.backgroundBlurredImageView.image;
         }
-        [self.navigationController presentViewController:self.starredEventsViewController animated:YES completion:nil];
+        [self presentViewController:self.starredEventsViewController animated:YES completion:nil];
     }
 }
 

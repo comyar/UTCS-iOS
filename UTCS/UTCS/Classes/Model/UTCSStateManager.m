@@ -12,14 +12,13 @@
 static NSString * const hasStarredEventKey  = @"hasStarredEvent";
 static NSString * const starredEventsKey     = @"starredEvents";
 static NSString * const starredEventNotificationsKey = @"starredEventNotifications";
+static NSString * const eventNotificationsKey   = @"eventNotifications";
+static NSString * const preferredLabKey    = @"preferredLab";
 
 
 #pragma mark - UTCSSettingsManager Implementation
 
 @implementation UTCSStateManager
-@synthesize hasStarredEvent = _hasStarredEvent;
-@synthesize starredEvents = _starredEvents;
-@synthesize starredEventNotifications = _starredEventNotifications;
 
 - (instancetype)init
 {
@@ -35,6 +34,8 @@ static NSString * const starredEventNotificationsKey = @"starredEventNotificatio
         _hasStarredEvent = [[NSUserDefaults standardUserDefaults]boolForKey:hasStarredEventKey];
         _starredEvents = [self loadArrayWithKey:starredEventsKey];
         _starredEventNotifications = [self loadArrayWithKey:starredEventNotificationsKey];
+        _eventNotifications = [[NSUserDefaults standardUserDefaults]boolForKey:eventNotificationsKey];
+        _preferredLab = [[NSUserDefaults standardUserDefaults]integerForKey:preferredLabKey];
     }
     return self;
 }
@@ -67,6 +68,20 @@ static NSString * const starredEventNotificationsKey = @"starredEventNotificatio
 {
     _starredEventNotifications = starredEventNotifications;
     [self saveArray:_starredEventNotifications withKey:starredEventNotificationsKey];
+}
+
+#pragma mark Settings
+
+- (void)setEventNotifications:(BOOL)eventNotifications
+{
+    _eventNotifications = eventNotifications;
+    [[NSUserDefaults standardUserDefaults]setBool:_eventNotifications forKey:eventNotificationsKey];
+}
+
+- (void)setPreferredLab:(NSInteger)preferredLab
+{
+    _preferredLab = preferredLab;
+    [[NSUserDefaults standardUserDefaults]setInteger:_preferredLab forKey:preferredLabKey];
 }
 
 #pragma mark Helpers

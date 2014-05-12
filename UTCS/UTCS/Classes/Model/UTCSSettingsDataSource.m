@@ -10,7 +10,7 @@
 #import "UTCSBouncyTableViewCell.h"
 #import "UTCSSwitchTableViewCell.h"
 #import "UTCSSegmentedControlTableViewCell.h"
-
+#import "UTCSStateManager.h"
 
 @interface UTCSSettingsDataSource ()
 
@@ -44,6 +44,9 @@
                                                              reuseIdentifier:@"UTCSSettingsSwitchTableViewCell"];
                 
             }
+            [cell.cellSwitch addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
+            cell.cellSwitch.selected = [UTCSStateManager sharedManager].eventNotifications;
+            cell.cellSwitch.tag = 0;
             cell.textLabel.text         = @"Event Notifications";
             cell.detailTextLabel.text   = @"Get notifications an hour before the start of starred events";
             returnCell = cell;
@@ -55,6 +58,9 @@
             }
             cell.textLabel.text = @"Preferred Lab";
             cell.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"Third Floor", @"Basement"]];
+            [cell.segmentedControl addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
+            cell.segmentedControl.selectedSegmentIndex = [UTCSStateManager sharedManager].preferredLab;
+            cell.segmentedControl.tag = 1;
             returnCell = cell;
         }
     } else {
@@ -104,5 +110,17 @@
 {
     return self.sectionTitles[section];
 }
+
+#pragma mark 
+
+- (void)didChangeValue:(UIControl *)control
+{
+    if (control.tag == 0) {
+        [UTCSStateManager sharedManager].eventNotifications = ((UISwitch *)control).selected;
+    } else if (control.tag == 1) {
+        [UTCSStateManager sharedManager].preferredLab = ((UISegmentedControl *)control).selectedSegmentIndex;
+    }
+}
+
 
 @end

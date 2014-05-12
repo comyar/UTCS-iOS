@@ -16,5 +16,7 @@
 @property (nonatomic) BOOL      hasStarredEvent;
 @property (nonatomic) NSArray   *starredEvents;
 @property (nonatomic) NSArray   *starredEventNotifications;
+@property (nonatomic) BOOL      eventNotifications;
+@property (nonatomic) NSInteger preferredLab;
 
 @end

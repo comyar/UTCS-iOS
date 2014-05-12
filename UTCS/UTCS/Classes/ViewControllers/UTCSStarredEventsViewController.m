@@ -38,7 +38,10 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        self.view.backgroundColor = [UIColor clearColor];
+        self.view.opaque = NO;
+        self.backgroundImageView.alpha = 0.0;
         self.dataSource = [UTCSStarredEventsDataSource new];
         
         self.tableView.dataSource = self.dataSource;
