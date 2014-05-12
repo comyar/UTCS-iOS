@@ -52,6 +52,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 //
 @property (nonatomic) NSArray                               *filterTypes;
 
+@property (nonatomic) NSDictionary                          *filterTypeColors;
+
+
+@property (nonatomic) UIImageView                           *filterButtonImageView;
+
 //
 @property (nonatomic) UIButton                              *filterButton;
 
@@ -97,6 +102,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
         
         self.filterTypes = @[@"All", @"Talks", @"Careers", @"Organizations"];
+        self.filterTypeColors = @{@"Talks":[UIColor utcsEventTalkColor],
+                                  @"Careers":[UIColor utcsEventCareersColor],
+                                  @"Organizations":[UIColor utcsEventStudentOrgsColor]};
     }
     return self;
 }
@@ -123,10 +131,14 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         button.center = CGPointMake(self.view.width - 33.0, 22.0);
         
         UIImage *image = [[UIImage imageNamed:@"filter"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-        imageView.tintColor = [UIColor whiteColor];
-        imageView.frame = button.bounds;
-        [button addSubview:imageView];
+        
+        self.filterButtonImageView = ({
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+            imageView.tintColor = [UIColor whiteColor];
+            imageView.frame = button.bounds;
+            [button addSubview:imageView];
+            imageView;
+        });
         
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         button;
@@ -179,10 +191,15 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
                 
                 [actionSheet setTitleBackgroundColor:[UIColor clearColor]];
                 [actionSheet setTitleFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
-                [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.9]];
-                [actionSheet setButtonTextColor:[UIColor blackColor]];
+                [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.75]];
+                [actionSheet setButtonTextColor:[UIColor darkGrayColor]];
                 [actionSheet setTitleTextColor:[UIColor darkGrayColor]];
                 [actionSheet setButtonHighlightBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.05]];
+                
+                [actionSheet setButtonTextColor:self.filterTypeColors[@"Organizations"] forButtonAtIndex:1];
+                [actionSheet setButtonTextColor:self.filterTypeColors[@"Careers"] forButtonAtIndex:2];
+                [actionSheet setButtonTextColor:self.filterTypeColors[@"Talks"] forButtonAtIndex:3];
+                
                 actionSheet;
             });
         }
@@ -193,7 +210,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
             self.starredEventsViewController = [UTCSStarredEventsViewController new];
             self.starredEventsViewController.backgroundImageView.image = self.backgroundBlurredImageView.image;
         }
-        [self presentViewController:self.starredEventsViewController animated:YES completion:nil];
+        [self.navigationController presentViewController:self.starredEventsViewController animated:YES completion:nil];
     }
 }
 
@@ -204,6 +221,9 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     if (buttonIndex < [self.filterTypes count]) {
         NSString *filterType = self.filterTypes[buttonIndex];
         [self filterEventsWithType:filterType];
+        
+        UIColor *color = self.filterTypeColors[filterType];
+        self.filterButtonImageView.tintColor = (color)? color : [UIColor whiteColor];
     }
 }
 

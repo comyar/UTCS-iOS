@@ -88,8 +88,6 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
         self.typeColorMapping = @{@"careers": [UIColor utcsEventCareersColor],
                                   @"talks"  : [UIColor utcsEventTalkColor],
                                   @"orgs"   : [UIColor utcsEventStudentOrgsColor]};
-        
-        self.currentFilterType = @"all";
     }
     return self;
 }
@@ -98,6 +96,7 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 
 - (void)prepareFilter
 {
+    self.currentFilterType = @"all";
     self.filteredEvents = [self.data mutableCopy];
 }
 
