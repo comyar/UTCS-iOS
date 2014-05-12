@@ -8,7 +8,7 @@
 
 #import "UTCSStarredEventManager.h"
 #import "UTCSStateManager.h"
-
+#import "UTCSEvent.h"
 
 @implementation UTCSStarredEventManager
 
@@ -40,45 +40,64 @@
 
 #pragma mark Using Starred Event Manager
 
-- (NSArray *)allEventIDs
+- (NSArray *)allEvents
 {
-    return [UTCSStateManager sharedManager].starredEventIDs;
+    return [UTCSStateManager sharedManager].starredEvents;
 }
 
-- (void)addEventID:(NSString *)eventID
+- (void)addEvent:(UTCSEvent *)event
 {
-    if (!eventID) {
+    if (!event || [self containsEvent:event]) {
         return;
     }
     
-    if (![[UTCSStateManager sharedManager].starredEventIDs containsObject:eventID]) {
-        NSMutableArray *eventIDs = [[UTCSStateManager sharedManager].starredEventIDs mutableCopy];
-        [eventIDs addObject:eventID];
-        [[UTCSStateManager sharedManager]setStarredEventIDs:eventIDs];
+    NSMutableArray *starredEvents = [[UTCSStateManager sharedManager].starredEvents mutableCopy];
+    if (!starredEvents) {
+        starredEvents = [NSMutableArray new];
     }
+    [starredEvents addObject:event];
+    [UTCSStateManager sharedManager].starredEvents = starredEvents;
+    
+    // Register notification
 }
 
-- (BOOL)containsEventID:(NSString *)eventID
+- (BOOL)containsEvent:(UTCSEvent *)event
 {
-    return [[UTCSStateManager sharedManager].starredEventIDs containsObject:eventID];
+    for (UTCSEvent *starredEvent in [UTCSStateManager sharedManager].starredEvents) {
+        if ([event.eventID isEqualToString:starredEvent.eventID]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
-- (void)removeEventID:(NSString *)eventID
+- (void)removeEvent:(UTCSEvent *)event
 {
-    if (!eventID) {
+    if (!event || ![self containsEvent:event]) {
         return;
     }
     
-    if ([[UTCSStateManager sharedManager].starredEventIDs containsObject:eventID]) {
-        NSMutableArray *eventIDs = [[UTCSStateManager sharedManager].starredEventIDs mutableCopy];
-        [eventIDs removeObject:eventID];
-        [[UTCSStateManager sharedManager]setStarredEventIDs:eventIDs];
+    UTCSEvent *removeEvent = nil;
+    NSMutableArray *starredEvents = [[UTCSStateManager sharedManager].starredEvents mutableCopy];
+    for (UTCSEvent *starredEvent in starredEvents) {
+        if ([starredEvent.eventID isEqualToString:event.eventID]) {
+            removeEvent = starredEvent;
+            break;
+        }
     }
+    
+    if (removeEvent) {
+        [starredEvents removeObject:removeEvent];
+    }
+    
+    // unregister notification
+    
+    [UTCSStateManager sharedManager].starredEvents = starredEvents;
 }
 
-- (void)removeAllEventIDs
+- (void)removeAllEvents
 {
-    [[UTCSStateManager sharedManager]setStarredEventIDs:[NSArray new]];
+    [UTCSStateManager sharedManager].starredEvents = [NSArray new];
 }
 
 @end

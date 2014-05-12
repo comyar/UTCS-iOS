@@ -11,34 +11,44 @@
 
 @implementation UTCSEventsDataSourceParser
 
-- (id)parseValues:(NSArray *)values
+- (NSArray *)parseValues:(NSArray *)values
 {
-    NSLog(@"events parser");
     NSAssert([values isKindOfClass:[NSArray class]], @"Events data parser expects instance of NSArray");
     NSMutableArray *events = [NSMutableArray new];
     
     for (NSDictionary *eventData in values) {
         UTCSEvent *event    = [UTCSEvent new];
-        event.name          = (eventData[@"name"]               == [NSNull null])? nil : eventData[@"name"];
-        event.contactName   = (eventData[@"contactName"]        == [NSNull null])? nil : eventData[@"contactName"];
-        event.contactEmail  = (eventData[@"contactEmail"]       == [NSNull null])? nil : eventData[@"contactEmail"];
-        event.location      = (eventData[@"location"]           == [NSNull null])? nil : eventData[@"location"];
-        event.description   = (eventData[@"description"]        == [NSNull null])? nil : eventData[@"description"];
-        event.type          = (eventData[@"type"]               == [NSNull null])? nil : eventData[@"type"];
-        event.link          = (eventData[@"link"]               == [NSNull null])? nil : eventData[@"link"];
+        event.name          = [self stringForDataString:eventData[@"name"]];
+        event.contactName   = [self stringForDataString:eventData[@"contactName"]];
+        event.contactEmail  = [self stringForDataString:eventData[@"contactEmail"]];
+        event.location      = [self stringForDataString:eventData[@"location"]];
+        event.description   = [self stringForDataString:eventData[@"description"]];
+        event.type          = [self stringForDataString:eventData[@"type"]];
+        event.link          = [self stringForDataString:eventData[@"link"]];
 
-        NSString *startDateString = (eventData[@"startDate"]    == [NSNull null])? nil : eventData[@"startDate"];
+        NSString *startDateString = [self stringForDataString:eventData[@"startDate"]];
         event.startDate     = [self.dateFormatter dateFromString:startDateString];
 
-        NSString *endDateString = (eventData[@"endDate"]        == [NSNull null])? nil : eventData[@"endDate"];
+        NSString *endDateString = [self stringForDataString:eventData[@"endDate"]];
         event.endDate       = [self.dateFormatter dateFromString:endDateString];
 
         event.allDay        = [eventData[@"allDay"]boolValue];
         event.food          = [eventData[@"food"]boolValue];
+        event.eventID       = [self stringForDataString:eventData[@"id"]];
 
         [events addObject:event];
     }
     
     return events;
 }
+
+- (NSString *)stringForDataString:(NSString *)dataString
+{
+    if ([dataString isEqual:[NSNull null]]) {
+        return nil;
+    }
+    return dataString;
+}
+
+
 @end

@@ -70,8 +70,6 @@
  */
 @property (nonatomic) EKEvent               *calendarEvent;
 
-/**
- */
-@property (nonatomic) BOOL                  starred;
+@property (nonatomic) NSString              *eventID;
 
 @end

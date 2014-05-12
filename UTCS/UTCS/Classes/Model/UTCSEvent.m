@@ -27,7 +27,7 @@ static NSString * const startDateKey                = @"startDate";
 static NSString * const endDateKey                  = @"endDate";
 static NSString * const allDayKey                   = @"allDay";
 static NSString * const foodKey                     = @"food";
-static NSString * const starredKey                  = @"starred";
+static NSString * const eventIDKey                  = @"eventID";
 static NSString * const calendarEventKey            = @"calendarKey";
 
 
@@ -53,7 +53,7 @@ static NSString * const calendarEventKey            = @"calendarKey";
         _allDay                 = [aDecoder decodeBoolForKey:allDayKey];
         _food                   = [aDecoder decodeBoolForKey:foodKey];
         _calendarEvent          = [aDecoder decodeObjectForKey:calendarEventKey];
-        _starred                = [aDecoder decodeBoolForKey:starredKey];
+        _eventID                = [aDecoder decodeObjectForKey:eventIDKey];
     }
     return self;
 }
@@ -73,7 +73,7 @@ static NSString * const calendarEventKey            = @"calendarKey";
     [aCoder encodeBool:_allDay                  forKey:allDayKey];
     [aCoder encodeBool:_food                    forKey:foodKey];
     [aCoder encodeObject:_calendarEvent         forKey:calendarEventKey];
-    [aCoder encodeBool:_starred                 forKey:starredKey];
+    [aCoder encodeObject:_eventID               forKey:eventIDKey];
 }
 
 #pragma mark Setters

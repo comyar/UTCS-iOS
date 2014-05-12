@@ -17,6 +17,8 @@
 
 // Models
 #import "UTCSEvent.h"
+#import "UTCSStarredEventManager.h"
+#import "UTCSStateManager.h"
 
 // Categories
 #import "UIColor+UTCSColors.h"
@@ -67,6 +69,9 @@
 // Button used to star events
 @property (nonatomic) UIButton                          *starButton;
 
+//
+@property (nonatomic) UIImageView                       *starButtonImageView;
+
 // Button used to scroll to the top of the event detail
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
@@ -103,14 +108,14 @@
             dateFormatter;
         });
         
-        self.defaultHeaderImages = @[@"gdc-speedway", @"gdc-general"];
-        self.headerImageMapping = @{@"1.304":@"gdc-1.304",
-                                    @"1.406":@"gdc-1.406",
-                                    @"2.410":@"gdc-2.410",
-                                    @"5.302":@"gdc-5.302",
-                                    @"5.304":@"gdc-5.304",
-                                    @"6.102":@"gdc-6.102",
-                                    @"6.302":@"gdc-6.302",
+        self.defaultHeaderImages = @[@"gdc-speedway"];
+        self.headerImageMapping = @{@"1.304":@"gdc-1,304",
+                                    @"1.406":@"gdc-1,406",
+                                    @"2.410":@"gdc-2,410",
+                                    @"5.302":@"gdc-5,302",
+                                    @"5.304":@"gdc-5,304",
+                                    @"6.102":@"gdc-6,102",
+                                    @"6.302":@"gdc-6,302",
                                     @"auditorium":@"gdc-auditorium",
                                     @"atrium":@"gdc-atrium"};
     }
@@ -181,11 +186,14 @@
         
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-        imageView.tintColor = [UIColor whiteColor];
-        imageView.frame = button.bounds;
+        self.starButtonImageView = ({
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            imageView.tintColor = [UIColor whiteColor];
+            imageView.frame = button.bounds;
+            imageView;
+        });
         
-        [button addSubview:imageView];
+        [button addSubview:self.starButtonImageView];
         button;
     });
     
@@ -237,12 +245,15 @@
     // Choose header image
     NSString *headerImageName           = [self headerImageNameForEvent:event];
     NSString *headerImageBlurredName    = [headerImageName stringByAppendingString:@"-blurred"];
-    
     self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerImageName];
     self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerImageBlurredName];
     
-    
-    
+    // Configure star button
+    if ([[UTCSStarredEventManager sharedManager]containsEvent:event]) {
+        self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    } else {
+        self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
     
     // Configure name label
     self.nameLabel.frame = CGRectMake(8.0, 0.0, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
@@ -282,7 +293,7 @@
     [self configureWithEvent:self.event];
 }
 
-#pragma mark Share
+#pragma mark Share Event
 
 - (void)shareEvent:(UTCSEvent *)event
 {
@@ -310,6 +321,27 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
+#pragma mark Star Event
+
+- (void)updateEventStar:(UTCSEvent *)event
+{
+    if (![[UTCSStarredEventManager sharedManager]containsEvent:event]) {
+        if (![UTCSStateManager sharedManager].hasStarredEvent) {
+            [[[UIAlertView alloc]initWithTitle:@"First Starred Event!"
+                                       message:@"You can be notified of starred events an hour before they start! Check your settings."
+                                      delegate:nil
+                             cancelButtonTitle:@"Ok"
+                             otherButtonTitles:nil]show];
+        }
+        self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [[UTCSStarredEventManager sharedManager]addEvent:event];
+        [UTCSStateManager sharedManager].hasStarredEvent = YES;
+    } else {
+        self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [[UTCSStarredEventManager sharedManager]removeEvent:event];
+    }
+}
+
 #pragma mark Buttons
 
 - (void)didTouchUpInsideButton:(UIButton *)button
@@ -318,6 +350,8 @@
         [self shareEvent:self.event];
     } else if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    } else if (self.starButton) {
+        [self updateEventStar:self.event];
     }
 }
 

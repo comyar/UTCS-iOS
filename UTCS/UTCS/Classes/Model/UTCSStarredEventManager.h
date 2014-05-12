@@ -8,15 +8,17 @@
 
 
 @import Foundation;
+@class UTCSEvent;
+
 
 @interface UTCSStarredEventManager : NSObject
 
 + (UTCSStarredEventManager *)sharedManager;
 
-- (NSArray *)allEventIDs;
-- (BOOL)containsEventID:(NSString *)eventID;
-- (void)addEventID:(NSString *)eventID;
-- (void)removeEventID:(NSString *)eventID;
-- (void)removeAllEventIDs;
+- (NSArray *)allEvents;
+- (BOOL)containsEvent:(UTCSEvent *)event;
+- (void)addEvent:(UTCSEvent *)event;
+- (void)removeEvent:(UTCSEvent *)event;
+- (void)removeAllEvents;
 
 @end

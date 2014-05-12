@@ -65,7 +65,7 @@
 		DD95E745191F377E0062F4E9 /* newsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73E191F377E0062F4E9 /* newsBackground@2x.png */; };
 		DD95E746191F377E0062F4E9 /* settingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73F191F377E0062F4E9 /* settingsBackground@2x.png */; };
 		DD95E74A191F4EE00062F4E9 /* NSAttributedString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E749191F4EE00062F4E9 /* NSAttributedString+Trim.m */; };
-		DD95E74D192091DA0062F4E9 /* UTCSEventsStarListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74C192091DA0062F4E9 /* UTCSEventsStarListViewController.m */; };
+		DD95E74D192091DA0062F4E9 /* UTCSStarredEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74C192091DA0062F4E9 /* UTCSStarredEventsViewController.m */; };
 		DD95E7501920964A0062F4E9 /* UTCSEventsStarredDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74F1920964A0062F4E9 /* UTCSEventsStarredDataSource.m */; };
 		DD95E753192096880062F4E9 /* UTCSStarredEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E752192096880062F4E9 /* UTCSStarredEventManager.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
@@ -207,8 +207,8 @@
 		DD95E73F191F377E0062F4E9 /* settingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsBackground@2x.png"; sourceTree = "<group>"; };
 		DD95E748191F4EE00062F4E9 /* NSAttributedString+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Trim.h"; path = "Categories/NSAttributedString+Trim.h"; sourceTree = "<group>"; };
 		DD95E749191F4EE00062F4E9 /* NSAttributedString+Trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Trim.m"; path = "Categories/NSAttributedString+Trim.m"; sourceTree = "<group>"; };
-		DD95E74B192091DA0062F4E9 /* UTCSEventsStarListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsStarListViewController.h; path = ViewControllers/UTCSEventsStarListViewController.h; sourceTree = "<group>"; };
-		DD95E74C192091DA0062F4E9 /* UTCSEventsStarListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsStarListViewController.m; path = ViewControllers/UTCSEventsStarListViewController.m; sourceTree = "<group>"; };
+		DD95E74B192091DA0062F4E9 /* UTCSStarredEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStarredEventsViewController.h; path = ViewControllers/UTCSStarredEventsViewController.h; sourceTree = "<group>"; };
+		DD95E74C192091DA0062F4E9 /* UTCSStarredEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStarredEventsViewController.m; path = ViewControllers/UTCSStarredEventsViewController.m; sourceTree = "<group>"; };
 		DD95E74E1920964A0062F4E9 /* UTCSEventsStarredDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsStarredDataSource.h; path = Model/UTCSEventsStarredDataSource.h; sourceTree = "<group>"; };
 		DD95E74F1920964A0062F4E9 /* UTCSEventsStarredDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsStarredDataSource.m; path = Model/UTCSEventsStarredDataSource.m; sourceTree = "<group>"; };
 		DD95E751192096880062F4E9 /* UTCSStarredEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStarredEventManager.h; path = Model/UTCSStarredEventManager.h; sourceTree = "<group>"; };
@@ -473,8 +473,8 @@
 				DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */,
 				DD44659718E8254B00ED1153 /* UTCSEventsDetailViewController.h */,
 				DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */,
-				DD95E74B192091DA0062F4E9 /* UTCSEventsStarListViewController.h */,
-				DD95E74C192091DA0062F4E9 /* UTCSEventsStarListViewController.m */,
+				DD95E74B192091DA0062F4E9 /* UTCSStarredEventsViewController.h */,
+				DD95E74C192091DA0062F4E9 /* UTCSStarredEventsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -757,13 +757,13 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		DDA758B51905FDB6007CD0DB /* SettingsManager */ = {
+		DDA758B51905FDB6007CD0DB /* StateManager */ = {
 			isa = PBXGroup;
 			children = (
 				DDA758B61905FDD0007CD0DB /* UTCSStateManager.h */,
 				DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */,
 			);
-			name = SettingsManager;
+			name = StateManager;
 			sourceTree = "<group>";
 		};
 		DDA758EE19081DE4007CD0DB /* Common */ = {
@@ -779,7 +779,7 @@
 			isa = PBXGroup;
 			children = (
 				DD9475E9190CEA940049FB8B /* UpdateTextFactory */,
-				DDA758B51905FDB6007CD0DB /* SettingsManager */,
+				DDA758B51905FDB6007CD0DB /* StateManager */,
 				DDA758A61905E78D007CD0DB /* Cache */,
 				DD87617519028247005FEE4E /* DataRequestServicer */,
 			);
@@ -1118,7 +1118,7 @@
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				DD44659C18E93D3500ED1153 /* UTCSDirectoryDataSource.m in Sources */,
 				DDC404801918879800D17CBF /* UTCSSettingsLicenseViewController.m in Sources */,
-				DD95E74D192091DA0062F4E9 /* UTCSEventsStarListViewController.m in Sources */,
+				DD95E74D192091DA0062F4E9 /* UTCSStarredEventsViewController.m in Sources */,
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				DD9475F2190CF3D70049FB8B /* IBActionSheet.m in Sources */,
 				DDC206F7190A0410001DD1A5 /* UTCSSettingsViewController.m in Sources */,

@@ -12,7 +12,7 @@
 // View controllers
 #import "UTCSEventsViewController.h"
 #import "UTCSEventsDetailViewController.h"
-#import "UTCSEventsStarListViewController.h"
+#import "UTCSStarredEventsViewController.h"
 
 // Models
 #import "UTCSEvent.h"
@@ -56,10 +56,10 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) UIButton                              *filterButton;
 
 //
-@property (nonatomic) UIButton                              *startListButton;
+@property (nonatomic) UIButton                              *starListButton;
 
 //
-@property (nonatomic) UTCSEventsStarListViewController      *eventsStarListViewController;
+@property (nonatomic) UTCSStarredEventsViewController      *starredEventsViewController;
 
 //
 @property (nonatomic) UTCSEventsDetailViewController         *eventDetailViewController;
@@ -131,7 +131,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         button;
     });
     
-    self.startListButton = ({
+    self.starListButton = ({
         UIButton *button = [UIButton bouncyButton];
         button.frame = CGRectMake(0.0, 0.0, 44.0, 44.0);
         button.center = CGPointMake(self.view.width - 88.0, 22.0);
@@ -146,10 +146,10 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         button;
     });
     
-    [self.view addSubview:self.startListButton];
+    [self.view addSubview:self.starListButton];
     [self.view addSubview:self.filterButton];
     [self.view bringSubviewToFront:self.filterButton];
-    [self.view bringSubviewToFront:self.startListButton];
+    [self.view bringSubviewToFront:self.starListButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -187,11 +187,12 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         }
         
         [self.filterActionSheet showInView:self.view];
-    } else if (button == self.startListButton) {
-        if (!self.eventsStarListViewController) {
-            self.eventsStarListViewController = [UTCSEventsStarListViewController new];
+    } else if (button == self.starListButton) {
+        if (!self.starredEventsViewController) {
+            self.starredEventsViewController = [UTCSStarredEventsViewController new];
+            self.starredEventsViewController.backgroundImageView.image = self.backgroundBlurredImageView.image;
         }
-        [self.navigationController presentViewController:self.eventsStarListViewController animated:YES completion:nil];
+        [self.navigationController presentViewController:self.starredEventsViewController animated:YES completion:nil];
     }
 }
 
