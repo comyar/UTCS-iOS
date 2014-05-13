@@ -13,6 +13,12 @@
 #import "UTCSSettingsAboutViewController.h"
 
 
+static NSString * const facebookAppURL = @"fb://page/272565539464226";
+static NSString * const facebookWebURL = @"https://www.facebook.com/UTCompSci";
+static NSString * const twitterAppURL = @"twitter://user?screen_name=utcompsci";
+static NSString * const twitterWebURL = @"https://www.twitter.com/UTCompSci";
+
+
 @interface UTCSSettingsViewController ()
 
 @property (nonatomic) UTCSSettingsDataSource            *dataSource;
@@ -70,9 +76,19 @@
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            
+            NSURL *facebookURL = [NSURL URLWithString:facebookAppURL];
+            if ([[UIApplication sharedApplication]canOpenURL:facebookURL]) {
+                [[UIApplication sharedApplication]openURL:facebookURL];
+            } else {
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:facebookWebURL]];
+            }
         } else if (indexPath.row == 1) {
-            
+            NSURL *twitterURL = [NSURL URLWithString:twitterAppURL];
+            if ([[UIApplication sharedApplication]canOpenURL:twitterURL]) {
+                [[UIApplication sharedApplication]openURL:twitterURL];
+            } else {
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:twitterWebURL]];
+            }
         }
     }
 }
