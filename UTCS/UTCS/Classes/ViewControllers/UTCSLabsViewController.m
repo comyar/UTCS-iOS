@@ -148,36 +148,37 @@
 
 - (void)updateForced:(BOOL)forced
 {
-    if (forced || [self.dataSource shouldUpdate]) {
+    
+    // Shimmer lab map labels
+    self.thirdFloorLabViewController.shimmeringView.shimmering  = YES;
+    self.basementLabViewController.shimmeringView.shimmering    = YES;
+    
+    if ([self.dataSource shouldUpdate]) {
         
         // Show updating HUD
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.scrollView animated:YES];
         hud.labelText = [UTCSUpdateTextFactory randomUpdateText];
         hud.mode = MBProgressHUDModeIndeterminate;
-        
-        // Shimmer lab map labels
-        self.thirdFloorLabViewController.shimmeringView.shimmering  = YES;
-        self.basementLabViewController.shimmeringView.shimmering    = YES;
-        
-        [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
-            
-            self.thirdFloorLabViewController.shimmeringView.shimmering = NO;
-            self.basementLabViewController.shimmeringView.shimmering = NO;
-            
-            if (success) {
-                NSDictionary *third      = self.dataSource.data[@"third"];
-                NSDictionary *basement   = self.dataSource.data[@"basement"];
-                
-                self.thirdFloorLabViewController.machines   = third;
-                self.basementLabViewController.machines     = basement;
-                
-            } else {
-                // Frowny face / Error message
-            }
-            
-            [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
-        }];
     }
+    
+    [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+        
+        self.thirdFloorLabViewController.shimmeringView.shimmering = NO;
+        self.basementLabViewController.shimmeringView.shimmering = NO;
+        
+        if (success) {
+            NSDictionary *third      = self.dataSource.data[@"third"];
+            NSDictionary *basement   = self.dataSource.data[@"basement"];
+            
+            self.thirdFloorLabViewController.machines   = third;
+            self.basementLabViewController.machines     = basement;
+            
+        } else {
+            // Frowny face / Error message
+        }
+        
+        [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
+    }];
 }
 
 #pragma mark Buttons

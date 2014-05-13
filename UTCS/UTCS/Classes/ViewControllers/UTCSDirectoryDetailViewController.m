@@ -103,7 +103,7 @@
         cell.textLabel.text         = self.person.fullName;
         cell.detailTextLabel.text   = self.person.type;
         
-        if (self.person.imageURL && !cell.imageView.image) {
+        if (self.person.imageURL) {
             NSURL *url = [NSURL URLWithString:self.person.imageURL];
             __weak UITableViewCell *weakCell = cell;
             
@@ -116,6 +116,8 @@
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                 weakCell.imageView.image = nil;
             }];
+        } else {
+            cell.imageView.image = nil;
         }
         
         [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
