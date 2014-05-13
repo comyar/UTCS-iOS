@@ -84,11 +84,8 @@
                 
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     if (completion) {
-                        NSLog(@"completion");
                         completion(YES, NO);
                     }
-                    
-                    NSLog(@"caching");
                     
                     // Cache objects to disk
                     if ([self.delegate conformsToProtocol:@protocol(UTCSDataSourceDelegate)] &&
@@ -98,9 +95,6 @@
                         for (NSString *key in objects) {
                             [self.cache cacheObject:objects[key] withKey:key];
                         }
-                    } else {
-                        // DEBUG ONLY
-                        NSLog(@"%@ does not conform to data source protocol" , self.service);
                     }
                 });
             });

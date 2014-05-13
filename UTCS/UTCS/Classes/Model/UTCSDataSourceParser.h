@@ -10,6 +10,8 @@
 @import Foundation;
 
 
+#pragma mark - UTCSDataSourceParser Interface
+
 /**
  UTCSDataSourceParser is an abstract class used to parse downloaded data for a 
  specific service.
@@ -25,7 +27,15 @@
 // -----
 
 /**
- Parses the given values and returns
+ Parses the given downloaded values into an object or collection of objects
+ expected by the data source.
+ 
+ Must be overridden by subclasses. The default implementation is abstract and will
+ throw an NSInternalInconsistencyException.
+ 
+ @throws NSInternalInconsistencyException
+ @param values  Raw values downloaded by the data source.
+ @return Object or collection objects expected by the data source.
  */
 - (id)parseValues:(id)values;
 
@@ -34,7 +44,7 @@
 // -----
 
 /**
- Date formatter used to parse updated date from the downloaded data
+ Date formatter used to parse the updated date from the downloaded values.
  */
 @property (nonatomic, readonly) NSDateFormatter *dateFormatter;
 

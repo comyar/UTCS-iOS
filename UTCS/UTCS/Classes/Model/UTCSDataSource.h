@@ -37,6 +37,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
  Asks the delegate for the set of objects that should be cached to disk.
  
  Each key in the dictionary will be used as the cache key for the object it's associated with.
+ 
  @param dataSource Data source requesting objects to cache
  @return Dictionary of objects to cache along with their associated keys, may be nil
  */
@@ -106,6 +107,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
  Performs an asnchronous API request to update the data source's data and attempts to
  cache downloaded data to disk. Objects are cached to disk after the completion handler 
  block is executed.
+ 
  @param argument    Argument required by the data source's service, may be nil
  @param completion  Handler block to execute on completion, may be nil
  */
