@@ -22,8 +22,12 @@
  */
 typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 
+
+#pragma mark - UTCSDataSourceDelegate Protocol
+
 /**
- UTCSDataSourceDelegate
+ The delegate of a UTCSDataSource must adopt the UTCSDataSourceDelegate protocol. Optional methods of the protocol
+ allow the delegate to manage which objects a data source caches to disk.
  */
 @protocol UTCSDataSourceDelegate <NSObject>
 
@@ -32,7 +36,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 /**
  Asks the delegate for the set of objects that should be cached to disk.
  
- The keys in the dictionary are used to uniquely identify cached objects within a service.
+ Each key in the dictionary will be used as the cache key for the object it's associated with.
  @param dataSource Data source requesting objects to cache
  @return Dictionary of objects to cache along with their associated keys, may be nil
  */
@@ -40,6 +44,8 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 
 @end
 
+
+#pragma mark - UTCSDataSource Interface
 
 /**
  UTCSDataSource is an abstract class used to perform asynchronous API requests for a 
