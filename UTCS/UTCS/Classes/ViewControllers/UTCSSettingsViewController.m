@@ -13,10 +13,10 @@
 #import "UTCSSettingsAboutViewController.h"
 
 
-static NSString * const facebookAppURL = @"fb://page/272565539464226";
-static NSString * const facebookWebURL = @"https://www.facebook.com/UTCompSci";
-static NSString * const twitterAppURL = @"twitter://user?screen_name=utcompsci";
-static NSString * const twitterWebURL = @"https://www.twitter.com/UTCompSci";
+static NSString * const facebookAppURL  = @"fb://page/272565539464226";
+static NSString * const facebookWebURL  = @"https://www.facebook.com/UTCompSci";
+static NSString * const twitterAppURL   = @"twitter://user?screen_name=utcompsci";
+static NSString * const twitterWebURL   = @"https://www.twitter.com/UTCompSci";
 
 
 @interface UTCSSettingsViewController ()

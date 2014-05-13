@@ -10,27 +10,30 @@
 #pragma mark - Imports
 
 #import "UTCSAppDelegate.h"
-#import <Tweaks/FBTweakInline.h>
+#import "UIImage+Cacheless.h"
 
+// View controllers
 #import "UTCSMenuViewController.h"
-#import "UTCSNavigationController.h"
-#import "UTCSVerticalMenuViewController.h"
-
 #import "UTCSNewsViewController.h"
-#import "UTCSEventsViewController.h"
 #import "UTCSLabsViewController.h"
+#import "UTCSNavigationController.h"
+#import "UTCSEventsViewController.h"
+#import "UTCSSettingsViewController.h"
 #import "UTCSDiskQuotaViewController.h"
 #import "UTCSDirectoryViewController.h"
-#import "UTCSSettingsViewController.h"
+#import "UTCSVerticalMenuViewController.h"
 
-#import "UIImage+Cacheless.h"
+// Managers
 #import "UTCSStarredEventManager.h"
 #import "UTCSAuthenticationManager.h"
-#import "MBProgressHUD.h"
 
 
-typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
-{
+/**
+ UTCSAuthenticationAlertViewTag is used to identify an authentication alert view
+ and associate it with the specific service that required authentication.
+ */
+typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
+    /** Tag for the labs service */
     UTCSLabsAuthenticationAlertViewTag = 1
 };
 
@@ -39,7 +42,9 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
 
 @interface UTCSAppDelegate () <UIAlertViewDelegate>
 
+// Alert view used to authenticate the user (for any services that require authentication)
 @property (nonatomic) UIAlertView                       *authenticationAlertView;
+
 // -----
 // @name Content controllers
 // -----
@@ -83,30 +88,38 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+#if DEBUG
     self.window = [[FBTweakShakeWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+#else
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+#endif
     
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
     
-    // View controllers
+    // Initialize view controllers. News is the default service
     self.newsNavigationController       = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
     self.verticalMenuViewController     = [[UTCSVerticalMenuViewController alloc]initWithMenuViewController:self.menuViewController
                                                                                       contentViewController:self.newsNavigationController];
     
     self.window.rootViewController = self.verticalMenuViewController;
-    [self configureAppearance];
     [self.window makeKeyAndVisible];
+    [self configureAppearance];
     return YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    // Purge any old starred events from disk
     [[UTCSStarredEventManager sharedManager]purgePastEvents];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    // Ensure any modifications to user defaults are synced back to disk
+    // Forces a disk write (since writes are buffered)
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
@@ -114,6 +127,7 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
 
 - (void)configureAppearance
 {
+    // Configure the appearance of the navigation bar
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setShadowImage:[UIImage new]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearanceWhenContainedIn:[UTCSNavigationController class], nil]setBackgroundColor:[UIColor clearColor]];
@@ -126,17 +140,24 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
 
 - (void)didSelectMenuOption:(UTCSMenuOptions)option
 {
-    if(option == UTCSMenuOptionNews) {
+    /**
+     Sets the content view controller in the vertical menu based on the user's selection. Will lazily load view controllers.
+     Also handles presenting the authentication alert view for any services that require authentication.
+     */
+    
+    if(option == UTCSMenuOptionNews) {              // News
         if (!self.newsNavigationController) {
             self.newsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSNewsViewController new]];
         }
         self.verticalMenuViewController.contentViewController = self.newsNavigationController;
-    } else if(option == UTCSMenuOptionEvents) {
+        
+    } else if(option == UTCSMenuOptionEvents) {     // Events
         if (!self.eventsNavigationController) {
             self.eventsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSEventsViewController new]];
         }
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
-    } else if(option == UTCSMenuOptionLabs) {
+        
+    } else if(option == UTCSMenuOptionLabs) {       // Labs
         if ([UTCSAuthenticationManager sharedManager].authenticated) {
             if (!self.labsViewController) {
                 self.labsViewController = [UTCSLabsViewController new];
@@ -148,19 +169,22 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
             self.authenticationAlertView.message = @"You must log into your CS account to view lab status information.";
             [self.authenticationAlertView show];
         }
-    } else if(option == UTCSMenuOptionDirectory) {
+        
+    } else if(option == UTCSMenuOptionDirectory) {  // Directory
         if (!self.directoryNavigationController) {
             self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
             self.directoryNavigationController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"directoryBackground"];
             [self configureAppearance];
         }
         self.verticalMenuViewController.contentViewController = self.directoryNavigationController;
-    } else if(option == UTCSMenuOptionDiskQuota) {
+        
+    } else if(option == UTCSMenuOptionDiskQuota) {  // Disk Quota
         if (!self.diskQuotaViewController) {
             self.diskQuotaViewController = [UTCSDiskQuotaViewController new];
         }
         self.verticalMenuViewController.contentViewController = self.diskQuotaViewController;
-    } else if(option == UTCSMenuOptionSettings) {
+        
+    } else if(option == UTCSMenuOptionSettings) {   // Settings
         if (!self.settingsNavigationController) {
             self.settingsNavigationController = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSSettingsViewController new]];
             self.settingsNavigationController.backgroundImageView.image = [UIImage cacheless_imageNamed:@"settingsBackground"];
@@ -168,8 +192,6 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
-
-
 
 #pragma mark Authentication
 
@@ -193,10 +215,11 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView == self.authenticationAlertView) {
-        
-        if (buttonIndex == 0) {
+        if (buttonIndex == 0) {     // Cancel button
             [self.verticalMenuViewController hideMenu];
         } else {
+            
+            // Show progress HUD
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.verticalMenuViewController.view animated:YES];
             hud.mode = MBProgressHUDModeIndeterminate;
             hud.labelText = @"Authenticating";
@@ -209,16 +232,20 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
                                                             completion:^(BOOL success, NSError *error)
             {
                 if (success) {
+                    // If authentication succeeded, show labs view controller
                     if (!self.labsViewController) {
                         self.labsViewController = [UTCSLabsViewController new];
                     }
                     self.verticalMenuViewController.contentViewController = self.labsViewController;
                 } else {
+                    // Otherwise, show failure alert view
                     UIAlertView *failureAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication Failed"
                                                                               message:@"Ouch! Something went wrong."
                                                                              delegate:nil
                                                                     cancelButtonTitle:@"Ok"
                                                                     otherButtonTitles:nil];
+                    
+                    // Set alert view message based on error code
                     if (error.code == UTCSAuthenticationConnectionErrorCode) {
                         failureAlertView.message = @"Please check your network connection.";
                     } else if (error.code == UTCSAuthenticationAccessDeniedErrorCode) {
@@ -227,11 +254,11 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
                     [failureAlertView show];
                 }
                 
+                // Always hide the progress HUD
                 [MBProgressHUD hideHUDForView:self.verticalMenuViewController.view animated:YES];
             }];
         }
     }
 }
-
 
 @end
