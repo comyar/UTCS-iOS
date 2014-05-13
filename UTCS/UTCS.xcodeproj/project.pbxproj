@@ -69,7 +69,6 @@
 		DD95E7551920F4BA0062F4E9 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD95E7541920F4BA0062F4E9 /* Reveal.framework */; };
 		DD95E7581920F8780062F4E9 /* basementLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */; };
 		DD95E7591920F8780062F4E9 /* thirdLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */; };
-		DD95E75E1922946F0062F4E9 /* UTCSAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E75D1922946F0062F4E9 /* UTCSAuthenticationViewController.m */; };
 		DD95E7621922955E0062F4E9 /* UTCSAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* UTCSAuthenticationManager.m */; };
 		DD95E765192296E20062F4E9 /* hosts.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD95E764192296E20062F4E9 /* hosts.plist */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
@@ -217,8 +216,6 @@
 		DD95E7541920F4BA0062F4E9 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basementLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thirdLabsBackground@2x.png"; sourceTree = "<group>"; };
-		DD95E75C1922946F0062F4E9 /* UTCSAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAuthenticationViewController.h; path = ViewControllers/UTCSAuthenticationViewController.h; sourceTree = "<group>"; };
-		DD95E75D1922946F0062F4E9 /* UTCSAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSAuthenticationViewController.m; path = ViewControllers/UTCSAuthenticationViewController.m; sourceTree = "<group>"; };
 		DD95E7601922955E0062F4E9 /* UTCSAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAuthenticationManager.h; path = Model/UTCSAuthenticationManager.h; sourceTree = "<group>"; };
 		DD95E7611922955E0062F4E9 /* UTCSAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSAuthenticationManager.m; path = Model/UTCSAuthenticationManager.m; sourceTree = "<group>"; };
 		DD95E764192296E20062F4E9 /* hosts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = hosts.plist; path = UTCS/hosts.plist; sourceTree = SOURCE_ROOT; };
@@ -701,15 +698,6 @@
 			name = "NSAttributedString+Trim";
 			sourceTree = "<group>";
 		};
-		DD95E75B1922945A0062F4E9 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				DD95E75C1922946F0062F4E9 /* UTCSAuthenticationViewController.h */,
-				DD95E75D1922946F0062F4E9 /* UTCSAuthenticationViewController.m */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
 		DD95E75F1922954C0062F4E9 /* AuthenticationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,7 +787,6 @@
 		DDA758EE19081DE4007CD0DB /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DD95E75B1922945A0062F4E9 /* Controllers */,
 				DDA758F019081DFE007CD0DB /* Views */,
 				DDA758EF19081DF3007CD0DB /* Models */,
 			);
@@ -1157,7 +1144,6 @@
 				DDC206F7190A0410001DD1A5 /* UTCSSettingsViewController.m in Sources */,
 				DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */,
 				DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */,
-				DD95E75E1922946F0062F4E9 /* UTCSAuthenticationViewController.m in Sources */,
 				DD5CAF81190A325D0051F637 /* UTCSSettingsLegalViewController.m in Sources */,
 				DD44657A18E5832E00ED1153 /* UTCSLabsViewController.m in Sources */,
 				DDE561EC18DC441F00C46480 /* UTCSNewsDataSource.m in Sources */,
