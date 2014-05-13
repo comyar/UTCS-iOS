@@ -9,17 +9,20 @@
 
 #pragma mark - Imports
 
-// Views
 #import "UTCSParallaxBlurHeaderScrollView.h"
-#import <Tweaks/FBTweakInline.h>
+
 
 #pragma mark - Constants
 
 // Factor by which the header translation is slowed down
-static const CGFloat parallaxFactor = 0.5;
+static const CGFloat parallaxFactor         = 0.5;
 
 // Height of the header image
 const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
+
+//
+static const CGFloat blurAlphaModifier      = 2.5;
+
 
 
 #pragma mark - UTCSNewsDetailView Class Extension
@@ -27,16 +30,18 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
 @interface UTCSParallaxBlurHeaderScrollView ()
 
 //
+@property (nonatomic) CAShapeLayer  *headerMask;
+
+// Scroll view managed by this view.
+@property (nonatomic) UIScrollView  *scrollView;
+
+//
 @property (nonatomic) UIImageView   *headerImageView;
 
 //
 @property (nonatomic) UIImageView   *headerBlurredImageView;
 
-//
-@property (nonatomic) UIScrollView  *scrollView;
 
-//
-@property (nonatomic) CAShapeLayer  *headerMask;
 
 @end
 
@@ -49,10 +54,8 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
 {
     if (self = [super initWithFrame:frame]) {
         
-        // Header mask
         self.headerMask = [CAShapeLayer new];
         
-        // Header image view
         self.headerImageView = ({
             UIImageView *imageView = [UIImageView new];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -60,7 +63,6 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
             imageView;
         });
         
-        // Header blurred image view
         self.headerBlurredImageView = ({
             UIImageView *imageView = [UIImageView new];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -69,15 +71,13 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
             imageView;
         });
         
-        // Header container view
         self.headerContainerView = ({
             UIView *view = [UIView new];
-            view.layer.masksToBounds = YES;
             view.userInteractionEnabled = NO;
+            view.layer.masksToBounds    = YES;
             view;
         });
         
-        // Scroll view
         self.scrollView = ({
             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
             scrollView.alwaysBounceVertical = YES;
@@ -174,11 +174,10 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
             [self bringSubviewToFront:self.headerContainerView];
         }
         
-        CGFloat multiplier = FBTweakValue(@"Parallax Header Blur View", @"Blur Image View", @"Multiplier", 2.5);
-        self.headerBlurredImageView.alpha = MIN(1.0, multiplier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
+        self.headerBlurredImageView.alpha = MIN(1.0, blurAlphaModifier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
         for(UIView *subview in self.headerContainerView.subviews) {
             if(subview != self.headerBlurredImageView && subview != self.headerImageView) {
-                subview.alpha = 1.0 - MIN(1.0, multiplier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
+                subview.alpha = 1.0 - MIN(1.0, blurAlphaModifier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
             }
         }
     }
