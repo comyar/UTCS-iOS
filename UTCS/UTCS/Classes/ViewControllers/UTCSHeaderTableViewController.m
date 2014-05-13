@@ -6,21 +6,28 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSHeaderTableViewController.h"
+
+#pragma mark - Imports
+
 #import "UTCSActiveHeaderView.h"
+#import "UTCSHeaderTableViewController.h"
 
 
-#pragma mark - UTCSAbstractHeaderTable
+#pragma mark - Constants
 
-@interface UTCSHeaderTableViewController ()
+// Modifier for the rate at which the background image view's alpha changes
+static const CGFloat blurAlphaModifier              = 2.0;
 
-@end
+// Content offset property string used for KVO
+static NSString * const contentOffsetPropertyString = @"contentOffset";
 
 
 #pragma mark - UTCSAbstractHeaderTableViewController Implementation
 
 @implementation UTCSHeaderTableViewController
 @synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
+
+#pragma mark Creating a UTCSHeaderTableViewController
 
 - (instancetype)init
 {
@@ -35,10 +42,21 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        
+        [self.tableView addObserver:self forKeyPath:contentOffsetPropertyString options:NSKeyValueObservingOptionNew context:nil];
+        
+        _backgroundBlurredImageView = ({
+            UIImageView *imageView  = [[UIImageView alloc]initWithFrame:self.view.bounds];
+            imageView.contentMode   = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+            imageView.alpha         = 0.0;
+            imageView;
+        });
     }
     return self;
 }
+
+#pragma mark UIViewController Methods
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
@@ -46,16 +64,21 @@
     self.tableView.tableHeaderView.frame = self.tableView.bounds;
 }
 
-#pragma mark Update
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
+}
+
+#pragma mark Key-Value Observing Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     
-    if([keyPath isEqualToString:@"contentOffset"]) {
+    if([keyPath isEqualToString:contentOffsetPropertyString]) {
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
-        CGFloat multiplier = FBTweakValue(@"Header Table View Controller", @"Background Blur Image View", @"Multipler", 2.0);
-        self.backgroundBlurredImageView.alpha = MIN(1.0, multiplier * normalizedOffsetDelta);
+        self.backgroundBlurredImageView.alpha = MIN(1.0, blurAlphaModifier * normalizedOffsetDelta);
     }
 }
 
@@ -63,31 +86,16 @@
 
 - (void)setActiveHeaderView:(UTCSActiveHeaderView *)activityHeaderView
 {
-    _activeHeaderView             = activityHeaderView;
-    _activeHeaderView.frame       = self.tableView.bounds;
+    _activeHeaderView               = activityHeaderView;
+    _activeHeaderView.frame         = self.tableView.bounds;
     self.tableView.tableHeaderView  = _activeHeaderView;
-}
-
-#pragma mark Getters
-
-- (UIImageView *)backgroundBlurredImageView
-{
-    if (!_backgroundBlurredImageView) {
-        _backgroundBlurredImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-        _backgroundBlurredImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _backgroundBlurredImageView.clipsToBounds = YES;
-        _backgroundBlurredImageView.alpha = 0.0;    // alpha is initially 0.0 and affected only by content offset
-        [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
-    }
-
-    return _backgroundBlurredImageView;
 }
 
 #pragma mark Dealloc
 
 - (void)dealloc
 {
-    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+    [self.tableView removeObserver:self forKeyPath:contentOffsetPropertyString];
 }
 
 @end

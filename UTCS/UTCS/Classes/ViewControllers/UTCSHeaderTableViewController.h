@@ -8,8 +8,12 @@
 
 #pragma mark - Imports
 
-#import "UTCSActiveHeaderView.h"
 #import "UTCSTableViewController.h"
+
+
+#pragma mark - Forward Declarations
+
+@class UTCSActiveHeaderView;
 
 
 #pragma mark - UTCSHeaderTableViewController Interface
@@ -28,7 +32,9 @@
 #pragma mark Properties
 
 /**
- Header view of the table view.
+ Header view of the table view. 
+ 
+ The bounds of the header view should match those of the table view.
  */
 @property (nonatomic) UTCSActiveHeaderView      *activeHeaderView;
 

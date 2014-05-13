@@ -14,7 +14,14 @@
 
 #pragma mark - Constants
 
-static NSString * const contentOffsetPropertyString = @"contentOffset";
+// Height of the navigation bar separator line
+static const CGFloat navigationBarSeparatorLineHeight       = 0.5;
+
+// Maximum alpha value of the navigation bar separator line view
+static const CGFloat maximumNavigationBarSeparatorLineAlpha = 0.75;
+
+// Content offset property string used for KVO
+static NSString * const contentOffsetPropertyString         = @"contentOffset";
 
 
 #pragma mark - UTCSTableViewController Class Extension
@@ -94,12 +101,14 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
     [super viewDidLayoutSubviews];
     
     CGFloat navigationBarHeight = MAX(CGRectGetHeight(self.navigationController.navigationBar.bounds), 44.0);
+    
     self.tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds),
                                       CGRectGetHeight(self.view.bounds) - navigationBarHeight);
     
     self.gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
 
-    self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds), 0.5);
+    self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds),
+                                                           navigationBarSeparatorLineHeight);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -120,7 +129,8 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
     self.gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
     [self.view insertSubview:self.gestureButton belowSubview:self.menuButton];
     
-    self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds), 0.5);
+    self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds),
+                                                           navigationBarSeparatorLineHeight);
     [self.view bringSubviewToFront:self.navigationBarSeparatorLineView];
 }
 
@@ -139,7 +149,8 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
 {
     if([keyPath isEqualToString:contentOffsetPropertyString]) {
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
-        self.navigationBarSeparatorLineView.alpha = (self.showsNavigationBarSeparatorLine)? MIN(0.5, normalizedOffsetDelta) : 0.0;
+        self.navigationBarSeparatorLineView.alpha = (self.showsNavigationBarSeparatorLine)? MIN(maximumNavigationBarSeparatorLineAlpha,
+                                                                                                normalizedOffsetDelta) : 0.0;
     }
 }
 
