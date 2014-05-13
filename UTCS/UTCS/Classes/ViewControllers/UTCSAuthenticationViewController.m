@@ -22,7 +22,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -34,12 +34,12 @@
     self.cancelButton = ({
         UIButton *button = [UIButton bouncyButton];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        button.frame = CGRectMake(0.0, 0.0, 60.0, 28.0);
-        button.center = CGPointMake(self.view.width - 41, 22);
+        button.frame = CGRectMake(0.0, 0.0, 80.0, 28.0);
+        button.center = CGPointMake(self.view.width - 51, 22);
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.layer.borderColor = [UIColor whiteColor].CGColor;
         [button setTitle:@"Cancel" forState:UIControlStateNormal];
-        button.tintColor = [UIColor whiteColor];
+        button.tintColor = [UIColor blackColor];
         button;
     });
     [self.view addSubview:self.cancelButton];

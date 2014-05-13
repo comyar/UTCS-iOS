@@ -13,6 +13,6 @@
 /**
  UTCSLabsViewController
  */
-@interface UTCSLabsViewController : UTCSContentViewController <UIScrollViewDelegate, UTCSDataSourceDelegate>
+@interface UTCSLabsViewController : UTCSContentViewController <UIScrollViewDelegate, UTCSDataSourceDelegate, UIAlertViewDelegate>
 
 @end

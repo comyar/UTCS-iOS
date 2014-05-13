@@ -15,6 +15,8 @@ static NSString * const starredEventNotificationsKey = @"starredEventNotificatio
 static NSString * const eventNotificationsKey   = @"eventNotifications";
 static NSString * const preferredLabKey    = @"preferredLab";
 
+static NSString * const authenticatedKey    = @"authenticated";
+
 
 #pragma mark - UTCSSettingsManager Implementation
 
@@ -31,6 +33,7 @@ static NSString * const preferredLabKey    = @"preferredLab";
 - (instancetype)_init
 {
     if (self = [super init]) {
+        _authenticated  = [[NSUserDefaults standardUserDefaults]boolForKey:authenticatedKey];
         _hasStarredEvent = [[NSUserDefaults standardUserDefaults]boolForKey:hasStarredEventKey];
         _starredEvents = [self loadArrayWithKey:starredEventsKey];
         _starredEventNotifications = [self loadArrayWithKey:starredEventNotificationsKey];
@@ -68,6 +71,14 @@ static NSString * const preferredLabKey    = @"preferredLab";
 {
     _starredEventNotifications = starredEventNotifications;
     [self saveArray:_starredEventNotifications withKey:starredEventNotificationsKey];
+}
+
+#pragma mark Authentication
+
+- (void)setAuthenticated:(BOOL)authenticated
+{
+    _authenticated = authenticated;
+    [[NSUserDefaults standardUserDefaults]setBool:_authenticated forKey:authenticatedKey];
 }
 
 #pragma mark Settings

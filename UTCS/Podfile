@@ -10,8 +10,7 @@ pod 'Shimmer'
 pod 'NMSSH'
 pod 'DPMeterView'
 pod 'MBProgressHUD'
-pod "AFNetworking/UIKit"
-pod "AFNetworking/Serialization"
+pod "AFNetworking"
 pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 

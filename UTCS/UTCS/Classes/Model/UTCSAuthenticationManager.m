@@ -7,6 +7,7 @@
 //
 
 #import "UTCSAuthenticationManager.h"
+#import "UTCSStateManager.h"
 #import <NMSSH/NMSSH.h>
 
 static NSString * const server = @"cs.utexas.edu";
@@ -36,11 +37,20 @@ NSString * const UTCSAuthenticationErrorDomain = @"UTCSAuthenticationErrorDomain
     return sharedManager;
 }
 
+- (instancetype)init
+{
+    NSString *reason = [NSString stringWithFormat:@"Cannot perform selector %@ of singleton", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:reason
+                                 userInfo:nil];
+}
+
 - (instancetype)_init
 {
     if (self = [super init]) {
         NSString *path = [[NSBundle mainBundle]pathForResource:@"hosts" ofType:@"plist"];
         self.hosts = [NSArray arrayWithContentsOfFile:path];
+        _authenticated = [UTCSStateManager sharedManager].authenticated;
     }
     return self;
 }
@@ -64,6 +74,8 @@ NSString * const UTCSAuthenticationErrorDomain = @"UTCSAuthenticationErrorDomain
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (session.isAuthorized) {
                     _authenticated = YES;
+                    [UTCSStateManager sharedManager].authenticated = YES;
+                    
                     if (completion) {
                         completion(YES, nil);
                     }

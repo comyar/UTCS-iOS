@@ -25,12 +25,21 @@
 
 #import "UIImage+Cacheless.h"
 #import "UTCSStarredEventManager.h"
+#import "UTCSAuthenticationManager.h"
+#import "MBProgressHUD.h"
+
+
+typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag)
+{
+    UTCSLabsAuthenticationAlertViewTag = 1
+};
 
 
 #pragma mark - UTCSAppDelegate Class Extension
 
-@interface UTCSAppDelegate ()
+@interface UTCSAppDelegate () <UIAlertViewDelegate>
 
+@property (nonatomic) UIAlertView                       *authenticationAlertView;
 // -----
 // @name Content controllers
 // -----
@@ -128,10 +137,17 @@
         }
         self.verticalMenuViewController.contentViewController = self.eventsNavigationController;
     } else if(option == UTCSMenuOptionLabs) {
-        if (!self.labsViewController) {
-            self.labsViewController = [UTCSLabsViewController new];
+        if ([UTCSAuthenticationManager sharedManager].authenticated) {
+            if (!self.labsViewController) {
+                self.labsViewController = [UTCSLabsViewController new];
+            }
+            self.verticalMenuViewController.contentViewController = self.labsViewController;
+        } else {
+            [self prepareAuthenticationAlertView];
+            self.authenticationAlertView.tag = UTCSLabsAuthenticationAlertViewTag;
+            self.authenticationAlertView.message = @"You must log into your CS account to view lab status information.";
+            [self.authenticationAlertView show];
         }
-        self.verticalMenuViewController.contentViewController = self.labsViewController;
     } else if(option == UTCSMenuOptionDirectory) {
         if (!self.directoryNavigationController) {
             self.directoryNavigationController  = [[UTCSNavigationController alloc]initWithRootViewController:[UTCSDirectoryViewController new]];
@@ -152,5 +168,70 @@
         self.verticalMenuViewController.contentViewController = self.settingsNavigationController;
     }
 }
+
+
+
+#pragma mark Authentication
+
+- (void)prepareAuthenticationAlertView
+{
+    if (!self.authenticationAlertView) {
+        self.authenticationAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication"
+                                                                 message:@"You must log into your CS account to use this feature."
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Cancel"
+                                                       otherButtonTitles:@"OK", nil];
+        self.authenticationAlertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+        UITextField *usernameTextField = [self.authenticationAlertView textFieldAtIndex:0];
+        usernameTextField.placeholder = @"CS Unix Username";
+        
+        UITextField *passwordTextField = [self.authenticationAlertView textFieldAtIndex:1];
+        passwordTextField.placeholder = @"Password";
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView == self.authenticationAlertView) {
+        
+        if (buttonIndex == 0) {
+            [self.verticalMenuViewController hideMenu];
+        } else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.verticalMenuViewController.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
+            hud.labelText = @"Authenticating";
+            
+            NSString *username = [alertView textFieldAtIndex:0].text;
+            NSString *password = [alertView textFieldAtIndex:1].text;
+            
+            [[UTCSAuthenticationManager sharedManager]authenticateUser:username
+                                                          withPassword:password
+                                                            completion:^(BOOL success, NSError *error)
+            {
+                if (success) {
+                    if (!self.labsViewController) {
+                        self.labsViewController = [UTCSLabsViewController new];
+                    }
+                    self.verticalMenuViewController.contentViewController = self.labsViewController;
+                } else {
+                    UIAlertView *failureAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication Failed"
+                                                                              message:@"Ouch! Something went wrong."
+                                                                             delegate:nil
+                                                                    cancelButtonTitle:@"Ok"
+                                                                    otherButtonTitles:nil];
+                    if (error.code == UTCSAuthenticationConnectionErrorCode) {
+                        failureAlertView.message = @"Please check your network connection.";
+                    } else if (error.code == UTCSAuthenticationAccessDeniedErrorCode) {
+                        failureAlertView.message = @"Please ensure your password is correct.";
+                    }
+                    [failureAlertView show];
+                }
+                
+                [MBProgressHUD hideHUDForView:self.verticalMenuViewController.view animated:YES];
+            }];
+        }
+    }
+}
+
 
 @end
