@@ -18,12 +18,9 @@
 #pragma mark - UTCSContentViewController Interface
 
 /**
- UTCSContentViewController is an abstract view controller used for services that require a data source. 
- Every UTCSContentViewController has a menu button and an image view to display a background image.
- 
- For each service, you should subclass UTCSContentViewController and configure it with the appropriate data
- source. A UTCSContentViewController should only be used when a particular feature requires an instance of
- UTCSDataSource to download data.
+ UTCSContentViewController is an abstract view controller that contains properties shared by many top-level view 
+ controllers throughout the app, such as a menu button and a background image view. UTCSContentViewController
+ should be used for all services that require an instance of UTCSDataSource to download data.
  */
 @interface UTCSContentViewController : UIViewController <UTCSDataSourceDelegate>
 
@@ -34,7 +31,7 @@
 #pragma mark Properties
 
 /**
- Data source for the view controller.
+ Data source for the view controller. May be nil.
  */
 @property (nonatomic) UTCSDataSource            *dataSource;
 

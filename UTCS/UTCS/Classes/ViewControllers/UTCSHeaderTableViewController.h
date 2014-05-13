@@ -6,12 +6,18 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSTableViewController.h"
-#import "UTCSActiveHeaderView.h"
+#pragma mark - Imports
 
+#import "UTCSActiveHeaderView.h"
+#import "UTCSTableViewController.h"
+
+
+#pragma mark - UTCSHeaderTableViewController Interface
 
 /**
- UTCSHeaderTableViewController is an abstract class
+ UTCSHeaderTableViewController is an abstract view controller that extends the functionality of UTCSTableViewController
+ by managing its own header. UTCSHeaderTableViewController also provides an additional image view intended to add a 
+ seemingly-dynamic blurring effect.
  */
 @interface UTCSHeaderTableViewController : UTCSTableViewController
 
@@ -19,11 +25,16 @@
 // @name Properties
 // -----
 
+#pragma mark Properties
+
 /**
+ Header view of the table view.
  */
 @property (nonatomic) UTCSActiveHeaderView      *activeHeaderView;
 
 /**
+ Image view intended to display a blurred version of the  view controller's background image. 
+ The alpha of the image view is increased as the table view's content offset increases.
  */
 @property (nonatomic, readonly) UIImageView     *backgroundBlurredImageView;
 

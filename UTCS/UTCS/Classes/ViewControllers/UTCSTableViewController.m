@@ -6,25 +6,36 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
 #import "UTCSTableViewController.h"
 
-#pragma mark - UTCSAbstractTableViewController Class Extension
+
+#pragma mark - Constants
+
+static NSString * const contentOffsetPropertyString = @"contentOffset";
+
+
+#pragma mark - UTCSTableViewController Class Extension
 
 @interface UTCSTableViewController ()
 
-//
+// Button used to scroll table view to top
 @property (nonatomic) UIButton              *gestureButton;
 
-//
+// View to represent the navigation bar separator line (this should probably be a CAShapeLayer, #yolo)
 @property (nonatomic) UIView                *navigationBarSeparatorLineView;
 
 @end
 
 
-#pragma mark - UTCSAbstractTableViewController Implementation
+#pragma mark - UTCSTableViewController Implementation
 
 @implementation UTCSTableViewController
 @synthesize tableView = _tableView;
+
+#pragma mark Creating a UTCSTableViewController
 
 - (instancetype)init
 {
@@ -39,8 +50,9 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithNibName:nil bundle:nil]) {
-        _showsNavigationBarSeparatorLine = YES;
         self.automaticallyAdjustsScrollViewInsets = NO;
+        
+        _showsNavigationBarSeparatorLine = YES;
         
         _gestureButton = ({
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -50,16 +62,15 @@
         
         _tableView = ({
             UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:style];
-            tableView.delegate         = self;
-            tableView.separatorColor   = [UIColor colorWithWhite:1.0
-                                                           alpha:FBTweakValue(@"Table View Controller", @"Table View", @"Separator Alpha", 0.05)];
+            [tableView addObserver:self forKeyPath:contentOffsetPropertyString options:NSKeyValueObservingOptionNew context:nil];
+            tableView.separatorColor   = [UIColor colorWithWhite:1.0 alpha:0.05];
             tableView.backgroundColor  = [UIColor clearColor];
-            [tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+            tableView.delegate         = self;
             tableView;
         });
         
         _navigationBarSeparatorLineView = ({
-            UIView *view = [UIView new];
+            UIView *view = [[UIView alloc]initWithFrame:CGRectZero];
             view.backgroundColor = [UIColor whiteColor];
             view.alpha = 0.0;
             view;
@@ -68,11 +79,13 @@
     return self;
 }
 
+#pragma mark UIViewController Methods
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.view insertSubview:_gestureButton belowSubview:self.menuButton];
-    [self.view insertSubview:_tableView belowSubview:self.gestureButton];
+    [self.view insertSubview:_tableView     belowSubview:self.gestureButton];
     [self.view insertSubview:_navigationBarSeparatorLineView aboveSubview:self.gestureButton];
 }
 
@@ -85,7 +98,7 @@
                                       CGRectGetHeight(self.view.bounds) - navigationBarHeight);
     
     self.gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), navigationBarHeight);
-    
+
     self.navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(self.view.bounds), 0.5);
 }
 
@@ -120,21 +133,11 @@
     }
 }
 
-#pragma mark UIGestureRecognizerDelegate Methods
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    if ([gestureRecognizer locationInView:self.view].y <= CGRectGetHeight(self.navigationController.navigationBar.bounds)) {
-        return YES;
-    }
-    return NO;
-}
-
 #pragma mark Key-Value Observing Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if([keyPath isEqualToString:@"contentOffset"]) {
+    if([keyPath isEqualToString:contentOffsetPropertyString]) {
         CGFloat normalizedOffsetDelta = MAX(self.tableView.contentOffset.y / CGRectGetHeight(self.tableView.bounds), 0.0);
         self.navigationBarSeparatorLineView.alpha = (self.showsNavigationBarSeparatorLine)? MIN(0.5, normalizedOffsetDelta) : 0.0;
     }
@@ -144,7 +147,7 @@
 
 - (void)dealloc
 {
-    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+    [self.tableView removeObserver:self forKeyPath:contentOffsetPropertyString];
 }
 
 @end
