@@ -70,6 +70,12 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
     [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.backgroundBlurredImageView.frame = self.view.bounds;
+}
+
 #pragma mark Key-Value Observing Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
