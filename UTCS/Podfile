@@ -6,11 +6,12 @@ target "UTCS" do
 
 pod 'pop'
 pod 'Tweaks'
-pod 'Shimmer', '~> 1.0.1'
-pod 'DPMeterView', '~> 0.0.1'
-pod 'MBProgressHUD', '~> 0.8'
-pod "AFNetworking/UIKit", "~> 2.0"
-pod "AFNetworking/Serialization", "~> 2.0"
+pod 'Shimmer'
+pod 'NMSSH'
+pod 'DPMeterView'
+pod 'MBProgressHUD'
+pod "AFNetworking/UIKit"
+pod "AFNetworking/Serialization"
 pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 

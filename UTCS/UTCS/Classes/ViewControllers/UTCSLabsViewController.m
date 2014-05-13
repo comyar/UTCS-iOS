@@ -148,7 +148,6 @@
 
 - (void)updateForced:(BOOL)forced
 {
-    
     // Shimmer lab map labels
     self.thirdFloorLabViewController.shimmeringView.shimmering  = YES;
     self.basementLabViewController.shimmeringView.shimmering    = YES;
