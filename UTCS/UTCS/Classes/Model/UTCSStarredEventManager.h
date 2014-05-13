@@ -21,5 +21,7 @@
 - (void)removeEvent:(UTCSEvent *)event;
 - (void)removeAllEvents;
 - (void)purgePastEvents;
+- (void)disableNotifications;
+- (void)enableNotifications;
 
 @end

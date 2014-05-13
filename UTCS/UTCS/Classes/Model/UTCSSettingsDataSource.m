@@ -11,6 +11,7 @@
 #import "UTCSSwitchTableViewCell.h"
 #import "UTCSSegmentedControlTableViewCell.h"
 #import "UTCSStateManager.h"
+#import "UTCSStarredEventManager.h"
 
 @interface UTCSSettingsDataSource ()
 
@@ -117,6 +118,11 @@
 {
     if (control.tag == 0) {
         [UTCSStateManager sharedManager].eventNotifications = ((UISwitch *)control).selected;
+        if ([UTCSStateManager sharedManager].eventNotifications) {
+            [[UTCSStarredEventManager sharedManager]enableNotifications];
+        } else {
+            [[UTCSStarredEventManager sharedManager]disableNotifications];
+        }
     } else if (control.tag == 1) {
         [UTCSStateManager sharedManager].preferredLab = ((UISegmentedControl *)control).selectedSegmentIndex;
     }

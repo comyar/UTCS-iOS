@@ -77,7 +77,6 @@
     [starredEventNotifications addObject:notification];
     [UTCSStateManager sharedManager].starredEventNotifications = starredEventNotifications;
     
-    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
     [[UIApplication sharedApplication]scheduleLocalNotification:notification];
     
     [UTCSStateManager sharedManager].hasStarredEvent = YES;
@@ -143,6 +142,18 @@
         if ([event.endDate timeIntervalSinceDate:[NSDate date]] < - 3600) { // purge after hour past end
             [self removeEvent:event];
         }
+    }
+}
+
+- (void)disableNotifications
+{
+    [[UIApplication sharedApplication]cancelAllLocalNotifications];
+}
+
+- (void)enableNotifications
+{
+    for (UILocalNotification *notification in [UTCSStateManager sharedManager].starredEventNotifications) {
+        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
     }
 }
 
