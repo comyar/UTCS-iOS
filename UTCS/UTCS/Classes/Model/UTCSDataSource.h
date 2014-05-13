@@ -7,18 +7,24 @@
 //
 
 
+#pragma mark - Imports
 @import Foundation;
+#import "UTCSDataRequestServicer.h"
 
+
+#pragma mark - Forward Declarations
 @class UTCSDataSource;
 @class UTCSDataSourceCache;
 @class UTCSDataSourceParser;
 @class UTCSDataSourceSearchController;
 
-#import "UTCSDataRequestServicer.h"
 
+#pragma mark - Typedefs
 
 /**
- Completion handler block for the data source
+ Data source completion block.
+ @param success     YES if the data source successfully retrieved data from the network or cache, NO otherwise.
+ @param cacheHit    YES if the data source retrieved data from the cache.
  */
 typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 
@@ -80,8 +86,11 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 // @name Creating a UTCSDataSource
 // -----
 
+#pragma mark Creating a UTCSDataSource
+
 /**
  Designated initializer. Initializes a new instance of UTCSDataSource.
+ 
  @param service String identifying the service associated with the newly initialized data source object
  @return Newly initialized instance of UTCSDataSource
  */
@@ -90,6 +99,8 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 // -----
 // @name Using a UTCSDataSource
 // -----
+
+#pragma mark Using a UTCSDataSource
 
 /**
  Returns YES if the data source should update
@@ -116,6 +127,8 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 // -----
 // @name Properties
 // -----
+
+#pragma mark Properties
 
 /**
  Name of the service associated with this data source.
