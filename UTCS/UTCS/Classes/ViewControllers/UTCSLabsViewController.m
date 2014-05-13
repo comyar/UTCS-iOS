@@ -19,7 +19,6 @@
 
 #import "UIButton+UTCSButton.h"
 #import "UIImage+Cacheless.h"
-#import "UTCSAuthenticationManager.h"
 
 
 #pragma mark - UTCSLabsViewController Class Extension
@@ -34,9 +33,6 @@
 
 // Button to refresh lab data
 @property (nonatomic) UIButton                              *refreshButton;
-
-//
-@property (nonatomic) UIAlertView                           *authenticationAlertView;
 
 // View controller for the basement lab map
 @property (nonatomic) UTCSLabMachineViewController          *basementLabViewController;
@@ -140,21 +136,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([UTCSAuthenticationManager sharedManager].authenticated) { // Check authentication here
-        [self updateForced:NO];
-    } else {
-        
-        [self.authenticationAlertView show];
-    }
+    [self updateForced:NO];
 }
 
-#pragma mark UIAlertViewDelegate Methods
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)viewWillAppear:(BOOL)animated
 {
-    if (alertView == self.authenticationAlertView) {
-        
-    }
+    [super viewWillAppear:animated];
 }
 
 #pragma mark Updating
