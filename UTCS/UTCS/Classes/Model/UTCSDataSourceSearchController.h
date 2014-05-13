@@ -8,10 +8,12 @@
 
 
 #pragma mark - Imports
+
 @import Foundation;
 
 
 #pragma mark - Forward Declarations
+
 @class UTCSDataSource;
 
 
@@ -35,7 +37,7 @@ typedef void (^UTCSDataSourceSearchCompletion) (NSArray *searchResults);
     * searchDisplayController:willHideSearchResultsTableView: . 
  To preserve this functionality, subclasses should call the super classes' implementation of these methods if they are overridden.
  */
-@interface UTCSDataSourceSearchController : NSObject <UISearchDisplayDelegate, UITableViewDelegate>
+@interface UTCSDataSourceSearchController : NSObject <UISearchDisplayDelegate>
 
 // -----
 // @name Using a UTCSDataSourceSearchController

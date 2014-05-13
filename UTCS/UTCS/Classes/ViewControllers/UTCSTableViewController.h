@@ -13,7 +13,14 @@
  */
 @interface UTCSTableViewController : UTCSContentViewController <UITableViewDelegate>
 
+// -----
+// @name Using a UTCSTableViewController
+// -----
 
+#pragma mark Using a UTCSTableViewController
+
+/**
+ */
 - (instancetype)initWithStyle:(UITableViewStyle)style;
 
 // -----
@@ -21,10 +28,12 @@
 // -----
 
 /**
+ YES if the navigation bar separator line should be visible
  */
 @property (nonatomic) BOOL showsNavigationBarSeparatorLine;
 
 /**
+ Table view managed by the table view controller
  */
 @property (nonatomic, readonly) UITableView *tableView;
 

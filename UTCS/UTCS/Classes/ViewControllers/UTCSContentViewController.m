@@ -8,15 +8,15 @@
 
 
 #pragma mark - Imports
-#import "UTCSContentViewController.h"
 #import "UIButton+UTCSButton.h"
+#import "UTCSContentViewController.h"
 
 
 #pragma mark - UTCSAbstractContentViewController Class Extension
 
 @interface UTCSContentViewController ()
 
-// Menu button
+// Button that shows the menu.
 @property (nonatomic) UIButton *menuButton;
 
 @end
@@ -29,13 +29,16 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.title              = @"";
+        self.title = @"";  // Hides the word 'Back' in a navigation controller's back button
         
-        _backgroundImageView    = [UIImageView new];
-        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _backgroundImageView.clipsToBounds = YES;
+        _backgroundImageView = ({
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+            imageView;
+        });
         
-        _menuButton             = [UIButton menuButton];
+        _menuButton = [UIButton menuButton];
     }
     return self;
 }
@@ -43,7 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view addSubview:_backgroundImageView];
     [self.view addSubview:_menuButton];
 }
@@ -51,24 +53,15 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
     self.backgroundImageView.frame = self.view.bounds;
     self.menuButton.center = CGPointMake(33.0, 22.0);
+    [self.view bringSubviewToFront:self.menuButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.view bringSubviewToFront:self.menuButton];
-}
-
-- (void)updateWithArgument:(NSString *)argument completion:(UTCSDataSourceCompletion)completion
-{
-    if ([self.dataSource shouldUpdate]) {
-        [self.dataSource updateWithArgument:argument completion:completion];
-    } else if (completion) {
-        completion(YES, YES);
-    }
 }
 
 @end
