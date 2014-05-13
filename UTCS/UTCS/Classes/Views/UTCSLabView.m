@@ -36,6 +36,11 @@
 {
     [_layout prepareLayoutForLabView:self];
     
+    for (UTCSLabMachineView *machineView in self.machineViews) {
+        [machineView removeFromSuperview];
+    }
+    self.machineViews = nil;
+    
     NSMutableArray *machineViews = [NSMutableArray new];
     
     for (int i = 0; i < _layout.numberOfLabMachines; ++i) {
@@ -48,7 +53,6 @@
     }
     
     self.machineViews = machineViews;
-    
 }
 
 - (UTCSLabMachineView *)dequeueMachineViewForIndexPath:(NSIndexPath *)indexPath

@@ -53,20 +53,16 @@
         self.labView.dataSource = self;
         [self.view addSubview:self.labView];
         
-        
         self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:CGRectZero];
         self.shimmeringView.contentView = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:36];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor = [UIColor whiteColor];
             label.numberOfLines = 0;
             label;
         });
-        
-        
-        
-        
+        [self.view addSubview:self.shimmeringView];
         [self.labView prepareLayout];
     }
     return self;
