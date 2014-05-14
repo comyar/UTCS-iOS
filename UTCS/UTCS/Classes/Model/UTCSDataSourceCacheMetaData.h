@@ -6,18 +6,28 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+#pragma mark - Imports
 
 @import Foundation;
 
 
+#pragma mark - UTCSDataSourceCacheMetaData Interface
+
 /**
- UTCSCacheMetaData stores various metadata regarding specific objects cached by a
- subclass of UTCSAbstractDataSourceCache.
+ UTCSCacheMetaData stores metadata regarding a specific object cached by a
+ subclass of UTCSDataSourceCache. Instances of UTCSCacheMetaData should only
+ be created by an instance of UTCSDataSourceCache.
  */
 @interface UTCSDataSourceCacheMetaData : NSObject <NSCoding>
 
+// -----
+// @name Properties
+// -----
+
+#pragma mark Properties
+
 /**
- Service the data was cached for
+ Service the data was cached for.
  */
 @property (nonatomic) NSString  *service;
 

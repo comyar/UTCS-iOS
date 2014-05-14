@@ -9,14 +9,15 @@
 
 #pragma mark - Imports
 
-// Models
 #import "UTCSDataSourceCacheMetaData.h"
 
 
 #pragma mark - Constants
 
-// NSCoding keys
+// Key to store the service
 static NSString * const serviceKey      = @"service";
+
+// Key to store the timestamp
 static NSString * const timestampKey    = @"timestamp";
 
 
