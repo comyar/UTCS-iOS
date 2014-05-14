@@ -6,21 +6,38 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
 #import "UTCSStateManager.h"
 
 
-static NSString * const hasStarredEventKey  = @"hasStarredEvent";
-static NSString * const starredEventsKey     = @"starredEvents";
-static NSString * const starredEventNotificationsKey = @"starredEventNotifications";
-static NSString * const eventNotificationsKey   = @"eventNotifications";
-static NSString * const preferredLabKey    = @"preferredLab";
+#pragma mark - Constants
 
-static NSString * const authenticatedKey    = @"authenticated";
+// Key to store hasStarredEvent
+static NSString * const hasStarredEventKey              = @"hasStarredEvent";
+
+// Key to store starredEvents
+static NSString * const starredEventsKey                = @"starredEvents";
+
+// Key to store starredEventNotifications
+static NSString * const starredEventNotificationsKey    = @"starredEventNotifications";
+
+// Key to store eventNotifications
+static NSString * const eventNotificationsKey           = @"eventNotifications";
+
+// Key to store preferredLab
+static NSString * const preferredLabKey                 = @"preferredLab";
+
+// Key to store authenticated
+static NSString * const authenticatedKey                = @"authenticated";
 
 
 #pragma mark - UTCSSettingsManager Implementation
 
 @implementation UTCSStateManager
+
+#pragma mark Getting the UTCSStateManager
 
 - (instancetype)init
 {
@@ -33,12 +50,12 @@ static NSString * const authenticatedKey    = @"authenticated";
 - (instancetype)_init
 {
     if (self = [super init]) {
-        _authenticated  = [[NSUserDefaults standardUserDefaults]boolForKey:authenticatedKey];
-        _hasStarredEvent = [[NSUserDefaults standardUserDefaults]boolForKey:hasStarredEventKey];
-        _starredEvents = [self loadArrayWithKey:starredEventsKey];
-        _starredEventNotifications = [self loadArrayWithKey:starredEventNotificationsKey];
-        _eventNotifications = [[NSUserDefaults standardUserDefaults]boolForKey:eventNotificationsKey];
-        _preferredLab = [[NSUserDefaults standardUserDefaults]integerForKey:preferredLabKey];
+        _starredEvents              = [self loadArrayWithKey:starredEventsKey];
+        _starredEventNotifications  = [self loadArrayWithKey:starredEventNotificationsKey];
+        _authenticated              = [[NSUserDefaults standardUserDefaults]boolForKey:authenticatedKey];
+        _hasStarredEvent            = [[NSUserDefaults standardUserDefaults]boolForKey:hasStarredEventKey];
+        _eventNotifications         = [[NSUserDefaults standardUserDefaults]boolForKey:eventNotificationsKey];
+        _preferredLab               = [[NSUserDefaults standardUserDefaults]integerForKey:preferredLabKey];
     }
     return self;
 }
@@ -95,7 +112,7 @@ static NSString * const authenticatedKey    = @"authenticated";
     [[NSUserDefaults standardUserDefaults]setInteger:_preferredLab forKey:preferredLabKey];
 }
 
-#pragma mark Helpers
+#pragma mark Helper
 
 - (void)saveArray:(NSArray *)array withKey:(NSString *)key
 {

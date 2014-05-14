@@ -59,7 +59,7 @@ typedef void (^UTCSAuthenticationCompletion) (BOOL success, NSError *error);
 #pragma mark Getting the Authentication Manager
 
 /**
- Returns he shared authentication manager instance.
+ Returns the shared authentication manager instance.
  @return The shared authentication manager instance.
  */
 + (UTCSAuthenticationManager *)sharedManager;
