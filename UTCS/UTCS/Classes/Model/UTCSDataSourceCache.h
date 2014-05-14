@@ -7,17 +7,27 @@
 //
 
 
-@import Foundation;
+#pragma mark - Imports
 
+@import Foundation;
 #import "UTCSDataSourceCacheMetaData.h"
 
-// Key for the meta data object in the cache dictionary
-extern NSString * const UTCSDataSourceCacheMetaDataName;
+
+#pragma mark - Forward Declarations
+
+@class UTCSDataSourceCache;
+
+
+#pragma mark - Constants
 
 // Key for the original cached object in the cache dictionary
 extern NSString * const UTCSDataSourceCacheValuesName;
 
-@class UTCSDataSourceCache;
+// Key for the meta data object in the cache dictionary
+extern NSString * const UTCSDataSourceCacheMetaDataName;
+
+
+#pragma mark - UTCSDataSourceCache Interface
 
 /**
  UTCSDataSourceCache is an abstract class that provides a simple-to-use API
@@ -29,22 +39,35 @@ extern NSString * const UTCSDataSourceCacheValuesName;
 @interface UTCSDataSourceCache : NSObject
 
 // -----
-// @name Creating a UTCSAbstractDataSourceCache
+// @name Creating a UTCSDataSourceCache
 // -----
 
+#pragma mark Creating a UTCSDataSourceCache
+
 /**
+ Designated initializer. Initializes a new instance of UTCSDataSourceCache.
+ @param service Name of the service whose data is being cached. May not be nil.
+ @return        Newly initialized instance of UTCSDataSourceCache
  */
 - (instancetype)initWithService:(NSString *)service;
 
 // -----
-// @name Using a UTCSAbstractDataSourceCache
+// @name Using a UTCSDataSourceCache
 // -----
 
+#pragma mark Using a UTCSDataSourceCache
+
 /**
+ Retrieves an object associated with the given key from the cache.
+ @param key Key used to cache the object.
+ @return    Dictionary containing the object and its associated metadata. nil if no object found.
  */
 - (NSDictionary *)objectWithKey:(NSString *)key;
 
 /**
+ Caches an object and associates it with the given key.
+ @param object  Object to cache. May not be nil
+ @param key     Key to associate with the object. May not be nil.
  */
 - (void)cacheObject:(id)object withKey:(NSString *)key;
 
@@ -52,6 +75,11 @@ extern NSString * const UTCSDataSourceCacheValuesName;
 // @name Properties
 // -----
 
+#pragma mark Properties
+
+/**
+ Name of the service whose data is being cached.
+ */
 @property (nonatomic, readonly) NSString *service;
 
 @end

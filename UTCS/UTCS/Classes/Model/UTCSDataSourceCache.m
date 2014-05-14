@@ -11,15 +11,18 @@
 
 #pragma mark - Constants
 
+// Key for the original cached object in the cache dictionary
 NSString * const UTCSDataSourceCacheValuesName    = @"UTCSDataSourceCacheValuesName";
+
+// Key for the meta data object in the cache dictionary
 NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDataName";
 
 
-#pragma mark - UTCSAbstractDataSourceCache Implementation
+#pragma mark - UTCSDataSourceCache Implementation
 
 @implementation UTCSDataSourceCache
 
-#pragma mark Creating a UTCSAbstractDataSourceCache
+#pragma mark Creating a UTCSDataSourceCache
 
 - (instancetype)initWithService:(NSString *)service
 {
@@ -29,7 +32,7 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
     return self;
 }
 
-#pragma mark Using a UTCSAbstractDataSourceCache
+#pragma mark Using a UTCSDataSourceCache
 
 - (NSDictionary *)objectWithKey:(NSString *)key
 {
@@ -37,12 +40,8 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
         return nil;
     }
     
-    NSString *primaryKey = [self primaryKeyForService:self.service forKey:key];
-    
-    NSLog(@"Cache Request : %@", primaryKey);
-    
-    NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:primaryKey];
-    
+    NSString *primaryKey    = [self primaryKeyForService:self.service forKey:key];
+    NSData *data            = [[NSUserDefaults standardUserDefaults]objectForKey:primaryKey];
     if (data) {
         NSDictionary *cache = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         return cache;
@@ -59,12 +58,10 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
     
     UTCSDataSourceCacheMetaData *metaData = [self metaDataForService:self.service];
     NSDictionary *cache = @{UTCSDataSourceCacheMetaDataName : metaData, UTCSDataSourceCacheValuesName : object};
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cache];
+    NSData *data        = [NSKeyedArchiver archivedDataWithRootObject:cache];
     
     NSString *primaryKey = [self primaryKeyForService:self.service forKey:key];
     [[NSUserDefaults standardUserDefaults]setObject:data forKey:primaryKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    NSLog(@"Cached : %@", primaryKey);
 }
 
 #pragma mark Helper
@@ -72,13 +69,14 @@ NSString * const UTCSDataSourceCacheMetaDataName  = @"UTCSDataSourceCacheMetaDat
 - (UTCSDataSourceCacheMetaData *)metaDataForService:(NSString *)service
 {
     UTCSDataSourceCacheMetaData *metaData = [UTCSDataSourceCacheMetaData new];
-    metaData.service = service;
-    metaData.timestamp = [NSDate date];
+    metaData.service    = service;
+    metaData.timestamp  = [NSDate date];
     return metaData;
 }
 
 - (NSString *)primaryKeyForService:(NSString *)service forKey:(NSString *)key
 {
+    // Name of service is prepended to given keys to reduce chance of collisions
     return [NSString stringWithFormat:@"%@_%@", service, key];
 }
 
