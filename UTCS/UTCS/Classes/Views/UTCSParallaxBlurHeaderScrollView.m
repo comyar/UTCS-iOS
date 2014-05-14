@@ -15,35 +15,38 @@
 #pragma mark - Constants
 
 // Factor by which the header translation is slowed down
-static const CGFloat parallaxFactor         = 0.5;
+static const CGFloat parallaxFactor                     = 0.5;
 
 // Height of the header image
-const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
+const CGFloat kUTCSParallaxBlurHeaderHeight             = 284.0;
 
-//
-static const CGFloat blurAlphaModifier      = 2.5;
+// Modifier for the rate at which the background image view's alpha changes
+static const CGFloat blurAlphaModifier                  = 2.5;
 
-static const CGFloat navigationBarHeight    = 44.0;
+// Height of the navigation bar
+static const CGFloat navigationBarHeight                = 44.0;
 
 // Content offset property string used for KVO
-static NSString * const contentOffsetPropertyString         = @"contentOffset";
-static NSString * const framePropertyString                 = @"frame";
+static NSString * const contentOffsetPropertyString     = @"contentOffset";
+
+// Frame property string used for KVO
+static NSString * const framePropertyString             = @"frame";
 
 
 #pragma mark - UTCSNewsDetailView Class Extension
 
 @interface UTCSParallaxBlurHeaderScrollView ()
 
-//
+// Mask used on the header to make header act as navigation bar
 @property (nonatomic) CAShapeLayer  *headerMask;
 
 // Scroll view managed by this view.
 @property (nonatomic) UIScrollView  *scrollView;
 
-//
+// Image view for displaying the header image
 @property (nonatomic) UIImageView   *headerImageView;
 
-//
+// Image view for displaying the blurred header image
 @property (nonatomic) UIImageView   *headerBlurredImageView;
 
 @end
@@ -89,11 +92,10 @@ static NSString * const framePropertyString                 = @"frame";
             scrollView;
         });
         
-        // Add subviews
-        [self addSubview:self.scrollView];
         [self.headerContainerView addSubview:self.headerImageView];
         [self.headerContainerView addSubview:self.headerBlurredImageView];
         [self addSubview:self.headerContainerView];
+        [self addSubview:self.scrollView];
     }
     return self;
 }
@@ -129,7 +131,7 @@ static NSString * const framePropertyString                 = @"frame";
     [self layoutIfNeeded];
 }
 
-#pragma mark Layout Subviews
+#pragma mark Layout 
 
 - (void)layoutSubviews
 {

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #pragma mark - Imports
 
 @import UIKit;
@@ -39,21 +40,21 @@ extern const CGFloat kUTCSParallaxBlurHeaderHeight;
 /**
  Image to display in the header.
  */
-@property (nonatomic) UIImage               *headerImage;
+@property (nonatomic) UIImage                   *headerImage;
 
 /**
  Blurred version of the header image.
  */
-@property (nonatomic) UIImage               *headerBlurredImage;
+@property (nonatomic) UIImage                   *headerBlurredImage;
 
 /**
  Container view for the header. The header may be customized by adding additional subviews to this view.
  */
-@property (nonatomic) UIView                *headerContainerView;
+@property (nonatomic) UIView                    *headerContainerView;
 
 /**
  Scroll view managed by this view.
  */
-@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (nonatomic, readonly) UIScrollView    *scrollView;
 
 @end
