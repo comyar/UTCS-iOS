@@ -14,7 +14,7 @@
 
 #pragma mark - Constants
 
-//
+// Duration of animations performed by this view
 static const CGFloat animationDuration      = 0.3;
 
 // Font size of the shimmering view
@@ -29,13 +29,15 @@ static const CGFloat subtitleLabelFontSize  = 17.0;
 // Font of the subtitle label
 static NSString * const subtitleLabelFont       = @"HelveticaNeue";
 
-//
+// Font name of the shimmering view's content view
 static NSString * const shimmeringViewFontName  = @"HelveticaNeue-Bold";
 
+// Font name of the update label
 static NSString * const updateLabelFontName     = @"HelveticaNeue";
 
-//
+// Name of the down arrow image
 static NSString * const downArrowImageName      = @"downArrow";
+
 
 #pragma mark - UTCSBackgroundBlurHeaderView Class Extension
 
@@ -64,25 +66,21 @@ static NSString * const downArrowImageName      = @"downArrow";
 {
     if (self = [super initWithFrame:frame]) {
         
-        // Shimmering view
         self.shimmeringView = ({
             FBShimmeringView *view = [[FBShimmeringView alloc]initWithFrame:CGRectZero];
-            
-                view.contentView = ({
-                    UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
-                    label.font          = [UIFont fontWithName:shimmeringViewFontName size:shimmeringViewFontSize];
-                    label.shadowColor   = [UIColor colorWithWhite:0.0 alpha:0.5];
-                    label.textAlignment = NSTextAlignmentCenter;
-                    label.shadowOffset  = CGSizeMake(0.0, 0.5);
-                    label.textColor     = [UIColor whiteColor];
-                    label.adjustsFontSizeToFitWidth = YES;
-                    label;
-                });
-            
+            view.contentView = ({
+                UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
+                label.font          = [UIFont fontWithName:shimmeringViewFontName size:shimmeringViewFontSize];
+                label.shadowColor   = [UIColor colorWithWhite:0.0 alpha:0.5];
+                label.textAlignment = NSTextAlignmentCenter;
+                label.shadowOffset  = CGSizeMake(0.0, 0.5);
+                label.textColor     = [UIColor whiteColor];
+                label.adjustsFontSizeToFitWidth = YES;
+                label;
+            });
             view;
         });
         
-        // Subtitle label
         self.subtitleLabel = ({
             UILabel *label      = [[UILabel alloc]initWithFrame:CGRectZero];
             label.frame         = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
@@ -96,7 +94,6 @@ static NSString * const downArrowImageName      = @"downArrow";
         });
         
         
-        // Down arrow image view
         self.downArrowImageView = ({
             UIImage *image = [[UIImage imageNamed:downArrowImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
@@ -104,10 +101,8 @@ static NSString * const downArrowImageName      = @"downArrow";
             imageView;
         });
         
-        // Activity indicator view
         self.activityIndicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
-        // Updated label
         self.updatedLabel = ({
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
             label.font = [UIFont fontWithName:updateLabelFontName size:updatedLabelFontSize];
@@ -116,7 +111,6 @@ static NSString * const downArrowImageName      = @"downArrow";
             label;
         });
         
-        // Add subviews
         [self addSubview:self.shimmeringView];
         [self addSubview:self.subtitleLabel];
         [self addSubview:self.downArrowImageView];
@@ -126,6 +120,8 @@ static NSString * const downArrowImageName      = @"downArrow";
     return self;
 }
 
+#pragma mark Using a UTCSActiveHeaderView
+
 - (void)showActiveAnimation:(BOOL)show
 {
     if (show) {
@@ -134,34 +130,30 @@ static NSString * const downArrowImageName      = @"downArrow";
         [self.activityIndicatorView stopAnimating];
     }
     
-    self.shimmeringView.shimmering = show;
+    self.shimmeringView.shimmering      = show;
     
     [UIView animateWithDuration:animationDuration animations:^{
-        self.updatedLabel.alpha = 1.0;
-        self.downArrowImageView.alpha = (show)? 0.0 : 1.0;
+        self.downArrowImageView.alpha   = !show;
     }];
 }
+
+#pragma mark Layout
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    // Shimmering view
     self.shimmeringView.frame           = CGRectMake(0.0, 0.0, 0.9 * CGRectGetWidth(self.bounds), shimmeringViewFontSize);
     self.shimmeringView.center          = CGPointMake(self.center.x, 0.7 * self.center.y);
     
-    // Subtitle label
-    self.subtitleLabel.frame    = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
-    self.subtitleLabel.center   = CGPointMake(self.center.x, 0.85 * self.center.y);
+    self.subtitleLabel.frame            = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 1.5 * subtitleLabelFontSize);
+    self.subtitleLabel.center           = CGPointMake(self.center.x, 0.85 * self.center.y);
     
-    // Down arrow image view
     self.downArrowImageView.frame       = CGRectMake(0.0, 0.0, 32, 16);
     self.downArrowImageView.center      = CGPointMake(self.center.x, 1.5 * self.center.y);
     
-    // Activity indicator view
     self.activityIndicatorView.center   = CGPointMake(self.center.x, 1.5 * self.center.y);
     
-    // Update label
     self.updatedLabel.frame             = CGRectMake(13.0, CGRectGetHeight(self.bounds) - updatedLabelFontSize - 8.0,
                                                      CGRectGetWidth(self.bounds) - 16.0, 1.5 * updatedLabelFontSize);
 }
