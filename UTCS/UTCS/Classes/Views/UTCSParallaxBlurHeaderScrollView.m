@@ -138,7 +138,6 @@ static NSString * const framePropertyString                 = @"frame";
                                                      CGRectGetWidth(self.bounds), kUTCSParallaxBlurHeaderHeight);
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
-    self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight), CGRectGetWidth(self.scrollView.bounds), navigationBarHeight)]CGPath];
 }
 
 #pragma mark Key-Value Observing Methods
@@ -148,19 +147,19 @@ static NSString * const framePropertyString                 = @"frame";
     if([keyPath isEqualToString:contentOffsetPropertyString] && object == self.scrollView) {
         CGFloat contentOffset = self.scrollView.contentOffset.y;
         
-        if (contentOffset > 0.0 && contentOffset < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
+        if (contentOffset >= 0.0 && contentOffset < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
             self.headerContainerView.frame = ({
                 CGRect frame = self.headerContainerView.frame;
                 frame.origin.y = -parallaxFactor * contentOffset;
                 frame;
             });
-            self.headerContainerView.layer.mask = nil;
             [self bringSubviewToFront:self.scrollView];
         } else {
             [self bringSubviewToFront:self.headerContainerView];
         }
         
         if (contentOffset >= CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
+            self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, -self.headerContainerView.frame.origin.y, CGRectGetWidth(self.scrollView.bounds), navigationBarHeight)]CGPath];
             self.headerContainerView.layer.mask = self.headerMask;
         } else {
             self.headerContainerView.layer.mask = nil;
