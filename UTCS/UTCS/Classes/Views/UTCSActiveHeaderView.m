@@ -133,6 +133,7 @@ static NSString * const downArrowImageName      = @"downArrow";
     self.shimmeringView.shimmering      = show;
     
     [UIView animateWithDuration:animationDuration animations:^{
+        self.updatedLabel.alpha         = 1.0;
         self.downArrowImageView.alpha   = !show;
     }];
 }

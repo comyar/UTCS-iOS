@@ -99,7 +99,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (void)update
 {
     if ([self.dataSource shouldUpdate]) {
-        
         [self.activeHeaderView showActiveAnimation:YES];
     }
     

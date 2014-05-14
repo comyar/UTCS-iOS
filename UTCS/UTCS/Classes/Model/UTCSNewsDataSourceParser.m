@@ -15,6 +15,7 @@
 
 #import "UIImage+ImageEffects.h"
 #import "UIImage+CZTinting.h"
+#import <AFNetworking/AFNetworking.h>
 
 #pragma mark - Constants
 
@@ -49,11 +50,15 @@ static const CGFloat minHeaderImageHeight   = 250.0;
         if (foundHeader) {
             return;
         }
+        
         // Do synchronously on a background thread so update isn't finished until all headers are downloaded
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            NSLog(@"sync block");
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            NSURLResponse *response;
+            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+            
+            if (data) {
                 UIImage *image = [UIImage imageWithData:data];
                 
                 if (image.size.width >= minHeaderImageWidth && image.size.height >= minHeaderImageHeight) {
@@ -67,11 +72,9 @@ static const CGFloat minHeaderImageHeight   = 250.0;
                                                                          maskImage:nil];
                     foundHeader = YES;
                 }
-            }];
-            
+            }
         });
     }
-    NSLog(@"end set header");
 }
 
 

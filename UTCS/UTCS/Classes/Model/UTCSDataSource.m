@@ -18,6 +18,7 @@
 
 @implementation UTCSDataSource
 @synthesize data                        = _data;
+@synthesize updated                     = _updated;
 @synthesize parser                      = _parser;
 @synthesize cache                       = _cache;
 @synthesize primaryCacheKey             = _primaryCacheKey;
@@ -80,7 +81,7 @@
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
                 _data       = [self.parser parseValues:values]; // Parse the downloaded data using the parser
-                _updated    = [NSDate date]; // Set the updated time
+                _updated    = [NSDate date];                    // Set the updated time
                 
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     if (completion) {
