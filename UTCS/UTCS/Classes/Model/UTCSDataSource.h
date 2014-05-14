@@ -10,7 +10,7 @@
 #pragma mark - Imports
 
 @import Foundation;
-#import "UTCSDataRequestServicer.h"
+#import "UTCSDataRequest.h"
 
 
 #pragma mark - Forward Declarations

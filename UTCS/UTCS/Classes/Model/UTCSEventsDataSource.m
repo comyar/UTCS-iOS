@@ -12,7 +12,7 @@
 // Models
 #import "UTCSEvent.h"
 #import "UTCSEventsDataSource.h"
-#import "UTCSDataRequestServicer.h"
+#import "UTCSDataRequest.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSEventsDataSourceParser.h"
 
