@@ -7,8 +7,12 @@
 //
 
 
+#pragma mark - Imports
+
 @import Foundation;
 
+
+#pragma mark - UTCSNewsArticle Interface
 
 /**
  UTCSNewsArticle is a concrete object that represents a single UTCS news article.
@@ -18,6 +22,8 @@
 // -----
 // @name Properties
 // -----
+
+#pragma mark Properties
 
 /**
  Title of the news article.
@@ -39,7 +45,9 @@
  */
 @property (nonatomic) NSString                  *html;
 
-
+/**
+ URLs of all images appearing in the news article
+ */
 @property (nonatomic) NSArray                   *imageURLs;
 
 /**

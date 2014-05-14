@@ -12,20 +12,44 @@
 #import "UTCSNewsArticle.h"
 #import "NSAttributedString+Trim.h"
 
+
 #pragma mark - Constants
 
-// NSCoding keys
+// Key for encoding title
 static NSString * const titleKey                = @"title";
+
+// Key for encoding url
 static NSString * const urlKey                  = @"url";
+
+// Key for encoding data
 static NSString * const dateKey                 = @"date";
+
+// Key for encoding html
 static NSString * const htmlKey                 = @"html";
+
+// Key for encoding attributedContent
 static NSString * const attributedContentKey    = @"attributedContent";
+
+// Key for encoding headerImage
 static NSString * const headerImageKey          = @"headerImage";
+
+// Key for encoding headerBlurredImage
 static NSString * const headerBlurredImageKey   = @"headerBlurredImage";
+
+// Key for encoding imageURLs
 static NSString * const imageURLsKey            = @"imageURLs";
 
 // Font to use for a news article's text
-static NSString * const articleFont = @"HelveticaNeue-Light";
+static NSString * const articleFont             = @"HelveticaNeue-Light";
+
+// Space between lines in the article text
+static const CGFloat lineSpacing        = 6.0;
+
+// Space between paragraphs in the article text
+static const CGFloat paragraphSpacing   = 16.0;
+
+// Amount to increase the parsed font size of articles
+static const CGFloat fontSizeModifier   = 1.5;
 
 
 #pragma mark - UTCSNewsStory Implementation
@@ -104,12 +128,12 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
             
             // Create a new font from the attributes
             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.5 * htmlFont.pointSize];
+            UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:fontSizeModifier* htmlFont.pointSize];
             
             // Configure line/paragraph spacing
             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineSpacing = 6.0;
-            paragraphStyle.paragraphSpacing = 16.0;
+            paragraphStyle.lineSpacing      = lineSpacing;
+            paragraphStyle.paragraphSpacing = paragraphSpacing;
             
             // Add the attributes to attributedHTML to simplify skipping content
             [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
@@ -127,10 +151,11 @@ static NSString * const articleFont = @"HelveticaNeue-Light";
         }
     }];
     
-    // Remove extra newlines and whitespace
+    // Remove extra newlines and whitespace from within article text
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"((\n|\r){2,})" options:0 error:nil];
     [regex replaceMatchesInString:[attributedContent mutableString] options:0 range:NSMakeRange(0, [attributedContent length]) withTemplate:@""];
     
+    // Trim leading/trailing whitespace
     _attributedContent = [attributedContent attributedStringByTrimming:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
