@@ -13,7 +13,7 @@ typedef void (^UTCSAuthenticationCompletion) (BOOL success, NSError *error);
 
 extern NSString * const UTCSAuthenticationErrorDomain;
 
-typedef NS_ENUM(u_int16_t, UTCSAuthenticationErrorCode) {
+typedef NS_ENUM(int8_t, UTCSAuthenticationErrorCode) {
     UTCSAuthenticationConnectionErrorCode   = -1,
     UTCSAuthenticationAccessDeniedErrorCode = -2
 };
