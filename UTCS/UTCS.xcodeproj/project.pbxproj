@@ -53,7 +53,6 @@
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
 		DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
-		DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */; };
 		DD95E734191F2A6A0062F4E9 /* UIImage+Cacheless.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */; };
 		DD95E740191F377E0062F4E9 /* directoryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */; };
 		DD95E741191F377E0062F4E9 /* diskQuotaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E73A191F377E0062F4E9 /* diskQuotaBackground@2x.png */; };
@@ -194,8 +193,6 @@
 		DD9475D0190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSegmentedControlTableViewCell.h; path = Views/UTCSSegmentedControlTableViewCell.h; sourceTree = "<group>"; };
 		DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSegmentedControlTableViewCell.m; path = Views/UTCSSegmentedControlTableViewCell.m; sourceTree = "<group>"; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
-		DD9475EA190CEAA60049FB8B /* UTCSUpdateTextFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSUpdateTextFactory.h; path = Model/UTCSUpdateTextFactory.h; sourceTree = "<group>"; };
-		DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSUpdateTextFactory.m; path = Model/UTCSUpdateTextFactory.m; sourceTree = "<group>"; };
 		DD95E732191F2A6A0062F4E9 /* UIImage+Cacheless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cacheless.h"; path = "Categories/UIImage+Cacheless.h"; sourceTree = "<group>"; };
 		DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cacheless.m"; path = "Categories/UIImage+Cacheless.m"; sourceTree = "<group>"; };
 		DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directoryBackground@2x.png"; sourceTree = "<group>"; };
@@ -646,15 +643,6 @@
 			name = svg;
 			sourceTree = "<group>";
 		};
-		DD9475E9190CEA940049FB8B /* UpdateTextFactory */ = {
-			isa = PBXGroup;
-			children = (
-				DD9475EA190CEAA60049FB8B /* UTCSUpdateTextFactory.h */,
-				DD9475EB190CEAA60049FB8B /* UTCSUpdateTextFactory.m */,
-			);
-			name = UpdateTextFactory;
-			sourceTree = "<group>";
-		};
 		DD95E731191F2A5B0062F4E9 /* UIImage+Cacheless */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,7 +785,6 @@
 			isa = PBXGroup;
 			children = (
 				DD95E75F1922954C0062F4E9 /* AuthenticationManager */,
-				DD9475E9190CEA940049FB8B /* UpdateTextFactory */,
 				DDA758B51905FDB6007CD0DB /* StateManager */,
 				DDA758A61905E78D007CD0DB /* Cache */,
 				DD87617519028247005FEE4E /* DataRequestServicer */,
@@ -1158,7 +1145,6 @@
 				DD8989A91903C205000F1041 /* UTCSNavigationController.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */,
-				DD9475EC190CEAA60049FB8B /* UTCSUpdateTextFactory.m in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,
 				DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */,
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,

@@ -18,7 +18,6 @@
 #import "JVFloatLabeledTextField.h"
 #import "PocketSVG.h"
 #import "DPMeterView.h"
-#import "UTCSUpdateTextFactory.h"
 
 
 // Categories
@@ -280,7 +279,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     if ([self.dataSource shouldUpdate]) {
         MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHUD.mode = MBProgressHUDModeIndeterminate;
-        progressHUD.labelText = [UTCSUpdateTextFactory randomUpdateText];
+        progressHUD.labelText = @[@"Fetching", @"Decoding", @"Executing"][arc4random() % 3];
         
         [self.dataSource updateWithArgument:self.usernameTextField.text completion:^(BOOL success, BOOL cacheHit) {
             
