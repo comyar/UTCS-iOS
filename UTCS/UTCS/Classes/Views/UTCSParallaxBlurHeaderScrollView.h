@@ -28,7 +28,7 @@ extern const CGFloat kUTCSParallaxBlurHeaderHeight;
  The header displays a background image and simulates a dynamic blurring effect by adjusting the opacity of a blurred image 
  as the scroll view's content offset changes. The header may be customized by adding additional subviews to the headerContainerView.
  */
-@interface UTCSParallaxBlurHeaderScrollView : UIView <UIScrollViewDelegate>
+@interface UTCSParallaxBlurHeaderScrollView : UIView
 
 // -----
 // @name Properties
@@ -50,12 +50,6 @@ extern const CGFloat kUTCSParallaxBlurHeaderHeight;
  Container view for the header. The header may be customized by adding additional subviews to this view.
  */
 @property (nonatomic) UIView                *headerContainerView;
-
-////
-//@property (nonatomic, readonly) UIImageView   *headerImageView;
-//
-////
-//@property (nonatomic, readonly) UIImageView   *headerBlurredImageView;
 
 /**
  Scroll view managed by this view.

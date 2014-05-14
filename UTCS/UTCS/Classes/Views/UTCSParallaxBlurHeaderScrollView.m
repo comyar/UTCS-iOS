@@ -25,6 +25,10 @@ static const CGFloat blurAlphaModifier      = 2.5;
 
 static const CGFloat navigationBarHeight    = 44.0;
 
+// Content offset property string used for KVO
+static NSString * const contentOffsetPropertyString         = @"contentOffset";
+static NSString * const framePropertyString                 = @"frame";
+
 
 #pragma mark - UTCSNewsDetailView Class Extension
 
@@ -72,6 +76,7 @@ static const CGFloat navigationBarHeight    = 44.0;
         
         self.headerContainerView = ({
             UIView *view = [UIView new];
+            [view addObserver:self forKeyPath:framePropertyString options:NSKeyValueObservingOptionNew context:nil];
             view.userInteractionEnabled = NO;
             view.layer.masksToBounds    = YES;
             view;
@@ -79,8 +84,8 @@ static const CGFloat navigationBarHeight    = 44.0;
         
         self.scrollView = ({
             UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
+            [scrollView addObserver:self forKeyPath:contentOffsetPropertyString options:NSKeyValueObservingOptionNew context:nil];
             scrollView.alwaysBounceVertical = YES;
-            scrollView.delegate = self;
             scrollView;
         });
         
@@ -98,6 +103,7 @@ static const CGFloat navigationBarHeight    = 44.0;
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
+    self.scrollView.frame = self.bounds;
     [self layoutIfNeeded];
 }
 
@@ -128,57 +134,52 @@ static const CGFloat navigationBarHeight    = 44.0;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.scrollView.frame               = self.bounds;
     self.headerContainerView.frame      = CGRectMake(0.0, -parallaxFactor * self.scrollView.contentOffset.y,
                                                      CGRectGetWidth(self.bounds), kUTCSParallaxBlurHeaderHeight);
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
-    self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0), CGRectGetWidth(self.scrollView.bounds), 44.0)]CGPath];
-    NSLog(@"layout subviews");
+    self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight), CGRectGetWidth(self.scrollView.bounds), navigationBarHeight)]CGPath];
 }
 
-#pragma mark UIScrollViewDelegate Methods
+#pragma mark Key-Value Observing Methods
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if(scrollView == self.scrollView) {
-        if(scrollView.contentOffset.y > 0) {
-            
-            if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
-                self.headerContainerView.frame = ({
-                    CGRect frame = self.headerContainerView.frame;
-                    frame.origin.y = -parallaxFactor * scrollView.contentOffset.y;
-                    frame;
-                });
-                self.headerContainerView.layer.mask = nil;
-                [self bringSubviewToFront:self.scrollView];
-                
-            } else {
-                
-                self.headerContainerView.frame = ({
-                    CGRect frame = self.headerContainerView.frame;
-                    frame.origin.y = -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight);
-                    frame;
-                });
-                self.headerContainerView.layer.mask = self.headerMask;
-                [self bringSubviewToFront:self.headerContainerView];
-            }
+    if([keyPath isEqualToString:contentOffsetPropertyString] && object == self.scrollView) {
+        CGFloat contentOffset = self.scrollView.contentOffset.y;
+        
+        if (contentOffset > 0.0 && contentOffset < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
+            self.headerContainerView.frame = ({
+                CGRect frame = self.headerContainerView.frame;
+                frame.origin.y = -parallaxFactor * contentOffset;
+                frame;
+            });
+            self.headerContainerView.layer.mask = nil;
+            [self bringSubviewToFront:self.scrollView];
         } else {
-            
+            [self bringSubviewToFront:self.headerContainerView];
+        }
+        
+        if (contentOffset >= CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
+            self.headerContainerView.layer.mask = self.headerMask;
+        } else {
+            self.headerContainerView.layer.mask = nil;
+        }
+        
+        self.headerBlurredImageView.alpha = MIN(1.0, blurAlphaModifier * MAX(self.scrollView.contentOffset.y /
+                                                                             CGRectGetHeight(self.bounds), 0.0));
+        for(UIView *subview in self.headerContainerView.subviews) {
+            if(subview != self.headerBlurredImageView && subview != self.headerImageView) {
+                subview.alpha = MAX(0.0, 1.0 - self.headerBlurredImageView.alpha);
+            }
+        }
+    } else if ([keyPath isEqualToString:framePropertyString] && object == self.headerContainerView) {
+        if (self.headerContainerView.frame.origin.y > 0.0) {
             self.headerContainerView.frame = ({
                 CGRect frame = self.headerContainerView.frame;
                 frame.origin.y = 0.0;
                 frame;
             });
-            self.headerContainerView.layer.mask = nil;
-            [self bringSubviewToFront:self.headerContainerView];
-        }
-        
-        self.headerBlurredImageView.alpha = MIN(1.0, blurAlphaModifier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
-        for(UIView *subview in self.headerContainerView.subviews) {
-            if(subview != self.headerBlurredImageView && subview != self.headerImageView) {
-                subview.alpha = 1.0 - MIN(1.0, blurAlphaModifier * MAX(scrollView.contentOffset.y / CGRectGetHeight(self.bounds), 0.0));
-            }
         }
     }
 }
