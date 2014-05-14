@@ -22,31 +22,38 @@
 
 #pragma mark - Constants
 
-//
+// Name of the news service.
 NSString * const UTCSNewsServiceName                    = @"news";
 
-// Key used to cache news articles
+// Key used to cache news articles.
 NSString * const UTCSNewsDataSourceCacheKey             = @"UTCSNewsDataSourceCacheKey";
 
-// News table view cell identifier
+// News table view cell identifier.
 static NSString * const UTCSNewsTableViewCellIdentifier = @"UTCSNewsTableViewCell";
 
-// Name of the image to use for a table view cell's accessory view
+// Name of the image to use for a table view cell's accessory view.
 static NSString * const cellAccessoryImageName          = @"rightArrow";
+
+// Minimum time between updates
+static const NSTimeInterval minimumTimeBetweenUpdates   = 86400.0;  // 24 hours
 
 
 #pragma mark - UTCSNewsStoryDataSource Implementation
 
 @implementation UTCSNewsDataSource
 
+#pragma mark Creating a Data Source
+
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
-        _minimumTimeBetweenUpdates = 86400; // 24 hours
+        _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
         _parser = [UTCSNewsDataSourceParser new];
+        
         _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
         _primaryCacheKey = UTCSNewsDataSourceCacheKey;
         
+        // Check for cached data
         NSDictionary *cache = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
         if (cache) {
             UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];

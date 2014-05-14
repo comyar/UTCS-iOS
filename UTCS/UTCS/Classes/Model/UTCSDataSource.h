@@ -88,7 +88,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 // @name Creating a UTCSDataSource
 // -----
 
-#pragma mark Creating a UTCSDataSource
+#pragma mark Creating a Data Source
 
 /**
  Designated initializer. Initializes a new instance of UTCSDataSource.
@@ -102,7 +102,7 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 // @name Using a UTCSDataSource
 // -----
 
-#pragma mark Using a UTCSDataSource
+#pragma mark Using a Data Source
 
 /**
  Returns YES if the data source should update
