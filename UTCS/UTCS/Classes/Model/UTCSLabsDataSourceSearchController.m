@@ -12,6 +12,7 @@
 
 
 @implementation UTCSLabsDataSourceSearchController
+@synthesize searchResults = _searchResults;
 
 - (void)searchWithQuery:(NSString *)query scope:(NSString *)scope completion:(UTCSDataSourceSearchCompletion)completion
 {
@@ -30,7 +31,7 @@
     NSArray *machines = [machineValues allValues];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lab = %@ AND name BEGINSWITH %@", labName, query];
-    self.searchResults = [machines filteredArrayUsingPredicate:predicate];
+    _searchResults = [machines filteredArrayUsingPredicate:predicate];
     
     if (completion) {
         completion(self.searchResults);

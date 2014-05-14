@@ -160,7 +160,7 @@
         hud.mode = MBProgressHUDModeIndeterminate;
     }
     
-    [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+    [self.dataSource updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
         
         self.thirdFloorLabViewController.shimmeringView.shimmering = NO;
         self.basementLabViewController.shimmeringView.shimmering = NO;

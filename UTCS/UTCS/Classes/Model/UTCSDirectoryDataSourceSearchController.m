@@ -13,6 +13,7 @@
 
 
 @implementation UTCSDirectoryDataSourceSearchController
+@synthesize searchResults = _searchResults;
 
 - (void)searchWithQuery:(NSString *)query scope:(NSString *)scope completion:(UTCSDataSourceSearchCompletion)completion
 {
@@ -38,7 +39,7 @@
     }
     
     UTCSDirectoryDataSource *dataSource = (UTCSDirectoryDataSource *)self.dataSource;
-    self.searchResults = [dataSource.flatDirectory filteredArrayUsingPredicate:predicate];
+    _searchResults = [dataSource.flatDirectory filteredArrayUsingPredicate:predicate];
     if (completion) {
         completion(self.searchResults);
     }

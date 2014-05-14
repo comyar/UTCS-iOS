@@ -9,11 +9,7 @@
 #pragma mark - Imports
 
 #import "UTCSTableViewController.h"
-
-
-#pragma mark - Forward Declarations
-
-@class UTCSActiveHeaderView;
+#import "UTCSActiveHeaderView.h"
 
 
 #pragma mark - UTCSHeaderTableViewController Interface

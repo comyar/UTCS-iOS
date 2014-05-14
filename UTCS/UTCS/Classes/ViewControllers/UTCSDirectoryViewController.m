@@ -152,7 +152,7 @@
         progressHUD.mode = MBProgressHUDModeIndeterminate;
         progressHUD.labelText = @"Syncing";
         
-        [self updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+        [self.dataSource updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
             
             if (success && !cacheHit) {
                 [((UTCSDirectoryDataSource *)self.dataSource) buildFlatDirectory];

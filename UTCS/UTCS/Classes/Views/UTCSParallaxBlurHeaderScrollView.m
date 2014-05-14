@@ -23,6 +23,7 @@ const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
 //
 static const CGFloat blurAlphaModifier      = 2.5;
 
+static const CGFloat navigationBarHeight    = 44.0;
 
 
 #pragma mark - UTCSNewsDetailView Class Extension
@@ -40,8 +41,6 @@ static const CGFloat blurAlphaModifier      = 2.5;
 
 //
 @property (nonatomic) UIImageView   *headerBlurredImageView;
-
-
 
 @end
 
@@ -135,6 +134,7 @@ static const CGFloat blurAlphaModifier      = 2.5;
     self.headerImageView.frame          = self.headerContainerView.bounds;
     self.headerBlurredImageView.frame   = self.headerContainerView.bounds;
     self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0), CGRectGetWidth(self.scrollView.bounds), 44.0)]CGPath];
+    NSLog(@"layout subviews");
 }
 
 #pragma mark UIScrollViewDelegate Methods
@@ -144,7 +144,7 @@ static const CGFloat blurAlphaModifier      = 2.5;
     if(scrollView == self.scrollView) {
         if(scrollView.contentOffset.y > 0) {
             
-            if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - 44.0) {
+            if(scrollView.contentOffset.y < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
                 self.headerContainerView.frame = ({
                     CGRect frame = self.headerContainerView.frame;
                     frame.origin.y = -parallaxFactor * scrollView.contentOffset.y;
@@ -157,7 +157,7 @@ static const CGFloat blurAlphaModifier      = 2.5;
                 
                 self.headerContainerView.frame = ({
                     CGRect frame = self.headerContainerView.frame;
-                    frame.origin.y = -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - 44.0);
+                    frame.origin.y = -parallaxFactor * (CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight);
                     frame;
                 });
                 self.headerContainerView.layer.mask = self.headerMask;
