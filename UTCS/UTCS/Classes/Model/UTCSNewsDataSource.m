@@ -22,6 +22,9 @@
 
 #pragma mark - Constants
 
+//
+NSString * const UTCSNewsServiceName                    = @"news";
+
 // Key used to cache news articles
 NSString * const UTCSNewsDataSourceCacheKey             = @"UTCSNewsDataSourceCacheKey";
 

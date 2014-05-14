@@ -22,10 +22,19 @@ static const CGFloat blurAlphaModifier              = 2.0;
 static NSString * const contentOffsetPropertyString = @"contentOffset";
 
 
-#pragma mark - UTCSAbstractHeaderTableViewController Implementation
+#pragma mark - UTCSHeaderTableViewController Class Extension
+
+@interface UTCSHeaderTableViewController ()
+
+// Image view intended to display a blurred version of the  view controller's background image
+@property (nonatomic) UIImageView     *backgroundBlurredImageView;
+
+@end
+
+
+#pragma mark - UTCSHeaderTableViewController Implementation
 
 @implementation UTCSHeaderTableViewController
-@synthesize backgroundBlurredImageView = _backgroundBlurredImageView;
 
 #pragma mark Creating a UTCSHeaderTableViewController
 
@@ -45,8 +54,8 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
         
         [self.tableView addObserver:self forKeyPath:contentOffsetPropertyString options:NSKeyValueObservingOptionNew context:nil];
         
-        _backgroundBlurredImageView = ({
-            UIImageView *imageView  = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        self.backgroundBlurredImageView = ({
+            UIImageView *imageView  = [UIImageView new];
             imageView.contentMode   = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
             imageView.alpha         = 0.0;
@@ -67,7 +76,7 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view insertSubview:_backgroundBlurredImageView aboveSubview:self.backgroundImageView];
+    [self.view insertSubview:self.backgroundBlurredImageView aboveSubview:self.backgroundImageView];
 }
 
 - (void)viewDidLayoutSubviews

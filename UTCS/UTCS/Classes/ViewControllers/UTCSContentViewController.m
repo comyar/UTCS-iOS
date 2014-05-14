@@ -17,7 +17,10 @@
 @interface UTCSContentViewController ()
 
 // Button that shows the menu.
-@property (nonatomic) UIButton *menuButton;
+@property (nonatomic) UIButton      *menuButton;
+
+// Image view for displaying a background image
+@property (nonatomic) UIImageView   *backgroundImageView;
 
 @end
 
@@ -31,14 +34,14 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"";  // Hides the word 'Back' in a navigation controller's back button
         
-        _backgroundImageView = ({
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        self.menuButton = [UIButton menuButton];
+        
+        self.backgroundImageView = ({
+            UIImageView *imageView = [UIImageView new];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
             imageView;
         });
-        
-        _menuButton = [UIButton menuButton];
     }
     return self;
 }
@@ -46,8 +49,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:_backgroundImageView];
-    [self.view addSubview:_menuButton];
+    [self.view addSubview:self.backgroundImageView];
+    [self.view addSubview:self.menuButton];
 }
 
 - (void)viewDidLayoutSubviews

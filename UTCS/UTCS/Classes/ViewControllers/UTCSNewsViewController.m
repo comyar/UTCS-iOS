@@ -14,20 +14,23 @@
 #import "UTCSNewsViewController.h"
 #import "UTCSNewsDetailViewController.h"
 
-#import "UIColor+UTCSColors.h"
 #import "UIImage+Cacheless.h"
+#import "UIColor+UTCSColors.h"
 
 
 #pragma mark - Constants
-
-// Name of the service used by this view controller
-static NSString * const serviceName                 = @"news";
 
 // Estimated height of table view cell
 static const CGFloat estimatedCellHeight            = 140.0;
 
 // Estimated height of a table view cell's detail label
 static const CGFloat estimatedCellDetailLabelHeight = 85.0;
+
+// Header title text
+static NSString * const headerTitleText             = @"UTCS News";
+
+// Header subtitle text
+static NSString * const headerSubtitleText          = @"What Starts Here Changes the World";
 
 // Name of the background image
 static NSString * const backgroundImageName         = @"newsBackground";
@@ -63,7 +66,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     if(self = [super initWithStyle:style]) {
-        self.dataSource             = [[UTCSNewsDataSource alloc]initWithService:serviceName];
+        self.dataSource             = [[UTCSNewsDataSource alloc]initWithService:UTCSNewsServiceName];
         self.dataSource.delegate    = self;
         
         self.tableView.dataSource   = (UTCSNewsDataSource *)self.dataSource;
@@ -73,8 +76,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
         
         self.activeHeaderView                   = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
-        ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS News";
-        self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
+        ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = headerTitleText;
+        self.activeHeaderView.subtitleLabel.text = headerSubtitleText;
     }
     return self;
 }
@@ -125,7 +128,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
             
         }
     }];
-    
 }
 
 #pragma mark UTCSDataSourceDelegate Methods
