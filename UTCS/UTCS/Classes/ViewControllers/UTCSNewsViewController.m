@@ -53,6 +53,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 @implementation UTCSNewsViewController
 
+#pragma mark Creating a News View Controller
+
 - (instancetype)init
 {
     return [self initWithStyle:UITableViewStylePlain];
@@ -82,6 +84,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     return self;
 }
 
+#pragma mark UIViewController Methods
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -98,9 +102,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 
 - (void)update
 {
-    if ([self.dataSource shouldUpdate]) {
-        [self.activeHeaderView showActiveAnimation:YES];
-    }
+    [self.activeHeaderView showActiveAnimation:YES];
     
     [self.dataSource updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
         

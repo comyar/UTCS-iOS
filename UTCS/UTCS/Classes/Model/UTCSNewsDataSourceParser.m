@@ -45,7 +45,7 @@ static const CGFloat minHeaderImageHeight   = 250.0;
 
 @implementation UTCSNewsDataSourceParser
 
-#pragma mark Using a UTCSDataSourceParser
+#pragma mark Using a News Data Source Parser
 
 - (NSArray *)parseValues:(NSArray *)values
 {

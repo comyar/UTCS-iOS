@@ -28,7 +28,7 @@
 // @name Using a UTCSDataSourceParser
 // -----
 
-#pragma mark Using a UTCSDataSourceParser
+#pragma mark Using a Data Source Parser
 
 /**
  Parses the given downloaded values into an object or collection of objects
