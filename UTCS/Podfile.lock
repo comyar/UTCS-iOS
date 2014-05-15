@@ -24,6 +24,7 @@ PODS:
   - NMSSH (2.1.0)
   - PocketSVG (0.5)
   - pop (1.0.4)
+  - RQShineLabel (0.1.0)
   - Shimmer (1.0.1)
   - Tweaks (1.1.0)
 
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - NMSSH
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
   - pop
+  - RQShineLabel
   - Shimmer
   - Tweaks
 
@@ -52,6 +54,7 @@ SPEC CHECKSUMS:
   NMSSH: ff9b46292e94df1bca588eadb164c917bff8c7d5
   PocketSVG: d9e6b6951adf25d3c1011e87296a89b5f5c99a29
   pop: 63a4f5e8942077fed2efe195036ecc572c71c48c
+  RQShineLabel: e9420786d0ab107fd74aafc257037d6da06b5ab3
   Shimmer: a1b92685f04ae7363e655f636a41a276dbb1507e
   Tweaks: 9337b5c9466d828bd6d69af3ccc124097472efad
 

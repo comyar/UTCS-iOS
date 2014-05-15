@@ -24,6 +24,7 @@
 #import "UTCSVerticalMenuViewController.h"
 
 // Managers
+#import "UTCSOnboardingManager.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSAuthenticationManager.h"
 
@@ -108,6 +109,7 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Purge any old starred events from disk
+    [[UTCSOnboardingManager sharedManager]applicationDidBecomeActive];
     [[UTCSStarredEventsManager sharedManager]purgePastEvents];
 }
 

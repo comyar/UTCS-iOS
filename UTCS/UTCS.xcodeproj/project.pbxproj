@@ -70,6 +70,9 @@
 		DD95E7621922955E0062F4E9 /* UTCSAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* UTCSAuthenticationManager.m */; };
 		DD95E765192296E20062F4E9 /* hosts.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD95E764192296E20062F4E9 /* hosts.plist */; };
 		DD95E76C1924CEFE0062F4E9 /* UTCSServiceErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E76B1924CEFE0062F4E9 /* UTCSServiceErrorView.m */; };
+		DD95E770192557320062F4E9 /* UTCSOnboardingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E76F192557320062F4E9 /* UTCSOnboardingManager.m */; };
+		DD95E77419255A880062F4E9 /* UTCSWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E77319255A880062F4E9 /* UTCSWelcomeViewController.m */; };
+		DD95E77A192568BD0062F4E9 /* welcomeBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E779192568BD0062F4E9 /* welcomeBackground@2x.png */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
@@ -217,6 +220,11 @@
 		DD95E764192296E20062F4E9 /* hosts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = hosts.plist; path = UTCS/hosts.plist; sourceTree = SOURCE_ROOT; };
 		DD95E76A1924CEFE0062F4E9 /* UTCSServiceErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSServiceErrorView.h; path = Views/UTCSServiceErrorView.h; sourceTree = "<group>"; };
 		DD95E76B1924CEFE0062F4E9 /* UTCSServiceErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSServiceErrorView.m; path = Views/UTCSServiceErrorView.m; sourceTree = "<group>"; };
+		DD95E76E192557320062F4E9 /* UTCSOnboardingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSOnboardingManager.h; path = Model/UTCSOnboardingManager.h; sourceTree = "<group>"; };
+		DD95E76F192557320062F4E9 /* UTCSOnboardingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSOnboardingManager.m; path = Model/UTCSOnboardingManager.m; sourceTree = "<group>"; };
+		DD95E77219255A880062F4E9 /* UTCSWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSWelcomeViewController.h; path = ViewControllers/UTCSWelcomeViewController.h; sourceTree = "<group>"; };
+		DD95E77319255A880062F4E9 /* UTCSWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSWelcomeViewController.m; path = ViewControllers/UTCSWelcomeViewController.m; sourceTree = "<group>"; };
+		DD95E779192568BD0062F4E9 /* welcomeBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcomeBackground@2x.png"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -366,7 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC2F5D219047748006011F0 /* Abstract */,
-				DDA758EE19081DE4007CD0DB /* Common */,
+				DDA758EE19081DE4007CD0DB /* General */,
 				DD5B586C18D23DD200EEB474 /* Navigation */,
 				DDA7589C1904F60A007CD0DB /* Services */,
 				DD87616A1900FCA4005FEE4E /* Settings */,
@@ -662,6 +670,7 @@
 		DD95E738191F377E0062F4E9 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E779192568BD0062F4E9 /* welcomeBackground@2x.png */,
 				DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */,
 				DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */,
 				DD95E739191F377E0062F4E9 /* directoryBackground@2x.png */,
@@ -701,6 +710,32 @@
 				DD95E76B1924CEFE0062F4E9 /* UTCSServiceErrorView.m */,
 			);
 			name = ServiceErrorView;
+			sourceTree = "<group>";
+		};
+		DD95E76D192557210062F4E9 /* OnboardingManager */ = {
+			isa = PBXGroup;
+			children = (
+				DD95E76E192557320062F4E9 /* UTCSOnboardingManager.h */,
+				DD95E76F192557320062F4E9 /* UTCSOnboardingManager.m */,
+			);
+			name = OnboardingManager;
+			sourceTree = "<group>";
+		};
+		DD95E77119255A470062F4E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD95E775192565700062F4E9 /* Onboarding */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DD95E775192565700062F4E9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DD95E77219255A880062F4E9 /* UTCSWelcomeViewController.h */,
+				DD95E77319255A880062F4E9 /* UTCSWelcomeViewController.m */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		DDA758891904D28D007CD0DB /* Resources */ = {
@@ -779,18 +814,20 @@
 			name = StateManager;
 			sourceTree = "<group>";
 		};
-		DDA758EE19081DE4007CD0DB /* Common */ = {
+		DDA758EE19081DE4007CD0DB /* General */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E77119255A470062F4E9 /* Controllers */,
 				DDA758F019081DFE007CD0DB /* Views */,
 				DDA758EF19081DF3007CD0DB /* Models */,
 			);
-			name = Common;
+			name = General;
 			sourceTree = "<group>";
 		};
 		DDA758EF19081DF3007CD0DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E76D192557210062F4E9 /* OnboardingManager */,
 				DD95E75F1922954C0062F4E9 /* AuthenticationManager */,
 				DDA758B51905FDB6007CD0DB /* StateManager */,
 				DDA758A61905E78D007CD0DB /* Cache */,
@@ -1059,6 +1096,7 @@
 				DD95E746191F377E0062F4E9 /* settingsBackground@2x.png in Resources */,
 				DD95E740191F377E0062F4E9 /* directoryBackground@2x.png in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
+				DD95E77A192568BD0062F4E9 /* welcomeBackground@2x.png in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DD95E741191F377E0062F4E9 /* diskQuotaBackground@2x.png in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,
@@ -1118,6 +1156,7 @@
 				DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,
+				DD95E77419255A880062F4E9 /* UTCSWelcomeViewController.m in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				DDA758E41906661E007CD0DB /* UTCSLabMachineViewController.m in Sources */,
@@ -1174,6 +1213,7 @@
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */,
 				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
+				DD95E770192557320062F4E9 /* UTCSOnboardingManager.m in Sources */,
 				DDB694C21918D8B500C4B5E6 /* UTCSDirectoryDetailViewController.m in Sources */,
 				DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */,
 				DD95E734191F2A6A0062F4E9 /* UIImage+Cacheless.m in Sources */,

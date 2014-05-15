@@ -56,6 +56,11 @@
 @property (nonatomic) BOOL      hasStarredEvent;
 
 /**
+ YES if the user has completed the initial app onboarding
+ */
+@property (nonatomic) BOOL      hasCompleteOnboarding;
+
+/**
  YES if event notifications are enabled.
  
  Used by settings.

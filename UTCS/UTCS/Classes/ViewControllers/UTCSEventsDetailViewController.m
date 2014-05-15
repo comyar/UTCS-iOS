@@ -15,6 +15,7 @@
 #import "UIButton+UTCSButton.h"
 #import "NSString+CZContains.h"
 #import "UIView+CZPositioning.h"
+#import "UTCSOnboardingManager.h"
 #import "UTCSStarredEventsManager.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UTCSEventsDetailViewController.h"
@@ -351,13 +352,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 - (void)updateEventStar:(UTCSEvent *)event
 {
     if (![[UTCSStarredEventsManager sharedManager]containsEvent:event]) {
-        if (![UTCSStateManager sharedManager].hasStarredEvent) {
-            [[[UIAlertView alloc]initWithTitle:@"First Starred Event!"
-                                       message:@"You can be notified of starred events an hour before they start! Check your settings."
-                                      delegate:nil
-                             cancelButtonTitle:@"Ok"
-                             otherButtonTitles:nil]show];
-        }
+        [[UTCSOnboardingManager sharedManager]didStarEvent];
         self.starButtonImageView.image = [[UIImage imageNamed:starActiveImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [[UTCSStarredEventsManager sharedManager]addEvent:event];
     } else {

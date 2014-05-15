@@ -32,6 +32,8 @@ static NSString * const preferredLabKey                 = @"preferredLab";
 // Key to store authenticated
 static NSString * const authenticatedKey                = @"authenticated";
 
+static NSString * const hasCompleteOnboardingKey        = @"hasCompleteOnboarding";
+
 
 #pragma mark - UTCSSettingsManager Implementation
 
@@ -56,6 +58,7 @@ static NSString * const authenticatedKey                = @"authenticated";
         _hasStarredEvent            = [[NSUserDefaults standardUserDefaults]boolForKey:hasStarredEventKey];
         _eventNotifications         = [[NSUserDefaults standardUserDefaults]boolForKey:eventNotificationsKey];
         _preferredLab               = [[NSUserDefaults standardUserDefaults]integerForKey:preferredLabKey];
+        _hasCompleteOnboarding      = [[NSUserDefaults standardUserDefaults]boolForKey:hasCompleteOnboardingKey];
     }
     return self;
 }
@@ -96,6 +99,14 @@ static NSString * const authenticatedKey                = @"authenticated";
 {
     _authenticated = authenticated;
     [[NSUserDefaults standardUserDefaults]setBool:_authenticated forKey:authenticatedKey];
+}
+
+#pragma mark Onboarding
+
+- (void)setHasCompleteOnboarding:(BOOL)hasCompleteOnboarding
+{
+    _hasCompleteOnboarding = hasCompleteOnboarding;
+    [[NSUserDefaults standardUserDefaults]setBool:_hasCompleteOnboarding forKey:hasCompleteOnboardingKey];
 }
 
 #pragma mark Settings

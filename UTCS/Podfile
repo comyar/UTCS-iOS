@@ -8,6 +8,7 @@ pod 'pop'
 pod 'Tweaks'
 pod 'Shimmer'
 pod 'NMSSH'
+pod "RQShineLabel"
 pod 'DPMeterView'
 pod 'MBProgressHUD'
 pod "AFNetworking"
