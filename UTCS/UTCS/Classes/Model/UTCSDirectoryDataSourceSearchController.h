@@ -15,6 +15,8 @@
 #pragma mark - UTCSDirectoryDataSourceSearchController Interface
 
 /**
+ UTCSDirectoryDataSourceSearchController is a concrete class used to search the directory
+ data source.
  */
 @interface UTCSDirectoryDataSourceSearchController : UTCSDataSourceSearchController
 

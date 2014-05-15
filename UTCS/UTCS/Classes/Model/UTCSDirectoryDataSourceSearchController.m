@@ -20,6 +20,8 @@
 @implementation UTCSDirectoryDataSourceSearchController
 @synthesize searchResults = _searchResults;
 
+#pragma mark Using a Directory Data Source Search Controller
+
 - (void)searchWithQuery:(NSString *)query scope:(NSString *)scope completion:(UTCSDataSourceSearchCompletion)completion
 {
     if (!query && !scope) {
