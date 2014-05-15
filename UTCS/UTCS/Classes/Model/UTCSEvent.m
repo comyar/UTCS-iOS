@@ -6,29 +6,64 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #pragma mark - Imports
 
-// Models
 #import "UTCSEvent.h"
 
 
 #pragma mark - Constants
 
-// NSCoding keys
+// Key for encoding name
 static NSString * const nameKey                     = @"name";
+
+// Key for encoding contactName
 static NSString * const contactNameKey              = @"contactName";
+
+// Key for encoding contactEmail
 static NSString * const contactEmailKey             = @"contactEmail";
+
+// Key for encoding location
 static NSString * const locationKey                 = @"location";
+
+// Key for encoding description
 static NSString * const descriptionKey              = @"description";
+
+// Key for encoding attributedDescription
 static NSString * const attributedDescriptionKey    = @"attributedDescription";
+
+// Key for encoding type
 static NSString * const typeKey                     = @"type";
+
+// Key for encoding link
 static NSString * const linkKey                     = @"link";
+
+// Key for encoding startDate
 static NSString * const startDateKey                = @"startDate";
+
+// Key for encoding endDate
 static NSString * const endDateKey                  = @"endDate";
+
+// Key for encoding allDay
 static NSString * const allDayKey                   = @"allDay";
+
+// Key for encoding food
 static NSString * const foodKey                     = @"food";
+
+// Key for encoding eventID
 static NSString * const eventIDKey                  = @"eventID";
-static NSString * const calendarEventKey            = @"calendarKey";
+
+// Font name for the event description
+static NSString * const eventDescriptionFontName    = @"HelveticaNeue-Light";
+
+// Space between lines in the article text
+static const CGFloat lineSpacing                    = 6.0;
+
+// Space between paragraphs in the article text
+static const CGFloat paragraphSpacing               = 16.0;
+
+// Amount to increase the parsed font size of articles
+static const CGFloat fontSizeModifier               = 1.5;
 
 
 #pragma mark - UTCSEvent Implementation
@@ -52,7 +87,6 @@ static NSString * const calendarEventKey            = @"calendarKey";
         _endDate                = [aDecoder decodeObjectForKey:endDateKey];
         _allDay                 = [aDecoder decodeBoolForKey:allDayKey];
         _food                   = [aDecoder decodeBoolForKey:foodKey];
-        _calendarEvent          = [aDecoder decodeObjectForKey:calendarEventKey];
         _eventID                = [aDecoder decodeObjectForKey:eventIDKey];
     }
     return self;
@@ -72,7 +106,6 @@ static NSString * const calendarEventKey            = @"calendarKey";
     [aCoder encodeObject:_endDate               forKey:endDateKey];
     [aCoder encodeBool:_allDay                  forKey:allDayKey];
     [aCoder encodeBool:_food                    forKey:foodKey];
-    [aCoder encodeObject:_calendarEvent         forKey:calendarEventKey];
     [aCoder encodeObject:_eventID               forKey:eventIDKey];
 }
 
@@ -116,16 +149,16 @@ static NSString * const calendarEventKey            = @"calendarKey";
          NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
          
          // Change the font in the article
-         fontDescriptorAttributes[UIFontDescriptorNameAttribute] = @"HelveticaNeue-Light";
+         fontDescriptorAttributes[UIFontDescriptorNameAttribute] = eventDescriptionFontName;
          
          // Create a new font from the attributes
          UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];
-         UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:1.5 * htmlFont.pointSize];
+         UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:fontSizeModifier * htmlFont.pointSize];
          
          // Configure line/paragraph spacing
          NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-         paragraphStyle.lineSpacing = 6.0;
-         paragraphStyle.paragraphSpacing = 16.0;
+         paragraphStyle.lineSpacing         = lineSpacing;
+         paragraphStyle.paragraphSpacing    = paragraphSpacing;
          
          // Add the attributes to attributedHTML to simplify skipping content
          [attributedHTML addAttribute:NSFontAttributeName value:font range:range];
