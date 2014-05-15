@@ -6,13 +6,18 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
 #import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDirectoryPerson.h"
 
 
+#pragma mark - UTCSDirectoryDataSourceParser Implementation
+
 @implementation UTCSDirectoryDataSourceParser
 
-- (id)parseValues:(id)values
+- (NSArray *)parseValues:(NSArray *)values
 {
     NSMutableArray *directory = [NSMutableArray new];
 

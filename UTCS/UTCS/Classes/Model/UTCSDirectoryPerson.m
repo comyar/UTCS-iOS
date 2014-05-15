@@ -6,9 +6,16 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+#pragma mark - Imports
+
 #import "UTCSDirectoryPerson.h"
 
+
+#pragma mark - UTCSDirectoryPerson Implementation
+
 @implementation UTCSDirectoryPerson
+
+#pragma mark NSCoding Methods
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
