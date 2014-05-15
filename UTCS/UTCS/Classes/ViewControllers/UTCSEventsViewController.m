@@ -328,5 +328,4 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     return @{UTCSEventsDataSourceCacheKey: dataSource.data};
 }
 
-
 @end

@@ -6,14 +6,17 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-@import UIKit;
 
+#pragma mark - Imports
+
+@import UIKit;
 #import "UTCSHeaderTableViewController.h"
 #import "UTCSStarredEventsViewController.h"
+
+#pragma mark - UTCSEventsViewController Interface
 /**
  UTCSEventsViewController displays all the available events in a simple table and allows filtering of events by type
  */
 @interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate, UTCSDataSourceDelegate, UTCSStarredEventsViewControllerDelegate>
-
 
 @end

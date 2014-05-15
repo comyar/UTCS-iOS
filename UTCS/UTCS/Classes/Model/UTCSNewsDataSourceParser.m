@@ -88,7 +88,7 @@ static const CGFloat minHeaderImageHeight   = 250.0;
                 if (image.size.width >= minHeaderImageWidth && image.size.height >= minHeaderImageHeight) {
                     
                     // Scale the images (aspect fill scale)
-                    image                 = [UIImage scaleImage:image toSize:CGSizeMake(minHeaderImageWidth, minHeaderImageHeight)];
+                    image                 = [UIImage scaleImage:image toSize:CGSizeMake(320.0, 284.0)];
                     UIImage *blurredImage = [UIImage scaleImage:image toSize:CGSizeMake(0.25 * minHeaderImageWidth, 0.25 * minHeaderImageHeight)];
             
                     // Blur and tint
