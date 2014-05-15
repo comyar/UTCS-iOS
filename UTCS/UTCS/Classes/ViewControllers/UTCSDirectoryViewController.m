@@ -68,7 +68,7 @@ static NSString * const searchBarBackgroundImageName = @"searchBarBackground";
 - (id)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:@"directory"];
+        self.dataSource = [[UTCSDirectoryDataSource alloc]initWithService:UTCSDirectoryServiceName];
         self.dataSource.delegate = self;
         
         self.view.backgroundColor = [UIColor clearColor];

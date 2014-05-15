@@ -15,6 +15,12 @@
 #pragma mark - Constants
 
 /**
+ Name of the directory service.
+ */
+extern NSString * const UTCSDirectoryServiceName;
+
+
+/**
  Key to use to cache letter-divided directory.
  */
 extern NSString * const UTCSDirectoryCacheKey;

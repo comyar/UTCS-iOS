@@ -19,6 +19,9 @@
 
 #pragma mark - Constants
 
+// Name of the directory service.
+NSString * const UTCSDirectoryServiceName                       = @"directory";
+
 // Directory table view cell identifier.
 static NSString * const UTCSDirectoryTableViewCellIdentifier    = @"UTCSDirectoryTableViewCell";
 

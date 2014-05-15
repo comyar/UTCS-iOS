@@ -6,22 +6,26 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSDirectoryDetailViewController.h"
+
+#pragma mark - Imports
+
+#import "UIImage+CZScaling.h"
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
-#import <AFNetworking/UIKit+AFNetworking.h>
-#import "UIImage+CZScaling.h"
+#import "UTCSDirectoryDetailViewController.h"
 
-#pragma mark - UTCSDirectoryDetailViewController Class Extension
 
-@interface UTCSDirectoryDetailViewController ()
+#pragma mark - Constants
 
-@end
+// Directory detail table view cell identifier.
+static NSString * const UTCSDirectoryDetailTableViewCellIdentifier    = @"UTCSDirectoryDetailTableViewCell";
 
 
 #pragma mark - UTCSDirectoryDetailViewController Implementation
 
 @implementation UTCSDirectoryDetailViewController
+
+#pragma mark Creating a Directory Detail View Controller
 
 - (instancetype)init
 {
@@ -42,6 +46,8 @@
     return self;
 }
 
+#pragma mark UIViewController Methods
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -49,21 +55,72 @@
     self.menuButton.hidden = YES;
 }
 
+#pragma mark Setters
+
 - (void)setPerson:(UTCSDirectoryPerson *)person
 {
     _person = person;
     [self.tableView reloadData];
 }
 
+#pragma mark Formatting
+
+- (NSString *)formattedPhoneNumberWithString:(NSString *)phoneNumber
+{
+    if ([phoneNumber length] == 10) {
+        return [NSString stringWithFormat:@"(%@) %@ - %@",
+                [phoneNumber substringWithRange:NSMakeRange(0, 3)],
+                [phoneNumber substringWithRange:NSMakeRange(3, 3)],
+                [phoneNumber substringWithRange:NSMakeRange(6, 4)]];
+    }
+    return phoneNumber;
+}
+
+#pragma mark Buttons
+
+- (void)didTouchUpInsideButton:(UIButton *)button
+{
+    if (button.tag == NSIntegerMin) {
+        [[[UIAlertView alloc]initWithTitle:@"Confirm"
+                                  message:@"Are you sure you want to call?"
+                                 delegate:self
+                        cancelButtonTitle:@"Cancel"
+                        otherButtonTitles:@"Yes", nil]show];
+    }
+}
+
+#pragma mark UIAlertViewDelegate Methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString *phoneNumber = self.person.phoneNumber;
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNumber]];
+        if ([[UIApplication sharedApplication]canOpenURL:phoneURL]) {
+            [[UIApplication sharedApplication]openURL:phoneURL];
+        } else {
+#if !(TARGET_IPHONE_SIMULATOR)
+            [[[UIAlertView alloc]initWithTitle:@"Error"
+                                       message:@"Ouch! Looks like something went wrong. Please report a bug! "
+                                      delegate:self
+                             cancelButtonTitle:@"Meh, Ok"
+                             otherButtonTitles:nil]show];
+#else
+            NSLog(@"iPhone Simulator cannot open URL : %@", phoneURL);
+#endif
+        }
+    }
+}
+
 #pragma mark UITableViewDataSource Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSDirectoryDetailTableViewCellIdentifier];
     
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                     reuseIdentifier:@"UTCSDirectoryDetailTableViewCell"];
+                                     reuseIdentifier:UTCSDirectoryDetailTableViewCellIdentifier];
         
         cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
         cell.textLabel.numberOfLines = 2;
@@ -122,7 +179,7 @@
         
         [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
         
-    
+        
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             NSString *text      = self.person.office;
@@ -143,58 +200,6 @@
     
     return cell;
 }
-
-#pragma mark Formatting
-
-- (NSString *)formattedPhoneNumberWithString:(NSString *)phoneNumber
-{
-    if ([phoneNumber length] == 10) {
-        return [NSString stringWithFormat:@"(%@) %@ - %@",
-                [phoneNumber substringWithRange:NSMakeRange(0, 3)],
-                [phoneNumber substringWithRange:NSMakeRange(3, 3)],
-                [phoneNumber substringWithRange:NSMakeRange(6, 4)]];
-    }
-    return phoneNumber;
-}
-
-
-#pragma mark Buttons
-
-- (void)didTouchUpInsideButton:(UIButton *)button
-{
-    if (button.tag == NSIntegerMin) {
-        [[[UIAlertView alloc]initWithTitle:@"Confirm"
-                                  message:@"Are you sure you want to call?"
-                                 delegate:self
-                        cancelButtonTitle:@"Cancel"
-                        otherButtonTitles:@"Yes", nil]show];
-    }
-}
-
-#pragma mark UIAlertViewDelegate Methods
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        NSString *phoneNumber = self.person.phoneNumber;
-        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNumber]];
-        if ([[UIApplication sharedApplication]canOpenURL:phoneURL]) {
-            [[UIApplication sharedApplication]openURL:phoneURL];
-        } else {
-#if !(TARGET_IPHONE_SIMULATOR)
-            [[[UIAlertView alloc]initWithTitle:@"Error"
-                                       message:@"Ouch! Looks like something went wrong. Please report a bug! "
-                                      delegate:self
-                             cancelButtonTitle:@"Meh, Ok"
-                             otherButtonTitles:nil]show];
-#else
-            NSLog(@"iPhone Simulator cannot open URL : %@", phoneURL);
-#endif
-        }
-    }
-}
-
-#pragma mark UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
