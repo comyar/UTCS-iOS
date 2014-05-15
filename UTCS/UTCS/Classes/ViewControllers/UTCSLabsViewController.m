@@ -171,9 +171,16 @@
             self.thirdFloorLabViewController.machines   = third;
             self.basementLabViewController.machines     = basement;
             
-        } else {
-            // Frowny face / Error message
         }
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.thirdFloorLabViewController.shimmeringView.alpha = success;
+            self.basementLabViewController.shimmeringView.alpha = success;
+            self.thirdFloorLabViewController.serviceErrorView.alpha = !success;
+            self.basementLabViewController.serviceErrorView.alpha = !success;
+            self.thirdFloorLabViewController.labView.alpha  = success;
+            self.basementLabViewController.labView.alpha    = success;
+        }];
         
         [MBProgressHUD hideAllHUDsForView:self.scrollView animated:YES];
     }];

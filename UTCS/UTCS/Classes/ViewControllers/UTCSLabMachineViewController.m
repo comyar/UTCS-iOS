@@ -16,11 +16,11 @@
 
 @interface UTCSLabMachineViewController ()
 
-@property (nonatomic) UIView            *backgroundContainer;
+@property (nonatomic) UIView                *backgroundContainer;
 
-@property (nonatomic) UTCSLabView       *labView;
+@property (nonatomic) UTCSLabView           *labView;
 
-
+@property (nonatomic) UTCSServiceErrorView  *serviceErrorView;
 
 @end
 
@@ -63,6 +63,20 @@
             label;
         });
         [self.view addSubview:self.shimmeringView];
+        
+        
+        self.serviceErrorView = ({
+            UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:CGRectZero];
+            view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your network connection.";
+            view.alpha = 0.0;
+            view;
+        });
+        
+        self.serviceErrorView.frame     = CGRectMake(0.0, 0.0, self.view.width, 0.5 * self.view.height);
+        self.serviceErrorView.center    = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+        
+        [self.view addSubview:self.serviceErrorView];
+        
         [self.labView prepareLayout];
     }
     return self;
@@ -80,7 +94,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 - (void)setImageOffset:(CGPoint)imageOffset
