@@ -12,10 +12,14 @@
 #import "UTCSDataSourceParser.h"
 
 
-
 #pragma mark - UTCSDirectoryDataSourceParser Interface
 
 /**
+ UTCSDirectoryDataSourceParser is a concrete class used to parse data downloaded by the
+ UTCSDirectoryDataSource. Instance of UTCSDirectoryDataSourceParser should only be initialized
+ by UTCSDirectoryDataSource objects.
+ 
+ UTCSDirectoryDataSourceParser should not be subclassed.
  */
 @interface UTCSDirectoryDataSourceParser : UTCSDataSourceParser
 
