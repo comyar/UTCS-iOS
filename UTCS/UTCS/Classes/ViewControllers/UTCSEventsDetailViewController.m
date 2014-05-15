@@ -289,8 +289,12 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
     // Configure description text view
     self.descriptionTextView.attributedText = [self descriptionForEvent:event];
-    self.descriptionTextView.height = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
-                                                              height:CGFLOAT_MAX].height + self.descriptionTextView.textContainerInset.top + self.descriptionTextView.textContainerInset.bottom;
+    
+    CGFloat descriptionTextViewHeight = [self.descriptionTextView sizeForWidth:self.descriptionTextView.textContainer.size.width
+                                                                         height:CGFLOAT_MAX].height;
+    descriptionTextViewHeight += self.descriptionTextView.textContainerInset.top + self.descriptionTextView.textContainerInset.bottom;
+    self.descriptionTextView.height = MAX(descriptionTextViewHeight, 150.0);
+    
     self.descriptionTextView.y = kUTCSParallaxBlurHeaderHeight;
     
     // Set parallax blur header scroll view content size

@@ -175,8 +175,11 @@ static NSString * const dateLabelFontName       = @"HelveticaNeue";
 
     // Configure content text view
     self.contentTextView.attributedText = newsArticle.attributedContent;
-    self.contentTextView.height = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
-                                                              height:CGFLOAT_MAX].height + self.contentTextView.textContainerInset.top + self.contentTextView.textContainerInset.bottom;
+    
+    CGFloat contentTextViewHeight = [self.contentTextView sizeForWidth:self.contentTextView.textContainer.size.width
+                                                                height:CGFLOAT_MAX].height;
+    contentTextViewHeight += self.contentTextView.textContainerInset.top + self.contentTextView.textContainerInset.bottom;
+    self.contentTextView.height =  MAX(contentTextViewHeight, 150.0);
     
     self.contentTextView.y = self.parallaxBlurHeaderScrollView.headerContainerView.height;
 
