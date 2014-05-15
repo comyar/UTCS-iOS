@@ -9,51 +9,44 @@
 
 #pragma mark - Imports
 
-// Models
 #import "UTCSEvent.h"
-#import "UTCSEventsDataSource.h"
 #import "UTCSDataRequest.h"
+#import "UIColor+UTCSColors.h"
 #import "UTCSDataSourceCache.h"
+#import "UTCSEventsDataSource.h"
+#import "UTCSEventTableViewCell.h"
 #import "UTCSEventsDataSourceParser.h"
 
-// Views
-#import "UTCSEventTableViewCell.h"
-
-// Categories
-#import "UIColor+UTCSColors.h"
-
-
-NSString * const UTCSEventsFilterRemoveName     = @"UTCSEventsFilterRemoveName";
-NSString * const UTCSEventsFilterAddName        = @"UTCSEventsFilterAddName";
-NSString * const UTCSEventsDataSourceCacheKey   = @"UTCSEventsDataSourceCacheKey";
-
-// Name of the image to use for a table view cell's accessory view.
-static NSString * const cellAccessoryImageName          = @"rightArrow";
 
 #pragma mark - Constants
 
-// Key used to cache events
-static NSString * const eventsCacheKey      = @"events";
+// Key associated with index paths added by a filter.
+NSString * const UTCSEventsFilterAddName        =           @"UTCSEventsFilterAddName";
+
+// Key associated with index paths added by a filter.
+NSString * const UTCSEventsFilterRemoveName                 = @"UTCSEventsFilterRemoveName";
+
+// Key to use to cache events.
+NSString * const UTCSEventsDataSourceCacheKey               = @"UTCSEventsDataSourceCacheKey";
+
+static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableViewCell";
+
+// Name of the image to use for a table view cell's accessory view.
+static NSString * const cellAccessoryImageName              = @"rightArrow";
 
 // Minimum time between updates, in seconds
-static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
+static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hours
 
 
 #pragma mark - UTCSEventsDataSoure Class Extension
 
 @interface UTCSEventsDataSource ()
 
-//
+// Current filter type
 @property (nonatomic) NSString          *currentFilterType;
 
-//
+// Events matching the type of currentFilterType
 @property (nonatomic) NSMutableArray    *filteredEvents;
-
-// Date formatter for a 3-letter month name
-@property (nonatomic) NSDateFormatter   *monthDateFormatter;
-
-// Date formatter for a zero-padded day of the month
-@property (nonatomic) NSDateFormatter   *dayDateFormatter;
 
 // Mapping between event type to color
 @property (nonatomic) NSDictionary      *typeColorMapping;
@@ -71,32 +64,22 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 - (instancetype)initWithService:(NSString *)service
 {
     if(self = [super initWithService:service]) {
-        _parser = [UTCSEventsDataSourceParser new];
-        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
-        _primaryCacheKey = UTCSEventsDataSourceCacheKey;
         
         _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
         
-        self.monthDateFormatter = ({
-            NSDateFormatter *formatter = [NSDateFormatter new];
-            formatter.dateFormat = @"MMM";
-            formatter;
-        });
-        
-        self.dayDateFormatter = ({
-            NSDateFormatter *formatter = [NSDateFormatter new];
-            formatter.dateFormat = @"dd";
-            formatter;
-        });
+        _parser = [UTCSEventsDataSourceParser new];
         
         self.typeColorMapping = @{@"careers": [UIColor utcsEventCareersColor],
                                   @"talks"  : [UIColor utcsEventTalkColor],
                                   @"orgs"   : [UIColor utcsEventStudentOrgsColor]};
         
+        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
+        _primaryCacheKey = UTCSEventsDataSourceCacheKey;
+        
         NSDictionary *cache = [self.cache objectWithKey:UTCSEventsDataSourceCacheKey];
         UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
-        _data = cache[UTCSDataSourceCacheValuesName];
-        _updated = meta.timestamp;
+        _data       = cache[UTCSDataSourceCacheValuesName];
+        _updated    = meta.timestamp;
         [self prepareFilter];
     }
     return self;
@@ -175,10 +158,10 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
 
 - (UTCSEventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSEventTableViewCell"];
+    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
     
     if(!cell) {
-        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
+        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
         cell.accessoryView = ({
             UIImage *image          = [[UIImage imageNamed:cellAccessoryImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView  = [[UIImageView alloc]initWithImage:image];
