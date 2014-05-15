@@ -9,21 +9,14 @@
 
 #pragma mark - Imports
 
-// View controllers
+#import "UTCSEvent.h"
+#import "UIImage+Cacheless.h"
+#import "UIColor+UTCSColors.h"
+#import "UIButton+UTCSButton.h"
+#import "UTCSEventsDataSource.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSEventsDetailViewController.h"
 #import "UTCSStarredEventsViewController.h"
-
-// Models
-#import "UTCSEvent.h"
-#import "UTCSEventsDataSource.h"
-
-// Categories
-#import "UIImage+CZTinting.h"
-#import "UIColor+UTCSColors.h"
-#import "UIView+CZPositioning.h"
-#import "UIButton+UTCSButton.h"
-#import "UIImage+Cacheless.h"
 
 
 #pragma mark - Constants
@@ -75,6 +68,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 #pragma mark - UTCSEventsViewController Implementation
 
 @implementation UTCSEventsViewController
+
+#pragma mark Creating an Events View Controller
 
 - (instancetype)init
 {

@@ -13,9 +13,12 @@
 #import "UTCSHeaderTableViewController.h"
 #import "UTCSStarredEventsViewController.h"
 
+
 #pragma mark - UTCSEventsViewController Interface
+
 /**
- UTCSEventsViewController displays all the available events in a simple table and allows filtering of events by type
+ UTCSEventsViewController is a concrete subclass of UTCSHeaderTableViewController that displays
+ all the available UTCS events in a table view. 
  */
 @interface UTCSEventsViewController : UTCSHeaderTableViewController <UITableViewDelegate, UTCSDataSourceDelegate, UTCSStarredEventsViewControllerDelegate>
 

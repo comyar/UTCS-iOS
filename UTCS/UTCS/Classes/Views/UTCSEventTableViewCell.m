@@ -6,11 +6,23 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
 #import "UTCSEventTableViewCell.h"
 
+
+#pragma mark - Constants
+
+// Width of the stripe layer
 static const CGFloat typeStripeWidth    = 2.0;
 
+
+#pragma mark - UTCSEventTableViewCell Implementation
+
 @implementation UTCSEventTableViewCell
+
+#pragma mark Creating a Event Table View Cell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -30,6 +42,8 @@ static const CGFloat typeStripeWidth    = 2.0;
     }
     return self;
 }
+
+#pragma mark UIView Methods
 
 - (void)layoutSubviews
 {

@@ -26,10 +26,22 @@ static const CGFloat titleLabelFontSize = 28.0;
 // Font size of the date label
 static const CGFloat dateLabelFontSize  = 16.0;
 
+// Name of the share icon image
+static NSString * const shareImageName          = @"share";
+
+// Font name of the title label
+static NSString * const titleLabelFontName      = @"HelveticaNeue-Bold";
+
+// Font name of the date label
+static NSString * const dateLabelFontName       = @"HelveticaNeue";
+
 
 #pragma mark - UTCSNewsDetailViewController Class Extension
 
 @interface UTCSNewsDetailViewController ()
+
+// YES if the view controller has initialized the subviews
+@property (nonatomic) BOOL                              hasInitializedSubviews;
 
 // Label used to display the title of a news story
 @property (nonatomic) UILabel                           *titleLabel;
@@ -59,7 +71,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
 
 @implementation UTCSNewsDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.view.backgroundColor = [UIColor whiteColor];
@@ -91,7 +103,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
         
         button.frame = CGRectMake(0, 0, 44, 44);
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:shareImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         imageView.tintColor = [UIColor whiteColor];
         imageView.center = CGPointMake(0.5 * CGRectGetWidth(button.bounds), 0.5 * CGRectGetHeight(button.bounds));
         
@@ -102,8 +114,8 @@ static const CGFloat dateLabelFontSize  = 16.0;
     
     // Title label
     self.titleLabel = ({
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 44.0, self.view.width - 16.0, 0.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:titleLabelFontSize];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight, self.view.width - 16.0, 0.0)];
+        label.font = [UIFont fontWithName:titleLabelFontName size:titleLabelFontSize];
         label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
         label.textColor = [UIColor whiteColor];
@@ -116,7 +128,7 @@ static const CGFloat dateLabelFontSize  = 16.0;
     // Date label
     self.dateLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 0.0, self.view.width - 16.0, 1.5 * dateLabelFontSize)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:dateLabelFontSize];
+        label.font = [UIFont fontWithName:dateLabelFontName size:dateLabelFontSize];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.75];
         label.adjustsFontSizeToFitWidth = YES;
         label;
@@ -175,11 +187,11 @@ static const CGFloat dateLabelFontSize  = 16.0;
     self.dateLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.height - 8.0;
     
     // Set title label
-    self.titleLabel.frame = CGRectMake(8.0, 44.0, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
+    self.titleLabel.frame = CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
     self.titleLabel.text = newsArticle.title;
     [self.titleLabel sizeToFit];
-    if(self.titleLabel.height > self.parallaxBlurHeaderScrollView.headerContainerView.height - 44.0 - self.dateLabel.height) {
-        self.titleLabel.height = self.parallaxBlurHeaderScrollView.headerContainerView.height - 44.0 - self.dateLabel.height;
+    if(self.titleLabel.height > self.parallaxBlurHeaderScrollView.headerContainerView.height - kUTCSParallaxBlurHeaderHeight - self.dateLabel.height) {
+        self.titleLabel.height = self.parallaxBlurHeaderScrollView.headerContainerView.height - kUTCSParallaxBlurHeaderHeight - self.dateLabel.height;
     }
     self.titleLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - (self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.y) - self.titleLabel.height;
     
@@ -228,8 +240,9 @@ static const CGFloat dateLabelFontSize  = 16.0;
     
     _newsArticle = newsArticle;
     
-    if ([self.view.subviews count] == 0) {
+    if (!self.hasInitializedSubviews) {
         [self initializeSubviews];
+        self.hasInitializedSubviews = YES;
     }
     
     [self configureWithNewsArticle:self.newsArticle];

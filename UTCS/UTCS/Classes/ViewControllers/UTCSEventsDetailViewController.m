@@ -9,28 +9,54 @@
 
 #pragma mark - Imports
 
-// View Controllers
-#import "UTCSEventsDetailViewController.h"
-
-// Views
-#import "UTCSParallaxBlurHeaderScrollView.h"
-
-// Models
 #import "UTCSEvent.h"
-#import "UTCSStarredEventsManager.h"
 #import "UTCSStateManager.h"
-
-// Categories
 #import "UIColor+UTCSColors.h"
-#import "UIView+CZPositioning.h"
-#import "UITextView+CZTextViewHeight.h"
 #import "UIButton+UTCSButton.h"
 #import "NSString+CZContains.h"
+#import "UIView+CZPositioning.h"
+#import "UTCSStarredEventsManager.h"
+#import "UITextView+CZTextViewHeight.h"
+#import "UTCSEventsDetailViewController.h"
+#import "UTCSParallaxBlurHeaderScrollView.h"
 
 
-#pragma mark - UTCSEventDetailViewController Class Extension
+#pragma mark - Constants
+
+// Name of the star icon image
+static NSString * const starImageName           = @"star";
+
+// Name of the filled-in star icon image
+static NSString * const starActiveImageName     = @"star-active";
+
+// Name of the share icon image
+static NSString * const shareImageName          = @"share";
+
+// Font name of the name label
+static NSString * const nameLabelFontName       = @"HelveticaNeue-Bold";
+
+// Font name of the location label
+static NSString * const locationLabelFontName   = @"HelveticaNeue";
+
+// Font name of the date label
+static NSString * const dateLabelFontName       = @"HelveticaNeue";
+
+// Font size of the name label
+static const CGFloat nameLabelFontSize          = 22.0;
+
+// Font size of the location label
+static const CGFloat locationLabelFontSize      = 18.0;
+
+// Font size of the date label
+static const CGFloat dateLabelFontSize          = 18.0;
+
+
+#pragma mark - UTCSEventsDetailViewController Class Extension
 
 @interface UTCSEventsDetailViewController ()
+
+// YES if the view controller has initialized the subviews
+@property (nonatomic) BOOL                              hasInitializedSubviews;
 
 // Current calendar
 @property (nonatomic) NSCalendar                        *calendar;
@@ -38,18 +64,11 @@
 // Date formatter for the event start date
 @property (nonatomic) NSDateFormatter                   *startDateFormatter;
 
-// Event store
-@property (nonatomic) EKEventStore                      *eventStore;
-
-//
+// Mapping of event location to header image names
 @property (nonatomic) NSDictionary                      *headerImageMapping;
 
-//
+// Default headers to use if a header image/location mapping isn't found
 @property (nonatomic) NSArray                           *defaultHeaderImages;
-
-// -----
-// @name Views
-// -----
 
 // Label used to display the name of the event
 @property (nonatomic) UILabel                           *nameLabel;
@@ -69,7 +88,7 @@
 // Button used to star events
 @property (nonatomic) UIButton                          *starButton;
 
-//
+// Image view of the star button
 @property (nonatomic) UIImageView                       *starButtonImageView;
 
 // Button used to scroll to the top of the event detail
@@ -93,15 +112,18 @@
 @end
 
 
-#pragma mark - UTCSEventDetailViewController Implementation
+#pragma mark - UTCSEventsDetailViewController Implementation
 
 @implementation UTCSEventsDetailViewController
+
+#pragma mark Creating an Events Detail View Controller
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.view.backgroundColor = [UIColor whiteColor];
+        
         self.startDateFormatter = ({
             NSDateFormatter *dateFormatter = [NSDateFormatter new];
             dateFormatter.dateFormat = @"MMM d, h:mm a";
@@ -127,45 +149,45 @@
     self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.parallaxBlurHeaderScrollView];
     
-    // Title label
+    
     self.nameLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, 0.0, self.view.width - 16.0, 0.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:22];
+        label.font = [UIFont fontWithName:nameLabelFontName size:nameLabelFontSize];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.shadowOffset = CGSizeMake(0.0, 0.5);
         label.textColor = [UIColor whiteColor];
         label.adjustsFontSizeToFitWidth = YES;
-        label.shadowOffset = CGSizeMake(0.0, 0.5);
-        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.numberOfLines = 0;
         label;
     });
     [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:self.nameLabel];
     
-    // Location label
+    
     self.locationLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 24.0, self.view.width - 16.0, 20.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        label.font = [UIFont fontWithName:locationLabelFontName size:locationLabelFontSize];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
-        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.adjustsFontSizeToFitWidth = YES;
         label.numberOfLines = 2;
-        [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
         label;
     });
+    [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:self.locationLabel];
     
-    // Date label
+    
     self.dateLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight - 48.0, self.view.width - 16.0, 20.0)];
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        label.font = [UIFont fontWithName:dateLabelFontName size:dateLabelFontSize];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.textColor = [UIColor colorWithWhite:1.0 alpha:0.95];
         label.shadowOffset = CGSizeMake(0.0, 0.5);
-        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         label.adjustsFontSizeToFitWidth = YES;
-        [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:label];
         label;
     });
+    [self.parallaxBlurHeaderScrollView.headerContainerView addSubview:self.dateLabel];
     
-    // Description text view
+    
     self.descriptionTextView = ({
         UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0, kUTCSParallaxBlurHeaderHeight, self.view.width, 0.0)];
         textView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypePhoneNumber | UIDataDetectorTypeAddress;
@@ -178,7 +200,6 @@
     [self.parallaxBlurHeaderScrollView.scrollView addSubview:self.descriptionTextView];
     
     
-    // Star button
     self.starButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.showsTouchWhenHighlighted = YES;
@@ -187,7 +208,7 @@
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.starButtonImageView = ({
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:starImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
             imageView.tintColor = [UIColor whiteColor];
             imageView.frame = button.bounds;
             imageView;
@@ -197,14 +218,14 @@
         button;
     });
     
-    // Share button
+    
     self.shareButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.showsTouchWhenHighlighted = YES;
         
         button.frame = CGRectMake(0, 0, 44, 44);
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"share"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:shareImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         imageView.tintColor = [UIColor whiteColor];
         imageView.center = CGPointMake(0.5 * CGRectGetWidth(button.bounds), 0.5 * CGRectGetHeight(button.bounds));
         
@@ -216,15 +237,16 @@
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:self.shareButton],
                                                 [[UIBarButtonItem alloc]initWithCustomView:self.starButton]];
     
-    // Scroll to top button
     self.scrollToTopButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(0.0, 0.0, self.view.width, 44);
-        self.navigationItem.titleView = button;
         button;
     });
+    self.navigationItem.titleView = self.scrollToTopButton;
 }
+
+#pragma mark Using an Events Detail View Controller
 
 - (void)configureWithEvent:(UTCSEvent *)event
 {
@@ -250,9 +272,9 @@
     
     // Configure star button
     if ([[UTCSStarredEventsManager sharedManager]containsEvent:event]) {
-        self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.starButtonImageView.image = [[UIImage imageNamed:starActiveImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     } else {
-        self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.starButtonImageView.image = [[UIImage imageNamed:starImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     
     // Configure name label
@@ -274,6 +296,8 @@
     self.parallaxBlurHeaderScrollView.scrollView.contentSize = CGSizeMake(self.parallaxBlurHeaderScrollView.width, self.descriptionTextView.height + kUTCSParallaxBlurHeaderHeight);
 }
 
+#pragma mark UIViewController Methods
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -286,8 +310,9 @@
 {
     _event = event;
     
-    if ([self.view.subviews count] == 0) {
+    if (!self.hasInitializedSubviews) {
         [self initializeSubviews];
+        self.hasInitializedSubviews = YES;
     }
     
     [self configureWithEvent:self.event];
@@ -333,10 +358,10 @@
                              cancelButtonTitle:@"Ok"
                              otherButtonTitles:nil]show];
         }
-        self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.starButtonImageView.image = [[UIImage imageNamed:starActiveImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [[UTCSStarredEventsManager sharedManager]addEvent:event];
     } else {
-        self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.starButtonImageView.image = [[UIImage imageNamed:starImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [[UTCSStarredEventsManager sharedManager]removeEvent:event];
     }
 }
