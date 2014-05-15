@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/UTCSMenuViewControllerDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/UTCSMenuViewControllerDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSMenuViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="39"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UTCSMenuViewControllerDelegate/didSelectMenuOption:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSMenuViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectMenuOption:(UTCSMenuOptions)option</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectMenuOption:</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

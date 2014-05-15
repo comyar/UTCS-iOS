@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSDiskQuotaDataSourceParser.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDiskQuotaDataSourceParser</TokenIdentifier>
+			<Abstract type="html">UTCSDiskQuotaDataSourceParser is a concrete class used to parse data downloaded by the
+UTCSDiskQuotaDataSource. Instances of UTCSDiskQuotaDataSourceParser should only be initialized
+by UTCSDiskQuotaDataSource objects.</Abstract>
+			<DeclaredIn>UTCSDiskQuotaDataSourceParser.h</DeclaredIn>
+            
+			
+			<NodeRef refid="15"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

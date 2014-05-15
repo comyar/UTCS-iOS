@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSAppDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSAppDelegate</TokenIdentifier>
+			<Abstract type="html">UTCSAppDelegate is the delegate for the UIApplication singleton and is initialized in the UIApplicationMain function.</Abstract>
+			<DeclaredIn>UTCSAppDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSAppDelegate/setWindow:</TokenIdentifier>
+			<Abstract type="html">Window used by FBTweaks. Allows the tweak window to be presented when the device
+is shaked. Behaves similarly to a UIWindow in production.</Abstract>
+			<DeclaredIn>UTCSAppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) FBTweakShakeWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSAppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Window used by FBTweaks. Allows the tweak window to be presented when the device
+is shaked. Behaves similarly to a UIWindow in production.</Abstract>
+			<DeclaredIn>UTCSAppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) FBTweakShakeWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSAppDelegate/window</TokenIdentifier>
+			<Abstract type="html">Window used by FBTweaks. Allows the tweak window to be presented when the device
+is shaked. Behaves similarly to a UIWindow in production.</Abstract>
+			<DeclaredIn>UTCSAppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) FBTweakShakeWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

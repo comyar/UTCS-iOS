@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSDataSourceParser.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDataSourceParser</TokenIdentifier>
+			<Abstract type="html">UTCSDataSourceParser is an abstract class used to parse downloaded data for a
+specific service.</Abstract>
+			<DeclaredIn>UTCSDataSourceParser.h</DeclaredIn>
+            
+			
+			<NodeRef refid="10"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceParser/parseValues:</TokenIdentifier>
+			<Abstract type="html">Parses the given downloaded values into an object or collection of objects
+expected by the data source.</Abstract>
+			<DeclaredIn>UTCSDataSourceParser.h</DeclaredIn>
+			
+			<Declaration>- (id)parseValues:(id)values</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>values</Name>
+					<Abstract type="html">Raw values downloaded by the data source.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Object or collection objects expected by the data source.</Abstract></ReturnValue>
+			<Anchor>//api/name/parseValues:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceParser/setDateFormatter:</TokenIdentifier>
+			<Abstract type="html">Date formatter used to parse the updated date from the downloaded values.</Abstract>
+			<DeclaredIn>UTCSDataSourceParser.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSDateFormatter *dateFormatter</Declaration>
+			
+			
+			<Anchor>//api/name/dateFormatter</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceParser/dateFormatter</TokenIdentifier>
+			<Abstract type="html">Date formatter used to parse the updated date from the downloaded values.</Abstract>
+			<DeclaredIn>UTCSDataSourceParser.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSDateFormatter *dateFormatter</Declaration>
+			
+			
+			<Anchor>//api/name/dateFormatter</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDataSourceParser/dateFormatter</TokenIdentifier>
+			<Abstract type="html">Date formatter used to parse the updated date from the downloaded values.</Abstract>
+			<DeclaredIn>UTCSDataSourceParser.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSDateFormatter *dateFormatter</Declaration>
+			
+			
+			<Anchor>//api/name/dateFormatter</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

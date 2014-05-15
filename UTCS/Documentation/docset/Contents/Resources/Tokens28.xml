@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSNewsArticle.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsArticle</TokenIdentifier>
+			<Abstract type="html">UTCSNewsArticle is a concrete class that represents a single UTCS news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+            
+			
+			<NodeRef refid="28"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setTitle:</TokenIdentifier>
+			<Abstract type="html">Title of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/title</TokenIdentifier>
+			<Abstract type="html">Title of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/title</TokenIdentifier>
+			<Abstract type="html">Title of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setUrl:</TokenIdentifier>
+			<Abstract type="html">URL to the news article online.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *url</Declaration>
+			
+			
+			<Anchor>//api/name/url</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/url</TokenIdentifier>
+			<Abstract type="html">URL to the news article online.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *url</Declaration>
+			
+			
+			<Anchor>//api/name/url</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/url</TokenIdentifier>
+			<Abstract type="html">URL to the news article online.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *url</Declaration>
+			
+			
+			<Anchor>//api/name/url</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setDate:</TokenIdentifier>
+			<Abstract type="html">Date the news article was published.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *date</Declaration>
+			
+			
+			<Anchor>//api/name/date</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/date</TokenIdentifier>
+			<Abstract type="html">Date the news article was published.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *date</Declaration>
+			
+			
+			<Anchor>//api/name/date</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/date</TokenIdentifier>
+			<Abstract type="html">Date the news article was published.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *date</Declaration>
+			
+			
+			<Anchor>//api/name/date</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHtml:</TokenIdentifier>
+			<Abstract type="html">HTML content of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *html</Declaration>
+			
+			
+			<Anchor>//api/name/html</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/html</TokenIdentifier>
+			<Abstract type="html">HTML content of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *html</Declaration>
+			
+			
+			<Anchor>//api/name/html</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/html</TokenIdentifier>
+			<Abstract type="html">HTML content of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *html</Declaration>
+			
+			
+			<Anchor>//api/name/html</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setImageURLs:</TokenIdentifier>
+			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
+			
+			
+			<Anchor>//api/name/imageURLs</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/imageURLs</TokenIdentifier>
+			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
+			
+			
+			<Anchor>//api/name/imageURLs</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/imageURLs</TokenIdentifier>
+			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
+			
+			
+			<Anchor>//api/name/imageURLs</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setAttributedContent:</TokenIdentifier>
+			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
+			
+			
+			<Anchor>//api/name/attributedContent</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/attributedContent</TokenIdentifier>
+			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
+			
+			
+			<Anchor>//api/name/attributedContent</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/attributedContent</TokenIdentifier>
+			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
+			
+			
+			<Anchor>//api/name/attributedContent</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHeaderImage:</TokenIdentifier>
+			<Abstract type="html">Header image of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/headerImage</TokenIdentifier>
+			<Abstract type="html">Header image of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/headerImage</TokenIdentifier>
+			<Abstract type="html">Header image of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHeaderBlurredImage:</TokenIdentifier>
+			<Abstract type="html">Blurred header image of the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/headerBlurredImage</TokenIdentifier>
+			<Abstract type="html">Blurred header image of the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/headerBlurredImage</TokenIdentifier>
+			<Abstract type="html">Blurred header image of the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

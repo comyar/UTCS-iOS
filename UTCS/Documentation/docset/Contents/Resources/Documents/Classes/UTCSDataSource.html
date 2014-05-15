@@ -1,0 +1,949 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>UTCSDataSource Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 961)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">UTCS </a></h1>
+				<a id="developerHome" href="../index.html">UTCS</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">UTCSDataSource Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/cache">&nbsp;&nbsp;&nbsp;&nbsp;cache</option>
+	
+	<option value="//api/name/data">&nbsp;&nbsp;&nbsp;&nbsp;data</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/minimumTimeBetweenUpdates">&nbsp;&nbsp;&nbsp;&nbsp;minimumTimeBetweenUpdates</option>
+	
+	<option value="//api/name/parser">&nbsp;&nbsp;&nbsp;&nbsp;parser</option>
+	
+	<option value="//api/name/primaryCacheKey">&nbsp;&nbsp;&nbsp;&nbsp;primaryCacheKey</option>
+	
+	<option value="//api/name/searchController">&nbsp;&nbsp;&nbsp;&nbsp;searchController</option>
+	
+	<option value="//api/name/service">&nbsp;&nbsp;&nbsp;&nbsp;service</option>
+	
+	<option value="//api/name/updated">&nbsp;&nbsp;&nbsp;&nbsp;updated</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/initWithService:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithService:</option>
+	
+	<option value="//api/name/shouldUpdate">&nbsp;&nbsp;&nbsp;&nbsp;- shouldUpdate</option>
+	
+	<option value="//api/name/updateWithArgument:completion:">&nbsp;&nbsp;&nbsp;&nbsp;- updateWithArgument:completion:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cache">cache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/data">data</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/minimumTimeBetweenUpdates">minimumTimeBetweenUpdates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parser">parser</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryCacheKey">primaryCacheKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchController">searchController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/service">service</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updated">updated</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithService:">initWithService:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldUpdate">shouldUpdate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateWithArgument:completion:">updateWithArgument:completion:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="UTCSDataSource Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">UTCSDataSource Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UISearchDisplayDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">UTCSDataSource.h</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>UTCSDataSource is an abstract class used to perform asynchronous API requests for a
+specific <a href="#//api/name/service">service</a>. UTCSDataSource instances are associated with a single <a href="#//api/name/service">service</a> (e.g. &ldquo;news&rdquo;,
+&ldquo;events&rdquo;, etc.) and perform generalized API requests for updating <a href="#//api/name/data">data</a> belonging to services.</p>
+
+<p>Each instance of UTCSDataSource must also own an instance of <a href="../Classes/UTCSDataSourceParser.html">UTCSDataSourceParser</a>, used to parse
+downloaded <a href="#//api/name/data">data</a>. An instance of UTCSDataSource may also own an instance of <a href="../Classes/UTCSDataSourceCache.html">UTCSDataSourceCache</a>, used
+for caching service-specific <a href="#//api/name/data">data</a> to disk, and <a href="../Classes/UTCSDataSourceSearchController.html">UTCSDataSourceSearchController</a>, which provides a
+abstract API for searching a <a href="#//api/name/data">data</a> source&rsquo;s <a href="#//api/name/data">data</a>.</p>
+
+<p>For each <a href="#//api/name/service">service</a>, you should create a subclass of UTCSDataSource (e.g. <a href="../Classes/UTCSNewsDataSource.html">UTCSNewsDataSource</a>) and configure it
+with the appropriate <a href="#//api/name/parser">parser</a>, search controller, etc. as needed. UTCSDataSource must be initialized using the
+<a href="#//api/name/initWithService:">initWithService:</a> selector.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithService:">&ndash;&nbsp;initWithService:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldUpdate">&ndash;&nbsp;shouldUpdate</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateWithArgument:completion:">&ndash;&nbsp;updateWithArgument:completion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/service">&nbsp;&nbsp;service</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parser">&nbsp;&nbsp;parser</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cache">&nbsp;&nbsp;cache</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchController">&nbsp;&nbsp;searchController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryCacheKey">&nbsp;&nbsp;primaryCacheKey</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updated">&nbsp;&nbsp;updated</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/minimumTimeBetweenUpdates">&nbsp;&nbsp;minimumTimeBetweenUpdates</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cache" title="cache"></a>
+	<h3 class="subsubtitle method-title">cache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cache to use when writing objects to disk, may be nil.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UTCSDataSourceCache *cache</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cache to use when writing objects to disk, may be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/data" title="data"></a>
+	<h3 class="subsubtitle method-title">data</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parsed data. The type of the data object is specific to the <a href="#//api/name/service">service</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) id data</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parsed data. The type of the data object is specific to the <a href="#//api/name/service">service</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delegate object that conforms to the <a href="../Protocols/UTCSDataSourceDelegate.html">UTCSDataSourceDelegate</a> protocol.
+This is usually a view controller.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;UTCSDataSourceDelegate&gt; delegate</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Delegate object that conforms to the <a href="../Protocols/UTCSDataSourceDelegate.html">UTCSDataSourceDelegate</a> protocol.
+This is usually a view controller.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/minimumTimeBetweenUpdates" title="minimumTimeBetweenUpdates"></a>
+	<h3 class="subsubtitle method-title">minimumTimeBetweenUpdates</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Minimum time between updates, in seconds.
+Default is 3600. (one hour)</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSTimeInterval minimumTimeBetweenUpdates</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Minimum time between updates, in seconds.
+Default is 3600. (one hour)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parser" title="parser"></a>
+	<h3 class="subsubtitle method-title">parser</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parser to parse downloaded <a href="#//api/name/data">data</a>, may not be nil.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UTCSDataSourceParser *parser</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parser to parse downloaded <a href="#//api/name/data">data</a>, may not be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/primaryCacheKey" title="primaryCacheKey"></a>
+	<h3 class="subsubtitle method-title">primaryCacheKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Key to use when calculating the time since last update.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *primaryCacheKey</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Key to use when calculating the time since last update.</p>
+
+<p>This key is used to access the cached object associated with this key
+and that object&rsquo;s meta<a href="#//api/name/data">data</a> is used to determine whether an update is required.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchController" title="searchController"></a>
+	<h3 class="subsubtitle method-title">searchController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search controller to use to search <a href="#//api/name/data">data</a>, may be nil.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UTCSDataSourceSearchController *searchController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search controller to use to search <a href="#//api/name/data">data</a>, may be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/service" title="service"></a>
+	<h3 class="subsubtitle method-title">service</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Name of the service associated with this <a href="#//api/name/data">data</a> source.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *service</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Name of the service associated with this <a href="#//api/name/data">data</a> source.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updated" title="updated"></a>
+	<h3 class="subsubtitle method-title">updated</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Date the <a href="#//api/name/data">data</a> source&rsquo;s <a href="#//api/name/data">data</a> was updated.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSDate *updated</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Date the <a href="#//api/name/data">data</a> source&rsquo;s <a href="#//api/name/data">data</a> was updated.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithService:" title="initWithService:"></a>
+	<h3 class="subsubtitle method-title">initWithService:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated initializer. Initializes a new instance of UTCSDataSource.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithService:(NSString *)<em>service</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>service</em></dt>
+			<dd><p>String identifying the <a href="#//api/name/service">service</a> associated with the newly initialized <a href="#//api/name/data">data</a> source object</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Newly initialized instance of UTCSDataSource</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Designated initializer. Initializes a new instance of UTCSDataSource.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldUpdate" title="shouldUpdate"></a>
+	<h3 class="subsubtitle method-title">shouldUpdate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if the <a href="#//api/name/data">data</a> source should update</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)shouldUpdate</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the <a href="#//api/name/data">data</a> source should update</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns YES if the <a href="#//api/name/data">data</a> source should update</p>
+
+<p>Updating results in the <a href="#//api/name/data">data</a> source performing an asynchronous API request.
+By default, UTCSDataSource uses the <a href="#//api/name/minimumTimeBetweenUpdates">minimumTimeBetweenUpdates</a> property and cached <a href="#//api/name/data">data</a>
+to determine the return value. Concrete subclasses of UTCSDataSource may override this
+method to customize the update conditions for a <a href="#//api/name/data">data</a> source.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateWithArgument:completion:" title="updateWithArgument:completion:"></a>
+	<h3 class="subsubtitle method-title">updateWithArgument:completion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Performs an asnchronous API request to update the <a href="#//api/name/data">data</a> source&rsquo;s <a href="#//api/name/data">data</a> and attempts to
+<a href="#//api/name/cache">cache</a> downloaded <a href="#//api/name/data">data</a> to disk. Objects are cached to disk after the completion handler
+block is executed.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateWithArgument:(NSString *)<em>argument</em> completion:(UTCSDataSourceCompletion)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>argument</em></dt>
+			<dd><p>Argument required by the <a href="#//api/name/data">data</a> source&rsquo;s <a href="#//api/name/service">service</a>, may be nil</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>Handler block to execute on completion, may be nil</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Performs an asnchronous API request to update the <a href="#//api/name/data">data</a> source&rsquo;s <a href="#//api/name/data">data</a> and attempts to
+<a href="#//api/name/cache">cache</a> downloaded <a href="#//api/name/data">data</a> to disk. Objects are cached to disk after the completion handler
+block is executed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 UTCS. All rights reserved. (Last updated: 2014-05-15)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

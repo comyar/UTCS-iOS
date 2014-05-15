@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSNewsDataSourceParser.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsDataSourceParser</TokenIdentifier>
+			<Abstract type="html">UTCSNewsDataSourceParser is a concrete class used to parse data downloaded by the
+UTCSNewsDataSource. Instance of UTCSNewsDataSourceParser should only be initialized
+by UTCSNewsDataSource objects.</Abstract>
+			<DeclaredIn>UTCSNewsDataSourceParser.h</DeclaredIn>
+            
+			
+			<NodeRef refid="30"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

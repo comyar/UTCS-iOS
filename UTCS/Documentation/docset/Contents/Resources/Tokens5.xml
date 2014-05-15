@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSContentViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSContentViewController</TokenIdentifier>
+			<Abstract type="html">UTCSContentViewController is an abstract view controller that contains properties shared by many top-level view
+controllers throughout the app, such as a menu button and a background image view. UTCSContentViewController
+should be used for all services that require an instance of UTCSDataSource to download data.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSContentViewController/setDataSource:</TokenIdentifier>
+			<Abstract type="html">Data source for the view controller. May be nil.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSDataSource *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSContentViewController/dataSource</TokenIdentifier>
+			<Abstract type="html">Data source for the view controller. May be nil.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSDataSource *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSContentViewController/dataSource</TokenIdentifier>
+			<Abstract type="html">Data source for the view controller. May be nil.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSDataSource *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSContentViewController/setMenuButton:</TokenIdentifier>
+			<Abstract type="html">Button that shows the menu.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIButton *menuButton</Declaration>
+			
+			
+			<Anchor>//api/name/menuButton</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSContentViewController/menuButton</TokenIdentifier>
+			<Abstract type="html">Button that shows the menu.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIButton *menuButton</Declaration>
+			
+			
+			<Anchor>//api/name/menuButton</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSContentViewController/menuButton</TokenIdentifier>
+			<Abstract type="html">Button that shows the menu.</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIButton *menuButton</Declaration>
+			
+			
+			<Anchor>//api/name/menuButton</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSContentViewController/setBackgroundImageView:</TokenIdentifier>
+			<Abstract type="html">Image view for displaying a background image</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *backgroundImageView</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundImageView</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSContentViewController/backgroundImageView</TokenIdentifier>
+			<Abstract type="html">Image view for displaying a background image</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *backgroundImageView</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundImageView</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSContentViewController/backgroundImageView</TokenIdentifier>
+			<Abstract type="html">Image view for displaying a background image</Abstract>
+			<DeclaredIn>UTCSContentViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *backgroundImageView</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundImageView</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

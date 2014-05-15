@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSDataSourceSearchController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDataSourceSearchController</TokenIdentifier>
+			<Abstract type="html">UTCSDataSourceSearchController is an abstract class used to search the data of a UTCSDataSource.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="11"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/searchWithQuery:scope:completion:</TokenIdentifier>
+			<Abstract type="html">Searches the data source&apos;s data with the given query and scope.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>- (void)searchWithQuery:(NSString *)query scope:(NSString *)scope completion:(UTCSDataSourceSearchCompletion)completion</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">Search query</Abstract>
+				</Parameter><Parameter>
+					<Name>scope</Name>
+					<Abstract type="html">Scope of the query</Abstract>
+				</Parameter><Parameter>
+					<Name>completion</Name>
+					<Abstract type="html">Completion handler block</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/searchWithQuery:scope:completion:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/setSearchResults:</TokenIdentifier>
+			<Abstract type="html">Results of the most recent search.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSArray *searchResults</Declaration>
+			
+			
+			<Anchor>//api/name/searchResults</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/searchResults</TokenIdentifier>
+			<Abstract type="html">Results of the most recent search.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSArray *searchResults</Declaration>
+			
+			
+			<Anchor>//api/name/searchResults</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDataSourceSearchController/searchResults</TokenIdentifier>
+			<Abstract type="html">Results of the most recent search.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSArray *searchResults</Declaration>
+			
+			
+			<Anchor>//api/name/searchResults</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/setDataSource:</TokenIdentifier>
+			<Abstract type="html">Data source whose data should be searched.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) UTCSDataSource *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/dataSource</TokenIdentifier>
+			<Abstract type="html">Data source whose data should be searched.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) UTCSDataSource *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDataSourceSearchController/dataSource</TokenIdentifier>
+			<Abstract type="html">Data source whose data should be searched.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) UTCSDataSource *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/setSearchDisplayController:</TokenIdentifier>
+			<Abstract type="html">Search display controller to display the search results.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UISearchDisplayController *searchDisplayController</Declaration>
+			
+			
+			<Anchor>//api/name/searchDisplayController</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDataSourceSearchController/searchDisplayController</TokenIdentifier>
+			<Abstract type="html">Search display controller to display the search results.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UISearchDisplayController *searchDisplayController</Declaration>
+			
+			
+			<Anchor>//api/name/searchDisplayController</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDataSourceSearchController/searchDisplayController</TokenIdentifier>
+			<Abstract type="html">Search display controller to display the search results.</Abstract>
+			<DeclaredIn>UTCSDataSourceSearchController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UISearchDisplayController *searchDisplayController</Declaration>
+			
+			
+			<Anchor>//api/name/searchDisplayController</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

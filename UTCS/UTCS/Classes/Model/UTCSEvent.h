@@ -7,16 +7,24 @@
 //
 
 
+#pragma mark - Imports
+
 @import Foundation;
 @import EventKit;
 
+
+#pragma mark - UTCSEvent Interface
+
 /**
+ UTCSEvent is a concrete class that represents a single UTCS event.
  */
 @interface UTCSEvent : NSObject <NSCoding>
 
 // -----
 // @name Properties
 // -----
+
+#pragma mark - Properties
 
 /**
  */
@@ -70,6 +78,8 @@
  */
 @property (nonatomic) EKEvent               *calendarEvent;
 
+/**
+ */
 @property (nonatomic) NSString              *eventID;
 
 @end

@@ -15,7 +15,7 @@
 #pragma mark - UTCSNewsArticle Interface
 
 /**
- UTCSNewsArticle is a concrete object that represents a single UTCS news article.
+ UTCSNewsArticle is a concrete class that represents a single UTCS news article.
  */
 @interface UTCSNewsArticle : NSObject <NSCoding>
 

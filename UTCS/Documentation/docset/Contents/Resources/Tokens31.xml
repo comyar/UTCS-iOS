@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSNewsDetailViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsDetailViewController</TokenIdentifier>
+			<Abstract type="html">UTCSNewsDetailViewController is a concrete subclass of UIViewController that displays
+a single news article.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="31"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsDetailViewController/setNewsArticle:</TokenIdentifier>
+			<Abstract type="html">News article to display.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UTCSNewsArticle *newsArticle</Declaration>
+			
+			
+			<Anchor>//api/name/newsArticle</Anchor>
+            <NodeRef refid="31"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsDetailViewController/newsArticle</TokenIdentifier>
+			<Abstract type="html">News article to display.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UTCSNewsArticle *newsArticle</Declaration>
+			
+			
+			<Anchor>//api/name/newsArticle</Anchor>
+            <NodeRef refid="31"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsDetailViewController/newsArticle</TokenIdentifier>
+			<Abstract type="html">News article to display.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UTCSNewsArticle *newsArticle</Declaration>
+			
+			
+			<Anchor>//api/name/newsArticle</Anchor>
+            <NodeRef refid="31"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

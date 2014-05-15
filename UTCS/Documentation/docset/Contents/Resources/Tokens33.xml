@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSParallaxBlurHeaderScrollView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSParallaxBlurHeaderScrollView</TokenIdentifier>
+			<Abstract type="html">The UTCSParallaxBlurHeaderScrollView class provides support for displaying content that is larger than the size of the
+application&apos;s window along with a header displayed at the top.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="33"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/setHeaderImage:</TokenIdentifier>
+			<Abstract type="html">Image to display in the header.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/headerImage</TokenIdentifier>
+			<Abstract type="html">Image to display in the header.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSParallaxBlurHeaderScrollView/headerImage</TokenIdentifier>
+			<Abstract type="html">Image to display in the header.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/setHeaderBlurredImage:</TokenIdentifier>
+			<Abstract type="html">Blurred version of the header image.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/headerBlurredImage</TokenIdentifier>
+			<Abstract type="html">Blurred version of the header image.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSParallaxBlurHeaderScrollView/headerBlurredImage</TokenIdentifier>
+			<Abstract type="html">Blurred version of the header image.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/setHeaderContainerView:</TokenIdentifier>
+			<Abstract type="html">Container view for the header. The header may be customized by adding additional subviews to this view.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIView *headerContainerView</Declaration>
+			
+			
+			<Anchor>//api/name/headerContainerView</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/headerContainerView</TokenIdentifier>
+			<Abstract type="html">Container view for the header. The header may be customized by adding additional subviews to this view.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIView *headerContainerView</Declaration>
+			
+			
+			<Anchor>//api/name/headerContainerView</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSParallaxBlurHeaderScrollView/headerContainerView</TokenIdentifier>
+			<Abstract type="html">Container view for the header. The header may be customized by adding additional subviews to this view.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIView *headerContainerView</Declaration>
+			
+			
+			<Anchor>//api/name/headerContainerView</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/setScrollView:</TokenIdentifier>
+			<Abstract type="html">Scroll view managed by this view.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIScrollView *scrollView</Declaration>
+			
+			
+			<Anchor>//api/name/scrollView</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSParallaxBlurHeaderScrollView/scrollView</TokenIdentifier>
+			<Abstract type="html">Scroll view managed by this view.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIScrollView *scrollView</Declaration>
+			
+			
+			<Anchor>//api/name/scrollView</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSParallaxBlurHeaderScrollView/scrollView</TokenIdentifier>
+			<Abstract type="html">Scroll view managed by this view.</Abstract>
+			<DeclaredIn>UTCSParallaxBlurHeaderScrollView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIScrollView *scrollView</Declaration>
+			
+			
+			<Anchor>//api/name/scrollView</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

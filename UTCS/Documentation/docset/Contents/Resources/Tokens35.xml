@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSTableViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSTableViewController</TokenIdentifier>
+			<Abstract type="html">UTCSTableViewController is an abstract view controller for displaying data in a basic table view. UTCSTableViewController
+provides an artificial navigation bar above its table view.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="35"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSTableViewController/initWithStyle:</TokenIdentifier>
+			<Abstract type="html">Designated initializer. Initializes a new instance of UTCSTableViewController.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithStyle:(UITableViewStyle)style</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>style</Name>
+					<Abstract type="html">Style of the table view. Default style is UITableViewStylePlain.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Newly initialized UTCSTableViewController instance</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithStyle:</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSTableViewController/setTableView:</TokenIdentifier>
+			<Abstract type="html">Table view managed by the table view controller.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UITableView *tableView</Declaration>
+			
+			
+			<Anchor>//api/name/tableView</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSTableViewController/tableView</TokenIdentifier>
+			<Abstract type="html">Table view managed by the table view controller.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UITableView *tableView</Declaration>
+			
+			
+			<Anchor>//api/name/tableView</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSTableViewController/tableView</TokenIdentifier>
+			<Abstract type="html">Table view managed by the table view controller.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UITableView *tableView</Declaration>
+			
+			
+			<Anchor>//api/name/tableView</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSTableViewController/setShowsNavigationBarSeparatorLine:</TokenIdentifier>
+			<Abstract type="html">YES if the navigation bar separator line should be visible.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL showsNavigationBarSeparatorLine</Declaration>
+			
+			
+			<Anchor>//api/name/showsNavigationBarSeparatorLine</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSTableViewController/showsNavigationBarSeparatorLine</TokenIdentifier>
+			<Abstract type="html">YES if the navigation bar separator line should be visible.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL showsNavigationBarSeparatorLine</Declaration>
+			
+			
+			<Anchor>//api/name/showsNavigationBarSeparatorLine</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSTableViewController/showsNavigationBarSeparatorLine</TokenIdentifier>
+			<Abstract type="html">YES if the navigation bar separator line should be visible.</Abstract>
+			<DeclaredIn>UTCSTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL showsNavigationBarSeparatorLine</Declaration>
+			
+			
+			<Anchor>//api/name/showsNavigationBarSeparatorLine</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

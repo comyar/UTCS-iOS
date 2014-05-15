@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSEvent.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSEvent</TokenIdentifier>
+			<Abstract type="html">UTCSEvent is a concrete class that represents a single UTCS event.</Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+            
+			
+			<NodeRef refid="17"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setName:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/name</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/name</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setContactName:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *contactName</Declaration>
+			
+			
+			<Anchor>//api/name/contactName</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/contactName</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *contactName</Declaration>
+			
+			
+			<Anchor>//api/name/contactName</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/contactName</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *contactName</Declaration>
+			
+			
+			<Anchor>//api/name/contactName</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setContactEmail:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *contactEmail</Declaration>
+			
+			
+			<Anchor>//api/name/contactEmail</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/contactEmail</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *contactEmail</Declaration>
+			
+			
+			<Anchor>//api/name/contactEmail</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/contactEmail</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *contactEmail</Declaration>
+			
+			
+			<Anchor>//api/name/contactEmail</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setLocation:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *location</Declaration>
+			
+			
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/location</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *location</Declaration>
+			
+			
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/location</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *location</Declaration>
+			
+			
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setDescription:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/description</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/description</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setAttributedDescription:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSAttributedString *attributedDescription</Declaration>
+			
+			
+			<Anchor>//api/name/attributedDescription</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/attributedDescription</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSAttributedString *attributedDescription</Declaration>
+			
+			
+			<Anchor>//api/name/attributedDescription</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/attributedDescription</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSAttributedString *attributedDescription</Declaration>
+			
+			
+			<Anchor>//api/name/attributedDescription</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setType:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/type</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/type</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setLink:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *link</Declaration>
+			
+			
+			<Anchor>//api/name/link</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/link</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *link</Declaration>
+			
+			
+			<Anchor>//api/name/link</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/link</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *link</Declaration>
+			
+			
+			<Anchor>//api/name/link</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setStartDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *startDate</Declaration>
+			
+			
+			<Anchor>//api/name/startDate</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/startDate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *startDate</Declaration>
+			
+			
+			<Anchor>//api/name/startDate</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/startDate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *startDate</Declaration>
+			
+			
+			<Anchor>//api/name/startDate</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setEndDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *endDate</Declaration>
+			
+			
+			<Anchor>//api/name/endDate</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/endDate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *endDate</Declaration>
+			
+			
+			<Anchor>//api/name/endDate</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/endDate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *endDate</Declaration>
+			
+			
+			<Anchor>//api/name/endDate</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setAllDay:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL allDay</Declaration>
+			
+			
+			<Anchor>//api/name/allDay</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/allDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL allDay</Declaration>
+			
+			
+			<Anchor>//api/name/allDay</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/allDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL allDay</Declaration>
+			
+			
+			<Anchor>//api/name/allDay</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setFood:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL food</Declaration>
+			
+			
+			<Anchor>//api/name/food</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/food</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL food</Declaration>
+			
+			
+			<Anchor>//api/name/food</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/food</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL food</Declaration>
+			
+			
+			<Anchor>//api/name/food</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setCalendarEvent:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) EKEvent *calendarEvent</Declaration>
+			
+			
+			<Anchor>//api/name/calendarEvent</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/calendarEvent</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) EKEvent *calendarEvent</Declaration>
+			
+			
+			<Anchor>//api/name/calendarEvent</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/calendarEvent</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) EKEvent *calendarEvent</Declaration>
+			
+			
+			<Anchor>//api/name/calendarEvent</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/setEventID:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *eventID</Declaration>
+			
+			
+			<Anchor>//api/name/eventID</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEvent/eventID</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *eventID</Declaration>
+			
+			
+			<Anchor>//api/name/eventID</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEvent/eventID</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *eventID</Declaration>
+			
+			
+			<Anchor>//api/name/eventID</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

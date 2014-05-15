@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSActiveHeaderView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSActiveHeaderView</TokenIdentifier>
+			<Abstract type="html">An instance of UTCSActiveHeaderView acts as the header for the table view managed by
+UTCSHeaderTableViewController.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/showActiveAnimation:</TokenIdentifier>
+			<Abstract type="html">Starts or stops all activity animations belonging to this view.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>- (void)showActiveAnimation:(BOOL)show</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>show</Name>
+					<Abstract type="html">YES if the view should start activity animations</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showActiveAnimation:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/setShimmeringView:</TokenIdentifier>
+			<Abstract type="html">Shimmering view used to indicate updating.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) FBShimmeringView *shimmeringView</Declaration>
+			
+			
+			<Anchor>//api/name/shimmeringView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/shimmeringView</TokenIdentifier>
+			<Abstract type="html">Shimmering view used to indicate updating.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) FBShimmeringView *shimmeringView</Declaration>
+			
+			
+			<Anchor>//api/name/shimmeringView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSActiveHeaderView/shimmeringView</TokenIdentifier>
+			<Abstract type="html">Shimmering view used to indicate updating.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) FBShimmeringView *shimmeringView</Declaration>
+			
+			
+			<Anchor>//api/name/shimmeringView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/setSubtitleLabel:</TokenIdentifier>
+			<Abstract type="html">Label used to display a subtitle beneath the shimmering view.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UILabel *subtitleLabel</Declaration>
+			
+			
+			<Anchor>//api/name/subtitleLabel</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/subtitleLabel</TokenIdentifier>
+			<Abstract type="html">Label used to display a subtitle beneath the shimmering view.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UILabel *subtitleLabel</Declaration>
+			
+			
+			<Anchor>//api/name/subtitleLabel</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSActiveHeaderView/subtitleLabel</TokenIdentifier>
+			<Abstract type="html">Label used to display a subtitle beneath the shimmering view.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UILabel *subtitleLabel</Declaration>
+			
+			
+			<Anchor>//api/name/subtitleLabel</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/setActivityIndicatorView:</TokenIdentifier>
+			<Abstract type="html">Activity indicator used to indicate updating.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIActivityIndicatorView *activityIndicatorView</Declaration>
+			
+			
+			<Anchor>//api/name/activityIndicatorView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/activityIndicatorView</TokenIdentifier>
+			<Abstract type="html">Activity indicator used to indicate updating.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIActivityIndicatorView *activityIndicatorView</Declaration>
+			
+			
+			<Anchor>//api/name/activityIndicatorView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSActiveHeaderView/activityIndicatorView</TokenIdentifier>
+			<Abstract type="html">Activity indicator used to indicate updating.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIActivityIndicatorView *activityIndicatorView</Declaration>
+			
+			
+			<Anchor>//api/name/activityIndicatorView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/setDownArrowImageView:</TokenIdentifier>
+			<Abstract type="html">Image view used to render the down arrow.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *downArrowImageView</Declaration>
+			
+			
+			<Anchor>//api/name/downArrowImageView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/downArrowImageView</TokenIdentifier>
+			<Abstract type="html">Image view used to render the down arrow.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *downArrowImageView</Declaration>
+			
+			
+			<Anchor>//api/name/downArrowImageView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSActiveHeaderView/downArrowImageView</TokenIdentifier>
+			<Abstract type="html">Image view used to render the down arrow.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *downArrowImageView</Declaration>
+			
+			
+			<Anchor>//api/name/downArrowImageView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/setUpdatedLabel:</TokenIdentifier>
+			<Abstract type="html">Label used to display an update time or date.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UILabel *updatedLabel</Declaration>
+			
+			
+			<Anchor>//api/name/updatedLabel</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSActiveHeaderView/updatedLabel</TokenIdentifier>
+			<Abstract type="html">Label used to display an update time or date.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UILabel *updatedLabel</Declaration>
+			
+			
+			<Anchor>//api/name/updatedLabel</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSActiveHeaderView/updatedLabel</TokenIdentifier>
+			<Abstract type="html">Label used to display an update time or date.</Abstract>
+			<DeclaredIn>UTCSActiveHeaderView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UILabel *updatedLabel</Declaration>
+			
+			
+			<Anchor>//api/name/updatedLabel</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

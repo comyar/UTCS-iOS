@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSLabMachine.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSLabMachine</TokenIdentifier>
+			<Abstract type="html">UTCSLabMachine represents a single machine located in one the
+UTCS labs.</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+            
+			
+			<NodeRef refid="22"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setLab:</TokenIdentifier>
+			<Abstract type="html">Name of the lab the machine is in</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *lab</Declaration>
+			
+			
+			<Anchor>//api/name/lab</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/lab</TokenIdentifier>
+			<Abstract type="html">Name of the lab the machine is in</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *lab</Declaration>
+			
+			
+			<Anchor>//api/name/lab</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/lab</TokenIdentifier>
+			<Abstract type="html">Name of the lab the machine is in</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *lab</Declaration>
+			
+			
+			<Anchor>//api/name/lab</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setName:</TokenIdentifier>
+			<Abstract type="html">Name of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/name</TokenIdentifier>
+			<Abstract type="html">Name of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/name</TokenIdentifier>
+			<Abstract type="html">Name of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setUptime:</TokenIdentifier>
+			<Abstract type="html">Uptime of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *uptime</Declaration>
+			
+			
+			<Anchor>//api/name/uptime</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/uptime</TokenIdentifier>
+			<Abstract type="html">Uptime of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *uptime</Declaration>
+			
+			
+			<Anchor>//api/name/uptime</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/uptime</TokenIdentifier>
+			<Abstract type="html">Uptime of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *uptime</Declaration>
+			
+			
+			<Anchor>//api/name/uptime</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setStatus:</TokenIdentifier>
+			<Abstract type="html">Status of the machine (up or down)</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *status</Declaration>
+			
+			
+			<Anchor>//api/name/status</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/status</TokenIdentifier>
+			<Abstract type="html">Status of the machine (up or down)</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *status</Declaration>
+			
+			
+			<Anchor>//api/name/status</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/status</TokenIdentifier>
+			<Abstract type="html">Status of the machine (up or down)</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *status</Declaration>
+			
+			
+			<Anchor>//api/name/status</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setOccupied:</TokenIdentifier>
+			<Abstract type="html">YES if the machine is physically occupied</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL occupied</Declaration>
+			
+			
+			<Anchor>//api/name/occupied</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/occupied</TokenIdentifier>
+			<Abstract type="html">YES if the machine is physically occupied</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL occupied</Declaration>
+			
+			
+			<Anchor>//api/name/occupied</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/occupied</TokenIdentifier>
+			<Abstract type="html">YES if the machine is physically occupied</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL occupied</Declaration>
+			
+			
+			<Anchor>//api/name/occupied</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setLoad:</TokenIdentifier>
+			<Abstract type="html">Current load on the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGFloat load</Declaration>
+			
+			
+			<Anchor>//api/name/load</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/load</TokenIdentifier>
+			<Abstract type="html">Current load on the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGFloat load</Declaration>
+			
+			
+			<Anchor>//api/name/load</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/load</TokenIdentifier>
+			<Abstract type="html">Current load on the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGFloat load</Declaration>
+			
+			
+			<Anchor>//api/name/load</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>
