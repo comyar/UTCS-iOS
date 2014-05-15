@@ -7,8 +7,12 @@
 //
 
 
-#import "UTCSDataSourceParser.h"
+#pragma mark - Imports
 
+#import "UTCSDataSourceParser.h"
+#import <AFNetworking/AFNetworking.h>
+
+#pragma mark - UTCSNewsDataSourceParser Interface
 
 /**
  UTCSNewsDataSourceParser is a concrete class used to parse data downloaded by the 

@@ -13,15 +13,33 @@
 #import "UTCSNewsArticle.h"
 #import "UIImage+CZScaling.h"
 
-#import "UIImage+ImageEffects.h"
 #import "UIImage+CZTinting.h"
-#import <AFNetworking/AFNetworking.h>
+#import "UIImage+ImageEffects.h"
+
 
 #pragma mark - Constants
 
+// Key for the article title in the serialized data
+static NSString * const titleKey            = @"title";
+
+// Key for the article url in the serialized data
+static NSString * const urlKey              = @"url";
+
+// Key for the article date in the serialized data
+static NSString * const dateKey             = @"date";
+
+// Key for the article html in the serialized data
+static NSString * const htmlKey             = @"noImgHtml";
+
+// Key for the article image URLs in the serialized data
+static NSString * const imageUrlsKey        = @"imageUrls";
+
 // Minimum width of an image in a news article for it to become the header image
 static const CGFloat minHeaderImageWidth    = 300.0;
+
+// Minimum height of an image in a news article for it to become the header image
 static const CGFloat minHeaderImageHeight   = 250.0;
+
 
 #pragma mark - UTCSNewsDataSourceParser Implementation
 
@@ -29,17 +47,19 @@ static const CGFloat minHeaderImageHeight   = 250.0;
 
 - (NSArray *)parseValues:(NSArray *)values
 {
-    NSMutableArray *articles = [NSMutableArray new];
+    NSMutableArray *articles        = [NSMutableArray new];
+    
     for (NSDictionary *articleData in values) {
         UTCSNewsArticle *article    = [UTCSNewsArticle new];
-        article.html                = articleData[@"noImgHtml"];
-        article.title               = articleData[@"title"];
-        article.url                 = articleData[@"url"];
-        article.imageURLs           = articleData[@"imageUrls"];
+        article.title               = articleData[titleKey];
+        article.url                 = articleData[urlKey];
+        article.html                = articleData[htmlKey];
+        article.imageURLs           = articleData[imageUrlsKey];
         article.date                = [self.dateFormatter dateFromString:articleData[@"date"]];
         [self setHeaderImageForArticle:article];
         [articles addObject:article];
     }
+    
     return articles;
 }
 
@@ -62,9 +82,12 @@ static const CGFloat minHeaderImageHeight   = 250.0;
                 UIImage *image = [UIImage imageWithData:data];
                 
                 if (image.size.width >= minHeaderImageWidth && image.size.height >= minHeaderImageHeight) {
-                    image = [UIImage scaleImage:image toSize:CGSizeMake(320.0, 284.0)];
-                    UIImage *blurredImage = [UIImage scaleImage:image toSize:CGSizeMake(80.0, 71.0)];
                     
+                    // Scale the images (aspect fill scale)
+                    image                 = [UIImage scaleImage:image toSize:CGSizeMake(minHeaderImageWidth, minHeaderImageHeight)];
+                    UIImage *blurredImage = [UIImage scaleImage:image toSize:CGSizeMake(0.25 * minHeaderImageWidth, 0.25 * minHeaderImageHeight)];
+            
+                    // Blur and tint
                     article.headerImage = [image tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:0.75] blendingMode:kCGBlendModeOverlay];
                     article.headerBlurredImage = [blurredImage applyBlurWithRadius:20.0
                                                                          tintColor:[UIColor colorWithWhite:0.1 alpha:0.75]
