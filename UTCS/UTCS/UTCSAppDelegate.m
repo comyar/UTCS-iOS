@@ -211,7 +211,7 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
 {
     if (alertView == self.authenticationAlertView) {
         if (buttonIndex == 0) {     // Cancel button
-            [self.verticalMenuViewController hideMenu];
+//            [self.verticalMenuViewController hideMenu];
         } else {
             
             // Show progress HUD

@@ -15,7 +15,7 @@
 #import "UTCSDirectoryDataSourceSearchController.h"
 #import "UIButton+UTCSButton.h"
 #import "UTCSDirectoryDetailViewController.h"
-
+#import "UTCSServiceErrorView.h"
 
 #pragma mark - Constants
 
@@ -26,6 +26,9 @@
 @interface UTCSDirectoryViewController ()
 
 @property (nonatomic, getter = hasAppeared) BOOL appeared;
+
+@property (nonatomic) UTCSServiceErrorView      *serviceErrorView;
+
 // Search bar
 @property (nonatomic) UISearchBar               *searchBar;
 
@@ -73,6 +76,8 @@
                                             forState:UIControlStateNormal];
             searchBar;
         });
+        
+        
 
         self.tableView.tableHeaderView = self.searchBar;
         self.tableView.alwaysBounceVertical = NO;
@@ -123,6 +128,18 @@
         button;
     });
     
+    
+    self.serviceErrorView = ({
+        UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:CGRectZero];
+        view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your network connection.";
+        view.alpha = 0.0;
+        view;
+    });
+    
+    self.serviceErrorView.frame     = CGRectMake(0.0, 0.0, self.view.width, 0.5 * self.view.height);
+    self.serviceErrorView.center    = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
+    
+    [self.view addSubview:self.serviceErrorView];
     [self.view addSubview:self.searchButton];
     [self.view bringSubviewToFront:self.searchButton];
 }
@@ -158,9 +175,13 @@
                 [((UTCSDirectoryDataSource *)self.dataSource) buildFlatDirectory];
                 [self.tableView reloadData];
                 self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
-            } else if (!success && !cacheHit) {
-                // frowny face
             }
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.searchButton.alpha     = success;
+                self.tableView.alpha        = success;
+                self.serviceErrorView.alpha = !success;
+            }];
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];

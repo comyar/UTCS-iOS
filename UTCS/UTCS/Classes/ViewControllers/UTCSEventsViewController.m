@@ -213,15 +213,21 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
             } else {
                 
                 if (!success) {
-                    // Show frowny face
+                    // Show frowny face, error message
+                    self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";
+                } else {
+                    self.activeHeaderView.updatedLabel.text = @"No Events Available.";
                 }
                 
-                self.activeHeaderView.updatedLabel.text = @"No Events Available";
             }
             
             if (success && !cacheHit) {
                 [self.tableView reloadData];
             }
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.activeHeaderView.downArrowImageView.alpha = success;
+            }];
         }];
     }
 }
@@ -241,7 +247,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0 && [self.dataSource.data count] > 0) {
         if (!self.filterSegmentedControl) {
             self.filterSegmentedControl = ({
                 UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:self.filterTypes];
@@ -267,7 +273,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0 && [self.dataSource.data count] > 0) {
         return 48.0;
     }
     return 0.0;

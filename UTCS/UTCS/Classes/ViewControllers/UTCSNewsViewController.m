@@ -117,17 +117,19 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
             
             if (!success) {
                 // Show frowny face, error message
-                self.activeHeaderView.updatedLabel.text = @"Update Failed. Please check your network connection.";
+                self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";
             } else {
                 self.activeHeaderView.updatedLabel.text = @"No News Articles Available.";
             }
-            
         }
         
         if (success && !cacheHit) {
             [self.tableView reloadData];
-            
         }
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.activeHeaderView.downArrowImageView.alpha = success;
+        }];
     }];
 }
 
