@@ -6,9 +6,15 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSStarredEventManager.h"
-#import "UTCSStateManager.h"
+
+#pragma mark - Imports
+
 #import "UTCSEvent.h"
+#import "UTCSStateManager.h"
+#import "UTCSStarredEventManager.h"
+
+
+#pragma mark - UTCSStarredEventManager Implementation
 
 @implementation UTCSStarredEventManager
 
@@ -77,7 +83,9 @@
     [starredEventNotifications addObject:notification];
     [UTCSStateManager sharedManager].starredEventNotifications = starredEventNotifications;
     
-    [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+    if ([UTCSStateManager sharedManager].eventNotifications) {
+        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+    }
     
     [UTCSStateManager sharedManager].hasStarredEvent = YES;
 }
