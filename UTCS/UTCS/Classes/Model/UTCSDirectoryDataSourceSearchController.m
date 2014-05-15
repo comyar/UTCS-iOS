@@ -6,11 +6,16 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSDirectoryDataSourceSearchController.h"
-#import "UTCSDirectoryDataSource.h"
-#import "UTCSDirectoryPerson.h"
-#import "UTCSBouncyTableViewCell.h"
 
+#pragma mark - Imports
+
+#import "UTCSDirectoryPerson.h"
+#import "UTCSDirectoryDataSource.h"
+#import "UTCSBouncyTableViewCell.h"
+#import "UTCSDirectoryDataSourceSearchController.h"
+
+
+#pragma mark - UTCSDirectoryDataSourceSearchController Implementation
 
 @implementation UTCSDirectoryDataSourceSearchController
 @synthesize searchResults = _searchResults;
@@ -50,12 +55,13 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
     [super searchDisplayController:controller willShowSearchResultsTableView:tableView];
+    
     tableView.backgroundColor = [UIColor clearColor];
     tableView.frame = CGRectMake(0.0, CGRectGetHeight(self.searchDisplayController.searchBar.bounds) + 44.0, CGRectGetWidth(self.searchDisplayController.searchResultsTableView.bounds), CGRectGetHeight(self.searchDisplayController.searchResultsTableView.bounds) - CGRectGetHeight(self.searchDisplayController.searchBar.bounds));
     
-    tableView.contentOffset = CGPointZero;
-    tableView.contentInset = UIEdgeInsetsZero;
-    tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+    tableView.contentOffset     = CGPointZero;
+    tableView.contentInset      = UIEdgeInsetsZero;
+    tableView.separatorColor    = [UIColor colorWithWhite:1.0 alpha:0.1];
 }
 
 @end
