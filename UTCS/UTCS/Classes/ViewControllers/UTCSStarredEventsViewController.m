@@ -6,25 +6,34 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSStarredEventsViewController.h"
+
+#pragma mark - Imports
+
+#import "UTCSEvent.h"
 #import "UIButton+UTCSButton.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSStarredEventsDataSource.h"
-#import "UTCSEvent.h"
+#import "UTCSStarredEventsViewController.h"
 
-// Name of the background image
-static NSString * const backgroundImageName         = @"eventsBackground-blurred";
 
+#pragma mark - UTCSStarredEventsViewController Class Extension
 
 @interface UTCSStarredEventsViewController ()
 
-@property (nonatomic) UTCSStarredEventsDataSource *dataSource;
+// Done button
+@property (nonatomic) UIButton                      *doneButton;
 
-@property (nonatomic) UIButton  *doneButton;
+// Data source of the starred events table view
+@property (nonatomic) UTCSStarredEventsDataSource   *dataSource;
 
 @end
 
+
+#pragma mark - UTCSStarredEventsViewController Implementation
+
 @implementation UTCSStarredEventsViewController
+
+#pragma mark Creating a Starred Events View Controller
 
 - (instancetype)init
 {
@@ -46,6 +55,8 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
     }
     return self;
 }
+
+#pragma mark UIViewController Methods
 
 - (void)viewDidLoad
 {
@@ -96,16 +107,18 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
     [self.tableView reloadData];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+#pragma mark Buttons
+
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.doneButton) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 #pragma mark UITableViewDelegate Methods
