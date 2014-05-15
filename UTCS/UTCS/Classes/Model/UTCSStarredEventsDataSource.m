@@ -11,7 +11,7 @@
 
 #import "UTCSEvent.h"
 #import "UTCSEventTableViewCell.h"
-#import "UTCSStarredEventManager.h"
+#import "UTCSStarredEventsManager.h"
 #import "UTCSStarredEventsDataSource.h"
 
 
@@ -35,7 +35,7 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
         cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
     }
     
-    UTCSEvent *event        = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+    UTCSEvent *event        = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
     
     cell.typeStripeLayer.fillColor = [UIColor clearColor].CGColor;
     
@@ -64,7 +64,7 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[UTCSStarredEventManager sharedManager].allEvents count];
+    return [[UTCSStarredEventsManager sharedManager].allEvents count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -75,10 +75,10 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        UTCSEvent *event = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+        UTCSEvent *event = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        [[UTCSStarredEventManager sharedManager]removeEvent:event];
+        [[UTCSStarredEventsManager sharedManager]removeEvent:event];
         [tableView endUpdates];
     }
 }

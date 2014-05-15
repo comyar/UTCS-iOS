@@ -17,24 +17,24 @@
 @class UTCSEvent;
 
 
-#pragma mark - UTCSStarredEventManager Implementation
+#pragma mark - UTCSStarredEventsManager Interface
 
 /**
  */
-@interface UTCSStarredEventManager : NSObject
+@interface UTCSStarredEventsManager : NSObject
 
 // -----
 // @name Getting the Starred Event Manager
 // -----
 
-#pragma mark Getting a Starred Event Manager
+#pragma mark Getting a Starred Events Manager
 
 /**
  */
-+ (UTCSStarredEventManager *)sharedManager;
++ (UTCSStarredEventsManager *)sharedManager;
 
 // -----
-// @name Using the Starred Event Manager
+// @name Using the Starred Events Manager
 // -----
 
 /**

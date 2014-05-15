@@ -8,7 +8,7 @@
 
 #import "UTCSStarredEventsViewController.h"
 #import "UIButton+UTCSButton.h"
-#import "UTCSStarredEventManager.h"
+#import "UTCSStarredEventsManager.h"
 #import "UTCSStarredEventsDataSource.h"
 #import "UTCSEvent.h"
 
@@ -112,7 +112,7 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEvent *event = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+    UTCSEvent *event = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
     
     // Estimate height of event name
     CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
@@ -139,7 +139,7 @@ static NSString * const backgroundImageName         = @"eventsBackground-blurred
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        UTCSEvent *event = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
+        UTCSEvent *event = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
         
         if ([self.delegate conformsToProtocol:@protocol(UTCSStarredEventsViewControllerDelegate)] &&
             [self.delegate respondsToSelector:@selector(starredEventsViewController:didSelectEvent:)]) {

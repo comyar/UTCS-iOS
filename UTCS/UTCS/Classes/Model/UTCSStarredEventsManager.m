@@ -11,21 +11,21 @@
 
 #import "UTCSEvent.h"
 #import "UTCSStateManager.h"
-#import "UTCSStarredEventManager.h"
+#import "UTCSStarredEventsManager.h"
 
 
-#pragma mark - UTCSStarredEventManager Implementation
+#pragma mark - UTCSStarredEventsManager Implementation
 
-@implementation UTCSStarredEventManager
+@implementation UTCSStarredEventsManager
 
-+ (UTCSStarredEventManager *)sharedManager
+#pragma mark Getting the Starred Events Manager
+
+- (instancetype)init
 {
-    static UTCSStarredEventManager *sharedManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[UTCSStarredEventManager alloc]_init];
-    });
-    return sharedManager;
+    NSString *reason = [NSString stringWithFormat:@"Cannot perform selector %@ of singleton", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:reason
+                                 userInfo:nil];
 }
 
 - (instancetype)_init
@@ -36,15 +36,17 @@
     return self;
 }
 
-- (instancetype)init
++ (UTCSStarredEventsManager *)sharedManager
 {
-    NSString *reason = [NSString stringWithFormat:@"Cannot perform selector %@ of singleton", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:reason
-                                 userInfo:nil];
+    static UTCSStarredEventsManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[UTCSStarredEventsManager alloc]_init];
+    });
+    return sharedManager;
 }
 
-#pragma mark Using Starred Event Manager
+#pragma mark Using the Starred Events Manager
 
 - (NSArray *)allEvents
 {
@@ -147,11 +149,13 @@
 - (void)purgePastEvents
 {
     for (UTCSEvent *event in [self allEvents]) {
-        if ([event.endDate timeIntervalSinceDate:[NSDate date]] < - 3600) { // purge after hour past end
+        if ([event.endDate timeIntervalSinceDate:[NSDate date]] < -3600.0) { // purge after hour past end date
             [self removeEvent:event];
         }
     }
 }
+
+#pragma mark Using Notifications
 
 - (void)disableNotifications
 {

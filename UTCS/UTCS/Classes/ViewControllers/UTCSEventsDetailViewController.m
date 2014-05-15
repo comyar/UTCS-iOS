@@ -17,7 +17,7 @@
 
 // Models
 #import "UTCSEvent.h"
-#import "UTCSStarredEventManager.h"
+#import "UTCSStarredEventsManager.h"
 #import "UTCSStateManager.h"
 
 // Categories
@@ -249,7 +249,7 @@
     self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerImageBlurredName];
     
     // Configure star button
-    if ([[UTCSStarredEventManager sharedManager]containsEvent:event]) {
+    if ([[UTCSStarredEventsManager sharedManager]containsEvent:event]) {
         self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     } else {
         self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -325,7 +325,7 @@
 
 - (void)updateEventStar:(UTCSEvent *)event
 {
-    if (![[UTCSStarredEventManager sharedManager]containsEvent:event]) {
+    if (![[UTCSStarredEventsManager sharedManager]containsEvent:event]) {
         if (![UTCSStateManager sharedManager].hasStarredEvent) {
             [[[UIAlertView alloc]initWithTitle:@"First Starred Event!"
                                        message:@"You can be notified of starred events an hour before they start! Check your settings."
@@ -334,10 +334,10 @@
                              otherButtonTitles:nil]show];
         }
         self.starButtonImageView.image = [[UIImage imageNamed:@"star-active"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [[UTCSStarredEventManager sharedManager]addEvent:event];
+        [[UTCSStarredEventsManager sharedManager]addEvent:event];
     } else {
         self.starButtonImageView.image = [[UIImage imageNamed:@"star"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [[UTCSStarredEventManager sharedManager]removeEvent:event];
+        [[UTCSStarredEventsManager sharedManager]removeEvent:event];
     }
 }
 
