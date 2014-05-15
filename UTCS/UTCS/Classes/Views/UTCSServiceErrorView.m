@@ -96,4 +96,11 @@ static NSString * const textPropertyString  = @"text";
                                        errorSize.width, errorSize.height);
 }
 
+#pragma mark Dealloc
+
+- (void)dealloc
+{
+    [self.errorLabel removeObserver:self forKeyPath:textPropertyString];
+}
+
 @end

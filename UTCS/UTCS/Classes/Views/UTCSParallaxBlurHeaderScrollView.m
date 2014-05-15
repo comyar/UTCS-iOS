@@ -185,4 +185,11 @@ static NSString * const framePropertyString             = @"frame";
     }
 }
 
+#pragma mark Dealloc
+
+- (void)dealloc
+{
+    [self.scrollView removeObserver:self forKeyPath:contentOffsetPropertyString];
+}
+
 @end
