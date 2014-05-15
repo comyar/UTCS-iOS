@@ -6,18 +6,11 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #pragma mark - Imports
 
-// Models
-#import "UTCSDataSourceCache.h"
 #import "UTCSDiskQuotaDataSource.h"
 #import "UTCSDiskQuotaDataSourceParser.h"
-
-
-#pragma mark - Constants
-
-// Key used to cache disk quota data
-NSString * const UTCSDiskQuotaDataSourceCacheKey = @"UTCSDiskQuotaDataSourceCacheKey";
 
 
 #pragma mark - UTCSDiskQuotaDataSource Implementation

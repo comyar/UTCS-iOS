@@ -7,9 +7,12 @@
 //
 
 
+#pragma mark - Imports
+
 #import "UTCSDataSource.h"
 
-extern NSString * const UTCSDiskQuotaDataSourceCacheKey;
+
+#pragma mark - UTCSDiskQuotaDataSource Interface
 
 /**
  UTCSDiskQuotaDataSource is a concrete class that handles downloading, parsing, and caching
