@@ -13,7 +13,7 @@
 #import "UIButton+UTCSButton.h"
 #import "UTCSWelcomeViewController.h"
 #import "UIView+CZPositioning.h"
-
+#import "UTCSStateManager.h"
 
 #pragma mark - Constants
 
@@ -146,6 +146,7 @@ static const CGFloat welcomeTextLabelFontSize       = 19.0;
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.getStartedButton) {
+        [UTCSStateManager sharedManager].hasCompleteOnboarding = YES;
         [UIView animateWithDuration:0.3 animations:^{
             self.navigationController.view.alpha = 0.0;
         }];
