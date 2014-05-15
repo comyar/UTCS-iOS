@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSLabMachineViewController.html">
+	<File path="Classes/UTCSEventsDataSource.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSLabMachineViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSEventsDataSource</TokenIdentifier>
+			<Abstract type="html">UTCSEventsDataSource is a concrete class that handles downloading, parsing, and caching
+of UTCS events. UTCSEventsDataSource also acts at the table view data source for the
+UTCSEventsViewController.</Abstract>
+			<DeclaredIn>UTCSEventsDataSource.h</DeclaredIn>
             
 			
 			<NodeRef refid="23"/>
@@ -13,158 +15,31 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/initWithLayout:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEventsDataSource/prepareFilter</TokenIdentifier>
+			<Abstract type="html">Prepares the data source for filtering.</Abstract>
+			<DeclaredIn>UTCSEventsDataSource.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithLayout:(UTCSLabViewLayout *)layout</Declaration>
+			<Declaration>- (void)prepareFilter</Declaration>
 			
 			
-			<Anchor>//api/name/initWithLayout:</Anchor>
+			<Anchor>//api/name/prepareFilter</Anchor>
             <NodeRef refid="23"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/setMachines:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEventsDataSource/filterEventsWithType:</TokenIdentifier>
+			<Abstract type="html">Filters events by the given type.</Abstract>
+			<DeclaredIn>UTCSEventsDataSource.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSDictionary *machines</Declaration>
-			
-			
-			<Anchor>//api/name/machines</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/machines</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) NSDictionary *machines</Declaration>
-			
-			
-			<Anchor>//api/name/machines</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachineViewController/machines</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) NSDictionary *machines</Declaration>
-			
-			
-			<Anchor>//api/name/machines</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/setImageOffset:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) CGPoint imageOffset</Declaration>
-			
-			
-			<Anchor>//api/name/imageOffset</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/imageOffset</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) CGPoint imageOffset</Declaration>
-			
-			
-			<Anchor>//api/name/imageOffset</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachineViewController/imageOffset</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) CGPoint imageOffset</Declaration>
-			
-			
-			<Anchor>//api/name/imageOffset</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/setShimmeringView:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) FBShimmeringView *shimmeringView</Declaration>
-			
-			
-			<Anchor>//api/name/shimmeringView</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/shimmeringView</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) FBShimmeringView *shimmeringView</Declaration>
-			
-			
-			<Anchor>//api/name/shimmeringView</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachineViewController/shimmeringView</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) FBShimmeringView *shimmeringView</Declaration>
-			
-			
-			<Anchor>//api/name/shimmeringView</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/setLayout:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, readonly) UTCSLabViewLayout *layout</Declaration>
-			
-			
-			<Anchor>//api/name/layout</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachineViewController/layout</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, readonly) UTCSLabViewLayout *layout</Declaration>
-			
-			
-			<Anchor>//api/name/layout</Anchor>
-            <NodeRef refid="23"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachineViewController/layout</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSLabMachineViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, readonly) UTCSLabViewLayout *layout</Declaration>
-			
-			
-			<Anchor>//api/name/layout</Anchor>
+			<Declaration>- (NSDictionary *)filterEventsWithType:(NSString *)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>type</Name>
+					<Abstract type="html">Type of event to filter by.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Dictionary of index paths to add/remove from the events table view.</Abstract></ReturnValue>
+			<Anchor>//api/name/filterEventsWithType:</Anchor>
             <NodeRef refid="23"/>
 		</Token>
 		

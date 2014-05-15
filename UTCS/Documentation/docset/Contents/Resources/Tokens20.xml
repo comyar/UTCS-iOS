@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSEventsViewController.html">
+	<File path="Classes/UTCSDiskQuotaViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSEventsViewController</TokenIdentifier>
-			<Abstract type="html">UTCSEventsViewController displays all the available events in a simple table and allows filtering of events by type</Abstract>
-			<DeclaredIn>UTCSEventsViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDiskQuotaViewController</TokenIdentifier>
+			<Abstract type="html">UTCSDiskQuotaViewController is a concrete subclass of UTCSContentViewController that allows
+a user to request their disk quota and visualizes disk quota information.</Abstract>
+			<DeclaredIn>UTCSDiskQuotaViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="20"/>

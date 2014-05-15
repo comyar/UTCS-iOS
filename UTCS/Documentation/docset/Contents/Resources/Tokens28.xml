@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSNewsArticle.html">
+	<File path="Classes/UTCSLabMachine.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsArticle</TokenIdentifier>
-			<Abstract type="html">UTCSNewsArticle is a concrete class that represents a single UTCS news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSLabMachine</TokenIdentifier>
+			<Abstract type="html">UTCSLabMachine represents a single machine located in one the
+UTCS labs.</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
             
 			
 			<NodeRef refid="28"/>
@@ -13,290 +14,218 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setTitle:</TokenIdentifier>
-			<Abstract type="html">Title of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setLab:</TokenIdentifier>
+			<Abstract type="html">Name of the lab the machine is in</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *title</Declaration>
+			<Declaration>@property (nonatomic) NSString *lab</Declaration>
 			
 			
-			<Anchor>//api/name/title</Anchor>
+			<Anchor>//api/name/lab</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/title</TokenIdentifier>
-			<Abstract type="html">Title of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/lab</TokenIdentifier>
+			<Abstract type="html">Name of the lab the machine is in</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *title</Declaration>
+			<Declaration>@property (nonatomic) NSString *lab</Declaration>
 			
 			
-			<Anchor>//api/name/title</Anchor>
+			<Anchor>//api/name/lab</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/title</TokenIdentifier>
-			<Abstract type="html">Title of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/lab</TokenIdentifier>
+			<Abstract type="html">Name of the lab the machine is in</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *title</Declaration>
+			<Declaration>@property (nonatomic) NSString *lab</Declaration>
 			
 			
-			<Anchor>//api/name/title</Anchor>
+			<Anchor>//api/name/lab</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setUrl:</TokenIdentifier>
-			<Abstract type="html">URL to the news article online.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setName:</TokenIdentifier>
+			<Abstract type="html">Name of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *url</Declaration>
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
 			
 			
-			<Anchor>//api/name/url</Anchor>
+			<Anchor>//api/name/name</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/url</TokenIdentifier>
-			<Abstract type="html">URL to the news article online.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/name</TokenIdentifier>
+			<Abstract type="html">Name of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *url</Declaration>
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
 			
 			
-			<Anchor>//api/name/url</Anchor>
+			<Anchor>//api/name/name</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/url</TokenIdentifier>
-			<Abstract type="html">URL to the news article online.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/name</TokenIdentifier>
+			<Abstract type="html">Name of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *url</Declaration>
+			<Declaration>@property (nonatomic) NSString *name</Declaration>
 			
 			
-			<Anchor>//api/name/url</Anchor>
+			<Anchor>//api/name/name</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setDate:</TokenIdentifier>
-			<Abstract type="html">Date the news article was published.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setUptime:</TokenIdentifier>
+			<Abstract type="html">Uptime of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSDate *date</Declaration>
+			<Declaration>@property (nonatomic) NSString *uptime</Declaration>
 			
 			
-			<Anchor>//api/name/date</Anchor>
+			<Anchor>//api/name/uptime</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/date</TokenIdentifier>
-			<Abstract type="html">Date the news article was published.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/uptime</TokenIdentifier>
+			<Abstract type="html">Uptime of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSDate *date</Declaration>
+			<Declaration>@property (nonatomic) NSString *uptime</Declaration>
 			
 			
-			<Anchor>//api/name/date</Anchor>
+			<Anchor>//api/name/uptime</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/date</TokenIdentifier>
-			<Abstract type="html">Date the news article was published.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/uptime</TokenIdentifier>
+			<Abstract type="html">Uptime of the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSDate *date</Declaration>
+			<Declaration>@property (nonatomic) NSString *uptime</Declaration>
 			
 			
-			<Anchor>//api/name/date</Anchor>
+			<Anchor>//api/name/uptime</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHtml:</TokenIdentifier>
-			<Abstract type="html">HTML content of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setStatus:</TokenIdentifier>
+			<Abstract type="html">Status of the machine (up or down)</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *html</Declaration>
+			<Declaration>@property (nonatomic) NSString *status</Declaration>
 			
 			
-			<Anchor>//api/name/html</Anchor>
+			<Anchor>//api/name/status</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/html</TokenIdentifier>
-			<Abstract type="html">HTML content of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/status</TokenIdentifier>
+			<Abstract type="html">Status of the machine (up or down)</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *html</Declaration>
+			<Declaration>@property (nonatomic) NSString *status</Declaration>
 			
 			
-			<Anchor>//api/name/html</Anchor>
+			<Anchor>//api/name/status</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/html</TokenIdentifier>
-			<Abstract type="html">HTML content of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/status</TokenIdentifier>
+			<Abstract type="html">Status of the machine (up or down)</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSString *html</Declaration>
+			<Declaration>@property (nonatomic) NSString *status</Declaration>
 			
 			
-			<Anchor>//api/name/html</Anchor>
+			<Anchor>//api/name/status</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setImageURLs:</TokenIdentifier>
-			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setOccupied:</TokenIdentifier>
+			<Abstract type="html">YES if the machine is physically occupied</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
+			<Declaration>@property (nonatomic) BOOL occupied</Declaration>
 			
 			
-			<Anchor>//api/name/imageURLs</Anchor>
+			<Anchor>//api/name/occupied</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/imageURLs</TokenIdentifier>
-			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/occupied</TokenIdentifier>
+			<Abstract type="html">YES if the machine is physically occupied</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
+			<Declaration>@property (nonatomic) BOOL occupied</Declaration>
 			
 			
-			<Anchor>//api/name/imageURLs</Anchor>
+			<Anchor>//api/name/occupied</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/imageURLs</TokenIdentifier>
-			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/occupied</TokenIdentifier>
+			<Abstract type="html">YES if the machine is physically occupied</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
+			<Declaration>@property (nonatomic) BOOL occupied</Declaration>
 			
 			
-			<Anchor>//api/name/imageURLs</Anchor>
+			<Anchor>//api/name/occupied</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setAttributedContent:</TokenIdentifier>
-			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/setLoad:</TokenIdentifier>
+			<Abstract type="html">Current load on the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
+			<Declaration>@property (nonatomic) CGFloat load</Declaration>
 			
 			
-			<Anchor>//api/name/attributedContent</Anchor>
+			<Anchor>//api/name/load</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/attributedContent</TokenIdentifier>
-			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSLabMachine/load</TokenIdentifier>
+			<Abstract type="html">Current load on the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
+			<Declaration>@property (nonatomic) CGFloat load</Declaration>
 			
 			
-			<Anchor>//api/name/attributedContent</Anchor>
+			<Anchor>//api/name/load</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/attributedContent</TokenIdentifier>
-			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSLabMachine/load</TokenIdentifier>
+			<Abstract type="html">Current load on the machine</Abstract>
+			<DeclaredIn>UTCSLabMachine.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
-			
-			
-			<Anchor>//api/name/attributedContent</Anchor>
-            <NodeRef refid="28"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHeaderImage:</TokenIdentifier>
-			<Abstract type="html">Header image of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			<Declaration>@property (nonatomic) CGFloat load</Declaration>
 			
 			
-			<Anchor>//api/name/headerImage</Anchor>
-            <NodeRef refid="28"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/headerImage</TokenIdentifier>
-			<Abstract type="html">Header image of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
-			
-			
-			<Anchor>//api/name/headerImage</Anchor>
-            <NodeRef refid="28"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/headerImage</TokenIdentifier>
-			<Abstract type="html">Header image of the news article.</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
-			
-			
-			<Anchor>//api/name/headerImage</Anchor>
-            <NodeRef refid="28"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHeaderBlurredImage:</TokenIdentifier>
-			<Abstract type="html">Blurred header image of the news article</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
-			
-			
-			<Anchor>//api/name/headerBlurredImage</Anchor>
-            <NodeRef refid="28"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/headerBlurredImage</TokenIdentifier>
-			<Abstract type="html">Blurred header image of the news article</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
-			
-			
-			<Anchor>//api/name/headerBlurredImage</Anchor>
-            <NodeRef refid="28"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/headerBlurredImage</TokenIdentifier>
-			<Abstract type="html">Blurred header image of the news article</Abstract>
-			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
-			
-			
-			<Anchor>//api/name/headerBlurredImage</Anchor>
+			<Anchor>//api/name/load</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		

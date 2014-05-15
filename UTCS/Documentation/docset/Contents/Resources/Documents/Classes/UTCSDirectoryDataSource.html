@@ -123,6 +123,16 @@
                     
                     
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>UTCSDirectoryDataSource is a concrete class that handles downloading, parsing, and caching
+of directory data. UTCSDirectoryDataSource also acts at the table view data source for the
+<a href="../Classes/UTCSDirectoryViewController.html">UTCSDirectoryViewController</a>.</p>
+
+<p>UTCSDirectoryDataSource should not be subclassed.</p>
+					</div>
+					
 					
 					
 					
@@ -167,6 +177,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Flattened version of the directory data.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray *flatDirectory</code></div>
@@ -178,6 +192,13 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Flattened version of the directory data.</p>
+
+<p><a href="../Classes/UTCSDirectoryPerson.html">UTCSDirectoryPerson</a> objects in this 1-D array are ordered by last name.</p>
+	</div>
 	
 	
 	
@@ -209,6 +230,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Creates a flattened version of the directory from the data source&rsquo;s data.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>- (void)buildFlatDirectory</code></div>
@@ -220,6 +245,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Creates a flattened version of the directory from the data source&rsquo;s data.</p>
+	</div>
 	
 	
 	

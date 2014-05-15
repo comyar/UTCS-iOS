@@ -31,12 +31,21 @@
 	
 	
 	
+	<option value="tasks">Tasks</option>
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/filterEventsWithType:">&nbsp;&nbsp;&nbsp;&nbsp;- filterEventsWithType:</option>
+	
+	<option value="//api/name/prepareFilter">&nbsp;&nbsp;&nbsp;&nbsp;- prepareFilter</option>
 	
 	
 	
@@ -52,6 +61,9 @@
 
 
 
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
 
 
 
@@ -59,6 +71,15 @@
 
 
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/filterEventsWithType:">filterEventsWithType:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareFilter">prepareFilter</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -98,7 +119,41 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>UTCSEventsDataSource</p>
+						<p>UTCSEventsDataSource is a concrete class that handles downloading, parsing, and caching
+of UTCS events. UTCSEventsDataSource also acts at the table view data source for the
+<a href="../Classes/UTCSEventsViewController.html">UTCSEventsViewController</a>.</p>
+
+<p>UTCSEventsDataSource should not be subclassed.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareFilter">&ndash;&nbsp;prepareFilter</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/filterEventsWithType:">&ndash;&nbsp;filterEventsWithType:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
 					</div>
 					
 					
@@ -109,9 +164,110 @@
 					
 					
 					
-					
-					
-					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/filterEventsWithType:" title="filterEventsWithType:"></a>
+	<h3 class="subsubtitle method-title">filterEventsWithType:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Filters events by the given type.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)filterEventsWithType:(NSString *)<em>type</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>type</em></dt>
+			<dd><p>Type of event to filter by.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Dictionary of index paths to add/remove from the events table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Filters events by the given type.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSEventsDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareFilter" title="prepareFilter"></a>
+	<h3 class="subsubtitle method-title">prepareFilter</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prepares the data source for filtering.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)prepareFilter</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Prepares the data source for filtering.</p>
+
+<p>Should be called anytime changes are made to the data source&rsquo;s data.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UTCSEventsDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
                     

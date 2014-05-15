@@ -4,7 +4,9 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/cl/UTCSDirectoryDataSource</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">UTCSDirectoryDataSource is a concrete class that handles downloading, parsing, and caching
+of directory data. UTCSDirectoryDataSource also acts at the table view data source for the
+UTCSDirectoryViewController.</Abstract>
 			<DeclaredIn>UTCSDirectoryDataSource.h</DeclaredIn>
             
 			
@@ -14,7 +16,7 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryDataSource/buildFlatDirectory</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">Creates a flattened version of the directory from the data source&apos;s data.</Abstract>
 			<DeclaredIn>UTCSDirectoryDataSource.h</DeclaredIn>
 			
 			<Declaration>- (void)buildFlatDirectory</Declaration>
@@ -26,7 +28,7 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryDataSource/setFlatDirectory:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">Flattened version of the directory data.</Abstract>
 			<DeclaredIn>UTCSDirectoryDataSource.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, readonly) NSArray *flatDirectory</Declaration>
@@ -38,7 +40,7 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryDataSource/flatDirectory</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">Flattened version of the directory data.</Abstract>
 			<DeclaredIn>UTCSDirectoryDataSource.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, readonly) NSArray *flatDirectory</Declaration>
@@ -50,7 +52,7 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryDataSource/flatDirectory</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">Flattened version of the directory data.</Abstract>
 			<DeclaredIn>UTCSDirectoryDataSource.h</DeclaredIn>
 			
 			<Declaration>@property (nonatomic, readonly) NSArray *flatDirectory</Declaration>

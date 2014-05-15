@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/UTCSDataSourceDelegate.html">
+	<File path="Classes/UTCSNewsViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/UTCSDataSourceDelegate</TokenIdentifier>
-			<Abstract type="html">The delegate of a UTCSDataSource must adopt the UTCSDataSourceDelegate protocol. Optional methods of the protocol
-allow the delegate to manage which objects a data source caches to disk.</Abstract>
-			<DeclaredIn>UTCSDataSource.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsViewController</TokenIdentifier>
+			<Abstract type="html">UTCSNewsViewController is a concrete subclass of UTCSHeaderTableViewController that displays
+all the available news articles in a table view. UTCSNewsViewController is also the first
+content view controller presented to the user on application launch.</Abstract>
+			<DeclaredIn>UTCSNewsViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="38"/>
 		</Token>
 		
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/UTCSDataSourceDelegate/objectsToCacheForDataSource:</TokenIdentifier>
-			<Abstract type="html">Asks the delegate for the set of objects that should be cached to disk.</Abstract>
-			<DeclaredIn>UTCSDataSource.h</DeclaredIn>
-			
-			<Declaration>- (NSDictionary *)objectsToCacheForDataSource:(UTCSDataSource *)dataSource</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>dataSource</Name>
-					<Abstract type="html">Data source requesting objects to cache</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">Dictionary of objects to cache along with their associated keys, may be nil</Abstract></ReturnValue>
-			<Anchor>//api/name/objectsToCacheForDataSource:</Anchor>
-            <NodeRef refid="38"/>
-		</Token>
 		
         
 	</File>

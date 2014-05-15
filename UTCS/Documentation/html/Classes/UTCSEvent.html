@@ -43,8 +43,6 @@
 	
 	<option value="//api/name/attributedDescription">&nbsp;&nbsp;&nbsp;&nbsp;attributedDescription</option>
 	
-	<option value="//api/name/calendarEvent">&nbsp;&nbsp;&nbsp;&nbsp;calendarEvent</option>
-	
 	<option value="//api/name/contactEmail">&nbsp;&nbsp;&nbsp;&nbsp;contactEmail</option>
 	
 	<option value="//api/name/contactName">&nbsp;&nbsp;&nbsp;&nbsp;contactName</option>
@@ -98,8 +96,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allDay">allDay</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/attributedDescription">attributedDescription</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/calendarEvent">calendarEvent</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contactEmail">contactEmail</a></span></li>
 	
@@ -257,12 +253,6 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/calendarEvent">&nbsp;&nbsp;calendarEvent</a></code>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/eventID">&nbsp;&nbsp;eventID</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -286,6 +276,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>YES if the event is all day.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL allDay</code></div>
@@ -297,6 +291,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>YES if the event is all day.</p>
+	</div>
 	
 	
 	
@@ -318,6 +317,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Attributed <a href="#//api/name/description">description</a> of the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSAttributedString *attributedDescription</code></div>
@@ -330,37 +333,10 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">UTCSEvent.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/calendarEvent" title="calendarEvent"></a>
-	<h3 class="subsubtitle method-title">calendarEvent</h3>
-	
-	
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (nonatomic) EKEvent *calendarEvent</code></div>
-
-    
-	
-	
-	
-	
-	
-	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Attributed <a href="#//api/name/description">description</a> of the event.</p>
+	</div>
 	
 	
 	
@@ -382,6 +358,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Contact email for the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *contactEmail</code></div>
@@ -393,6 +373,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Contact email for the event.</p>
+	</div>
 	
 	
 	
@@ -414,6 +399,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Contact <a href="#//api/name/name">name</a> for the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *contactName</code></div>
@@ -425,6 +414,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Contact <a href="#//api/name/name">name</a> for the event.</p>
+	</div>
 	
 	
 	
@@ -446,6 +440,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Event description.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *description</code></div>
@@ -457,6 +455,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Event description.</p>
+	</div>
 	
 	
 	
@@ -478,6 +481,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>End date of the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSDate *endDate</code></div>
@@ -489,6 +496,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>End date of the event.</p>
+	</div>
 	
 	
 	
@@ -510,6 +522,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Unique ID for the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *eventID</code></div>
@@ -521,6 +537,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Unique ID for the event.</p>
+	</div>
 	
 	
 	
@@ -542,6 +563,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>YES if the event provides food.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL food</code></div>
@@ -553,6 +578,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>YES if the event provides food.</p>
+	</div>
 	
 	
 	
@@ -574,6 +604,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Link to the event on UTCS site.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *link</code></div>
@@ -585,6 +619,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Link to the event on UTCS site.</p>
+	</div>
 	
 	
 	
@@ -606,6 +645,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Location of the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *location</code></div>
@@ -617,6 +660,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Location of the event.</p>
+	</div>
 	
 	
 	
@@ -638,6 +686,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Event name.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *name</code></div>
@@ -649,6 +701,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Event name.</p>
+	</div>
 	
 	
 	
@@ -670,6 +727,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Start date of the event.</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSDate *startDate</code></div>
@@ -681,6 +742,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Start date of the event.</p>
+	</div>
 	
 	
 	
@@ -702,6 +768,10 @@
 	
 	
 	
+	<div class="method-subsection brief-description">
+		<p>Event type. (e.g. Talks, Careers, etc.)</p>
+	</div>		
+	
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSString *type</code></div>
@@ -713,6 +783,11 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Event type. (e.g. Talks, Careers, etc.)</p>
+	</div>
 	
 	
 	

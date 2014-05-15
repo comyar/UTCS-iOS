@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSStateManager.html">
+	<File path="Classes/UTCSNewsArticle.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSStateManager</TokenIdentifier>
-			<Abstract type="html">UTCSStateManager is a singleton class that manages the persistance of information not directly
-associated with an instance of UTCSDataSource. This includes, for example, app settings. Other
-managers may also rely on the state manager to persist data. For example, both the
-UTCSAuthenticationManager as well as the UTCSStarredEventsManager make heavy use of the state
-manager.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsArticle</TokenIdentifier>
+			<Abstract type="html">UTCSNewsArticle is a concrete class that represents a single UTCS news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
             
 			
 			<NodeRef refid="34"/>
@@ -17,230 +13,290 @@ manager.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/UTCSStateManager/sharedManager</TokenIdentifier>
-			<Abstract type="html">Returns the shared state manager instance.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setTitle:</TokenIdentifier>
+			<Abstract type="html">Title of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>+ (UTCSStateManager *)sharedManager</Declaration>
+			<Declaration>@property (nonatomic) NSString *title</Declaration>
 			
-			<ReturnValue><Abstract type="html">The shared state manager instance.</Abstract></ReturnValue>
-			<Anchor>//api/name/sharedManager</Anchor>
+			
+			<Anchor>//api/name/title</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setAuthenticated:</TokenIdentifier>
-			<Abstract type="html">YES if the user is authenticated.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/title</TokenIdentifier>
+			<Abstract type="html">Title of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL authenticated</Declaration>
+			<Declaration>@property (nonatomic) NSString *title</Declaration>
 			
 			
-			<Anchor>//api/name/authenticated</Anchor>
+			<Anchor>//api/name/title</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/authenticated</TokenIdentifier>
-			<Abstract type="html">YES if the user is authenticated.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/title</TokenIdentifier>
+			<Abstract type="html">Title of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL authenticated</Declaration>
+			<Declaration>@property (nonatomic) NSString *title</Declaration>
 			
 			
-			<Anchor>//api/name/authenticated</Anchor>
+			<Anchor>//api/name/title</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/authenticated</TokenIdentifier>
-			<Abstract type="html">YES if the user is authenticated.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setUrl:</TokenIdentifier>
+			<Abstract type="html">URL to the news article online.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL authenticated</Declaration>
+			<Declaration>@property (nonatomic) NSString *url</Declaration>
 			
 			
-			<Anchor>//api/name/authenticated</Anchor>
+			<Anchor>//api/name/url</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setHasStarredEvent:</TokenIdentifier>
-			<Abstract type="html">YES if the user has previously starred an event.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/url</TokenIdentifier>
+			<Abstract type="html">URL to the news article online.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL hasStarredEvent</Declaration>
+			<Declaration>@property (nonatomic) NSString *url</Declaration>
 			
 			
-			<Anchor>//api/name/hasStarredEvent</Anchor>
+			<Anchor>//api/name/url</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/hasStarredEvent</TokenIdentifier>
-			<Abstract type="html">YES if the user has previously starred an event.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/url</TokenIdentifier>
+			<Abstract type="html">URL to the news article online.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL hasStarredEvent</Declaration>
+			<Declaration>@property (nonatomic) NSString *url</Declaration>
 			
 			
-			<Anchor>//api/name/hasStarredEvent</Anchor>
+			<Anchor>//api/name/url</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/hasStarredEvent</TokenIdentifier>
-			<Abstract type="html">YES if the user has previously starred an event.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setDate:</TokenIdentifier>
+			<Abstract type="html">Date the news article was published.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL hasStarredEvent</Declaration>
+			<Declaration>@property (nonatomic) NSDate *date</Declaration>
 			
 			
-			<Anchor>//api/name/hasStarredEvent</Anchor>
+			<Anchor>//api/name/date</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setEventNotifications:</TokenIdentifier>
-			<Abstract type="html">YES if event notifications are enabled.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/date</TokenIdentifier>
+			<Abstract type="html">Date the news article was published.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL eventNotifications</Declaration>
+			<Declaration>@property (nonatomic) NSDate *date</Declaration>
 			
 			
-			<Anchor>//api/name/eventNotifications</Anchor>
+			<Anchor>//api/name/date</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/eventNotifications</TokenIdentifier>
-			<Abstract type="html">YES if event notifications are enabled.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/date</TokenIdentifier>
+			<Abstract type="html">Date the news article was published.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL eventNotifications</Declaration>
+			<Declaration>@property (nonatomic) NSDate *date</Declaration>
 			
 			
-			<Anchor>//api/name/eventNotifications</Anchor>
+			<Anchor>//api/name/date</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/eventNotifications</TokenIdentifier>
-			<Abstract type="html">YES if event notifications are enabled.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHtml:</TokenIdentifier>
+			<Abstract type="html">HTML content of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) BOOL eventNotifications</Declaration>
+			<Declaration>@property (nonatomic) NSString *html</Declaration>
 			
 			
-			<Anchor>//api/name/eventNotifications</Anchor>
+			<Anchor>//api/name/html</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setPreferredLab:</TokenIdentifier>
-			<Abstract type="html">Preferred lab number.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/html</TokenIdentifier>
+			<Abstract type="html">HTML content of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSInteger preferredLab</Declaration>
+			<Declaration>@property (nonatomic) NSString *html</Declaration>
 			
 			
-			<Anchor>//api/name/preferredLab</Anchor>
+			<Anchor>//api/name/html</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/preferredLab</TokenIdentifier>
-			<Abstract type="html">Preferred lab number.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/html</TokenIdentifier>
+			<Abstract type="html">HTML content of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSInteger preferredLab</Declaration>
+			<Declaration>@property (nonatomic) NSString *html</Declaration>
 			
 			
-			<Anchor>//api/name/preferredLab</Anchor>
+			<Anchor>//api/name/html</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/preferredLab</TokenIdentifier>
-			<Abstract type="html">Preferred lab number.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setImageURLs:</TokenIdentifier>
+			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSInteger preferredLab</Declaration>
+			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
 			
 			
-			<Anchor>//api/name/preferredLab</Anchor>
+			<Anchor>//api/name/imageURLs</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setStarredEvents:</TokenIdentifier>
-			<Abstract type="html">Events starred by the user.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/imageURLs</TokenIdentifier>
+			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *starredEvents</Declaration>
+			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
 			
 			
-			<Anchor>//api/name/starredEvents</Anchor>
+			<Anchor>//api/name/imageURLs</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/starredEvents</TokenIdentifier>
-			<Abstract type="html">Events starred by the user.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/imageURLs</TokenIdentifier>
+			<Abstract type="html">URLs of all images appearing in the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *starredEvents</Declaration>
+			<Declaration>@property (nonatomic) NSArray *imageURLs</Declaration>
 			
 			
-			<Anchor>//api/name/starredEvents</Anchor>
+			<Anchor>//api/name/imageURLs</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/starredEvents</TokenIdentifier>
-			<Abstract type="html">Events starred by the user.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setAttributedContent:</TokenIdentifier>
+			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *starredEvents</Declaration>
+			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
 			
 			
-			<Anchor>//api/name/starredEvents</Anchor>
+			<Anchor>//api/name/attributedContent</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setStarredEventNotifications:</TokenIdentifier>
-			<Abstract type="html">Notifications for starred events.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/attributedContent</TokenIdentifier>
+			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *starredEventNotifications</Declaration>
+			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
 			
 			
-			<Anchor>//api/name/starredEventNotifications</Anchor>
+			<Anchor>//api/name/attributedContent</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/starredEventNotifications</TokenIdentifier>
-			<Abstract type="html">Notifications for starred events.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/attributedContent</TokenIdentifier>
+			<Abstract type="html">Attributed content parsed from the HTML content.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *starredEventNotifications</Declaration>
+			<Declaration>@property (nonatomic) NSAttributedString *attributedContent</Declaration>
 			
 			
-			<Anchor>//api/name/starredEventNotifications</Anchor>
+			<Anchor>//api/name/attributedContent</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/starredEventNotifications</TokenIdentifier>
-			<Abstract type="html">Notifications for starred events.</Abstract>
-			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHeaderImage:</TokenIdentifier>
+			<Abstract type="html">Header image of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic) NSArray *starredEventNotifications</Declaration>
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
 			
 			
-			<Anchor>//api/name/starredEventNotifications</Anchor>
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="34"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/headerImage</TokenIdentifier>
+			<Abstract type="html">Header image of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="34"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/headerImage</TokenIdentifier>
+			<Abstract type="html">Header image of the news article.</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerImage</Anchor>
+            <NodeRef refid="34"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/setHeaderBlurredImage:</TokenIdentifier>
+			<Abstract type="html">Blurred header image of the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="34"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsArticle/headerBlurredImage</TokenIdentifier>
+			<Abstract type="html">Blurred header image of the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
+            <NodeRef refid="34"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsArticle/headerBlurredImage</TokenIdentifier>
+			<Abstract type="html">Blurred header image of the news article</Abstract>
+			<DeclaredIn>UTCSNewsArticle.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIImage *headerBlurredImage</Declaration>
+			
+			
+			<Anchor>//api/name/headerBlurredImage</Anchor>
             <NodeRef refid="34"/>
 		</Token>
 		

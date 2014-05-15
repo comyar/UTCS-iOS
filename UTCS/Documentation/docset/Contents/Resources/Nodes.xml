@@ -47,6 +47,17 @@
 						<NodeRef refid="34"/>
 						<NodeRef refid="35"/>
 						<NodeRef refid="36"/>
+						<NodeRef refid="37"/>
+						<NodeRef refid="38"/>
+						<NodeRef refid="39"/>
+						<NodeRef refid="40"/>
+						<NodeRef refid="41"/>
+						<NodeRef refid="42"/>
+						<NodeRef refid="43"/>
+						<NodeRef refid="44"/>
+						<NodeRef refid="45"/>
+						<NodeRef refid="46"/>
+						<NodeRef refid="47"/>
 						
 					</Subnodes>
 				</Node>
@@ -56,7 +67,7 @@
 					<Name>Categories</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="37"/>
+						<NodeRef refid="48"/>
 						
 					</Subnodes>
 				</Node>
@@ -66,8 +77,9 @@
 					<Name>Protocols</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="38"/>
-						<NodeRef refid="39"/>
+						<NodeRef refid="49"/>
+						<NodeRef refid="50"/>
+						<NodeRef refid="51"/>
 						
 					</Subnodes>
 				</Node>
@@ -77,9 +89,9 @@
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="40"/>
-						<NodeRef refid="41"/>
-						<NodeRef refid="42"/>
+						<NodeRef refid="52"/>
+						<NodeRef refid="53"/>
+						<NodeRef refid="54"/>
 						
 					</Subnodes>
 				</Node>
@@ -462,26 +474,90 @@
             
         </Node>
 		<Node id="13" type="file" documentType="reference">
-            <Name>UTCSDirectoryDetailViewController</Name>
-            <Path>Classes/UTCSDirectoryDetailViewController.html</Path>
+            <Name>UTCSDirectoryDataSourceParser</Name>
+            <Path>Classes/UTCSDirectoryDataSourceParser.html</Path>
             
         </Node>
 		<Node id="14" type="file" documentType="reference">
+            <Name>UTCSDirectoryDataSourceSearchController</Name>
+            <Path>Classes/UTCSDirectoryDataSourceSearchController.html</Path>
+            
+        </Node>
+		<Node id="15" type="file" documentType="reference">
+            <Name>UTCSDirectoryDetailViewController</Name>
+            <Path>Classes/UTCSDirectoryDetailViewController.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSDirectoryDetailViewController.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSDirectoryDetailViewController.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UTCSDirectoryDetailViewController.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="16" type="file" documentType="reference">
+            <Name>UTCSDirectoryPerson</Name>
+            <Path>Classes/UTCSDirectoryPerson.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSDirectoryPerson.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSDirectoryPerson.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UTCSDirectoryPerson.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="17" type="file" documentType="reference">
+            <Name>UTCSDirectoryViewController</Name>
+            <Path>Classes/UTCSDirectoryViewController.html</Path>
+            
+        </Node>
+		<Node id="18" type="file" documentType="reference">
             <Name>UTCSDiskQuotaDataSource</Name>
             <Path>Classes/UTCSDiskQuotaDataSource.html</Path>
             
         </Node>
-		<Node id="15" type="file" documentType="reference">
+		<Node id="19" type="file" documentType="reference">
             <Name>UTCSDiskQuotaDataSourceParser</Name>
             <Path>Classes/UTCSDiskQuotaDataSourceParser.html</Path>
             
         </Node>
-		<Node id="16" type="file" documentType="reference">
+		<Node id="20" type="file" documentType="reference">
             <Name>UTCSDiskQuotaViewController</Name>
             <Path>Classes/UTCSDiskQuotaViewController.html</Path>
             
         </Node>
-		<Node id="17" type="file" documentType="reference">
+		<Node id="21" type="file" documentType="reference">
             <Name>UTCSEvent</Name>
             <Path>Classes/UTCSEvent.html</Path>
             
@@ -508,12 +584,66 @@
             </Subnodes>
             
         </Node>
-		<Node id="18" type="file" documentType="reference">
+		<Node id="22" type="file" documentType="reference">
+            <Name>UTCSEventTableViewCell</Name>
+            <Path>Classes/UTCSEventTableViewCell.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSEventTableViewCell.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSEventTableViewCell.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UTCSEventTableViewCell.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="23" type="file" documentType="reference">
             <Name>UTCSEventsDataSource</Name>
             <Path>Classes/UTCSEventsDataSource.html</Path>
             
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSEventsDataSource.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSEventsDataSource.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/UTCSEventsDataSource.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
         </Node>
-		<Node id="19" type="file" documentType="reference">
+		<Node id="24" type="file" documentType="reference">
+            <Name>UTCSEventsDataSourceParser</Name>
+            <Path>Classes/UTCSEventsDataSourceParser.html</Path>
+            
+        </Node>
+		<Node id="25" type="file" documentType="reference">
             <Name>UTCSEventsDetailViewController</Name>
             <Path>Classes/UTCSEventsDetailViewController.html</Path>
             
@@ -540,12 +670,12 @@
             </Subnodes>
             
         </Node>
-		<Node id="20" type="file" documentType="reference">
+		<Node id="26" type="file" documentType="reference">
             <Name>UTCSEventsViewController</Name>
             <Path>Classes/UTCSEventsViewController.html</Path>
             
         </Node>
-		<Node id="21" type="file" documentType="reference">
+		<Node id="27" type="file" documentType="reference">
             <Name>UTCSHeaderTableViewController</Name>
             <Path>Classes/UTCSHeaderTableViewController.html</Path>
             
@@ -572,7 +702,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="22" type="file" documentType="reference">
+		<Node id="28" type="file" documentType="reference">
             <Name>UTCSLabMachine</Name>
             <Path>Classes/UTCSLabMachine.html</Path>
             
@@ -599,7 +729,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="23" type="file" documentType="reference">
+		<Node id="29" type="file" documentType="reference">
             <Name>UTCSLabMachineViewController</Name>
             <Path>Classes/UTCSLabMachineViewController.html</Path>
             
@@ -632,27 +762,27 @@
             </Subnodes>
             
         </Node>
-		<Node id="24" type="file" documentType="reference">
+		<Node id="30" type="file" documentType="reference">
             <Name>UTCSLabsDataSource</Name>
             <Path>Classes/UTCSLabsDataSource.html</Path>
             
         </Node>
-		<Node id="25" type="file" documentType="reference">
+		<Node id="31" type="file" documentType="reference">
             <Name>UTCSLabsViewController</Name>
             <Path>Classes/UTCSLabsViewController.html</Path>
             
         </Node>
-		<Node id="26" type="file" documentType="reference">
+		<Node id="32" type="file" documentType="reference">
             <Name>UTCSMenuViewController</Name>
             <Path>Classes/UTCSMenuViewController.html</Path>
             
         </Node>
-		<Node id="27" type="file" documentType="reference">
+		<Node id="33" type="file" documentType="reference">
             <Name>UTCSNavigationController</Name>
             <Path>Classes/UTCSNavigationController.html</Path>
             
         </Node>
-		<Node id="28" type="file" documentType="reference">
+		<Node id="34" type="file" documentType="reference">
             <Name>UTCSNewsArticle</Name>
             <Path>Classes/UTCSNewsArticle.html</Path>
             
@@ -679,17 +809,17 @@
             </Subnodes>
             
         </Node>
-		<Node id="29" type="file" documentType="reference">
+		<Node id="35" type="file" documentType="reference">
             <Name>UTCSNewsDataSource</Name>
             <Path>Classes/UTCSNewsDataSource.html</Path>
             
         </Node>
-		<Node id="30" type="file" documentType="reference">
+		<Node id="36" type="file" documentType="reference">
             <Name>UTCSNewsDataSourceParser</Name>
             <Path>Classes/UTCSNewsDataSourceParser.html</Path>
             
         </Node>
-		<Node id="31" type="file" documentType="reference">
+		<Node id="37" type="file" documentType="reference">
             <Name>UTCSNewsDetailViewController</Name>
             <Path>Classes/UTCSNewsDetailViewController.html</Path>
             
@@ -716,12 +846,12 @@
             </Subnodes>
             
         </Node>
-		<Node id="32" type="file" documentType="reference">
+		<Node id="38" type="file" documentType="reference">
             <Name>UTCSNewsViewController</Name>
             <Path>Classes/UTCSNewsViewController.html</Path>
             
         </Node>
-		<Node id="33" type="file" documentType="reference">
+		<Node id="39" type="file" documentType="reference">
             <Name>UTCSParallaxBlurHeaderScrollView</Name>
             <Path>Classes/UTCSParallaxBlurHeaderScrollView.html</Path>
             
@@ -748,7 +878,126 @@
             </Subnodes>
             
         </Node>
-		<Node id="34" type="file" documentType="reference">
+		<Node id="40" type="file" documentType="reference">
+            <Name>UTCSServiceErrorView</Name>
+            <Path>Classes/UTCSServiceErrorView.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSServiceErrorView.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSServiceErrorView.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UTCSServiceErrorView.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="41" type="file" documentType="reference">
+            <Name>UTCSSettingsDataSource</Name>
+            <Path>Classes/UTCSSettingsDataSource.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSSettingsDataSource.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSSettingsDataSource.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UTCSSettingsDataSource.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="42" type="file" documentType="reference">
+            <Name>UTCSStarredEventsDataSource</Name>
+            <Path>Classes/UTCSStarredEventsDataSource.html</Path>
+            
+        </Node>
+		<Node id="43" type="file" documentType="reference">
+            <Name>UTCSStarredEventsManager</Name>
+            <Path>Classes/UTCSStarredEventsManager.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsManager.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsManager.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsManager.html</Path>
+                    <Name>Class Methods</Name>
+                    <Anchor>class_methods</Anchor>
+                </Node>
+                
+                
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsManager.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="44" type="file" documentType="reference">
+            <Name>UTCSStarredEventsViewController</Name>
+            <Path>Classes/UTCSStarredEventsViewController.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsViewController.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsViewController.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/UTCSStarredEventsViewController.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="45" type="file" documentType="reference">
             <Name>UTCSStateManager</Name>
             <Path>Classes/UTCSStateManager.html</Path>
             
@@ -781,7 +1030,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="35" type="file" documentType="reference">
+		<Node id="46" type="file" documentType="reference">
             <Name>UTCSTableViewController</Name>
             <Path>Classes/UTCSTableViewController.html</Path>
             
@@ -814,7 +1063,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="36" type="file" documentType="reference">
+		<Node id="47" type="file" documentType="reference">
             <Name>UTCSVerticalMenuViewController</Name>
             <Path>Classes/UTCSVerticalMenuViewController.html</Path>
             
@@ -848,7 +1097,7 @@
             
         </Node>
 		
-		<Node id="37" type="file" documentType="reference">
+		<Node id="48" type="file" documentType="reference">
             <Name>UIColor(UTCSColors)</Name>
             <Path>Categories/UIColor+UTCSColors.html</Path>
             
@@ -876,7 +1125,7 @@
             
         </Node>
 		
-        <Node id="38" type="file" documentType="reference">
+        <Node id="49" type="file" documentType="reference">
             <Name>UTCSDataSourceDelegate</Name>
             <Path>Protocols/UTCSDataSourceDelegate.html</Path>
             
@@ -903,7 +1152,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="39" type="file" documentType="reference">
+		<Node id="50" type="file" documentType="reference">
             <Name>UTCSMenuViewControllerDelegate</Name>
             <Path>Protocols/UTCSMenuViewControllerDelegate.html</Path>
             
@@ -930,18 +1179,45 @@
             </Subnodes>
             
         </Node>
+		<Node id="51" type="file" documentType="reference">
+            <Name>UTCSStarredEventsViewControllerDelegate</Name>
+            <Path>Protocols/UTCSStarredEventsViewControllerDelegate.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/UTCSStarredEventsViewControllerDelegate.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/UTCSStarredEventsViewControllerDelegate.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/UTCSStarredEventsViewControllerDelegate.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
 		
-        <Node id="40" type="file" documentType="reference">
+        <Node id="52" type="file" documentType="reference">
             <Name>UTCSAuthenticationErrorCode</Name>
             <Path>Constants/UTCSAuthenticationErrorCode.html</Path>
             
         </Node>
-		<Node id="41" type="file" documentType="reference">
+		<Node id="53" type="file" documentType="reference">
             <Name>UTCSBouncyTableViewCellBounceDirection</Name>
             <Path>Constants/UTCSBouncyTableViewCellBounceDirection.html</Path>
             
         </Node>
-		<Node id="42" type="file" documentType="reference">
+		<Node id="54" type="file" documentType="reference">
             <Name>UTCSMenuOptions</Name>
             <Path>Constants/UTCSMenuOptions.html</Path>
             

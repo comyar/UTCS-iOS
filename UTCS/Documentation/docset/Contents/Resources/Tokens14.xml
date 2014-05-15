@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSDiskQuotaDataSource.html">
+	<File path="Classes/UTCSDirectoryDataSourceSearchController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSDiskQuotaDataSource</TokenIdentifier>
-			<Abstract type="html">UTCSDiskQuotaDataSource is a concrete class that handles downloading, parsing, and caching
-of disk quota information.</Abstract>
-			<DeclaredIn>UTCSDiskQuotaDataSource.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDirectoryDataSourceSearchController</TokenIdentifier>
+			<Abstract type="html">UTCSDirectoryDataSourceSearchController is a concrete class used to search the directory
+data source.</Abstract>
+			<DeclaredIn>UTCSDirectoryDataSourceSearchController.h</DeclaredIn>
             
 			
 			<NodeRef refid="14"/>

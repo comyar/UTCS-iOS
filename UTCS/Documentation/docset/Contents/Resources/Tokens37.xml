@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/UIColor+UTCSColors.html">
+	<File path="Classes/UTCSNewsDetailViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/UIColor(UTCSColors)</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsDetailViewController</TokenIdentifier>
+			<Abstract type="html">UTCSNewsDetailViewController is a concrete subclass of UIViewController that displays
+a single news article.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="37"/>
@@ -13,122 +14,38 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsBurntOrangeColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsDetailViewController/setNewsArticle:</TokenIdentifier>
+			<Abstract type="html">News article to display.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
 			
-			<Declaration>+ (UIColor *)utcsBurntOrangeColor</Declaration>
+			<Declaration>@property (strong, nonatomic) UTCSNewsArticle *newsArticle</Declaration>
 			
 			
-			<Anchor>//api/name/utcsBurntOrangeColor</Anchor>
+			<Anchor>//api/name/newsArticle</Anchor>
             <NodeRef refid="37"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsBarTintColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSNewsDetailViewController/newsArticle</TokenIdentifier>
+			<Abstract type="html">News article to display.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
 			
-			<Declaration>+ (UIColor *)utcsBarTintColor</Declaration>
+			<Declaration>@property (strong, nonatomic) UTCSNewsArticle *newsArticle</Declaration>
 			
 			
-			<Anchor>//api/name/utcsBarTintColor</Anchor>
+			<Anchor>//api/name/newsArticle</Anchor>
             <NodeRef refid="37"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsYellowColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSNewsDetailViewController/newsArticle</TokenIdentifier>
+			<Abstract type="html">News article to display.</Abstract>
+			<DeclaredIn>UTCSNewsDetailViewController.h</DeclaredIn>
 			
-			<Declaration>+ (UIColor *)utcsYellowColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsYellowColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsDarkGrayColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsDarkGrayColor</Declaration>
+			<Declaration>@property (strong, nonatomic) UTCSNewsArticle *newsArticle</Declaration>
 			
 			
-			<Anchor>//api/name/utcsDarkGrayColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsRedColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsRedColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsRedColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsGrayColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsGrayColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsGrayColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsLightGrayColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsLightGrayColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsLightGrayColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsTableViewSeparatorColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsTableViewSeparatorColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsTableViewSeparatorColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsTableViewHeaderColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsTableViewHeaderColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsTableViewHeaderColor</Anchor>
-            <NodeRef refid="37"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UIColor/utcsRefreshControlColor</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UIColor+UTCSColors.h</DeclaredIn>
-			
-			<Declaration>+ (UIColor *)utcsRefreshControlColor</Declaration>
-			
-			
-			<Anchor>//api/name/utcsRefreshControlColor</Anchor>
+			<Anchor>//api/name/newsArticle</Anchor>
             <NodeRef refid="37"/>
 		</Token>
 		

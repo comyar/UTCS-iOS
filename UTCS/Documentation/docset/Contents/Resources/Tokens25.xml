@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSLabsViewController.html">
+	<File path="Classes/UTCSEventsDetailViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSLabsViewController</TokenIdentifier>
-			<Abstract type="html">UTCSLabsViewController</Abstract>
-			<DeclaredIn>UTCSLabsViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSEventsDetailViewController</TokenIdentifier>
+			<Abstract type="html">UTCSEventsDetailViewController is a concrete subclass of UIViewController that displays
+a single UTCS event.</Abstract>
+			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="25"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEventsDetailViewController/setEvent:</TokenIdentifier>
+			<Abstract type="html">Event to display.</Abstract>
+			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSEvent *event</Declaration>
+			
+			
+			<Anchor>//api/name/event</Anchor>
+            <NodeRef refid="25"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSEventsDetailViewController/event</TokenIdentifier>
+			<Abstract type="html">Event to display.</Abstract>
+			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSEvent *event</Declaration>
+			
+			
+			<Anchor>//api/name/event</Anchor>
+            <NodeRef refid="25"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSEventsDetailViewController/event</TokenIdentifier>
+			<Abstract type="html">Event to display.</Abstract>
+			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSEvent *event</Declaration>
+			
+			
+			<Anchor>//api/name/event</Anchor>
+            <NodeRef refid="25"/>
+		</Token>
 		
         
 	</File>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSStateManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSStateManager</TokenIdentifier>
+			<Abstract type="html">UTCSStateManager is a singleton class that manages the persistance of information not directly
+associated with an instance of UTCSDataSource. This includes, for example, app settings. Other
+managers may also rely on the state manager to persist data. For example, both the
+UTCSAuthenticationManager as well as the UTCSStarredEventsManager make heavy use of the state
+manager.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="45"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/UTCSStateManager/sharedManager</TokenIdentifier>
+			<Abstract type="html">Returns the shared state manager instance.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>+ (UTCSStateManager *)sharedManager</Declaration>
+			
+			<ReturnValue><Abstract type="html">The shared state manager instance.</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedManager</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setAuthenticated:</TokenIdentifier>
+			<Abstract type="html">YES if the user is authenticated.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL authenticated</Declaration>
+			
+			
+			<Anchor>//api/name/authenticated</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/authenticated</TokenIdentifier>
+			<Abstract type="html">YES if the user is authenticated.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL authenticated</Declaration>
+			
+			
+			<Anchor>//api/name/authenticated</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/authenticated</TokenIdentifier>
+			<Abstract type="html">YES if the user is authenticated.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL authenticated</Declaration>
+			
+			
+			<Anchor>//api/name/authenticated</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setHasStarredEvent:</TokenIdentifier>
+			<Abstract type="html">YES if the user has previously starred an event.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL hasStarredEvent</Declaration>
+			
+			
+			<Anchor>//api/name/hasStarredEvent</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/hasStarredEvent</TokenIdentifier>
+			<Abstract type="html">YES if the user has previously starred an event.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL hasStarredEvent</Declaration>
+			
+			
+			<Anchor>//api/name/hasStarredEvent</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/hasStarredEvent</TokenIdentifier>
+			<Abstract type="html">YES if the user has previously starred an event.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL hasStarredEvent</Declaration>
+			
+			
+			<Anchor>//api/name/hasStarredEvent</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setEventNotifications:</TokenIdentifier>
+			<Abstract type="html">YES if event notifications are enabled.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL eventNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/eventNotifications</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/eventNotifications</TokenIdentifier>
+			<Abstract type="html">YES if event notifications are enabled.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL eventNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/eventNotifications</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/eventNotifications</TokenIdentifier>
+			<Abstract type="html">YES if event notifications are enabled.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL eventNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/eventNotifications</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setPreferredLab:</TokenIdentifier>
+			<Abstract type="html">Preferred lab number.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger preferredLab</Declaration>
+			
+			
+			<Anchor>//api/name/preferredLab</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/preferredLab</TokenIdentifier>
+			<Abstract type="html">Preferred lab number.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger preferredLab</Declaration>
+			
+			
+			<Anchor>//api/name/preferredLab</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/preferredLab</TokenIdentifier>
+			<Abstract type="html">Preferred lab number.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger preferredLab</Declaration>
+			
+			
+			<Anchor>//api/name/preferredLab</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setStarredEvents:</TokenIdentifier>
+			<Abstract type="html">Events starred by the user.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *starredEvents</Declaration>
+			
+			
+			<Anchor>//api/name/starredEvents</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/starredEvents</TokenIdentifier>
+			<Abstract type="html">Events starred by the user.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *starredEvents</Declaration>
+			
+			
+			<Anchor>//api/name/starredEvents</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/starredEvents</TokenIdentifier>
+			<Abstract type="html">Events starred by the user.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *starredEvents</Declaration>
+			
+			
+			<Anchor>//api/name/starredEvents</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/setStarredEventNotifications:</TokenIdentifier>
+			<Abstract type="html">Notifications for starred events.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *starredEventNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/starredEventNotifications</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStateManager/starredEventNotifications</TokenIdentifier>
+			<Abstract type="html">Notifications for starred events.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *starredEventNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/starredEventNotifications</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStateManager/starredEventNotifications</TokenIdentifier>
+			<Abstract type="html">Notifications for starred events.</Abstract>
+			<DeclaredIn>UTCSStateManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSArray *starredEventNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/starredEventNotifications</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

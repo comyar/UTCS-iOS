@@ -1,16 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSNavigationController.html">
+	<File path="Classes/UTCSHeaderTableViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSNavigationController</TokenIdentifier>
-			<Abstract type="html">UTCSNavigationController</Abstract>
-			<DeclaredIn>UTCSNavigationController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSHeaderTableViewController</TokenIdentifier>
+			<Abstract type="html">UTCSHeaderTableViewController is an abstract view controller that extends the functionality of UTCSTableViewController
+by managing its own header. UTCSHeaderTableViewController also provides an additional image view intended to add a
+seemingly-dynamic blurring effect.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="27"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSHeaderTableViewController/setActiveHeaderView:</TokenIdentifier>
+			<Abstract type="html">Header view of the table view.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSActiveHeaderView *activeHeaderView</Declaration>
+			
+			
+			<Anchor>//api/name/activeHeaderView</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSHeaderTableViewController/activeHeaderView</TokenIdentifier>
+			<Abstract type="html">Header view of the table view.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSActiveHeaderView *activeHeaderView</Declaration>
+			
+			
+			<Anchor>//api/name/activeHeaderView</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSHeaderTableViewController/activeHeaderView</TokenIdentifier>
+			<Abstract type="html">Header view of the table view.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UTCSActiveHeaderView *activeHeaderView</Declaration>
+			
+			
+			<Anchor>//api/name/activeHeaderView</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSHeaderTableViewController/setBackgroundBlurredImageView:</TokenIdentifier>
+			<Abstract type="html">Image view intended to display a blurred version of the  view controller&apos;s background image.
+The alpha of the image view is increased as the table view&apos;s content offset increases.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *backgroundBlurredImageView</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundBlurredImageView</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSHeaderTableViewController/backgroundBlurredImageView</TokenIdentifier>
+			<Abstract type="html">Image view intended to display a blurred version of the  view controller&apos;s background image.
+The alpha of the image view is increased as the table view&apos;s content offset increases.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *backgroundBlurredImageView</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundBlurredImageView</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSHeaderTableViewController/backgroundBlurredImageView</TokenIdentifier>
+			<Abstract type="html">Image view intended to display a blurred version of the  view controller&apos;s background image.
+The alpha of the image view is increased as the table view&apos;s content offset increases.</Abstract>
+			<DeclaredIn>UTCSHeaderTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) UIImageView *backgroundBlurredImageView</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundBlurredImageView</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
 		
         
 	</File>

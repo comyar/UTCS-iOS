@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSStarredEventsViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSStarredEventsViewController</TokenIdentifier>
+			<Abstract type="html">UTCSStarredEventsViewController is a concrete subclass of UTCSTableViewController that displays
+all the starred UTCS events in a table view.</Abstract>
+			<DeclaredIn>UTCSStarredEventsViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="44"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsViewController/setDelegate:</TokenIdentifier>
+			<Abstract type="html">The object that acts as the delegate of the starred events view controller.</Abstract>
+			<DeclaredIn>UTCSStarredEventsViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) id&lt;UTCSStarredEventsViewControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsViewController/delegate</TokenIdentifier>
+			<Abstract type="html">The object that acts as the delegate of the starred events view controller.</Abstract>
+			<DeclaredIn>UTCSStarredEventsViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) id&lt;UTCSStarredEventsViewControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSStarredEventsViewController/delegate</TokenIdentifier>
+			<Abstract type="html">The object that acts as the delegate of the starred events view controller.</Abstract>
+			<DeclaredIn>UTCSStarredEventsViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) id&lt;UTCSStarredEventsViewControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

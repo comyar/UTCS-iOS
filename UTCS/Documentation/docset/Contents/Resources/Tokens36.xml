@@ -1,124 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSVerticalMenuViewController.html">
+	<File path="Classes/UTCSNewsDataSourceParser.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSVerticalMenuViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSNewsDataSourceParser</TokenIdentifier>
+			<Abstract type="html">UTCSNewsDataSourceParser is a concrete class used to parse data downloaded by the
+UTCSNewsDataSource. Instance of UTCSNewsDataSourceParser should only be initialized
+by UTCSNewsDataSource objects.</Abstract>
+			<DeclaredIn>UTCSNewsDataSourceParser.h</DeclaredIn>
             
 			
 			<NodeRef refid="36"/>
 		</Token>
 		
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/initWithMenuViewController:contentViewController:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>- (instancetype)initWithMenuViewController:(UIViewController *)menuViewController contentViewController:(UIViewController *)contentViewController</Declaration>
-			
-			
-			<Anchor>//api/name/initWithMenuViewController:contentViewController:</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/showMenu</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>- (void)showMenu</Declaration>
-			
-			
-			<Anchor>//api/name/showMenu</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/hideMenu</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>- (void)hideMenu</Declaration>
-			
-			
-			<Anchor>//api/name/hideMenu</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/setMenuViewController:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIViewController *menuViewController</Declaration>
-			
-			
-			<Anchor>//api/name/menuViewController</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/menuViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIViewController *menuViewController</Declaration>
-			
-			
-			<Anchor>//api/name/menuViewController</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSVerticalMenuViewController/menuViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIViewController *menuViewController</Declaration>
-			
-			
-			<Anchor>//api/name/menuViewController</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/setContentViewController:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIViewController *contentViewController</Declaration>
-			
-			
-			<Anchor>//api/name/contentViewController</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSVerticalMenuViewController/contentViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIViewController *contentViewController</Declaration>
-			
-			
-			<Anchor>//api/name/contentViewController</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSVerticalMenuViewController/contentViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSVerticalMenuViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UIViewController *contentViewController</Declaration>
-			
-			
-			<Anchor>//api/name/contentViewController</Anchor>
-            <NodeRef refid="36"/>
-		</Token>
 		
         
 	</File>

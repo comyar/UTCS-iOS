@@ -6,23 +6,50 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
+#pragma mark - Imports
+
+#import "UTCSStateManager.h"
 #import "UTCSSettingsDataSource.h"
 #import "UTCSBouncyTableViewCell.h"
 #import "UTCSSwitchTableViewCell.h"
-#import "UTCSSegmentedControlTableViewCell.h"
-#import "UTCSStateManager.h"
 #import "UTCSStarredEventsManager.h"
+#import "UTCSSegmentedControlTableViewCell.h"
+
+
+#pragma mark - Constants
+
+// Settings table view cell identifier.
+static NSString * const UTCSSettingsTableViewCellIdentifier                 = @"UTCSSettingsTableViewCell";
+
+// Settings switch table view cell identifier.
+static NSString * const UTCSSettingsSwitchTableViewCellIdentifier           = @"UTCSSettingsSwitchTableViewCell";
+
+// Settings segmented control table view cell identifier.
+static NSString * const UTCSSettingsSegmentedControlTableViewCellIdentifier = @"UTCSSettingsSegmentedControlTableViewCell";
+
+
+#pragma mark - UTCSSettingsDataSource Class Extension
 
 @interface UTCSSettingsDataSource ()
 
-
+// Titles of the table view's sections.
 @property (nonatomic) NSArray       *sectionTitles;
+
+// Titles of the table view's info section
 @property (nonatomic) NSArray       *infoTitles;
+
+// Titles of the table view's social section
 @property (nonatomic) NSArray       *socialTitles;
 
 @end
 
+
+#pragma mark - UTCSSettingsDataSource Implementation
+
 @implementation UTCSSettingsDataSource
+
+#pragma mark Creating a Settings Data Source
 
 - (instancetype)init
 {
@@ -34,15 +61,17 @@
     return self;
 }
 
+#pragma mark UITableViewDataSource Methods
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *returnCell;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            UTCSSwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSwitchTableViewCell"];
+            UTCSSwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSSettingsSwitchTableViewCellIdentifier];
             if (!cell) {
                 cell = [[UTCSSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                                             reuseIdentifier:@"UTCSSettingsSwitchTableViewCell"];
+                                                             reuseIdentifier:UTCSSettingsSwitchTableViewCellIdentifier];
                 
             }
             [cell.cellSwitch addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
@@ -52,10 +81,10 @@
             cell.detailTextLabel.text   = @"Get notifications an hour before the start of starred events";
             returnCell = cell;
         } else if (indexPath.row == 1) {
-            UTCSSegmentedControlTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsSegmentedControlSTableViewCell"];
+            UTCSSegmentedControlTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSSettingsSegmentedControlTableViewCellIdentifier];
             if (!cell) {
                 cell = [[UTCSSegmentedControlTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                                               reuseIdentifier:@"UTCSSettingsSegmentedControlSTableViewCell"];
+                                                               reuseIdentifier:UTCSSettingsSegmentedControlTableViewCellIdentifier];
             }
             cell.textLabel.text = @"Preferred Lab";
             cell.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"Third Floor", @"Basement"]];
@@ -65,10 +94,10 @@
             returnCell = cell;
         }
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLabelTableViewCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSSettingsTableViewCellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
-                                         reuseIdentifier:@"UTCSSettingsLabelTableViewCell"];
+                                         reuseIdentifier:UTCSSettingsTableViewCellIdentifier];
             cell.backgroundColor = [UIColor clearColor];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
@@ -112,7 +141,7 @@
     return self.sectionTitles[section];
 }
 
-#pragma mark 
+#pragma mark Controls
 
 - (void)didChangeValue:(UIControl *)control
 {

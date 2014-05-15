@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSLabsDataSource.html">
+	<File path="Classes/UTCSEventsDataSourceParser.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSLabsDataSource</TokenIdentifier>
-			<Abstract type="html">Key to use to cache lab data</Abstract>
-			<DeclaredIn>UTCSLabsDataSource.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSEventsDataSourceParser</TokenIdentifier>
+			<Abstract type="html">UTCSEventsDataSourceParser is a concrete class used to parse data downloaded by the
+UTCSEventsDataSource. Instance of UTCSEventsDataSourceParser should only be initialized
+by UTCSEventsDataSource objects.</Abstract>
+			<DeclaredIn>UTCSEventsDataSourceParser.h</DeclaredIn>
             
 			
 			<NodeRef refid="24"/>

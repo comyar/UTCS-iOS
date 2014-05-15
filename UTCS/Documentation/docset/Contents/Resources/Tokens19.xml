@@ -1,52 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSEventsDetailViewController.html">
+	<File path="Classes/UTCSDiskQuotaDataSourceParser.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSEventsDetailViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDiskQuotaDataSourceParser</TokenIdentifier>
+			<Abstract type="html">UTCSDiskQuotaDataSourceParser is a concrete class used to parse data downloaded by the
+UTCSDiskQuotaDataSource. Instances of UTCSDiskQuotaDataSourceParser should only be initialized
+by UTCSDiskQuotaDataSource objects.</Abstract>
+			<DeclaredIn>UTCSDiskQuotaDataSourceParser.h</DeclaredIn>
             
 			
 			<NodeRef refid="19"/>
 		</Token>
 		
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSEventsDetailViewController/setEvent:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UTCSEvent *event</Declaration>
-			
-			
-			<Anchor>//api/name/event</Anchor>
-            <NodeRef refid="19"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/UTCSEventsDetailViewController/event</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UTCSEvent *event</Declaration>
-			
-			
-			<Anchor>//api/name/event</Anchor>
-            <NodeRef refid="19"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/UTCSEventsDetailViewController/event</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>UTCSEventsDetailViewController.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic) UTCSEvent *event</Declaration>
-			
-			
-			<Anchor>//api/name/event</Anchor>
-            <NodeRef refid="19"/>
-		</Token>
 		
         
 	</File>

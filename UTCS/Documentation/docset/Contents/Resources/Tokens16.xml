@@ -1,17 +1,268 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/UTCSDiskQuotaViewController.html">
+	<File path="Classes/UTCSDirectoryPerson.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/UTCSDiskQuotaViewController</TokenIdentifier>
-			<Abstract type="html">UTCSDiskQuotaViewController is a concrete subclass of UTCSContentViewController that allows
-a user to request their disk quota and visualizes disk quota information.</Abstract>
-			<DeclaredIn>UTCSDiskQuotaViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSDirectoryPerson</TokenIdentifier>
+			<Abstract type="html">UTCSDirectoryPerson is a concrete class that represents a single person.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
             
 			
 			<NodeRef refid="16"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setFullName:</TokenIdentifier>
+			<Abstract type="html">Person&apos;s full name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *fullName</Declaration>
+			
+			
+			<Anchor>//api/name/fullName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/fullName</TokenIdentifier>
+			<Abstract type="html">Person&apos;s full name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *fullName</Declaration>
+			
+			
+			<Anchor>//api/name/fullName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/fullName</TokenIdentifier>
+			<Abstract type="html">Person&apos;s full name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *fullName</Declaration>
+			
+			
+			<Anchor>//api/name/fullName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setFirstName:</TokenIdentifier>
+			<Abstract type="html">Person&apos;s first name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *firstName</Declaration>
+			
+			
+			<Anchor>//api/name/firstName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/firstName</TokenIdentifier>
+			<Abstract type="html">Person&apos;s first name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *firstName</Declaration>
+			
+			
+			<Anchor>//api/name/firstName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/firstName</TokenIdentifier>
+			<Abstract type="html">Person&apos;s first name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *firstName</Declaration>
+			
+			
+			<Anchor>//api/name/firstName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setLastName:</TokenIdentifier>
+			<Abstract type="html">Person&apos;s last name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *lastName</Declaration>
+			
+			
+			<Anchor>//api/name/lastName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/lastName</TokenIdentifier>
+			<Abstract type="html">Person&apos;s last name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *lastName</Declaration>
+			
+			
+			<Anchor>//api/name/lastName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/lastName</TokenIdentifier>
+			<Abstract type="html">Person&apos;s last name.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *lastName</Declaration>
+			
+			
+			<Anchor>//api/name/lastName</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setImageURL:</TokenIdentifier>
+			<Abstract type="html">Person&apos;s image, may be nil.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *imageURL</Declaration>
+			
+			
+			<Anchor>//api/name/imageURL</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/imageURL</TokenIdentifier>
+			<Abstract type="html">Person&apos;s image, may be nil.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *imageURL</Declaration>
+			
+			
+			<Anchor>//api/name/imageURL</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/imageURL</TokenIdentifier>
+			<Abstract type="html">Person&apos;s image, may be nil.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *imageURL</Declaration>
+			
+			
+			<Anchor>//api/name/imageURL</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setOffice:</TokenIdentifier>
+			<Abstract type="html">Location of office.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *office</Declaration>
+			
+			
+			<Anchor>//api/name/office</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/office</TokenIdentifier>
+			<Abstract type="html">Location of office.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *office</Declaration>
+			
+			
+			<Anchor>//api/name/office</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/office</TokenIdentifier>
+			<Abstract type="html">Location of office.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *office</Declaration>
+			
+			
+			<Anchor>//api/name/office</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setPhoneNumber:</TokenIdentifier>
+			<Abstract type="html">Person&apos;s phone number.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *phoneNumber</Declaration>
+			
+			
+			<Anchor>//api/name/phoneNumber</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/phoneNumber</TokenIdentifier>
+			<Abstract type="html">Person&apos;s phone number.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *phoneNumber</Declaration>
+			
+			
+			<Anchor>//api/name/phoneNumber</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/phoneNumber</TokenIdentifier>
+			<Abstract type="html">Person&apos;s phone number.</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *phoneNumber</Declaration>
+			
+			
+			<Anchor>//api/name/phoneNumber</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/setType:</TokenIdentifier>
+			<Abstract type="html">Type of person (e.g. Faculty, Staff, etc.)</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSDirectoryPerson/type</TokenIdentifier>
+			<Abstract type="html">Type of person (e.g. Faculty, Staff, etc.)</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UTCSDirectoryPerson/type</TokenIdentifier>
+			<Abstract type="html">Type of person (e.g. Faculty, Staff, etc.)</Abstract>
+			<DeclaredIn>UTCSDirectoryPerson.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSString *type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
 		
         
 	</File>

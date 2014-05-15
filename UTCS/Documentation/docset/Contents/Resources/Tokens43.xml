@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UTCSStarredEventsManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UTCSStarredEventsManager</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="43"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/UTCSStarredEventsManager/sharedManager</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>+ (UTCSStarredEventsManager *)sharedManager</Declaration>
+			
+			
+			<Anchor>//api/name/sharedManager</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/allEvents</TokenIdentifier>
+			<Abstract type="html">Gets all starred events added to the manager.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)allEvents</Declaration>
+			
+			<ReturnValue><Abstract type="html">All starred events.</Abstract></ReturnValue>
+			<Anchor>//api/name/allEvents</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/containsEvent:</TokenIdentifier>
+			<Abstract type="html">Determines whether an event has been added to the manager.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)containsEvent:(UTCSEvent *)event</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>event</Name>
+					<Abstract type="html">Event to check.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if the event has been added to the manager.</Abstract></ReturnValue>
+			<Anchor>//api/name/containsEvent:</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/addEvent:</TokenIdentifier>
+			<Abstract type="html">Adds an event to the manager.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (void)addEvent:(UTCSEvent *)event</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>event</Name>
+					<Abstract type="html">Event to add.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addEvent:</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/removeEvent:</TokenIdentifier>
+			<Abstract type="html">Removes a starred event from the manager.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (void)removeEvent:(UTCSEvent *)event</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>event</Name>
+					<Abstract type="html">Event to remove.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/removeEvent:</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/removeAllEvents</TokenIdentifier>
+			<Abstract type="html">Removes all events from the manager.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (void)removeAllEvents</Declaration>
+			
+			
+			<Anchor>//api/name/removeAllEvents</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/purgePastEvents</TokenIdentifier>
+			<Abstract type="html">Removes all expired events.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (void)purgePastEvents</Declaration>
+			
+			
+			<Anchor>//api/name/purgePastEvents</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/enableNotifications</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (void)enableNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/enableNotifications</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UTCSStarredEventsManager/disableNotifications</TokenIdentifier>
+			<Abstract type="html">Enables notifications for all starred events.</Abstract>
+			<DeclaredIn>UTCSStarredEventsManager.h</DeclaredIn>
+			
+			<Declaration>- (void)disableNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/disableNotifications</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>
