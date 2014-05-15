@@ -17,6 +17,7 @@
 #import "UIView+CZPositioning.h"
 #import "UITextView+CZTextViewHeight.h"
 
+
 #pragma mark - Constants
 
 // Font size of the title label
@@ -192,7 +193,6 @@ static const CGFloat dateLabelFontSize  = 16.0;
     if(button == self.scrollToTopButton) {
         [self.parallaxBlurHeaderScrollView.scrollView scrollRectToVisible:CGRectMake(0.0, 0.0, 1, 1) animated:YES];
     } else if (button == self.shareButton) {
-        // Share news
         [self shareArticle:self.newsArticle];
     }
 }
