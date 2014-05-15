@@ -28,6 +28,8 @@
 // @name Using a UTCSDataSourceParser
 // -----
 
+#pragma mark Using a UTCSDataSourceParser
+
 /**
  Parses the given downloaded values into an object or collection of objects
  expected by the data source.
@@ -44,6 +46,8 @@
 // -----
 // @name Properties
 // -----
+
+#pragma mark Properties
 
 /**
  Date formatter used to parse the updated date from the downloaded values.

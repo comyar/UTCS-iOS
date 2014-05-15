@@ -45,6 +45,8 @@ static const CGFloat minHeaderImageHeight   = 250.0;
 
 @implementation UTCSNewsDataSourceParser
 
+#pragma mark Using a UTCSDataSourceParser
+
 - (NSArray *)parseValues:(NSArray *)values
 {
     NSMutableArray *articles        = [NSMutableArray new];
@@ -62,6 +64,8 @@ static const CGFloat minHeaderImageHeight   = 250.0;
     
     return articles;
 }
+
+#pragma mark Helper
 
 - (void)setHeaderImageForArticle:(UTCSNewsArticle *)article
 {
@@ -99,6 +103,5 @@ static const CGFloat minHeaderImageHeight   = 250.0;
         });
     }
 }
-
 
 @end
