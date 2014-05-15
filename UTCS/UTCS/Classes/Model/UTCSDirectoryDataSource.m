@@ -6,28 +6,43 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
+
 #pragma mark - Imports
 
-#import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryPerson.h"
-#import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDataSourceCache.h"
-#import "UTCSDirectoryDataSourceSearchController.h"
 #import "UTCSBouncyTableViewCell.h"
+#import "UTCSDirectoryDataSource.h"
+#import "UTCSDirectoryDataSourceParser.h"
+#import "UTCSDirectoryDataSourceSearchController.h"
 
 
 #pragma mark - Constants
+
+// Directory table view cell identifier.
+static NSString * const UTCSDirectoryTableViewCellIdentifier    = @"UTCSDirectoryTableViewCell";
+
+// Font to use for a person's first name
+static NSString * const firstNameFont                           = @"HelveticaNeue-Light";
+
+// Font to use for a person's last name
+static NSString * const lastNameFont                            = @"HelveticaNeue-Bold";
+
 // Key used to cache directory
-NSString * const UTCSDirectoryCacheKey      = @"UTCSDirectoryCacheKey";
+NSString * const UTCSDirectoryCacheKey                          = @"UTCSDirectoryCacheKey";
 
 // Key used to cache flat directory
-NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
+NSString * const UTCSDirectoryFlatCacheKey                      = @"UTCSDirectoryFlatCacheKey";
+
+// Minimum time between updates
+static const NSTimeInterval minimumTimeBetweenUpdates           = 2592000.0;  // 30 days
 
 
 #pragma mark - UTCSDirectoryDataSource Class Extension
 
 @interface UTCSDirectoryDataSource ()
 
+// Flattened version of the directory data.
 @property (nonatomic) NSArray *flatDirectory;
 
 @end
@@ -37,25 +52,33 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
 
 @implementation UTCSDirectoryDataSource
 
+#pragma mark Creating a Directory Data Source
+
 - (instancetype)initWithService:(NSString *)service
 {
     if (self = [super initWithService:service]) {
-        _minimumTimeBetweenUpdates = 2592000.0;  // 30 days
-        _cache = [[UTCSDataSourceCache alloc]initWithService:service];
+        _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
+        
         _parser = [UTCSDirectoryDataSourceParser new];
+        
         _primaryCacheKey = UTCSDirectoryCacheKey;
+        _cache = [[UTCSDataSourceCache alloc]initWithService:service];
         
         _searchController = [UTCSDirectoryDataSourceSearchController new];
-        self.searchController.dataSource = self;
+        _searchController.dataSource = self;
         
-        NSDictionary *cache = [_cache objectWithKey:UTCSDirectoryCacheKey];
-        _data           = cache[UTCSDataSourceCacheValuesName];
-        
-        cache = [_cache objectWithKey:UTCSDirectoryFlatCacheKey];
-        _flatDirectory  = cache[UTCSDataSourceCacheValuesName];
+        // Check for cached data
+        NSDictionary *dataCache = [_cache objectWithKey:UTCSDirectoryCacheKey];
+        NSDictionary *flatCache = [_cache objectWithKey:UTCSDirectoryFlatCacheKey];
+        UTCSDataSourceCacheMetaData *dataMeta = dataCache[UTCSDataSourceCacheMetaDataName];
+        _data           = dataCache[UTCSDataSourceCacheValuesName];
+        _flatDirectory  = flatCache[UTCSDataSourceCacheValuesName];
+        _updated        = dataMeta.timestamp;
     }
     return self;
 }
+
+#pragma mark Using a Directory Data Source
 
 - (void)buildFlatDirectory
 {
@@ -68,15 +91,17 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
     _flatDirectory = flatDirectory;
 }
 
+#pragma mark UITableViewDataSource Methods
+
 - (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSDirectoryTableViewCell"];
+    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSDirectoryTableViewCellIdentifier];
     if(!cell) {
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSDirectoryTableViewCell"];
+        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSDirectoryTableViewCellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
-        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
     
     UTCSDirectoryPerson *person = nil;
@@ -88,12 +113,18 @@ NSString * const UTCSDirectoryFlatCacheKey  = @"UTCSDirectoryFlatCacheKey";
     }
     
     NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc]initWithString:person.fullName];
-    [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:cell.textLabel.font.pointSize] range:NSMakeRange(0, [person.firstName length])];
-    [attributedName addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:cell.textLabel.font.pointSize] range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];
     
-    cell.indentationLevel = 1;
-    cell.textLabel.attributedText = attributedName;
-    cell.detailTextLabel.text = person.type;
+    [attributedName addAttribute:NSFontAttributeName
+                           value:[UIFont fontWithName:firstNameFont size:cell.textLabel.font.pointSize]
+                           range:NSMakeRange(0, [person.firstName length])];
+    
+    [attributedName addAttribute:NSFontAttributeName
+                           value:[UIFont fontWithName:lastNameFont size:cell.textLabel.font.pointSize]
+                           range:NSMakeRange([person.firstName length] + 1, [person.lastName length])];
+    
+    cell.indentationLevel           = 1;
+    cell.textLabel.attributedText   = attributedName;
+    cell.detailTextLabel.text       = person.type;
 
     return cell;
 }

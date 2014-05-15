@@ -565,7 +565,6 @@
 		DD87616F1900FCEF005FEE4E /* Directory */ = {
 			isa = PBXGroup;
 			children = (
-				DDA758FC19088F11007CD0DB /* Views */,
 				DD8761701900FD02005FEE4E /* Models */,
 				DD8761711900FD1C005FEE4E /* Controllers */,
 			);
@@ -798,13 +797,6 @@
 				DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */,
 				DDA758A71905E7B6007CD0DB /* ActiveHeaderView */,
 				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		DDA758FC19088F11007CD0DB /* Views */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			name = Views;
 			sourceTree = "<group>";

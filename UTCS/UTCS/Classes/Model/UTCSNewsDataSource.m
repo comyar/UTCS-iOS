@@ -55,11 +55,9 @@ static const NSTimeInterval minimumTimeBetweenUpdates   = 86400.0;  // 24 hours
         
         // Check for cached data
         NSDictionary *cache = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
-        if (cache) {
-            UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
-            _data = cache[UTCSDataSourceCacheValuesName];
-            _updated = meta.timestamp;
-        }
+        UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
+        _data       = cache[UTCSDataSourceCacheValuesName];
+        _updated    = meta.timestamp;
     }
     return self;
 }
