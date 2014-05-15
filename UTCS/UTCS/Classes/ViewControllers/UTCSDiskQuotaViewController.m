@@ -76,100 +76,6 @@ static NSString *diskQuotaCacheKey = @"quota";
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.dataSource = [[UTCSDiskQuotaDataSource alloc]initWithService:@"quota"];
         
-        // Username text field
-        self.usernameTextField = ({
-            JVFloatLabeledTextField *textField = [[JVFloatLabeledTextField alloc]initWithFrame:CGRectZero];
-            textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"CS Username"
-                                                                             attributes:@{  NSForegroundColorAttributeName :
-                                                                                            [UIColor colorWithWhite:1.0 alpha:0.5]}];
-            textField.floatingLabelTextColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-            textField.floatingLabelActiveTextColor = [UIColor whiteColor];
-            textField.autocorrectionType = UITextAutocorrectionTypeNo;
-            textField.textColor = [UIColor whiteColor];
-            textField.tintColor = [UIColor whiteColor];
-            textField.returnKeyType = UIReturnKeyGo;
-            textField.delegate = self;
-            textField;
-        });
-        
-        // Go button
-        self.goButton = ({
-            UIButton *button = [UIButton bouncyButton];
-            [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            button.layer.borderColor = [UIColor whiteColor].CGColor;
-            [button setTitle:@"Go" forState:UIControlStateNormal];
-            button.tintColor = [UIColor whiteColor];
-            button.layer.masksToBounds = YES;
-            button.layer.cornerRadius = 4.0;
-            button.layer.borderWidth = 1.0;
-            button;
-        });
-        
-        // Meter view
-        self.meterView = ({
-            DPMeterView *view = [DPMeterView new];
-            view.trackTintColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-            view.shape = [PocketSVG pathFromSVGFileNamed:@"cloud"];
-            view.meterType = DPMeterTypeLinearHorizontal;
-            view.alpha = 0.0;
-            view;
-        });
-        
-        // Name label
-        self.nameLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:32];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.adjustsFontSizeToFitWidth = YES;
-            label;
-        });
-        
-        // Quota detail label
-        self.percentLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36];
-            label.textColor = [UIColor whiteColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            label;
-        });
-        
-        // Quota detail label
-        self.quotaDetailLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
-            label.textAlignment = NSTextAlignmentCenter;
-            label;
-        });
-        
-        // Updated label
-        self.updatedLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.textAlignment = NSTextAlignmentCenter;
-            label;
-        });
-        
-        self.descriptionLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.numberOfLines = 0;
-            label.text = @"Enter your CS username to check your available disk quota.\n\nYour disk quota represents the amount of available disk space on your Unix account.";
-            label;
-        });
-        
-        
-        self.serviceErrorView = ({
-            UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:self.view.bounds];
-            view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
-            view.alpha = 0.0;
-            view;
-        });
     }
     return self;
 }
@@ -179,6 +85,102 @@ static NSString *diskQuotaCacheKey = @"quota";
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
+    
+    // Username text field
+    self.usernameTextField = ({
+        JVFloatLabeledTextField *textField = [[JVFloatLabeledTextField alloc]initWithFrame:CGRectZero];
+        textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"CS Username"
+                                                                         attributes:@{  NSForegroundColorAttributeName :
+                                                                                            [UIColor colorWithWhite:1.0 alpha:0.5]}];
+        textField.floatingLabelTextColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.floatingLabelActiveTextColor = [UIColor whiteColor];
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.textColor = [UIColor whiteColor];
+        textField.tintColor = [UIColor whiteColor];
+        textField.returnKeyType = UIReturnKeyGo;
+        textField.delegate = self;
+        textField;
+    });
+    
+    // Go button
+    self.goButton = ({
+        UIButton *button = [UIButton bouncyButton];
+        [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
+        [button setTitle:@"Go" forState:UIControlStateNormal];
+        button.tintColor = [UIColor whiteColor];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 4.0;
+        button.layer.borderWidth = 1.0;
+        button;
+    });
+    
+    // Meter view
+    self.meterView = ({
+        DPMeterView *view = [DPMeterView new];
+        view.trackTintColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        view.shape = [PocketSVG pathFromSVGFileNamed:@"cloud"];
+        view.meterType = DPMeterTypeLinearHorizontal;
+        view.alpha = 0.0;
+        view;
+    });
+    
+    // Name label
+    self.nameLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:32];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.adjustsFontSizeToFitWidth = YES;
+        label;
+    });
+    
+    // Quota detail label
+    self.percentLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36];
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label;
+    });
+    
+    // Quota detail label
+    self.quotaDetailLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+        label.textAlignment = NSTextAlignmentCenter;
+        label;
+    });
+    
+    // Updated label
+    self.updatedLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label.textAlignment = NSTextAlignmentCenter;
+        label;
+    });
+    
+    self.descriptionLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label.numberOfLines = 0;
+        label.text = @"Enter your CS username to check your available disk quota.\n\nYour disk quota represents the amount of available disk space on your Unix account.";
+        label;
+    });
+    
+    
+    self.serviceErrorView = ({
+        UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:CGRectZero];
+        view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
+        view.alpha = 0.0;
+        view;
+    });
+
     
     self.backgroundImageView.image = [UIImage cacheless_imageNamed:@"diskQuotaBackground"];
     
@@ -202,6 +204,9 @@ static NSString *diskQuotaCacheKey = @"quota";
     
     self.descriptionLabel.frame     = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
     self.descriptionLabel.center    = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
+    
+    self.serviceErrorView.frame     = CGRectMake(0.0, 0.0, self.view.width, 0.5 * self.view.height);
+    self.serviceErrorView.center    = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
     
     [self.view addSubview:self.usernameTextField];
     [self.view addSubview:self.goButton];
