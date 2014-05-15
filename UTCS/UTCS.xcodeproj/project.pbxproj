@@ -70,6 +70,7 @@
 		DD95E7591920F8780062F4E9 /* thirdLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */; };
 		DD95E7621922955E0062F4E9 /* UTCSAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* UTCSAuthenticationManager.m */; };
 		DD95E765192296E20062F4E9 /* hosts.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD95E764192296E20062F4E9 /* hosts.plist */; };
+		DD95E76C1924CEFE0062F4E9 /* UTCSServiceErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E76B1924CEFE0062F4E9 /* UTCSServiceErrorView.m */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
@@ -216,6 +217,8 @@
 		DD95E7601922955E0062F4E9 /* UTCSAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAuthenticationManager.h; path = Model/UTCSAuthenticationManager.h; sourceTree = "<group>"; };
 		DD95E7611922955E0062F4E9 /* UTCSAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSAuthenticationManager.m; path = Model/UTCSAuthenticationManager.m; sourceTree = "<group>"; };
 		DD95E764192296E20062F4E9 /* hosts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = hosts.plist; path = UTCS/hosts.plist; sourceTree = SOURCE_ROOT; };
+		DD95E76A1924CEFE0062F4E9 /* UTCSServiceErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSServiceErrorView.h; path = Views/UTCSServiceErrorView.h; sourceTree = "<group>"; };
+		DD95E76B1924CEFE0062F4E9 /* UTCSServiceErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSServiceErrorView.m; path = Views/UTCSServiceErrorView.m; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -695,6 +698,15 @@
 			name = AuthenticationManager;
 			sourceTree = "<group>";
 		};
+		DD95E7691924CED40062F4E9 /* ServiceErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				DD95E76A1924CEFE0062F4E9 /* UTCSServiceErrorView.h */,
+				DD95E76B1924CEFE0062F4E9 /* UTCSServiceErrorView.m */,
+			);
+			name = ServiceErrorView;
+			sourceTree = "<group>";
+		};
 		DDA758891904D28D007CD0DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,6 +806,7 @@
 		DDA758F019081DFE007CD0DB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E7691924CED40062F4E9 /* ServiceErrorView */,
 				DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */,
 				DDA758A71905E7B6007CD0DB /* ActiveHeaderView */,
 				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
@@ -1105,6 +1118,7 @@
 				DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */,
 				DDC2F5E71904BBDE006011F0 /* UTCSTableViewController.m in Sources */,
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
+				DD95E76C1924CEFE0062F4E9 /* UTCSServiceErrorView.m in Sources */,
 				DD9475AC190A43230049FB8B /* UTCSSlideNavigationAnimator.m in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
 				0B9A26431891D5E30032DA03 /* main.m in Sources */,

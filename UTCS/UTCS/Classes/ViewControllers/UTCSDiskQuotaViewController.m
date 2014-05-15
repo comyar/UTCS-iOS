@@ -18,6 +18,7 @@
 #import "JVFloatLabeledTextField.h"
 #import "PocketSVG.h"
 #import "DPMeterView.h"
+#import "UTCSServiceErrorView.h"
 
 
 // Categories
@@ -51,17 +52,14 @@ static NSString *diskQuotaCacheKey = @"quota";
 // 
 @property (nonatomic) DPMeterView               *meterView;
 
-// Label used to display a frowny face in case of failure
-@property (nonatomic) UILabel                   *frownyFaceLabel;
+//
+@property (nonatomic) UTCSServiceErrorView      *serviceErrorView;
 
 // Label used to show more detailed disk quota information
 @property (nonatomic) UILabel                   *quotaDetailLabel;
 
 // Label used to describe what disk quota is on first usage
 @property (nonatomic) UILabel                   *descriptionLabel;
-
-// Label used to display the error message in case of failure
-@property (nonatomic) UILabel                   *errorMessageLabel;
 
 // Textfield used to input the user's username
 @property (nonatomic) JVFloatLabeledTextField   *usernameTextField;
@@ -165,24 +163,12 @@ static NSString *diskQuotaCacheKey = @"quota";
             label;
         });
         
-        self.frownyFaceLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:128];
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = @"☹";
-            label.alpha = 0.0;
-            label;
-        });
         
-        self.errorMessageLabel = ({
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            label.text = @"Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
-            label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-            label.numberOfLines = 0;
-            label.alpha = 0.0;
-            label;
+        self.serviceErrorView = ({
+            UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:self.view.bounds];
+            view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
+            view.alpha = 0.0;
+            view;
         });
     }
     return self;
@@ -217,13 +203,6 @@ static NSString *diskQuotaCacheKey = @"quota";
     self.descriptionLabel.frame     = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
     self.descriptionLabel.center    = CGPointMake(self.view.center.x, 0.75 * self.view.center.y);
     
-    self.frownyFaceLabel.frame      = CGRectMake(0.0, 0.0, 0.5 * self.view.width, 0.5 * self.view.width);
-    self.frownyFaceLabel.center     = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
-    
-    self.errorMessageLabel.frame    = CGRectMake(0.0, 0.0, 0.75 * self.view.width, 0.5 * self.view.width);
-    self.errorMessageLabel.center   = CGPointMake(self.view.center.x, 1.28 * self.view.center.y);
-    
-    
     [self.view addSubview:self.usernameTextField];
     [self.view addSubview:self.goButton];
     [self.view addSubview:self.meterView];
@@ -232,9 +211,7 @@ static NSString *diskQuotaCacheKey = @"quota";
     [self.view addSubview:self.quotaDetailLabel];
     [self.view addSubview:self.updatedLabel];
     [self.view addSubview:self.descriptionLabel];
-    [self.view addSubview:self.frownyFaceLabel];
-    [self.view addSubview:self.errorMessageLabel];
-    
+    [self.view addSubview:self.serviceErrorView];
     
     CAShapeLayer *lineSeparatorLayer = ({
         CAShapeLayer *layer = [CAShapeLayer layer];
@@ -305,9 +282,7 @@ static NSString *diskQuotaCacheKey = @"quota";
             }
             
             [UIView animateWithDuration:0.3 animations:^{
-                
-                self.frownyFaceLabel.alpha      = !success;
-                self.errorMessageLabel.alpha    = !success;
+                self.serviceErrorView.alpha     = !success;
                 self.quotaDetailLabel.alpha     = success;
                 self.percentLabel.alpha         = success;
                 self.meterView.alpha            = success;

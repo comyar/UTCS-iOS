@@ -13,7 +13,6 @@
 #import "UTCSLabMachine.h"
 #import "FBShimmeringView.h"
 #import "UTCSLabsDataSource.h"
-#import "UTCSUpdateTextFactory.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSLabMachineViewController.h"
 
@@ -156,7 +155,7 @@
         
         // Show updating HUD
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.scrollView animated:YES];
-        hud.labelText = [UTCSUpdateTextFactory randomUpdateText];
+        hud.labelText = @"Updating";
         hud.mode = MBProgressHUDModeIndeterminate;
     }
     
