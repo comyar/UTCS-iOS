@@ -8,35 +8,43 @@
 
 
 #pragma mark - Imports
-#import "UTCSDirectoryViewController.h"
-#import "UTCSDirectoryDataSource.h"
-#import "UTCSDirectoryPerson.h"
+
 #import "MBProgressHUD.h"
-#import "UTCSDirectoryDataSourceSearchController.h"
+#import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
-#import "UTCSDirectoryDetailViewController.h"
 #import "UTCSServiceErrorView.h"
+#import "UTCSDirectoryDataSource.h"
+#import "UTCSDirectoryViewController.h"
+#import "UTCSDirectoryDetailViewController.h"
+#import "UTCSDirectoryDataSourceSearchController.h"
+
 
 #pragma mark - Constants
 
+static NSString * const searchBarBackgroundImageName = @"searchBarBackground";
 
 
 #pragma mark - UTCSDirectoryViewController Class Extension
 
 @interface UTCSDirectoryViewController ()
 
+// YES if the view controller's view has appeared during the app's execution
 @property (nonatomic, getter = hasAppeared) BOOL appeared;
 
-@property (nonatomic) UTCSServiceErrorView      *serviceErrorView;
+// View to display in case of an error
+@property (nonatomic) UTCSServiceErrorView              *serviceErrorView;
 
-// Search bar
-@property (nonatomic) UISearchBar               *searchBar;
+// Search bar in the table view's header
+@property (nonatomic) UISearchBar                       *searchBar;
 
-@property (nonatomic) UIButton                  *searchButton;
+// Button to begin searching
+@property (nonatomic) UIButton                          *searchButton;
 
+// Detail view controller for displaying a person's information
 @property (nonatomic) UTCSDirectoryDetailViewController *detailViewController;
 
-@property (nonatomic) UISearchDisplayController *directorySearchDisplayController;
+// Search display controller
+@property (nonatomic) UISearchDisplayController         *directorySearchDisplayController;
 
 @end
 
@@ -44,6 +52,8 @@
 #pragma mark - UTCSDirectoryViewController Implementation
 
 @implementation UTCSDirectoryViewController
+
+#pragma mark Creating a Directory View Controller
 
 - (instancetype)init
 {
@@ -72,12 +82,10 @@
             searchBar.scopeBarBackgroundImage = [UIImage new];
             searchBar.tintColor = [UIColor whiteColor];
             searchBar.searchTextPositionAdjustment = UIOffsetMake(8.0, 0.0);
-            [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBarBackground"]
+            [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:searchBarBackgroundImageName]
                                             forState:UIControlStateNormal];
             searchBar;
         });
-        
-        
 
         self.tableView.tableHeaderView = self.searchBar;
         self.tableView.alwaysBounceVertical = NO;
@@ -94,12 +102,14 @@
     return self;
 }
 
+#pragma mark UIViewController Methods
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     if (!self.hasAppeared) {
-        self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
         self.appeared = YES;
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.tableHeaderView.height);
         [self configureAppearance];
     }
 }
@@ -276,6 +286,7 @@
 
 - (void)configureSearchBarWithRoot:(UIView *)root
 {
+    // Recursively change the appearance of any textfields in a search bar (should only be one...)
     if ([root isKindOfClass:[UITextField class]]) {
         UITextField *textField = (UITextField *)root;
         NSDictionary *searchBarPlaceholderAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.5]};
