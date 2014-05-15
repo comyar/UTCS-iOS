@@ -50,8 +50,8 @@ static const NSTimeInterval minimumTimeBetweenUpdates   = 86400.0;  // 24 hours
         _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
         _parser = [UTCSNewsDataSourceParser new];
         
-        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
         _primaryCacheKey = UTCSNewsDataSourceCacheKey;
+        _cache  = [[UTCSDataSourceCache alloc]initWithService:service];
         
         // Check for cached data
         NSDictionary *cache = [self.cache objectWithKey:UTCSNewsDataSourceCacheKey];
@@ -68,7 +68,7 @@ static const NSTimeInterval minimumTimeBetweenUpdates   = 86400.0;  // 24 hours
 
 - (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSNewsTableViewCellIdentifier];
+    UTCSBouncyTableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:UTCSNewsTableViewCellIdentifier];
     
     if(!cell) {
         cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSNewsTableViewCellIdentifier];
