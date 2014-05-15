@@ -306,7 +306,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UTCSEvent *event = self.dataSource.data[indexPath.row];
+    UTCSEvent *event = self.dataSource.filteredEvents[indexPath.row];
     if (!self.eventDetailViewController) {
         self.eventDetailViewController = [UTCSEventsDetailViewController new];
     }

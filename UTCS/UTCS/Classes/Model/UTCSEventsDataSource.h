@@ -61,4 +61,15 @@ extern NSString * const UTCSEventsDataSourceCacheKey;
  */
 - (NSDictionary *)filterEventsWithType:(NSString *)type;
 
+// -----
+// @name Properties
+// -----
+
+#pragma mark Properties
+
+/**
+ Events matching the type of currentFilterType
+ */
+@property (nonatomic, readonly) NSMutableArray    *filteredEvents;
+
 @end
