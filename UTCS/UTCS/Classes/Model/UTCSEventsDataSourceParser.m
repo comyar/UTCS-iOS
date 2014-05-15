@@ -6,14 +6,20 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSEventsDataSourceParser.h"
+
+#pragma mark - Imports
+
 #import "UTCSEvent.h"
+#import "UTCSEventsDataSourceParser.h"
+
+
+
+#pragma mark - UTCSEventsDataSourceParser Implementation
 
 @implementation UTCSEventsDataSourceParser
 
 - (NSArray *)parseValues:(NSArray *)values
 {
-    NSAssert([values isKindOfClass:[NSArray class]], @"Events data parser expects instance of NSArray");
     NSMutableArray *events = [NSMutableArray new];
     
     for (NSDictionary *eventData in values) {
@@ -42,6 +48,8 @@
     return events;
 }
 
+#pragma mark Helper
+
 - (NSString *)stringForDataString:(NSString *)dataString
 {
     if ([dataString isEqual:[NSNull null]]) {
@@ -49,6 +57,5 @@
     }
     return dataString;
 }
-
 
 @end

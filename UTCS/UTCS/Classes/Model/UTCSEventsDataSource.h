@@ -25,7 +25,7 @@ extern NSString * const UTCSEventsFilterAddName;
 extern NSString * const UTCSEventsFilterRemoveName;
 
 /**
- Key to use to cache events.
+ Key used to cache events.
  */
 extern NSString * const UTCSEventsDataSourceCacheKey;
 

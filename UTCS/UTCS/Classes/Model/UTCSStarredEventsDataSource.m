@@ -6,10 +6,22 @@
 //  Copyright (c) 2014 UTCS. All rights reserved.
 //
 
-#import "UTCSStarredEventsDataSource.h"
+
+#pragma mark - Imports
+
 #import "UTCSEvent.h"
-#import "UTCSStarredEventManager.h"
 #import "UTCSEventTableViewCell.h"
+#import "UTCSStarredEventManager.h"
+#import "UTCSStarredEventsDataSource.h"
+
+
+#pragma mark - Constants
+
+// Events table view cell identifier.
+static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableViewCell";
+
+
+#pragma mark - UTCSStarredEventsDataSource Implementation
 
 @implementation UTCSStarredEventsDataSource
 
@@ -17,10 +29,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSEventTableViewCell"];
+    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
     
     if(!cell) {
-        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
+        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
     }
     
     UTCSEvent *event        = [[UTCSStarredEventManager sharedManager]allEvents][indexPath.row];
@@ -46,9 +58,6 @@
     
     cell.textLabel.text         = event.name;
     cell.detailTextLabel.text   = detailText;
-    
-    return cell;
-
     
     return cell;
 }

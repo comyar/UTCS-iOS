@@ -7,8 +7,18 @@
 //
 
 
+#pragma mark - Imports
+
 @import Foundation;
 
+
+#pragma mark - UTCSStarredEventsDataSource Interface
+
+/**
+ UTCSStarredEventsDataSource is a the data source for the UTCSStarredEventsViewController.
+ 
+ UTCSStarredEventsDataSource should not be subclassed.
+ */
 @interface UTCSStarredEventsDataSource : NSObject <UITableViewDataSource>
 
 @end

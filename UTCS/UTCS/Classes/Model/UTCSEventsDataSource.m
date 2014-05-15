@@ -26,9 +26,10 @@ NSString * const UTCSEventsFilterAddName        =           @"UTCSEventsFilterAd
 // Key associated with index paths added by a filter.
 NSString * const UTCSEventsFilterRemoveName                 = @"UTCSEventsFilterRemoveName";
 
-// Key to use to cache events.
+// Key used to cache events.
 NSString * const UTCSEventsDataSourceCacheKey               = @"UTCSEventsDataSourceCacheKey";
 
+// Events table view cell identifier.
 static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableViewCell";
 
 // Name of the image to use for a table view cell's accessory view.
