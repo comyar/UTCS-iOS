@@ -27,6 +27,9 @@ NSString * const UTCSEventsFilterRemoveName     = @"UTCSEventsFilterRemoveName";
 NSString * const UTCSEventsFilterAddName        = @"UTCSEventsFilterAddName";
 NSString * const UTCSEventsDataSourceCacheKey   = @"UTCSEventsDataSourceCacheKey";
 
+// Name of the image to use for a table view cell's accessory view.
+static NSString * const cellAccessoryImageName          = @"rightArrow";
+
 #pragma mark - Constants
 
 // Key used to cache events
@@ -91,12 +94,10 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
                                   @"orgs"   : [UIColor utcsEventStudentOrgsColor]};
         
         NSDictionary *cache = [self.cache objectWithKey:UTCSEventsDataSourceCacheKey];
-        if (cache) {
-            UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
-            _data = cache[UTCSDataSourceCacheValuesName];
-            _updated = meta.timestamp;
-            [self prepareFilter];
-        }
+        UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];
+        _data = cache[UTCSDataSourceCacheValuesName];
+        _updated = meta.timestamp;
+        [self prepareFilter];
     }
     return self;
 }
@@ -178,6 +179,12 @@ static CGFloat minimumTimeBetweenUpdates    = 10800.0;  // 3 hours
     
     if(!cell) {
         cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSEventTableViewCell"];
+        cell.accessoryView = ({
+            UIImage *image          = [[UIImage imageNamed:cellAccessoryImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *imageView  = [[UIImageView alloc]initWithImage:image];
+            imageView.tintColor     = [UIColor colorWithWhite:1.0 alpha:0.5];
+            imageView;
+        });
     }
     
     UTCSEvent *event        = self.filteredEvents[indexPath.row];

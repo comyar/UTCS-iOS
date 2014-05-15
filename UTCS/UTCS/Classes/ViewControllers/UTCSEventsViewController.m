@@ -204,25 +204,23 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
             
             [self.activeHeaderView showActiveAnimation:NO];
             
-            if([self.dataSource.data count] > 0) {
-                [self.dataSource prepareFilter];
+            if (success) {
+                
                 NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                         dateStyle:NSDateFormatterLongStyle
                                                                         timeStyle:NSDateFormatterMediumStyle];
                 self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
-            } else {
+                [self.dataSource prepareFilter];
                 
-                if (!success) {
-                    // Show frowny face, error message
-                    self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";
-                } else {
-                    self.activeHeaderView.updatedLabel.text = @"No Events Available.";
+                if (!cacheHit) {
+                    [self.tableView reloadData];
                 }
                 
-            }
-            
-            if (success && !cacheHit) {
-                [self.tableView reloadData];
+                if ([self.dataSource.data count] == 0) {
+                    self.activeHeaderView.updatedLabel.text = @"No Events Available.";
+                }
+            } else {
+                self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";
             }
             
             [UIView animateWithDuration:0.3 animations:^{
