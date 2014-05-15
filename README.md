@@ -23,5 +23,5 @@ Currently, the app allows a user to do the following:
 
 # Building the Project
 
-When working on the project, always open the project's workspace in Xcode rather than it's project file. The project uses [Cocoa Pods](http://cocoapods.org/) to manage project dependencies and can be installed using ```sudo gem install cocoapods```.
+When working on the project, always open the project's workspace in Xcode rather than it's project file. The project uses [Cocoa Pods](http://cocoapods.org/) to manage project dependencies and can be installed using ```sudo gem install cocoapods```. To install all the project's dependencies, simply run ```pod install``` in the directory containing _Podfile_.
 
