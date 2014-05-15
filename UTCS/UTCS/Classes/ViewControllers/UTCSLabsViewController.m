@@ -15,6 +15,7 @@
 #import "UTCSLabsDataSource.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSLabMachineViewController.h"
+#import "UTCSStateManager.h"
 
 #import "UIButton+UTCSButton.h"
 #import "UIImage+Cacheless.h"
@@ -135,6 +136,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if ([UTCSStateManager sharedManager].preferredLab == 0) {
+        self.scrollView.contentOffset = CGPointMake(0, 0);
+    } else {
+        self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.view.bounds), 0);
+    }
     [self updateForced:NO];
 }
 

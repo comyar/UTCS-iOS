@@ -189,6 +189,7 @@ static NSString * const framePropertyString             = @"frame";
 
 - (void)dealloc
 {
+    [self.headerContainerView removeObserver:self forKeyPath:framePropertyString];
     [self.scrollView removeObserver:self forKeyPath:contentOffsetPropertyString];
 }
 

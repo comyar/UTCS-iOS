@@ -65,7 +65,6 @@
 		DD95E74D192091DA0062F4E9 /* UTCSStarredEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74C192091DA0062F4E9 /* UTCSStarredEventsViewController.m */; };
 		DD95E7501920964A0062F4E9 /* UTCSStarredEventsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74F1920964A0062F4E9 /* UTCSStarredEventsDataSource.m */; };
 		DD95E753192096880062F4E9 /* UTCSStarredEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E752192096880062F4E9 /* UTCSStarredEventManager.m */; };
-		DD95E7551920F4BA0062F4E9 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD95E7541920F4BA0062F4E9 /* Reveal.framework */; };
 		DD95E7581920F8780062F4E9 /* basementLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */; };
 		DD95E7591920F8780062F4E9 /* thirdLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */; };
 		DD95E7621922955E0062F4E9 /* UTCSAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* UTCSAuthenticationManager.m */; };
@@ -211,7 +210,6 @@
 		DD95E74F1920964A0062F4E9 /* UTCSStarredEventsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStarredEventsDataSource.m; path = Model/UTCSStarredEventsDataSource.m; sourceTree = "<group>"; };
 		DD95E751192096880062F4E9 /* UTCSStarredEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStarredEventManager.h; path = Model/UTCSStarredEventManager.h; sourceTree = "<group>"; };
 		DD95E752192096880062F4E9 /* UTCSStarredEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStarredEventManager.m; path = Model/UTCSStarredEventManager.m; sourceTree = "<group>"; };
-		DD95E7541920F4BA0062F4E9 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		DD95E7561920F8780062F4E9 /* basementLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basementLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD95E7571920F8780062F4E9 /* thirdLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thirdLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD95E7601922955E0062F4E9 /* UTCSAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSAuthenticationManager.h; path = Model/UTCSAuthenticationManager.h; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD95E7551920F4BA0062F4E9 /* Reveal.framework in Frameworks */,
 				DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */,
 				DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */,
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
@@ -324,7 +321,6 @@
 		0B9A26351891D5E30032DA03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD95E7541920F4BA0062F4E9 /* Reveal.framework */,
 				DD44655F18E4A04E00ED1153 /* CoreText.framework */,
 				DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */,
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
@@ -1311,9 +1307,6 @@
 					"$(inherited)",
 					"-lc++",
 					"-mthumb",
-					"-ObjC",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1348,9 +1341,6 @@
 					"$(inherited)",
 					"-lc++",
 					"-mthumb",
-					"-ObjC",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
