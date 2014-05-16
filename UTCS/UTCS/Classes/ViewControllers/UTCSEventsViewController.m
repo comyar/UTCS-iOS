@@ -192,37 +192,38 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)update
 {
-    if ([self.dataSource shouldUpdate]) {
-        [self.activeHeaderView showActiveAnimation:YES];
+    [self.activeHeaderView showActiveAnimation:YES];
+    
+    [self.dataSource updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
         
-        [self.dataSource updateWithArgument:nil completion:^(BOOL success, BOOL cacheHit) {
+        [self.activeHeaderView showActiveAnimation:NO];
+        
+        if ([self.dataSource.data count] > 0) {
             
-            [self.activeHeaderView showActiveAnimation:NO];
+            [self.dataSource prepareFilter];
+            
+            NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
+                                                                    dateStyle:NSDateFormatterLongStyle
+                                                                    timeStyle:NSDateFormatterMediumStyle];
+            self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
+            
+            if (!cacheHit) {
+                [self.tableView reloadData];
+            }
+        } else {
             
             if (success) {
-                
-                NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
-                                                                        dateStyle:NSDateFormatterLongStyle
-                                                                        timeStyle:NSDateFormatterMediumStyle];
-                self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
-                [self.dataSource prepareFilter];
-                
-                if (!cacheHit) {
-                    [self.tableView reloadData];
-                }
-                
-                if ([self.dataSource.data count] == 0) {
-                    self.activeHeaderView.updatedLabel.text = @"No Events Available.";
-                }
+                self.activeHeaderView.updatedLabel.text = @"No Events Available.";
             } else {
                 self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";
             }
             
-            [UIView animateWithDuration:0.3 animations:^{
-                self.activeHeaderView.downArrowImageView.alpha = success;
-            }];
+        }
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.activeHeaderView.downArrowImageView.alpha = success;
         }];
-    }
+    }];
 }
 
 #pragma mark UTCSStarredEventsViewControllerDelegate Methods

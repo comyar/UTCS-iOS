@@ -113,7 +113,6 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         } else {
             
             if (!success) {
-                // Show frowny face, error message
                 self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";
             } else {
                 self.activeHeaderView.updatedLabel.text = @"No News Articles Available.";
