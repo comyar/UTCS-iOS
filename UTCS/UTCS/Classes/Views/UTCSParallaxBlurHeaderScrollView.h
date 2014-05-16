@@ -14,7 +14,15 @@
 
 #pragma mark - Constants
 
+/**
+ Height of the header container view.
+ */
 extern const CGFloat kUTCSParallaxBlurHeaderHeight;
+
+/**
+ Height of the pseudo navigation bar of the view.
+ */
+extern const CGFloat kUTCSParallaxBlurNavigationBarHeight;
 
 
 #pragma mark - UTCSParallaxBlurHeaderScrollView Interface

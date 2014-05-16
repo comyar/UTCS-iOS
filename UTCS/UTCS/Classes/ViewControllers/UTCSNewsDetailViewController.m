@@ -165,7 +165,6 @@ static NSString * const dateLabelFontName       = @"HelveticaNeue";
         self.parallaxBlurHeaderScrollView.headerBlurredImage    = newsArticle.headerBlurredImage;
     } else {
         // Choose a random default header
-        
         NSInteger index = arc4random() % [self.defaultHeaderImages count];
         NSString *headerName = self.defaultHeaderImages[index];
         NSString *headerBlurredName = [headerName stringByAppendingString:@"-blurred"];
@@ -190,11 +189,11 @@ static NSString * const dateLabelFontName       = @"HelveticaNeue";
     self.dateLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.height - 8.0;
     
     // Set title label
-    self.titleLabel.frame = CGRectMake(8.0, kUTCSParallaxBlurHeaderHeight, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
+    self.titleLabel.frame = CGRectMake(8.0, kUTCSParallaxBlurNavigationBarHeight, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
     self.titleLabel.text = newsArticle.title;
     [self.titleLabel sizeToFit];
-    if(self.titleLabel.height > self.parallaxBlurHeaderScrollView.headerContainerView.height - kUTCSParallaxBlurHeaderHeight - self.dateLabel.height) {
-        self.titleLabel.height = self.parallaxBlurHeaderScrollView.headerContainerView.height - kUTCSParallaxBlurHeaderHeight - self.dateLabel.height;
+    if(self.titleLabel.height > kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - self.dateLabel.height) {
+        self.titleLabel.height = kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - self.dateLabel.height;
     }
     self.titleLabel.y = self.parallaxBlurHeaderScrollView.headerContainerView.height - (self.parallaxBlurHeaderScrollView.headerContainerView.height - self.dateLabel.y) - self.titleLabel.height;
     

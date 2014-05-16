@@ -279,11 +279,11 @@ static const CGFloat dateLabelFontSize          = 18.0;
     }
     
     // Configure name label
-    self.nameLabel.frame = CGRectMake(8.0, 0.0, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
+    self.nameLabel.frame = CGRectMake(8.0, kUTCSParallaxBlurNavigationBarHeight, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
     self.nameLabel.text = event.name;
     [self.nameLabel sizeToFit];
-    if(self.nameLabel.height > kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height - 4.0) {
-        self.nameLabel.height = kUTCSParallaxBlurHeaderHeight - 44.0 - self.dateLabel.height - self.locationLabel.height - 4.0;
+    if(self.nameLabel.height > kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - self.dateLabel.height - self.locationLabel.height - 4.0) {
+        self.nameLabel.height = kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - self.dateLabel.height - self.locationLabel.height - 4.0;
     }
     self.nameLabel.y = self.dateLabel.y - self.nameLabel.height - 4.0;
 

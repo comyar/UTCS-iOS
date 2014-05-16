@@ -20,11 +20,11 @@ static const CGFloat parallaxFactor                     = 0.5;
 // Height of the header image
 const CGFloat kUTCSParallaxBlurHeaderHeight             = 284.0;
 
+// Height of the pseudo navigation bar of this view
+const CGFloat kUTCSParallaxBlurNavigationBarHeight      = 44.0;
+
 // Modifier for the rate at which the background image view's alpha changes
 static const CGFloat blurAlphaModifier                  = 2.5;
-
-// Height of the navigation bar
-static const CGFloat navigationBarHeight                = 44.0;
 
 // Content offset property string used for KVO
 static NSString * const contentOffsetPropertyString     = @"contentOffset";
@@ -149,7 +149,7 @@ static NSString * const framePropertyString             = @"frame";
     if([keyPath isEqualToString:contentOffsetPropertyString] && object == self.scrollView) {
         CGFloat contentOffset = self.scrollView.contentOffset.y;
         
-        if (contentOffset >= 0.0 && contentOffset < CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
+        if (contentOffset >= 0.0 && contentOffset < CGRectGetHeight(self.headerContainerView.bounds) - kUTCSParallaxBlurNavigationBarHeight) {
             self.headerContainerView.frame = ({
                 CGRect frame = self.headerContainerView.frame;
                 frame.origin.y = -parallaxFactor * contentOffset;
@@ -160,8 +160,8 @@ static NSString * const framePropertyString             = @"frame";
             [self bringSubviewToFront:self.headerContainerView];
         }
         
-        if (contentOffset >= CGRectGetHeight(self.headerContainerView.bounds) - navigationBarHeight) {
-            self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, -self.headerContainerView.frame.origin.y, CGRectGetWidth(self.scrollView.bounds), navigationBarHeight)]CGPath];
+        if (contentOffset >= CGRectGetHeight(self.headerContainerView.bounds) - kUTCSParallaxBlurNavigationBarHeight) {
+            self.headerMask.path = [[UIBezierPath bezierPathWithRect:CGRectMake(0.0, -self.headerContainerView.frame.origin.y, CGRectGetWidth(self.scrollView.bounds), kUTCSParallaxBlurNavigationBarHeight)]CGPath];
             self.headerContainerView.layer.mask = self.headerMask;
         } else {
             self.headerContainerView.layer.mask = nil;
