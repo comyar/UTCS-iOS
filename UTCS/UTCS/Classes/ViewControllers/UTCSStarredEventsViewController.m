@@ -158,7 +158,7 @@
                                         attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                            context:nil];
     
-    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
+    return MIN(ceilf(rect.size.height), 66.0) + 55.0;
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath

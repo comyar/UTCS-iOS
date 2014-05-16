@@ -42,18 +42,21 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
     
     NSString *detailText = [NSString string];
     
-    if ([event.location length] > 0) {
-        detailText = [detailText stringByAppendingString:event.location];
-        if (event.startDate) {
-            detailText = [detailText stringByAppendingString:@"\n"];
-        }
-    }
     
     if (event.startDate) {
         NSString  *dateString   = [NSDateFormatter localizedStringFromDate:event.startDate
                                                                  dateStyle:NSDateFormatterLongStyle
-                                                                 timeStyle:NSDateFormatterShortStyle];
+                                                                 timeStyle:(event.allDay)?NSDateFormatterNoStyle:NSDateFormatterShortStyle];
+        
         detailText = [detailText stringByAppendingString:dateString];
+        
+        if ([event.location length] > 0) {
+            detailText = [detailText stringByAppendingString:@"\n"];
+        }
+    }
+    
+    if ([event.location length] > 0) {
+        detailText = [detailText stringByAppendingString:event.location];
     }
     
     cell.textLabel.text         = event.name;
