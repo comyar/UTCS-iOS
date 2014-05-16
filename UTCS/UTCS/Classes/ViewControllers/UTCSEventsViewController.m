@@ -274,15 +274,14 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEvent *event = self.dataSource.data[indexPath.row];
+    UTCSEvent *event = self.dataSource.filteredEvents[indexPath.row];
     
     // Estimate height of event name
     CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
-    
-    return MIN(ceilf(rect.size.height), 128.0) + 50.0;
+    return MIN(ceilf(rect.size.height), 85.0) + 50.0;
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath

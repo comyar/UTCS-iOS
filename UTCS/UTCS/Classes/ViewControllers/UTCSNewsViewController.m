@@ -23,9 +23,6 @@
 // Estimated height of table view cell
 static const CGFloat estimatedCellHeight            = 140.0;
 
-// Estimated height of a table view cell's detail label
-static const CGFloat estimatedCellDetailLabelHeight = 85.0;
-
 // Header title text
 static NSString * const headerTitleText             = @"UTCS News";
 
@@ -150,12 +147,12 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     UTCSNewsArticle *article = self.dataSource.data[indexPath.row];
     
     // Estimate height of a news story title
-    CGRect rect = [article.title boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
+    CGRect rect = [article.title boundingRectWithSize:CGSizeMake(self.tableView.width - 32.0, CGFLOAT_MAX)
                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
     
-    return MIN(ceilf(rect.size.height), estimatedCellDetailLabelHeight) + estimatedCellDetailLabelHeight;
+    return ceilf(rect.size.height) + 75.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
