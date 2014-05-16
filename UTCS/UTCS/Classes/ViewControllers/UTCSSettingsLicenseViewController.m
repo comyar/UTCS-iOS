@@ -10,6 +10,8 @@
 
 @interface UTCSSettingsLicenseViewController ()
 
+@property (nonatomic) NSString *licenseText;
+
 @end
 
 @implementation UTCSSettingsLicenseViewController
@@ -28,6 +30,8 @@
 {
     if (self = [super initWithStyle:style]) {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
     }
     return self;
 }
@@ -35,7 +39,11 @@
 - (void)setLicense:(NSString *)license
 {
     _license = license;
-    NSLog(@"license set : %@", _license);
+    NSString *licenseFilename = [self.license stringByAppendingString:@"-license"];
+    NSString *licensePath = [[NSBundle mainBundle]pathForResource:licenseFilename ofType:@"txt"];
+    self.licenseText = [NSString stringWithContentsOfFile:licensePath encoding:NSUTF8StringEncoding error:nil];
+    self.licenseText = [[self.licenseText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]
+                        componentsJoinedByString:@" "];
     [self.tableView reloadData];
 }
 
@@ -48,29 +56,22 @@
 
 #pragma mark UITableViewDataSource Methods
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLicenseTableViewCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
                                      reuseIdentifier:@"UTCSSettingsLicenseTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    
-    NSString *licenseFilename = [self.license stringByAppendingString:@"-license"];
-    NSLog(@"license : %@", licenseFilename);
-    NSString *licensePath = [[NSBundle mainBundle]pathForResource:licenseFilename ofType:@"txt"];
-    NSLog(@"license path : %@", licensePath);
-    
-    cell.textLabel.text = [NSString stringWithContentsOfFile:licensePath encoding:NSUTF32StringEncoding error:nil];
-    
+    cell.textLabel.text = self.licenseText;
+    cell.textLabel.numberOfLines = 0;
     return cell;
 }
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -86,5 +87,16 @@
 {
     return 1;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Estimate height of a news story title
+    CGRect rect = [self.licenseText boundingRectWithSize:CGSizeMake(self.tableView.width - 32.0, CGFLOAT_MAX)
+                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
+                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]}
+                                                 context:nil];
+    return ceilf(rect.size.height);
+}
+
 
 @end

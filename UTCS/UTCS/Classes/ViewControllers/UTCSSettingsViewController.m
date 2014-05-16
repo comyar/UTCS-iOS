@@ -47,10 +47,6 @@ static NSString * const twitterWebURL   = @"https://www.twitter.com/UTCompSci";
         self.dataSource = [UTCSSettingsDataSource new];
         self.tableView.dataSource = self.dataSource;
         self.tableView.delegate = self;
-        
-        if (![UTCSStateManager sharedManager].hasCompleteOnboarding) {
-            [UTCSStateManager sharedManager].eventNotifications = YES;
-        }
     }
     return self;
 }

@@ -68,13 +68,13 @@
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
         
-        cell.textLabel.text = @"The UTCS iOS app was developed by Comyar Zaheri under the direction of Dr. Paul Toprac and Brent Winkelman. The app is updated and maintained by Mobile App Development (MAD), an organization in the Department of Computer Science at the University of Texas at Austin.";
+        cell.textLabel.text = @"The UTCS app was developed by Comyar Zaheri under the direction of the Department of Computer Science. The app is updated and maintained by Mobile App Development (MAD), a student organization in the Department of Computer Science at the University of Texas at Austin.";
     } else if (indexPath.section == 1) {
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.text = @"v1.0 Beta, Built: May 5, 2014 at 10:19 PM CST";
+        cell.textLabel.text = @"v1.0 Beta, © 2014 UTCS";
     }
     
     return cell;

@@ -73,6 +73,15 @@
 		DD95E770192557320062F4E9 /* UTCSOnboardingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E76F192557320062F4E9 /* UTCSOnboardingManager.m */; };
 		DD95E77419255A880062F4E9 /* UTCSWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E77319255A880062F4E9 /* UTCSWelcomeViewController.m */; };
 		DD95E77A192568BD0062F4E9 /* welcomeBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD95E779192568BD0062F4E9 /* welcomeBackground@2x.png */; };
+		DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */; };
+		DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */; };
+		DD95E7861926305C0062F4E9 /* FBTweaks-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */; };
+		DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77E1926305C0062F4E9 /* JVFloatLabeledTextField-license.txt */; };
+		DD95E7881926305C0062F4E9 /* MBProgressHUD-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77F1926305C0062F4E9 /* MBProgressHUD-license.txt */; };
+		DD95E7891926305C0062F4E9 /* NMSSH-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7801926305C0062F4E9 /* NMSSH-license.txt */; };
+		DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7811926305C0062F4E9 /* PocketSVG-license.txt */; };
+		DD95E78B1926305C0062F4E9 /* pop-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7821926305C0062F4E9 /* pop-license.txt */; };
+		DD95E78C1926305C0062F4E9 /* RQShineLabel-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
@@ -225,6 +234,15 @@
 		DD95E77219255A880062F4E9 /* UTCSWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSWelcomeViewController.h; path = ViewControllers/UTCSWelcomeViewController.h; sourceTree = "<group>"; };
 		DD95E77319255A880062F4E9 /* UTCSWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSWelcomeViewController.m; path = ViewControllers/UTCSWelcomeViewController.m; sourceTree = "<group>"; };
 		DD95E779192568BD0062F4E9 /* welcomeBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcomeBackground@2x.png"; sourceTree = "<group>"; };
+		DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "DPMeterView-license.txt"; path = "Resources/Licenses/DPMeterView-license.txt"; sourceTree = "<group>"; };
+		DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBShimmering-license.txt"; path = "Resources/Licenses/FBShimmering-license.txt"; sourceTree = "<group>"; };
+		DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBTweaks-license.txt"; path = "Resources/Licenses/FBTweaks-license.txt"; sourceTree = "<group>"; };
+		DD95E77E1926305C0062F4E9 /* JVFloatLabeledTextField-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "JVFloatLabeledTextField-license.txt"; path = "Resources/Licenses/JVFloatLabeledTextField-license.txt"; sourceTree = "<group>"; };
+		DD95E77F1926305C0062F4E9 /* MBProgressHUD-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "MBProgressHUD-license.txt"; path = "Resources/Licenses/MBProgressHUD-license.txt"; sourceTree = "<group>"; };
+		DD95E7801926305C0062F4E9 /* NMSSH-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "NMSSH-license.txt"; path = "Resources/Licenses/NMSSH-license.txt"; sourceTree = "<group>"; };
+		DD95E7811926305C0062F4E9 /* PocketSVG-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "PocketSVG-license.txt"; path = "Resources/Licenses/PocketSVG-license.txt"; sourceTree = "<group>"; };
+		DD95E7821926305C0062F4E9 /* pop-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "pop-license.txt"; path = "Resources/Licenses/pop-license.txt"; sourceTree = "<group>"; };
+		DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "RQShineLabel-license.txt"; path = "Resources/Licenses/RQShineLabel-license.txt"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA758861904BD84007CD0DB /* UTCSHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSHeaderTableViewController.h; path = ViewControllers/UTCSHeaderTableViewController.h; sourceTree = "<group>"; };
 		DDA758871904BD84007CD0DB /* UTCSHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSHeaderTableViewController.m; path = ViewControllers/UTCSHeaderTableViewController.m; sourceTree = "<group>"; };
@@ -964,6 +982,15 @@
 		DDC4047B191886F000D17CBF /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
+				DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */,
+				DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */,
+				DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */,
+				DD95E77E1926305C0062F4E9 /* JVFloatLabeledTextField-license.txt */,
+				DD95E77F1926305C0062F4E9 /* MBProgressHUD-license.txt */,
+				DD95E7801926305C0062F4E9 /* NMSSH-license.txt */,
+				DD95E7811926305C0062F4E9 /* PocketSVG-license.txt */,
+				DD95E7821926305C0062F4E9 /* pop-license.txt */,
+				DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */,
 				DDC4047C1918875200D17CBF /* AFNetworking-license.txt */,
 			);
 			name = Licenses;
@@ -1083,20 +1110,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD95E78C1926305C0062F4E9 /* RQShineLabel-license.txt in Resources */,
 				DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */,
 				DD95E744191F377E0062F4E9 /* newsBackground-blurred@2x.png in Resources */,
 				DD95E765192296E20062F4E9 /* hosts.plist in Resources */,
+				DD95E7861926305C0062F4E9 /* FBTweaks-license.txt in Resources */,
+				DD95E78B1926305C0062F4E9 /* pop-license.txt in Resources */,
 				DD95E7591920F8780062F4E9 /* thirdLabsBackground@2x.png in Resources */,
+				DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */,
+				DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
+				DD95E7891926305C0062F4E9 /* NMSSH-license.txt in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
+				DD95E7881926305C0062F4E9 /* MBProgressHUD-license.txt in Resources */,
 				DD95E7581920F8780062F4E9 /* basementLabsBackground@2x.png in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
+				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
 				DD95E742191F377E0062F4E9 /* eventsBackground-blurred@2x.png in Resources */,
 				DD95E743191F377E0062F4E9 /* eventsBackground@2x.png in Resources */,
 				DD95E746191F377E0062F4E9 /* settingsBackground@2x.png in Resources */,
 				DD95E740191F377E0062F4E9 /* directoryBackground@2x.png in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				DD95E77A192568BD0062F4E9 /* welcomeBackground@2x.png in Resources */,
+				DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DD95E741191F377E0062F4E9 /* diskQuotaBackground@2x.png in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,

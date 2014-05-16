@@ -51,9 +51,9 @@
         self.tableView.rowHeight = 50.0;
         
         self.sectionTitles = @[@"Licenses", @"Photographs By"];
-        self.licenses = @[@"POP", @"FBTweaks", @"FBShimmering",
+        self.licenses = @[@"pop", @"FBTweaks", @"FBShimmering",
                           @"AFNetworking", @"MBProgressHUD", @"JVFloatLabeledTextField",
-                          @"DPMeterView", @"IntentKit", @"PocketSVG"];
+                          @"DPMeterView", @"PocketSVG", @"NMSSH", @"RQShineLabel"];
         
         self.photographs = @[@"Keerthana Kumar",
                              @"Comyar Zaheri",
@@ -116,9 +116,7 @@
     
     if (!self.licenseViewController) {
         self.licenseViewController = [UTCSSettingsLicenseViewController new];
-        NSLog(@"new license vc");
     }
-    
     
     self.licenseViewController.license = license;
     [self.navigationController pushViewController:self.licenseViewController animated:YES];

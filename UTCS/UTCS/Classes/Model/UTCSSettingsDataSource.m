@@ -75,7 +75,7 @@ static NSString * const UTCSSettingsSegmentedControlTableViewCellIdentifier = @"
                 
             }
             [cell.cellSwitch addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
-            cell.cellSwitch.selected = [UTCSStateManager sharedManager].eventNotifications;
+            cell.cellSwitch.on = [UTCSStateManager sharedManager].eventNotifications;
             cell.cellSwitch.tag = 0;
             cell.textLabel.text         = @"Event Notifications";
             cell.detailTextLabel.text   = @"Get notifications an hour before the start of starred events";

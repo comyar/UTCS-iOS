@@ -8,7 +8,7 @@
 
 #import "UTCSTableViewController.h"
 
-@interface UTCSSettingsLicenseViewController : UTCSTableViewController <UITableViewDataSource>
+@interface UTCSSettingsLicenseViewController : UTCSTableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSString *license;
 
