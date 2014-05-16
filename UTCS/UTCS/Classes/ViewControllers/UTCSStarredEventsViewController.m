@@ -26,6 +26,9 @@
 // Data source of the starred events table view
 @property (nonatomic) UTCSStarredEventsDataSource   *dataSource;
 
+// Label visible when there are no starred events
+@property (nonatomic) UILabel                       *descriptionLabel;
+
 @end
 
 
@@ -84,6 +87,20 @@
         overlay;
     })];
     
+    self.descriptionLabel = ({
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(16.0, 0.0, self.view.width - 32.0, 128.0)];
+        label.center = self.view.center;
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+        label.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.numberOfLines = 0;
+        label.text = @"No Starred Events! Starred events will appear in this menu and can be configured in Settings to send you notifications before they begin.";
+        label.alpha = 0.0;
+        label;
+    });
+    
+    [self.view addSubview:self.descriptionLabel];
+    
     [self.view addSubview:self.doneButton];
     [self.view bringSubviewToFront:self.tableView];
     [self.view bringSubviewToFront:self.doneButton];
@@ -105,6 +122,14 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    
+    if ([[[UTCSStarredEventsManager sharedManager]allEvents]count] == 0) {
+        self.descriptionLabel.alpha = 1.0;
+        self.tableView.alpha        = 0.0;
+    } else {
+        self.descriptionLabel.alpha = 0.0;
+        self.tableView.alpha        = 1.0;
+    }
 }
 
 - (BOOL)prefersStatusBarHidden

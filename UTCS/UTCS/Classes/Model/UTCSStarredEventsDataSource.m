@@ -38,7 +38,7 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
     UTCSEvent *event        = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
     
     cell.typeStripeLayer.fillColor = [UIColor clearColor].CGColor;
-    
+    cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     
     NSString *detailText = [NSString string];
     
@@ -64,7 +64,7 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[UTCSStarredEventsManager sharedManager].allEvents count];
+    return [[[UTCSStarredEventsManager sharedManager]allEvents]count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -81,6 +81,14 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
         [[UTCSStarredEventsManager sharedManager]removeEvent:event];
         [tableView endUpdates];
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return  @"Starred Events";
+    }
+    return nil;
 }
 
 @end
