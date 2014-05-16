@@ -66,6 +66,8 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
 {
     if(self = [super initWithService:service]) {
         
+        self.currentFilterType = @"all";
+        
         _minimumTimeBetweenUpdates = minimumTimeBetweenUpdates;
         
         _parser = [UTCSEventsDataSourceParser new];
@@ -90,8 +92,8 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
 
 - (void)prepareFilter
 {
-    self.currentFilterType = @"all";
     self.filteredEvents = [self.data mutableCopy];
+    [self filterEventsWithType:self.currentFilterType];
 }
 
 - (NSDictionary *)filterEventsWithType:(NSString *)type
@@ -102,8 +104,7 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
     type = [type lowercaseString];
     
     
-    if (![type isEqualToString:self.currentFilterType] &&
-        ![type isEqualToString:@"all"]) {
+    if (![type isEqualToString:@"all"]) {
         
         
         NSMutableArray *newFilteredEvents = [NSMutableArray new];
@@ -132,8 +133,7 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
         }
         
         self.filteredEvents = newFilteredEvents;
-    } else if ([type isEqualToString:@"all"] &&
-               ![self.currentFilterType isEqualToString:@"all"]) {
+    } else {
         
         // Add events
         NSInteger count = [self.data count];

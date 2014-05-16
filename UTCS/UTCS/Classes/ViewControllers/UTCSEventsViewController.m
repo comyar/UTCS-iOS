@@ -39,9 +39,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 @property (nonatomic) UTCSEventsDataSource                  *dataSource;
 
 //
-@property (nonatomic) NSString                              *currentFilter;
-
-//
 @property (nonatomic) UISegmentedControl                    *filterSegmentedControl;
 
 //
@@ -174,7 +171,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
 
 - (void)filterEventsWithType:(NSString *)type
 {
-    if (![type isEqualToString:self.currentFilter]) {
+    if (![type isEqualToString:self.dataSource.currentFilterType]) {
         NSDictionary *indexPaths = [self.dataSource filterEventsWithType:type];
         NSArray *addIndexPaths = indexPaths[UTCSEventsFilterAddName];
         NSArray *removeIndexPaths = indexPaths[UTCSEventsFilterRemoveName];
@@ -184,8 +181,6 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         [self.tableView insertRowsAtIndexPaths:addIndexPaths withRowAnimation:UITableViewRowAnimationLeft];
         [self.tableView endUpdates];
     }
-    
-    self.currentFilter = type;
 }
 
 #pragma mark Updating
@@ -200,19 +195,19 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         
         if ([self.dataSource.data count] > 0) {
             
-            [self.dataSource prepareFilter];
-            
             NSString *updateString = [NSDateFormatter localizedStringFromDate:self.dataSource.updated
                                                                     dateStyle:NSDateFormatterLongStyle
                                                                     timeStyle:NSDateFormatterMediumStyle];
             self.activeHeaderView.updatedLabel.text = [NSString stringWithFormat:@"Updated %@", updateString];
             
             if (!cacheHit) {
+                [self.dataSource prepareFilter];
                 [self.tableView reloadData];
             }
         } else {
             
             if (success) {
+                
                 self.activeHeaderView.updatedLabel.text = @"No Events Available.";
             } else {
                 self.activeHeaderView.updatedLabel.text = @"Please check your network connection.";

@@ -149,7 +149,9 @@ static const CGFloat welcomeTextLabelFontSize       = 19.0;
 - (void)didTouchUpInsideButton:(UIButton *)button
 {
     if (button == self.getStartedButton) {
+#if !(DEBUG)
         [UTCSStateManager sharedManager].hasCompleteOnboarding = YES;
+#endif
         [UIView animateWithDuration:0.3 animations:^{
             self.navigationController.view.alpha = 0.0;
         }];
