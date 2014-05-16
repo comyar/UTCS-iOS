@@ -152,7 +152,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
     
-    return ceilf(rect.size.height) + 75.0;
+    return MIN(ceilf(rect.size.height), 66.0) + 75.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

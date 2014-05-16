@@ -244,7 +244,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         if (!self.filterSegmentedControl) {
             self.filterSegmentedControl = ({
                 UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:self.filterTypes];
-                segmentedControl.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.65];
+                segmentedControl.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.725];
                 [segmentedControl addTarget:self action:@selector(didChangeValueForControl:) forControlEvents:UIControlEventValueChanged];
                 segmentedControl.frame = CGRectMake(8.0, 8.0, self.view.width - 16.0, 32.0);
                 segmentedControl.tintColor = [UIColor whiteColor];
@@ -277,11 +277,11 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
     UTCSEvent *event = self.dataSource.filteredEvents[indexPath.row];
     
     // Estimate height of event name
-    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
+    CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width - 32.0, CGFLOAT_MAX)
                                                 options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                              attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                                 context:nil];
-    return MIN(ceilf(rect.size.height), 85.0) + 50.0;
+    return MIN(ceilf(rect.size.height), 66.0) + 55.0;
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
