@@ -37,7 +37,7 @@
         self.title = @"Menu";
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+        self.view.backgroundColor = [UIColor colorWithWhite:0.08 alpha:1.0];
         
         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0, 0.0, 0.75 * self.view.width, self.view.height - 28.0)
                                                      style:UITableViewStylePlain];
