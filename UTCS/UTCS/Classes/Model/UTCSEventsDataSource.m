@@ -140,7 +140,14 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
         
         for (int i = 0; i < count; ++i) {
             UTCSEvent *event = self.data[i];
-            if (![self.filteredEvents containsObject:event]) {
+            BOOL containsEvent = NO;
+            for (UTCSEvent *filteredEvent in self.filteredEvents) {         // Manually checking because containsObject: is did not work correctly
+                if ([event.eventID isEqualToString:filteredEvent.eventID]) {// Look into implementing hash for UTCSEvent 
+                    containsEvent = YES;
+                    break;
+                }
+            }
+            if (!containsEvent) {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [add addObject:indexPath];
             }

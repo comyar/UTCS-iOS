@@ -177,8 +177,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         NSArray *removeIndexPaths = indexPaths[UTCSEventsFilterRemoveName];
         
         [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationRight];
-        [self.tableView insertRowsAtIndexPaths:addIndexPaths withRowAnimation:UITableViewRowAnimationLeft];
+        [self.tableView deleteRowsAtIndexPaths:removeIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertRowsAtIndexPaths:addIndexPaths withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
 }
