@@ -7,7 +7,7 @@ The UTCS iOS app is a collaborative project between the Department of Computer S
 
 ### Design First
 
-The app was built "design-first", meaning the user interface has been crafted in such a way as to provide the most immersive and beautiful experience for the user. For example, at the heart of every screen in the app is an image of the Gates-Dell Complex. The experience is very personal, the GDC is a point of pride for both students and the department alike. New features should be developed in the same manner, "design-first", to enhance to overall experience.
+The app was built "design-first", meaning the user interface has been crafted in such a way as to provide the most immersive and beautiful experience for the user. For example, at the heart of every screen in the app is an image of the Gates-Dell Complex. The experience is very personal, the GDC is a point of pride for both students and the department alike. New features should be developed in the same manner, "design-first", to enhance the overall experience.
 
 
 ### Features
