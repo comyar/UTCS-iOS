@@ -20,6 +20,9 @@
 		DD1B8ECA192918AB00A85E13 /* eventsBackground-blurred@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC8192918AB00A85E13 /* eventsBackground-blurred@2x.png */; };
 		DD1B8ECB192918AB00A85E13 /* newsBackground-blurred@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC9192918AB00A85E13 /* newsBackground-blurred@2x.png */; };
 		DD1B8ECD1929190B00A85E13 /* welcomeBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ECC1929190B00A85E13 /* welcomeBackground@2x.png */; };
+		DD1B8ED119291B3D00A85E13 /* directoryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */; };
+		DD1B8ED519291C2100A85E13 /* settingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */; };
+		DD1B8ED719291C7400A85E13 /* diskQuotaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */; };
 		DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */; };
@@ -133,6 +136,9 @@
 		DD1B8EC8192918AB00A85E13 /* eventsBackground-blurred@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventsBackground-blurred@2x.png"; sourceTree = "<group>"; };
 		DD1B8EC9192918AB00A85E13 /* newsBackground-blurred@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsBackground-blurred@2x.png"; sourceTree = "<group>"; };
 		DD1B8ECC1929190B00A85E13 /* welcomeBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcomeBackground@2x.png"; sourceTree = "<group>"; };
+		DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directoryBackground@2x.png"; sourceTree = "<group>"; };
+		DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsBackground@2x.png"; sourceTree = "<group>"; };
+		DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diskQuotaBackground@2x.png"; sourceTree = "<group>"; };
 		DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSParallaxBlurHeaderScrollView.h; sourceTree = "<group>"; };
 		DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSParallaxBlurHeaderScrollView.m; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -678,6 +684,9 @@
 		DD95E738191F377E0062F4E9 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */,
+				DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */,
+				DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */,
 				DD1B8ECC1929190B00A85E13 /* welcomeBackground@2x.png */,
 				DD1B8EC8192918AB00A85E13 /* eventsBackground-blurred@2x.png */,
 				DD1B8EC9192918AB00A85E13 /* newsBackground-blurred@2x.png */,
@@ -1109,6 +1118,7 @@
 				DD95E7881926305C0062F4E9 /* MBProgressHUD-license.txt in Resources */,
 				DD1B8ECD1929190B00A85E13 /* welcomeBackground@2x.png in Resources */,
 				DD1B8ECA192918AB00A85E13 /* eventsBackground-blurred@2x.png in Resources */,
+				DD1B8ED719291C7400A85E13 /* diskQuotaBackground@2x.png in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
@@ -1117,8 +1127,10 @@
 				DD1B8EC51929180400A85E13 /* newsBackground@2x.png in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
+				DD1B8ED119291B3D00A85E13 /* directoryBackground@2x.png in Resources */,
 				DDC404741918101500D17CBF /* Default Headers.xcassets in Resources */,
 				DD1B8ECB192918AB00A85E13 /* newsBackground-blurred@2x.png in Resources */,
+				DD1B8ED519291C2100A85E13 /* settingsBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
