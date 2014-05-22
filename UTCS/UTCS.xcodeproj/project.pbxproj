@@ -23,7 +23,6 @@
 		DD1B8ED119291B3D00A85E13 /* directoryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */; };
 		DD1B8ED519291C2100A85E13 /* settingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */; };
 		DD1B8ED719291C7400A85E13 /* diskQuotaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */; };
-		DD1B8ED919291DC000A85E13 /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED819291DC000A85E13 /* Default Headers.xcassets */; };
 		DD1B8EDB192923A300A85E13 /* thirdLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EDA192923A300A85E13 /* thirdLabsBackground@2x.png */; };
 		DD1B8EDD192923C100A85E13 /* basementLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EDC192923C100A85E13 /* basementLabsBackground@2x.png */; };
 		DD40C19A18E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40C19918E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.m */; };
@@ -47,6 +46,7 @@
 		DD5CAF81190A325D0051F637 /* UTCSSettingsLegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF80190A325D0051F637 /* UTCSSettingsLegalViewController.m */; };
 		DD64DAD918F915040033D58B /* UTCSBouncyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD64DAD818F915040033D58B /* UTCSBouncyTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
+		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58A18F35DC000EBDE06 /* UTCSLabsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
 		DD87615D18FDAC96005FEE4E /* UTCSActiveHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87615C18FDAC96005FEE4E /* UTCSActiveHeaderView.m */; };
@@ -141,7 +141,6 @@
 		DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directoryBackground@2x.png"; sourceTree = "<group>"; };
 		DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsBackground@2x.png"; sourceTree = "<group>"; };
 		DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diskQuotaBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8ED819291DC000A85E13 /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
 		DD1B8EDA192923A300A85E13 /* thirdLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thirdLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD1B8EDC192923C100A85E13 /* basementLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basementLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD40C19818E3C6DA00E1A3FE /* UTCSParallaxBlurHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSParallaxBlurHeaderScrollView.h; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 		DD64DAD818F915040033D58B /* UTCSBouncyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSBouncyTableViewCell.m; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
+		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
 		DD83B58818F35DC000EBDE06 /* UTCSLabsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSource.h; path = Model/UTCSLabsDataSource.h; sourceTree = "<group>"; };
 		DD83B58918F35DC000EBDE06 /* UTCSLabsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsDataSource.m; path = Model/UTCSLabsDataSource.m; sourceTree = "<group>"; };
 		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachine.h; path = Model/UTCSLabMachine.h; sourceTree = "<group>"; };
@@ -765,7 +765,7 @@
 				DDA7588F1904D313007CD0DB /* App.xcassets */,
 				DDC404711917D42400D17CBF /* Icons.xcassets */,
 				DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */,
-				DD1B8ED819291DC000A85E13 /* Default Headers.xcassets */,
+				DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1122,6 +1122,7 @@
 				DD95E7891926305C0062F4E9 /* NMSSH-license.txt in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
 				DD95E7881926305C0062F4E9 /* MBProgressHUD-license.txt in Resources */,
+				DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */,
 				DD1B8ECD1929190B00A85E13 /* welcomeBackground@2x.png in Resources */,
 				DD1B8ECA192918AB00A85E13 /* eventsBackground-blurred@2x.png in Resources */,
 				DD1B8ED719291C7400A85E13 /* diskQuotaBackground@2x.png in Resources */,
@@ -1129,7 +1130,6 @@
 				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */,
-				DD1B8ED919291DC000A85E13 /* Default Headers.xcassets in Resources */,
 				DD1B8EDB192923A300A85E13 /* thirdLabsBackground@2x.png in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
 				DD1B8EC51929180400A85E13 /* newsBackground@2x.png in Resources */,
