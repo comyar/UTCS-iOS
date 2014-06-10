@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/utcsmad/UTCS-iOS/master/Meta/readme_header.png?token=3284227__eyJzY29wZSI6IlJhd0Jsb2I6dXRjc21hZC9VVENTLWlPUy9tYXN0ZXIvTWV0YS9yZWFkbWVfaGVhZGVyLnBuZyIsImV4cGlyZXMiOjE0MDEwNTk3NDF9--5acbace9307e026655e48cadc4cdaa9b56681035)
+![](https://raw.githubusercontent.com/utcsmad/UTCS-iOS/master/Meta/readme_header.png?token=3284227__eyJzY29wZSI6IlJhd0Jsb2I6dXRjc21hZC9VVENTLWlPUy9tYXN0ZXIvTWV0YS9yZWFkbWVfaGVhZGVyLnBuZyIsImV4cGlyZXMiOjE0MDMwNDczNjl9--8696d37b4080e776f74b0269b59436bfb37ac5a0)
 
 # Introduction
 
