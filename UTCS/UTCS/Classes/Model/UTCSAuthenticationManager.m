@@ -84,6 +84,7 @@ NSString * const UTCSAuthenticationErrorDomain  = @"UTCSAuthenticationErrorDomai
     // Select a random host
     NSString *host = [self randomHost];
     
+    __block NSString *blockPassword = password; 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
         // Create an SSH session
@@ -91,7 +92,8 @@ NSString * const UTCSAuthenticationErrorDomain  = @"UTCSAuthenticationErrorDomai
         if (session.isConnected) {
             
             // Authenticate with password
-            [session authenticateByPassword:password];
+            [session authenticateByPassword:blockPassword];
+            blockPassword = nil; // nil out password immediately
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
