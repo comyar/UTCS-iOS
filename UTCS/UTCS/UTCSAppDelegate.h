@@ -11,8 +11,6 @@
 
 @import UIKit;
 @import QuartzCore;
-#import <Tweaks/FBTweakInline.h>
-#import <Tweaks/FBTweakShakeWindow.h>
 #import "UTCSMenuViewController.h"
 #import "MBProgressHUD.h"
 
@@ -28,6 +26,6 @@
  Window used by FBTweaks. Allows the tweak window to be presented when the device
  is shaked. Behaves similarly to a UIWindow in production. 
  */
-@property (nonatomic) FBTweakShakeWindow *window;
+@property (nonatomic) UIWindow *window;
 
 @end

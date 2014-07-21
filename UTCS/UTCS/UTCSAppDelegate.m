@@ -90,7 +90,7 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[FBTweakShakeWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
     if (![UTCSStateManager sharedManager].hasCompleteOnboarding) {
         [UTCSStateManager sharedManager].eventNotifications = YES;
