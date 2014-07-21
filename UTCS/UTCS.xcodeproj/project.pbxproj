@@ -1076,7 +1076,7 @@
 				ORGANIZATIONNAME = UTCS;
 				TargetAttributes = {
 					0B9A26321891D5E30032DA03 = {
-						DevelopmentTeam = TRMC2X2YJ7;
+						DevelopmentTeam = 9F4JP5566P;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
