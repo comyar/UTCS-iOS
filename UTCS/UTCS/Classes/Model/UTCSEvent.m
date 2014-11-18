@@ -79,7 +79,7 @@ static const CGFloat fontSizeModifier               = 1.5;
         _contactName            = [aDecoder decodeObjectForKey:contactNameKey];
         _contactEmail           = [aDecoder decodeObjectForKey:contactEmailKey];
         _location               = [aDecoder decodeObjectForKey:locationKey];
-        _description            = [aDecoder decodeObjectForKey:descriptionKey];
+        _eventDescription            = [aDecoder decodeObjectForKey:descriptionKey];
         _attributedDescription  = [aDecoder decodeObjectForKey:attributedDescriptionKey];
         _type                   = [aDecoder decodeObjectForKey:typeKey];
         _link                   = [aDecoder decodeObjectForKey:linkKey];
@@ -98,7 +98,7 @@ static const CGFloat fontSizeModifier               = 1.5;
     [aCoder encodeObject:_contactName           forKey:contactNameKey];
     [aCoder encodeObject:_contactEmail          forKey:contactEmailKey];
     [aCoder encodeObject:_location              forKey:locationKey];
-    [aCoder encodeObject:_description           forKey:descriptionKey];
+    [aCoder encodeObject:_eventDescription           forKey:descriptionKey];
     [aCoder encodeObject:_attributedDescription forKey:attributedDescriptionKey];
     [aCoder encodeObject:_type                  forKey:typeKey];
     [aCoder encodeObject:_link                  forKey:linkKey];
@@ -113,8 +113,8 @@ static const CGFloat fontSizeModifier               = 1.5;
 
 - (void)setDescription:(NSString *)description
 {
-    _description = description;
-    [self setAttributedDescriptionWithHTML:_description];
+    _eventDescription = description;
+    [self setAttributedDescriptionWithHTML:_eventDescription];
 }
 
 - (void)setAttributedDescriptionWithHTML:(NSString *)html

@@ -19,7 +19,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DPMeterView (0.0.1)
-  - JVFloatLabeledTextField (0.0.8)
+  - JVFloatLabeledTextField (0.0.9)
   - MBProgressHUD (0.8)
   - NMSSH (2.1.0)
   - PocketSVG (0.5)
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
   DPMeterView: 4a6a77dd879406f98d06dea2c4c0384b747e6867
-  JVFloatLabeledTextField: 53177a74ff6f3f0dddd165cf6cab01d1e4433a9b
+  JVFloatLabeledTextField: e6ec1b3feacbc5c893b04f0ba12c5f62d75aa533
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   NMSSH: 8668b6abe4437b3d4ae53da2b22ef4cc467c65a7
   PocketSVG: d9e6b6951adf25d3c1011e87296a89b5f5c99a29
@@ -58,4 +58,4 @@ SPEC CHECKSUMS:
   Shimmer: 35aa2a57b8fbc17f9e16706021665966fd93dbd1
   Tweaks: 05b197d4a1247288f576587546bc1932189d8c98
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4

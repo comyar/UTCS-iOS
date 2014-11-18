@@ -49,7 +49,7 @@
 /**
  Event description.
  */
-@property (nonatomic) NSString              *description;
+@property (nonatomic) NSString              *eventDescription;
 
 /**
  Attributed description of the event.
