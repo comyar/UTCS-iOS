@@ -1,10 +1,5 @@
-# Uncomment this line to define a global platform for your project
-
-
-
 target "UTCS" do
-
-pod 'pop'
+pod 'pop', :git => 'https://github.com/facebook/pop.git'
 pod 'Tweaks'
 pod 'Shimmer'
 pod 'NMSSH'
@@ -12,7 +7,7 @@ pod "RQShineLabel"
 pod 'DPMeterView'
 pod 'MBProgressHUD'
 pod "AFNetworking"
-pod "JVFloatLabeledTextField", :git => 'https://github.com/jverdi/JVFloatLabeledTextField'
+pod "JVFloatLabeledTextField"
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 
 end

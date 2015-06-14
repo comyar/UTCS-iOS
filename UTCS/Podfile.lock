@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.2.4):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.2.4)
+    - AFNetworking/NSURLSession (= 2.2.4)
+    - AFNetworking/Reachability (= 2.2.4)
+    - AFNetworking/Security (= 2.2.4)
+    - AFNetworking/Serialization (= 2.2.4)
+    - AFNetworking/UIKit (= 2.2.4)
   - AFNetworking/NSURLConnection (2.2.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -19,11 +19,11 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DPMeterView (0.0.1)
-  - JVFloatLabeledTextField (0.0.9)
+  - JVFloatLabeledTextField (1.0.2)
   - MBProgressHUD (0.8)
   - NMSSH (2.1.0)
   - PocketSVG (0.5)
-  - pop (1.0.4)
+  - pop (1.0.7)
   - RQShineLabel (0.1.0)
   - Shimmer (1.0.1)
   - Tweaks (1.1.0)
@@ -31,31 +31,39 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - DPMeterView
-  - JVFloatLabeledTextField (from `https://github.com/jverdi/JVFloatLabeledTextField`)
+  - JVFloatLabeledTextField
   - MBProgressHUD
   - NMSSH
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
-  - pop
+  - pop (from `https://github.com/facebook/pop.git`)
   - RQShineLabel
   - Shimmer
   - Tweaks
 
 EXTERNAL SOURCES:
-  JVFloatLabeledTextField:
-    :git: https://github.com/jverdi/JVFloatLabeledTextField
   PocketSVG:
     :git: https://github.com/arielelkin/PocketSVG
+  pop:
+    :git: https://github.com/facebook/pop.git
+
+CHECKOUT OPTIONS:
+  PocketSVG:
+    :commit: 1c8e85a44c95de70d91627f3473246b118dac96e
+    :git: https://github.com/arielelkin/PocketSVG
+  pop:
+    :commit: f11c9066cf018125100c2fe2c91a2d8a1652bc1f
+    :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
-  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
-  DPMeterView: 4a6a77dd879406f98d06dea2c4c0384b747e6867
-  JVFloatLabeledTextField: e6ec1b3feacbc5c893b04f0ba12c5f62d75aa533
-  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
-  NMSSH: 8668b6abe4437b3d4ae53da2b22ef4cc467c65a7
-  PocketSVG: d9e6b6951adf25d3c1011e87296a89b5f5c99a29
-  pop: 626af22f9f3b6eb866141a1af7bfd909dac1851e
-  RQShineLabel: 353a5292ab40eeb8a46fba2b1f9819be7cf747b7
-  Shimmer: 35aa2a57b8fbc17f9e16706021665966fd93dbd1
-  Tweaks: 05b197d4a1247288f576587546bc1932189d8c98
+  AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
+  DPMeterView: a49f039d0dde33c2d3933c518c1b007dc5316951
+  JVFloatLabeledTextField: 58a3a32cfb800e5b224f676987e7c13abf50a14d
+  MBProgressHUD: 8688c331cb64702283be37ab8d7d329cdd25f251
+  NMSSH: 1b31f2ac369451ea74abc9d36e1e70e4770c441e
+  PocketSVG: d988f058b02289a58777ea2a4f10a32c9396c9e8
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  RQShineLabel: ea2998688e04c62431c8f4b239330034a9776d46
+  Shimmer: f68e00817f8f3a20c9a8df85e5bbf8eec9ae5ade
+  Tweaks: fea40672d34a7185051b7786be0d587cd76d253c
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.37.2
