@@ -10,7 +10,6 @@
 #pragma mark - Imports
 
 #import "UTCSEvent.h"
-#import "UTCSEventTableViewCell.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSStarredEventsDataSource.h"
 
@@ -29,10 +28,10 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
+    EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
     
     if(!cell) {
-        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
+        cell = [[EventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
     }
     
     UTCSEvent *event        = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];

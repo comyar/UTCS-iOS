@@ -9,7 +9,6 @@
 #pragma mark - Imports
 
 #import "UTCSTableViewController.h"
-#import "UTCSActiveHeaderView.h"
 
 
 #pragma mark - UTCSHeaderTableViewController Interface

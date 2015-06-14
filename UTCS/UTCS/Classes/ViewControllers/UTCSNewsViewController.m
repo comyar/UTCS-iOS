@@ -75,7 +75,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
 
         self.activeHeaderView                   = [[[NSBundle mainBundle] loadNibNamed:@"ActiveHeaderView" owner:self options:nil] objectAtIndex:0];
-        ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = headerTitleText;
+        self.activeHeaderView.sectionHeadLabel.text = headerTitleText;
         self.activeHeaderView.subtitleLabel.text = headerSubtitleText;
     }
     return self;

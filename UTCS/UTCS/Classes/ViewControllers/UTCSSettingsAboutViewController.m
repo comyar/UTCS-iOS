@@ -7,7 +7,6 @@
 //
 
 #import "UTCSSettingsAboutViewController.h"
-#import "UTCSBouncyTableViewCell.h"
 
 @interface UTCSSettingsAboutViewController ()
 @property (nonatomic) NSArray *sectionTitles;
@@ -57,9 +56,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLegalTableViewCell"];
+    BouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLegalTableViewCell"];
     if (!cell) {
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSSettingsLegalTableViewCell"];
+        cell = [[BouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSSettingsLegalTableViewCell"];
     }
     
     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];

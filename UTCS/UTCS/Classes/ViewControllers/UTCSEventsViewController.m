@@ -89,8 +89,8 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         self.backgroundImageView.image          = [UIImage cacheless_imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
         
-        self.activeHeaderView = [[ActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
-        ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
+        self.activeHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"ActiveHeaderView" owner:self options:nil] objectAtIndex:0];
+        self.activeHeaderView.sectionHeadLabel.text = @"UTCS Events";
         self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
         
         self.filterTypes = @[@"All", @"Talks", @"Careers", @"Orgs"];

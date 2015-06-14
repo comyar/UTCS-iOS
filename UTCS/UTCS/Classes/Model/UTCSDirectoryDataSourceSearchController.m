@@ -11,7 +11,6 @@
 
 #import "UTCSDirectoryPerson.h"
 #import "UTCSDirectoryDataSource.h"
-#import "UTCSBouncyTableViewCell.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
 
 

@@ -12,7 +12,6 @@
 #import "UTCSNewsArticle.h"
 #import "UTCSNewsDataSource.h"
 #import "UTCSDataSourceCache.h"
-#import "UTCSBouncyTableViewCell.h"
 #import "UTCSNewsDataSourceParser.h"
 
 #import "UIImage+CZTinting.h"
@@ -64,12 +63,12 @@ static const NSTimeInterval minimumTimeBetweenUpdates   = 86400.0;  // 24 hours
 
 #pragma mark UITableViewDataSource Methods
 
-- (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (BouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:UTCSNewsTableViewCellIdentifier];
+    BouncyTableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:UTCSNewsTableViewCellIdentifier];
     
     if(!cell) {
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSNewsTableViewCellIdentifier];
+        cell = [[BouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSNewsTableViewCellIdentifier];
         cell.accessoryView = ({
             UIImage *image          = [[UIImage imageNamed:cellAccessoryImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView  = [[UIImageView alloc]initWithImage:image];

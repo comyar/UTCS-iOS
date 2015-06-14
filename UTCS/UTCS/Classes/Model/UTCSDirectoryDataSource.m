@@ -11,7 +11,6 @@
 
 #import "UTCSDirectoryPerson.h"
 #import "UTCSDataSourceCache.h"
-#import "UTCSBouncyTableViewCell.h"
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryDataSourceParser.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
@@ -96,11 +95,11 @@ static const NSTimeInterval minimumTimeBetweenUpdates           = 2592000.0;  //
 
 #pragma mark UITableViewDataSource Methods
 
-- (UTCSBouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (BouncyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSDirectoryTableViewCellIdentifier];
+    BouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSDirectoryTableViewCellIdentifier];
     if(!cell) {
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSDirectoryTableViewCellIdentifier];
+        cell = [[BouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSDirectoryTableViewCellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

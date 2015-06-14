@@ -11,6 +11,7 @@
 
 #import "UTCSAppDelegate.h"
 #import "UIImage+Cacheless.h"
+#import "MBProgressHud.h"
 
 // View controllers
 #import "UTCSMenuViewController.h"
@@ -27,16 +28,6 @@
 #import "UTCSStarredEventsManager.h"
 #import "UTCSAuthenticationManager.h"
 #import "UTCSStateManager.h"
-
-
-/**
- UTCSAuthenticationAlertViewTag is used to identify an authentication alert view
- and associate it with the specific service that required authentication.
- */
-typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
-    /** Tag for the labs service */
-    UTCSLabsAuthenticationAlertViewTag = 1
-};
 
 
 #pragma mark - UTCSAppDelegate Class Extension

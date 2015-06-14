@@ -14,7 +14,6 @@
 #import "UIColor+UTCSColors.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSEventsDataSource.h"
-#import "UTCSEventTableViewCell.h"
 #import "UTCSEventsDataSourceParser.h"
 
 
@@ -164,12 +163,12 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
 
 #pragma mark UITableViewDataSource Methods
 
-- (UTCSEventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (EventTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
+    EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
     
     if(!cell) {
-        cell = [[UTCSEventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
+        cell = [[EventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
         cell.accessoryView = ({
             UIImage *image          = [[UIImage imageNamed:cellAccessoryImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *imageView  = [[UIImageView alloc]initWithImage:image];

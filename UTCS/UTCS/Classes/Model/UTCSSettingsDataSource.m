@@ -11,7 +11,6 @@
 
 #import "UTCSStateManager.h"
 #import "UTCSSettingsDataSource.h"
-#import "UTCSBouncyTableViewCell.h"
 #import "UTCSSwitchTableViewCell.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSSegmentedControlTableViewCell.h"

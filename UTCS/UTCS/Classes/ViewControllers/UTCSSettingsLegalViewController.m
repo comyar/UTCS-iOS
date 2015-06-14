@@ -8,7 +8,6 @@
 
 #import "UTCSSettingsLegalViewController.h"
 #import "UTCSSettingsLicenseViewController.h"
-#import "UTCSBouncyTableViewCell.h"
 
 
 @interface UTCSSettingsLegalViewController ()
@@ -68,9 +67,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTCSBouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLegalTableViewCell"];
+    BouncyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UTCSSettingsLegalTableViewCell"];
     if (!cell) {
-        cell = [[UTCSBouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSSettingsLegalTableViewCell"];
+        cell = [[BouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSSettingsLegalTableViewCell"];
     }
     
     if (indexPath.section == 0) {
