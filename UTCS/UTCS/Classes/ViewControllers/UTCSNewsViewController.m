@@ -10,7 +10,7 @@
 #pragma mark - Imports
 
 #import "UTCSNewsArticle.h"
-#import "UTCSActiveHeaderView.h"
+#import "UTCS-Swift.h"
 #import "UTCSNewsViewController.h"
 #import "UTCSNewsDetailViewController.h"
 
@@ -73,8 +73,8 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
         
         self.backgroundImageView.image          = [UIImage cacheless_imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
-        
-        self.activeHeaderView                   = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
+
+        self.activeHeaderView                   = [[[NSBundle mainBundle] loadNibNamed:@"ActiveHeaderView" owner:self options:nil] objectAtIndex:0];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = headerTitleText;
         self.activeHeaderView.subtitleLabel.text = headerSubtitleText;
     }

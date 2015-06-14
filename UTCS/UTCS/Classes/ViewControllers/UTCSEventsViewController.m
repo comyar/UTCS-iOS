@@ -17,7 +17,7 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSEventsDetailViewController.h"
 #import "UTCSStarredEventsViewController.h"
-
+#import "UTCS-Swift.h"
 
 #pragma mark - Constants
 
@@ -89,7 +89,7 @@ static NSString * const backgroundBlurredImageName  = @"eventsBackground-blurred
         self.backgroundImageView.image          = [UIImage cacheless_imageNamed:backgroundImageName];
         self.backgroundBlurredImageView.image   = [UIImage cacheless_imageNamed:backgroundBlurredImageName];
         
-        self.activeHeaderView = [[UTCSActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
+        self.activeHeaderView = [[ActiveHeaderView alloc]initWithFrame:self.tableView.bounds];
         ((UILabel *)self.activeHeaderView.shimmeringView.contentView).text = @"UTCS Events";
         self.activeHeaderView.subtitleLabel.text = @"What Starts Here Changes the World";
         

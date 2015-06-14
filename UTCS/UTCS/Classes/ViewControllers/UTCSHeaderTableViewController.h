@@ -32,7 +32,7 @@
  
  The bounds of the header view should match those of the table view.
  */
-@property (nonatomic) UTCSActiveHeaderView      *activeHeaderView;
+@property (nonatomic) ActiveHeaderView      *activeHeaderView;
 
 /**
  Image view intended to display a blurred version of the  view controller's background image. 

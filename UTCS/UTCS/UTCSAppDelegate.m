@@ -24,7 +24,6 @@
 #import "UTCSVerticalMenuViewController.h"
 
 // Managers
-#import "UTCSOnboardingManager.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSAuthenticationManager.h"
 #import "UTCSStateManager.h"
@@ -92,10 +91,6 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
 {
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
-    if (![UTCSStateManager sharedManager].hasCompleteOnboarding) {
-        [UTCSStateManager sharedManager].eventNotifications = YES;
-    }
-    
     // Menu
     self.menuViewController = [UTCSMenuViewController new];
     self.menuViewController.delegate = self;
@@ -113,8 +108,6 @@ typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Purge any old starred events from disk
-    [[UTCSOnboardingManager sharedManager]applicationDidBecomeActive];
     [[UTCSStarredEventsManager sharedManager]purgePastEvents];
 }
 

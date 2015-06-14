@@ -99,7 +99,7 @@ static NSString * const contentOffsetPropertyString = @"contentOffset";
 
 #pragma mark Setters
 
-- (void)setActiveHeaderView:(UTCSActiveHeaderView *)activityHeaderView
+- (void)setActiveHeaderView:(ActiveHeaderView *)activityHeaderView
 {
     _activeHeaderView               = activityHeaderView;
     _activeHeaderView.frame         = self.tableView.bounds;
