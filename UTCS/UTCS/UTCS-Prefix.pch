@@ -14,9 +14,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "UTCS-Swift.h"
-typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
-    /** Tag for the labs service */
-    UTCSLabsAuthenticationAlertViewTag = 1
-};
+    typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
+        /** Tag for the labs service */
+        UTCSLabsAuthenticationAlertViewTag = 1
+    };
 
 #endif
