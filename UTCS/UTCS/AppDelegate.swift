@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
     var menuViewController = UTCSMenuViewController()
     var verticalMenuViewController: UTCSVerticalMenuViewController?
     var labsViewController: UTCSLabsViewController?
-    var diskQuotaViewController: UTCSDiskQuotaViewController?
+    var diskQuotaViewController: DiskQuotaViewController?
 
     var window: UIWindow?
 
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
             verticalMenuViewController?.contentViewController = self.directoryNavigationController
         case .DiskQuota:
             if diskQuotaViewController == nil {
-                diskQuotaViewController = UTCSDiskQuotaViewController()
+                diskQuotaViewController = DiskQuotaViewController()
             }
             verticalMenuViewController?.contentViewController = self.diskQuotaViewController
         case .Settings:

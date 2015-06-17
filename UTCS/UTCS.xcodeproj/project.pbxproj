@@ -18,6 +18,8 @@
 		D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */; };
 		D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */; };
 		D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */; };
+		D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */; };
+		D4CDC84C1B30F3B400D6E4CE /* DiskQuotaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CDC84B1B30F3B400D6E4CE /* DiskQuotaViewController.xib */; };
 		DD008CB4190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */; };
 		DD1B8EC51929180400A85E13 /* newsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC31929180400A85E13 /* newsBackground@2x.png */; };
 		DD1B8EC71929185000A85E13 /* eventsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC61929185000A85E13 /* eventsBackground@2x.png */; };
@@ -109,7 +111,6 @@
 		DDC40477191880D900D17CBF /* UTCSSettingsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC40476191880D900D17CBF /* UTCSSettingsAboutViewController.m */; };
 		DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDC4047C1918875200D17CBF /* AFNetworking-license.txt */; };
 		DDC404801918879800D17CBF /* UTCSSettingsLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC4047F1918879800D17CBF /* UTCSSettingsLicenseViewController.m */; };
-		DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
@@ -135,6 +136,8 @@
 		D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BouncyTableViewCell.swift; path = Views/BouncyTableViewCell.swift; sourceTree = "<group>"; };
 		D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTableViewCell.swift; path = Views/EventTableViewCell.swift; sourceTree = "<group>"; };
 		D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaViewController.swift; path = ViewControllers/DiskQuotaViewController.swift; sourceTree = "<group>"; };
+		D4CDC84B1B30F3B400D6E4CE /* DiskQuotaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiskQuotaViewController.xib; path = Views/DiskQuotaViewController.xib; sourceTree = "<group>"; };
 		DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceSearchController.h; path = Model/UTCSLabsDataSourceSearchController.h; sourceTree = "<group>"; };
 		DD008CB3190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsDataSourceSearchController.m; path = Model/UTCSLabsDataSourceSearchController.m; sourceTree = "<group>"; };
 		DD1B8EC31929180400A85E13 /* newsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsBackground@2x.png"; sourceTree = "<group>"; };
@@ -287,7 +290,6 @@
 		DDC4047C1918875200D17CBF /* AFNetworking-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AFNetworking-license.txt"; path = "Resources/Licenses/AFNetworking-license.txt"; sourceTree = "<group>"; };
 		DDC4047E1918879800D17CBF /* UTCSSettingsLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsLicenseViewController.h; path = ViewControllers/UTCSSettingsLicenseViewController.h; sourceTree = "<group>"; };
 		DDC4047F1918879800D17CBF /* UTCSSettingsLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsLicenseViewController.m; path = ViewControllers/UTCSSettingsLicenseViewController.m; sourceTree = "<group>"; };
-		DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaViewController.h; path = ViewControllers/UTCSDiskQuotaViewController.h; sourceTree = "<group>"; };
 		DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaViewController.m; path = ViewControllers/UTCSDiskQuotaViewController.m; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
@@ -584,8 +586,9 @@
 		DD87616E1900FCDC005FEE4E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DDC676CC18EC6DEA0082C235 /* UTCSDiskQuotaViewController.h */,
+				D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */,
 				DDC676CD18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m */,
+				D4CDC84B1B30F3B400D6E4CE /* DiskQuotaViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -828,7 +831,6 @@
 				D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */,
 				DD95E7691924CED40062F4E9 /* ServiceErrorView */,
 				DDA758A81905E8CE007CD0DB /* ParallaxHeaderBlurScrollView */,
-				DDDE0C6B18FD947200C89D81 /* TableView Cells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -982,14 +984,6 @@
 			name = "UIImage+ImageEffects";
 			sourceTree = "<group>";
 		};
-		DDDE0C6B18FD947200C89D81 /* TableView Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "TableView Cells";
-			path = Views;
-			sourceTree = "<group>";
-		};
 		DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1068,6 +1062,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CDC84C1B30F3B400D6E4CE /* DiskQuotaViewController.xib in Resources */,
 				DD95E78C1926305C0062F4E9 /* RQShineLabel-license.txt in Resources */,
 				DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */,
 				DD95E765192296E20062F4E9 /* hosts.plist in Resources */,
@@ -1184,7 +1179,6 @@
 				DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */,
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				DD9475B2190A46350049FB8B /* UTCSNavigationControllerDelegate.m in Sources */,
-				DDC676CE18EC6DEA0082C235 /* UTCSDiskQuotaViewController.m in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				DDC2F5DE190480C7006011F0 /* UTCSDataSourceParser.m in Sources */,
@@ -1202,6 +1196,7 @@
 				DDA759051908D8F6007CD0DB /* UTCSDataSourceSearchController.m in Sources */,
 				D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */,
 				DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */,
+				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
 				D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */,
 				DD44657E18E5833D00ED1153 /* UTCSDirectoryViewController.m in Sources */,
