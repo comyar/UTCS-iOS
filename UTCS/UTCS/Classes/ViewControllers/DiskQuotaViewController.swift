@@ -18,7 +18,7 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
     @IBOutlet var meterView: DPMeterView!
 
     //
-    @IBOutlet var serviceErrorView: UTCSServiceErrorView!
+    @IBOutlet var serviceErrorView: ServiceErrorView!
 
     // Label used to show more detailed disk quota information
     @IBOutlet var quotaDetailLabel: UILabel!
@@ -61,7 +61,7 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
         meterView.setShape(PocketSVG.pathFromSVGFileNamed("cloud").takeUnretainedValue())
         meterView.trackTintColor = UIColor(white: 1.0, alpha: 0.2)
 
-        serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection.";
+        //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
         backgroundImageView.image = UIImage.cacheless_imageNamed("diskQuotaBackground")
     }
     @IBAction func didPressGo(sender: UIButton) {
@@ -100,8 +100,8 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
             dataSource.updateWithArgument(usernameTextField.text!){ success, cacheHit in
                 if success {
                     self.nameLabel.text = self.dataSource.data["name"] as? String
-                    let limit = (self.dataSource.data["limit"] as? NSString)!.floatValue
-                    let usage = (self.dataSource.data["usage"] as? NSString)!.floatValue
+                    let limit = (self.dataSource.data["limit"] as? NSNumber)!.floatValue
+                    let usage = (self.dataSource.data["usage"] as? NSNumber)!.floatValue
                     let percentageUsage = usage / limit
                     self.meterView.progressTintColor = UIColor.whiteColor()
 

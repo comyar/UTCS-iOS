@@ -12,7 +12,6 @@
 #import "MBProgressHUD.h"
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
-#import "UTCSServiceErrorView.h"
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryViewController.h"
 #import "UTCSDirectoryDetailViewController.h"
@@ -32,7 +31,7 @@ static NSString * const searchBarBackgroundImageName = @"searchBarBackground";
 @property (nonatomic, getter = hasAppeared) BOOL appeared;
 
 // View to display in case of an error
-@property (nonatomic) UTCSServiceErrorView              *serviceErrorView;
+@property (nonatomic) ServiceErrorView              *serviceErrorView;
 
 // Search bar in the table view's header
 @property (nonatomic) UISearchBar                       *searchBar;
@@ -140,7 +139,7 @@ static NSString * const searchBarBackgroundImageName = @"searchBarBackground";
     
     
     self.serviceErrorView = ({
-        UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:CGRectZero];
+        ServiceErrorView *view = [[ServiceErrorView alloc]initWithFrame:CGRectZero];
         view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your network connection.";
         view.alpha = 0.0;
         view;

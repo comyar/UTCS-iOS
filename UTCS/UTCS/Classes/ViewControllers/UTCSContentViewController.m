@@ -59,6 +59,7 @@
     self.backgroundImageView.frame = self.view.bounds;
     self.menuButton.center = CGPointMake(33.0, 22.0);
     [self.view bringSubviewToFront:self.menuButton];
+    [self.view sendSubviewToBack:self.backgroundImageView];
 }
 
 - (void)viewDidAppear:(BOOL)animated

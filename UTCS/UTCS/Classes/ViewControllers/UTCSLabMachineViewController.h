@@ -12,7 +12,6 @@
 #import "UTCSLabView.h"
 #import "FBShimmeringView.h"
 #import "UTCSParallaxBlurHeaderScrollView.h"
-#import "UTCSServiceErrorView.h"
 
 /**
  */
@@ -34,7 +33,7 @@
  */
 @property (nonatomic) FBShimmeringView              *shimmeringView;
 
-@property (nonatomic, readonly) UTCSServiceErrorView    *serviceErrorView;
+@property (nonatomic, readonly) ServiceErrorView    *serviceErrorView;
 
 @property (nonatomic, readonly) UTCSLabView       *labView;
 

@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
             verticalMenuViewController?.contentViewController = self.directoryNavigationController
         case .DiskQuota:
             if diskQuotaViewController == nil {
-                diskQuotaViewController = DiskQuotaViewController()
+                diskQuotaViewController = DiskQuotaViewController(nibName: "DiskQuotaView", bundle: NSBundle.mainBundle() )
             }
             verticalMenuViewController?.contentViewController = self.diskQuotaViewController
         case .Settings:

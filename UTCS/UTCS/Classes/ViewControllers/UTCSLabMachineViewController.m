@@ -20,7 +20,7 @@
 
 @property (nonatomic) UTCSLabView           *labView;
 
-@property (nonatomic) UTCSServiceErrorView  *serviceErrorView;
+@property (nonatomic) ServiceErrorView  *serviceErrorView;
 
 @end
 
@@ -66,7 +66,7 @@
         
         
         self.serviceErrorView = ({
-            UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:CGRectZero];
+            ServiceErrorView *view = [[ServiceErrorView alloc]initWithFrame:CGRectZero];
             view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your network connection.";
             view.alpha = 0.0;
             view;

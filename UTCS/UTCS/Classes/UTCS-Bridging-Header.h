@@ -22,7 +22,6 @@
 #import "JVFloatLabeledTextField.h"
 #import "PocketSVG.h"
 #import "DPMeterView.h"
-#import "UTCSServiceErrorView.h"
 #import "UIImage+CZTinting.h"
 #import "UIButton+UTCSButton.h"
 #import "UIImage+Cacheless.h"
