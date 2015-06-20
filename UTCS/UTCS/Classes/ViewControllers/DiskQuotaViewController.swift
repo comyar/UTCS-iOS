@@ -57,9 +57,12 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
         goButton.layer.masksToBounds = true
         goButton.layer.cornerRadius = 4.0
         goButton.layer.borderWidth = 1.0
+        goButton.layer.borderColor = UIColor.whiteColor().CGColor
         meterView.meterType = .LinearHorizontal
         meterView.setShape(PocketSVG.pathFromSVGFileNamed("cloud").takeUnretainedValue())
         meterView.trackTintColor = UIColor(white: 1.0, alpha: 0.2)
+
+        updatedLabel.alpha = 0.0
 
         //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
         backgroundImageView.image = UIImage.cacheless_imageNamed("diskQuotaBackground")
@@ -104,7 +107,7 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
                     let usage = (self.dataSource.data["usage"] as? NSNumber)!.floatValue
                     let percentageUsage = usage / limit
                     self.meterView.progressTintColor = UIColor.whiteColor()
-
+                    self.meterView.progress = CGFloat(percentageUsage)
                     self.percentLabel.text = NSString(format: "%0.2f%%", 100 * percentageUsage) as String
                     self.quotaDetailLabel.text = NSString(format: "%.0f / %.0f MB", usage, limit) as String
                     self.updatedLabel.text = "Updated" + NSDateFormatter.localizedStringFromDate(self.dataSource.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
@@ -115,7 +118,7 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     let success: CGFloat = success ? 1.0 : 0.0
                     self.serviceErrorView.alpha = 1.0 - success;
-                    self.quotaDetailLabel.alpha = success;
+                    self.quotaDetailLabel.alpha = success - 0.3;
                     self.percentLabel.alpha = success;
                     self.meterView.alpha = success;
                     self.nameLabel.alpha = success;
