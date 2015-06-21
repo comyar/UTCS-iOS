@@ -14,7 +14,6 @@
 #import "UIButton+UTCSButton.h"
 #import "UTCSDirectoryDataSource.h"
 #import "UTCSDirectoryViewController.h"
-#import "UTCSDirectoryDetailViewController.h"
 #import "UTCSDirectoryDataSourceSearchController.h"
 
 
@@ -40,7 +39,7 @@ static NSString * const searchBarBackgroundImageName = @"searchBarBackground";
 @property (nonatomic) UIButton                          *searchButton;
 
 // Detail view controller for displaying a person's information
-@property (nonatomic) UTCSDirectoryDetailViewController *detailViewController;
+@property (nonatomic) DirectoryDetailViewController *detailViewController;
 
 // Search display controller
 @property (nonatomic) UISearchDisplayController         *directorySearchDisplayController;
@@ -235,7 +234,7 @@ static NSString * const searchBarBackgroundImageName = @"searchBarBackground";
     }
     
     if (!self.detailViewController) {
-        self.detailViewController = [UTCSDirectoryDetailViewController new];
+        self.detailViewController = [DirectoryDetailViewController new];
     }
     
     self.detailViewController.person = person;

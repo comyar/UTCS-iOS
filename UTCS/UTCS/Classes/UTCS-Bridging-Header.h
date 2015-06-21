@@ -25,3 +25,8 @@
 #import "UIImage+CZTinting.h"
 #import "UIButton+UTCSButton.h"
 #import "UIImage+Cacheless.h"
+
+#import "UIImage+CZScaling.h"
+#import "UTCSDirectoryPerson.h"
+#import "UIButton+UTCSButton.h"
+#import "UIImageView+AFNetworking.h"
