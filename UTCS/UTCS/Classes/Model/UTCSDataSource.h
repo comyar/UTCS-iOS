@@ -98,6 +98,8 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
  */
 - (instancetype)initWithService:(NSString *)service;
 
+- (instancetype)initWithService:(NSString *)service parser:(UTCSDataSourceParser *)parser;
+
 // -----
 // @name Using a UTCSDataSource
 // -----

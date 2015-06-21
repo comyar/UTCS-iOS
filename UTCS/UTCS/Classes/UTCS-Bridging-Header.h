@@ -15,9 +15,6 @@
 #import "UTCSEventsViewController.h"
 #import "UTCSSettingsViewController.h"
 
-
-#import "UTCSDiskQuotaDataSource.h"
-
 #import "MBProgressHUD.h"
 #import "JVFloatLabeledTextField.h"
 #import "PocketSVG.h"
@@ -30,3 +27,5 @@
 #import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
 #import "UIImageView+AFNetworking.h"
+
+#import "UTCSDataSourceParser.h"

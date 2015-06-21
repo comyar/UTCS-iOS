@@ -17,10 +17,10 @@
 		D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */; };
 		D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */; };
 		D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */; };
+		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
 		D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */; };
 		D463C86E1B338E5E00E6A767 /* ServiceErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */; };
 		D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */; };
-		D4C39C331B363D000009AA25 /* DirectoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C39C321B363D000009AA25 /* DirectoryDetailView.xib */; };
 		D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */; };
 		D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */; };
 		D4CDC84C1B30F3B400D6E4CE /* DiskQuotaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */; };
@@ -94,9 +94,7 @@
 		DDA7589F1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA7589E1904F9F7007CD0DB /* UTCSNewsDataSourceParser.m */; };
 		DDA758A21905C1AF007CD0DB /* UTCSEventsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */; };
 		DDA758A51905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */; };
-		DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */; };
 		DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */; };
-		DDA758C019063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758BF19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m */; };
 		DDA758D219065BF5007CD0DB /* UTCSLabsDataSourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758D119065BF5007CD0DB /* UTCSLabsDataSourceParser.m */; };
 		DDA758E41906661E007CD0DB /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
 		DDA759051908D8F6007CD0DB /* UTCSDataSourceSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA759041908D8F6007CD0DB /* UTCSDataSourceSearchController.m */; };
@@ -137,11 +135,12 @@
 		D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BouncyTableViewCell.swift; path = Views/BouncyTableViewCell.swift; sourceTree = "<group>"; };
 		D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTableViewCell.swift; path = Views/EventTableViewCell.swift; sourceTree = "<group>"; };
+		D43E86461B367C8100F6EA70 /* Directory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Directory.storyboard; sourceTree = "<group>"; };
+		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
 		D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceErrorView.swift; path = Views/ServiceErrorView.swift; sourceTree = "<group>"; };
 		D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceErrorView.xib; path = Views/ServiceErrorView.xib; sourceTree = "<group>"; };
 		D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDetailViewController.swift; path = ViewControllers/DirectoryDetailViewController.swift; sourceTree = "<group>"; };
 		D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		D4C39C321B363D000009AA25 /* DirectoryDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DirectoryDetailView.xib; path = Views/DirectoryDetailView.xib; sourceTree = "<group>"; };
 		D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaViewController.swift; path = ViewControllers/DiskQuotaViewController.swift; sourceTree = "<group>"; };
 		D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiskQuotaView.xib; path = Views/DiskQuotaView.xib; sourceTree = "<group>"; };
 		DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceSearchController.h; path = Model/UTCSLabsDataSourceSearchController.h; sourceTree = "<group>"; };
@@ -257,12 +256,8 @@
 		DDA758A11905C1AF007CD0DB /* UTCSEventsDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsDataSourceParser.m; path = Model/UTCSEventsDataSourceParser.m; sourceTree = "<group>"; };
 		DDA758A31905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDirectoryDataSourceParser.h; path = Model/UTCSDirectoryDataSourceParser.h; sourceTree = "<group>"; };
 		DDA758A41905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDirectoryDataSourceParser.m; path = Model/UTCSDirectoryDataSourceParser.m; sourceTree = "<group>"; };
-		DDA758B21905FCB6007CD0DB /* UTCSDiskQuotaDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaDataSource.h; path = Model/UTCSDiskQuotaDataSource.h; sourceTree = "<group>"; };
-		DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaDataSource.m; path = Model/UTCSDiskQuotaDataSource.m; sourceTree = "<group>"; };
 		DDA758B61905FDD0007CD0DB /* UTCSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStateManager.h; path = Model/UTCSStateManager.h; sourceTree = "<group>"; };
 		DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStateManager.m; path = Model/UTCSStateManager.m; sourceTree = "<group>"; };
-		DDA758BE19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDiskQuotaDataSourceParser.h; path = Model/UTCSDiskQuotaDataSourceParser.h; sourceTree = "<group>"; };
-		DDA758BF19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDiskQuotaDataSourceParser.m; path = Model/UTCSDiskQuotaDataSourceParser.m; sourceTree = "<group>"; };
 		DDA758D019065BF5007CD0DB /* UTCSLabsDataSourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceParser.h; path = Model/UTCSLabsDataSourceParser.h; sourceTree = "<group>"; };
 		DDA758D119065BF5007CD0DB /* UTCSLabsDataSourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabsDataSourceParser.m; path = Model/UTCSLabsDataSourceParser.m; sourceTree = "<group>"; };
 		DDA758E21906661D007CD0DB /* UTCSLabMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewController.h; path = ViewControllers/UTCSLabMachineViewController.h; sourceTree = "<group>"; };
@@ -578,19 +573,11 @@
 		DD87616D1900FCD5005FEE4E /* Disk Quota */ = {
 			isa = PBXGroup;
 			children = (
-				DDA758B11905FCA2007CD0DB /* Models */,
-				DD87616E1900FCDC005FEE4E /* Controllers */,
-			);
-			name = "Disk Quota";
-			sourceTree = "<group>";
-		};
-		DD87616E1900FCDC005FEE4E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
+				D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */,
 				D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */,
 				D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */,
 			);
-			name = Controllers;
+			name = "Disk Quota";
 			sourceTree = "<group>";
 		};
 		DD87616F1900FCEF005FEE4E /* Directory */ = {
@@ -623,7 +610,7 @@
 				D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */,
 				DD44657C18E5833D00ED1153 /* UTCSDirectoryViewController.h */,
 				DD44657D18E5833D00ED1153 /* UTCSDirectoryViewController.m */,
-				D4C39C321B363D000009AA25 /* DirectoryDetailView.xib */,
+				D43E86461B367C8100F6EA70 /* Directory.storyboard */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -772,17 +759,6 @@
 			);
 			name = ParallaxHeaderBlurScrollView;
 			path = Views;
-			sourceTree = "<group>";
-		};
-		DDA758B11905FCA2007CD0DB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DDA758B21905FCB6007CD0DB /* UTCSDiskQuotaDataSource.h */,
-				DDA758B31905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m */,
-				DDA758BE19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.h */,
-				DDA758BF19063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		DDA758B51905FDB6007CD0DB /* StateManager */ = {
@@ -1063,7 +1039,6 @@
 				DD1B8EC71929185000A85E13 /* eventsBackground@2x.png in Resources */,
 				DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */,
 				DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */,
-				D4C39C331B363D000009AA25 /* DirectoryDetailView.xib in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD95E7891926305C0062F4E9 /* NMSSH-license.txt in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
@@ -1131,7 +1106,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA758C019063826007CD0DB /* UTCSDiskQuotaDataSourceParser.m in Sources */,
 				DDA758A51905DA5C007CD0DB /* UTCSDirectoryDataSourceParser.m in Sources */,
 				DDC40477191880D900D17CBF /* UTCSSettingsAboutViewController.m in Sources */,
 				DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */,
@@ -1188,9 +1162,9 @@
 				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */,
+				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
 				DDA759051908D8F6007CD0DB /* UTCSDataSourceSearchController.m in Sources */,
 				D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */,
-				DDA758B41905FCB6007CD0DB /* UTCSDiskQuotaDataSource.m in Sources */,
 				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,
 				DDC2F5D519047760006011F0 /* UTCSContentViewController.m in Sources */,
 				D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */,

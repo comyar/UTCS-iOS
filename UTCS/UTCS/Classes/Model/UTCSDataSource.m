@@ -43,6 +43,16 @@
     return self;
 }
 
+- (instancetype)initWithService:(NSString *)service parser:(UTCSDataSourceParser *)parser
+{
+    if (self = [super init]) {
+        _parser = parser;
+        _service = service;
+        _minimumTimeBetweenUpdates = 3600.0;
+    }
+    return self;
+}
+
 #pragma mark Using a UTCSDataSource
 
 - (BOOL)shouldUpdate
