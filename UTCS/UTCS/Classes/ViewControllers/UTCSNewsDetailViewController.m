@@ -11,7 +11,6 @@
 
 #import "UTCSNewsArticle.h"
 #import "UTCSNewsDetailViewController.h"
-#import "UTCSParallaxBlurHeaderScrollView.h"
 
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
@@ -53,7 +52,7 @@ static NSString * const dateLabelFontName       = @"HelveticaNeue";
 @property (nonatomic) UITextView                        *contentTextView;
 
 // Scroll view used to display the content of the news story
-@property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
+@property (nonatomic) ParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
 // Array of default header images
 @property (nonatomic) NSArray                           *defaultHeaderImages;
@@ -84,7 +83,7 @@ static NSString * const dateLabelFontName       = @"HelveticaNeue";
 - (void)initializeSubviews
 {
     // Parallax blur header scroll view
-    self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
+    self.parallaxBlurHeaderScrollView = [[ParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.parallaxBlurHeaderScrollView];
     
     // Scroll to top button
@@ -162,14 +161,11 @@ static NSString * const dateLabelFontName       = @"HelveticaNeue";
     // Set header image
     if(newsArticle.headerImage) {
         self.parallaxBlurHeaderScrollView.headerImage           = newsArticle.headerImage;
-        self.parallaxBlurHeaderScrollView.headerBlurredImage    = newsArticle.headerBlurredImage;
     } else {
         // Choose a random default header
         NSInteger index = arc4random() % [self.defaultHeaderImages count];
         NSString *headerName = self.defaultHeaderImages[index];
-        NSString *headerBlurredName = [headerName stringByAppendingString:@"-blurred"];
         self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerName];
-        self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerBlurredName];
     }
 
     // Configure content text view

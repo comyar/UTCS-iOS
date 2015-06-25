@@ -9,7 +9,6 @@
 #import "UTCSLabMachineViewController.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSLabMachine.h"
-#import "UTCSParallaxBlurHeaderScrollView.h"
 
 
 #pragma mark - UTCSLabMachineViewController Class Extension

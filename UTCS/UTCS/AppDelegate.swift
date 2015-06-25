@@ -3,10 +3,10 @@ import Foundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDelegate {
-    var newsNavigationController: UTCSNavigationController?
-    var eventsNavigationController: UTCSNavigationController?
-    var directoryNavigationController: UTCSNavigationController?
-    var settingsNavigationController: UTCSNavigationController?
+    var newsNavigationController: NavigationController?
+    var eventsNavigationController: NavigationController?
+    var directoryNavigationController: NavigationController?
+    var settingsNavigationController: NavigationController?
 
     // Alert view used to authenticate the user (for any services that require authentication)
     var authenticationAlertView: UIAlertController?
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
     
         // Menu
         self.menuViewController.delegate = self
-        self.newsNavigationController = UTCSNavigationController(rootViewController:UTCSNewsViewController())
+        self.newsNavigationController = NavigationController(rootViewController:UTCSNewsViewController())
         self.verticalMenuViewController = UTCSVerticalMenuViewController(menuViewController: self.menuViewController, contentViewController: self.newsNavigationController)
         // Initialize view controllers. News is the default service
 
@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
     }
 
     func configureAppearance(){
-        let array: [AnyObject.Type] = [UTCSNavigationController.Type]()
-        let appearance = UINavigationBar.appearanceWhenContainedInInstancesOfClasses([UTCSNavigationController.Type]())
+        let array: [AnyObject.Type] = [NavigationController.Type]()
+        let appearance = UINavigationBar.appearanceWhenContainedInInstancesOfClasses([NavigationController.Type]())
         appearance.tintColor = UIColor.whiteColor()
         appearance.backgroundColor = UIColor.clearColor()
         appearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
@@ -53,12 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
         switch option{
         case .News:
             if newsNavigationController == nil {
-                newsNavigationController = UTCSNavigationController(rootViewController: UTCSNewsViewController())
+                newsNavigationController = NavigationController(rootViewController: UTCSNewsViewController())
             }
             verticalMenuViewController?.contentViewController = self.newsNavigationController
         case .Events:
             if eventsNavigationController == nil {
-                eventsNavigationController = UTCSNavigationController(rootViewController: UTCSEventsViewController())
+                eventsNavigationController = NavigationController(rootViewController: UTCSEventsViewController())
             }
             verticalMenuViewController?.contentViewController = self.eventsNavigationController
         case .Labs:
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
             }
         case .Directory:
             if directoryNavigationController == nil {
-                directoryNavigationController = UTCSNavigationController(rootViewController: UTCSDirectoryViewController())
+                directoryNavigationController = NavigationController(rootViewController: UTCSDirectoryViewController())
                 configureAppearance()
             }
             verticalMenuViewController?.contentViewController = self.directoryNavigationController
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
             verticalMenuViewController?.contentViewController = self.diskQuotaViewController
         case .Settings:
             if settingsNavigationController == nil {
-                settingsNavigationController = UTCSNavigationController(rootViewController: UTCSSettingsViewController())
+                settingsNavigationController = NavigationController(rootViewController: UTCSSettingsViewController())
             }
             self.verticalMenuViewController?.contentViewController = self.settingsNavigationController
         }

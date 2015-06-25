@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E33b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -50,7 +50,7 @@
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="0.0" height="1"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CJx-OH-sf0">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="CJx-OH-sf0">
                     <rect key="frame" x="280" y="393" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
@@ -66,7 +66,8 @@
                 <constraint firstAttribute="trailingMargin" secondItem="b3Z-Yd-rfQ" secondAttribute="trailing" id="pPr-YQ-VwY"/>
             </constraints>
             <connections>
-                <outlet property="downArrowImageView" destination="VzN-kh-gcL" id="opU-xY-ZRo"/>
+                <outlet property="activityIndicatorView" destination="CJx-OH-sf0" id="pGE-7r-A5n"/>
+                <outlet property="downArrowImageView" destination="VzN-kh-gcL" id="yQt-a6-gbX"/>
                 <outlet property="sectionHeadLabel" destination="Mg4-8j-vO1" id="bk3-Rk-oI1"/>
                 <outlet property="shimmeringView" destination="b3Z-Yd-rfQ" id="NPr-8j-7vJ"/>
                 <outlet property="subtitleLabel" destination="TIs-d3-2uJ" id="9PC-6R-RW2"/>

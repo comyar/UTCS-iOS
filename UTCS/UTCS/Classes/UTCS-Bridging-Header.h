@@ -2,7 +2,6 @@
 #import "MBProgressHUD.h"
 #import <POP/POP.h>
 
-#import "UTCSNavigationController.h"
 #import "UTCSVerticalMenuViewController.h"
 #import "UTCSMenuViewController.h"
 #import "UTCSLabsViewController.h"
@@ -29,3 +28,4 @@
 #import "UIImageView+AFNetworking.h"
 
 #import "UTCSDataSourceParser.h"
+#import "UTCSSlideNavigationAnimator.h"

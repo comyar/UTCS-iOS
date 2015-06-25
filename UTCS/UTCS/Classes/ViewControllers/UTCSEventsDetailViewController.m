@@ -18,7 +18,6 @@
 #import "UTCSStarredEventsManager.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UTCSEventsDetailViewController.h"
-#import "UTCSParallaxBlurHeaderScrollView.h"
 
 
 #pragma mark - Constants
@@ -95,7 +94,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 @property (nonatomic) UIButton                          *scrollToTopButton;
 
 // Scroll view used to display the details of the event
-@property (nonatomic) UTCSParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
+@property (nonatomic) ParallaxBlurHeaderScrollView  *parallaxBlurHeaderScrollView;
 
 @end
 
@@ -146,7 +145,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
 - (void)initializeSubviews
 {
-    self.parallaxBlurHeaderScrollView = [[UTCSParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
+    self.parallaxBlurHeaderScrollView = [[ParallaxBlurHeaderScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.parallaxBlurHeaderScrollView];
     
     
@@ -266,9 +265,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
     
     // Choose header image
     NSString *headerImageName           = [self headerImageNameForEvent:event];
-    NSString *headerImageBlurredName    = [headerImageName stringByAppendingString:@"-blurred"];
     self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerImageName];
-    self.parallaxBlurHeaderScrollView.headerBlurredImage    = [UIImage imageNamed:headerImageBlurredName];
     
     // Configure star button
     if ([[UTCSStarredEventsManager sharedManager]containsEvent:event]) {

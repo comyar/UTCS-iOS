@@ -11,7 +11,6 @@
 
 #import "UTCSLabView.h"
 #import "FBShimmeringView.h"
-#import "UTCSParallaxBlurHeaderScrollView.h"
 
 /**
  */
