@@ -12,7 +12,7 @@
 
     override init(){
         super.init()
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "didRecognizePanGesture:recognizer:")
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "didRecognizePanGesture:")
     }
     public func didRecognizePanGesture(recognizer: UIPanGestureRecognizer) {
         if recognizer != panGestureRecognizer {
@@ -30,14 +30,14 @@
         case .Changed:
             let translation = recognizer.translationInView(view)
             let d = fabs(translation.x / CGRectGetWidth(view.bounds))
-            interactionController!.updateInteractiveTransition(d)
+            interactionController?.updateInteractiveTransition(d)
         case .Ended:
             if recognizer.velocityInView(view).x > 0 {
-                interactionController!.finishInteractiveTransition()
+                interactionController?.finishInteractiveTransition()
             } else {
-                interactionController!.cancelInteractiveTransition()
+                interactionController?.cancelInteractiveTransition()
             }
-            self.interactionController = nil
+            interactionController = nil
         default:
             print("Unknown state")
         }
