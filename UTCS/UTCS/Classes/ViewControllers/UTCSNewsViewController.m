@@ -12,7 +12,6 @@
 #import "UTCSNewsArticle.h"
 #import "UTCS-Swift.h"
 #import "UTCSNewsViewController.h"
-#import "UTCSNewsDetailViewController.h"
 
 #import "UIImage+Cacheless.h"
 #import "UIColor+UTCSColors.h"
@@ -41,7 +40,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
 @interface UTCSNewsViewController ()
 
 // View controller used to display a specific news story
-@property (nonatomic) UTCSNewsDetailViewController      *newsDetailViewController;
+@property (nonatomic) NewsDetailViewController      *newsDetailViewController;
 
 @end
 
@@ -178,7 +177,7 @@ static NSString * const backgroundBlurredImageName  = @"newsBackground-blurred";
     UTCSNewsArticle *article = self.dataSource.data[indexPath.row];
     
     if(!self.newsDetailViewController) {
-        self.newsDetailViewController = [UTCSNewsDetailViewController new];
+        self.newsDetailViewController = [NewsDetailViewController new];
     }
     
     self.newsDetailViewController.newsArticle = article;

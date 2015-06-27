@@ -3,6 +3,7 @@
 #import <POP/POP.h>
 
 #import "UTCSVerticalMenuViewController.h"
+#import "UTCSNewsViewController.h"
 #import "UTCSMenuViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
@@ -10,7 +11,7 @@
 #import "UTCSAuthenticationManager.h"
 #import "UTCSStateManager.h"
 
-#import "UTCSNewsViewController.h"
+#import "UTCSNewsArticle.h"
 #import "UTCSEventsViewController.h"
 #import "UTCSSettingsViewController.h"
 

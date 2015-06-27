@@ -22,24 +22,19 @@ class ParallaxBlurHeaderScrollView: UIView {
     var headerImageContainer: UIVisualEffectView!
     var headerImageView: UIImageView!
     var headerContainerView: UIView!
-    var headerImage: UIImage! {
-        didSet(newValue){
-            if newValue == headerImage {
+    var headerImage: UIImage? {
+        willSet(newValue){
+            if newValue != nil && newValue == headerImage {
                 return
-            } else {
-                headerImage = newValue
             }
             headerImageView.image = headerImage
             layoutIfNeeded()
         }
     }
 
-    override var frame: CGRect {
-        didSet(newValue){
-            super.frame = frame
-            scrollView.frame = bounds
-            layoutIfNeeded()
-        }
+    func didSetFrame(){
+        scrollView.frame = bounds
+        layoutIfNeeded()
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,7 +58,7 @@ class ParallaxBlurHeaderScrollView: UIView {
         scrollView = {
             let scroll = UIScrollView(frame: self.bounds)
             scroll.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
-            scrollView.alwaysBounceVertical = true
+            scroll.alwaysBounceVertical = true
             return scroll
         }()
         headerContainerView.addSubview(headerImageView)
