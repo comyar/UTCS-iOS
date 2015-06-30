@@ -4,7 +4,6 @@
 
 #import "UTCSVerticalMenuViewController.h"
 #import "UTCSNewsViewController.h"
-#import "UTCSMenuViewController.h"
 #import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
 #import "UTCSStarredEventsManager.h"

@@ -2,7 +2,7 @@ import UIKit
 import Foundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegate {
     var newsNavigationController: NavigationController?
     var eventsNavigationController: NavigationController?
     var directoryNavigationController: NavigationController?
@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
     var authenticationAlertView: UIAlertController?
 
 
-    var menuViewController = UTCSMenuViewController()
+    var menuViewController = MenuViewController(nibName: nil, bundle: nil)
     var verticalMenuViewController: UTCSVerticalMenuViewController?
     var labsViewController: UTCSLabsViewController?
     var diskQuotaViewController: DiskQuotaViewController?
@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool  {
     
         // Menu
-        self.menuViewController.delegate = self
-        self.newsNavigationController = NavigationController(rootViewController:UTCSNewsViewController())
-        self.verticalMenuViewController = UTCSVerticalMenuViewController(menuViewController: self.menuViewController, contentViewController: self.newsNavigationController)
+        menuViewController.delegate = self
+        newsNavigationController = NavigationController(rootViewController:UTCSNewsViewController())
+        verticalMenuViewController = UTCSVerticalMenuViewController(menuViewController: menuViewController, contentViewController: newsNavigationController)
         // Initialize view controllers. News is the default service
 
         window = UIWindow()
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UTCSMenuViewControllerDel
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
 
-    func didSelectMenuOption(option: UTCSMenuOptions){
+    func didSelectMenuOption(option: MenuOption){
         switch option{
         case .News:
             if newsNavigationController == nil {

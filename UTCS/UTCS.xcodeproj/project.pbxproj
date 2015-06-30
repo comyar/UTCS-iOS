@@ -25,6 +25,7 @@
 		D463C86E1B338E5E00E6A767 /* ServiceErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */; };
 		D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */; };
 		D482C1AB1B3CDE8E00645C23 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482C1AA1B3CDE8E00645C23 /* NewsDetailViewController.swift */; };
+		D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */; };
 		D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */; };
 		D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */; };
 		D4CDC84C1B30F3B400D6E4CE /* DiskQuotaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */; };
@@ -50,7 +51,6 @@
 		DD44659F18E93D7800ED1153 /* UTCSDirectoryPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659E18E93D7800ED1153 /* UTCSDirectoryPerson.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
 		DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */; };
-		DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */; };
 		DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */; };
 		DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */; };
 		DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */; };
@@ -145,6 +145,7 @@
 		D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDetailViewController.swift; path = ViewControllers/DirectoryDetailViewController.swift; sourceTree = "<group>"; };
 		D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D482C1AA1B3CDE8E00645C23 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDetailViewController.swift; path = ViewControllers/NewsDetailViewController.swift; sourceTree = "<group>"; };
+		D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaViewController.swift; path = ViewControllers/DiskQuotaViewController.swift; sourceTree = "<group>"; };
 		D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiskQuotaView.xib; path = Views/DiskQuotaView.xib; sourceTree = "<group>"; };
 		DD008CB2190E099E007B7F3C /* UTCSLabsDataSourceSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabsDataSourceSearchController.h; path = Model/UTCSLabsDataSourceSearchController.h; sourceTree = "<group>"; };
@@ -180,8 +181,6 @@
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEvent.m; path = Model/UTCSEvent.m; sourceTree = "<group>"; };
 		DD5B583C18D239F900EEB474 /* UTCSNewsArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsArticle.h; path = Model/UTCSNewsArticle.h; sourceTree = "<group>"; };
 		DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsArticle.m; path = Model/UTCSNewsArticle.m; sourceTree = "<group>"; };
-		DD5B584718D239F900EEB474 /* UTCSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSMenuViewController.h; sourceTree = "<group>"; };
-		DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSMenuViewController.m; sourceTree = "<group>"; };
 		DD5B584B18D239F900EEB474 /* UTCSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsViewController.h; path = ViewControllers/UTCSNewsViewController.h; sourceTree = "<group>"; };
 		DD5B584C18D239F900EEB474 /* UTCSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsViewController.m; path = ViewControllers/UTCSNewsViewController.m; sourceTree = "<group>"; };
 		DD5CAF76190A087E0051F637 /* UTCSSettingsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsDataSource.h; path = Model/UTCSSettingsDataSource.h; sourceTree = "<group>"; };
@@ -401,7 +400,7 @@
 		DD5B586C18D23DD200EEB474 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				DD89899F1903116A000F1041 /* Menu */,
+				D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */,
 				DD89899E19031159000F1041 /* Vertical Menu */,
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
 				D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */,
@@ -625,15 +624,6 @@
 				DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */,
 			);
 			name = "Vertical Menu";
-			sourceTree = "<group>";
-		};
-		DD89899F1903116A000F1041 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				DD5B584718D239F900EEB474 /* UTCSMenuViewController.h */,
-				DD5B584818D239F900EEB474 /* UTCSMenuViewController.m */,
-			);
-			name = Menu;
 			sourceTree = "<group>";
 		};
 		DD9475C0190B22D30049FB8B /* Layouts */ = {
@@ -1126,6 +1116,7 @@
 				DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */,
 				DD44657618E5817D00ED1153 /* UTCSEventsViewController.m in Sources */,
 				DDC2F5DB1904778C006011F0 /* UTCSDataSource.m in Sources */,
+				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
 				D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */,
 				DD44658A18E584A200ED1153 /* UTCSEventsDataSource.m in Sources */,
 				DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */,
@@ -1142,7 +1133,6 @@
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
 				DD008CB4190E099E007B7F3C /* UTCSLabsDataSourceSearchController.m in Sources */,
 				DD5B585C18D239F900EEB474 /* UTCSNewsViewController.m in Sources */,
-				DD5B585A18D239F900EEB474 /* UTCSMenuViewController.m in Sources */,
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
 				DDA758881904BD84007CD0DB /* UTCSHeaderTableViewController.m in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
