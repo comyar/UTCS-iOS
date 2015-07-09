@@ -9,8 +9,6 @@
 
 #pragma mark - Imports
 
-#import "UTCSTableViewController.h"
-
 
 #pragma mark - UTCSDirectoryViewController Interface
 
@@ -18,6 +16,6 @@
  UTCSDirectoryViewController is a concrete subclass of UTCSTableViewController that displays
  all the available persons in the UTCS directory in a table view.
  */
-@interface UTCSDirectoryViewController : UTCSTableViewController <UISearchDisplayDelegate, UTCSDataSourceDelegate>
+@interface UTCSDirectoryViewController : TableViewController <UISearchDisplayDelegate, UTCSDataSourceDelegate>
 
 @end

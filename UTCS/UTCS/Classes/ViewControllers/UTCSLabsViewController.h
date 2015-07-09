@@ -1,18 +1,5 @@
-//
-//  UTCSLabsViewController.h
-//  UTCS
-//
-//  Created by Comyar Zaheri on 3/28/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
+@class ContentViewController;
 
-
-#import "UTCSContentViewController.h"
-
-
-/**
- UTCSLabsViewController
- */
-@interface UTCSLabsViewController : UTCSContentViewController <UIScrollViewDelegate, UTCSDataSourceDelegate, UIAlertViewDelegate>
+@interface UTCSLabsViewController : ContentViewController <UIScrollViewDelegate, UTCSDataSourceDelegate, UIAlertViewDelegate>
 
 @end

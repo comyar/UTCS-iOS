@@ -7,8 +7,7 @@
 //
 
 
-#import "UTCSTableViewController.h"
 
-@interface UTCSSettingsViewController : UTCSTableViewController
+@interface UTCSSettingsViewController : TableViewController
 
 @end
