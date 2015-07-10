@@ -3,8 +3,6 @@
 #import <POP/POP.h>
 
 #import "UTCSVerticalMenuViewController.h"
-#import "UTCSNewsViewController.h"
-#import "UTCSLabsViewController.h"
 #import "UTCSDirectoryViewController.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSAuthenticationManager.h"
@@ -27,5 +25,9 @@
 #import "UIButton+UTCSButton.h"
 #import "UIImageView+AFNetworking.h"
 
+#import "UTCSDataSource.h"
 #import "UTCSDataSourceParser.h"
 #import "UTCSSlideNavigationAnimator.h"
+
+#import "UTCSLabMachineView.h"
+#import "UTCSLabMachineViewController.h"
