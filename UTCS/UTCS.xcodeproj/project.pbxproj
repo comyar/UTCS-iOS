@@ -22,6 +22,7 @@
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
 		D43E864E1B3758E900F6EA70 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */; };
+		D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FE5341B508F47000F2D59 /* EventsViewController.swift */; };
 		D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */; };
 		D463C86E1B338E5E00E6A767 /* ServiceErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */; };
 		D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */; };
@@ -141,6 +142,7 @@
 		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
 		D43E864B1B37142700F6EA70 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationControllerDelegate.swift; path = UTCS/Classes/Model/NavigationControllerDelegate.swift; sourceTree = SOURCE_ROOT; };
+		D45FE5341B508F47000F2D59 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsViewController.swift; path = ViewControllers/EventsViewController.swift; sourceTree = "<group>"; };
 		D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceErrorView.swift; path = Views/ServiceErrorView.swift; sourceTree = "<group>"; };
 		D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceErrorView.xib; path = Views/ServiceErrorView.xib; sourceTree = "<group>"; };
 		D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDetailViewController.swift; path = ViewControllers/DirectoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			children = (
 				DD44657418E5817D00ED1153 /* UTCSEventsViewController.h */,
 				DD44657518E5817D00ED1153 /* UTCSEventsViewController.m */,
+				D45FE5341B508F47000F2D59 /* EventsViewController.swift */,
 				DD44659718E8254B00ED1153 /* UTCSEventsDetailViewController.h */,
 				DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */,
 				DD95E74B192091DA0062F4E9 /* UTCSStarredEventsViewController.h */,
@@ -1075,6 +1078,7 @@
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
+				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsDetailViewController.swift in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,

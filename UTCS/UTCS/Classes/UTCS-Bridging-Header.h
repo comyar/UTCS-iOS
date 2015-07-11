@@ -31,3 +31,6 @@
 
 #import "UTCSLabMachineView.h"
 #import "UTCSLabMachineViewController.h"
+#import "UTCSEventsDataSource.h"
+#import "UIColor+UTCSColors.h"
+#import "UTCSEventsDetailViewController.h"
