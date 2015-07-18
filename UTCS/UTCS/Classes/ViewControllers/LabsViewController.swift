@@ -4,16 +4,25 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
     var refreshButton: UIButton!
     var basementLabViewController: UTCSLabMachineViewController!
     var thirdFloorLabViewController: UTCSLabMachineViewController!
+    var labsDataSource: UTCSLabsDataSource! {
+        get{
+            return dataSource as! UTCSLabsDataSource!
+        }
+    }
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         dataSource = UTCSLabsDataSource(service: "labs")
-        dataSource.delegate = self
+        dataSource!.delegate = self
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     override func viewDidLoad() {
         scrollView = {
             let scrollView = UIScrollView(frame: view.bounds)
-            scrollView.contentSize = CGSize(width: 2.0 * view.width, height: view.height)
+            scrollView.contentSize = CGSize(width: 2.0 * view.frame.width, height: view.frame.height)
             scrollView.backgroundColor = UIColor.blackColor()
             scrollView.showsHorizontalScrollIndicator = false
             scrollView.showsVerticalScrollIndicator = false
@@ -26,11 +35,11 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         thirdFloorLabViewController = UTCSLabMachineViewController(layout: thirdLayout)
         thirdFloorLabViewController.backgroundImageView.image = UIImage.cacheless_imageNamed("thirdLabsBackground")
 
-        thirdFloorLabViewController.view.frame = CGRect(x: 0.0, y: 0.0, width: view.width, height: view.height)
+        thirdFloorLabViewController.view.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: view.frame.height)
         scrollView.addSubview(thirdFloorLabViewController.view)
         addChildViewController(thirdFloorLabViewController)
         thirdFloorLabViewController.didMoveToParentViewController(self)
-        thirdFloorLabViewController.shimmeringView.frame = CGRect(x: 0.5 * view.width, y: view.height * 0.3, width: 0.4 * view.width, height: 0.6 * view.height)
+        thirdFloorLabViewController.shimmeringView.frame = CGRect(x: 0.5 * view.frame.width, y: view.frame.height * 0.3, width: 0.4 * view.frame.width, height: 0.6 * view.frame.height)
         thirdFloorLabViewController.shimmeringView.contentView.frame = thirdFloorLabViewController.shimmeringView.bounds
         (thirdFloorLabViewController.shimmeringView.contentView as! UILabel).text = "Third Floor"
 
@@ -38,17 +47,17 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         basementLabViewController = UTCSLabMachineViewController(layout: basementLayout)
 
         basementLabViewController.backgroundImageView.image = UIImage.cacheless_imageNamed("basementLabsBackground")
-        basementLabViewController.view.frame = CGRect(x: view.width, y: 0.0, width: view.width, height: view.height)
+        basementLabViewController.view.frame = CGRect(x: view.frame.width, y: 0.0, width: view.frame.width, height: view.frame.height)
         scrollView.addSubview(basementLabViewController.view)
         addChildViewController(basementLabViewController)
         basementLabViewController.didMoveToParentViewController(self)
 
-        basementLabViewController.shimmeringView.frame = CGRect(x: 8.0, y: 0.72 * view.height, width: view.width - 16.0, height: 120.0)
+        basementLabViewController.shimmeringView.frame = CGRect(x: 8.0, y: 0.72 * view.frame.height, width: view.frame.width - 16.0, height: 120.0)
         basementLabViewController.shimmeringView.contentView.frame = basementLabViewController.shimmeringView.bounds
         (basementLabViewController.shimmeringView.contentView as! UILabel).text = "Basement"
 
         pageControl = {
-            let control = UIPageControl(frame: CGRect(x: 0.0, y: view.height - 32.0, width: view.width, height: 32.0))
+            let control = UIPageControl(frame: CGRect(x: 0.0, y: view.frame.height - 32.0, width: view.frame.width, height: 32.0))
             control.userInteractionEnabled = false
             control.numberOfPages = 2
             return control
@@ -57,7 +66,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         refreshButton = {
             let button = UIButton.bouncyButton()
             button.frame = CGRect(x: 0.0, y: 0.0, width: 44.0, height: 44.0)
-            button.center = CGPoint(x: view.width - 33.0, y: 22.0)
+            button.center = CGPoint(x: view.frame.width - 33.0, y: 22.0)
             let image = UIImage(named: "refresh")?.imageWithRenderingMode(.AlwaysTemplate)
             let imageView = UIImageView(image: image)
             imageView.tintColor = UIColor.whiteColor()
@@ -81,24 +90,24 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         thirdFloorLabViewController.shimmeringView.shimmering = true
         basementLabViewController.shimmeringView.shimmering = true
 
-        if dataSource.shouldUpdate {
+        if labsDataSource.shouldUpdate() {
             let hud = MBProgressHUD.showHUDAddedTo(scrollView, animated: true)
             hud.labelText = "Updating"
-            hud.mode = .Indeterminate
+            hud.mode = MBProgressHUDModeIndeterminate
         }
 
-        dataSource.updateWithArgument(nil){ success, cachehit in
-            thirdFloorLabViewController.shimmeringView.shimmering = false
-            basementLabViewController.shimmeringView.shimmering = false
+        dataSource!.updateWithArgument(nil){ success, cachehit in
+            self.thirdFloorLabViewController.shimmeringView.shimmering = false
+            self.basementLabViewController.shimmeringView.shimmering = false
 
             if success {
-                let third = dataSource.data["third"]
-                let basement = dataSource.data["basement"]
-                thirdFloorLabViewController.machines = third
-                basementLabViewController.machines = basement
+                let third = self.labsDataSource!.data["third"]
+                let basement = self.labsDataSource!.data["basement"]
+                self.thirdFloorLabViewController.machines = third as! [NSObject: AnyObject]!
+                self.basementLabViewController.machines = basement as! [NSObject: AnyObject]!
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                let successValue = success ? 1.0 : 0.0
+                let successValue: CGFloat = success ? 1.0 : 0.0
                 self.thirdFloorLabViewController.shimmeringView.alpha = successValue
                 self.basementLabViewController.shimmeringView.alpha = successValue
                 self.thirdFloorLabViewController.serviceErrorView.alpha = 1.0 - successValue
@@ -106,7 +115,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
                 self.thirdFloorLabViewController.labView.alpha  = successValue
                 self.basementLabViewController.labView.alpha    = successValue
             })
-            MBProgressHUD.hideAllHUDsForView(scrollView, animated: true)
+            MBProgressHUD.hideAllHUDsForView(self.scrollView, animated: true)
         }
     }
     func didTouchUpInsideButton(button: UIButton){
@@ -116,10 +125,10 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let pageNumber = lround(max(0, scrollView.contentOffset.x)/view.width)
+        let pageNumber = lround(max(0.0, Double(scrollView.contentOffset.x)) / Double(view.frame.width))
         pageControl.currentPage = pageNumber
         let thirdOffset = 0.5 * scrollView.contentOffset.x
-        let basementOffset = 0.5 * (scrollView.contentOffset.x - view.width)
+        let basementOffset = 0.5 * (scrollView.contentOffset.x - view.frame.width)
         thirdFloorLabViewController.imageOffset = CGPoint(x: thirdOffset, y: 0.0)
         basementLabViewController.imageOffset = CGPoint(x: basementOffset, y: 0.0)
     }

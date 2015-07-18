@@ -13,22 +13,32 @@ let backgroundImageName = "newsBackground"
 // Name of the blurred background image
 let backgroundBlurredImageName = "newsBackground-blurred"
 
-// View controller used to display a specific news story
-var newsDetailViewController: NewsDetailViewController
 
 
 class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
 
-    init(style: UITableViewStyle) {
+    // View controller used to display a specific news story
+    var newsDetailViewController: NewsDetailViewController?
+    var newsDataSource: UTCSNewsDataSource! {
+        get {
+            return dataSource as! UTCSNewsDataSource!
+        }
+    }
+
+    override init(style: UITableViewStyle) {
         super.init(style: style)
-        tableView.dataSource = UTCSNewsDataSource(service: UTCSNewsServiceName)
-        tableView.dataSource!.delegate = self
+        dataSource = UTCSNewsDataSource(service: UTCSNewsServiceName)
+        tableView.dataSource = newsDataSource
         backgroundImageView.image = UIImage.cacheless_imageNamed(backgroundImageName)
 
-        activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:]) as! ActiveHeaderView
+        activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = headerTitleText
         activeHeaderView.subtitleLabel.text = headerSubtitleText
 
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -41,20 +51,20 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
 
     func update(){
         activeHeaderView.showActiveAnimation(true)
-        tableView.dataSource?.updateWithArgument(nil){ success, cacheHit in
-            activeHeaderView.showActiveAnimation(false)
-            if tableView.dataSource?.data.count > 0 {
-                let updateString = NSDateFormatter.localizedStringFromDate(tableView.dataSource.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
-                activeHeaderView.upatedLabel.text = "Updated \(updateString)"
+        newsDataSource.updateWithArgument(nil){ success, cacheHit in
+            self.activeHeaderView.showActiveAnimation(false)
+            if self.newsDataSource.data.count > 0 {
+                let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
+                self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
             } else {
                 if !success {
-                    activeHeaderView.updatedLabel.text = "Please check your network connection."
+                    self.activeHeaderView.updatedLabel.text = "Please check your network connection."
                 } else {
-                    activeHeaderView.updatedLabel.text = "No articles available."
+                    self.activeHeaderView.updatedLabel.text = "No articles available."
                 }
             }
             if success && !cacheHit {
-                tableView.reloadData()
+                self.tableView.reloadData()
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.activeHeaderView.downArrowImageView.alpha = success ? 1.0 : 0.0
@@ -68,24 +78,24 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
         }
         return [UTCSNewsDataSourceCacheKey: dataSource.data]
     }
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return estimatedCellHeight
     }
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.setHighlighted(true, animated: true)
     }
-    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.setHighlighted(false, animated: true)
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let article = tableView.dataSource.data[indexPath.row]
+        let article = newsDataSource.data[indexPath.row] as! UTCSNewsArticle
         if newsDetailViewController == nil {
             newsDetailViewController = NewsDetailViewController()
         }
-        newsDetailViewController.newsArticle = article
-        navigationController?.pushViewController(newsDetailViewController, animated: true)
+        newsDetailViewController!.newsArticle = article
+        navigationController?.pushViewController(newsDetailViewController!, animated: true)
     }
 }

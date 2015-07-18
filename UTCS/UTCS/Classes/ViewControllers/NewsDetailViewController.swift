@@ -52,7 +52,7 @@ class NewsDetailViewController: UIViewController {
         scrollToTopButton = {
             let button = UIButton(type: .Custom)
             button.addTarget(self, action: "didTouchUpInsideButton:", forControlEvents: .TouchUpInside)
-            button.frame = CGRect(x: 0.0, y: 0.0, width: view.width, height: 44.0)
+            button.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 44.0)
             navigationItem.titleView = button
             return button
         }()
@@ -62,7 +62,7 @@ class NewsDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = button
 
         titleLabel = {
-            let label = UILabel(frame: CGRect(x: 8.0, y: kUTCSParallaxBlurHeaderHeight, width: view.width - 16.0, height: 0.0))
+            let label = UILabel(frame: CGRect(x: 8.0, y: kUTCSParallaxBlurHeaderHeight, width: view.frame.width - 16.0, height: 0.0))
             label.shadowColor = UIColor(white: 0.0, alpha: 0.5)
             label.shadowOffset = CGSize(width: 0.0, height: 0.5)
             label.textColor = UIColor.whiteColor()
@@ -72,7 +72,7 @@ class NewsDetailViewController: UIViewController {
         }()
         parallaxBlurHeaderScrollView.headerContainerView.addSubview(titleLabel)
         dateLabel = {
-            let label = UILabel(frame: CGRect(x: 8.0, y: 0.0, width: view.width - 16.0, height: 1.5 * dateLabelFontSize))
+            let label = UILabel(frame: CGRect(x: 8.0, y: 0.0, width: view.frame.width - 16.0, height: 1.5 * dateLabelFontSize))
             label.font = UIFont.systemFontOfSize(dateLabelFontSize)
             label.textColor = UIColor(white: 1.0, alpha: 0.75)
             label.adjustsFontSizeToFitWidth = true
@@ -106,18 +106,18 @@ class NewsDetailViewController: UIViewController {
         contentTextView.attributedText = article.attributedContent
         var contentTextViewHeight = contentTextView.sizeThatFits(CGSize(width: contentTextView.textContainer.size.width, height: CGFloat.max)).height
         contentTextViewHeight += contentTextView.textContainerInset.top + contentTextView.textContainerInset.bottom
-        contentTextView.height = max(contentTextViewHeight, 150.0)
-        contentTextView.y = parallaxBlurHeaderScrollView.headerContainerView.height
+        contentTextView.frame.size = CGSize(width: contentTextView.frame.width, height: max(contentTextViewHeight, 150.0))
+        contentTextView.frame.origin = CGPoint(x: contentTextView.frame.origin.x, y: parallaxBlurHeaderScrollView.headerContainerView.frame.height)
         dateLabel.text = NSDateFormatter.localizedStringFromDate(article.date, dateStyle: .LongStyle, timeStyle: .NoStyle)
-        dateLabel.y = parallaxBlurHeaderScrollView.headerContainerView.height - dateLabel.height - 8.0
-        titleLabel.frame = CGRect(x: 8.0, y: kUTCSParallaxBlurNavigationBarHeight, width: view.width - 16.0, height: 0.0)
+        dateLabel.frame.origin = CGPoint(x: dateLabel.frame.origin.x, y: parallaxBlurHeaderScrollView.headerContainerView.frame.height - dateLabel.frame.height - 8.0)
+        titleLabel.frame = CGRect(x: 8.0, y: kUTCSParallaxBlurNavigationBarHeight, width: view.frame.width - 16.0, height: 0.0)
         titleLabel.text = article.title
         titleLabel.sizeToFit()
-        if titleLabel.height > kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - dateLabel.height {
-            titleLabel.height = kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - dateLabel.height
+        if titleLabel.frame.height > kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - dateLabel.frame.height {
+            titleLabel.frame.size = CGSize(width: titleLabel.frame.width, height: kUTCSParallaxBlurHeaderHeight - kUTCSParallaxBlurNavigationBarHeight - dateLabel.frame.height)
         }
-        titleLabel.y = parallaxBlurHeaderScrollView.headerContainerView.height - (parallaxBlurHeaderScrollView.headerContainerView.height - dateLabel.y) - titleLabel.height
-        parallaxBlurHeaderScrollView.scrollView.contentSize = CGSize(width: parallaxBlurHeaderScrollView.width, height: contentTextView.height + parallaxBlurHeaderScrollView.headerContainerView.height)
+        titleLabel.frame.origin = CGPoint(x: titleLabel.frame.origin.x, y: parallaxBlurHeaderScrollView.headerContainerView.frame.height - (parallaxBlurHeaderScrollView.headerContainerView.frame.height - dateLabel.frame.origin.y) - titleLabel.frame.height)
+        parallaxBlurHeaderScrollView.scrollView.contentSize = CGSize(width: parallaxBlurHeaderScrollView.frame.width, height: contentTextView.frame.height + parallaxBlurHeaderScrollView.headerContainerView.frame.height)
     }
     func didTouchUpInsideButton(button: UIButton){
         if button == scrollToTopButton {

@@ -1,23 +1,29 @@
 
 // Modifier for the rate at which the background image view's alpha changes
-let blurAlphaModifier: CGFloat = 2.0
 
-// Content offset property string used for KVO
-let contentOffsetPropertyString = "contentOffset";
 
 class HeaderTableViewController: TableViewController {
-    var activeHeaderView: ActiveHeaderView
-    init () {
-        super.init(style: .Plain)
+    // Content offset property string used for KVO
+
+    var activeHeaderView: ActiveHeaderView! {
+        didSet(newValue) {
+            activeHeaderView.frame = tableView.bounds
+            tableView.tableHeaderView = activeHeaderView
+        }
     }
-    init(style: UITableViewStyle) {
+
+    override init(style: UITableViewStyle) {
         super.init(style: style)
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
 
     }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
-        tableView.tableHeaderView.frame = tableView.bounds
+        tableView.tableHeaderView!.frame = tableView.bounds
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +34,6 @@ class HeaderTableViewController: TableViewController {
             let normalizedOffsetDelta = max(tableView.contentOffset.y / CGRectGetHeight(tableView.bounds), 0.0)
             //modify blur here
         }
-    }
-
-    func setActiveHeaderView(view: ActiveHeaderView){
-        ActiveHeaderView = view
-        activeHeaderView.frame = tableView.bounds
-        tableView.tableHeaderView = activeHeaderView
     }
 
     deinit{

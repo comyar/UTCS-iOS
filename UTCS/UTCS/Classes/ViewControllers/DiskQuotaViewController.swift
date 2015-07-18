@@ -1,7 +1,7 @@
 let diskQuotaCacheKey = "quota"
 
 
-class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
+class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     // Button used to request disk quota information
     @IBOutlet var goButton: UIButton!
 
@@ -96,21 +96,21 @@ class DiskQuotaViewController: UTCSContentViewController, UITextFieldDelegate {
     }
 
     func update(){
-        if dataSource.shouldUpdate() {
+        if dataSource!.shouldUpdate() {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             hud.mode = MBProgressHUDModeIndeterminate
             hud.labelText = "Fetching"
-            dataSource.updateWithArgument(usernameTextField.text!){ success, cacheHit in
+            dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
                 if success {
-                    self.nameLabel.text = self.dataSource.data["name"] as? String
-                    let limit = (self.dataSource.data["limit"] as? NSNumber)!.floatValue
-                    let usage = (self.dataSource.data["usage"] as? NSNumber)!.floatValue
+                    self.nameLabel.text = self.dataSource!.data["name"] as? String
+                    let limit = (self.dataSource!.data["limit"] as? NSNumber)!.floatValue
+                    let usage = (self.dataSource!.data["usage"] as? NSNumber)!.floatValue
                     let percentageUsage = usage / limit
                     self.meterView.progressTintColor = UIColor.whiteColor()
                     self.meterView.progress = CGFloat(percentageUsage)
                     self.percentLabel.text = NSString(format: "%0.2f%%", 100 * percentageUsage) as String
                     self.quotaDetailLabel.text = NSString(format: "%.0f / %.0f MB", usage, limit) as String
-                    self.updatedLabel.text = "Updated" + NSDateFormatter.localizedStringFromDate(self.dataSource.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
+                    self.updatedLabel.text = "Updated" + NSDateFormatter.localizedStringFromDate(self.dataSource!.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
 
                 } else {
                     self.updatedLabel.text = "Update failed"

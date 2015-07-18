@@ -6,17 +6,13 @@ let kUTCSParallaxBlurHeaderHeight: CGFloat = 284.0
 // Height of the pseudo navigation bar of this view
 let kUTCSParallaxBlurNavigationBarHeight: CGFloat = 44.0
 
-// Modifier for the rate at which the background image view's alpha changes
-let blurAlphaModifier: CGFloat = 2.5
-
-// Content offset property string used for KVO
-let contentOffsetPropertyString = "contentOffset"
-
 // Frame property string used for KVO
 let framePropertyString = "frame"
 
 
 class ParallaxBlurHeaderScrollView: UIView {
+    // Modifier for the rate at which the background image view's alpha changes
+    let blurAlphaModifier: CGFloat = 2.5
     var headerMask: CAShapeLayer!
     var scrollView: UIScrollView!
     var headerImageContainer: UIVisualEffectView!
@@ -69,12 +65,14 @@ class ParallaxBlurHeaderScrollView: UIView {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func layoutIfNeeded() {
         super.layoutSubviews()
         headerContainerView.frame = CGRect(x: 0.0, y: -parallaxFactor * scrollView.contentOffset.y, width: CGRectGetWidth(bounds), height: kUTCSParallaxBlurHeaderHeight)
         headerImageView.frame = headerContainerView.bounds
     }
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath! == contentOffsetPropertyString && object as? UIScrollView == scrollView {
             let contentOffset = scrollView.contentOffset.y
             if contentOffset >= 0.0 && contentOffset < CGRectGetHeight(headerContainerView.bounds) - kUTCSParallaxBlurNavigationBarHeight {

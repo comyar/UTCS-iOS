@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
 
     var menuViewController = MenuViewController(nibName: nil, bundle: nil)
     var verticalMenuViewController: UTCSVerticalMenuViewController?
-    var labsViewController: UTCSLabsViewController?
+    var labsViewController: LabsViewController?
     var diskQuotaViewController: DiskQuotaViewController?
 
     var window: UIWindow?
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     
         // Menu
         menuViewController.delegate = self
-        newsNavigationController = NavigationController(rootViewController:UTCSNewsViewController())
+        newsNavigationController = NavigationController(rootViewController: NewsViewController())
         verticalMenuViewController = UTCSVerticalMenuViewController(menuViewController: menuViewController, contentViewController: newsNavigationController)
         // Initialize view controllers. News is the default service
 
@@ -53,18 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         switch option{
         case .News:
             if newsNavigationController == nil {
-                newsNavigationController = NavigationController(rootViewController: UTCSNewsViewController())
+                newsNavigationController = NavigationController(rootViewController: NewsViewController())
             }
             verticalMenuViewController?.contentViewController = self.newsNavigationController
         case .Events:
             if eventsNavigationController == nil {
-                eventsNavigationController = NavigationController(rootViewController: UTCSEventsViewController())
+                eventsNavigationController = NavigationController(rootViewController: EventsViewController())
             }
             verticalMenuViewController?.contentViewController = self.eventsNavigationController
         case .Labs:
             if UTCSAuthenticationManager.sharedManager().authenticated{
                 if labsViewController == nil {
-                    labsViewController = UTCSLabsViewController()
+                    labsViewController = LabsViewController()
                 }
                 verticalMenuViewController?.contentViewController = self.labsViewController
             } else {
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
             }
         case .Directory:
             if directoryNavigationController == nil {
-                directoryNavigationController = NavigationController(rootViewController: UTCSDirectoryViewController())
+                directoryNavigationController = NavigationController(rootViewController: DirectoryViewController())
                 configureAppearance()
             }
             verticalMenuViewController?.contentViewController = self.directoryNavigationController
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
             verticalMenuViewController?.contentViewController = self.diskQuotaViewController
         case .Settings:
             if settingsNavigationController == nil {
-                settingsNavigationController = NavigationController(rootViewController: UTCSSettingsViewController())
+                settingsNavigationController = NavigationController(rootViewController: SettingsViewController())
             }
             self.verticalMenuViewController?.contentViewController = self.settingsNavigationController
         }
@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         UTCSAuthenticationManager.sharedManager().authenticateUser(username, withPassword: password) { (success, error) -> Void in
             if success {
                 if self.labsViewController == nil {
-                    self.labsViewController = UTCSLabsViewController()
+                    self.labsViewController = LabsViewController()
                 }
                 self.verticalMenuViewController?.contentViewController = self.labsViewController
             } else {

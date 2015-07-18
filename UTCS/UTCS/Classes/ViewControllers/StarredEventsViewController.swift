@@ -1,19 +1,25 @@
-//
-//  UTCSEventsStarListViewController.m
-//  UTCS
-//
-//  Created by Comyar Zaheri on 5/12/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
+
+@objc protocol StarredEventsViewControllerDelegate {
+    optional func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event:UTCSEvent)
+}
 
 
-#pragma mark - Imports
+class StarredEventsViewController: TableViewController {
+    var delegate: StarredEventsViewControllerDelegate?
+    convenience init() {
+        self.init(style: .Plain)
+    }
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+    }
 
-#import "UTCSEvent.h"
-#import "UIButton+UTCSButton.h"
-#import "UTCSStarredEventsManager.h"
-#import "UTCSStarredEventsDataSource.h"
-#import "UTCSStarredEventsViewController.h"
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+/*
+
 
 
 #pragma mark - UTCSStarredEventsViewController Class Extension
@@ -196,4 +202,4 @@
     return @"Unstar";
 }
 
-@end
+@end*/

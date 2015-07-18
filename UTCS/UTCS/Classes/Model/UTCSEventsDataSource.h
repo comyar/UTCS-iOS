@@ -59,7 +59,7 @@ extern NSString * const UTCSEventsDataSourceCacheKey;
  @param type    Type of event to filter by.
  @return Dictionary of index paths to add/remove from the events table view.
  */
-- (NSDictionary *)filterEventsWithType:(NSString *)type;
+- (NSDictionary <NSString *, NSArray <NSIndexPath *>*>*)filterEventsWithType:(NSString *)type;
 
 // -----
 // @name Properties
@@ -70,7 +70,7 @@ extern NSString * const UTCSEventsDataSourceCacheKey;
 /**
  Events matching the type of currentFilterType
  */
-@property (nonatomic, readonly) NSMutableArray    *filteredEvents;
+@property (nonatomic, readonly) NSMutableArray<UTCSEvent *>    *filteredEvents;
 
 /**
  Current filter type

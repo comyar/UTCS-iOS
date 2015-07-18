@@ -1,11 +1,8 @@
-//
-//  UTCSSettingsLicenseViewController.m
-//  UTCS
-//
-//  Created by Comyar Zaheri on 5/5/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
+class SettingsLicenseViewController: TableViewController {
+    var license: String!
+}
 
+/*
 #import "UTCSSettingsLicenseViewController.h"
 
 @interface UTCSSettingsLicenseViewController ()
@@ -100,3 +97,4 @@
 
 
 @end
+*/

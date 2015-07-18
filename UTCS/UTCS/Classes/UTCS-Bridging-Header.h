@@ -3,14 +3,11 @@
 #import <POP/POP.h>
 
 #import "UTCSVerticalMenuViewController.h"
-#import "UTCSDirectoryViewController.h"
 #import "UTCSStarredEventsManager.h"
 #import "UTCSAuthenticationManager.h"
 #import "UTCSStateManager.h"
 
 #import "UTCSNewsArticle.h"
-#import "UTCSEventsViewController.h"
-#import "UTCSSettingsViewController.h"
 
 #import "MBProgressHUD.h"
 #import "JVFloatLabeledTextField.h"
@@ -34,3 +31,12 @@
 #import "UTCSEventsDataSource.h"
 #import "UIColor+UTCSColors.h"
 #import "UTCSEventsDetailViewController.h"
+
+#import "MBProgressHUD.h"
+#import "UTCSDirectoryPerson.h"
+#import "UIButton+UTCSButton.h"
+#import "UTCSDirectoryDataSource.h"
+#import "UTCSDirectoryDataSourceSearchController.h"
+#import "UTCSEvent.h"
+#import "UTCSLabsDataSource.h"
+#import "UTCSNewsDataSource.h"

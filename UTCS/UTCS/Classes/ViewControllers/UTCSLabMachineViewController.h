@@ -8,7 +8,7 @@
 
 
 @import UIKit;
-
+@class ServiceErrorView;
 #import "UTCSLabView.h"
 #import "FBShimmeringView.h"
 

@@ -4,7 +4,7 @@
 let DirectoryDetailTableViewCellIdentifier = "UTCSDirectoryDetailTableViewCell";
 
 
-class DirectoryDetailViewController: UTCSTableViewController, UITableViewDataSource {
+class DirectoryDetailViewController: TableViewController {
     var person: UTCSDirectoryPerson? {
         didSet(newValue){
             tableView.reloadData()
@@ -12,10 +12,6 @@ class DirectoryDetailViewController: UTCSTableViewController, UITableViewDataSou
     }
     init(){
         super.init(style: .Grouped)
-        commoninit()
-    }
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commoninit()
     }
 
@@ -65,7 +61,7 @@ class DirectoryDetailViewController: UTCSTableViewController, UITableViewDataSou
             presentViewController(controller, animated: true, completion: nil)
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(DirectoryDetailTableViewCellIdentifier)
         if cell == nil {
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: DirectoryDetailTableViewCellIdentifier)
@@ -82,7 +78,7 @@ class DirectoryDetailViewController: UTCSTableViewController, UITableViewDataSou
             callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
             callButton.setTitle("Call", forState: .Normal)
             callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            callButton.center = CGPoint(x: cell!.width - callButton.width, y: cell!.center.y)
+            callButton.center = CGPoint(x: cell!.frame.width - callButton.frame.width, y: cell!.center.y)
             callButton.tintColor = UIColor.whiteColor()
             callButton.layer.masksToBounds = true
             callButton.layer.cornerRadius = 4.0
@@ -130,7 +126,7 @@ class DirectoryDetailViewController: UTCSTableViewController, UITableViewDataSou
         return cell!
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else if section == 1 {
@@ -146,11 +142,11 @@ class DirectoryDetailViewController: UTCSTableViewController, UITableViewDataSou
         return 0
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "Information"
         }
