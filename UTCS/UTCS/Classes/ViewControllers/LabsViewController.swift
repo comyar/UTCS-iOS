@@ -20,6 +20,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         fatalError("init(coder:) has not been implemented")
     }
     override func viewDidLoad() {
+        super.viewDidLoad()
         scrollView = {
             let scrollView = UIScrollView(frame: view.bounds)
             scrollView.contentSize = CGSize(width: 2.0 * view.frame.width, height: view.frame.height)
@@ -101,8 +102,8 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
             self.basementLabViewController.shimmeringView.shimmering = false
 
             if success {
-                let third = self.labsDataSource!.data["third"]
-                let basement = self.labsDataSource!.data["basement"]
+                let third = self.labsDataSource!.data!["third"]
+                let basement = self.labsDataSource!.data!["basement"]
                 self.thirdFloorLabViewController.machines = third as! [NSObject: AnyObject]!
                 self.basementLabViewController.machines = basement as! [NSObject: AnyObject]!
             }
@@ -134,6 +135,6 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
     }
 
     func objectsToCacheForDataSource(dataSource: UTCSDataSource!) -> [NSObject : AnyObject]! {
-        return [UTCSLabsDataSourceCacheKey: dataSource.data]
+        return [UTCSLabsDataSourceCacheKey: dataSource.data!]
     }
 }

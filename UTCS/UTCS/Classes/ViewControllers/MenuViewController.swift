@@ -60,7 +60,7 @@ class MenuViewController: UITableViewController {
         cell?.textLabel!.text = menuOptions[indexPath.row]
         var imageName = cell?.textLabel!.text?.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "")
         if indexPath.row == activeRow {
-            imageName = "\(imageName)-active"
+            imageName = "\(imageName!)-active"
         }
         cell?.imageView?.image = UIImage(named: imageName!)?.imageWithRenderingMode(.AlwaysTemplate)
         return cell!

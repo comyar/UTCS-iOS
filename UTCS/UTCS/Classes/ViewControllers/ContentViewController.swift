@@ -2,6 +2,7 @@
     var menuButton: UIButton! { get set }
     var backgroundImageView:UIImageView! { get set }
     var dataSource: UTCSDataSource? { get set }
+    func setBackgroundImageName(name: String)
     func configureViews()
     func configureOnLoad()
     func configureOnLayout()
@@ -33,15 +34,21 @@
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureOnLoad()
 
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        configureOnLayout()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        configureOnAppear()
+    }
+
+    func setBackgroundImageName(name: String) {
+        backgroundImageView.image = UIImage.cacheless_imageNamed(name)
     }
 
     func configureViews() {

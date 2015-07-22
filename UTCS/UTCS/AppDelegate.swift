@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool  {
-    
         // Menu
         menuViewController.delegate = self
         newsNavigationController = NavigationController(rootViewController: NewsViewController())

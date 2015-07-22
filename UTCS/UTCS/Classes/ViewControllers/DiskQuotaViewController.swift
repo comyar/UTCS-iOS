@@ -65,7 +65,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         updatedLabel.alpha = 0.0
 
         //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
-        backgroundImageView.image = UIImage.cacheless_imageNamed("diskQuotaBackground")
+        setBackgroundImageName("diskQuotaBackground")
     }
     @IBAction func didPressGo(sender: UIButton) {
         view.endEditing(true)
@@ -102,9 +102,9 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
             hud.labelText = "Fetching"
             dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
                 if success {
-                    self.nameLabel.text = self.dataSource!.data["name"] as? String
-                    let limit = (self.dataSource!.data["limit"] as? NSNumber)!.floatValue
-                    let usage = (self.dataSource!.data["usage"] as? NSNumber)!.floatValue
+                    self.nameLabel.text = self.dataSource!.data!["name"] as? String
+                    let limit = (self.dataSource!.data!["limit"] as? NSNumber)!.floatValue
+                    let usage = (self.dataSource!.data!["usage"] as? NSNumber)!.floatValue
                     let percentageUsage = usage / limit
                     self.meterView.progressTintColor = UIColor.whiteColor()
                     self.meterView.progress = CGFloat(percentageUsage)

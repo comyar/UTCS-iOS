@@ -1,109 +1,87 @@
 class SettingsViewController: TableViewController {
-    
-}
+    let facebookAppURL = NSURL(string: "fb://page/272565539464226")!
+    let facebookWebURL = NSURL(string: "https://fb.me/UTCompSci")!
+    let twitterAppURL = NSURL(string: "twitter://user?screen_name=utcompsci")!
+    let twitterWebURL = NSURL(string: "https://twitter.com/UTCompSci")!
 
-/*
+    var settingsDataSource: UTCSSettingsDataSource?
+    var legalViewController: SettingsLegalViewController?
+    var aboutViewController: SettingsAboutViewController?
 
-#import "UTCSSettingsViewController.h"
-#import "UTCSStateManager.h"
-#import "UTCSSettingsDataSource.h"
-#import "UTCSSettingsLegalViewController.h"
-#import "UTCSSettingsAboutViewController.h"
-
-
-static NSString * const facebookAppURL  = @"fb://page/272565539464226";
-static NSString * const facebookWebURL  = @"https://www.facebook.com/UTCompSci";
-static NSString * const twitterAppURL   = @"twitter://user?screen_name=utcompsci";
-static NSString * const twitterWebURL   = @"https://www.twitter.com/UTCompSci";
-
-
-@interface UTCSSettingsViewController ()
-
-@property (nonatomic) UTCSSettingsDataSource            *dataSource;
-
-@property (nonatomic) UTCSSettingsLegalViewController   *legalViewController;
-
-@property (nonatomic) UTCSSettingsAboutViewController   *aboutViewController;
-
-@end
-
-@implementation UTCSSettingsViewController
-
-- (instancetype)init
-{
-    return [self initWithStyle:UITableViewStyleGrouped];
-}
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    return [self initWithStyle:UITableViewStyleGrouped];
-}
-
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    if (self = [super initWithStyle:style]) {
-        self.dataSource = [UTCSSettingsDataSource new];
-        self.tableView.dataSource = self.dataSource;
-        self.tableView.delegate = self;
+    class func loadFromStoryBoard() -> SettingsViewController {
+        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+        return storyboard.instantiateInitialViewController() as! SettingsViewController
     }
-    return self;
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.legalViewController = nil;
-    self.aboutViewController = nil;
-}
+    convenience init() {
+        self.init(style: .Grouped)
+    }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            if (!self.legalViewController) {
-                self.legalViewController = [UTCSSettingsLegalViewController new];
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        settingsDataSource = UTCSSettingsDataSource()
+        tableView.dataSource = settingsDataSource!
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override func didReceiveMemoryWarning() {
+        legalViewController = nil
+        aboutViewController = nil
+    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        switch indexPath.section {
+        case 1:
+            switch indexPath.row {
+            case 0:
+                if legalViewController == nil {
+                    legalViewController = SettingsLegalViewController()
+                }
+                navigationController?.pushViewController(legalViewController!, animated: true)
+            case 1:
+                if aboutViewController == nil {
+                    aboutViewController = SettingsAboutViewController()
+                }
+                navigationController?.pushViewController(aboutViewController!, animated: true)
+            default:
+                ()
             }
-            [self.navigationController pushViewController:self.legalViewController animated:YES];
-        } else if (indexPath.row == 1) {
-            if (!self.aboutViewController) {
-                self.aboutViewController = [UTCSSettingsAboutViewController new];
+
+        case 2:
+            switch indexPath.row {
+            case 0:
+                if UIApplication.sharedApplication().canOpenURL(facebookAppURL) {
+                    UIApplication.sharedApplication().openURL(facebookAppURL)
+                } else {
+                    UIApplication.sharedApplication().openURL(facebookWebURL)
+                }
+            case 1:
+                if UIApplication.sharedApplication().canOpenURL(twitterAppURL) {
+                    UIApplication.sharedApplication().openURL(twitterAppURL)
+                } else {
+                    UIApplication.sharedApplication().openURL(twitterWebURL)
+                }
+            default:
+                ()
             }
-            [self.navigationController pushViewController:self.aboutViewController animated:YES];
-        }
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            NSURL *facebookURL = [NSURL URLWithString:facebookAppURL];
-            if ([[UIApplication sharedApplication]canOpenURL:facebookURL]) {
-                [[UIApplication sharedApplication]openURL:facebookURL];
-            } else {
-                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:facebookWebURL]];
-            }
-        } else if (indexPath.row == 1) {
-            NSURL *twitterURL = [NSURL URLWithString:twitterAppURL];
-            if ([[UIApplication sharedApplication]canOpenURL:twitterURL]) {
-                [[UIApplication sharedApplication]openURL:twitterURL];
-            } else {
-                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:twitterWebURL]];
-            }
+        default:
+            ()
         }
     }
-}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0)
-    {
-        if (indexPath.row == 0) {
-            return 64.0;
-        } else if(indexPath.row == 1) {
-            return 80.0;
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                return 64.0
+            case 1:
+                return 80.0
+            default:
+                ()
+            }
         }
+        return 50.0
     }
-    
-    return 50.0;
 }
-
-
-@end */

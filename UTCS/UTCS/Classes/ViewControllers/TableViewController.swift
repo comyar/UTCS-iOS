@@ -5,7 +5,7 @@ let navigationBarSeparatorLineHeight: CGFloat = 0.5
 let maximumNavigationBarSeparatorLineAlpha: CGFloat = 0.75
 
 
-@objc class TableViewController: UITableViewController, ContentController {
+class TableViewController: UITableViewController, ContentController {
     var menuButton: UIButton = UIButton.menuButton()
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -33,23 +33,24 @@ let maximumNavigationBarSeparatorLineAlpha: CGFloat = 0.75
 
     override init(style: UITableViewStyle) {
         super.init(style: .Plain)
+        commonInit()
+    }
+    func commonInit(){
         automaticallyAdjustsScrollViewInsets = false
         gestureButton = {
-            let button = UIButton(type: .Custom)
-            button.addTarget(self, action: "didTouchDownInsideButton", forControlEvents: .TouchDown)
-            return button
+        let button = UIButton(type: .Custom)
+        button.addTarget(self, action: "didTouchDownInsideButton", forControlEvents: .TouchDown)
+        return button
         }()
 
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.05)
         tableView.backgroundColor = UIColor.clearColor()
-        tableView.delegate = self
-
         configureViews()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
 
     override func viewDidLoad() {
@@ -101,6 +102,9 @@ let maximumNavigationBarSeparatorLineAlpha: CGFloat = 0.75
         tableView.removeObserver(self, forKeyPath: contentOffsetPropertyString)
     }
 
+    func setBackgroundImageName(name: String) {
+        backgroundImageView.image = UIImage(named: name)?.imageWithRenderingMode(.AlwaysTemplate)
+    }
 
     func configureViews() {
         title = ""

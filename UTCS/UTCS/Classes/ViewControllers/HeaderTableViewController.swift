@@ -1,7 +1,3 @@
-
-// Modifier for the rate at which the background image view's alpha changes
-
-
 class HeaderTableViewController: TableViewController {
     // Content offset property string used for KVO
 

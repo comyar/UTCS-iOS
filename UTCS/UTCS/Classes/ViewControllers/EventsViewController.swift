@@ -102,7 +102,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
         activeHeaderView.showActiveAnimation(true)
         dataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
             self.activeHeaderView.showActiveAnimation(false)
-            if self.dataSource!.data.count > 0 {
+            if self.dataSource!.data!.count > 0 {
                 let updateString = NSDateFormatter.localizedStringFromDate(self.dataSource!.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
                 self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
                 if !cacheHit {
@@ -131,7 +131,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 && dataSource!.data.count > 0 {
+        if section == 0 && dataSource!.data!.count > 0 {
             if filterSegmentedControl == nil {
 
                 filterSegmentedControl = {
@@ -162,7 +162,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
         return nil
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && dataSource!.data.count > 0 {
+        if section == 0 && dataSource?.data?.count ?? 0 > 0 {
             return 48.0
         }
         return 0.0
@@ -192,7 +192,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
         navigationController?.pushViewController(eventDetailViewController!, animated: true)
     }
     func objectsToCacheForDataSource(dataSource: UTCSDataSource!) -> [NSObject : AnyObject]! {
-        return [UTCSEventsDataSourceCacheKey: dataSource.data]
+        return [UTCSEventsDataSourceCacheKey: dataSource.data!]
     }
 
 }

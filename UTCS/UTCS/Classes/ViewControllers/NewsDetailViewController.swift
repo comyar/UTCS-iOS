@@ -58,7 +58,7 @@ class NewsDetailViewController: UIViewController {
         }()
 
 
-        let button = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "share:")
+        let button = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "shareArticle:")
         navigationItem.rightBarButtonItem = button
 
         titleLabel = {
@@ -124,12 +124,12 @@ class NewsDetailViewController: UIViewController {
             parallaxBlurHeaderScrollView.scrollView.scrollRectToVisible(CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0), animated: true)
         }
     }
-    func shareArticle(article: UTCSNewsArticle){
+    func shareArticle(sender: UIBarButtonItem){
         var activityItems = [String]()
-        if let title = article.title {
+        if let title = newsArticle?.title {
             activityItems.append( title + "\n")
         }
-        if let url = article.url {
+        if let url = newsArticle?.url {
             activityItems.append(url)
         }
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)

@@ -34,8 +34,8 @@ class BouncyTableViewCell: UITableViewCell {
         self.textLabel?.textColor = UIColor.whiteColor()
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     override func setHighlighted(highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)

@@ -1,6 +1,3 @@
-// Estimated height of table view cell
-let estimatedCellHeight: CGFloat = 140.0
-
 // Header title text
 let headerTitleText = "UTCS News"
 
@@ -10,30 +7,31 @@ let headerSubtitleText = "What Starts Here Changes the World"
 // Name of the background image
 let backgroundImageName = "newsBackground"
 
-// Name of the blurred background image
-let backgroundBlurredImageName = "newsBackground-blurred"
-
 
 
 class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
 
     // View controller used to display a specific news story
     var newsDetailViewController: NewsDetailViewController?
-    var newsDataSource: UTCSNewsDataSource! {
+    var newsDataSource: NewsDataSource! {
         get {
-            return dataSource as! UTCSNewsDataSource!
+            return dataSource as! NewsDataSource!
         }
     }
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        dataSource = UTCSNewsDataSource(service: UTCSNewsServiceName)
+        dataSource = NewsDataSource(service: UTCSNewsServiceName)
         tableView.dataSource = newsDataSource
         backgroundImageView.image = UIImage.cacheless_imageNamed(backgroundImageName)
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = headerTitleText
         activeHeaderView.subtitleLabel.text = headerSubtitleText
+
+        tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: UTCSNewsTableViewCellIdentifier)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100.0
 
     }
 
@@ -53,7 +51,7 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
         activeHeaderView.showActiveAnimation(true)
         newsDataSource.updateWithArgument(nil){ success, cacheHit in
             self.activeHeaderView.showActiveAnimation(false)
-            if self.newsDataSource.data.count > 0 {
+            if self.newsDataSource.data!.count > 0 {
                 let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
                 self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
             } else {
@@ -76,10 +74,7 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
         if dataSource.data == nil {
             return nil
         }
-        return [UTCSNewsDataSourceCacheKey: dataSource.data]
-    }
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return estimatedCellHeight
+        return [UTCSNewsDataSourceCacheKey: dataSource.data!]
     }
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
@@ -91,7 +86,7 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let article = newsDataSource.data[indexPath.row] as! UTCSNewsArticle
+        let article = newsDataSource.data![indexPath.row] as! UTCSNewsArticle
         if newsDetailViewController == nil {
             newsDetailViewController = NewsDetailViewController()
         }
