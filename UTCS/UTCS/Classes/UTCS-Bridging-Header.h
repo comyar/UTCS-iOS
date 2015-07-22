@@ -18,7 +18,6 @@
 #import "UIImage+Cacheless.h"
 
 #import "UIImage+CZScaling.h"
-#import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
 #import "UIImageView+AFNetworking.h"
 
@@ -33,10 +32,9 @@
 #import "UTCSEventsDetailViewController.h"
 
 #import "MBProgressHUD.h"
-#import "UTCSDirectoryPerson.h"
 #import "UIButton+UTCSButton.h"
-#import "UTCSDirectoryDataSource.h"
-#import "UTCSDirectoryDataSourceSearchController.h"
 #import "UTCSEvent.h"
 #import "UTCSLabsDataSource.h"
-#import "UTCSNewsDataSource.h"
+#import "UTCSDataSourceCache.h"
+#import "UTCSNewsDataSourceParser.h"
+#import "UTCSSettingsDataSource.h"

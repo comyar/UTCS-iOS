@@ -39,8 +39,6 @@ static NSString * const headerBlurredImageKey   = @"headerBlurredImage";
 // Key for encoding imageURLs
 static NSString * const imageURLsKey            = @"imageURLs";
 
-// Font to use for a news article's text
-static NSString * const articleFont             = @"HelveticaNeue-Light";
 
 // Space between lines in the article text
 static const CGFloat lineSpacing        = 6.0;
@@ -122,9 +120,7 @@ static const CGFloat fontSizeModifier   = 1.5;
             // Get the current font in the attributed string
             UIFont *htmlFont = attrs[NSFontAttributeName];
             NSMutableDictionary *fontDescriptorAttributes = [[[htmlFont fontDescriptor]fontAttributes]mutableCopy];
-            
-            // Change the font in the article
-            fontDescriptorAttributes[UIFontDescriptorNameAttribute] = articleFont;
+        
             
             // Create a new font from the attributes
             UIFontDescriptor *fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:fontDescriptorAttributes];

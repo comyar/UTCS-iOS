@@ -5,7 +5,7 @@ let DirectoryDetailTableViewCellIdentifier = "UTCSDirectoryDetailTableViewCell";
 
 
 class DirectoryDetailViewController: TableViewController {
-    var person: UTCSDirectoryPerson? {
+    var person: DirectoryPerson? {
         didSet(newValue){
             tableView.reloadData()
         }
@@ -93,7 +93,7 @@ class DirectoryDetailViewController: TableViewController {
             cell?.detailTextLabel?.text = person?.type
 
             if person?.imageURL != nil {
-                let url = NSURL(string: person!.imageURL)
+                let url = person!.imageURL
                 weak var weakCell = cell
                 cell?.imageView?.setImageWithURLRequest(NSURLRequest(URL: url!), placeholderImage: nil, success: { (_, _, image) -> Void in
                     weakCell?.imageView?.image = image
@@ -108,7 +108,7 @@ class DirectoryDetailViewController: TableViewController {
             cell?.imageView?.contentMode = .ScaleAspectFill
         } else if indexPath.section == 1  {
             if indexPath.row == 0 {
-                var text = person?.office!
+                var text = person?.office
                 var subtitle = "Office"
                 text = text?.characters.count != 0 ? text : formattedPhoneNumberWithString((person?.phoneNumber)!)
                 subtitle = text?.characters.count != 0 ? subtitle : "Phone"

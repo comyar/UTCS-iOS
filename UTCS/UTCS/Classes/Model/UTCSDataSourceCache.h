@@ -7,6 +7,7 @@
 //
 
 
+
 #pragma mark - Imports
 
 @import Foundation;
@@ -37,7 +38,7 @@ extern NSString * const UTCSDataSourceCacheMetaDataName;
  be used to cache collections, such as NSArray or NSDictionary.
  */
 @interface UTCSDataSourceCache : NSObject
-
+NS_ASSUME_NONNULL_BEGIN
 // -----
 // @name Creating a UTCSDataSourceCache
 // -----
@@ -62,7 +63,7 @@ extern NSString * const UTCSDataSourceCacheMetaDataName;
  @param key Key used to cache the object.
  @return    Dictionary containing the object and its associated metadata. nil if no object found.
  */
-- (NSDictionary *)objectWithKey:(NSString *)key;
+- (NSDictionary * __nullable)objectWithKey:(NSString *)key;
 
 /**
  Caches an object and associates it with the given key.
@@ -83,3 +84,5 @@ extern NSString * const UTCSDataSourceCacheMetaDataName;
 @property (nonatomic, readonly) NSString *service;
 
 @end
+
+NS_ASSUME_NONNULL_END

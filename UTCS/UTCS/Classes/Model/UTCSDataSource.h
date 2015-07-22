@@ -142,17 +142,17 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
 /**
  Parsed data. The type of the data object is specific to the service.
  */
-@property (nonatomic, readonly) id                                  data;
+@property (nonatomic ) id __nullable                                  data;
 
 /**
  Parser to parse downloaded data, may not be nil.
  */
-@property (nonatomic, readonly) UTCSDataSourceParser                *parser;
+@property (nonatomic) UTCSDataSourceParser                *parser;
 
 /**
  Cache to use when writing objects to disk, may be nil.
  */
-@property (nonatomic, readonly) UTCSDataSourceCache                 *cache;
+@property (nonatomic ) UTCSDataSourceCache                 *cache;
 
 /**
  Search controller to use to search data, may be nil.
@@ -165,12 +165,12 @@ typedef void (^UTCSDataSourceCompletion) (BOOL success, BOOL cacheHit);
  This key is used to access the cached object associated with this key
  and that object's metadata is used to determine whether an update is required.
  */
-@property (nonatomic, readonly) NSString                            *primaryCacheKey;
+@property (nonatomic) NSString                            *primaryCacheKey;
 
 /**
  Date the data source's data was updated.
  */
-@property (nonatomic, readonly) NSDate                              *updated;
+@property (nonatomic) NSDate                              *updated;
 
 /**
  Minimum time between updates, in seconds.
