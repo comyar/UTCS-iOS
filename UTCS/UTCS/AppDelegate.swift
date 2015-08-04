@@ -1,5 +1,6 @@
 import UIKit
 import Foundation
+import MBProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegate {
@@ -113,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     }
     func login(username: String, password: String){
         let hud = MBProgressHUD.showHUDAddedTo(verticalMenuViewController!.view, animated: true)
-        hud.mode = MBProgressHUDModeIndeterminate
+        hud.mode = .Indeterminate
         hud.labelText = "Authenticating"
         UTCSAuthenticationManager.sharedManager().authenticateUser(username, withPassword: password) { (success, error) -> Void in
             if success {

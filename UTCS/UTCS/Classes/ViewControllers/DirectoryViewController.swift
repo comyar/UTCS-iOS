@@ -1,3 +1,4 @@
+import MBProgressHUD
 let searchBarBackgroundImageName = "searchBarBackground";
 
 
@@ -96,7 +97,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
     func update(){
         if dataSource!.shouldUpdate() {
             let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            progressHUD.mode = MBProgressHUDModeIndeterminate
+            progressHUD.mode = .Indeterminate
             progressHUD.labelText = "Syncing"
             dataSource?.updateWithArgument(nil, completion: { (success, cacheHit) -> Void in
                 if success && !cacheHit {

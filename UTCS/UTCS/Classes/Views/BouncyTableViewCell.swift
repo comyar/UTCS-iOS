@@ -1,4 +1,5 @@
 import Foundation
+import pop
 
 // Final scale of the content view when bouncing downwards
 let bounceDownScale = 0.925;

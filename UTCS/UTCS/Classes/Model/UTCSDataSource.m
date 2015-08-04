@@ -85,7 +85,7 @@
     }
     
     // Make an API request to update data
-    [UTCSDataRequest sendDataRequestForService:self.service argument:argument completion:^(NSDictionary *meta, id values, NSError *error) {
+    [DataRequest sendDataRequestForService:self.service argument:argument completion:^(NSDictionary *meta, id values, NSError *error) {
         if ([meta[@"service"]isEqualToString:self.service] &&   // Check for matching service type and success
             [meta[@"success"]boolValue]) {
             

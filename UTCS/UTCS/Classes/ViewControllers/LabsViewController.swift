@@ -1,3 +1,5 @@
+import MBProgressHUD
+
 class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataSourceDelegate {
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
@@ -94,7 +96,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         if labsDataSource.shouldUpdate() {
             let hud = MBProgressHUD.showHUDAddedTo(scrollView, animated: true)
             hud.labelText = "Updating"
-            hud.mode = MBProgressHUDModeIndeterminate
+            hud.mode = .Indeterminate
         }
 
         dataSource!.updateWithArgument(nil){ success, cachehit in

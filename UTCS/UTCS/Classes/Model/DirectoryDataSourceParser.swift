@@ -1,5 +1,3 @@
-
-
 // Key for the person's first name
 let firstNameKey = "fName"
 

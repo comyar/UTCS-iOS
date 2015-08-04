@@ -1,5 +1,9 @@
-let diskQuotaCacheKey = "quota"
+import JVFloatLabeledTextField
+import PocketSVG
+import MBProgressHUD
+import DPMeterView
 
+let diskQuotaCacheKey = "quota"
 
 class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     // Button used to request disk quota information
@@ -98,7 +102,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     func update(){
         if dataSource!.shouldUpdate() {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            hud.mode = MBProgressHUDModeIndeterminate
+            hud.mode = .Indeterminate
             hud.labelText = "Fetching"
             dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
                 if success {

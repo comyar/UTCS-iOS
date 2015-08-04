@@ -1,35 +1,39 @@
 PODS:
-  - AFNetworking (2.2.4):
-    - AFNetworking/NSURLConnection (= 2.2.4)
-    - AFNetworking/NSURLSession (= 2.2.4)
-    - AFNetworking/Reachability (= 2.2.4)
-    - AFNetworking/Security (= 2.2.4)
-    - AFNetworking/Serialization (= 2.2.4)
-    - AFNetworking/UIKit (= 2.2.4)
-  - AFNetworking/NSURLConnection (2.2.4):
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.4):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.4)
-  - AFNetworking/Security (2.2.4)
-  - AFNetworking/Serialization (2.2.4)
-  - AFNetworking/UIKit (2.2.4):
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - DPMeterView (0.0.1)
-  - JVFloatLabeledTextField (1.0.2)
-  - MBProgressHUD (0.8)
-  - NMSSH (2.1.0)
+  - Alamofire (1.3.0)
+  - DPMeterView (1.0.1)
+  - JVFloatLabeledTextField (1.1.0)
+  - MBProgressHUD (0.9.1)
+  - NMSSH (2.2.2)
   - PocketSVG (0.5)
   - pop (1.0.7)
-  - RQShineLabel (0.1.0)
-  - Shimmer (1.0.1)
-  - Tweaks (1.1.0)
+  - RQShineLabel (0.1.3)
+  - Shimmer (1.0.2)
+  - Tweaks (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
   - DPMeterView
   - JVFloatLabeledTextField
   - MBProgressHUD
@@ -41,29 +45,36 @@ DEPENDENCIES:
   - Tweaks
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: https://github.com/Alamofire/Alamofire.git
   PocketSVG:
     :git: https://github.com/arielelkin/PocketSVG
   pop:
     :git: https://github.com/facebook/pop.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 88ca2a248ee0142064e2c760ea9f15279c7489df
+    :git: https://github.com/Alamofire/Alamofire.git
   PocketSVG:
-    :commit: 1c8e85a44c95de70d91627f3473246b118dac96e
+    :commit: 4d2a1e891f53136866acbd82832bea9f1b266f68
     :git: https://github.com/arielelkin/PocketSVG
   pop:
-    :commit: f11c9066cf018125100c2fe2c91a2d8a1652bc1f
+    :commit: 27793516fc16079843e8683cf3abcd8b73b5475d
     :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
-  AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
-  DPMeterView: a49f039d0dde33c2d3933c518c1b007dc5316951
-  JVFloatLabeledTextField: 58a3a32cfb800e5b224f676987e7c13abf50a14d
-  MBProgressHUD: 8688c331cb64702283be37ab8d7d329cdd25f251
-  NMSSH: 1b31f2ac369451ea74abc9d36e1e70e4770c441e
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Alamofire: e57db85401895fda01783b3b9bda5b32d9f347ff
+  DPMeterView: f6a917eaec2b2ef7844cb43f2ce2c6ac4b4abc85
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  NMSSH: 672230800861686faf7b10f7b26e61b6395803f4
   PocketSVG: d988f058b02289a58777ea2a4f10a32c9396c9e8
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
-  RQShineLabel: ea2998688e04c62431c8f4b239330034a9776d46
-  Shimmer: f68e00817f8f3a20c9a8df85e5bbf8eec9ae5ade
-  Tweaks: fea40672d34a7185051b7786be0d587cd76d253c
+  RQShineLabel: ae66343d6c779a8efdf61241734ddcec5d79d351
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  Tweaks: 524fa47636cce3bf3a4d9156e980f10ae9480e81
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

@@ -10,7 +10,6 @@
 #pragma mark - Imports
 
 #import "UTCSEvent.h"
-#import "UTCSDataRequest.h"
 #import "UIColor+UTCSColors.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSEventsDataSource.h"

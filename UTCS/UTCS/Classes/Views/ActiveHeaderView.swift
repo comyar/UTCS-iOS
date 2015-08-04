@@ -1,3 +1,4 @@
+import Shimmer
 //MARK: Constants
 // Duration of animations performed by this view
 let animationDuration = 0.3;
