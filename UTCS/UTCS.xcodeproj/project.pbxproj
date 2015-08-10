@@ -20,6 +20,7 @@
 		D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */; };
 		D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */; };
 		D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43377F91B4CBB1D00942581 /* TableViewController.swift */; };
+		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
 		D43E864E1B3758E900F6EA70 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */; };
@@ -120,6 +121,16 @@
 		FE38EDECED57EF7FE294D246 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D43C8B041B7851F90049C4D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B9A262B1891D5E30032DA03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B9A26321891D5E30032DA03;
+			remoteInfo = UTCS;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0B9A26331891D5E30032DA03 /* UTCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9A26361891D5E30032DA03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,6 +152,9 @@
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
 		D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxBlurHeaderScrollView.swift; path = Views/ParallaxBlurHeaderScrollView.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
+		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
+		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
 		D43E864B1B37142700F6EA70 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationControllerDelegate.swift; path = UTCS/Classes/Model/NavigationControllerDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -296,6 +310,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D43C8AFC1B7851F80049C4D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -305,6 +326,7 @@
 				DDA758891904D28D007CD0DB /* Resources */,
 				0B9A263C1891D5E30032DA03 /* UTCS */,
 				0B9A263D1891D5E30032DA03 /* Supporting Files */,
+				D43C8B001B7851F90049C4D6 /* UTCSTests */,
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
 				5E6EA229988F423BF93EFFC5 /* Pods */,
@@ -315,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				0B9A26331891D5E30032DA03 /* UTCS.app */,
+				D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -363,6 +386,15 @@
 				97C0E9A6409F3D1BA5F08593 /* Pods-UTCS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D43C8B001B7851F90049C4D6 /* UTCSTests */ = {
+			isa = PBXGroup;
+			children = (
+				D43C8B011B7851F90049C4D6 /* UTCSTests.swift */,
+				D43C8B031B7851F90049C4D6 /* Info.plist */,
+			);
+			path = UTCSTests;
 			sourceTree = "<group>";
 		};
 		DD44659018E7EA5500ED1153 /* UIColor+CZTinting */ = {
@@ -891,6 +923,24 @@
 			productReference = 0B9A26331891D5E30032DA03 /* UTCS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D43C8AFE1B7851F80049C4D6 /* UTCSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D43C8B061B7851F90049C4D6 /* Build configuration list for PBXNativeTarget "UTCSTests" */;
+			buildPhases = (
+				D43C8AFB1B7851F80049C4D6 /* Sources */,
+				D43C8AFC1B7851F80049C4D6 /* Frameworks */,
+				D43C8AFD1B7851F80049C4D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D43C8B051B7851F90049C4D6 /* PBXTargetDependency */,
+			);
+			name = UTCSTests;
+			productName = UTCSTests;
+			productReference = D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -913,6 +963,10 @@
 							};
 						};
 					};
+					D43C8AFE1B7851F80049C4D6 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 0B9A26321891D5E30032DA03;
+					};
 				};
 			};
 			buildConfigurationList = 0B9A262E1891D5E30032DA03 /* Build configuration list for PBXProject "UTCS" */;
@@ -928,6 +982,7 @@
 			projectRoot = "";
 			targets = (
 				0B9A26321891D5E30032DA03 /* UTCS */,
+				D43C8AFE1B7851F80049C4D6 /* UTCSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -970,6 +1025,13 @@
 				DD1B8ED119291B3D00A85E13 /* directoryBackground@2x.png in Resources */,
 				DD1B8ECB192918AB00A85E13 /* newsBackground-blurred@2x.png in Resources */,
 				DD1B8ED519291C2100A85E13 /* settingsBackground@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D43C8AFD1B7851F80049C4D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,7 +1165,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D43C8AFB1B7851F80049C4D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D43C8B051B7851F90049C4D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0B9A26321891D5E30032DA03 /* UTCS */;
+			targetProxy = D43C8B041B7851F90049C4D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0B9A263F1891D5E30032DA03 /* InfoPlist.strings */ = {
@@ -1234,6 +1312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.UTCS.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_INCLUDE_PATHS = "${PROJECT_DIR}/CommonCrypto/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "UTCS/Classes/UTCS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1274,10 +1353,51 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.UTCS.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_INCLUDE_PATHS = "${PROJECT_DIR}/CommonCrypto/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "UTCS/Classes/UTCS-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D43C8B071B7851F90049C4D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = UTCSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = mad.UTCSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UTCS.app/UTCS";
+			};
+			name = Debug;
+		};
+		D43C8B081B7851F90049C4D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = UTCSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = mad.UTCSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UTCS.app/UTCS";
 			};
 			name = Release;
 		};
@@ -1301,6 +1421,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D43C8B061B7851F90049C4D6 /* Build configuration list for PBXNativeTarget "UTCSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D43C8B071B7851F90049C4D6 /* Debug */,
+				D43C8B081B7851F90049C4D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

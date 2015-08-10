@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 88ca2a248ee0142064e2c760ea9f15279c7489df
+    :commit: 1253c996be9c54541e489b18e39042fe0cc9bbd9
     :git: https://github.com/Alamofire/Alamofire.git
   PocketSVG:
     :commit: 4d2a1e891f53136866acbd82832bea9f1b266f68
