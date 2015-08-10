@@ -29,6 +29,7 @@ PODS:
   - pop (1.0.7)
   - RQShineLabel (0.1.3)
   - Shimmer (1.0.2)
+  - SwiftyJSON (2.2.1)
   - Tweaks (2.0.0)
 
 DEPENDENCIES:
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - pop (from `https://github.com/facebook/pop.git`)
   - RQShineLabel
   - Shimmer
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - Tweaks
 
 EXTERNAL SOURCES:
@@ -52,17 +54,23 @@ EXTERNAL SOURCES:
     :git: https://github.com/arielelkin/PocketSVG
   pop:
     :git: https://github.com/facebook/pop.git
+  SwiftyJSON:
+    :branch: xcode7
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 1253c996be9c54541e489b18e39042fe0cc9bbd9
+    :commit: 6b61df290a95f0a1e9c2543e4b6a85d99e5df27e
     :git: https://github.com/Alamofire/Alamofire.git
   PocketSVG:
     :commit: 4d2a1e891f53136866acbd82832bea9f1b266f68
     :git: https://github.com/arielelkin/PocketSVG
   pop:
-    :commit: 27793516fc16079843e8683cf3abcd8b73b5475d
+    :commit: 4d1a49d0f31274aeae23104ad7be6b62e2abac2d
     :git: https://github.com/facebook/pop.git
+  SwiftyJSON:
+    :commit: 45ca854ce75948858f65e31fbc58cbf214669250
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -75,6 +83,7 @@ SPEC CHECKSUMS:
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   RQShineLabel: ae66343d6c779a8efdf61241734ddcec5d79d351
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   Tweaks: 524fa47636cce3bf3a4d9156e980f10ae9480e81
 
 COCOAPODS: 0.38.2

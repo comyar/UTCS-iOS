@@ -9,7 +9,7 @@ let UTCSDirectoryTableViewCellIdentifier = "UTCSDirectoryTableViewCell"
 let UTCSDirectoryCacheKey = "UTCSDirectoryCacheKey"
 
 
-class DirectoryDataSource: UTCSDataSource, UITableViewDataSource {
+class DirectoryDataSource: DataSource, UITableViewDataSource {
     var directoryPeople: [DirectoryPerson]! {
         get{
             return data as! [DirectoryPerson]
@@ -18,16 +18,9 @@ class DirectoryDataSource: UTCSDataSource, UITableViewDataSource {
     var directoryPeopleSections: [[DirectoryPerson]]?
     var filtered: [DirectoryPerson]!
     var searchController: UISearchController!
-    override init!(service: String!) {
-        super.init(service: service)
-        parser = DirectoryDataSourceParser()
+    init() {
+        super.init(service: .Directory, parser: DirectoryDataSourceParser())
         primaryCacheKey = UTCSDirectoryCacheKey
-        cache = UTCSDataSourceCache(service: service)
-
-        let dataCache = cache.objectWithKey(UTCSDirectoryCacheKey)
-        let dataMeta = dataCache?[UTCSDataSourceCacheMetaDataName]
-        data = dataCache?[UTCSDataSourceCacheValuesName]
-        updated = dataMeta?.timestamp
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier(UTCSDirectoryTableViewCellIdentifier)

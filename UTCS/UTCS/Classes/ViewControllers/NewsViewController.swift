@@ -9,7 +9,7 @@ let backgroundImageName = "newsBackground"
 
 
 
-class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
+class NewsViewController: HeaderTableViewController, DataSourceDelegate {
 
     // View controller used to display a specific news story
     var newsDetailViewController: NewsDetailViewController?
@@ -21,7 +21,7 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        dataSource = NewsDataSource(service: UTCSNewsServiceName)
+        dataSource = NewsDataSource()
         tableView.dataSource = newsDataSource
         backgroundImageView.image = UIImage.cacheless_imageNamed(backgroundImageName)
 
@@ -52,7 +52,7 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
         newsDataSource.updateWithArgument(nil){ success, cacheHit in
             self.activeHeaderView.showActiveAnimation(false)
             if self.newsDataSource.data!.count > 0 {
-                let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
+                let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
                 self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
             } else {
                 if !success {
@@ -70,7 +70,7 @@ class NewsViewController: HeaderTableViewController, UTCSDataSourceDelegate {
         }
     }
 
-    func objectsToCacheForDataSource(dataSource: UTCSDataSource!) -> [NSObject : AnyObject]! {
+    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
         if dataSource.data == nil {
             return nil
         }

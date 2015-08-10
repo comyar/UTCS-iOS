@@ -1,7 +1,7 @@
 @objc protocol ContentController {
     var menuButton: UIButton! { get set }
-    var backgroundImageView:UIImageView! { get set }
-    var dataSource: UTCSDataSource? { get set }
+    var backgroundImageView: UIImageView! { get set }
+    var dataSource: DataSource? { get set }
     func setBackgroundImageName(name: String)
     func configureViews()
     func configureOnLoad()
@@ -17,7 +17,7 @@
         imageView.clipsToBounds = true
         return imageView
     }()
-    var dataSource: UTCSDataSource?
+    var dataSource: DataSource?
 
     convenience init(){
         self.init(nibName: nil, bundle: nil)

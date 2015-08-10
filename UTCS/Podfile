@@ -10,6 +10,7 @@ pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch =
 pod "JVFloatLabeledTextField"
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 pod "AFNetworking"
+pod "SwiftyJSON", :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
 use_frameworks!
 
 end

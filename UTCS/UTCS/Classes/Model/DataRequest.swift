@@ -1,12 +1,10 @@
 import Alamofire
 import CommonCrypto
 // Request URL
-let requestURL = "http://www.cs.utexas.edu/users/mad/utcs-app-backend/"
-let requestPathCGI = "/cgi-bin/utcs.scgi"
-let apiVersion = "1.0-alpha"
+
 
 // Request API key
-let requestKey = "gwPtXjpDGgsKWyb8gLrq9OKVVa1dU2uE"
+let requestKey = "HZiB188uvsNHIWa"
 
 // Name of the meta data in the serialized JSON dictionary
 let dataRequestMetaName = "meta";
@@ -22,38 +20,58 @@ enum Service: String {
     case Directory = "directory"
 }
 
-typealias DataRequestCompletion = ([NSObject: AnyObject], AnyObject, NSError?)->()
+typealias DataRequestCompletion = ([NSObject: AnyObject], [NSObject: AnyObject], NSError?)->()
 
-@objc class DataRequest: NSObject {
-    class func sendDataRequestForService(service: String, argument: String?, completion: DataRequestCompletion){
-        let requestURL = DataRequest.urlForService(service, argument: argument)
 
-        let parameters: [String: String]? = {
-            if argument == nil {
-                return nil
-            }
-            else {
-                return ["arg": argument!]
+let requestURL = "http://www.cs.utexas.edu/users/mad/utcs-app-backend/"
+let requestPathCGI = "/cgi-bin/utcs.scgi"
+let apiVersion = "1.0-alpha"
+enum Router: URLRequestConvertible {
+    static let baseURLString = Router.baseURL()
+    case Labs()
+    case Quota(username: String)
+    case Directory()
+    case Events()
+    case News()
+
+
+    var URLRequest: NSMutableURLRequest {
+        let (service, argument): (String, String?) = {
+            switch self {
+            case Labs:
+                return ("labs", nil)
+            case Quota(let username):
+                return ("quota", username)
+            case Directory:
+                return ("directory", nil)
+            case Events:
+                return ("events", nil)
+            case News:
+                return ("news", nil)
             }
         }()
 
-        Alamofire.request(Alamofire.Method.GET, requestURL, parameters: parameters, encoding: Alamofire.ParameterEncoding.JSON, headers: nil).responseJSON { (_, _, JSON) -> Void in
-                print(JSON)
-        }
+        let URL = NSURL(string: Router.baseURLString)!
+        // set header fields
+        let digest = Router.createDigest(service, argument: argument)
+        let request = NSMutableURLRequest(URL: URL)
+        request.setValue("hmac ios:\(digest)", forHTTPHeaderField: "Authorization")
 
+        let encoding = Alamofire.ParameterEncoding.URL
+        return encoding.encode(URLRequest, parameters: ["service": service, "arg": argument ?? ""]).0
     }
-    class func urlForService(service: String, argument: String?) -> String {
-        let base = "\(requestURL)\(apiVersion)\(requestPathCGI)?key=\(requestKey)&service=\(service)"
-        return base
-        
+
+    static func baseURL() -> String {
+        return "\(requestURL)\(apiVersion)\(requestPathCGI)"
     }
-    class func createDigest(service: String, var argument: String?) -> String {
+
+    static func createDigest(service: String, var argument: String?) -> String {
         argument = argument ?? ""
-        return generateHMAC("HZiB188uvsNHIWa", data: service + argument!)
-        
+        return generateHMAC(requestKey, data: service + argument!)
+
     }
 
-    private class func generateHMAC(key: String, data: String) -> String {
+    private static func generateHMAC(key: String, data: String) -> String {
 
         var result: [CUnsignedChar]
         let cKey = key.cStringUsingEncoding(NSUTF8StringEncoding)!
@@ -68,7 +86,7 @@ typealias DataRequestCompletion = ([NSObject: AnyObject], AnyObject, NSError?)->
         for val in result {
             hash.appendFormat("%02hhx", val)
         }
-        
+
         return hash as String
     }
 }

@@ -35,7 +35,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.dataSource = UTCSDataSource(service: "quota", parser: DiskQuotaDataSourceParser())
+        self.dataSource = DataSource(service: .DiskQuota, parser: DiskQuotaDataSourceParser())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -100,36 +100,35 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     }
 
     func update(){
-        if dataSource!.shouldUpdate() {
-            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            hud.mode = .Indeterminate
-            hud.labelText = "Fetching"
-            dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
-                if success {
-                    self.nameLabel.text = self.dataSource!.data!["name"] as? String
-                    let limit = (self.dataSource!.data!["limit"] as? NSNumber)!.floatValue
-                    let usage = (self.dataSource!.data!["usage"] as? NSNumber)!.floatValue
-                    let percentageUsage = usage / limit
-                    self.meterView.progressTintColor = UIColor.whiteColor()
-                    self.meterView.progress = CGFloat(percentageUsage)
-                    self.percentLabel.text = NSString(format: "%0.2f%%", 100 * percentageUsage) as String
-                    self.quotaDetailLabel.text = NSString(format: "%.0f / %.0f MB", usage, limit) as String
-                    self.updatedLabel.text = "Updated" + NSDateFormatter.localizedStringFromDate(self.dataSource!.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        hud.mode = .Indeterminate
+        hud.labelText = "Fetching"
+        dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
+            if success {
+                self.nameLabel.text = self.dataSource!.data!["name"] as? String
+                let limit = (self.dataSource!.data!["limit"] as? NSNumber)!.floatValue
+                let usage = (self.dataSource!.data!["usage"] as? NSNumber)!.floatValue
+                let percentageUsage = usage / limit
+                self.meterView.progressTintColor = UIColor.whiteColor()
+                self.meterView.progress = CGFloat(percentageUsage)
+                self.percentLabel.text = NSString(format: "%0.2f%%", 100 * percentageUsage) as String
+                self.quotaDetailLabel.text = NSString(format: "%.0f / %.0f MB", usage, limit) as String
+                self.updatedLabel.text = "Updated" + NSDateFormatter.localizedStringFromDate(self.dataSource!.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
 
-                } else {
-                    self.updatedLabel.text = "Update failed"
-                }
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    let success: CGFloat = success ? 1.0 : 0.0
-                    self.serviceErrorView.alpha = 1.0 - success;
-                    self.quotaDetailLabel.alpha = success - 0.3;
-                    self.percentLabel.alpha = success;
-                    self.meterView.alpha = success;
-                    self.nameLabel.alpha = success;
-                    self.descriptionLabel.alpha  = 0.0;
-                })
-                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            } else {
+                self.updatedLabel.text = "Update failed"
             }
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                let success: CGFloat = success ? 1.0 : 0.0
+                self.serviceErrorView.alpha = 1.0 - success;
+                self.quotaDetailLabel.alpha = success - 0.3;
+                self.percentLabel.alpha = success;
+                self.meterView.alpha = success;
+                self.nameLabel.alpha = success;
+                self.descriptionLabel.alpha  = 0.0;
+            })
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
+
     }
 }

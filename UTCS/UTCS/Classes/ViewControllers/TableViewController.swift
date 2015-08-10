@@ -13,7 +13,7 @@ class TableViewController: UITableViewController, ContentController {
         imageView.clipsToBounds = true
         return imageView
     }()
-    var dataSource: UTCSDataSource?
+    var dataSource: DataSource?
     // Button used to scroll table view to top.
     var gestureButton: UIButton!
 

@@ -1,19 +1,19 @@
 let serviceName = "events";
 
 
-class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, StarredEventsViewControllerDelegate {
+class EventsViewController: HeaderTableViewController, DataSourceDelegate, StarredEventsViewControllerDelegate {
     // Name of the background image
     let backgroundImageName = "eventsBackground";
-    var eventsDataSource: UTCSEventsDataSource? {
+    var eventsDataSource: EventsDataSource? {
         get {
-            return dataSource as? UTCSEventsDataSource
+            return dataSource as? EventsDataSource
         }
         set(newValue) {
             dataSource = newValue
         }
 }
     var filterSegmentedControl: UISegmentedControl!
-    var filters = [("All", UIColor.whiteColor()), ("Talks", UIColor.utcsEventTalkColor()), ("Careers", UIColor.utcsEventCareersColor()),("Orgs", UIColor.utcsEventStudentOrgsColor())]
+    var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()),(.Orgs, UIColor.utcsEventStudentOrgsColor())]
     var filterButtonImageView: UIImageView!
     var starListButton: UIButton!
     var starredEventsViewController: StarredEventsViewController!
@@ -21,7 +21,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        dataSource = UTCSEventsDataSource(service: serviceName)
+        dataSource = EventsDataSource()
         dataSource!.delegate = self
         tableView.dataSource = eventsDataSource
         backgroundImageView.image = UIImage.cacheless_imageNamed(backgroundImageName)
@@ -86,14 +86,14 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
         }
     }
 
-    func filterEventsWithType(type: String) {
+    func filterEventsWithType(type: EventsDataSource.EventType) {
         if type != eventsDataSource!.currentFilterType {
             let indexPaths = eventsDataSource!.filterEventsWithType(type)
-            let addIndexPaths = indexPaths[UTCSEventsFilterAddName]
-            let removeIndexPaths = indexPaths[UTCSEventsFilterRemoveName]
+            let addIndexPaths = indexPaths[UTCSEventsFilterAddIndex]
+            let removeIndexPaths = indexPaths[UTCSEventsFilterRemoveIndex]
             tableView.beginUpdates()
-            tableView.deleteRowsAtIndexPaths(removeIndexPaths!, withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths(addIndexPaths!, withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
             tableView.endUpdates()
         }
     }
@@ -103,10 +103,9 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
         dataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
             self.activeHeaderView.showActiveAnimation(false)
             if self.dataSource!.data!.count > 0 {
-                let updateString = NSDateFormatter.localizedStringFromDate(self.dataSource!.updated, dateStyle: .LongStyle, timeStyle: .MediumStyle)
+                let updateString = NSDateFormatter.localizedStringFromDate(self.dataSource!.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
                 self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
                 if !cacheHit {
-                    self.eventsDataSource!.prepareFilter()
                     self.tableView.reloadData()
                 } else {
                     if success {
@@ -138,7 +137,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
                     let unzipped: [String] = {
                         var keys = [String]()
                         for item in filters {
-                            keys.append(item.0)
+                            keys.append(item.0.rawValue)
                         }
                         return keys
                     }()
@@ -191,7 +190,7 @@ class EventsViewController: HeaderTableViewController, UTCSDataSourceDelegate, S
         eventDetailViewController!.event = event as! UTCSEvent
         navigationController?.pushViewController(eventDetailViewController!, animated: true)
     }
-    func objectsToCacheForDataSource(dataSource: UTCSDataSource!) -> [NSObject : AnyObject]! {
+    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
         return [UTCSEventsDataSourceCacheKey: dataSource.data!]
     }
 

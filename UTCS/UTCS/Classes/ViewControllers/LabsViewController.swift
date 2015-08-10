@@ -1,20 +1,20 @@
 import MBProgressHUD
 
-class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataSourceDelegate {
+class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourceDelegate {
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
     var refreshButton: UIButton!
     var basementLabViewController: UTCSLabMachineViewController!
     var thirdFloorLabViewController: UTCSLabMachineViewController!
-    var labsDataSource: UTCSLabsDataSource! {
+    var labsDataSource: LabsDataSource! {
         get{
-            return dataSource as! UTCSLabsDataSource!
+            return dataSource as! LabsDataSource!
         }
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        dataSource = UTCSLabsDataSource(service: "labs")
+        dataSource = LabsDataSource()
         dataSource!.delegate = self
     }
 
@@ -93,11 +93,10 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         thirdFloorLabViewController.shimmeringView.shimmering = true
         basementLabViewController.shimmeringView.shimmering = true
 
-        if labsDataSource.shouldUpdate() {
-            let hud = MBProgressHUD.showHUDAddedTo(scrollView, animated: true)
-            hud.labelText = "Updating"
-            hud.mode = .Indeterminate
-        }
+        let hud = MBProgressHUD.showHUDAddedTo(scrollView, animated: true)
+        hud.labelText = "Updating"
+        hud.mode = .Indeterminate
+
 
         dataSource!.updateWithArgument(nil){ success, cachehit in
             self.thirdFloorLabViewController.shimmeringView.shimmering = false
@@ -136,7 +135,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, UTCSDataS
         basementLabViewController.imageOffset = CGPoint(x: basementOffset, y: 0.0)
     }
 
-    func objectsToCacheForDataSource(dataSource: UTCSDataSource!) -> [NSObject : AnyObject]! {
+    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
         return [UTCSLabsDataSourceCacheKey: dataSource.data!]
     }
 }

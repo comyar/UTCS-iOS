@@ -2,7 +2,7 @@ import MBProgressHUD
 let searchBarBackgroundImageName = "searchBarBackground";
 
 
-class DirectoryViewController: TableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, UTCSDataSourceDelegate {
+class DirectoryViewController: TableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, DataSourceDelegate {
     var appeared = false
     var errorView: ServiceErrorView!
     var searchController: UISearchController!
@@ -21,7 +21,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        dataSource = DirectoryDataSource(service: UTCSDirectoryServiceName)
+        dataSource = DirectoryDataSource()
         directoryDataSource.delegate = self
         view.backgroundColor = UIColor.clearColor()
         showsNavigationBarSeparatorLine = false
@@ -95,25 +95,24 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         }
     }
     func update(){
-        if dataSource!.shouldUpdate() {
-            let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            progressHUD.mode = .Indeterminate
-            progressHUD.labelText = "Syncing"
-            dataSource?.updateWithArgument(nil, completion: { (success, cacheHit) -> Void in
-                if success && !cacheHit {
-                    self.directoryDataSource.directoryPeopleSections = self.directoryDataSource.directoryPeople.createSectionedRepresentation()
-                    self.tableView.reloadData()
-                    self.tableView.contentOffset = CGPoint(x: 0.0, y: self.tableView.tableHeaderView!.frame.height)
-                }
-                UIView.animateWithDuration(0.3){
-                    let successValue: CGFloat = success ? 1.0 : 0.0
-                    self.searchController.searchBar.alpha = successValue
-                    self.tableView.alpha = successValue
-                    self.errorView.alpha = successValue
-                }
-                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-            })
+        let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        progressHUD.mode = .Indeterminate
+        progressHUD.labelText = "Syncing"
+        dataSource?.updateWithArgument(nil){ (success, cacheHit) -> Void in
+            if success && !cacheHit {
+                self.directoryDataSource.directoryPeopleSections = self.directoryDataSource.directoryPeople.createSectionedRepresentation()
+                self.tableView.reloadData()
+                self.tableView.contentOffset = CGPoint(x: 0.0, y: self.tableView.tableHeaderView!.frame.height)
+            }
+            UIView.animateWithDuration(0.3){
+                let successValue: CGFloat = success ? 1.0 : 0.0
+                self.searchController.searchBar.alpha = successValue
+                self.tableView.alpha = successValue
+                self.errorView.alpha = successValue
+            }
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
+
     }
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
@@ -164,7 +163,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         }
         return nil
     }
-    func objectsToCacheForDataSource(dataSource: UTCSDataSource!) -> [NSObject : AnyObject]! {
+    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
         return [UTCSDirectoryCacheKey: dataSource!.data!]
     }
     func configureAppearance(){

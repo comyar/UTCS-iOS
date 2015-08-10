@@ -1,3 +1,5 @@
+import Alamofire
+
 // Name of the news service.
 let UTCSNewsServiceName = "news"
 
@@ -13,20 +15,14 @@ let cellAccessoryImageName = "rightArrow"
 // Minimum time between updates
 let minimumTimeBetweenUpdates  = 86400.0  // 24 hours
 
-final class NewsDataSource: UTCSDataSource, UITableViewDataSource {
-    
-    override init!(service: String!) {
-        super.init(service: service)
-        parser = UTCSNewsDataSourceParser()
+final class NewsDataSource: DataSource, UITableViewDataSource {
+    init() {
+        super.init(service: .News, parser: UTCSNewsDataSourceParser())
         primaryCacheKey = UTCSNewsDataSourceCacheKey
-        cache = UTCSDataSourceCache(service: service)
-        let testCache = cache.objectWithKey(UTCSNewsDataSourceCacheKey)
-        let meta = testCache?[UTCSDataSourceCacheMetaDataName] as! UTCSDataSourceCacheMetaData?
-        data = testCache?[UTCSDataSourceCacheValuesName]
-        updated = meta?.timestamp
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+    @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as! NewsTableViewCell
         let article = data![indexPath.row]
         cell.title!.text = article.title
@@ -34,8 +30,15 @@ final class NewsDataSource: UTCSDataSource, UITableViewDataSource {
         return cell
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.count ?? 0
+    }
+
+    override func fetchData(completion: DataRequestCompletion) {
+        Alamofire.request(Router.News()).responseJSON { (_, _, JSON) -> Void in
+            completion(JSON.value!["meta"] as! [NSObject: AnyObject], JSON.value!["values"] as! [NSObject: AnyObject], nil)
+
+        }
     }
 
 }

@@ -1,11 +1,71 @@
-//
-//  UTCSEventsDataSource.m
-//  UTCS
-//
-//  Created by Comyar Zaheri on 3/28/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
 
+// Key associated with index paths added by a filter.
+let UTCSEventsFilterAddIndex = 0
+
+// Key associated with index paths added by a filter.
+let UTCSEventsFilterRemoveIndex  = 1
+
+// Key used to cache events.
+let UTCSEventsDataSourceCacheKey = "UTCSEventsDataSourceCacheKey"
+
+// Events table view cell identifier.
+let UTCSEventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
+
+@objc class EventsDataSource: DataSource, UITableViewDataSource {
+    // TODO: Move into Event model
+    enum EventType: String {
+        case All = "all"
+        case Careers = "careers"
+        case Talks = "talks"
+        case Orgs = "orgs"
+    }
+    var eventData: [UTCSEvent] {
+        get{
+            return data as! [UTCSEvent]
+        }
+    }
+    var currentFilterType = EventType.All
+    var filteredEvents = [UTCSEvent]()
+    var typeColorMapping = [EventType.Careers: UIColor.utcsEventCareersColor(),
+                                .Talks: UIColor.utcsEventTalkColor(),
+                                .Orgs: UIColor.utcsEventStudentOrgsColor()]
+    init(){
+        super.init(service: .Events, parser: UTCSEventsDataSourceParser())
+        minimumTimeBetweenUpdates = 3 * 60 * 3600
+
+    }
+    func filterEventsWithType(type: EventType) -> [[NSIndexPath]]{
+        return []
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return eventData.count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+}
+
+/*
+
+
+#pragma mark - UTCSEventsDataSource Interface
+
+/**
+UTCSEventsDataSource is a concrete class that handles downloading, parsing, and caching
+of UTCS events. UTCSEventsDataSource also acts at the table view data source for the
+UTCSEventsViewController.
+
+UTCSEventsDataSource should not be subclassed.
+*/
+@interface UTCSEventsDataSource : UTCSDataSource <UITableViewDataSource>
+
+// -----
+// @name Using an Events Data Source
+// -----
+
+#pragma mark Using an Events Data Source
+
+/**
 
 #pragma mark - Imports
 
@@ -18,20 +78,6 @@
 
 #pragma mark - Constants
 
-// Key associated with index paths added by a filter.
-NSString * const UTCSEventsFilterAddName        =           @"UTCSEventsFilterAddName";
-
-// Key associated with index paths added by a filter.
-NSString * const UTCSEventsFilterRemoveName                 = @"UTCSEventsFilterRemoveName";
-
-// Key used to cache events.
-NSString * const UTCSEventsDataSourceCacheKey               = @"UTCSEventsDataSourceCacheKey";
-
-// Events table view cell identifier.
-static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableViewCell";
-
-// Name of the image to use for a table view cell's accessory view.
-static NSString * const cellAccessoryImageName              = @"rightArrow";
 
 // Minimum time between updates, in seconds
 static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hours
@@ -210,3 +256,4 @@ static CGFloat minimumTimeBetweenUpdates                    = 10800.0;  // 3 hou
 }
 
 @end
+*/*/

@@ -23,19 +23,18 @@
 #import "UIButton+UTCSButton.h"
 
 
-#import "UTCSDataSource.h"
 #import "UTCSDataSourceParser.h"
 #import "UTCSSlideNavigationAnimator.h"
 
 #import "UTCSLabMachineView.h"
 #import "UTCSLabMachineViewController.h"
-#import "UTCSEventsDataSource.h"
 #import "UIColor+UTCSColors.h"
 #import "UTCSEventsDetailViewController.h"
 
 #import "UIButton+UTCSButton.h"
 #import "UTCSEvent.h"
-#import "UTCSLabsDataSource.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSNewsDataSourceParser.h"
+#import "UTCSEventsDataSourceParser.h"
+#import "UTCSLabsDataSourceParser.h"
 #import "UTCSSettingsDataSource.h"
