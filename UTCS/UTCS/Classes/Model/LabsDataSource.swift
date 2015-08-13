@@ -1,7 +1,8 @@
 var UTCSLabsDataSourceCacheKey = "UTCSLabsDataSourceCacheKey"
 class LabsDataSource: DataSource {
     init(){
-        super.init(service: .Labs, parser: UTCSLabsDataSourceParser())
+        super.init(service: .Labs, parser: LabsDataSourceParser())
+        primaryCacheKey = "UTCSLabsDataSourceCacheKey"
     }
 }
 /*
@@ -12,7 +13,7 @@ class LabsDataSource: DataSource {
 #import "UTCSDataSourceCache.h"
 #import "UTCSLabsDataSourceSearchController.h"
 
-NSString * const UTCSLabsDataSourceCacheKey = @"UTCSLabsDataSourceCacheKey";
+NSString * const UTCSLabsDataSourceCacheKey = @;
 
 @implementation UTCSLabsDataSource
 

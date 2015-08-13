@@ -1,3 +1,5 @@
+import SwiftyJSON
+
 // Key for the person's first name
 let firstNameKey = "fName"
 
@@ -20,24 +22,27 @@ let typeKey = "type"
 let imageURLKey = "image"
 
 
-class DirectoryDataSourceParser: UTCSDataSourceParser {
-    override func parseValues(values: AnyObject!) -> AnyObject! {
-        let values = values as! [[AnyObject]]
+class DirectoryDataSourceParser: DataSourceParser {
+    var parsedDirectory: [DirectoryPerson] {
+    get {
+    return parsed as! [DirectoryPerson]
+    }
+    }
+    override func parseValues(values: JSON) {
         var directory = [DirectoryPerson]()
-        for letter in values {
-            for personData in letter {
-                let person = DirectoryPerson()
-                person.firstName    = personData[firstNameKey] as? String
-                person.lastName     = personData[lastNameKey] as? String
-                person.fullName     = personData[fullNameKey] as? String
-                person.office       = personData[officeKey] as? String
-                person.phoneNumber  = personData[phoneKey] as? String
-                person.type         = personData[typeKey] as? String
-                person.imageURL     = NSURL(string: personData[imageURLKey] as! String)
-                directory.append(person)
-            }
+        for personData in values.arrayValue {
+            let person = DirectoryPerson()
+            person.firstName    = personData[firstNameKey].string
+            person.lastName     = personData[lastNameKey].string
+            person.fullName     = personData[fullNameKey].string
+            person.office       = personData[officeKey].string
+            person.phoneNumber  = personData[phoneKey].string
+            person.type         = personData[typeKey].string
+            person.imageURL     = personData[imageURLKey].URL
+            directory.append(person)
+
         }
-        return directory
+        parsed = directory
     }
 }
 

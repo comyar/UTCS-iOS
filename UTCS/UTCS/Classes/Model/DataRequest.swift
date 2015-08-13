@@ -1,7 +1,6 @@
 import Alamofire
 import CommonCrypto
-// Request URL
-
+import SwiftyJSON
 
 // Request API key
 let requestKey = "HZiB188uvsNHIWa"
@@ -20,7 +19,7 @@ enum Service: String {
     case Directory = "directory"
 }
 
-typealias DataRequestCompletion = ([NSObject: AnyObject], [NSObject: AnyObject], NSError?)->()
+typealias DataRequestCompletion = (JSON?, JSON?, NSError?)->()
 
 
 let requestURL = "http://www.cs.utexas.edu/users/mad/utcs-app-backend/"
@@ -58,7 +57,7 @@ enum Router: URLRequestConvertible {
         request.setValue("hmac ios:\(digest)", forHTTPHeaderField: "Authorization")
 
         let encoding = Alamofire.ParameterEncoding.URL
-        return encoding.encode(URLRequest, parameters: ["service": service, "arg": argument ?? ""]).0
+        return encoding.encode(request, parameters: ["service": service, "arg": argument ?? ""]).0
     }
 
     static func baseURL() -> String {

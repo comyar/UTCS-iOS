@@ -22,8 +22,6 @@
 #import "UIImage+CZScaling.h"
 #import "UIButton+UTCSButton.h"
 
-
-#import "UTCSDataSourceParser.h"
 #import "UTCSSlideNavigationAnimator.h"
 
 #import "UTCSLabMachineView.h"
@@ -34,7 +32,4 @@
 #import "UIButton+UTCSButton.h"
 #import "UTCSEvent.h"
 #import "UTCSDataSourceCache.h"
-#import "UTCSNewsDataSourceParser.h"
-#import "UTCSEventsDataSourceParser.h"
-#import "UTCSLabsDataSourceParser.h"
 #import "UTCSSettingsDataSource.h"

@@ -1,3 +1,5 @@
+import SwiftyJSON
+
 typealias DataSourceCompletion = (Bool, Bool) -> ()
 
 @objc protocol DataSourceDelegate {
@@ -11,26 +13,28 @@ extension DataSourceDelegate {
 class DataSource: NSObject {
     var minimumTimeBetweenUpdates: NSTimeInterval = 3600.0
     let service: Service
-    var parser: UTCSDataSourceParser!
+    var parser: DataSourceParser!
     var updated: NSDate?
     var data: AnyObject!
     var primaryCacheKey: String?
-    var cache: [NSObject: AnyObject]
+    var cache: UTCSDataSourceCache
     var delegate: DataSourceDelegate?
 
     init(service: Service){
         self.service = service
+        self.cache = UTCSDataSourceCache(service: service.rawValue)
     }
-    init(service: Service, parser: UTCSDataSourceParser){
+    init(service: Service, parser: DataSourceParser){
         self.service = service
         self.parser = parser
+        self.cache = UTCSDataSourceCache(service: service.rawValue)
     }
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?){
-        let cached = cache[primaryCacheKey!]
-        let metaData = cache[UTCSDataSourceCacheMetaDataName] as? UTCSDataSourceCacheMetaData
+        let cached = cache.objectWithKey(primaryCacheKey!)
+        let metaData = cache.objectWithKey(UTCSDataSourceCacheMetaDataName) as? UTCSDataSourceCacheMetaData
         if metaData != nil && NSDate().timeIntervalSinceDate(metaData!.timestamp) < minimumTimeBetweenUpdates{
-            data = cache[UTCSDataSourceCacheValuesName]
+            data = cache.objectWithKey(UTCSDataSourceCacheValuesName)
             updated = metaData!.timestamp
             completion?(true, true)
 
@@ -38,9 +42,12 @@ class DataSource: NSObject {
         }
 
         fetchData { (meta, values, error) -> () in
-            if meta["service"] as! String == self.service.rawValue && meta["success"] as! Bool {
+            if let values = values,
+                let meta = meta where
+                (meta["service"].string == self.service.rawValue && meta["success"].boolValue)  {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-                    self.data = self.parser.parseValues(values)
+                    self.parser.parseValues(values)
+                    self.data = parser.parsed
                     self.updated = NSDate()
                     dispatch_sync(dispatch_get_main_queue()) { () -> Void in
                         completion?(true, false)

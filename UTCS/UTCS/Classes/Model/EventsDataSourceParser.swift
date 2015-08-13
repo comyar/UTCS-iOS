@@ -1,23 +1,15 @@
-//
-//  UTCSEventsDataSourceParser.m
-//  UTCS
-//
-//  Created by Comyar Zaheri on 4/21/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
+import SwiftyJSON
 
-
-#pragma mark - Imports
-
-#import "UTCSEvent.h"
-#import "UTCSEventsDataSourceParser.h"
-
-
-
-#pragma mark - UTCSEventsDataSourceParser Implementation
-
-@implementation UTCSEventsDataSourceParser
-
+class EventsDataSourceParser: DataSourceParser {
+    override func parseValues(values: JSON) {
+        var events = [UTCSEvent]()
+        for eventData in values.array! {
+            let event = UTCSEvent()
+            event.name = eventData["name"].string
+        }
+    }
+}
+/*
 - (NSArray *)parseValues:(NSArray *)values
 {
     NSMutableArray *events = [NSMutableArray new];
@@ -59,3 +51,4 @@
 }
 
 @end
+*/

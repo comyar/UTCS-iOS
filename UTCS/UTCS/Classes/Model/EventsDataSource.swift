@@ -11,7 +11,7 @@ let UTCSEventsDataSourceCacheKey = "UTCSEventsDataSourceCacheKey"
 // Events table view cell identifier.
 let UTCSEventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
 
-@objc class EventsDataSource: DataSource, UITableViewDataSource {
+class EventsDataSource: DataSource, UITableViewDataSource {
     // TODO: Move into Event model
     enum EventType: String {
         case All = "all"
@@ -30,14 +30,14 @@ let UTCSEventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
                                 .Talks: UIColor.utcsEventTalkColor(),
                                 .Orgs: UIColor.utcsEventStudentOrgsColor()]
     init(){
-        super.init(service: .Events, parser: UTCSEventsDataSourceParser())
+        super.init(service: .Events, parser: EventsDataSourceParser())
         minimumTimeBetweenUpdates = 3 * 60 * 3600
 
     }
     func filterEventsWithType(type: EventType) -> [[NSIndexPath]]{
         return []
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventData.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

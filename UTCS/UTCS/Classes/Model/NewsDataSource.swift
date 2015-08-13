@@ -1,5 +1,5 @@
 import Alamofire
-
+import SwiftyJSON
 // Name of the news service.
 let UTCSNewsServiceName = "news"
 
@@ -17,7 +17,7 @@ let minimumTimeBetweenUpdates  = 86400.0  // 24 hours
 
 final class NewsDataSource: DataSource, UITableViewDataSource {
     init() {
-        super.init(service: .News, parser: UTCSNewsDataSourceParser())
+        super.init(service: .News, parser: NewsDataSourceParser())
         primaryCacheKey = UTCSNewsDataSourceCacheKey
     }
 
@@ -35,8 +35,13 @@ final class NewsDataSource: DataSource, UITableViewDataSource {
     }
 
     override func fetchData(completion: DataRequestCompletion) {
-        Alamofire.request(Router.News()).responseJSON { (_, _, JSON) -> Void in
-            completion(JSON.value!["meta"] as! [NSObject: AnyObject], JSON.value!["values"] as! [NSObject: AnyObject], nil)
+        Alamofire.request(Router.News()).responseJSON { (_, _, JSONResponse) -> Void in
+            guard JSONResponse.isSuccess else{
+                completion(nil, nil, JSONResponse.error)
+                return
+            }
+            let swiftyJSON = JSON(JSONResponse.value!)
+            completion(swiftyJSON["meta"], swiftyJSON["values"], nil)
 
         }
     }
