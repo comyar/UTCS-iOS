@@ -51,7 +51,7 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         activeHeaderView.showActiveAnimation(true)
         newsDataSource.updateWithArgument(nil){ success, cacheHit in
             self.activeHeaderView.showActiveAnimation(false)
-            if self.newsDataSource.data?.count ?? 0 > 0 {
+            if self.newsDataSource.articleData.count > 0 {
                 let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
                 self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
             } else {

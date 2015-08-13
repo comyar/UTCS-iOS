@@ -1,4 +1,5 @@
 import SwiftyJSON
+import Alamofire
 
 typealias DataSourceCompletion = (Bool, Bool) -> ()
 
@@ -19,6 +20,11 @@ class DataSource: NSObject {
     var primaryCacheKey: String?
     var cache: UTCSDataSourceCache
     var delegate: DataSourceDelegate?
+    var router: Router {
+        get {
+            fatalError("Subclasses must provide their own Routers")
+        }
+    }
 
     init(service: Service){
         self.service = service
@@ -62,7 +68,15 @@ class DataSource: NSObject {
 
     }
     func fetchData(completion: DataRequestCompletion) {
-        fatalError("Data sources must implement fetchData")
+        Alamofire.request(router).responseJSON { (_, _, JSONResponse) -> Void in
+            guard JSONResponse.isSuccess else{
+                completion(nil, nil, JSONResponse.error)
+                return
+            }
+            let swiftyJSON = JSON(JSONResponse.value!)
+            completion(swiftyJSON["meta"], swiftyJSON["values"], nil)
+
+        }
     }
 
 

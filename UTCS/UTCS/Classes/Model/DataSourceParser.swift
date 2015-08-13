@@ -9,7 +9,7 @@ class DataSourceParser {
     }()
 
     func parseValues(values: JSON){
-        
+        fatalError("Parsers must implement parseValues")
     }
 
 }

@@ -11,6 +11,8 @@
 		0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A26381891D5E30032DA03 /* CoreGraphics.framework */; };
 		0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
+		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
+		D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C697B1B7D363B005E3719 /* QuotaData.swift */; };
 		D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A79201B5B38190049C683 /* NewsTableViewCell.xib */; };
 		D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */; };
 		D4280C191B2E11130090F8C6 /* ActiveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */; };
@@ -140,6 +142,8 @@
 		88EABA07A3811E48149CDA98 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
 		91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C0E9A6409F3D1BA5F08593 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
+		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
+		D40C697B1B7D363B005E3719 /* QuotaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotaData.swift; path = Model/QuotaData.swift; sourceTree = "<group>"; };
 		D41A79201B5B38190049C683 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsTableViewCell.xib; path = Views/NewsTableViewCell.xib; sourceTree = "<group>"; };
 		D4280C151B2E0E770090F8C6 /* UTCS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UTCS-Bridging-Header.h"; path = "Classes/UTCS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveHeaderView.swift; path = Views/ActiveHeaderView.swift; sourceTree = "<group>"; };
@@ -543,6 +547,8 @@
 				D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */,
 				D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */,
 				D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */,
+				D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */,
+				D40C697B1B7D363B005E3719 /* QuotaData.swift */,
 			);
 			name = "Disk Quota";
 			sourceTree = "<group>";
@@ -1071,6 +1077,7 @@
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */,
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
+				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
@@ -1095,6 +1102,7 @@
 				D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */,
 				DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */,
 				DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */,
+				D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */,
 				DD95E7501920964A0062F4E9 /* UTCSStarredEventsDataSource.m in Sources */,
 				D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */,
 				D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */,

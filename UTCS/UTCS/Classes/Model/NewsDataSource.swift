@@ -16,11 +16,23 @@ let cellAccessoryImageName = "rightArrow"
 let minimumTimeBetweenUpdates  = 86400.0  // 24 hours
 
 final class NewsDataSource: DataSource, UITableViewDataSource {
+
+    var articleData: [UTCSNewsArticle] {
+        get {
+            return data as! [UTCSNewsArticle]
+        }
+    }
+
+    override var router: Router {
+        get {
+            return Router.News()
+        }
+    }
+
     init() {
         super.init(service: .News, parser: NewsDataSourceParser())
         primaryCacheKey = UTCSNewsDataSourceCacheKey
     }
-
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as! NewsTableViewCell
@@ -34,16 +46,5 @@ final class NewsDataSource: DataSource, UITableViewDataSource {
         return data?.count ?? 0
     }
 
-    override func fetchData(completion: DataRequestCompletion) {
-        Alamofire.request(Router.News()).responseJSON { (_, _, JSONResponse) -> Void in
-            guard JSONResponse.isSuccess else{
-                completion(nil, nil, JSONResponse.error)
-                return
-            }
-            let swiftyJSON = JSON(JSONResponse.value!)
-            completion(swiftyJSON["meta"], swiftyJSON["values"], nil)
-
-        }
-    }
 
 }

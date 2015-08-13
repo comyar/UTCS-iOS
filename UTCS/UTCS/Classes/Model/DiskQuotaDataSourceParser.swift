@@ -1,12 +1,11 @@
 import SwiftyJSON
 class DiskQuotaDataSourceParser: DataSourceParser {
     override func parseValues(values: JSON) {
-        var values = values as! [String: AnyObject]
-        var parsed = [String: AnyObject]()
-        for (key, _) in values {
-            if values[key] != nil {
-                parsed[key] = values[key]
-            }
-        }
+        let quotaData = QuotaData()
+        quotaData.limit = values["limit"].int
+        quotaData.usage = values["usage"].double
+        quotaData.user = values["user"].string
+        quotaData.name = values["name"].string
+        parsed = quotaData
     }
 }

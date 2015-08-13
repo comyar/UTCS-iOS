@@ -33,9 +33,15 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     // Textfield used to input the user's username
     @IBOutlet var usernameTextField: JVFloatLabeledTextField!
 
+    var quotaDataSource: DiskQuotaDataSource {
+        get {
+            return dataSource as! DiskQuotaDataSource
+        }
+    }
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.dataSource = DataSource(service: .DiskQuota, parser: DiskQuotaDataSourceParser())
+        self.dataSource = DiskQuotaDataSource(service: .DiskQuota, parser: DiskQuotaDataSourceParser())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -105,10 +111,10 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         hud.labelText = "Fetching"
         dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
             if success {
-                self.nameLabel.text = self.dataSource!.data!["name"] as? String
-                let limit = (self.dataSource!.data!["limit"] as? NSNumber)!.floatValue
-                let usage = (self.dataSource!.data!["usage"] as? NSNumber)!.floatValue
-                let percentageUsage = usage / limit
+                self.nameLabel.text = self.quotaDataSource.quotaData.name
+                let limit = self.quotaDataSource.quotaData.limit
+                let usage = self.quotaDataSource.quotaData.usage
+                let percentageUsage = usage / Double(limit)
                 self.meterView.progressTintColor = UIColor.whiteColor()
                 self.meterView.progress = CGFloat(percentageUsage)
                 self.percentLabel.text = NSString(format: "%0.2f%%", 100 * percentageUsage) as String

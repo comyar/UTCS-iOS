@@ -8,9 +8,6 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         get {
             return dataSource as? EventsDataSource
         }
-        set(newValue) {
-            dataSource = newValue
-        }
 }
     var filterSegmentedControl: UISegmentedControl!
     var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()),(.Orgs, UIColor.utcsEventStudentOrgsColor())]
@@ -102,7 +99,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         activeHeaderView.showActiveAnimation(true)
         dataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
             self.activeHeaderView.showActiveAnimation(false)
-            if self.dataSource!.data!.count > 0 {
+            if self.eventsDataSource?.eventData?.count ?? 0 > 0 {
                 let updateString = NSDateFormatter.localizedStringFromDate(self.dataSource!.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
                 self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
                 if !cacheHit {
@@ -187,7 +184,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         if !(eventDetailViewController != nil) {
             eventDetailViewController = UTCSEventsDetailViewController()
         }
-        eventDetailViewController!.event = event as! UTCSEvent
+        eventDetailViewController!.event = event
         navigationController?.pushViewController(eventDetailViewController!, animated: true)
     }
     func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
