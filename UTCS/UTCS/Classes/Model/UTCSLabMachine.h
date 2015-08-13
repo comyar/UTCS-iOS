@@ -37,12 +37,12 @@
 /**
  Status of the machine (up or down)
  */
-@property (nonatomic) NSString *status;
+@property (nonatomic) bool status;
 
 /**
  YES if the machine is physically occupied
  */
-@property (nonatomic) BOOL occupied;
+@property (nonatomic) bool occupied;
 
 /**
  Current load on the machine

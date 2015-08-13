@@ -1,5 +1,6 @@
-class DiskQuotaDataSourceParser: UTCSDataSourceParser {
-    override func parseValues(values: AnyObject!) -> AnyObject! {
+import SwiftyJSON
+class DiskQuotaDataSourceParser: DataSourceParser {
+    override func parseValues(values: JSON) {
         var values = values as! [String: AnyObject]
         var parsed = [String: AnyObject]()
         for (key, _) in values {
@@ -7,6 +8,5 @@ class DiskQuotaDataSourceParser: UTCSDataSourceParser {
                 parsed[key] = values[key]
             }
         }
-        return parsed
     }
 }

@@ -23,7 +23,7 @@
 #import "UIButton+UTCSButton.h"
 
 #import "UTCSSlideNavigationAnimator.h"
-
+#import "UTCSLabMachine.h"
 #import "UTCSLabMachineView.h"
 #import "UTCSLabMachineViewController.h"
 #import "UIColor+UTCSColors.h"

@@ -47,7 +47,7 @@ class DataSource: NSObject {
                 (meta["service"].string == self.service.rawValue && meta["success"].boolValue)  {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
                     self.parser.parseValues(values)
-                    self.data = parser.parsed
+                    self.data = self.parser.parsed
                     self.updated = NSDate()
                     dispatch_sync(dispatch_get_main_queue()) { () -> Void in
                         completion?(true, false)
@@ -62,7 +62,7 @@ class DataSource: NSObject {
 
     }
     func fetchData(completion: DataRequestCompletion) {
-        ()
+        fatalError("Data sources must implement fetchData")
     }
 
 

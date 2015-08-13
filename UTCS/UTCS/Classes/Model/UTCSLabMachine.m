@@ -49,7 +49,7 @@ static NSString * const loadKey        = @"load";
     [aCoder encodeObject:self.lab       forKey:labKey];
     [aCoder encodeObject:self.name      forKey:nameKey];
     [aCoder encodeObject:self.uptime    forKey:uptimeKey];
-    [aCoder encodeObject:self.status    forKey:statusKey];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.status]    forKey:statusKey];
     [aCoder encodeBool:self.occupied    forKey:occupiedKey];
     [aCoder encodeFloat:self.load       forKey:loadKey];
 }

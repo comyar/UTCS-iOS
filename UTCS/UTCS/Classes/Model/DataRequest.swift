@@ -54,7 +54,7 @@ enum Router: URLRequestConvertible {
         // set header fields
         let digest = Router.createDigest(service, argument: argument)
         let request = NSMutableURLRequest(URL: URL)
-        request.setValue("hmac ios:\(digest)", forHTTPHeaderField: "Authorization")
+        request.setValue("hmac ios:\(digest)", forHTTPHeaderField: "authentication")
 
         let encoding = Alamofire.ParameterEncoding.URL
         return encoding.encode(request, parameters: ["service": service, "arg": argument ?? ""]).0

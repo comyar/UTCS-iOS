@@ -1,46 +1,30 @@
-//
-//  UTCSLabsDataSourceParser.m
-//  UTCS
-//
-//  Created by Comyar Zaheri on 4/22/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
+import SwiftyJSON
 
-#import "UTCSLabsDataSourceParser.h"
-#import "UTCSLabMachine.h"
-
-@implementation UTCSLabsDataSourceParser
-
-- (NSDictionary *)parseValues:(NSDictionary *)values
-{
-    NSDictionary *third     = values[@"third"];
-    NSDictionary *basement  = values[@"basement"];
-    
-    
-    NSDictionary *thirdMachines      = [self parseDataFromDictionary:third withLabName:@"third"];
-    NSDictionary *basementMachines   = [self parseDataFromDictionary:basement withLabName:@"basement"];
-    
-    return @{@"third" : thirdMachines,
-             @"basement" : basementMachines};
-}
-
-- (NSDictionary *)parseDataFromDictionary:(NSDictionary *)dictionary withLabName:(NSString *)labName
-{
-    NSMutableDictionary *machines = [NSMutableDictionary new];
-    
-    for (NSString *machineName in dictionary) {
-        NSDictionary *machineData = dictionary[machineName];
-        UTCSLabMachine *machine = [UTCSLabMachine new];
-        machine.lab             = @"third";
-        machine.name            = machineName;
-        machine.load            = [machineData[@"load"]floatValue];
-        machine.occupied        = [machineData[@"occupied"]boolValue];
-        machine.status          = machineData[@"status"];
-        machine.uptime          = machineData[@"uptime"];
-        machines[machineName] = machine;
+class LabsDataSourceParser: DataSourceParser {
+    var parsedMachines: [String: [String: UTCSLabMachine]] {
+    get {
+    return parsed as! [String: [String: UTCSLabMachine]]
     }
-    
-    return machines;
-}
+    }
+    override func parseValues(values: JSON) {
+        let thirdData = values["third"].array
+        let basementData = values["basement"].array
+        parsed = ["third": parseFloor(thirdData!, labName: "third"),
+            "basement": parseFloor(basementData!, labName: "basement")]
+    }
 
-@end
+    private func parseFloor(floor: [JSON], labName: String) -> [String: UTCSLabMachine]{
+        var machines = [String: UTCSLabMachine]()
+        for machineData in floor {
+            let machine = UTCSLabMachine()
+            machine.lab = labName
+            machine.name = machineData["name"].string
+            machine.load = CGFloat(machineData["load"].float!)
+            machine.occupied = machineData["occupied"].bool!
+            machine.status = machineData["up"].bool!
+            machine.uptime = machineData["uptime"].string
+            machines[machine.name] = machine
+        }
+        return machines
+    }
+}

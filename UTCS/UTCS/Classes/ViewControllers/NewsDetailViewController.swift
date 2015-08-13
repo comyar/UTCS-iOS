@@ -130,7 +130,7 @@ class NewsDetailViewController: UIViewController {
             activityItems.append( title + "\n")
         }
         if let url = newsArticle?.url {
-            activityItems.append(url)
+            activityItems.append(url.description)
         }
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypeSaveToCameraRoll]

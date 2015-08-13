@@ -33,7 +33,7 @@
 /**
  URL to the news article online.
  */
-@property (nonatomic) NSString                  *url;
+@property (nonatomic) NSURL                  *url;
 
 /**
  Date the news article was published.
