@@ -9,7 +9,7 @@ let UTCSDirectoryTableViewCellIdentifier = "UTCSDirectoryTableViewCell"
 let UTCSDirectoryCacheKey = "UTCSDirectoryCacheKey"
 
 
-class DirectoryDataSource: DataSource, UITableViewDataSource {
+final class DirectoryDataSource: DataSource, UITableViewDataSource {
     var directoryPeople: [DirectoryPerson]! {
         get{
             return data as! [DirectoryPerson]
@@ -18,10 +18,16 @@ class DirectoryDataSource: DataSource, UITableViewDataSource {
     var directoryPeopleSections: [[DirectoryPerson]]?
     var filtered: [DirectoryPerson]!
     var searchController: UISearchController!
+    override var router: Router {
+        get{
+            return Router.Directory()
+        }
+    }
+
     init() {
         super.init(service: .Directory, parser: DirectoryDataSourceParser())
-        primaryCacheKey = UTCSDirectoryCacheKey
     }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier(UTCSDirectoryTableViewCellIdentifier)
         let cell = BouncyTableViewCell(style: .Subtitle, reuseIdentifier: UTCSDirectoryTableViewCellIdentifier)

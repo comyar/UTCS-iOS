@@ -1,10 +1,10 @@
 import SwiftyJSON
 
 // Key for the person's first name
-let firstNameKey = "fName"
+let firstNameKey = "fname"
 
 // Key for the person's last name
-let lastNameKey = "lName"
+let lastNameKey = "lname"
 
 // Key for the person's full name
 let fullNameKey = "name"

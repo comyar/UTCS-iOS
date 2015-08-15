@@ -29,7 +29,6 @@ final class EventsDataSource: DataSource, UITableViewDataSource {
             return Router.Events()
         }
     }
-
     var currentFilterType = EventType.All
     var filteredEvents = [UTCSEvent]()
     var typeColorMapping = [EventType.Careers: UIColor.utcsEventCareersColor(),
@@ -38,7 +37,7 @@ final class EventsDataSource: DataSource, UITableViewDataSource {
     init(){
         super.init(service: .Events, parser: EventsDataSourceParser())
         minimumTimeBetweenUpdates = 3 * 60 * 60
-        primaryCacheKey = UTCSEventsDataSourceCacheKey
+
 
     }
     func filterEventsWithType(type: EventType) -> [[NSIndexPath]]{

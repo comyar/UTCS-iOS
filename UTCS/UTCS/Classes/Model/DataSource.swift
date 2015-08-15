@@ -14,10 +14,10 @@ extension DataSourceDelegate {
 class DataSource: NSObject {
     var minimumTimeBetweenUpdates: NSTimeInterval = 3600.0
     let service: Service
+    var argument: String?
     var parser: DataSourceParser!
     var updated: NSDate?
     var data: AnyObject!
-    var primaryCacheKey: String?
     var cache: UTCSDataSourceCache
     var delegate: DataSourceDelegate?
     var router: Router {
@@ -37,7 +37,8 @@ class DataSource: NSObject {
     }
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?){
-        let cached = cache.objectWithKey(primaryCacheKey!)
+        self.argument = argument
+        let cached = cache.objectWithKey(service.rawValue)
         let metaData = cache.objectWithKey(UTCSDataSourceCacheMetaDataName) as? UTCSDataSourceCacheMetaData
         if metaData != nil && NSDate().timeIntervalSinceDate(metaData!.timestamp) < minimumTimeBetweenUpdates{
             data = cache.objectWithKey(UTCSDataSourceCacheValuesName)

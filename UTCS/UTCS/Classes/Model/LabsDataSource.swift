@@ -1,8 +1,12 @@
 var UTCSLabsDataSourceCacheKey = "UTCSLabsDataSourceCacheKey"
-class LabsDataSource: DataSource {
+final class LabsDataSource: DataSource {
+    override var router: Router {
+        get{
+            return Router.Labs()
+        }
+    }
     init(){
         super.init(service: .Labs, parser: LabsDataSourceParser())
-        primaryCacheKey = "UTCSLabsDataSourceCacheKey"
     }
 }
 /*

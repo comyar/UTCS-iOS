@@ -2,9 +2,9 @@ import SwiftyJSON
 
 class DataSourceParser {
     var parsed: AnyObject!
-    let dateFormatter: NSDateFormatter = {
+    static let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter
     }()
 

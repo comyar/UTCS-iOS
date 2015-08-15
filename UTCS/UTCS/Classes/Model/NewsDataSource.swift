@@ -3,9 +3,6 @@ import SwiftyJSON
 // Name of the news service.
 let UTCSNewsServiceName = "news"
 
-// Key used to cache news articles.
-let UTCSNewsDataSourceCacheKey = "UTCSNewsDataSourceCacheKey"
-
 // News table view cell identifier.
 let UTCSNewsTableViewCellIdentifier = "NewsCell"
 
@@ -31,7 +28,6 @@ final class NewsDataSource: DataSource, UITableViewDataSource {
 
     init() {
         super.init(service: .News, parser: NewsDataSourceParser())
-        primaryCacheKey = UTCSNewsDataSourceCacheKey
     }
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

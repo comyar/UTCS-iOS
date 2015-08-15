@@ -118,7 +118,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
                 self.meterView.progressTintColor = UIColor.whiteColor()
                 self.meterView.progress = CGFloat(percentageUsage)
                 self.percentLabel.text = NSString(format: "%0.2f%%", 100 * percentageUsage) as String
-                self.quotaDetailLabel.text = NSString(format: "%.0f / %.0f MB", usage, limit) as String
+                self.quotaDetailLabel.text = NSString(format: "%.0f / %.0f MB", usage, Double(limit)) as String
                 self.updatedLabel.text = "Updated" + NSDateFormatter.localizedStringFromDate(self.dataSource!.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
 
             } else {

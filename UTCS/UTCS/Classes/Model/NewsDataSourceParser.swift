@@ -29,7 +29,7 @@ class NewsDataSourceParser: DataSourceParser {
                 }
             }
 
-            article.date = dateFormatter.dateFromString(articleData[NewsDataSourceParser.dateKey].string!)
+            article.date = DataSourceParser.dateFormatter.dateFromString(articleData[NewsDataSourceParser.dateKey].string!)
             setHeaderImageForArticle(article)
             articles.append(article)
 

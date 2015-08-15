@@ -11,9 +11,9 @@ final class EventsDataSourceParser: DataSourceParser {
             event.allDay = eventData["allday"].bool!
             event.location = eventData["location"].string
             event.eventDescription = eventData["description"].string
-            event.startDate = dateFormatter.dateFromString(eventData["startdate"].string!)
+            event.startDate = DataSourceParser.dateFormatter.dateFromString(eventData["startdate"].string!)
             if let enddate = eventData["enddate"].string {
-                event.endDate = dateFormatter.dateFromString(enddate)
+                event.endDate = DataSourceParser.dateFormatter.dateFromString(enddate)
             }
                 events.append(event)
         }

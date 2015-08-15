@@ -6,7 +6,8 @@ final class DiskQuotaDataSource: DataSource {
     }
     override var router: Router {
         get{
-            return Router.Quota(username: "nwalker")
+            return Router.Quota(username: argument ?? "")
         }
     }
+
 }

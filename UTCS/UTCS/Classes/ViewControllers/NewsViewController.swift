@@ -70,12 +70,6 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         }
     }
 
-    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
-        if dataSource.data == nil {
-            return nil
-        }
-        return [UTCSNewsDataSourceCacheKey: dataSource.data!]
-    }
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.setHighlighted(true, animated: true)
