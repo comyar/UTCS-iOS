@@ -19,7 +19,7 @@ let alphaAnimationKey = "alpha";
 // Key to identify the bounce animation
 let bounceAnimationKey  = "bounce";
 
-enum UTCSBouncyTableViewCellBounceDirection: Int {
+enum BouncyTableViewCellBounceDirection: Int {
     case Down, Up
 }
 
@@ -46,7 +46,7 @@ class BouncyTableViewCell: UITableViewCell {
             self.bounceWithDirection(.Up)
         }
     }
-    func bounceWithDirection(direction: UTCSBouncyTableViewCellBounceDirection){
+    func bounceWithDirection(direction: BouncyTableViewCellBounceDirection){
         var scaleValue = NSValue(CGPoint: CGPoint(x: 1.0, y: 1.0))
         let isDown = direction == .Down
         if isDown {

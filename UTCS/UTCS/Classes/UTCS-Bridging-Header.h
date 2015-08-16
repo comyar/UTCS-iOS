@@ -16,11 +16,8 @@
 #import "UTCSNewsArticle.h"
 
 #import "UIImage+CZTinting.h"
-#import "UIButton+UTCSButton.h"
 #import "UIImage+Cacheless.h"
-
 #import "UIImage+CZScaling.h"
-#import "UIButton+UTCSButton.h"
 
 #import "UTCSSlideNavigationAnimator.h"
 #import "UTCSLabMachine.h"
@@ -29,7 +26,6 @@
 #import "UIColor+UTCSColors.h"
 #import "UTCSEventsDetailViewController.h"
 
-#import "UIButton+UTCSButton.h"
 #import "UTCSEvent.h"
 #import "UTCSDataSourceCache.h"
 #import "UTCSSettingsDataSource.h"

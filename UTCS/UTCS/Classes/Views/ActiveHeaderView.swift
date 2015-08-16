@@ -39,7 +39,7 @@ class ActiveHeaderView: UIView{
     }
 
     func showActiveAnimation(show: Bool) {
-                downArrowImageView.tintColor = UIColor.whiteColor()
+        downArrowImageView.tintColor = UIColor.whiteColor()
         if (show) {
             activityIndicatorView.startAnimating()
         } else {
@@ -48,10 +48,9 @@ class ActiveHeaderView: UIView{
 
         self.shimmeringView.shimmering = show
         UIView.animateWithDuration(animationDuration){
-            let starting: CGFloat = show ? 1.0 : 0.0
-            self.updatedLabel.alpha = 1.0 - starting
-            self.downArrowImageView.alpha   = 1.0 - starting
-            self.activityIndicatorView.alpha = starting
+            self.updatedLabel.alpha = show ? 0.0 : 0.45
+            self.downArrowImageView.alpha   = show ? 0.0 : 0.45
+            self.activityIndicatorView.alpha = show ? 1.0 : 0.0
         }
     }
 }

@@ -28,7 +28,8 @@ class HeaderTableViewController: TableViewController {
         super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         if keyPath == contentOffsetPropertyString {
             let normalizedOffsetDelta = max(tableView.contentOffset.y / CGRectGetHeight(tableView.bounds), 0.0)
-            //modify blur here
+            blurView.alpha = normalizedOffsetDelta
+            navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor().colorWithAlphaComponent(normalizedOffsetDelta)
         }
     }
 

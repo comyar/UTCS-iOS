@@ -6,7 +6,8 @@ let maximumNavigationBarSeparatorLineAlpha: CGFloat = 0.75
 
 
 class TableViewController: UITableViewController, ContentController {
-    var menuButton: UIButton = UIButton.menuButton()
+    var menuButton = UIBarButtonItem.menuButton()
+    var blurView: UIVisualEffectView!
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFill
@@ -38,6 +39,7 @@ class TableViewController: UITableViewController, ContentController {
     }
 
     override init(style: UITableViewStyle) {
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         backgroundImageName = "defaultBackground"
         super.init(style: .Plain)
         commonInit()
@@ -63,7 +65,7 @@ class TableViewController: UITableViewController, ContentController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureOnLoad()
-        view.insertSubview(gestureButton, aboveSubview: menuButton)
+        navigationItem.leftBarButtonItem = menuButton
         view.insertSubview(navigationBarSeparatorLineView, aboveSubview: tableView)
     }
 
@@ -79,7 +81,6 @@ class TableViewController: UITableViewController, ContentController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         configureOnAppear()
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func willMoveToParentViewController(parent: UIViewController?) {
@@ -87,7 +88,6 @@ class TableViewController: UITableViewController, ContentController {
         let navigationBarHeight = CGRectGetHeight(navigationController!.navigationBar.bounds)
         tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - navigationBarHeight)
         gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(view.bounds), navigationBarHeight)
-        view.insertSubview(gestureButton, belowSubview: menuButton)
         navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), navigationBarSeparatorLineHeight)
         view.bringSubviewToFront(navigationBarSeparatorLineView)
     }
@@ -117,18 +117,17 @@ class TableViewController: UITableViewController, ContentController {
     }
 
     func configureOnLoad(){
-        view.addSubview(backgroundImageView)
-        view.addSubview(menuButton)
+        view.addSubview(blurView)
+        view.insertSubview(backgroundImageView, belowSubview: blurView)
     }
     
     func configureOnLayout(){
+        blurView.frame = view.bounds
         backgroundImageView.frame = view.bounds
-        menuButton.center = CGPoint(x: 33, y: 22)
-        view.bringSubviewToFront(menuButton)
+        view.sendSubviewToBack(blurView)
         view.sendSubviewToBack(backgroundImageView)
     }
     
     func configureOnAppear(){
-        view.bringSubviewToFront(menuButton)
     }
 }

@@ -12,7 +12,6 @@
 #import "UTCSEvent.h"
 #import "UTCSStateManager.h"
 #import "UIColor+UTCSColors.h"
-#import "UIButton+UTCSButton.h"
 #import "NSString+CZContains.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSStarredEventsManager.h"

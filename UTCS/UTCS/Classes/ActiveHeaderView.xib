@@ -47,6 +47,9 @@
                     <rect key="frame" x="268" y="496" width="46" height="24"/>
                     <animations/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="yD0-lD-D8X"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTz-s0-eLd">
                     <rect key="frame" x="16" y="568" width="31" height="16"/>

@@ -4,11 +4,6 @@ let headerTitleText = "UTCS News"
 // Header subtitle text
 let headerSubtitleText = "What Starts Here Changes the World"
 
-// Name of the background image
-let backgroundImageName = "newsBackground"
-
-
-
 class NewsViewController: HeaderTableViewController, DataSourceDelegate {
 
     // View controller used to display a specific news story
@@ -57,6 +52,9 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
             } else {
                 if !success {
                     self.activeHeaderView.updatedLabel.text = "Please check your network connection."
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.activeHeaderView.downArrowImageView.alpha = 0.0
+                    })
                 } else {
                     self.activeHeaderView.updatedLabel.text = "No articles available."
                 }
@@ -64,9 +62,7 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
             if success && !cacheHit {
                 self.tableView.reloadData()
             }
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.activeHeaderView.downArrowImageView.alpha = success ? 1.0 : 0.0
-            })
+
         }
     }
 

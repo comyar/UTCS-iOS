@@ -22,8 +22,6 @@ class DirectoryDetailViewController: TableViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        menuButton.hidden = true
     }
     func formattedPhoneNumberWithString(phoneNumber: String) -> (String) {
         if phoneNumber.characters.count == 10 {

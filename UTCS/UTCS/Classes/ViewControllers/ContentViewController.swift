@@ -1,5 +1,5 @@
 @objc protocol ContentController {
-    var menuButton: UIButton! { get set }
+    var menuButton: UIBarButtonItem! { get set }
     var backgroundImageView: UIImageView! { get set }
     var backgroundImageName: String {get set}
     var dataSource: DataSource? { get set }
@@ -10,7 +10,7 @@
 }
 
 @objc class ContentViewController: UIViewController, ContentController  {
-    var menuButton: UIButton = UIButton.menuButton()
+    var menuButton = UIBarButtonItem(title: "Menu", style: .Plain, target: nil, action: "")
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFill
@@ -59,15 +59,11 @@
     }
     func configureOnLoad(){
         view.addSubview(backgroundImageView)
-        view.addSubview(menuButton)
     }
     func configureOnLayout(){
         backgroundImageView.frame = view.bounds
-        menuButton.center = CGPoint(x: 33, y: 22)
-        view.bringSubviewToFront(menuButton)
         view.sendSubviewToBack(backgroundImageView)
     }
     func configureOnAppear(){
-        view.bringSubviewToFront(menuButton)
     }
 }

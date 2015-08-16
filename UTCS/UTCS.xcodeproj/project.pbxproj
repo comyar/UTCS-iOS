@@ -44,6 +44,7 @@
 		D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4A1B4F454F009F1EA1 /* NewsViewController.swift */; };
 		D46C7C4D1B4F4F2E009F1EA1 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
 		D482C1AB1B3CDE8E00645C23 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482C1AA1B3CDE8E00645C23 /* NewsDetailViewController.swift */; };
+		D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */; };
 		D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */; };
 		D4BA71CC1B42177B007C09F6 /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CD1B421819007C09F6 /* ContentViewController.swift */; };
@@ -81,7 +82,6 @@
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
 		DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */; };
-		DD9402FC190F5CBB008E9814 /* UIButton+UTCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */; };
 		DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */; };
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
 		DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475C6190B38AC0049FB8B /* UTCSLabView.m */; };
@@ -180,6 +180,7 @@
 		D46C7C4A1B4F454F009F1EA1 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = ViewControllers/NewsViewController.swift; sourceTree = "<group>"; };
 		D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabsViewController.swift; path = ViewControllers/LabsViewController.swift; sourceTree = "<group>"; };
 		D482C1AA1B3CDE8E00645C23 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDetailViewController.swift; path = ViewControllers/NewsDetailViewController.swift; sourceTree = "<group>"; };
+		D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButton+UTCSButton.swift"; path = "UTCS/Classes/Model/UIBarButton+UTCSButton.swift"; sourceTree = SOURCE_ROOT; };
 		D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D4BA71CD1B421819007C09F6 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentViewController.swift; path = ViewControllers/ContentViewController.swift; sourceTree = "<group>"; };
 		D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaViewController.swift; path = ViewControllers/DiskQuotaViewController.swift; sourceTree = "<group>"; };
@@ -224,8 +225,6 @@
 		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachine.m; path = Model/UTCSLabMachine.m; sourceTree = "<group>"; };
 		DD8989A41903141C000F1041 /* UTCSDataSourceCacheMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCacheMetaData.h; path = Model/UTCSDataSourceCacheMetaData.h; sourceTree = "<group>"; };
 		DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCacheMetaData.m; path = Model/UTCSDataSourceCacheMetaData.m; sourceTree = "<group>"; };
-		DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+UTCSButton.h"; path = "UTCS/Classes/Model/UIButton+UTCSButton.h"; sourceTree = SOURCE_ROOT; };
-		DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+UTCSButton.m"; path = "UTCS/Classes/Model/UIButton+UTCSButton.m"; sourceTree = SOURCE_ROOT; };
 		DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSlideNavigationAnimator.h; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.h; sourceTree = SOURCE_ROOT; };
 		DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSlideNavigationAnimator.m; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.m; sourceTree = SOURCE_ROOT; };
 		DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
@@ -867,8 +866,7 @@
 		DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */ = {
 			isa = PBXGroup;
 			children = (
-				DD9402FA190F5CBB008E9814 /* UIButton+UTCSButton.h */,
-				DD9402FB190F5CBB008E9814 /* UIButton+UTCSButton.m */,
+				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 			);
 			name = "UIButton+UTCSButton";
 			path = Classes/Views;
@@ -1106,10 +1104,10 @@
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
+				D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */,
 				DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */,
-				DD9402FC190F5CBB008E9814 /* UIButton+UTCSButton.m in Sources */,
 				D4D5F50A1B530C7F005974A7 /* StarredEventsViewController.swift in Sources */,
 				D46439061B7C627D007BA5D0 /* EventsDataSourceParser.swift in Sources */,
 				DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */,

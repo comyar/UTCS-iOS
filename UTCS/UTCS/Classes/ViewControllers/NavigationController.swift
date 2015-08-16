@@ -11,9 +11,6 @@ class NavigationController: UINavigationController {
         navigationDelegate = NavigationControllerDelegate()
         delegate = navigationDelegate
         navigationDelegate.navigationController = self
-        backgroundImageView = UIImageView()
-        view.addSubview(backgroundImageView!)
-        view.sendSubviewToBack(backgroundImageView!)
     }
 
     required init?(coder aDecoder: NSCoder) {
