@@ -2,8 +2,7 @@ let serviceName = "events";
 
 
 class EventsViewController: HeaderTableViewController, DataSourceDelegate, StarredEventsViewControllerDelegate {
-    // Name of the background image
-    let backgroundImageName = "eventsBackground";
+
     var eventsDataSource: EventsDataSource? {
         get {
             return dataSource as? EventsDataSource
@@ -21,7 +20,8 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         dataSource = EventsDataSource()
         dataSource!.delegate = self
         tableView.dataSource = eventsDataSource
-        backgroundImageView.image = UIImage.cacheless_imageNamed(backgroundImageName)
+        tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: EventsTableViewCellIdentifier)
+        backgroundImageName = "eventsBackground"
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = "UTCS Events"
@@ -186,9 +186,6 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         }
         eventDetailViewController!.event = event
         navigationController?.pushViewController(eventDetailViewController!, animated: true)
-    }
-    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
-        return [UTCSEventsDataSourceCacheKey: dataSource.data!]
     }
 
 }

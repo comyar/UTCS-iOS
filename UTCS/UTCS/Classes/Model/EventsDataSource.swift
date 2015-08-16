@@ -5,11 +5,8 @@ let UTCSEventsFilterAddIndex = 0
 // Key associated with index paths added by a filter.
 let UTCSEventsFilterRemoveIndex  = 1
 
-// Key used to cache events.
-let UTCSEventsDataSourceCacheKey = "UTCSEventsDataSourceCacheKey"
-
 // Events table view cell identifier.
-let UTCSEventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
+let EventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
 
 final class EventsDataSource: DataSource, UITableViewDataSource {
     // TODO: Move into Event model
@@ -47,7 +44,11 @@ final class EventsDataSource: DataSource, UITableViewDataSource {
         return eventData?.count ?? 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let event = eventData![indexPath.row]
+        let cell: NewsTableViewCell = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier)! as! NewsTableViewCell
+        cell.detailLabel.text = event.description
+        cell.title.text = event.name
+        return cell
     }
 
 }

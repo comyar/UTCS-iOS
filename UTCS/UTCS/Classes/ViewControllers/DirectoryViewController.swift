@@ -1,7 +1,6 @@
 import MBProgressHUD
 let searchBarBackgroundImageName = "searchBarBackground";
 
-
 class DirectoryViewController: TableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, DataSourceDelegate {
     var appeared = false
     var errorView: ServiceErrorView!
@@ -14,7 +13,6 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         }
     }
 
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -23,6 +21,8 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         super.init(style: style)
         dataSource = DirectoryDataSource()
         directoryDataSource.delegate = self
+
+        backgroundImageName = "directoryBackground"
         view.backgroundColor = UIColor.clearColor()
         showsNavigationBarSeparatorLine = false
         searchController = UISearchController(searchResultsController: nil)
@@ -40,8 +40,6 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
         tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
         tableView.dataSource = directoryDataSource
-
-        
 
         //tableView.registerNib(, forCellReuseIdentifier: )
     }
@@ -108,7 +106,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
                 let successValue: CGFloat = success ? 1.0 : 0.0
                 self.searchController.searchBar.alpha = successValue
                 self.tableView.alpha = successValue
-                self.errorView.alpha = successValue
+                self.errorView.alpha = successValue - 1.0
             }
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
@@ -146,25 +144,26 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         navigationController?.pushViewController(detailViewController!, animated: true)
     }
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if searchController.active {
+        guard !searchController.active && tableView == self.tableView else {
             return nil
-        } else if tableView == self.tableView {
-            let person = (dataSource!.data as! [[DirectoryPerson]])[section][0]
-            let lastName = person.lastName as NSString
-            let letter = lastName.substringWithRange(NSRange(location: 0, length: 1))
-            return {
-                let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 8.0, height: 16.0))
-                label.font = UIFont.systemFontOfSize(16.0)
-                label.text = letter
-                label.textColor = UIColor(white: 1.0, alpha: 1.0)
-                label.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
-                return label
-            }()
         }
-        return nil
+
+        let person = directoryDataSource.directoryPeopleSections![section][0]
+        let lastName = person.lastName as NSString
+        let letter = lastName.substringWithRange(NSRange(location: 0, length: 1))
+        return {
+            let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
+            label.font = UIFont.systemFontOfSize(16.0)
+            label.text = letter
+            label.textColor = UIColor(white: 1.0, alpha: 1.0)
+            label.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+            return label
+        }()
     }
-    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
-        return [UTCSDirectoryCacheKey: dataSource!.data!]
+
+    //Required for viewForHeaderInSection to be called
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24.0
     }
     func configureAppearance(){
         configureSearchBarWithRoot(searchController.searchBar)
@@ -197,6 +196,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         updateSearchResultsForSearchController(searchController)
     }
+
     func filterContentForSearchText(searchText: String, scope: Int) {
         let buttonTitles = searchController.searchBar.scopeButtonTitles!
         let scopeString = buttonTitles[scope]

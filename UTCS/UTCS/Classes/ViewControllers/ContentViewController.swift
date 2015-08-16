@@ -1,8 +1,8 @@
 @objc protocol ContentController {
     var menuButton: UIButton! { get set }
     var backgroundImageView: UIImageView! { get set }
+    var backgroundImageName: String {get set}
     var dataSource: DataSource? { get set }
-    func setBackgroundImageName(name: String)
     func configureViews()
     func configureOnLoad()
     func configureOnLayout()
@@ -17,6 +17,13 @@
         imageView.clipsToBounds = true
         return imageView
     }()
+
+    var backgroundImageName: String {
+        willSet(newValue){
+            backgroundImageView.image = UIImage.cacheless_imageNamed(newValue)
+        }
+    }
+
     var dataSource: DataSource?
 
     convenience init(){
@@ -24,6 +31,7 @@
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        backgroundImageName = ""
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         configureViews()
     }
@@ -46,11 +54,6 @@
         super.viewDidAppear(animated)
         configureOnAppear()
     }
-
-    func setBackgroundImageName(name: String) {
-        backgroundImageView.image = UIImage.cacheless_imageNamed(name)
-    }
-
     func configureViews() {
         title = ""
     }

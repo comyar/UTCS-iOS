@@ -1,12 +1,6 @@
 
-// Name of the directory service.
-let UTCSDirectoryServiceName = "directory"
-
 // Directory table view cell identifier.
 let UTCSDirectoryTableViewCellIdentifier = "UTCSDirectoryTableViewCell"
-
-// Key used to cache directory
-let UTCSDirectoryCacheKey = "UTCSDirectoryCacheKey"
 
 
 final class DirectoryDataSource: DataSource, UITableViewDataSource {
@@ -51,7 +45,6 @@ final class DirectoryDataSource: DataSource, UITableViewDataSource {
         return cell
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return searchController.active ? filtered.count : directoryPeopleSections?[section].count ?? 0
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,7 +56,7 @@ final class DirectoryDataSource: DataSource, UITableViewDataSource {
         }
         var letters = [String]()
         for section in directoryPeopleSections! {
-            let asString = section[0].firstName as NSString
+            let asString = section[0].lastName as NSString
             letters.append(asString.substringToIndex(1))
         }
         return letters

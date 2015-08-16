@@ -1,5 +1,3 @@
-
-
 // Directory detail table view cell identifier.
 let DirectoryDetailTableViewCellIdentifier = "UTCSDirectoryDetailTableViewCell";
 

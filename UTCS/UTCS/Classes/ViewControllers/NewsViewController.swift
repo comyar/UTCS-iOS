@@ -23,7 +23,7 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         super.init(style: style)
         dataSource = NewsDataSource()
         tableView.dataSource = newsDataSource
-        backgroundImageView.image = UIImage.cacheless_imageNamed(backgroundImageName)
+        backgroundImageName = "newsBackground"
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = headerTitleText

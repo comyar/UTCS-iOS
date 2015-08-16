@@ -556,8 +556,9 @@
 		DD87616F1900FCEF005FEE4E /* Directory */ = {
 			isa = PBXGroup;
 			children = (
+				D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */,
+				D4D5F5021B53076E005974A7 /* DirectoryViewController.swift */,
 				DD8761701900FD02005FEE4E /* Models */,
-				DD8761711900FD1C005FEE4E /* Controllers */,
 			);
 			name = Directory;
 			sourceTree = "<group>";
@@ -570,15 +571,6 @@
 				D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		DD8761711900FD1C005FEE4E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */,
-				D4D5F5021B53076E005974A7 /* DirectoryViewController.swift */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		DD89899E19031159000F1041 /* Vertical Menu */ = {

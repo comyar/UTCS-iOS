@@ -3,8 +3,6 @@ import PocketSVG
 import MBProgressHUD
 import DPMeterView
 
-let diskQuotaCacheKey = "quota"
-
 class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     // Button used to request disk quota information
     @IBOutlet var goButton: UIButton!
@@ -75,7 +73,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         updatedLabel.alpha = 0.0
 
         //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
-        setBackgroundImageName("diskQuotaBackground")
+        backgroundImageName = "diskQuotaBackground"
     }
     @IBAction func didPressGo(sender: UIButton) {
         view.endEditing(true)

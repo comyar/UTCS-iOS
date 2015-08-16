@@ -1,16 +1,8 @@
 import Alamofire
 import SwiftyJSON
-// Name of the news service.
-let UTCSNewsServiceName = "news"
 
 // News table view cell identifier.
 let UTCSNewsTableViewCellIdentifier = "NewsCell"
-
-// Name of the image to use for a table view cell's accessory view.
-let cellAccessoryImageName = "rightArrow"
-
-// Minimum time between updates
-let minimumTimeBetweenUpdates  = 86400.0  // 24 hours
 
 final class NewsDataSource: DataSource, UITableViewDataSource {
 
@@ -28,6 +20,7 @@ final class NewsDataSource: DataSource, UITableViewDataSource {
 
     init() {
         super.init(service: .News, parser: NewsDataSourceParser())
+        minimumTimeBetweenUpdates = 24 * 60 * 60
     }
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -2,7 +2,6 @@
 let typeStripeWidth: CGFloat = 2.0;
 
 
-
 class EventTableViewCell: BouncyTableViewCell {
     var typeStripeLayer = CAShapeLayer()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -16,6 +15,7 @@ class EventTableViewCell: BouncyTableViewCell {
         stripe.strokeEnd = 1.0
         self.typeStripeLayer = stripe
         self.layer.addSublayer(self.typeStripeLayer)
+        backgroundColor = UIColor.clearColor()
 
     }
 

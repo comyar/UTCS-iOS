@@ -13,6 +13,12 @@ class TableViewController: UITableViewController, ContentController {
         imageView.clipsToBounds = true
         return imageView
     }()
+
+    var backgroundImageName: String {
+        willSet(newValue){
+            backgroundImageView.image = UIImage.cacheless_imageNamed(newValue)
+        }
+    }
     var dataSource: DataSource?
     // Button used to scroll table view to top.
     var gestureButton: UIButton!
@@ -32,6 +38,7 @@ class TableViewController: UITableViewController, ContentController {
     }
 
     override init(style: UITableViewStyle) {
+        backgroundImageName = "defaultBackground"
         super.init(style: .Plain)
         commonInit()
     }
@@ -102,9 +109,8 @@ class TableViewController: UITableViewController, ContentController {
         tableView.removeObserver(self, forKeyPath: contentOffsetPropertyString)
     }
 
-    func setBackgroundImageName(name: String) {
-        backgroundImageView.image = UIImage(named: name)?.imageWithRenderingMode(.AlwaysTemplate)
-    }
+
+
 
     func configureViews() {
         title = ""

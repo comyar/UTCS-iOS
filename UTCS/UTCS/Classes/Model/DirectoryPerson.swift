@@ -32,6 +32,6 @@
     func shouldBeSeparated(from: DirectoryPerson) -> Bool {
         let first = lastName as NSString
         let second = from.lastName as NSString
-        return first.substringToIndex(1) == second.substringToIndex(1)
+        return first.substringToIndex(1) != second.substringToIndex(1)
     }
 }

@@ -1,5 +1,8 @@
 import Foundation
 
+// Name of the image to use for a table view cell's accessory view.
+let cellAccessoryImageName = "rightArrow"
+
 class NewsTableViewCell: BouncyTableViewCell {
     @IBOutlet var title: UILabel!
     @IBOutlet var detailLabel: UILabel!
