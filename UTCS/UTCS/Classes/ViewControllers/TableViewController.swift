@@ -65,7 +65,6 @@ class TableViewController: UITableViewController, ContentController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureOnLoad()
-        navigationItem.leftBarButtonItem = menuButton
         view.insertSubview(navigationBarSeparatorLineView, aboveSubview: tableView)
     }
 
@@ -117,6 +116,7 @@ class TableViewController: UITableViewController, ContentController {
     }
 
     func configureOnLoad(){
+        navigationItem.leftBarButtonItem = menuButton
         view.addSubview(blurView)
         view.insertSubview(backgroundImageView, belowSubview: blurView)
     }

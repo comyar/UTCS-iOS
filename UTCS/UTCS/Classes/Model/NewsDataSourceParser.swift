@@ -9,23 +9,23 @@ class NewsDataSourceParser: DataSourceParser {
     private static let minHeaderImageWidth: CGFloat = 300.0
     private static let minHeaderImageHeight: CGFloat = 250.0
 
-    var parsedArticles: [UTCSNewsArticle] {
+    var parsedArticles: [NewsArticle] {
         get {
-            return parsed as! [UTCSNewsArticle]
+            return parsed as! [NewsArticle]
         }
     }
 
     override func parseValues(values: JSON) {
-        var articles = [UTCSNewsArticle]()
+        var articles = [NewsArticle]()
         for articleData in values.array! {
-            let article = UTCSNewsArticle()
+            let article = NewsArticle()
             article.title = articleData[NewsDataSourceParser.titleKey].string
             article.url = articleData[NewsDataSourceParser.urlKey].URL
             article.html = articleData[NewsDataSourceParser.htmlKey].string
             article.imageURLs = [NSURL]()
             if let urls = articleData[NewsDataSourceParser.imageUrlsKey].array {
                 for urlData in urls {
-                    article.imageURLs.append(urlData.URL!)
+                    article.imageURLs!.append(urlData.URL!)
                 }
             }
 
@@ -37,9 +37,9 @@ class NewsDataSourceParser: DataSourceParser {
         parsed = articles
     }
 
-    func setHeaderImageForArticle(article: UTCSNewsArticle){
+    func setHeaderImageForArticle(article: NewsArticle){
         var headerFound = false
-        for url in article.imageURLs {
+        for url in article.imageURLs! {
             if headerFound {
                 return
             }

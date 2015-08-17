@@ -45,6 +45,7 @@
 		D46C7C4D1B4F4F2E009F1EA1 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
 		D482C1AB1B3CDE8E00645C23 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482C1AA1B3CDE8E00645C23 /* NewsDetailViewController.swift */; };
 		D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */; };
+		D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */; };
 		D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */; };
 		D4BA71CC1B42177B007C09F6 /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CD1B421819007C09F6 /* ContentViewController.swift */; };
@@ -74,7 +75,6 @@
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */; };
 		DD5B585418D239F900EEB474 /* UTCSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* UTCSEvent.m */; };
-		DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */; };
 		DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */; };
 		DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */; };
 		DD5CAF81190A325D0051F637 /* SettingsLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF80190A325D0051F637 /* SettingsLegalViewController.swift */; };
@@ -181,6 +181,7 @@
 		D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabsViewController.swift; path = ViewControllers/LabsViewController.swift; sourceTree = "<group>"; };
 		D482C1AA1B3CDE8E00645C23 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDetailViewController.swift; path = ViewControllers/NewsDetailViewController.swift; sourceTree = "<group>"; };
 		D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButton+UTCSButton.swift"; path = "UTCS/Classes/Model/UIBarButton+UTCSButton.swift"; sourceTree = SOURCE_ROOT; };
+		D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticle.swift; path = Model/NewsArticle.swift; sourceTree = "<group>"; };
 		D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D4BA71CD1B421819007C09F6 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentViewController.swift; path = ViewControllers/ContentViewController.swift; sourceTree = "<group>"; };
 		D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaViewController.swift; path = ViewControllers/DiskQuotaViewController.swift; sourceTree = "<group>"; };
@@ -211,8 +212,6 @@
 		DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsDetailViewController.m; path = ViewControllers/UTCSEventsDetailViewController.m; sourceTree = "<group>"; };
 		DD5B583A18D239F900EEB474 /* UTCSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEvent.h; path = Model/UTCSEvent.h; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* UTCSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEvent.m; path = Model/UTCSEvent.m; sourceTree = "<group>"; };
-		DD5B583C18D239F900EEB474 /* UTCSNewsArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSNewsArticle.h; path = Model/UTCSNewsArticle.h; sourceTree = "<group>"; };
-		DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSNewsArticle.m; path = Model/UTCSNewsArticle.m; sourceTree = "<group>"; };
 		DD5CAF76190A087E0051F637 /* UTCSSettingsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsDataSource.h; path = Model/UTCSSettingsDataSource.h; sourceTree = "<group>"; };
 		DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsDataSource.m; path = Model/UTCSSettingsDataSource.m; sourceTree = "<group>"; };
 		DD5CAF79190A2B7C0051F637 /* UTCSSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSwitchTableViewCell.h; path = Views/UTCSSwitchTableViewCell.h; sourceTree = "<group>"; };
@@ -447,8 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */,
-				DD5B583C18D239F900EEB474 /* UTCSNewsArticle.h */,
-				DD5B583D18D239F900EEB474 /* UTCSNewsArticle.m */,
+				D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */,
 				D46439071B7C63EC007BA5D0 /* NewsDataSourceParser.swift */,
 			);
 			name = Models;
@@ -742,10 +740,10 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
 				DD95E731191F2A5B0062F4E9 /* UIImage+Cacheless */,
 				DDC404701917CCED00D17CBF /* NSString+CZContains */,
-				DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */,
 				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
@@ -861,15 +859,6 @@
 				DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */,
 			);
 			name = "UIImage+ImageEffects";
-			sourceTree = "<group>";
-		};
-		DDDE0C6C18FD950200C89D81 /* UIButton+UTCSButton */ = {
-			isa = PBXGroup;
-			children = (
-				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
-			);
-			name = "UIButton+UTCSButton";
-			path = Classes/Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1123,11 +1112,11 @@
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
 				D43E864E1B3758E900F6EA70 /* NavigationControllerDelegate.swift in Sources */,
 				D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */,
+				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,
 				D464390A1B7C6451007BA5D0 /* LabsDataSourceParser.swift in Sources */,
 				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,
 				D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */,
-				DD5B585518D239F900EEB474 /* UTCSNewsArticle.m in Sources */,
 				D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
 				D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */,

@@ -10,7 +10,7 @@
 }
 
 @objc class ContentViewController: UIViewController, ContentController  {
-    var menuButton = UIBarButtonItem(title: "Menu", style: .Plain, target: nil, action: "")
+    var menuButton = UIBarButtonItem.menuButton()
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFill
@@ -58,6 +58,7 @@
         title = ""
     }
     func configureOnLoad(){
+        navigationItem.leftBarButtonItem = menuButton
         view.addSubview(backgroundImageView)
     }
     func configureOnLayout(){

@@ -23,7 +23,7 @@ class NewsDetailViewController: UIViewController {
     var parallaxBlurHeaderScrollView: ParallaxBlurHeaderScrollView!
     var defaultHeaderImages: [String]!
     var scrollToTopButton: UIButton!
-    var newsArticle: UTCSNewsArticle? {
+    var newsArticle: NewsArticle? {
         willSet(newValue){
             if newValue == newsArticle {
                 return
@@ -96,7 +96,7 @@ class NewsDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPoint(x: 0.0, y: 0.0)
     }
-    func configureWithNewsArticle(article: UTCSNewsArticle){
+    func configureWithNewsArticle(article: NewsArticle){
         parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPointZero
         if article.headerImage != nil {
             parallaxBlurHeaderScrollView.headerImage = article.headerImage

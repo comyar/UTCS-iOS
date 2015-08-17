@@ -6,9 +6,9 @@ let UTCSNewsTableViewCellIdentifier = "NewsCell"
 
 final class NewsDataSource: DataSource, UITableViewDataSource {
 
-    var articleData: [UTCSNewsArticle] {
+    var articleData: [NewsArticle] {
         get {
-            return data as! [UTCSNewsArticle]
+            return data as! [NewsArticle]
         }
     }
 
@@ -25,7 +25,7 @@ final class NewsDataSource: DataSource, UITableViewDataSource {
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as! NewsTableViewCell
-        let article = data![indexPath.row]
+        let article = articleData[indexPath.row]
         cell.title!.text = article.title
         cell.detailLabel!.text = article.attributedContent.description
         return cell

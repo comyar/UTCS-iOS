@@ -11,7 +11,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     var filterSegmentedControl: UISegmentedControl!
     var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()),(.Orgs, UIColor.utcsEventStudentOrgsColor())]
     var filterButtonImageView: UIImageView!
-    var starListButton: UIButton!
+    var starListButton: UIBarButtonItem!
     var starredEventsViewController: StarredEventsViewController!
     var eventDetailViewController: UTCSEventsDetailViewController?
 
@@ -25,17 +25,17 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = "UTCS Events"
-        activeHeaderView.subtitleLabel.text = "What Starts Here Changes the World"
+        activeHeaderView.subtitleLabel.text = headerSubtitleText
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-
     }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         update()
@@ -52,10 +52,9 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
             imageView.frame = button.bounds
             button.addSubview(imageView)
             button.addTarget(self, action: "didTouchUpInsideButton:", forControlEvents: .TouchUpInside)
-            return button
+            return UIBarButtonItem(customView: button)
         }()
-        view.addSubview(starListButton)
-        view.bringSubviewToFront(starListButton)
+        navigationItem.rightBarButtonItem = starListButton
 
     }
     override func didReceiveMemoryWarning() {
