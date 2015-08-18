@@ -10,9 +10,7 @@ class NewsDataSourceParser: DataSourceParser {
     private static let minHeaderImageHeight: CGFloat = 250.0
 
     var parsedArticles: [NewsArticle] {
-        get {
-            return parsed as! [NewsArticle]
-        }
+        return parsed as! [NewsArticle]
     }
 
     override func parseValues(values: JSON) {

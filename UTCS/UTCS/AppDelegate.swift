@@ -10,7 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     // Alert view used to authenticate the user (for any services that require authentication)
     var authenticationAlertView: UIAlertController?
 
-
     var menuViewController = MenuViewController(nibName: nil, bundle: nil)
     var verticalMenuViewController: UTCSVerticalMenuViewController?
     var window: UIWindow?

@@ -8,7 +8,7 @@ let UTCSEventsFilterRemoveIndex  = 1
 // Events table view cell identifier.
 let EventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
 
-final class EventsDataSource: DataSource, UITableViewDataSource {
+final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
     // TODO: Move into Event model
     enum EventType: String {
         case All = "all"
@@ -17,14 +17,10 @@ final class EventsDataSource: DataSource, UITableViewDataSource {
         case Orgs = "orgs"
     }
     var eventData: [UTCSEvent]? {
-        get{
-            return data as? [UTCSEvent]
-        }
+        return data as? [UTCSEvent]
     }
     override var router: Router {
-        get {
-            return Router.Events()
-        }
+        return Router.Events()
     }
     var currentFilterType = EventType.All
     var filteredEvents = [UTCSEvent]()

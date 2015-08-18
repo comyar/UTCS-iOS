@@ -4,18 +4,14 @@ import SwiftyJSON
 // News table view cell identifier.
 let UTCSNewsTableViewCellIdentifier = "NewsCell"
 
-final class NewsDataSource: DataSource, UITableViewDataSource {
+final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
 
     var articleData: [NewsArticle] {
-        get {
-            return data as! [NewsArticle]
-        }
+        return data as! [NewsArticle]
     }
 
     override var router: Router {
-        get {
-            return Router.News()
-        }
+        return Router.News()
     }
 
     init() {

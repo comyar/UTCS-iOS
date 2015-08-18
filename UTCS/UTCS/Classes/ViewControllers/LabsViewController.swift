@@ -98,7 +98,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
         hud.mode = .Indeterminate
 
 
-        dataSource!.updateWithArgument(nil){ success, cachehit in
+        labsDataSource!.updateWithArgument(nil){ success, cachehit in
             self.thirdFloorLabViewController.shimmeringView.shimmering = false
             self.basementLabViewController.shimmeringView.shimmering = false
 
@@ -133,9 +133,5 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
         let basementOffset = 0.5 * (scrollView.contentOffset.x - view.frame.width)
         thirdFloorLabViewController.imageOffset = CGPoint(x: thirdOffset, y: 0.0)
         basementLabViewController.imageOffset = CGPoint(x: basementOffset, y: 0.0)
-    }
-
-    func objectsToCacheForDataSource(dataSource: DataSource!) -> [NSObject : AnyObject]! {
-        return [UTCSLabsDataSourceCacheKey: dataSource.data!]
     }
 }

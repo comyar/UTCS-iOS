@@ -23,4 +23,7 @@
 
 #import "UTCSEvent.h"
 #import "UTCSDataSourceCache.h"
-#import "UTCSSettingsDataSource.h"
+#import "UTCSStateManager.h"
+#import "UTCSSwitchTableViewCell.h"
+#import "UTCSStarredEventsManager.h"
+#import "UTCSSegmentedControlTableViewCell.h"

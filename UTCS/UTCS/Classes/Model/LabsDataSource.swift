@@ -1,5 +1,4 @@
-var UTCSLabsDataSourceCacheKey = "UTCSLabsDataSourceCacheKey"
-final class LabsDataSource: DataSource {
+final class LabsDataSource: ServiceDataSource {
     override var router: Router {
         get{
             return Router.Labs()

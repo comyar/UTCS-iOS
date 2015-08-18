@@ -9,9 +9,7 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
     // View controller used to display a specific news story
     var newsDetailViewController: NewsDetailViewController?
     var newsDataSource: NewsDataSource! {
-        get {
-            return dataSource as! NewsDataSource!
-        }
+        return dataSource as! NewsDataSource!
     }
 
     override init(style: UITableViewStyle) {

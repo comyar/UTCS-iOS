@@ -4,10 +4,8 @@ let serviceName = "events";
 class EventsViewController: HeaderTableViewController, DataSourceDelegate, StarredEventsViewControllerDelegate {
 
     var eventsDataSource: EventsDataSource? {
-        get {
-            return dataSource as? EventsDataSource
-        }
-}
+        return dataSource as? EventsDataSource
+    }
     var filterSegmentedControl: UISegmentedControl!
     var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()),(.Orgs, UIColor.utcsEventStudentOrgsColor())]
     var filterButtonImageView: UIImageView!
@@ -96,7 +94,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
 
     func update(){
         activeHeaderView.showActiveAnimation(true)
-        dataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
+        eventsDataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
             self.activeHeaderView.showActiveAnimation(false)
             if self.eventsDataSource?.eventData?.count ?? 0 > 0 {
                 let updateString = NSDateFormatter.localizedStringFromDate(self.dataSource!.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)

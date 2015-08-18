@@ -8,9 +8,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
     var searchButton: UIButton!
     var detailViewController: DirectoryDetailViewController?
     var directoryDataSource: DirectoryDataSource! {
-        get{
-            return dataSource as! DirectoryDataSource!
-        }
+        return dataSource as! DirectoryDataSource!
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -96,7 +94,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progressHUD.mode = .Indeterminate
         progressHUD.labelText = "Syncing"
-        dataSource?.updateWithArgument(nil){ (success, cacheHit) -> Void in
+        directoryDataSource!.updateWithArgument(nil){ (success, cacheHit) -> Void in
             if success && !cacheHit {
                 self.directoryDataSource.directoryPeopleSections = self.directoryDataSource.directoryPeople.createSectionedRepresentation()
                 self.tableView.reloadData()

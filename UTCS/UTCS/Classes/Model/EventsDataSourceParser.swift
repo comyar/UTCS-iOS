@@ -1,6 +1,9 @@
 import SwiftyJSON
 
 final class EventsDataSourceParser: DataSourceParser {
+    var parsedEvents: [UTCSEvent] {
+        return parsed as! [UTCSEvent]
+    }
     override func parseValues(values: JSON) {
         var events = [UTCSEvent]()
         for eventData in values.array! {

@@ -32,9 +32,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     @IBOutlet var usernameTextField: JVFloatLabeledTextField!
 
     var quotaDataSource: DiskQuotaDataSource {
-        get {
-            return dataSource as! DiskQuotaDataSource
-        }
+        return dataSource as! DiskQuotaDataSource
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -107,7 +105,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hud.mode = .Indeterminate
         hud.labelText = "Fetching"
-        dataSource!.updateWithArgument(usernameTextField.text!){ success, cacheHit in
+        quotaDataSource.updateWithArgument(usernameTextField.text!){ success, cacheHit in
             if success {
                 self.nameLabel.text = self.quotaDataSource.quotaData.name
                 let limit = self.quotaDataSource.quotaData.limit

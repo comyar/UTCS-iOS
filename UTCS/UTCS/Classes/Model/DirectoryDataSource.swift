@@ -3,19 +3,15 @@
 let UTCSDirectoryTableViewCellIdentifier = "UTCSDirectoryTableViewCell"
 
 
-final class DirectoryDataSource: DataSource, UITableViewDataSource {
+final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
     var directoryPeople: [DirectoryPerson]! {
-        get{
-            return data as! [DirectoryPerson]
-        }
+        return data as! [DirectoryPerson]
     }
     var directoryPeopleSections: [[DirectoryPerson]]?
     var filtered: [DirectoryPerson]!
     var searchController: UISearchController!
     override var router: Router {
-        get{
-            return Router.Directory()
-        }
+        return Router.Directory()
     }
 
     init() {

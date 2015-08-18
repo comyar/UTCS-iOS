@@ -4,7 +4,9 @@ class SettingsViewController: TableViewController {
     let twitterAppURL = NSURL(string: "twitter://user?screen_name=utcompsci")!
     let twitterWebURL = NSURL(string: "https://twitter.com/UTCompSci")!
 
-    var settingsDataSource: UTCSSettingsDataSource?
+    var settingsDataSource: SettingsDataSource {
+        return dataSource as! SettingsDataSource
+    }
     var legalViewController: SettingsLegalViewController?
     var aboutViewController: SettingsAboutViewController?
 
@@ -19,8 +21,9 @@ class SettingsViewController: TableViewController {
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        settingsDataSource = UTCSSettingsDataSource()
-        tableView.dataSource = settingsDataSource!
+        dataSource = SettingsDataSource()
+        tableView.dataSource = settingsDataSource
+        backgroundImageName = "settingsBackground"
     }
 
     required init?(coder aDecoder: NSCoder) {

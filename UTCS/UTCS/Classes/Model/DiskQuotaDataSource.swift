@@ -1,13 +1,9 @@
-final class DiskQuotaDataSource: DataSource {
+final class DiskQuotaDataSource: ServiceDataSource {
     var quotaData: QuotaData {
-    get{
-    return data as! QuotaData
-    }
+        return data as! QuotaData
     }
     override var router: Router {
-        get{
-            return Router.Quota(username: argument ?? "")
-        }
+        return Router.Quota(username: argument ?? "")
     }
 
 }
