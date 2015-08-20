@@ -74,9 +74,9 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let article = newsDataSource.data![indexPath.row] as! NewsArticle
+        let article = newsDataSource.articleData[indexPath.row]
         if newsDetailViewController == nil {
-            newsDetailViewController = NewsDetailViewController()
+            newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
         }
         newsDetailViewController!.newsArticle = article
         navigationController?.pushViewController(newsDetailViewController!, animated: true)

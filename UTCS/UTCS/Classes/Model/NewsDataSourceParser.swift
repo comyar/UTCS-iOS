@@ -36,30 +36,25 @@ class NewsDataSourceParser: DataSourceParser {
     }
 
     func setHeaderImageForArticle(article: NewsArticle){
-        var headerFound = false
+        var tasks = [NSURLSessionDataTask]()
         for url in article.imageURLs! {
-            if headerFound {
-                return
-            }
-            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-                let request = NSURLRequest(URL: url as! NSURL)
-                var response: NSURLResponse?
-                var data: NSData?
-                do {
-                    data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-                }
-                catch  {
-                    print("header image request failed")
-                }
-                if data != nil {
-                    var image = UIImage(data: data!)
-                    if image!.size.width >= NewsDataSourceParser.minHeaderImageWidth && image!.size.height >= NewsDataSourceParser.minHeaderImageHeight {
-                        image = UIImage.scaleImage(image, toSize: CGSize(width: 320.0, height: 284.0))
-                        article.headerImage = image
-                        headerFound = true
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
+                if let data = data {
+                    var image = UIImage(data: data)!
+                    if image.size.width >= NewsDataSourceParser.minHeaderImageWidth &&
+                        image.size.height >= NewsDataSourceParser.minHeaderImageHeight {
+                            for task in tasks {
+                                task.cancel()
+                            }
+                            image = UIImage.scaleImage(image, toSize: CGSize(width: 320.0, height: 284.0))
+                            article.headerImage = image
                     }
+
                 }
             })
+            task.resume()
+            tasks.append(task)
         }
     }
 }

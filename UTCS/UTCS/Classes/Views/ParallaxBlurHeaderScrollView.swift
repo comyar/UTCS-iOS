@@ -11,20 +11,21 @@ let framePropertyString = "frame"
 
 
 class ParallaxBlurHeaderScrollView: UIView {
-    // Modifier for the rate at which the background image view's alpha changes
-    let blurAlphaModifier: CGFloat = 2.5
     var headerMask: CAShapeLayer!
     var scrollView: UIScrollView!
-    var headerImageContainer: UIVisualEffectView!
+    private var blurView: UIVisualEffectView!
     var headerImageView: UIImageView!
     var headerContainerView: UIView!
     var headerImage: UIImage? {
-        willSet(newValue){
-            if newValue != nil && newValue == headerImage {
+        set(newValue){
+            guard let image = newValue where newValue != headerImageView.image else {
                 return
             }
-            headerImageView.image = headerImage
+            headerImageView.image = image
             layoutIfNeeded()
+        }
+        get{
+            return headerImageView.image
         }
     }
 
@@ -35,13 +36,16 @@ class ParallaxBlurHeaderScrollView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         headerMask = CAShapeLayer()
-        headerImageContainer = {
-            UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView = {
+            let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+            //blurView.alpha = 0.0
+            return blurView
         }()
         headerImageView = {
             let imageView = UIImageView()
             imageView.contentMode = .ScaleAspectFill
             imageView.userInteractionEnabled = false
+            imageView.backgroundColor = UIColor.blackColor()
             return imageView
         }()
         headerContainerView = {
@@ -58,6 +62,7 @@ class ParallaxBlurHeaderScrollView: UIView {
             return scroll
         }()
         headerContainerView.addSubview(headerImageView)
+        headerContainerView.insertSubview(blurView, aboveSubview: headerImageView)
         addSubview(headerContainerView)
         addSubview(scrollView)
     }
@@ -68,32 +73,35 @@ class ParallaxBlurHeaderScrollView: UIView {
 
     override func layoutIfNeeded() {
         super.layoutSubviews()
-        headerContainerView.frame = CGRect(x: 0.0, y: -parallaxFactor * scrollView.contentOffset.y, width: CGRectGetWidth(bounds), height: kUTCSParallaxBlurHeaderHeight)
+        headerContainerView.frame = CGRect(x: 0.0, y: -parallaxFactor * scrollView.contentOffset.y, width: bounds.width, height: kUTCSParallaxBlurHeaderHeight)
         headerImageView.frame = headerContainerView.bounds
+        blurView.frame = headerContainerView.bounds
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath! == contentOffsetPropertyString && object as? UIScrollView == scrollView {
+        switch keyPath! {
+        case contentOffsetPropertyString where object as? UIScrollView == scrollView:
             let contentOffset = scrollView.contentOffset.y
-            if contentOffset >= 0.0 && contentOffset < CGRectGetHeight(headerContainerView.bounds) - kUTCSParallaxBlurNavigationBarHeight {
+
+            if contentOffset >= 0.0 && contentOffset < headerContainerView.bounds.height - kUTCSParallaxBlurNavigationBarHeight {
                 headerContainerView.frame = {
                     var frame = headerContainerView.frame
                     frame.origin.y = -parallaxFactor * contentOffset
                     return frame
-                }()
+                    }()
                 bringSubviewToFront(scrollView)
             } else {
                 bringSubviewToFront(headerContainerView)
             }
 
             if contentOffset >= CGRectGetHeight(headerContainerView.bounds) - kUTCSParallaxBlurNavigationBarHeight {
-                headerMask.path = UIBezierPath(rect: CGRect(x: 0.0, y: -headerContainerView.frame.origin.y, width: CGRectGetWidth(scrollView.bounds), height: kUTCSParallaxBlurNavigationBarHeight)).CGPath
+                headerMask.path = UIBezierPath(rect: CGRect(x: 0.0, y: -headerContainerView.frame.origin.y, width: scrollView.bounds.width, height: kUTCSParallaxBlurNavigationBarHeight)).CGPath
                 headerContainerView.layer.mask = headerMask
             } else {
                 headerContainerView.layer.mask = nil
             }
 
-            // SET THE BLUR RADIUS HERE
+            blurView.alpha = 1.0
 
             for subview in headerContainerView.subviews {
                 if subview != headerImageView {
@@ -101,15 +109,20 @@ class ParallaxBlurHeaderScrollView: UIView {
                 }
             }
 
-        } else if keyPath == framePropertyString && object as? UIView == headerContainerView {
+        case framePropertyString where object as? UIView == headerContainerView:
             if headerContainerView.frame.origin.y > 0.0 {
                 headerContainerView.frame = {
                     var frame = headerContainerView.frame
                     frame.origin.y = 0.0
                     return frame
-                }()
+                    }()
             }
+
+        default:
+            return
         }
+
+
     }
     deinit{
         headerContainerView.removeObserver(self, forKeyPath: framePropertyString)

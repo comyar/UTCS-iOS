@@ -50,7 +50,7 @@ final class NewsArticle: NSObject, NSCoding {
 
         dispatch_sync(dispatch_get_main_queue()) { () -> Void in
             do {
-            try attributedHTML = NSAttributedString(data: html.dataUsingEncoding(NSUTF32StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil).mutableCopy() as! NSMutableAttributedString
+            try attributedHTML = NSAttributedString(data: html.dataUsingEncoding(NSUTF32StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil).mutableCopy() as? NSMutableAttributedString
             } catch {
                 print("failed to parse html")
             }

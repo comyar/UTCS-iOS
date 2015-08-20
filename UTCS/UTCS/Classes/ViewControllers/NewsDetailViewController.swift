@@ -21,7 +21,7 @@ class NewsDetailViewController: UIViewController {
     var contentTextView: UITextView!
 
     var parallaxBlurHeaderScrollView: ParallaxBlurHeaderScrollView!
-    var defaultHeaderImages: [String]!
+    private static let defaultHeaderIdentifiers = ["gdc-speedway"]
     var scrollToTopButton: UIButton!
     var newsArticle: NewsArticle? {
         willSet(newValue){
@@ -35,12 +35,11 @@ class NewsDetailViewController: UIViewController {
             configureWithNewsArticle(newValue!)
         }
     }
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         view.backgroundColor = UIColor.whiteColor()
         automaticallyAdjustsScrollViewInsets = false
-        defaultHeaderImages = ["gdc-speedway"]
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -101,7 +100,9 @@ class NewsDetailViewController: UIViewController {
         if article.headerImage != nil {
             parallaxBlurHeaderScrollView.headerImage = article.headerImage
         } else {
-            parallaxBlurHeaderScrollView.headerImage = UIImage(named: defaultHeaderImages[0])
+            let randomIndex = Int(arc4random_uniform(UInt32(NewsDetailViewController.defaultHeaderIdentifiers.count)))
+            let image = UIImage(named: NewsDetailViewController.defaultHeaderIdentifiers[randomIndex])
+            parallaxBlurHeaderScrollView.headerImage = image
         }
         contentTextView.attributedText = article.attributedContent
         var contentTextViewHeight = contentTextView.sizeThatFits(CGSize(width: contentTextView.textContainer.size.width, height: CGFloat.max)).height

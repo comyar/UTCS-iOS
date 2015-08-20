@@ -23,7 +23,7 @@ final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as! NewsTableViewCell
         let article = articleData[indexPath.row]
         cell.title!.text = article.title
-        cell.detailLabel!.text = article.attributedContent.description
+        cell.detailLabel!.text = article.attributedContent.string
         return cell
     }
 

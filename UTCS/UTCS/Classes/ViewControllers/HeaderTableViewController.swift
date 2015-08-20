@@ -2,7 +2,7 @@ class HeaderTableViewController: TableViewController {
     // Content offset property string used for KVO
 
     var activeHeaderView: ActiveHeaderView! {
-        didSet(newValue) {
+        didSet(oldValue) {
             activeHeaderView.frame = tableView.bounds
             tableView.tableHeaderView = activeHeaderView
         }
@@ -27,9 +27,15 @@ class HeaderTableViewController: TableViewController {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         if keyPath == contentOffsetPropertyString {
-            let normalizedOffsetDelta = max(tableView.contentOffset.y / CGRectGetHeight(tableView.bounds), 0.0)
+            let windowHeight = UIScreen.mainScreen().bounds.height
+            let normalizedOffsetDelta = min(tableView.contentOffset.y * 1.5, windowHeight) / windowHeight
+
+            //If we aren't going to see a change, exit early
+            if blurView.alpha == normalizedOffsetDelta {
+                return
+            }
             blurView.alpha = normalizedOffsetDelta
-            navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor().colorWithAlphaComponent(normalizedOffsetDelta)
+            tableView.tableHeaderView?.alpha = 1.0 - normalizedOffsetDelta
         }
     }
 
