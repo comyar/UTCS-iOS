@@ -1,10 +1,3 @@
-
-// Key associated with index paths added by a filter.
-let UTCSEventsFilterAddIndex = 0
-
-// Key associated with index paths added by a filter.
-let UTCSEventsFilterRemoveIndex  = 1
-
 // Events table view cell identifier.
 let EventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
 
@@ -33,8 +26,10 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
 
     }
-    func filterEventsWithType(type: EventType) -> [[NSIndexPath]]{
-        return []
+    func filterEventsWithType(type: EventType) -> ([NSIndexPath], [NSIndexPath]){
+        //TODO: Reimplement filtering
+        filteredEvents = eventData!
+        return ([],[])
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventData?.count ?? 0

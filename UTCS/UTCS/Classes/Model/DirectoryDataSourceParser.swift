@@ -16,7 +16,7 @@ let officeKey = "office"
 let phoneKey = "phone"
 
 // Key for the person's type
-let typeKey = "type"
+let typeKey = "title"
 
 // Key for the person's image URL
 let imageURLKey = "image"

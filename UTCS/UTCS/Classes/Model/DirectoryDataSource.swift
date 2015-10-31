@@ -32,8 +32,15 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
             person = directoryPeopleSections![indexPath.section][indexPath.row]
         }
         let attributedName = NSMutableAttributedString(string: person.fullName)
-        attributedName.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(cell.textLabel!.font.pointSize, weight: 700.0), range: NSMakeRange(0, person.firstName.characters.count))
-        attributedName.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(cell.textLabel!.font.pointSize, weight: 400.0), range: NSRange(location: person.firstName.characters.count + 1, length: person.lastName.characters.count))
+
+        let firstNameLength = person.firstName.characters.count
+        let firstNameRange = NSRange(location: 0, length: firstNameLength)
+        let remainingRange = NSRange(location: firstNameLength + 1, length: person.fullName.characters.count - 1 - firstNameLength)
+
+        let firstNameWeight = UIFont.systemFontOfSize(cell.textLabel!.font.pointSize, weight: UIFontWeightBold)
+        let remainingWeight = UIFont.systemFontOfSize(cell.textLabel!.font.pointSize, weight: UIFontWeightLight)
+        attributedName.addAttribute(NSFontAttributeName, value: firstNameWeight, range: firstNameRange)
+        attributedName.addAttribute(NSFontAttributeName, value: remainingWeight, range: remainingRange)
         cell.indentationLevel = 1
         cell.textLabel?.attributedText = attributedName
         cell.detailTextLabel?.text = person.type

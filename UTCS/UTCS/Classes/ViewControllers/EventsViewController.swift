@@ -85,8 +85,8 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     func filterEventsWithType(type: EventsDataSource.EventType) {
         if type != eventsDataSource!.currentFilterType {
             let indexPaths = eventsDataSource!.filterEventsWithType(type)
-            let addIndexPaths = indexPaths[UTCSEventsFilterAddIndex]
-            let removeIndexPaths = indexPaths[UTCSEventsFilterRemoveIndex]
+            let addIndexPaths = indexPaths.0
+            let removeIndexPaths = indexPaths.1
             tableView.beginUpdates()
             tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
