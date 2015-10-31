@@ -54,12 +54,12 @@ class ServiceDataSource: DataSource {
 
     }
     func fetchData(completion: DataRequestCompletion) {
-        Alamofire.request(router).responseJSON { (_, _, JSONResponse) -> Void in
-            guard JSONResponse.isSuccess else{
-                completion(nil, nil, JSONResponse.error)
+        Alamofire.request(router).responseJSON { response -> Void in
+            guard response.result.isSuccess else{
+                completion(nil, nil, response.result.error)
                 return
             }
-            let swiftyJSON = JSON(JSONResponse.value!)
+            let swiftyJSON = JSON(response.result.value!)
             completion(swiftyJSON["meta"], swiftyJSON["values"], nil)
             
         }

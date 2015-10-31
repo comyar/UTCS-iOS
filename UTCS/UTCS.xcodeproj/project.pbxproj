@@ -120,7 +120,7 @@
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
-		FE38EDECED57EF7FE294D246 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FE38EDECED57EF7FE294D246 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

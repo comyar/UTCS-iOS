@@ -6,11 +6,11 @@ pod 'NMSSH'
 pod "RQShineLabel"
 pod 'DPMeterView'
 pod 'MBProgressHUD'
-pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift-2.0'
+pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
 pod "JVFloatLabeledTextField"
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 pod "AFNetworking"
-pod "SwiftyJSON", :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
+pod "SwiftyJSON", :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 use_frameworks!
 
 end
