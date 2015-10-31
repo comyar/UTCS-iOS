@@ -40,6 +40,8 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = menuButton
+
         starListButton = {
             let button = UIButton.bouncyButton()
             button.frame = CGRect(x: 0.0, y: 0.0, width: 44.0, height: 44.0)

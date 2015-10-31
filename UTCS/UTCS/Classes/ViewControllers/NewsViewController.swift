@@ -32,6 +32,12 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = menuButton
+    }
+
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         update()

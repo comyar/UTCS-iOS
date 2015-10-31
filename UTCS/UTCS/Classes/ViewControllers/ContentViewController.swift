@@ -58,7 +58,10 @@
         title = ""
     }
     func configureOnLoad(){
-        navigationItem.leftBarButtonItem = menuButton
+        // Ensure that we get the fullscreen. This is important so that we don't get a 20px
+        // offset when the status bar becomes visible.
+        extendedLayoutIncludesOpaqueBars = true
+        edgesForExtendedLayout = .None
         view.addSubview(backgroundImageView)
     }
     func configureOnLayout(){

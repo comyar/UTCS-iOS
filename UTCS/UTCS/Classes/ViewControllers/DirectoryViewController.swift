@@ -55,6 +55,8 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = menuButton
+
         searchButton = {
             let button = UIButton.bouncyButton()
             button.addTarget(self, action: "didTouchUpInsideButton:", forControlEvents: .TouchUpInside)

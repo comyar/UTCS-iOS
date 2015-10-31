@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     func configureAppearance(){
         let appearance = UINavigationBar.appearanceWhenContainedInInstancesOfClasses([NavigationController.Type]())
         appearance.tintColor = UIColor.whiteColor()
-        appearance.backgroundColor = UIColor.clearColor()
+        appearance.backgroundColor = UIColor.grayColor()
         appearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }

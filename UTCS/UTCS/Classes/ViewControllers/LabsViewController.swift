@@ -23,6 +23,8 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = menuButton
+
         scrollView = {
             let scrollView = UIScrollView(frame: view.bounds)
             scrollView.contentSize = CGSize(width: 2.0 * view.frame.width, height: view.frame.height)

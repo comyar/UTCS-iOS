@@ -17,8 +17,8 @@ class DirectoryDetailViewController: TableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     func commoninit(){
-        tableView.dataSource = self;
-        tableView.separatorStyle = .None;
+        tableView.dataSource = self
+        tableView.separatorStyle = .None
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

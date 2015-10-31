@@ -26,7 +26,7 @@ class TableViewController: UITableViewController, ContentController {
 
     var showsNavigationBarSeparatorLine = true
 
-    // View to represent the navigation bar separator line (this should probably be a CAShapeLayer, #yolo).
+    // View to represent the navigation bar separator line
     var navigationBarSeparatorLineView: UIView = {
         let view = UIView(frame: CGRectZero)
         view.backgroundColor = UIColor.whiteColor()
@@ -71,10 +71,9 @@ class TableViewController: UITableViewController, ContentController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureOnLayout()
-        let navigationBarHeight = max(CGRectGetHeight(navigationController!.navigationBar.bounds), 44.0)
-        //tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - navigationBarHeight)
-        //gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(view.bounds), navigationBarHeight)
-        //navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), navigationBarSeparatorLineHeight)
+        let navbarHeight = navigationController?.navigationBar.bounds.height ?? 0
+        let navigationBarHeight = max(navbarHeight, 44.0)
+        navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), navigationBarSeparatorLineHeight)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -116,7 +115,10 @@ class TableViewController: UITableViewController, ContentController {
     }
 
     func configureOnLoad(){
-        navigationItem.leftBarButtonItem = menuButton
+        // Ensure that we get the fullscreen. This is important so that we don't get a 20px
+        // offset when the status bar becomes visible.
+        extendedLayoutIncludesOpaqueBars = true
+        edgesForExtendedLayout = .None
         view.addSubview(blurView)
         view.insertSubview(backgroundImageView, belowSubview: blurView)
     }

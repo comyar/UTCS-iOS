@@ -29,6 +29,12 @@ class SettingsViewController: TableViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = menuButton
+    }
+
     override func didReceiveMemoryWarning() {
         legalViewController = nil
         aboutViewController = nil
