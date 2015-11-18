@@ -19,6 +19,24 @@ final class NewsArticle: NSObject, NSCoding {
     var headerImage: UIImage?
     var imageURLs: [NSURL]?
 
+    private static let paragraphStyle: NSMutableParagraphStyle = {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing
+        style.paragraphSpacing = paragraphSpacing
+        return style
+    }()
+
+    private static let bodyFont: UIFont = {
+        return UIFont(name: "Georgia", size: 16.0)!
+    }()
+    private static let boldBodyFont: UIFont = {
+        return UIFont(name: "Georgia-Bold", size: 16.0)!
+    }()
+    private static let italicBodyFont: UIFont = {
+        return UIFont(name: "Georgia-Italic", size: 16.0)!
+    }()
+
+
     override init() {
         super.init()
     }
@@ -58,27 +76,28 @@ final class NewsArticle: NSObject, NSCoding {
         guard attributedHTML != nil else{
             return
         }
-
+        // TODO: This is pretty heavy to keep around in the model for all articles. This should be calculated
+        // lazily on demand.
         let newAttributedContent = NSMutableAttributedString()
         attributedHTML!.enumerateAttributesInRange(NSMakeRange(0, attributedHTML!.length), options: .LongestEffectiveRangeNotRequired, usingBlock: { (attrs, range, stop) -> Void in
-            if attrs[NSAttachmentAttributeName] == nil {
-                let htmlFont = attrs[NSFontAttributeName] as! UIFont
-                let fontDescriptorAttributes = htmlFont.fontDescriptor().fontAttributes()
-
-                let fontDescriptor = UIFontDescriptor(fontAttributes: fontDescriptorAttributes)
-                let font = UIFont(descriptor: fontDescriptor, size: 16.0)
-
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.lineSpacing = lineSpacing
-                paragraphStyle.paragraphSpacing = paragraphSpacing
-
-                attributedHTML?.addAttribute(NSFontAttributeName, value: font, range: range)
-                attributedHTML?.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: range)
-
-                newAttributedContent.appendAttributedString(attributedHTML!.attributedSubstringFromRange(range))
-                newAttributedContent.mutableString.replaceOccurrencesOfString(" ", withString: " ", options: .LiteralSearch, range: NSMakeRange(0, newAttributedContent.mutableString.length))
-
+            if attrs[NSAttachmentAttributeName] != nil {
+                //This is an image. Ignore.
+                return
             }
+            let htmlFont = attrs[NSFontAttributeName] as! UIFont
+            let fontDescriptorAttributes = htmlFont.fontDescriptor().fontAttributes()
+
+            if let fontName = fontDescriptorAttributes["NSFontNameAttribute"] as? String{
+                let desiredFont = self.fontForName(fontName)
+                attributedHTML?.addAttribute(NSFontAttributeName, value: desiredFont, range: range)
+                attributedHTML?.addAttribute(NSParagraphStyleAttributeName, value: NewsArticle.paragraphStyle, range: range)
+            }
+
+
+            newAttributedContent.appendAttributedString(attributedHTML!.attributedSubstringFromRange(range))
+            newAttributedContent.mutableString.replaceOccurrencesOfString(" ", withString: " ", options: .LiteralSearch, range: NSMakeRange(0, newAttributedContent.mutableString.length))
+
+            
         })
         do {
          let regex = try NSRegularExpression(pattern: "((\n|\r){2,})", options: [])
@@ -88,5 +107,17 @@ final class NewsArticle: NSObject, NSCoding {
             print("Regex failed")
         }
         attributedContent = newAttributedContent.attributedStringByTrimming(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+
+    private func fontForName(fontName: String) -> UIFont {
+        let desiredFont: UIFont
+        if (fontName.containsString("Bold")){
+            desiredFont = NewsArticle.boldBodyFont
+        } else if (fontName.containsString("Italic")){
+            desiredFont = NewsArticle.italicBodyFont
+        } else {
+            desiredFont = NewsArticle.bodyFont
+        }
+        return desiredFont
     }
 }

@@ -56,6 +56,8 @@ class ServiceDataSource: DataSource {
     func fetchData(completion: DataRequestCompletion) {
         Alamofire.request(router).responseJSON { response -> Void in
             guard response.result.isSuccess else{
+                // For debugging purposes: Print the raw string
+                //let string = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
                 completion(nil, nil, response.result.error)
                 return
             }
