@@ -22,10 +22,10 @@
 #pragma mark - Constants
 
 // Key for the original cached object in the cache dictionary
-extern NSString * const UTCSDataSourceCacheValuesName;
+extern NSString * _Nonnull const UTCSDataSourceCacheValuesName;
 
 // Key for the meta data object in the cache dictionary
-extern NSString * const UTCSDataSourceCacheMetaDataName;
+extern NSString * _Nonnull const UTCSDataSourceCacheMetaDataName;
 
 
 #pragma mark - UTCSDataSourceCache Interface
