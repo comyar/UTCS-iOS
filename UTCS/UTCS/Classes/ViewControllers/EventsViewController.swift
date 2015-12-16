@@ -18,6 +18,8 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         dataSource = EventsDataSource()
         dataSource!.delegate = self
         tableView.dataSource = eventsDataSource
+        tableView.estimatedRowHeight = 48
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: EventsTableViewCellIdentifier)
         backgroundImageName = "eventsBackground"
 

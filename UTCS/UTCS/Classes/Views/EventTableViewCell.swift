@@ -6,8 +6,8 @@ class EventTableViewCell: BouncyTableViewCell {
     var typeStripeLayer = CAShapeLayer()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.textLabel?.numberOfLines = 4
-        self.detailTextLabel?.numberOfLines = 3
+        textLabel?.numberOfLines = 0
+        detailTextLabel?.numberOfLines = 0
         let stripe = CAShapeLayer()
         stripe.path = UIBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: typeStripeWidth, height: CGRectGetHeight(self.bounds))).CGPath
         stripe.fillColor = UIColor.whiteColor().CGColor
