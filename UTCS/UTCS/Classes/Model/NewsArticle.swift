@@ -48,7 +48,7 @@ final class NewsArticle: NSObject, NSCoding {
         date = aDecoder.decodeObjectForKey("date") as! NSDate
         html = aDecoder.decodeObjectForKey("html") as! String
         attributedContent = aDecoder.decodeObjectForKey("attributedContent") as! NSAttributedString
-        headerImage = aDecoder.decodeObjectForKey("headerImage") as! UIImage
+        headerImage = aDecoder.decodeObjectForKey("headerImage") as? UIImage
         imageURLs = aDecoder.decodeObjectForKey("imageURLs") as! [NSURL]?
     }
     func encodeWithCoder(aCoder: NSCoder) {
