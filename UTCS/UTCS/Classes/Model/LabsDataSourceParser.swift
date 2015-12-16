@@ -7,7 +7,6 @@ class LabsDataSourceParser: DataSourceParser {
     }
     }
     override func parseValues(values: JSON) {
-        let asArray = values.arrayValue
         let thirdData = values[0, "machines"].array
         let basementData = values[1, "machines"].array
         parsed = ["third": parseFloor(thirdData!, labName: "third"),

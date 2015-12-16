@@ -23,7 +23,6 @@ class ServiceDataSource: DataSource {
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?){
         self.argument = argument
-        let cached = cache.objectWithKey(service.rawValue)
         let metaData = cache.objectWithKey(UTCSDataSourceCacheMetaDataName) as? UTCSDataSourceCacheMetaData
         if metaData != nil && NSDate().timeIntervalSinceDate(metaData!.timestamp) < minimumTimeBetweenUpdates{
             data = cache.objectWithKey(UTCSDataSourceCacheValuesName)
