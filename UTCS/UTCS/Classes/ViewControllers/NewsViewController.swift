@@ -1,13 +1,10 @@
-// Header title text
-let headerTitleText = "UTCS News"
-
-// Header subtitle text
-let headerSubtitleText = "What Starts Here Changes the World"
 
 class NewsViewController: HeaderTableViewController, DataSourceDelegate {
 
-    // View controller used to display a specific news story
-    var newsDetailViewController: NewsDetailViewController?
+    static let headerTitleText = "UTCS News"
+    static let headerSubtitleText = "What Starts Here Changes the World"
+    
+    let newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
     var newsDataSource: NewsDataSource! {
         return dataSource as! NewsDataSource!
     }
@@ -19,17 +16,16 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         backgroundImageName = "newsBackground"
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
-        activeHeaderView.sectionHeadLabel.text = headerTitleText
-        activeHeaderView.subtitleLabel.text = headerSubtitleText
+        activeHeaderView.sectionHeadLabel.text = NewsViewController.headerTitleText
+        activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
 
         tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: UTCSNewsTableViewCellIdentifier)
+        tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100.0
-
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required convenience init?(coder: NSCoder) {
+        self.init(style: .Plain)
     }
 
     override func viewDidLoad() {
@@ -37,18 +33,14 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         navigationItem.leftBarButtonItem = menuButton
     }
 
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         update()
     }
-    override func didReceiveMemoryWarning() {
-        newsDetailViewController = nil
-    }
 
     func update(){
         activeHeaderView.showActiveAnimation(true)
-        newsDataSource.updateWithArgument(nil){ success, cacheHit in
+        newsDataSource.updateWithArgument(nil) { success, cacheHit in
             self.activeHeaderView.showActiveAnimation(false)
             if self.newsDataSource.articleData.count > 0 {
                 let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
@@ -66,25 +58,14 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
             if success && !cacheHit {
                 self.tableView.reloadData()
             }
-
         }
     }
 
-    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.setHighlighted(true, animated: true)
-    }
-    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.setHighlighted(false, animated: true)
-    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let article = newsDataSource.articleData[indexPath.row]
-        if newsDetailViewController == nil {
-            newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
-        }
-        newsDetailViewController!.newsArticle = article
-        navigationController?.pushViewController(newsDetailViewController!, animated: true)
+
+        newsDetailViewController.newsArticle = newsDataSource.articleData[indexPath.row]
+        navigationController?.pushViewController(newsDetailViewController, animated: true)
     }
+    
 }

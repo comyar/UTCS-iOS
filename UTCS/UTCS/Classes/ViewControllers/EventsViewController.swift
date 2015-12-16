@@ -25,7 +25,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = "UTCS Events"
-        activeHeaderView.subtitleLabel.text = headerSubtitleText
+        activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
     }
 
     required init?(coder aDecoder: NSCoder) {
