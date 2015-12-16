@@ -11,7 +11,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     var filterButtonImageView: UIImageView!
     var starListButton: UIBarButtonItem!
     var starredEventsViewController: StarredEventsViewController!
-    var eventDetailViewController: UTCSEventsDetailViewController?
+    let eventDetailViewController = UTCSEventsDetailViewController()
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -59,10 +59,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         navigationItem.rightBarButtonItem = starListButton
 
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        eventDetailViewController = nil
-    }
+
     func didTouchUpInsideButton(button: UIButton) {
         if button == starListButton {
             if starredEventsViewController == nil {
@@ -120,11 +117,8 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     }
 
     func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: UTCSEvent){
-        if eventDetailViewController == nil {
-            eventDetailViewController = UTCSEventsDetailViewController()
-        }
-        eventDetailViewController!.event = event
-        navigationController?.pushViewController(eventDetailViewController!, animated: true)
+        eventDetailViewController.event = event
+        navigationController?.pushViewController(eventDetailViewController, animated: true)
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -168,11 +162,8 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let event = eventsDataSource!.filteredEvents[indexPath.row]
-        if !(eventDetailViewController != nil) {
-            eventDetailViewController = UTCSEventsDetailViewController()
-        }
-        eventDetailViewController!.event = event
-        navigationController?.pushViewController(eventDetailViewController!, animated: true)
+        eventDetailViewController.event = event
+        navigationController?.pushViewController(eventDetailViewController, animated: true)
     }
 
 }
