@@ -39,6 +39,9 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         let cell: NewsTableViewCell = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier)! as! NewsTableViewCell
         cell.detailLabel.text = "\(NSDateFormatter.localizedStringFromDate(event.startDate, dateStyle: .FullStyle, timeStyle: .ShortStyle))"
         cell.title.text = event.name
+        
+        cell.textLabel?.numberOfLines = 0
+        cell.detailTextLabel?.numberOfLines = 0
         return cell
     }
 

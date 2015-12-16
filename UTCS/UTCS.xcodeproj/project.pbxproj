@@ -17,7 +17,6 @@
 		D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */; };
 		D4280C191B2E11130090F8C6 /* ActiveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */; };
 		D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */; };
-		D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */; };
 		D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */; };
 		D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */; };
 		D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */; };
@@ -152,7 +151,6 @@
 		D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHeaderView.xib; sourceTree = "<group>"; };
 		D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BouncyTableViewCell.swift; path = Views/BouncyTableViewCell.swift; sourceTree = "<group>"; };
-		D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTableViewCell.swift; path = Views/EventTableViewCell.swift; sourceTree = "<group>"; };
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
 		D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxBlurHeaderScrollView.swift; path = Views/ParallaxBlurHeaderScrollView.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
@@ -457,7 +455,6 @@
 		DD87616218FDFE97005FEE4E /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				D4280C1F1B2E30D00090F8C6 /* EventTableViewCell.swift */,
 				D45FE5341B508F47000F2D59 /* EventsViewController.swift */,
 				D4D5F5091B530C7F005974A7 /* StarredEventsViewController.swift */,
 				DD44659718E8254B00ED1153 /* UTCSEventsDetailViewController.h */,
@@ -1106,7 +1103,6 @@
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
 				D43E864E1B3758E900F6EA70 /* NavigationControllerDelegate.swift in Sources */,
-				D4280C201B2E30D00090F8C6 /* EventTableViewCell.swift in Sources */,
 				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,
 				D464390A1B7C6451007BA5D0 /* LabsDataSourceParser.swift in Sources */,
 				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,

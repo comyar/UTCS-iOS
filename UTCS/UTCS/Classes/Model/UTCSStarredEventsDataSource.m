@@ -28,15 +28,14 @@ static NSString * const UTCSEventsTableViewCellIdentifier   = @"UTCSEventTableVi
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
+    NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UTCSEventsTableViewCellIdentifier];
     
     if(!cell) {
-        cell = [[EventTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
+        cell = [[NewsTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:UTCSEventsTableViewCellIdentifier];
     }
     
     UTCSEvent *event        = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
     
-    cell.typeStripeLayer.fillColor = [UIColor clearColor].CGColor;
     cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     
     NSString *detailText = [NSString string];
