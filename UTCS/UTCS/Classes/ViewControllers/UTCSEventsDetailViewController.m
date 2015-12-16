@@ -12,7 +12,6 @@
 #import "UTCSEvent.h"
 #import "UTCSStateManager.h"
 #import "UIColor+UTCSColors.h"
-#import "NSString+CZContains.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSStarredEventsManager.h"
 #import "UITextView+CZTextViewHeight.h"
@@ -452,9 +451,9 @@ static const CGFloat dateLabelFontSize          = 18.0;
 {
     NSString *location = event.location;
     
-    if ([location contains:@"gdc"]) {
+    if ([location rangeOfString:@"gdc"].location != NSNotFound) {
         for (NSString *key in self.headerImageMapping) {
-            if([location contains:key]) {
+            if ([location rangeOfString:key].location != NSNotFound) {
                 return self.headerImageMapping[key];
             }
         }

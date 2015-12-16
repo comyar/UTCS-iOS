@@ -104,7 +104,6 @@
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
-		DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */; };
 		DDC404721917D42400D17CBF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC404711917D42400D17CBF /* Icons.xcassets */; };
 		DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDC4047C1918875200D17CBF /* AFNetworking-license.txt */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
@@ -254,8 +253,6 @@
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
 		DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CZPositioning.m"; path = "Categories/UIView+CZPositioning.m"; sourceTree = "<group>"; };
 		DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Event Headers.xcassets"; path = "Resources/Event Headers.xcassets"; sourceTree = "<group>"; };
-		DDC4046D1917CCE900D17CBF /* NSString+CZContains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CZContains.h"; path = "Categories/NSString+CZContains.h"; sourceTree = "<group>"; };
-		DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CZContains.m"; path = "Categories/NSString+CZContains.m"; sourceTree = "<group>"; };
 		DDC404711917D42400D17CBF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDC4047C1918875200D17CBF /* AFNetworking-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AFNetworking-license.txt"; path = "Resources/Licenses/AFNetworking-license.txt"; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
@@ -691,7 +688,6 @@
 			children = (
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
-				DDC404701917CCED00D17CBF /* NSString+CZContains */,
 				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
@@ -752,15 +748,6 @@
 				D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		DDC404701917CCED00D17CBF /* NSString+CZContains */ = {
-			isa = PBXGroup;
-			children = (
-				DDC4046D1917CCE900D17CBF /* NSString+CZContains.h */,
-				DDC4046E1917CCE900D17CBF /* NSString+CZContains.m */,
-			);
-			name = "NSString+CZContains";
 			sourceTree = "<group>";
 		};
 		DDC4047B191886F000D17CBF /* Licenses */ = {
@@ -1018,7 +1005,6 @@
 				DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */,
 				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
 				D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */,
-				DDC4046F1917CCE900D17CBF /* NSString+CZContains.m in Sources */,
 				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
