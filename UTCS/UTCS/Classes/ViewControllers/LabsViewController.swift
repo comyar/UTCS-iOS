@@ -38,7 +38,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
         view.addSubview(scrollView)
         let thirdLayout = UTCSLabViewLayout(filename: "ThirdFloorLabLayout")
         thirdFloorLabViewController = UTCSLabMachineViewController(layout: thirdLayout)
-        thirdFloorLabViewController.backgroundImageView.image = UIImage.cacheless_imageNamed("thirdLabsBackground")
+        thirdFloorLabViewController.backgroundImageView.image = UIImage(named: "Third Floor Lab")
 
         thirdFloorLabViewController.view.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: view.frame.height)
         scrollView.addSubview(thirdFloorLabViewController.view)
@@ -51,7 +51,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
         let basementLayout = UTCSLabViewLayout(filename: "BasementLabLayout")
         basementLabViewController = UTCSLabMachineViewController(layout: basementLayout)
 
-        basementLabViewController.backgroundImageView.image = UIImage.cacheless_imageNamed("basementLabsBackground")
+        basementLabViewController.backgroundImageView.image = UIImage(named: "Basement Lab")
         basementLabViewController.view.frame = CGRect(x: view.frame.width, y: 0.0, width: view.frame.width, height: view.frame.height)
         scrollView.addSubview(basementLabViewController.view)
         addChildViewController(basementLabViewController)

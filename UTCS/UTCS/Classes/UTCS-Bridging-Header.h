@@ -10,7 +10,6 @@
 
 
 #import "UIImage+CZTinting.h"
-#import "UIImage+Cacheless.h"
 #import "UIImage+CZScaling.h"
 #import "NSAttributedString+Trim.h"
 

@@ -74,7 +74,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         updatedLabel.alpha = 0.0
 
         //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
-        backgroundImageName = "diskQuotaBackground"
+        backgroundImageName = "Disk Quota"
     }
 
     @IBAction func didPressGo(sender: UIButton) {

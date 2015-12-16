@@ -20,7 +20,7 @@
 
     var backgroundImageName: String {
         willSet(newValue){
-            backgroundImageView.image = UIImage.cacheless_imageNamed(newValue)
+            backgroundImageView.image = UIImage(named: newValue)
         }
     }
 

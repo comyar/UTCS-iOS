@@ -23,7 +23,7 @@ class SettingsViewController: TableViewController {
         super.init(style: style)
         dataSource = SettingsDataSource()
         tableView.dataSource = settingsDataSource
-        backgroundImageName = "settingsBackground"
+        backgroundImageName = "Settings"
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -11,6 +11,7 @@
 		0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A26381891D5E30032DA03 /* CoreGraphics.framework */; };
 		0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
+		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
 		D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C697B1B7D363B005E3719 /* QuotaData.swift */; };
 		D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A79201B5B38190049C683 /* NewsTableViewCell.xib */; };
@@ -63,15 +64,6 @@
 		D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
 		D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */; };
 		D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */; };
-		DD1B8EC51929180400A85E13 /* newsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC31929180400A85E13 /* newsBackground@2x.png */; };
-		DD1B8EC71929185000A85E13 /* eventsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC61929185000A85E13 /* eventsBackground@2x.png */; };
-		DD1B8ECB192918AB00A85E13 /* newsBackground-blurred@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EC9192918AB00A85E13 /* newsBackground-blurred@2x.png */; };
-		DD1B8ECD1929190B00A85E13 /* welcomeBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ECC1929190B00A85E13 /* welcomeBackground@2x.png */; };
-		DD1B8ED119291B3D00A85E13 /* directoryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */; };
-		DD1B8ED519291C2100A85E13 /* settingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */; };
-		DD1B8ED719291C7400A85E13 /* diskQuotaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */; };
-		DD1B8EDB192923A300A85E13 /* thirdLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EDA192923A300A85E13 /* thirdLabsBackground@2x.png */; };
-		DD1B8EDD192923C100A85E13 /* basementLabsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1B8EDC192923C100A85E13 /* basementLabsBackground@2x.png */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */; };
@@ -91,7 +83,6 @@
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
 		DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
-		DD95E734191F2A6A0062F4E9 /* UIImage+Cacheless.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */; };
 		DD95E74A191F4EE00062F4E9 /* NSAttributedString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E749191F4EE00062F4E9 /* NSAttributedString+Trim.m */; };
 		DD95E7501920964A0062F4E9 /* UTCSStarredEventsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E74F1920964A0062F4E9 /* UTCSStarredEventsDataSource.m */; };
 		DD95E753192096880062F4E9 /* UTCSStarredEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E752192096880062F4E9 /* UTCSStarredEventsManager.m */; };
@@ -140,6 +131,7 @@
 		0B9A263E1891D5E30032DA03 /* UTCS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCS-Info.plist"; sourceTree = "<group>"; };
 		0B9A26401891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
+		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		88EABA07A3811E48149CDA98 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
 		91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C0E9A6409F3D1BA5F08593 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,15 +189,6 @@
 		D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSource.swift; path = Model/DirectoryDataSource.swift; sourceTree = "<group>"; };
 		D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDataSource.swift; path = Model/NewsDataSource.swift; sourceTree = "<group>"; };
 		D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		DD1B8EC31929180400A85E13 /* newsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8EC61929185000A85E13 /* eventsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventsBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8EC9192918AB00A85E13 /* newsBackground-blurred@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsBackground-blurred@2x.png"; sourceTree = "<group>"; };
-		DD1B8ECC1929190B00A85E13 /* welcomeBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcomeBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directoryBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diskQuotaBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8EDA192923A300A85E13 /* thirdLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thirdLabsBackground@2x.png"; sourceTree = "<group>"; };
-		DD1B8EDC192923C100A85E13 /* basementLabsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basementLabsBackground@2x.png"; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD44659118E7EA6C00ED1153 /* UIImage+CZTinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZTinting.h"; path = "Categories/UIImage+CZTinting.h"; sourceTree = "<group>"; };
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
@@ -240,8 +223,6 @@
 		DD9475D0190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSegmentedControlTableViewCell.h; path = Views/UTCSSegmentedControlTableViewCell.h; sourceTree = "<group>"; };
 		DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSegmentedControlTableViewCell.m; path = Views/UTCSSegmentedControlTableViewCell.m; sourceTree = "<group>"; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
-		DD95E732191F2A6A0062F4E9 /* UIImage+Cacheless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cacheless.h"; path = "Categories/UIImage+Cacheless.h"; sourceTree = "<group>"; };
-		DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cacheless.m"; path = "Categories/UIImage+Cacheless.m"; sourceTree = "<group>"; };
 		DD95E748191F4EE00062F4E9 /* NSAttributedString+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Trim.h"; path = "Categories/NSAttributedString+Trim.h"; sourceTree = "<group>"; };
 		DD95E749191F4EE00062F4E9 /* NSAttributedString+Trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Trim.m"; path = "Categories/NSAttributedString+Trim.m"; sourceTree = "<group>"; };
 		DD95E74E1920964A0062F4E9 /* UTCSStarredEventsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStarredEventsDataSource.h; path = Model/UTCSStarredEventsDataSource.h; sourceTree = "<group>"; };
@@ -598,40 +579,6 @@
 			name = svg;
 			sourceTree = "<group>";
 		};
-		DD95E731191F2A5B0062F4E9 /* UIImage+Cacheless */ = {
-			isa = PBXGroup;
-			children = (
-				DD95E732191F2A6A0062F4E9 /* UIImage+Cacheless.h */,
-				DD95E733191F2A6A0062F4E9 /* UIImage+Cacheless.m */,
-			);
-			name = "UIImage+Cacheless";
-			sourceTree = "<group>";
-		};
-		DD95E737191F377E0062F4E9 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				DD95E738191F377E0062F4E9 /* Backgrounds */,
-			);
-			name = Images;
-			path = Resources/Images;
-			sourceTree = "<group>";
-		};
-		DD95E738191F377E0062F4E9 /* Backgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				DD1B8EDC192923C100A85E13 /* basementLabsBackground@2x.png */,
-				DD1B8EDA192923A300A85E13 /* thirdLabsBackground@2x.png */,
-				DD1B8ED619291C7400A85E13 /* diskQuotaBackground@2x.png */,
-				DD1B8ED419291C2100A85E13 /* settingsBackground@2x.png */,
-				DD1B8ED019291B3D00A85E13 /* directoryBackground@2x.png */,
-				DD1B8ECC1929190B00A85E13 /* welcomeBackground@2x.png */,
-				DD1B8EC9192918AB00A85E13 /* newsBackground-blurred@2x.png */,
-				DD1B8EC61929185000A85E13 /* eventsBackground@2x.png */,
-				DD1B8EC31929180400A85E13 /* newsBackground@2x.png */,
-			);
-			path = Backgrounds;
-			sourceTree = "<group>";
-		};
 		DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,10 +601,10 @@
 		DDA758891904D28D007CD0DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD95E737191F377E0062F4E9 /* Images */,
 				DDC4047B191886F000D17CBF /* Licenses */,
 				DD9475E0190CDFBC0049FB8B /* svg */,
 				DDA7588F1904D313007CD0DB /* App.xcassets */,
+				886C2D451C215D580026E0CE /* Backgrounds.xcassets */,
 				DDC404711917D42400D17CBF /* Icons.xcassets */,
 				DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */,
 				DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */,
@@ -744,7 +691,6 @@
 			children = (
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
-				DD95E731191F2A5B0062F4E9 /* UIImage+Cacheless */,
 				DDC404701917CCED00D17CBF /* NSString+CZContains */,
 				DDDC92D718FA0E0100D39A74 /* UIImage+ImageEffects */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
@@ -950,33 +896,25 @@
 				DD95E765192296E20062F4E9 /* hosts.plist in Resources */,
 				DD95E7861926305C0062F4E9 /* FBTweaks-license.txt in Resources */,
 				DD95E78B1926305C0062F4E9 /* pop-license.txt in Resources */,
-				DD1B8EC71929185000A85E13 /* eventsBackground@2x.png in Resources */,
 				D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */,
 				DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */,
 				DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD95E7891926305C0062F4E9 /* NMSSH-license.txt in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
+				886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */,
 				DD95E7881926305C0062F4E9 /* MBProgressHUD-license.txt in Resources */,
 				DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */,
-				DD1B8ECD1929190B00A85E13 /* welcomeBackground@2x.png in Resources */,
-				DD1B8ED719291C7400A85E13 /* diskQuotaBackground@2x.png in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */,
-				DD1B8EDB192923A300A85E13 /* thirdLabsBackground@2x.png in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
-				DD1B8EC51929180400A85E13 /* newsBackground@2x.png in Resources */,
 				D463C86E1B338E5E00E6A767 /* ServiceErrorView.xib in Resources */,
 				D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */,
 				D4280C191B2E11130090F8C6 /* ActiveHeaderView.xib in Resources */,
-				DD1B8EDD192923C100A85E13 /* basementLabsBackground@2x.png in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
-				DD1B8ED119291B3D00A85E13 /* directoryBackground@2x.png in Resources */,
-				DD1B8ECB192918AB00A85E13 /* newsBackground-blurred@2x.png in Resources */,
-				DD1B8ED519291C2100A85E13 /* settingsBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,7 +1050,6 @@
 				D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
 				D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */,
-				DD95E734191F2A6A0062F4E9 /* UIImage+Cacheless.m in Sources */,
 				DD95E74A191F4EE00062F4E9 /* NSAttributedString+Trim.m in Sources */,
 				D44F34861B56807A00D84D0B /* Constants.swift in Sources */,
 			);

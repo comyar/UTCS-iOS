@@ -21,7 +21,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         tableView.estimatedRowHeight = 48
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: EventsTableViewCellIdentifier)
-        backgroundImageName = "eventsBackground"
+        backgroundImageName = "Events"
 
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = "UTCS Events"

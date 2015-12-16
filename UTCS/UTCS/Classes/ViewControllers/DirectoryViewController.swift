@@ -1,5 +1,5 @@
 import MBProgressHUD
-let searchBarBackgroundImageName = "searchBarBackground";
+let searchBarBackgroundImageName = "searchBarBackground"
 
 class DirectoryViewController: TableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, DataSourceDelegate {
     var appeared = false
@@ -20,7 +20,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         dataSource = DirectoryDataSource()
         directoryDataSource.delegate = self
 
-        backgroundImageName = "directoryBackground"
+        backgroundImageName = "Directory"
         view.backgroundColor = UIColor.clearColor()
         showsNavigationBarSeparatorLine = false
         searchController = UISearchController(searchResultsController: nil)
