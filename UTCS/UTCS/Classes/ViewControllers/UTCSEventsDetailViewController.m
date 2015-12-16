@@ -427,7 +427,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
     NSDateComponents *components = [self.calendar components:NSCalendarUnitDay
                                                     fromDate:event.startDate
                                                       toDate:event.endDate
-                                                     options:NSWrapCalendarComponents];
+                                                     options:NSCalendarWrapComponents];
     
     // Default to using the endDateString for a same day event
     NSString *startDateString = [self.startDateFormatter stringFromDate:event.startDate];
