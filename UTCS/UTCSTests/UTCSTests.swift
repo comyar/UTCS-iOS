@@ -25,7 +25,7 @@ class UTCSTests: XCTestCase {
         let testString = "2015-01-29T23:59:59+00:00"
         let result = DataSourceParser.dateFormatter.dateFromString(testString)
         XCTAssertNotNil(result)
-        var components = NSDateComponents()
+        let components = NSDateComponents()
         components.setValue(2015, forComponent: .Year)
         components.setValue(1, forComponent: .Month)
         components.setValue(29, forComponent: .Day)
