@@ -1,11 +1,5 @@
 language: objective-c
 
-before_script:
-- mv -v ./uMAD/Config.template.swift ./uMAD/Config.swift
-- echo "echo \"Ran dummy fabricscript.sh\"" > ./scripts/fabricscript.sh
-- echo ./scripts/fabricscript.sh
-- chmod a+x ./scripts/fabricscript.sh
-
 xcode_project: UTCS/UTCS.xcodeproj
 xcode_scheme: UTCS
 podfile: UTCS/Podfile
