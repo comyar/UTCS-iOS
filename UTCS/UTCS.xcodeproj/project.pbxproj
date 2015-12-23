@@ -798,6 +798,7 @@
 				0B9A26311891D5E30032DA03 /* Resources */,
 				AEECB517A3CA4691B8D46D25 /* Copy Pods Resources */,
 				1709A7E40252231252631ED3 /* Embed Pods Frameworks */,
+				D4F4CEDC1C2B222B00220E39 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -959,6 +960,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D4F4CEDC1C2B222B00220E39 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

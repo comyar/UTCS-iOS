@@ -6,10 +6,10 @@ import SwiftyJSON
 let requestKey = "HZiB188uvsNHIWa"
 
 // Name of the meta data in the serialized JSON dictionary
-let dataRequestMetaName = "meta";
+let dataRequestMetaName = "meta"
 
 // Name of the values in the serialized JSON dictionary
-let dataRequestValuesName = "values";
+let dataRequestValuesName = "values"
 
 enum Service: String {
     case Labs = "labs"

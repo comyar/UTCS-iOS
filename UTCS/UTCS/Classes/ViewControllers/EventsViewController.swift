@@ -1,4 +1,4 @@
-let serviceName = "events";
+let serviceName = "events"
 
 
 class EventsViewController: HeaderTableViewController, DataSourceDelegate, StarredEventsViewControllerDelegate {
@@ -7,7 +7,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         return dataSource as? EventsDataSource
     }
     var filterSegmentedControl: UISegmentedControl!
-    var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()),(.Orgs, UIColor.utcsEventStudentOrgsColor())]
+    var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()), (.Orgs, UIColor.utcsEventStudentOrgsColor())]
     var filterButtonImageView: UIImageView!
     var starListButton: UIBarButtonItem!
     var starredEventsViewController: StarredEventsViewController!
@@ -71,7 +71,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         }
     }
 
-    func didChangeValueForControl(control: UIControl){
+    func didChangeValueForControl(control: UIControl) {
         if control == filterSegmentedControl {
             let index = filterSegmentedControl.selectedSegmentIndex
             let filterType = filters[index].0
@@ -93,7 +93,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         }
     }
 
-    func update(){
+    func update() {
         activeHeaderView.showActiveAnimation(true)
         eventsDataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
             self.activeHeaderView.showActiveAnimation(false)
@@ -116,7 +116,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         }
     }
 
-    func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: UTCSEvent){
+    func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: UTCSEvent) {
         eventDetailViewController.event = event
         navigationController?.pushViewController(eventDetailViewController, animated: true)
     }

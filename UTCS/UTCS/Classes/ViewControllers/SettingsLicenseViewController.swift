@@ -61,7 +61,7 @@ class SettingsLicenseViewController: TableViewController {
                                      reuseIdentifier:@"UTCSSettingsLicenseTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];

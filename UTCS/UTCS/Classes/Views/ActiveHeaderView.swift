@@ -1,22 +1,22 @@
 import Shimmer
 //MARK: Constants
 // Duration of animations performed by this view
-let animationDuration = 0.3;
+let animationDuration = 0.3
 
 // Font size of the shimmering view
-let shimmeringViewFontSize: CGFloat = 50.0;
+let shimmeringViewFontSize: CGFloat = 50.0
 
 // Font size of the updated label
-let updatedLabelFontSize = 14.0;
+let updatedLabelFontSize = 14.0
 
 // Font size of the subtitle label
-let subtitleLabelFontSize = 17.0;
+let subtitleLabelFontSize = 17.0
 
 
 // Name of the down arrow image
-let downArrowImageName = "downArrow";
+let downArrowImageName = "downArrow"
 
-class ActiveHeaderView: UIView{
+class ActiveHeaderView: UIView {
 
     // Shimmering view used to indicate loading of news articles
     @IBOutlet var shimmeringView: FBShimmeringView!
@@ -40,14 +40,14 @@ class ActiveHeaderView: UIView{
 
     func showActiveAnimation(show: Bool) {
         downArrowImageView.tintColor = UIColor.whiteColor()
-        if (show) {
+        if show {
             activityIndicatorView.startAnimating()
         } else {
             activityIndicatorView.stopAnimating()
         }
 
         self.shimmeringView.shimmering = show
-        UIView.animateWithDuration(animationDuration){
+        UIView.animateWithDuration(animationDuration) {
             self.updatedLabel.alpha = show ? 0.0 : 0.45
             self.downArrowImageView.alpha   = show ? 0.0 : 0.45
             self.activityIndicatorView.alpha = show ? 1.0 : 0.0

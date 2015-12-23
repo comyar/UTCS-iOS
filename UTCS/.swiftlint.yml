@@ -1,0 +1,10 @@
+disabled_rules:
+  - force_cast
+  - variable_name
+excluded:
+  - Pods
+# 260 -> error
+# This is really only to catch egregiously long lines
+line_length: 
+  - 160
+  - 260

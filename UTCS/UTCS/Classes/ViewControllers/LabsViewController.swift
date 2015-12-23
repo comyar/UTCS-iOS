@@ -83,7 +83,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if UTCSStateManager.sharedManager().preferredLab == 0   {
+        if UTCSStateManager.sharedManager().preferredLab == 0 {
             scrollView.contentOffset = CGPoint(x: 0, y: 0)
         } else {
             scrollView.contentOffset = CGPoint(x: CGRectGetWidth(view.bounds), y: 0.0)
@@ -91,7 +91,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
         updateForced(false)
     }
 
-    func updateForced(forced: Bool){
+    func updateForced(forced: Bool) {
         thirdFloorLabViewController.shimmeringView.shimmering = true
         basementLabViewController.shimmeringView.shimmering = true
 
@@ -100,7 +100,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
         hud.mode = .Indeterminate
 
 
-        labsDataSource!.updateWithArgument(nil){ success, cachehit in
+        labsDataSource!.updateWithArgument(nil) { success, cachehit in
             self.thirdFloorLabViewController.shimmeringView.shimmering = false
             self.basementLabViewController.shimmeringView.shimmering = false
 
@@ -122,7 +122,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
             MBProgressHUD.hideAllHUDsForView(self.scrollView, animated: true)
         }
     }
-    func didTouchUpInsideButton(button: UIButton){
+    func didTouchUpInsideButton(button: UIButton) {
         if button == refreshButton {
             updateForced(true)
         }

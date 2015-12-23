@@ -80,7 +80,7 @@ class SettingsDataSource: DataSource, UITableViewDataSource {
             if (!cell) {
                 cell = [[UTCSSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                                              reuseIdentifier:UTCSSettingsSwitchTableViewCellIdentifier];
-                
+
             }
             [cell.cellSwitch addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
             cell.cellSwitch.on = [UTCSStateManager sharedManager].eventNotifications;

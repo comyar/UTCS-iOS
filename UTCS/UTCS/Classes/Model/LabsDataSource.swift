@@ -1,10 +1,10 @@
 final class LabsDataSource: ServiceDataSource {
     override var router: Router {
-        get{
+        get {
             return Router.Labs()
         }
     }
-    init(){
+    init() {
         super.init(service: .Labs, parser: LabsDataSourceParser())
     }
 }
@@ -29,7 +29,7 @@ NSString * const UTCSLabsDataSourceCacheKey = @;
         _searchController.dataSource = self;
         _minimumTimeBetweenUpdates = 750; // 15 minutes
         _primaryCacheKey = UTCSLabsDataSourceCacheKey;
-        
+
         NSDictionary *cache = [self.cache objectWithKey:UTCSLabsDataSourceCacheKey];
         if (cache) {
             UTCSDataSourceCacheMetaData *meta = cache[UTCSDataSourceCacheMetaDataName];

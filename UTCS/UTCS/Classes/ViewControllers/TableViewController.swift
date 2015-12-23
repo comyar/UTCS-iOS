@@ -44,7 +44,8 @@ class TableViewController: UITableViewController, ContentController {
         super.init(style: .Plain)
         commonInit()
     }
-    func commonInit(){
+
+    func commonInit() {
         automaticallyAdjustsScrollViewInsets = false
         gestureButton = {
         let button = UIButton(type: .Custom)
@@ -73,7 +74,7 @@ class TableViewController: UITableViewController, ContentController {
         configureOnLayout()
         let navbarHeight = navigationController?.navigationBar.bounds.height ?? 0
         let navigationBarHeight = max(navbarHeight, 44.0)
-        navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), navigationBarSeparatorLineHeight)
+        navigationBarSeparatorLineView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: navigationBarSeparatorLineHeight)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -84,15 +85,15 @@ class TableViewController: UITableViewController, ContentController {
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         let navigationBarHeight = CGRectGetHeight(navigationController!.navigationBar.bounds)
-        tableView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - navigationBarHeight)
-        gestureButton.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(view.bounds), navigationBarHeight)
-        navigationBarSeparatorLineView.frame = CGRectMake(0.0, navigationBarHeight, CGRectGetWidth(view.bounds), navigationBarSeparatorLineHeight)
+        tableView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: view.bounds.height - navigationBarHeight)
+        gestureButton.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: navigationBarHeight)
+        navigationBarSeparatorLineView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: navigationBarSeparatorLineHeight)
         view.bringSubviewToFront(navigationBarSeparatorLineView)
     }
 
-    func didTouchDownInsideButton(button: UIButton){
+    func didTouchDownInsideButton(button: UIButton) {
         if button == gestureButton {
-            tableView.scrollRectToVisible(CGRectMake(0.0, 0.0, 1.0, 1.0), animated: true)
+            tableView.scrollRectToVisible(CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0), animated: true)
         }
     }
 
@@ -114,7 +115,7 @@ class TableViewController: UITableViewController, ContentController {
         title = ""
     }
 
-    func configureOnLoad(){
+    func configureOnLoad() {
         // Ensure that we get the fullscreen. This is important so that we don't get a 20px
         // offset when the status bar becomes visible.
         extendedLayoutIncludesOpaqueBars = true
@@ -122,14 +123,14 @@ class TableViewController: UITableViewController, ContentController {
         view.addSubview(blurView)
         view.insertSubview(backgroundImageView, belowSubview: blurView)
     }
-    
-    func configureOnLayout(){
+
+    func configureOnLayout() {
         blurView.frame = view.bounds
         backgroundImageView.frame = view.bounds
         view.sendSubviewToBack(blurView)
         view.sendSubviewToBack(backgroundImageView)
     }
-    
-    func configureOnAppear(){
+
+    func configureOnAppear() {
     }
 }

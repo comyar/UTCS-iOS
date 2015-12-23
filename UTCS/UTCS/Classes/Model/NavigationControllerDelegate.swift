@@ -3,14 +3,14 @@
     var interactionController: UIPercentDrivenInteractiveTransition?
     var animator = UTCSSlideNavigationAnimator()
     var navigationController: NavigationController? {
-        willSet(newValue){
+        willSet(newValue) {
             self.navigationController?.view.removeGestureRecognizer(panGestureRecognizer)
             self.navigationController = newValue
             self.navigationController?.view.addGestureRecognizer(panGestureRecognizer)
         }
     }
 
-    override init(){
+    override init() {
         super.init()
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "didRecognizePanGesture:")
     }
@@ -43,7 +43,10 @@
         }
     }
 
-    public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func navigationController(navigationController: UINavigationController,
+        animationControllerForOperation operation: UINavigationControllerOperation,
+        fromViewController fromVC: UIViewController,
+        toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .Pop || operation == .Push {
             animator.pushing = operation == .Push
             return animator

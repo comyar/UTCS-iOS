@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     var verticalMenuViewController: UTCSVerticalMenuViewController?
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool  {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Menu
         menuViewController.delegate = self
         controllers[.News] = NavigationController(rootViewController: NewsViewController())
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         // Initialize view controllers. News is the default service
 
         window = UIWindow()
-        window?.rootViewController = verticalMenuViewController;
+        window?.rootViewController = verticalMenuViewController
         window?.makeKeyAndVisible()
         configureAppearance()
         return true
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 
-    func configureAppearance(){
+    func configureAppearance() {
         let appearance = UINavigationBar.appearanceWhenContainedInInstancesOfClasses([NavigationController.Type]())
         appearance.tintColor = UIColor.whiteColor()
         appearance.backgroundColor = UIColor.grayColor()
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
 
-    func didSelectMenuOption(option: MenuOption){
+    func didSelectMenuOption(option: MenuOption) {
         guard !(option == .Labs && UTCSAuthenticationManager.sharedManager().authenticated) else {
             prepareAuthenticationAlertView()
             authenticationAlertView?.message = "You must log into your CS account to view lab status information."
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         }
         if controllers[option] == nil {
             controllers[option] = {
-                switch option{
+                switch option {
                 case .News:
                     return NavigationController(rootViewController: NewsViewController())
                 case .Events:
@@ -69,19 +69,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         }
         verticalMenuViewController?.contentViewController = controllers[option]
     }
-    func prepareAuthenticationAlertView(){
+    func prepareAuthenticationAlertView() {
         guard authenticationAlertView == nil else {
             return
         }
         authenticationAlertView = UIAlertController(title: "Authentication", message: "You must log into your CS account to use this feature", preferredStyle: .Alert)
-        let submitAction = UIAlertAction(title: "Log in", style: .Default){ _ in
+        let submitAction = UIAlertAction(title: "Log in", style: .Default) { _ in
                 let loginTextField = self.authenticationAlertView!.textFields![0] as UITextField
                 let passwordTextField = self.authenticationAlertView!.textFields![1] as UITextField
 
                 self.login(loginTextField.text!, password: passwordTextField.text!)
 
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel){ _ in}
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { _ in}
 
         authenticationAlertView?.addAction(submitAction)
         authenticationAlertView?.addAction(cancelAction)
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
             textfield.placeholder = "Password"
         })
     }
-    func login(username: String, password: String){
+    func login(username: String, password: String) {
         let hud = MBProgressHUD.showHUDAddedTo(verticalMenuViewController!.view, animated: true)
         hud.mode = .Indeterminate
         hud.labelText = "Authenticating"
@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 self.verticalMenuViewController?.contentViewController = self.controllers[.Labs]
             } else {
                 let failureAlertView = UIAlertController(title: "Authentication Failed", message: "Ouch! Something went wrong.", preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel){ _ in}
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { _ in}
                 failureAlertView.addAction(cancelAction)
             }
             MBProgressHUD.hideHUDForView(self.verticalMenuViewController!.view, animated: true)

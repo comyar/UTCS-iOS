@@ -32,7 +32,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
         searchController.searchBar.setSearchFieldBackgroundImage(UIImage(named: searchBarBackgroundImageName), forState: .Normal)
 
         directoryDataSource.searchController = searchController
-        
+
         tableView.tableHeaderView = searchController.searchBar
         tableView.sectionIndexColor = UIColor.whiteColor()
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
@@ -92,7 +92,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
             searchController.searchBar.becomeFirstResponder()
         }
     }
-    func update(){
+    func update() {
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progressHUD.mode = .Indeterminate
         progressHUD.labelText = "Syncing"
@@ -102,7 +102,7 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
                 self.tableView.reloadData()
                 self.tableView.contentOffset = CGPoint(x: 0.0, y: self.tableView.tableHeaderView!.frame.height)
             }
-            UIView.animateWithDuration(0.3){
+            UIView.animateWithDuration(0.3) {
                 let successValue: CGFloat = success ? 1.0 : 0.0
                 self.searchController.searchBar.alpha = successValue
                 self.tableView.alpha = successValue
@@ -165,10 +165,10 @@ class DirectoryViewController: TableViewController, UISearchControllerDelegate, 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 24.0
     }
-    func configureAppearance(){
+    func configureAppearance() {
         configureSearchBarWithRoot(searchController.searchBar)
     }
-    func configureSearchBarWithRoot(root: UIView){
+    func configureSearchBarWithRoot(root: UIView) {
         if root is UITextField {
             let field = root as! UITextField
             let placeholderAttributes = [NSForegroundColorAttributeName: UIColor(white: 1.0, alpha: 0.5)]

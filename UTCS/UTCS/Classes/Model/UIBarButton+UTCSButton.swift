@@ -65,7 +65,7 @@ extension UIView: BouncyButton {
         }
 
     }
-    func reset(){
+    func reset() {
         bounceTo(1.0, alpha: 1.0)
     }
 }

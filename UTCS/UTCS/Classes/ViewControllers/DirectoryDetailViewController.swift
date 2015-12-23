@@ -1,5 +1,5 @@
 // Directory detail table view cell identifier.
-let DirectoryDetailTableViewCellIdentifier = "UTCSDirectoryDetailTableViewCell";
+let DirectoryDetailTableViewCellIdentifier = "UTCSDirectoryDetailTableViewCell"
 
 
 class DirectoryDetailViewController: TableViewController {
@@ -34,7 +34,7 @@ class DirectoryDetailViewController: TableViewController {
         }
         return phoneNumber
     }
-    func didTouchUpInsideButton(button: UIButton){
+    func didTouchUpInsideButton(button: UIButton) {
         if button.tag == Int.min {
             let controller = UIAlertController(title: "Confirm", message: "Are you sure you want to call?", preferredStyle: .Alert)
             controller.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
@@ -44,7 +44,7 @@ class DirectoryDetailViewController: TableViewController {
             presentViewController(controller, animated: true, completion: nil)
         }
     }
-    func callNumber(){
+    func callNumber() {
         let phoneNumber = self.person?.phoneNumber!
         let phoneURL = NSURL(string: "tel:\(phoneNumber)")!
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
@@ -102,7 +102,7 @@ class DirectoryDetailViewController: TableViewController {
                 })
             }
             cell?.imageView?.contentMode = .ScaleAspectFill
-        } else if indexPath.section == 1  {
+        } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 var text = person?.office
                 var subtitle = "Office"

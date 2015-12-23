@@ -3,7 +3,7 @@ import SwiftyJSON
 class LabsDataSourceParser: DataSourceParser {
     var parsedMachines: [String: [String: UTCSLabMachine]] {
     get {
-    return parsed as! [String: [String: UTCSLabMachine]]
+        return parsed as? [String: [String: UTCSLabMachine]] ?? [String: [String: UTCSLabMachine]]()
     }
     }
     override func parseValues(values: JSON) {
@@ -13,7 +13,7 @@ class LabsDataSourceParser: DataSourceParser {
             "basement": parseFloor(basementData!, labName: "basement")]
     }
 
-    private func parseFloor(floor: [JSON], labName: String) -> [String: UTCSLabMachine]{
+    private func parseFloor(floor: [JSON], labName: String) -> [String: UTCSLabMachine] {
         var machines = [String: UTCSLabMachine]()
         for machineData in floor {
             let machine = UTCSLabMachine()

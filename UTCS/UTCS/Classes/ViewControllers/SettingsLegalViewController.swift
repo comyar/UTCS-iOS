@@ -1,5 +1,5 @@
 class SettingsLegalViewController: TableViewController {
-    
+
 }
 /*
 
@@ -45,12 +45,12 @@ class SettingsLegalViewController: TableViewController {
     if (self = [super initWithStyle:style]) {
         self.tableView.dataSource = self;
         self.tableView.rowHeight = 50.0;
-        
+
         self.sectionTitles = @[@"Licenses", @"Photographs By"];
         self.licenses = @[@"pop", @"FBTweaks", @"FBShimmering",
                           @"AFNetworking", @"MBProgressHUD", @"JVFloatLabeledTextField",
                           @"DPMeterView", @"PocketSVG", @"NMSSH", @"RQShineLabel"];
-        
+
         self.photographs = @[@"Keerthana Kumar",
                              @"Comyar Zaheri",
                              @"Michael Brennan",
@@ -68,13 +68,13 @@ class SettingsLegalViewController: TableViewController {
     if (!cell) {
         cell = [[BouncyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UTCSSettingsLegalTableViewCell"];
     }
-    
+
     if (indexPath.section == 0) {
         cell.textLabel.text = self.licenses[indexPath.row];
     } else if (indexPath.section == 1) {
         cell.textLabel.text = self.photographs[indexPath.row];
     }
-    
+
     return cell;
 }
 
@@ -103,17 +103,17 @@ class SettingsLegalViewController: TableViewController {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     if (indexPath.section != 0) {
         return;
     }
-    
+
     NSString *license = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-    
+
     if (!self.licenseViewController) {
         self.licenseViewController = [UTCSSettingsLicenseViewController new];
     }
-    
+
     self.licenseViewController.license = license;
     [self.navigationController pushViewController:self.licenseViewController animated:YES];
 }

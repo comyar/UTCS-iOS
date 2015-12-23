@@ -2,22 +2,22 @@ import Foundation
 import pop
 
 // Final scale of the content view when bouncing downwards
-let bounceDownScale = 0.925;
+let bounceDownScale = 0.925
 
 // Final alpha of the content view when bouncing downwards
-let bounceDownAlpha: CGFloat = 0.5;
+let bounceDownAlpha: CGFloat = 0.5
 
 // Bounciness of the POPSpringAnimation
-let springBounciness: CGFloat = 20.0;
+let springBounciness: CGFloat = 20.0
 
 // Speed of the POPSpringAnimation
-let springSpeed: CGFloat = 20.0;
+let springSpeed: CGFloat = 20.0
 
 // Key to identify the alpha animation
-let alphaAnimationKey = "alpha";
+let alphaAnimationKey = "alpha"
 
 // Key to identify the bounce animation
-let bounceAnimationKey  = "bounce";
+let bounceAnimationKey  = "bounce"
 
 enum BouncyTableViewCellBounceDirection: Int {
     case Down, Up
@@ -46,7 +46,7 @@ class BouncyTableViewCell: UITableViewCell {
             self.bounceWithDirection(.Up)
         }
     }
-    func bounceWithDirection(direction: BouncyTableViewCellBounceDirection){
+    func bounceWithDirection(direction: BouncyTableViewCellBounceDirection) {
         var scaleValue = NSValue(CGPoint: CGPoint(x: 1.0, y: 1.0))
         let isDown = direction == .Down
         if isDown {

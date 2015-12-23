@@ -17,19 +17,19 @@ class ParallaxBlurHeaderScrollView: UIView {
     var headerImageView: UIImageView!
     var headerContainerView: UIView!
     var headerImage: UIImage? {
-        set(newValue){
+        set(newValue) {
             guard let image = newValue where newValue != headerImageView.image else {
                 return
             }
             headerImageView.image = image
             layoutIfNeeded()
         }
-        get{
+        get {
             return headerImageView.image
         }
     }
 
-    func didSetFrame(){
+    func didSetFrame() {
         scrollView.frame = bounds
         layoutIfNeeded()
     }
@@ -124,7 +124,7 @@ class ParallaxBlurHeaderScrollView: UIView {
 
 
     }
-    deinit{
+    deinit {
         headerContainerView.removeObserver(self, forKeyPath: framePropertyString)
         scrollView.removeObserver(self, forKeyPath: contentOffsetPropertyString)
     }

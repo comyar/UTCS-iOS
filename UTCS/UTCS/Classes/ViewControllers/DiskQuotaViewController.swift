@@ -51,9 +51,9 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
 
         view.backgroundColor = UIColor.blackColor()
         usernameTextField.floatingLabelTextColor = UIColor(white: 1.0, alpha: 0.5)
-        usernameTextField.autocapitalizationType = .None;
+        usernameTextField.autocapitalizationType = .None
         usernameTextField.floatingLabelActiveTextColor = UIColor.whiteColor()
-        usernameTextField.autocorrectionType = .No;
+        usernameTextField.autocorrectionType = .No
         usernameTextField.textColor = UIColor.whiteColor()
         usernameTextField.tintColor = UIColor.whiteColor()
         usernameTextField.returnKeyType = .Go
@@ -104,11 +104,11 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         return true
     }
 
-    func update(){
+    func update() {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hud.mode = .Indeterminate
         hud.labelText = "Fetching"
-        quotaDataSource.updateWithArgument(usernameTextField.text!){ success, cacheHit in
+        quotaDataSource.updateWithArgument(usernameTextField.text!) { success, cacheHit in
             if success {
                 self.nameLabel.text = self.quotaDataSource.quotaData.name
                 let limit = self.quotaDataSource.quotaData.limit
@@ -125,12 +125,12 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 let success: CGFloat = success ? 1.0 : 0.0
-                self.serviceErrorView.alpha = 1.0 - success;
-                self.quotaDetailLabel.alpha = success - 0.3;
-                self.percentLabel.alpha = success;
-                self.meterView.alpha = success;
-                self.nameLabel.alpha = success;
-                self.descriptionLabel.alpha  = 0.0;
+                self.serviceErrorView.alpha = 1.0 - success
+                self.quotaDetailLabel.alpha = success - 0.3
+                self.percentLabel.alpha = success
+                self.meterView.alpha = success
+                self.nameLabel.alpha = success
+                self.descriptionLabel.alpha  = 0.0
             })
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }

@@ -1,6 +1,6 @@
 
 @objc protocol StarredEventsViewControllerDelegate {
-    optional func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event:UTCSEvent)
+    optional func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: UTCSEvent)
 }
 
 
@@ -70,11 +70,11 @@ class StarredEventsViewController: TableViewController {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.menuButton.hidden = YES;
-    
+
     self.tableView.editing = YES;
-    
+
     self.doneButton = ({
         UIButton *button = [UIButton bouncyButton];
         [button addTarget:self action:@selector(didTouchUpInsideButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -86,13 +86,13 @@ class StarredEventsViewController: TableViewController {
         button.tintColor = [UIColor whiteColor];
         button;
     });
-    
+
     [self.view addSubview:({
         UIView *overlay = [[UIView alloc]initWithFrame:self.view.bounds];
         overlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         overlay;
     })];
-    
+
     self.descriptionLabel = ({
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(16.0, 0.0, self.view.width - 32.0, 128.0)];
         label.center = self.view.center;
@@ -104,9 +104,9 @@ class StarredEventsViewController: TableViewController {
         label.alpha = 0.0;
         label;
     });
-    
+
     [self.view addSubview:self.descriptionLabel];
-    
+
     [self.view addSubview:self.doneButton];
     [self.view bringSubviewToFront:self.tableView];
     [self.view bringSubviewToFront:self.doneButton];
@@ -128,7 +128,7 @@ class StarredEventsViewController: TableViewController {
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-    
+
     if ([[[UTCSStarredEventsManager sharedManager]allEvents]count] == 0) {
         self.descriptionLabel.alpha = 1.0;
         self.tableView.alpha        = 0.0;
@@ -157,13 +157,13 @@ class StarredEventsViewController: TableViewController {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UTCSEvent *event = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
-    
+
     // Estimate height of event name
     CGRect rect = [event.name boundingRectWithSize:CGSizeMake(self.tableView.width, CGFLOAT_MAX)
                                            options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin)
                                         attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}
                                            context:nil];
-    
+
     return MIN(ceilf(rect.size.height), 66.0) + 55.0;
 }
 
@@ -184,7 +184,7 @@ class StarredEventsViewController: TableViewController {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
         UTCSEvent *event = [[UTCSStarredEventsManager sharedManager]allEvents][indexPath.row];
-        
+
         if ([self.delegate conformsToProtocol:@protocol(UTCSStarredEventsViewControllerDelegate)] &&
             [self.delegate respondsToSelector:@selector(starredEventsViewController:didSelectEvent:)]) {
             [self.delegate starredEventsViewController:self didSelectEvent:event];

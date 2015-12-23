@@ -35,7 +35,7 @@ class NewsDataSourceParser: DataSourceParser {
         parsed = articles
     }
 
-    func setHeaderImageForArticle(article: NewsArticle){
+    func setHeaderImageForArticle(article: NewsArticle) {
         var tasks = [NSURLSessionDataTask]()
         for url in article.imageURLs! {
             let session = NSURLSession.sharedSession()

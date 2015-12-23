@@ -15,16 +15,16 @@ class ServiceDataSource: DataSource {
         self.service = service
         self.cache = UTCSDataSourceCache(service: service.rawValue)
     }
-    init(service: Service, parser: DataSourceParser){
+    init(service: Service, parser: DataSourceParser) {
         self.service = service
         self.parser = parser
         self.cache = UTCSDataSourceCache(service: service.rawValue)
     }
 
-    func updateWithArgument(argument: String?, completion: DataSourceCompletion?){
+    func updateWithArgument(argument: String?, completion: DataSourceCompletion?) {
         self.argument = argument
         let metaData = cache.objectWithKey(UTCSDataSourceCacheMetaDataName) as? UTCSDataSourceCacheMetaData
-        if metaData != nil && NSDate().timeIntervalSinceDate(metaData!.timestamp) < minimumTimeBetweenUpdates{
+        if metaData != nil && NSDate().timeIntervalSinceDate(metaData!.timestamp) < minimumTimeBetweenUpdates {
             data = cache.objectWithKey(UTCSDataSourceCacheValuesName)
             updated = metaData!.timestamp
             completion?(true, true)
@@ -35,7 +35,7 @@ class ServiceDataSource: DataSource {
         fetchData { (meta, values, error) -> () in
             if let values = values,
                 let meta = meta where
-                (meta["service"].string == self.service.rawValue && meta["success"].boolValue)  {
+                (meta["service"].string == self.service.rawValue && meta["success"].boolValue) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
                         self.parser.parseValues(values)
                         self.data = self.parser.parsed
@@ -45,8 +45,7 @@ class ServiceDataSource: DataSource {
 
                         }
                     }
-            }
-            else {
+            } else {
                 completion?(false, false)
             }
         }
@@ -54,7 +53,7 @@ class ServiceDataSource: DataSource {
     }
     func fetchData(completion: DataRequestCompletion) {
         Alamofire.request(router).responseJSON { response -> Void in
-            guard response.result.isSuccess else{
+            guard response.result.isSuccess else {
                 // For debugging purposes: Print the raw string
                 //let string = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
                 completion(nil, nil, response.result.error)
@@ -62,7 +61,7 @@ class ServiceDataSource: DataSource {
             }
             let swiftyJSON = JSON(response.result.value!)
             completion(swiftyJSON["meta"], swiftyJSON["values"], nil)
-            
+
         }
     }
 }

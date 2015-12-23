@@ -1,4 +1,3 @@
-
 typealias DataSourceCompletion = (Bool, Bool) -> ()
 
 @objc protocol DataSourceDelegate {

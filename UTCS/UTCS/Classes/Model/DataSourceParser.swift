@@ -8,7 +8,7 @@ class DataSourceParser {
         return formatter
     }()
 
-    func parseValues(values: JSON){
+    func parseValues(values: JSON) {
         fatalError("Parsers must implement parseValues")
     }
 

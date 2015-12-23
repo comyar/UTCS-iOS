@@ -24,7 +24,7 @@ let imageURLKey = "image"
 
 class DirectoryDataSourceParser: DataSourceParser {
     var parsedDirectory: [DirectoryPerson] {
-        return parsed as! [DirectoryPerson]
+        return parsed as? [DirectoryPerson] ?? [DirectoryPerson]()
     }
     override func parseValues(values: JSON) {
         var directory = [DirectoryPerson]()
@@ -43,4 +43,3 @@ class DirectoryDataSourceParser: DataSourceParser {
         parsed = directory
     }
 }
-

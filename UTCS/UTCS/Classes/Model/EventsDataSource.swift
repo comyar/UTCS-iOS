@@ -20,24 +20,27 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
     var typeColorMapping = [EventType.Careers: UIColor.utcsEventCareersColor(),
                                 .Talks: UIColor.utcsEventTalkColor(),
                                 .Orgs: UIColor.utcsEventStudentOrgsColor()]
-    init(){
+    init() {
         super.init(service: .Events, parser: EventsDataSourceParser())
         minimumTimeBetweenUpdates = 3 * 60 * 60
 
 
     }
-    func filterEventsWithType(type: EventType) -> ([NSIndexPath], [NSIndexPath]){
+    func filterEventsWithType(type: EventType) -> ([NSIndexPath], [NSIndexPath]) {
         //TODO: Reimplement filtering
         filteredEvents = eventData!
-        return ([],[])
+        return ([], [])
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventData?.count ?? 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let dequeued = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier),
+            let cell = dequeued as? NewsTableViewCell else {
+                return UITableViewCell()
+        }
         let event = eventData![indexPath.row]
-        let cell: NewsTableViewCell = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier)! as! NewsTableViewCell
-        cell.detailLabel.text = "\(NSDateFormatter.localizedStringFromDate(event.startDate, dateStyle: .FullStyle, timeStyle: .ShortStyle))"
+        cell.detailLabel.text = event.description
         cell.title.text = event.name
         
         cell.textLabel?.numberOfLines = 0

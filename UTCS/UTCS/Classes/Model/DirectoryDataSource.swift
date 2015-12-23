@@ -1,11 +1,8 @@
-
-// Directory table view cell identifier.
-let UTCSDirectoryTableViewCellIdentifier = "UTCSDirectoryTableViewCell"
-
-
 final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
+    // Directory table view cell identifier.
+    private let cellIdentifier = "UTCSDirectoryTableViewCell"
     var directoryPeople: [DirectoryPerson]! {
-        return data as! [DirectoryPerson]
+        return data as? [DirectoryPerson] ?? [DirectoryPerson]()
     }
     var directoryPeopleSections: [[DirectoryPerson]]?
     var filtered: [DirectoryPerson]!
@@ -20,7 +17,7 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier(UTCSDirectoryTableViewCellIdentifier)
-        let cell = BouncyTableViewCell(style: .Subtitle, reuseIdentifier: UTCSDirectoryTableViewCellIdentifier)
+        let cell = BouncyTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.selectionStyle = .None
