@@ -1,5 +1,4 @@
 class HeaderTableViewController: TableViewController {
-    // Content offset property string used for KVO
 
     var activeHeaderView: ActiveHeaderView! {
         didSet(oldValue) {
@@ -17,13 +16,18 @@ class HeaderTableViewController: TableViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
+        // Ensure that the header is always the correct size
         tableView.tableHeaderView!.frame = tableView.bounds
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    // MARK:- KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         if keyPath == contentOffsetPropertyString {

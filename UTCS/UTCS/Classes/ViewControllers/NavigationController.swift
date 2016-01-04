@@ -1,5 +1,4 @@
 class NavigationController: UINavigationController {
-    var navigationDelegate: NavigationControllerDelegate!
     var backgroundImageView: UIImageView?
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -8,9 +7,6 @@ class NavigationController: UINavigationController {
 
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        navigationDelegate = NavigationControllerDelegate()
-        delegate = navigationDelegate
-        navigationDelegate.navigationController = self
     }
 
     required init?(coder aDecoder: NSCoder) {

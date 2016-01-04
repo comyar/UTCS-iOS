@@ -1,15 +1,4 @@
-@objc protocol ContentController {
-    var menuButton: UIBarButtonItem! { get set }
-    var backgroundImageView: UIImageView! { get set }
-    var backgroundImageName: String {get set}
-    var dataSource: DataSource? { get set }
-    func configureViews()
-    func configureOnLoad()
-    func configureOnLayout()
-    func configureOnAppear()
-}
-
-@objc class ContentViewController: UIViewController, ContentController {
+@objc class ContentViewController: UIViewController {
     var menuButton = UIBarButtonItem.menuButton()
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()

@@ -5,9 +5,22 @@ let navigationBarSeparatorLineHeight: CGFloat = 0.5
 let maximumNavigationBarSeparatorLineAlpha: CGFloat = 0.75
 
 
-class TableViewController: UITableViewController, ContentController {
+class TableViewController: UITableViewController {
     var menuButton = UIBarButtonItem.menuButton()
     var blurView: UIVisualEffectView!
+    var fullScreen = true {
+        willSet(newValue){
+            if fullScreen {
+                automaticallyAdjustsScrollViewInsets = false
+                extendedLayoutIncludesOpaqueBars = true
+                edgesForExtendedLayout = .None
+            } else {
+                automaticallyAdjustsScrollViewInsets = false
+                extendedLayoutIncludesOpaqueBars = false
+                edgesForExtendedLayout = .None
+            }
+        }
+    }
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFill
@@ -46,17 +59,15 @@ class TableViewController: UITableViewController, ContentController {
     }
 
     func commonInit() {
-        automaticallyAdjustsScrollViewInsets = false
-        gestureButton = {
-        let button = UIButton(type: .Custom)
-        button.addTarget(self, action: "didTouchDownInsideButton", forControlEvents: .TouchDown)
-        return button
-        }()
-
+        fullScreen = true
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.05)
         tableView.backgroundColor = UIColor.clearColor()
-        configureViews()
+        tableView.sectionIndexColor = UIColor.whiteColor()
+        tableView.sectionIndexBackgroundColor = UIColor.clearColor()
+        tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
+        tableView.cellLayoutMarginsFollowReadableWidth = true
+        title = ""
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -65,13 +76,17 @@ class TableViewController: UITableViewController, ContentController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureOnLoad()
+        view.addSubview(blurView)
+        view.insertSubview(backgroundImageView, belowSubview: blurView)
         view.insertSubview(navigationBarSeparatorLineView, aboveSubview: tableView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        configureOnLayout()
+        blurView.frame = view.bounds
+        backgroundImageView.frame = view.bounds
+        view.sendSubviewToBack(blurView)
+        view.sendSubviewToBack(backgroundImageView)
         let navbarHeight = navigationController?.navigationBar.bounds.height ?? 0
         let navigationBarHeight = max(navbarHeight, 44.0)
         navigationBarSeparatorLineView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: navigationBarSeparatorLineHeight)
@@ -79,27 +94,20 @@ class TableViewController: UITableViewController, ContentController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        configureOnAppear()
     }
 
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         let navigationBarHeight = CGRectGetHeight(navigationController!.navigationBar.bounds)
-        tableView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: view.bounds.height - navigationBarHeight)
-        gestureButton.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: navigationBarHeight)
+
         navigationBarSeparatorLineView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: navigationBarSeparatorLineHeight)
         view.bringSubviewToFront(navigationBarSeparatorLineView)
     }
 
-    func didTouchDownInsideButton(button: UIButton) {
-        if button == gestureButton {
-            tableView.scrollRectToVisible(CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0), animated: true)
-        }
-    }
-
+    // MARK:- KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == contentOffsetPropertyString {
-            let normalizedOffsetDelta = max(tableView.contentOffset.y / CGRectGetHeight(tableView.bounds), 0.0)
+            let normalizedOffsetDelta = max(tableView.contentOffset.y / tableView.bounds.height, 0.0)
             navigationBarSeparatorLineView.alpha = showsNavigationBarSeparatorLine ? min(maximumNavigationBarSeparatorLineAlpha, normalizedOffsetDelta) : 0.0
         }
     }
@@ -108,29 +116,4 @@ class TableViewController: UITableViewController, ContentController {
         tableView.removeObserver(self, forKeyPath: contentOffsetPropertyString)
     }
 
-
-
-
-    func configureViews() {
-        title = ""
-    }
-
-    func configureOnLoad() {
-        // Ensure that we get the fullscreen. This is important so that we don't get a 20px
-        // offset when the status bar becomes visible.
-        extendedLayoutIncludesOpaqueBars = true
-        edgesForExtendedLayout = .None
-        view.addSubview(blurView)
-        view.insertSubview(backgroundImageView, belowSubview: blurView)
-    }
-
-    func configureOnLayout() {
-        blurView.frame = view.bounds
-        backgroundImageView.frame = view.bounds
-        view.sendSubviewToBack(blurView)
-        view.sendSubviewToBack(backgroundImageView)
-    }
-
-    func configureOnAppear() {
-    }
 }
