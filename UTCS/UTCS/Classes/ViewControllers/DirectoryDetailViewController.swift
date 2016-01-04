@@ -1,28 +1,24 @@
-// Directory detail table view cell identifier.
-let DirectoryDetailTableViewCellIdentifier = "UTCSDirectoryDetailTableViewCell"
-
-
 class DirectoryDetailViewController: TableViewController {
+    let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
     var person: DirectoryPerson? {
         didSet(newValue){
             tableView.reloadData()
         }
     }
+
     init(){
         super.init(style: .Grouped)
-        commoninit()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fullScreen = false
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func commoninit(){
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+
     func formattedPhoneNumberWithString(phoneNumber: String) -> (String) {
         if phoneNumber.characters.count == 10 {
             let asNS = phoneNumber as NSString
@@ -58,9 +54,9 @@ class DirectoryDetailViewController: TableViewController {
         }
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(DirectoryDetailTableViewCellIdentifier)
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: DirectoryDetailTableViewCellIdentifier)
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
             cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.8)
             cell?.textLabel?.numberOfLines = 2
             cell?.detailTextLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)

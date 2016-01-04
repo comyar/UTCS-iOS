@@ -28,7 +28,6 @@
 		D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */; };
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
-		D43E864E1B3758E900F6EA70 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */; };
 		D44F34861B56807A00D84D0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34851B56807A00D84D0B /* Constants.swift */; };
 		D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34871B57DC9800D84D0B /* SettingsAboutViewController.swift */; };
 		D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */; };
@@ -153,7 +152,6 @@
 		D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsDataSource.swift; path = Model/EventsDataSource.swift; sourceTree = "<group>"; };
 		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
 		D43E864B1B37142700F6EA70 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationControllerDelegate.swift; path = UTCS/Classes/Model/NavigationControllerDelegate.swift; sourceTree = SOURCE_ROOT; };
 		D44F34851B56807A00D84D0B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D44F34871B57DC9800D84D0B /* SettingsAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsAboutViewController.swift; path = ViewControllers/SettingsAboutViewController.swift; sourceTree = "<group>"; };
 		D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLicenseViewController.swift; path = ViewControllers/SettingsLicenseViewController.swift; sourceTree = "<group>"; };
@@ -391,7 +389,6 @@
 				D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */,
 				DD89899E19031159000F1041 /* Vertical Menu */,
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
-				D43E864D1B3758E900F6EA70 /* NavigationControllerDelegate.swift */,
 				DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */,
 				DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */,
 			);
@@ -1040,7 +1037,7 @@
 				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
-				D43E864E1B3758E900F6EA70 /* NavigationControllerDelegate.swift in Sources */,
+
 				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,
 				D464390A1B7C6451007BA5D0 /* LabsDataSourceParser.swift in Sources */,
 				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,

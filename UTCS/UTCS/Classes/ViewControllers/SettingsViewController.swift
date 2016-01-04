@@ -10,11 +10,6 @@ class SettingsViewController: TableViewController {
     var legalViewController: SettingsLegalViewController?
     var aboutViewController: SettingsAboutViewController?
 
-    class func loadFromStoryBoard() -> SettingsViewController {
-        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-        return storyboard.instantiateInitialViewController() as! SettingsViewController
-    }
-
     convenience init() {
         self.init(style: .Grouped)
     }

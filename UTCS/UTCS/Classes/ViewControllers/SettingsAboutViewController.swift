@@ -73,7 +73,7 @@ if (indexPath.section == 0) {
 cell.textLabel.numberOfLines = 0;
 cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.8];
 
-cell.textLabel.text = @"The UTCS app was developed by Comyar Zaheri under the direction of the Department of Computer Science. The 
+cell.textLabel.text = @"The UTCS app was developed by Comyar Zaheri under the direction of the Department of Computer Science. The
 app is updated and maintained by Mobile App Development (MAD), a
 student organization in the Department of Computer Science at the University of Texas at Austin.";
 } else if (indexPath.section == 1) {

@@ -6,7 +6,6 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
     }
     var directoryPeopleSections: [[DirectoryPerson]]?
     var filtered: [DirectoryPerson]!
-    var searchController: UISearchController!
     override var router: Router {
         return Router.Directory()
     }
@@ -22,12 +21,8 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.selectionStyle = .None
         cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
-        let person: DirectoryPerson
-        if searchController.active {
-            person = filtered[indexPath.row]
-        } else {
-            person = directoryPeopleSections![indexPath.section][indexPath.row]
-        }
+        let person = directoryPeopleSections![indexPath.section][indexPath.row]
+
         let attributedName = NSMutableAttributedString(string: person.fullName)
 
         let firstNameLength = person.firstName.characters.count
@@ -45,13 +40,13 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
         return cell
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.active ? filtered.count : directoryPeopleSections?[section].count ?? 0
+        return directoryPeopleSections?[section].count ?? 0
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return searchController.active ? 1 : directoryPeopleSections?.count ?? 0
+        return directoryPeopleSections?.count ?? 0
     }
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        guard searchController.active || directoryPeopleSections != nil else {
+        guard directoryPeopleSections != nil else {
             return nil
         }
         var letters = [String]()

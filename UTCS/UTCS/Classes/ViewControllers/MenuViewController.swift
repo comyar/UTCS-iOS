@@ -11,8 +11,6 @@
     func didSelectMenuOption(option: MenuOption)
 }
 
-
-
 class MenuViewController: UITableViewController {
     let menuOptions = ["News", "Events", "Labs", "Directory", "Disk Quota", "Settings"]
     var activeRow: Int?
@@ -26,7 +24,7 @@ class MenuViewController: UITableViewController {
 
         tableView.scrollEnabled = false
         tableView.rowHeight = 60.0
-        tableView.contentInset = UIEdgeInsets(top: 0.05 * view.frame.height, left: 0 ,bottom: 0 ,right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0.05 * view.frame.height, left: 0 ,bottom: 0 , right: 0)
         tableView.backgroundColor = UIColor.clearColor()
         tableView.separatorStyle = .None
         tableView.frame.size = CGSize(width: 0.75 * view.frame.width, height: tableView.frame.height)
