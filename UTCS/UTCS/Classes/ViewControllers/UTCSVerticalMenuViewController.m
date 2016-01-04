@@ -145,9 +145,9 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
     self.contentDynamicItemBehavior.allowsRotation = NO;
 
     self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                           snapToPoint:CGPointMake(self.view.center.x, 1.33 * CGRectGetHeight(self.view.bounds))];
+                                                           snapToPoint:CGPointMake(self.view.center.x, [[UIScreen mainScreen] scale] * 260.0)];
     
-    self.contentSnapBehavior.damping = FBTweakValue(@"Vertical Menu", @"Snap Behavior", @"Damping", 0.33);
+    self.contentSnapBehavior.damping = 0.15;
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapBehavior];
@@ -171,7 +171,7 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
     
     self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
                                                          snapToPoint:self.view.center];
-    self.contentSnapBehavior.damping = FBTweakValue(@"Vertical Menu", @"Snap Behavior", @"Damping", 0.33);
+    self.contentSnapBehavior.damping = 0.15;
     
     
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
