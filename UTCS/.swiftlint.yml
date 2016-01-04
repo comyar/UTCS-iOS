@@ -1,6 +1,7 @@
 disabled_rules:
   - force_cast
   - variable_name
+  - opening_brace
 excluded:
   - Pods
 # 260 -> error
@@ -8,3 +9,9 @@ excluded:
 line_length: 
   - 160
   - 260
+function_body_length:
+  - 200
+  - 500
+file_length:
+  - 1000
+  - 2000

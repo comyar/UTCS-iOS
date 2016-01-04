@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     }
 
     func didSelectMenuOption(option: MenuOption) {
-        guard !(option == .Labs && UTCSAuthenticationManager.sharedManager().authenticated) else {
+        if option == .Labs && !UTCSAuthenticationManager.sharedManager().authenticated {
             prepareAuthenticationAlertView()
             authenticationAlertView?.message = "You must log into your CS account to view lab status information."
             verticalMenuViewController?.presentViewController(authenticationAlertView!, animated: true, completion: nil)
@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         })
         authenticationAlertView!.addTextFieldWithConfigurationHandler({ (textfield) -> Void in
             textfield.placeholder = "Password"
+            textfield.secureTextEntry = true
         })
     }
     func login(username: String, password: String) {
