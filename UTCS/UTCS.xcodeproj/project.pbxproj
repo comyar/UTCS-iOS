@@ -12,6 +12,7 @@
 		0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
 		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
+		D409244A1C3CD0EB00A81EBA /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40924491C3CD0EB00A81EBA /* Authentication.swift */; };
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
 		D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C697B1B7D363B005E3719 /* QuotaData.swift */; };
 		D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A79201B5B38190049C683 /* NewsTableViewCell.xib */; };
@@ -48,7 +49,6 @@
 		D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CFA1B81AD7700B9D7A5 /* SettingsDataSource.swift */; };
 		D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */; };
 		D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */; };
-		D4BA71CC1B42177B007C09F6 /* UTCSSlideNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */; };
 		D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CD1B421819007C09F6 /* ContentViewController.swift */; };
 		D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */; };
 		D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDC8491B30EFD500D6E4CE /* DiskQuotaViewController.swift */; };
@@ -133,6 +133,7 @@
 		6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
+		D40924491C3CD0EB00A81EBA /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
 		D40C697B1B7D363B005E3719 /* QuotaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotaData.swift; path = Model/QuotaData.swift; sourceTree = "<group>"; };
 		D41A79201B5B38190049C683 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsTableViewCell.xib; path = Views/NewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -204,8 +205,6 @@
 		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachine.h; path = Model/UTCSLabMachine.h; sourceTree = "<group>"; };
 		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachine.m; path = Model/UTCSLabMachine.m; sourceTree = "<group>"; };
 		DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSourceCacheMetaData.swift; path = Model/DataSourceCacheMetaData.swift; sourceTree = "<group>"; };
-		DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSlideNavigationAnimator.h; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.h; sourceTree = SOURCE_ROOT; };
-		DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSlideNavigationAnimator.m; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.m; sourceTree = SOURCE_ROOT; };
 		DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
 		DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabViewLayout.m; path = Model/UTCSLabViewLayout.m; sourceTree = "<group>"; };
 		DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThirdFloorLabLayout.plist; path = UTCS/ThirdFloorLabLayout.plist; sourceTree = SOURCE_ROOT; };
@@ -351,6 +350,16 @@
 			path = UTCS;
 			sourceTree = "<group>";
 		};
+		D409244B1C3CD1B600A81EBA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D46C7C481B4DFD14009F1EA1 /* HeaderTableViewController.swift */,
+				D43377F91B4CBB1D00942581 /* TableViewController.swift */,
+				D4BA71CD1B421819007C09F6 /* ContentViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		D43C8B001B7851F90049C4D6 /* UTCSTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,7 +381,6 @@
 		DD5B583818D239F900EEB474 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DDC2F5D219047748006011F0 /* Abstract */,
 				DDA758EE19081DE4007CD0DB /* General */,
 				DD5B586C18D23DD200EEB474 /* Navigation */,
 				DDA7589C1904F60A007CD0DB /* Services */,
@@ -387,8 +395,6 @@
 				D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */,
 				DD89899E19031159000F1041 /* Vertical Menu */,
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
-				DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */,
-				DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */,
 			);
 			name = Navigation;
 			path = ViewControllers;
@@ -637,6 +643,8 @@
 		DDA758EE19081DE4007CD0DB /* General */ = {
 			isa = PBXGroup;
 			children = (
+				DDC2F5D219047748006011F0 /* Abstract */,
+				D409244B1C3CD1B600A81EBA /* View Controllers */,
 				DDA758F019081DFE007CD0DB /* Views */,
 				DDA758EF19081DF3007CD0DB /* Models */,
 			);
@@ -646,10 +654,14 @@
 		DDA758EF19081DF3007CD0DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D43C8B091B79049F0049C4D6 /* DataSource.swift */,
+				D46439031B7C5CEA007BA5D0 /* DataSourceParser.swift */,
+				D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */,
 				D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */,
 				DD95E75F1922954C0062F4E9 /* AuthenticationManager */,
 				DDA758B51905FDB6007CD0DB /* StateManager */,
 				DDA758A61905E78D007CD0DB /* Cache */,
+				D40924491C3CD0EB00A81EBA /* Authentication.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -724,23 +736,9 @@
 		DDC2F5D219047748006011F0 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				D46C7C481B4DFD14009F1EA1 /* HeaderTableViewController.swift */,
-				D43377F91B4CBB1D00942581 /* TableViewController.swift */,
-				D4BA71CD1B421819007C09F6 /* ContentViewController.swift */,
-				DDC2F5D819047775006011F0 /* Models */,
 				D4D8C1EF1B5F10F5006E03CD /* Binnable.swift */,
 			);
 			name = Abstract;
-			sourceTree = "<group>";
-		};
-		DDC2F5D819047775006011F0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D43C8B091B79049F0049C4D6 /* DataSource.swift */,
-				D46439031B7C5CEA007BA5D0 /* DataSourceParser.swift */,
-				D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		DDC4047B191886F000D17CBF /* Licenses */ = {
@@ -998,7 +996,6 @@
 				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
 				D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */,
 				D46C7C4D1B4F4F2E009F1EA1 /* LabsViewController.swift in Sources */,
-				D4BA71CC1B42177B007C09F6 /* UTCSSlideNavigationAnimator.m in Sources */,
 				DD5CAF81190A325D0051F637 /* SettingsLegalViewController.swift in Sources */,
 				D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */,
 				D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */,
@@ -1038,6 +1035,7 @@
 				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,
 				D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */,
 				D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */,
+				D409244A1C3CD0EB00A81EBA /* Authentication.swift in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */,
 				D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,

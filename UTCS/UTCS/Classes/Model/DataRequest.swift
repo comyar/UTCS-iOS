@@ -1,5 +1,4 @@
 import Alamofire
-import CommonCrypto
 import SwiftyJSON
 
 // Request API key
@@ -11,20 +10,13 @@ let dataRequestMetaName = "meta"
 // Name of the values in the serialized JSON dictionary
 let dataRequestValuesName = "values"
 
-enum Service: String {
-    case Labs = "labs"
-    case DiskQuota = "quota"
-    case Events = "events"
-    case News = "news"
-    case Directory = "directory"
-}
-
 typealias DataRequestCompletion = (JSON?, JSON?, NSError?)->()
 
 
 let requestURL = "http://www.cs.utexas.edu/users/mad/utcs-app-backend/"
 let requestPathCGI = "/cgi-bin/utcs.scgi"
 let apiVersion = "1.0-alpha"
+
 enum Router: URLRequestConvertible {
     static let baseURLString = Router.baseURL()
     case Labs()
@@ -64,28 +56,8 @@ enum Router: URLRequestConvertible {
         return "\(requestURL)\(apiVersion)\(requestPathCGI)"
     }
 
-    static func createDigest(service: String, var argument: String?) -> String {
-        argument = argument ?? ""
-        return generateHMAC(requestKey, data: service + argument!)
-
-    }
-
-    private static func generateHMAC(key: String, data: String) -> String {
-
-        var result: [CUnsignedChar]
-        let cKey = key.cStringUsingEncoding(NSUTF8StringEncoding)!
-        let cData = data.cStringUsingEncoding(NSUTF8StringEncoding)!
-
-        let algo  = CCHmacAlgorithm(kCCHmacAlgSHA1)
-        result = Array(count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
-
-        CCHmac(algo, cKey, cKey.count-1, cData, cData.count-1, &result)
-
-        let hash = NSMutableString()
-        for val in result {
-            hash.appendFormat("%02hhx", val)
-        }
-
-        return hash as String
+    func createDigest(service: String, argument: String?) -> String {
+        return generateHMAC(requestKey, data: service + (argument ?? ""))
+        
     }
 }
