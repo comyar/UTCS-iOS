@@ -1,35 +1,45 @@
 import Alamofire
 import SwiftyJSON
 
+public enum Service: String {
+    case Labs = "labs"
+    case DiskQuota = "quota"
+    case Events = "events"
+    case News = "news"
+    case Directory = "directory"
+}
+
 class ServiceDataSource: DataSource {
     var parser: DataSourceParser!
     let service: Service
-    var cache: UTCSDataSourceCache!
+    var cache: DataSourceCache!
     var router: Router {
         get {
             fatalError("Subclasses must provide their own Routers")
         }
     }
 
-    init(service: Service){
+    init(service: Service) {
         self.service = service
-        self.cache = UTCSDataSourceCache(service: service.rawValue)
+        self.cache = DataSourceCache(service: service)
     }
+
     init(service: Service, parser: DataSourceParser) {
         self.service = service
         self.parser = parser
-        self.cache = UTCSDataSourceCache(service: service.rawValue)
+        self.cache = DataSourceCache(service: service)
+    }
+
+    private func hasMinimumTimeElapsed(since: NSDate) -> Bool{
+        return true
     }
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?) {
-        self.argument = argument
-        let metaData = cache.objectWithKey(UTCSDataSourceCacheMetaDataName) as? UTCSDataSourceCacheMetaData
-        if metaData != nil && NSDate().timeIntervalSinceDate(metaData!.timestamp) < minimumTimeBetweenUpdates {
-            data = cache.objectWithKey(UTCSDataSourceCacheValuesName)
-            updated = metaData!.timestamp
+        // Attempt to load from cache
+        if let (cacheMeta, cacheValues) = cache.load(argument) where hasMinimumTimeElapsed(cacheMeta.timestamp){
+            updated = cacheMeta.timestamp
+            data = cacheValues as! AnyObject
             completion?(true, true)
-
-            return
         }
 
         fetchData { (meta, values, error) -> () in
@@ -51,6 +61,7 @@ class ServiceDataSource: DataSource {
         }
 
     }
+
     func fetchData(completion: DataRequestCompletion) {
         Alamofire.request(router).responseJSON { response -> Void in
             guard response.result.isSuccess else {

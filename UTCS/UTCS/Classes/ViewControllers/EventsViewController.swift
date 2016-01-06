@@ -1,7 +1,7 @@
 let serviceName = "events"
 
 
-class EventsViewController: HeaderTableViewController, DataSourceDelegate, StarredEventsViewControllerDelegate {
+final class EventsViewController: HeaderTableViewController, StarredEventsViewControllerDelegate {
 
     var eventsDataSource: EventsDataSource? {
         return dataSource as? EventsDataSource
@@ -13,10 +13,10 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
     var starredEventsViewController: StarredEventsViewController!
     let eventDetailViewController = UTCSEventsDetailViewController()
 
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
+    init() {
+        super.init(style: .Plain)
         dataSource = EventsDataSource()
-        dataSource!.delegate = self
+        
         tableView.dataSource = eventsDataSource
         tableView.estimatedRowHeight = 48
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -98,8 +98,7 @@ class EventsViewController: HeaderTableViewController, DataSourceDelegate, Starr
         eventsDataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
             self.activeHeaderView.showActiveAnimation(false)
             if self.eventsDataSource?.eventData?.count ?? 0 > 0 {
-                let updateString = NSDateFormatter.localizedStringFromDate(self.dataSource!.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
-                self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
+                self.lastUpdated = self.dataSource?.updated
                 if !cacheHit {
                     self.tableView.reloadData()
                 } else {

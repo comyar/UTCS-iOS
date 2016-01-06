@@ -1,3 +1,5 @@
+import AlamofireImage
+
 class DirectoryDetailViewController: TableViewController {
     let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
     var person: DirectoryPerson? {
@@ -30,19 +32,21 @@ class DirectoryDetailViewController: TableViewController {
         }
         return phoneNumber
     }
+
     func didTouchUpInsideButton(button: UIButton) {
-        if button.tag == Int.min {
+        if button.tag == Int.min,
+           let number = self.person?.phoneNumber {
             let controller = UIAlertController(title: "Confirm", message: "Are you sure you want to call?", preferredStyle: .Alert)
             controller.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             controller.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (_) -> Void in
-                self.callNumber()
+                self.callNumber(number)
             }))
             presentViewController(controller, animated: true, completion: nil)
         }
     }
-    func callNumber() {
-        let phoneNumber = self.person?.phoneNumber!
-        let phoneURL = NSURL(string: "tel:\(phoneNumber)")!
+
+    func callNumber(number: String) {
+        let phoneURL = NSURL(string: "tel:\(number)")!
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
             UIApplication.sharedApplication().openURL(phoneURL)
         } else {
@@ -84,20 +88,13 @@ class DirectoryDetailViewController: TableViewController {
             cell?.textLabel?.text = person?.fullName
             cell?.detailTextLabel?.text = person?.type
 
-            if person?.imageURL != nil {
-                let url = person!.imageURL
-                weak var weakCell = cell
-                cell?.imageView?.setImageWithURLRequest(NSURLRequest(URL: url!), placeholderImage: nil, success: { (_, _, image) -> Void in
-                    weakCell?.imageView?.image = image
-                    weakCell?.imageView?.layer.cornerRadius = 32.0
-                    weakCell?.imageView?.layer.masksToBounds = true
-                    weakCell?.imageView?.contentMode = .ScaleAspectFill
-                    weakCell?.setNeedsLayout()
-                    }, failure: { (_, _, _) -> Void in
-                        weakCell?.imageView?.image = nil
-                })
+            if let url = person?.imageURL {
+                cell?.imageView?.af_setImageWithURL(url, placeholderImage: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
+                cell?.imageView?.layer.cornerRadius = 32.0
+                cell?.imageView?.layer.masksToBounds = true
+                cell?.imageView?.contentMode = .ScaleAspectFill
+                cell?.setNeedsLayout()
             }
-            cell?.imageView?.contentMode = .ScaleAspectFill
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 var text = person?.office
@@ -144,6 +141,7 @@ class DirectoryDetailViewController: TableViewController {
         }
         return nil
     }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 && indexPath.section == 0 {
             return 64.0

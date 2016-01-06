@@ -42,7 +42,7 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         let event = eventData![indexPath.row]
         cell.detailLabel.text = event.description
         cell.title.text = event.name
-        
+
         cell.textLabel?.numberOfLines = 0
         cell.detailTextLabel?.numberOfLines = 0
         return cell
