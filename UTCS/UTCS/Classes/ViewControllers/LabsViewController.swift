@@ -1,6 +1,6 @@
 import MBProgressHUD
 
-class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourceDelegate {
+class LabsViewController: ContentViewController, UIScrollViewDelegate {
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
     var refreshButton: UIButton!
@@ -15,7 +15,6 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate, DataSourc
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         dataSource = LabsDataSource()
-        dataSource!.delegate = self
     }
 
     required init(coder aDecoder: NSCoder) {

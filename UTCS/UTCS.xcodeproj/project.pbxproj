@@ -63,6 +63,7 @@
 		D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
 		D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */; };
 		D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */; };
+		D68437038A8333327A802B81 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */; };
@@ -73,7 +74,7 @@
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
-		DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */; };
+		DD8989A61903141C000F1041 /* DataSourceCacheMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */; };
 		DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */; };
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
 		DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475C6190B38AC0049FB8B /* UTCSLabView.m */; };
@@ -98,7 +99,7 @@
 		DD95E78C1926305C0062F4E9 /* RQShineLabel-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
-		DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */; };
+		DDA758951904D7C4007CD0DB /* DataSourceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* DataSourceCache.swift */; };
 		DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */; };
 		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
@@ -108,7 +109,6 @@
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDDC92DA18FA0E1300D39A74 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDC92D918FA0E1300D39A74 /* UIImage+ImageEffects.m */; };
 		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
-		FE38EDECED57EF7FE294D246 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,10 +129,10 @@
 		0B9A263E1891D5E30032DA03 /* UTCS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCS-Info.plist"; sourceTree = "<group>"; };
 		0B9A26401891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
+		2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
-		88EABA07A3811E48149CDA98 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
-		91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		97C0E9A6409F3D1BA5F08593 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
+		9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
 		D40C697B1B7D363B005E3719 /* QuotaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotaData.swift; path = Model/QuotaData.swift; sourceTree = "<group>"; };
 		D41A79201B5B38190049C683 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsTableViewCell.xib; path = Views/NewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -203,8 +203,7 @@
 		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
 		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachine.h; path = Model/UTCSLabMachine.h; sourceTree = "<group>"; };
 		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachine.m; path = Model/UTCSLabMachine.m; sourceTree = "<group>"; };
-		DD8989A41903141C000F1041 /* UTCSDataSourceCacheMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCacheMetaData.h; path = Model/UTCSDataSourceCacheMetaData.h; sourceTree = "<group>"; };
-		DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCacheMetaData.m; path = Model/UTCSDataSourceCacheMetaData.m; sourceTree = "<group>"; };
+		DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSourceCacheMetaData.swift; path = Model/DataSourceCacheMetaData.swift; sourceTree = "<group>"; };
 		DD9475AA190A43230049FB8B /* UTCSSlideNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSlideNavigationAnimator.h; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.h; sourceTree = SOURCE_ROOT; };
 		DD9475AB190A43230049FB8B /* UTCSSlideNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSlideNavigationAnimator.m; path = UTCS/Classes/Model/UTCSSlideNavigationAnimator.m; sourceTree = SOURCE_ROOT; };
 		DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
@@ -240,8 +239,7 @@
 		DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "RQShineLabel-license.txt"; path = "Resources/Licenses/RQShineLabel-license.txt"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA7588F1904D313007CD0DB /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = App.xcassets; path = Resources/App.xcassets; sourceTree = "<group>"; };
-		DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSDataSourceCache.h; path = Model/UTCSDataSourceCache.h; sourceTree = "<group>"; };
-		DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSDataSourceCache.m; path = Model/UTCSDataSourceCache.m; sourceTree = "<group>"; };
+		DDA758941904D7C4007CD0DB /* DataSourceCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSourceCache.swift; path = Model/DataSourceCache.swift; sourceTree = "<group>"; };
 		DDA758B61905FDD0007CD0DB /* UTCSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStateManager.h; path = Model/UTCSStateManager.h; sourceTree = "<group>"; };
 		DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStateManager.m; path = Model/UTCSStateManager.m; sourceTree = "<group>"; };
 		DDA758E21906661D007CD0DB /* UTCSLabMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewController.h; path = ViewControllers/UTCSLabMachineViewController.h; sourceTree = "<group>"; };
@@ -271,7 +269,7 @@
 				0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */,
 				0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */,
 				0B9A26371891D5E30032DA03 /* Foundation.framework in Frameworks */,
-				FE38EDECED57EF7FE294D246 /* Pods_UTCS.framework in Frameworks */,
+				D68437038A8333327A802B81 /* Pods_UTCS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +283,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		019061F4F94D09DABF339C08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */,
+				6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		0B9A262A1891D5E30032DA03 = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +301,7 @@
 				D43C8B001B7851F90049C4D6 /* UTCSTests */,
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
-				5E6EA229988F423BF93EFFC5 /* Pods */,
+				019061F4F94D09DABF339C08 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,7 +322,7 @@
 				0B9A26361891D5E30032DA03 /* Foundation.framework */,
 				0B9A26381891D5E30032DA03 /* CoreGraphics.framework */,
 				0B9A263A1891D5E30032DA03 /* UIKit.framework */,
-				91F36A8C0707E31ACA5EC9D9 /* Pods_UTCS.framework */,
+				2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,15 +349,6 @@
 			);
 			name = "Supporting Files";
 			path = UTCS;
-			sourceTree = "<group>";
-		};
-		5E6EA229988F423BF93EFFC5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				88EABA07A3811E48149CDA98 /* Pods-UTCS.debug.xcconfig */,
-				97C0E9A6409F3D1BA5F08593 /* Pods-UTCS.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		D43C8B001B7851F90049C4D6 /* UTCSTests */ = {
@@ -621,10 +619,8 @@
 		DDA758A61905E78D007CD0DB /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				DD8989A41903141C000F1041 /* UTCSDataSourceCacheMetaData.h */,
-				DD8989A51903141C000F1041 /* UTCSDataSourceCacheMetaData.m */,
-				DDA758931904D7C4007CD0DB /* UTCSDataSourceCache.h */,
-				DDA758941904D7C4007CD0DB /* UTCSDataSourceCache.m */,
+				DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */,
+				DDA758941904D7C4007CD0DB /* DataSourceCache.swift */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -789,13 +785,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B9A265F1891D5E30032DA03 /* Build configuration list for PBXNativeTarget "UTCS" */;
 			buildPhases = (
-				18DA0492A8DC42A7B0D5259D /* Check Pods Manifest.lock */,
+				85F884561CDFE656C8C0ABED /* Check Pods Manifest.lock */,
 				0B9A262F1891D5E30032DA03 /* Sources */,
 				0B9A26301891D5E30032DA03 /* Frameworks */,
 				0B9A26311891D5E30032DA03 /* Resources */,
-				AEECB517A3CA4691B8D46D25 /* Copy Pods Resources */,
-				1709A7E40252231252631ED3 /* Embed Pods Frameworks */,
 				D4F4CEDC1C2B222B00220E39 /* ShellScript */,
+				A90D23A41C7D3C085558F7AC /* Embed Pods Frameworks */,
+				67D44ABBB343F9896E11E806 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -913,22 +909,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1709A7E40252231252631ED3 /* Embed Pods Frameworks */ = {
+		67D44ABBB343F9896E11E806 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		18DA0492A8DC42A7B0D5259D /* Check Pods Manifest.lock */ = {
+		85F884561CDFE656C8C0ABED /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -943,19 +939,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AEECB517A3CA4691B8D46D25 /* Copy Pods Resources */ = {
+		A90D23A41C7D3C085558F7AC /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4F4CEDC1C2B222B00220E39 /* ShellScript */ = {
@@ -1016,7 +1012,7 @@
 				DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */,
 				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
 				D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */,
-				DD8989A61903141C000F1041 /* UTCSDataSourceCacheMetaData.m in Sources */,
+				DD8989A61903141C000F1041 /* DataSourceCacheMetaData.swift in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
 				D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */,
@@ -1034,10 +1030,9 @@
 				D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */,
 				D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
-				DDA758951904D7C4007CD0DB /* UTCSDataSourceCache.m in Sources */,
+				DDA758951904D7C4007CD0DB /* DataSourceCache.swift in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
-
 				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,
 				D464390A1B7C6451007BA5D0 /* LabsDataSourceParser.swift in Sources */,
 				D4CDC84A1B30EFD500D6E4CE /* DiskQuotaViewController.swift in Sources */,
@@ -1169,7 +1164,7 @@
 		};
 		0B9A26601891D5E30032DA03 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88EABA07A3811E48149CDA98 /* Pods-UTCS.debug.xcconfig */;
+			baseConfigurationReference = 9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1210,7 +1205,7 @@
 		};
 		0B9A26611891D5E30032DA03 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97C0E9A6409F3D1BA5F08593 /* Pods-UTCS.release.xcconfig */;
+			baseConfigurationReference = 6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
