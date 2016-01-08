@@ -103,7 +103,7 @@
 		DDC404721917D42400D17CBF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC404711917D42400D17CBF /* Icons.xcassets */; };
 		DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDC4047C1918875200D17CBF /* AFNetworking-license.txt */; };
 		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
-		DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */; };
+		DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,8 +239,7 @@
 		DDC4047C1918875200D17CBF /* AFNetworking-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AFNetworking-license.txt"; path = "Resources/Licenses/AFNetworking-license.txt"; sourceTree = "<group>"; };
 		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
 		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
-		DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVerticalMenuViewController.h; sourceTree = "<group>"; };
-		DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVerticalMenuViewController.m; sourceTree = "<group>"; };
+		DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,7 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */,
-				DD89899E19031159000F1041 /* Vertical Menu */,
+				DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */,
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
 			);
 			name = Navigation;
@@ -528,15 +527,6 @@
 				D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		DD89899E19031159000F1041 /* Vertical Menu */ = {
-			isa = PBXGroup;
-			children = (
-				DDE561E018DC0C0E00C46480 /* UTCSVerticalMenuViewController.h */,
-				DDE561E118DC0C0E00C46480 /* UTCSVerticalMenuViewController.m */,
-			);
-			name = "Vertical Menu";
 			sourceTree = "<group>";
 		};
 		DD9475C0190B22D30049FB8B /* Layouts */ = {
@@ -950,7 +940,7 @@
 				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				D46C7C491B4DFD14009F1EA1 /* HeaderTableViewController.swift in Sources */,
 				D4D5F5081B530B7A005974A7 /* SettingsViewController.swift in Sources */,
-				DDE561E218DC0C0E00C46480 /* UTCSVerticalMenuViewController.m in Sources */,
+				DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */,
 				D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */,
 				D46C7C4D1B4F4F2E009F1EA1 /* LabsViewController.swift in Sources */,
 				DD5CAF81190A325D0051F637 /* SettingsLegalViewController.swift in Sources */,

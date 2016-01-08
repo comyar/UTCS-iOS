@@ -7,14 +7,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
 
     var controllers = [MenuOption : NavigationController]()
     var menuViewController = MenuViewController(nibName: nil, bundle: nil)
-    var verticalMenuViewController: UTCSVerticalMenuViewController?
+    var verticalMenuViewController: VerticalMenuViewController?
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Menu
         menuViewController.delegate = self
         controllers[.News] = NavigationController(rootViewController: NewsViewController())
-        verticalMenuViewController = UTCSVerticalMenuViewController(menuViewController: menuViewController, contentViewController: controllers[.News])
+        verticalMenuViewController = VerticalMenuViewController(menuViewController: menuViewController, contentViewController: controllers[.News]!)
         // Initialize view controllers. News is the default service
 
         window = UIWindow()
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                     if self.controllers[.Labs] == nil {
                         self.controllers[.Labs] = NavigationController(rootViewController: LabsViewController())
                     }
-                    self.verticalMenuViewController?.contentViewController = self.controllers[.Labs]
+                    self.verticalMenuViewController?.contentViewController = self.controllers[.Labs]!
                 } else {
                     AuthenticationManager.presentErrorAlert(self.menuViewController)
                 }
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 }
                 }()
         }
-        verticalMenuViewController?.contentViewController = controllers[option]
+        verticalMenuViewController?.contentViewController = controllers[option]!
     }
 
 }

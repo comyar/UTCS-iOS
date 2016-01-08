@@ -1,7 +1,6 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <POP/POP.h>
 
-#import "UTCSVerticalMenuViewController.h"
 #import "UTCSStateManager.h"
 
 #import "UIImage+CZTinting.h"

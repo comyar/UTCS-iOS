@@ -12,7 +12,7 @@ extension UIButton {
     }
 
     func menuNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(UTCSVerticalMenuDisplayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(VerticalMenuDisplayNotification, object: nil)
     }
 
 }
