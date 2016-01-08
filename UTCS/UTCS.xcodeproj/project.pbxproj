@@ -55,7 +55,6 @@
 		D4CDC84C1B30F3B400D6E4CE /* DiskQuotaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CDC84B1B30F3B400D6E4CE /* DiskQuotaView.xib */; };
 		D4D5F5031B53076E005974A7 /* DirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D5F5021B53076E005974A7 /* DirectoryViewController.swift */; };
 		D4D5F5081B530B7A005974A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D5F5071B530B7A005974A7 /* SettingsViewController.swift */; };
-		D4D5F50A1B530C7F005974A7 /* StarredEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D5F5091B530C7F005974A7 /* StarredEventsViewController.swift */; };
 		D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1EF1B5F10F5006E03CD /* Binnable.swift */; };
 		D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F11B5F1179006E03CD /* DirectoryPerson.swift */; };
 		D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */; };
@@ -176,7 +175,6 @@
 		D4D5F5021B53076E005974A7 /* DirectoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryViewController.swift; path = ViewControllers/DirectoryViewController.swift; sourceTree = "<group>"; };
 		D4D5F5041B530A23005974A7 /* LabMachineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabMachineViewController.swift; path = ViewControllers/LabMachineViewController.swift; sourceTree = "<group>"; };
 		D4D5F5071B530B7A005974A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ViewControllers/SettingsViewController.swift; sourceTree = "<group>"; };
-		D4D5F5091B530C7F005974A7 /* StarredEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarredEventsViewController.swift; path = ViewControllers/StarredEventsViewController.swift; sourceTree = "<group>"; };
 		D4D8C1EF1B5F10F5006E03CD /* Binnable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binnable.swift; sourceTree = "<group>"; };
 		D4D8C1F11B5F1179006E03CD /* DirectoryPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryPerson.swift; path = Model/DirectoryPerson.swift; sourceTree = "<group>"; };
 		D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSourceParser.swift; path = Model/DirectoryDataSourceParser.swift; sourceTree = "<group>"; };
@@ -422,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				D45FE5341B508F47000F2D59 /* EventsViewController.swift */,
-				D4D5F5091B530C7F005974A7 /* StarredEventsViewController.swift */,
 				DD44659718E8254B00ED1153 /* UTCSEventsDetailViewController.h */,
 				DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */,
 				DD87616318FDFE9F005FEE4E /* Models */,
@@ -976,7 +973,6 @@
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */,
 				DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */,
-				D4D5F50A1B530C7F005974A7 /* StarredEventsViewController.swift in Sources */,
 				D46439061B7C627D007BA5D0 /* EventsDataSourceParser.swift in Sources */,
 				DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */,
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,

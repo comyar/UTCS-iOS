@@ -1,7 +1,7 @@
 let serviceName = "events"
 
 
-final class EventsViewController: HeaderTableViewController, StarredEventsViewControllerDelegate {
+final class EventsViewController: HeaderTableViewController {
 
     var eventsDataSource: EventsDataSource? {
         return dataSource as? EventsDataSource
@@ -9,8 +9,6 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
     var filterSegmentedControl: UISegmentedControl!
     var segments = [Event.Category.All, .Orgs, .Talks, .Careers]
     var filterButtonImageView: UIImageView!
-    var starListButton: UIBarButtonItem!
-    var starredEventsViewController: StarredEventsViewController!
     let eventDetailViewController = UTCSEventsDetailViewController()
 
     init() {
@@ -41,31 +39,6 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
 
-        starListButton = {
-            let button = UIButton.bouncyButton()
-            button.frame = CGRect(x: 0.0, y: 0.0, width: 44.0, height: 44.0)
-            button.center = CGPoint(x: view.frame.width - 33.0, y: 22.0)
-            let image = UIImage(named: "starlist")?.imageWithRenderingMode(.AlwaysTemplate)
-            let imageView = UIImageView(image: image)
-            imageView.tintColor = UIColor.whiteColor()
-            imageView.frame = button.bounds
-            button.addSubview(imageView)
-            button.addTarget(self, action: "didTouchUpInsideButton:", forControlEvents: .TouchUpInside)
-            return UIBarButtonItem(customView: button)
-        }()
-        navigationItem.rightBarButtonItem = starListButton
-
-    }
-
-    func didTouchUpInsideButton(button: UIButton) {
-        if button == starListButton {
-            if starredEventsViewController == nil {
-                starredEventsViewController = StarredEventsViewController()
-                starredEventsViewController.backgroundImageView.image = backgroundImageView.image
-                starredEventsViewController.delegate = self
-            }
-            navigationController?.presentViewController(starredEventsViewController, animated: true, completion: nil)
-        }
     }
 
     func didChangeValueForControl(control: UIControl) {
@@ -109,10 +82,6 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
         }
     }
 
-    func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: Event) {
-        eventDetailViewController.event = event
-        navigationController?.pushViewController(eventDetailViewController, animated: true)
-    }
 
     // MARK:- UITableView
 
