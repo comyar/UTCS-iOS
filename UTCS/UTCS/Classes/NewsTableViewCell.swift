@@ -1,7 +1,7 @@
 import Foundation
 
 class NewsTableViewCell: BouncyTableViewCell {
-    
+
     @IBOutlet var title: UILabel!
     @IBOutlet var detailLabel: UILabel!
 

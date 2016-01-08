@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
 
     func didSelectMenuOption(option: MenuOption) {
         if option == .Labs && !AuthenticationManager.authenticated {
-            AuthenticationManager.presentAuthenticationAlert(menuViewController, reason:  "You must log into your CS account to view lab status information."){ success, error -> () in
+            AuthenticationManager.presentAuthenticationAlert(menuViewController, reason:  "You must log into your CS account to view lab status information.") { success, error -> () in
                 if success {
                     if self.controllers[.Labs] == nil {
                         self.controllers[.Labs] = NavigationController(rootViewController: LabsViewController())
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 MBProgressHUD.hideHUDForView(self.verticalMenuViewController!.view, animated: true)
 
             }
-            
+
             return
         }
         if controllers[option] == nil {

@@ -7,7 +7,7 @@ class DataSourceCacheMetaData: NSObject, NSCoding {
                 self.service = Service(rawValue: service)!
                 self.timestamp = timestamp
                 super.init()
-                
+
         } else {
             service = .News
             timestamp = NSDate()

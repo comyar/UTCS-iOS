@@ -87,7 +87,7 @@ final class NewsArticle: NSObject, NSCoding {
             let htmlFont = attrs[NSFontAttributeName] as! UIFont
             let fontDescriptorAttributes = htmlFont.fontDescriptor().fontAttributes()
 
-            if let fontName = fontDescriptorAttributes["NSFontNameAttribute"] as? String{
+            if let fontName = fontDescriptorAttributes["NSFontNameAttribute"] as? String {
                 let desiredFont = self.fontForName(fontName)
                 attributedHTML?.addAttribute(NSFontAttributeName, value: desiredFont, range: range)
                 attributedHTML?.addAttribute(NSParagraphStyleAttributeName, value: NewsArticle.paragraphStyle, range: range)

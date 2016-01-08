@@ -4,7 +4,7 @@ let EventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
 final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
     override var data: Any! {
-        didSet(oldValue){
+        didSet(oldValue) {
             filteredEvents = eventData
         }
     }

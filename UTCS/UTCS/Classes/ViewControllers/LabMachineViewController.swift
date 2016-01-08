@@ -7,7 +7,7 @@ class LabMachineViewController: UIViewController, UTCSLabViewDataSource {
     var backgroundImageView: UIImageView!
     var layout = UTCSLabViewLayout()
 
-    init(layout: UTCSLabViewLayout){
+    init(layout: UTCSLabViewLayout) {
         super.init(nibName: nil, bundle: nil)
     }
 

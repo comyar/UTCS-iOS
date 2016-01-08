@@ -16,7 +16,7 @@ class AuthenticationManager {
             return
         }
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             let session = NMSSHSession.connectToHost(AuthenticationManager.server, withUsername: username)
             guard session.connected else {
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
@@ -44,7 +44,7 @@ class AuthenticationManager {
     }
 
     static func presentErrorAlert(hostController: UIViewController) {
-        
+
     }
 
     private static func prepareAlertController() -> UIAlertController {

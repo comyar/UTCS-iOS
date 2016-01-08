@@ -10,10 +10,10 @@
 #import <Tweaks/FBTweakInline.h>
 
 
-NSString * const UTCSVerticalMenuDisplayNotification = @"UTCSVerticalMenuDisplayNotification";
+NSString *const UTCSVerticalMenuDisplayNotification = @"UTCSVerticalMenuDisplayNotification";
 
 
-static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
+static const CGFloat maximumYtoBeginRecognizePan = 44.0;
 
 
 #pragma mark - UTCSVerticalMenuViewController Class Extension
@@ -21,20 +21,20 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 @interface UTCSVerticalMenuViewController ()
 
 //
-@property (nonatomic, getter = isShowingMenu) BOOL showingMenu;
+@property(nonatomic, getter = isShowingMenu) BOOL showingMenu;
 
 //
-@property (nonatomic) UITapGestureRecognizer        *tapGestureRecognizer;
+@property(nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
 //
-@property (nonatomic) UIPanGestureRecognizer        *panGestureRecognizer;
+@property(nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 //
-@property (nonatomic) UIDynamicAnimator             *contentDynamicAnimator;
+@property(nonatomic) UIDynamicAnimator *contentDynamicAnimator;
 
-@property (nonatomic) UISnapBehavior                *contentSnapBehavior;
+@property(nonatomic) UISnapBehavior *contentSnapBehavior;
 
-@property (nonatomic) UIDynamicItemBehavior         *contentDynamicItemBehavior;
+@property(nonatomic) UIDynamicItemBehavior *contentDynamicItemBehavior;
 
 @end
 
@@ -44,67 +44,63 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 @implementation UTCSVerticalMenuViewController
 
 - (instancetype)initWithMenuViewController:(UIViewController *)menuViewController
-                     contentViewController:(UIViewController *)contentViewController
-{
-    if(self = [super initWithNibName:nil bundle:nil]) {
-        
-        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizeTapGesture:)];
+                     contentViewController:(UIViewController *)contentViewController {
+    if (self = [super initWithNibName:nil bundle:nil]) {
+
+        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didRecognizeTapGesture:)];
         self.tapGestureRecognizer.delegate = self;
-        
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didRecognizerPanGesture:)];
+
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didRecognizerPanGesture:)];
         self.panGestureRecognizer.delegate = self;
-        
+
         [self setMenuViewController:menuViewController];
         [self setContentViewController:contentViewController];
-        
-        [[NSNotificationCenter defaultCenter]addObserver:self
-                                                selector:@selector(didReceiveVerticalMenuDisplayNotification)
-                                                    name:UTCSVerticalMenuDisplayNotification
-                                                  object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReceiveVerticalMenuDisplayNotification)
+                                                     name:UTCSVerticalMenuDisplayNotification
+                                                   object:nil];
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark Gesture Recognizers
 
-- (void)didRecognizerPanGesture:(UIPanGestureRecognizer *)gestureRecognizer
-{
+- (void)didRecognizerPanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer == self.panGestureRecognizer) {
-        
+
         static CGPoint initial;
-        
+
         CGPoint translation = [gestureRecognizer translationInView:self.view];
-        
+
         if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-            
+
             initial = self.contentViewController.view.center;
-            
+
         } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-            
+
             self.contentViewController.view.center = CGPointMake(initial.x, initial.y + translation.y);
-            
+
         } else {
             CGPoint velocity = [gestureRecognizer velocityInView:self.view];
-            
+
             if (velocity.y > FBTweakValue(@"Vertical Menu", @"Pan Gesture", @"Velocity Threshold", 200.0)) {
                 [self showMenu];
             } else {
                 [self hideMenu];
             }
-            
+
         }
     }
 }
 
-- (void)didRecognizeTapGesture:(UITapGestureRecognizer *)gestureRecognizer
-{
-    if(gestureRecognizer == self.tapGestureRecognizer) {
-        if(self.isShowingMenu) {
+- (void)didRecognizeTapGesture:(UITapGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer == self.tapGestureRecognizer) {
+        if (self.isShowingMenu) {
             [self hideMenu];
         }
     }
@@ -112,8 +108,7 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 
 #pragma mark UIGestureRecognizerDelegate Methods
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if (gestureRecognizer == self.panGestureRecognizer) {
         CGPoint location = [gestureRecognizer locationInView:self.contentViewController.view];
         if (location.y <= maximumYtoBeginRecognizePan) {
@@ -127,86 +122,85 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 
 #pragma mark Using a UTCSVerticalMenuViewController
 
-- (void)didReceiveVerticalMenuDisplayNotification
-{
-    if(self.isShowingMenu) {
+- (void)didReceiveVerticalMenuDisplayNotification {
+    if (self.isShowingMenu) {
         [self hideMenu];
     } else {
         [self showMenu];
     }
 }
 
-- (void)showMenu
-{
+- (void)showMenu {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapBehavior];
-    
-    self.contentDynamicAnimator     = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
-    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
-    self.contentDynamicItemBehavior.allowsRotation = NO;
 
-    self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                           snapToPoint:CGPointMake(self.view.center.x, [[UIScreen mainScreen] scale] * 260.0)];
-    
+    self.contentDynamicAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[_contentViewController.view]];
+    self.contentDynamicItemBehavior.allowsRotation = NO;
+    CGRect oldFrame = _contentViewController.navigationController.navigationBar.frame;
+
+    self.contentSnapBehavior = [[UISnapBehavior alloc] initWithItem:_contentViewController.view
+                                                        snapToPoint:CGPointMake(self.view.center.x, self.view.frame.size.height)];
+
     self.contentSnapBehavior.damping = 0.15;
-    
+
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapBehavior];
-    
+
     self.showingMenu = YES;
-    
+
     [self enableUserInteraction:NO forViewController:self.contentViewController];
-    
+
     [self setNeedsStatusBarAppearanceUpdate];
-    
+    [_contentViewController.navigationController.navigationBar setFrame: CGRectOffset(oldFrame, 50.0, 700.0)];
+    _contentViewController.edgesForExtendedLayout = UIRectEdgeNone;
+    [_contentViewController.navigationController.navigationBar setNeedsLayout ];
+    _contentViewController.extendedLayoutIncludesOpaqueBars = YES;
+    [_contentViewController.view layoutSubviews];
 }
 
-- (void)hideMenu
-{
+- (void)hideMenu {
     [self.contentDynamicAnimator removeBehavior:self.contentSnapBehavior];
-    
-    self.contentDynamicAnimator     = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
-    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[_contentViewController.view]];
+
+    self.contentDynamicAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    self.contentDynamicItemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[_contentViewController.view]];
     self.contentDynamicItemBehavior.allowsRotation = NO;
 
-    
-    self.contentSnapBehavior = [[UISnapBehavior alloc]initWithItem:_contentViewController.view
-                                                         snapToPoint:self.view.center];
+
+    self.contentSnapBehavior = [[UISnapBehavior alloc] initWithItem:_contentViewController.view
+                                                        snapToPoint:self.view.center];
     self.contentSnapBehavior.damping = 0.15;
-    
-    
+
+
     [self.contentDynamicAnimator addBehavior:self.contentDynamicItemBehavior];
     [self.contentDynamicAnimator addBehavior:self.contentSnapBehavior];
-    
+
     self.showingMenu = NO;
-    
+
     [self enableUserInteraction:YES forViewController:self.contentViewController];
-    
+
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
-- (BOOL)prefersStatusBarHidden
-{
+- (BOOL)prefersStatusBarHidden {
     return !self.showingMenu;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
-- (void)enableUserInteraction:(BOOL)enabled forViewController:(UIViewController *)viewController
-{
-    if([viewController isKindOfClass:[UINavigationController class]]) {
-        for(UIViewController *childViewController in viewController.childViewControllers) {
-            for(UIView *subview in childViewController.view.subviews) {
-                if(subview.tag < NSIntegerMax) {
+- (void)enableUserInteraction:(BOOL)enabled forViewController:(UIViewController *)viewController {
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        for (UIViewController *childViewController in viewController.childViewControllers) {
+            for (UIView *subview in childViewController.view.subviews) {
+                if (subview.tag < NSIntegerMax) {
                     subview.userInteractionEnabled = enabled;
                 }
             }
         }
     } else {
-        for(UIView *subview in viewController.view.subviews) {
-            if(subview.tag < NSIntegerMax) {
+        for (UIView *subview in viewController.view.subviews) {
+            if (subview.tag < NSIntegerMax) {
                 subview.userInteractionEnabled = enabled;
             }
         }
@@ -215,44 +209,42 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 
 #pragma mark Setters
 
-- (void)setMenuViewController:(UIViewController *)menuViewController
-{
-    if(!menuViewController || _menuViewController == menuViewController) {
+- (void)setMenuViewController:(UIViewController *)menuViewController {
+    if (!menuViewController || _menuViewController == menuViewController) {
         return;
-    } else if(_menuViewController) {
+    } else if (_menuViewController) {
         [_menuViewController.view removeFromSuperview];
         [_menuViewController removeFromParentViewController];
     }
-    
+
     _menuViewController = menuViewController;
     _menuViewController.view.frame = self.view.bounds;
     [self.view addSubview:_menuViewController.view];
     [self addChildViewController:_menuViewController];
     [_menuViewController didMoveToParentViewController:self];
-    
+
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
-- (void)setContentViewController:(UIViewController *)contentViewController
-{
-    if(!contentViewController || _contentViewController == contentViewController) {
+- (void)setContentViewController:(UIViewController *)contentViewController {
+    if (!contentViewController || _contentViewController == contentViewController) {
         [self hideMenu];
         return;
-    } else if(_contentViewController) {
+    } else if (_contentViewController) {
         [_contentViewController.view removeGestureRecognizer:self.panGestureRecognizer];
         [_contentViewController.view removeGestureRecognizer:self.tapGestureRecognizer];
         [_contentViewController willMoveToParentViewController:nil];
         [_contentViewController.view removeFromSuperview];
         [_contentViewController removeFromParentViewController];
-        
+
         contentViewController.view.frame = _contentViewController.view.frame;
         [self addChildViewController:contentViewController];
         [self.view addSubview:contentViewController.view];
         [contentViewController didMoveToParentViewController:self];
-        
+
         [self configureContentViewController:contentViewController];
         [self hideMenu];
-        
+
     } else {
         contentViewController.view.frame = self.view.bounds;
         [self addChildViewController:contentViewController];
@@ -264,12 +256,11 @@ static const CGFloat maximumYtoBeginRecognizePan    = 44.0;
 
 #pragma mark Configure Content View Controller
 
-- (void)configureContentViewController:(UIViewController *)contentViewController
-{
+- (void)configureContentViewController:(UIViewController *)contentViewController {
     _contentViewController = contentViewController;
     [_contentViewController.view addGestureRecognizer:self.tapGestureRecognizer];
 //    [_contentViewController.view addGestureRecognizer:self.panGestureRecognizer];
-    
+
     [self setNeedsStatusBarAppearanceUpdate];
 }
 

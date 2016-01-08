@@ -24,7 +24,7 @@ class NewsDetailViewController: UIViewController {
     private static let defaultHeaderIdentifiers = ["gdc-speedway"]
     var scrollToTopButton: UIButton!
     var newsArticle: NewsArticle? {
-        willSet(newValue){
+        willSet(newValue) {
             if newValue == newsArticle {
                 return
             }
@@ -45,7 +45,7 @@ class NewsDetailViewController: UIViewController {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func initializeSubviews(){
+    func initializeSubviews() {
         parallaxBlurHeaderScrollView = ParallaxBlurHeaderScrollView(frame: view.bounds)
         view.addSubview(parallaxBlurHeaderScrollView)
         scrollToTopButton = {
@@ -95,7 +95,7 @@ class NewsDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPoint(x: 0.0, y: 0.0)
     }
-    func configureWithNewsArticle(article: NewsArticle){
+    func configureWithNewsArticle(article: NewsArticle) {
         parallaxBlurHeaderScrollView.scrollView.contentOffset = CGPointZero
         if article.headerImage != nil {
             parallaxBlurHeaderScrollView.headerImage = article.headerImage
@@ -120,12 +120,12 @@ class NewsDetailViewController: UIViewController {
         titleLabel.frame.origin = CGPoint(x: titleLabel.frame.origin.x, y: parallaxBlurHeaderScrollView.headerContainerView.frame.height - (parallaxBlurHeaderScrollView.headerContainerView.frame.height - dateLabel.frame.origin.y) - titleLabel.frame.height)
         parallaxBlurHeaderScrollView.scrollView.contentSize = CGSize(width: parallaxBlurHeaderScrollView.frame.width, height: contentTextView.frame.height + parallaxBlurHeaderScrollView.headerContainerView.frame.height)
     }
-    func didTouchUpInsideButton(button: UIButton){
+    func didTouchUpInsideButton(button: UIButton) {
         if button == scrollToTopButton {
             parallaxBlurHeaderScrollView.scrollView.scrollRectToVisible(CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0), animated: true)
         }
     }
-    func shareArticle(sender: UIBarButtonItem){
+    func shareArticle(sender: UIBarButtonItem) {
         var activityItems = [String]()
         if let title = newsArticle?.title {
             activityItems.append( title + "\n")

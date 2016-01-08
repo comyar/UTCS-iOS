@@ -1,3 +1,5 @@
+import UIKit
+
 // Height of the navigation bar separator line
 let navigationBarSeparatorLineHeight: CGFloat = 0.5
 
@@ -7,17 +9,13 @@ let maximumNavigationBarSeparatorLineAlpha: CGFloat = 0.75
 
 class TableViewController: UITableViewController {
     var menuButton = UIBarButtonItem.menuButton()
-    var blurView: UIVisualEffectView!
-    var fullScreen = true {
-        willSet(newValue){
-            if fullScreen {
-                automaticallyAdjustsScrollViewInsets = false
-                extendedLayoutIncludesOpaqueBars = true
-                edgesForExtendedLayout = .None
+
+    var navigationBarBackgroundVisible = true {
+        willSet(newValue) {
+            if navigationBarBackgroundVisible {
+                navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
             } else {
-                automaticallyAdjustsScrollViewInsets = false
-                extendedLayoutIncludesOpaqueBars = false
-                edgesForExtendedLayout = .None
+                navigationController?.navigationBar.backgroundColor = UIColor.redColor()
             }
         }
     }
@@ -29,7 +27,7 @@ class TableViewController: UITableViewController {
     }()
 
     var backgroundImageName: String {
-        willSet(newValue){
+        willSet(newValue) {
             backgroundImageView.image = UIImage(named: newValue)
         }
     }
@@ -38,6 +36,11 @@ class TableViewController: UITableViewController {
     var gestureButton: UIButton!
 
     var showsNavigationBarSeparatorLine = true
+    var needsSectionHeaders = false {
+        didSet(oldValue) {
+            tableView.reloadData()
+        }
+    }
 
     // View to represent the navigation bar separator line
     var navigationBarSeparatorLineView: UIView = {
@@ -47,19 +50,17 @@ class TableViewController: UITableViewController {
         return view
     }()
 
+    // MARK:- Initialization
+
     convenience init() {
         self.init(style: .Plain)
     }
 
     override init(style: UITableViewStyle) {
-        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         backgroundImageName = "defaultBackground"
-        super.init(style: .Plain)
-        commonInit()
-    }
+        super.init(style: style)
 
-    func commonInit() {
-        fullScreen = true
+        navigationBarBackgroundVisible = false
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.05)
         tableView.backgroundColor = UIColor.clearColor()
@@ -67,7 +68,7 @@ class TableViewController: UITableViewController {
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
         tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
         tableView.cellLayoutMarginsFollowReadableWidth = true
-        title = ""
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -76,16 +77,16 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(blurView)
-        view.insertSubview(backgroundImageView, belowSubview: blurView)
+        view.addSubview(backgroundImageView)
         view.insertSubview(navigationBarSeparatorLineView, aboveSubview: tableView)
+        tableView.addLayoutGuide(tableView.readableContentGuide)
+        tableView.cellLayoutMarginsFollowReadableWidth = true
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        blurView.frame = view.bounds
         backgroundImageView.frame = view.bounds
-        view.sendSubviewToBack(blurView)
+
         view.sendSubviewToBack(backgroundImageView)
         let navbarHeight = navigationController?.navigationBar.bounds.height ?? 0
         let navigationBarHeight = max(navbarHeight, 44.0)
@@ -104,8 +105,31 @@ class TableViewController: UITableViewController {
         view.bringSubviewToFront(navigationBarSeparatorLineView)
     }
 
+    // MARK:- UITableViewController
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard needsSectionHeaders else {
+            return nil
+        }
+        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
+        label.font = UIFont.systemFontOfSize(16.0)
+        label.text = textForHeaderInSection(section)
+        label.textColor = UIColor(white: 1.0, alpha: 1.0)
+        label.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        return label
+    }
+
+    func textForHeaderInSection(section: Int) -> String {
+        return ""
+    }
+
+    //Required for viewForHeaderInSection to be called
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return needsSectionHeaders ? 24.0 : 0.0
+    }
+
     // MARK:- KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String:AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == contentOffsetPropertyString {
             let normalizedOffsetDelta = max(tableView.contentOffset.y / tableView.bounds.height, 0.0)
             navigationBarSeparatorLineView.alpha = showsNavigationBarSeparatorLine ? min(maximumNavigationBarSeparatorLineAlpha, normalizedOffsetDelta) : 0.0
