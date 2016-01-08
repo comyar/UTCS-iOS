@@ -6,8 +6,8 @@ let UTCSNewsTableViewCellIdentifier = "NewsCell"
 
 final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
 
-    var articleData: [NewsArticle] {
-        return data as! [NewsArticle]
+    var articleData: [NewsArticle]? {
+        return data as? [NewsArticle]
     }
 
     override var router: Router {
@@ -20,15 +20,17 @@ final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
     }
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as! NewsTableViewCell
-        let article = articleData[indexPath.row]
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as? NewsTableViewCell,
+            let article = articleData?[indexPath.row] else {
+                return UITableViewCell()
+        }
         cell.title!.text = article.title
         cell.detailLabel!.text = article.attributedContent.string
         return cell
     }
 
     @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data?.count ?? 0
+        return articleData?.count ?? 0
     }
 
 

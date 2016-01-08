@@ -56,8 +56,8 @@ enum Router: URLRequestConvertible {
         return "\(requestURL)\(apiVersion)\(requestPathCGI)"
     }
 
-    func createDigest(service: String, argument: String?) -> String {
+    static func createDigest(service: String, argument: String?) -> String {
         return generateHMAC(requestKey, data: service + (argument ?? ""))
-        
+
     }
 }

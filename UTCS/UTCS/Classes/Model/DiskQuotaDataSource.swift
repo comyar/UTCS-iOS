@@ -5,24 +5,18 @@ final class DiskQuotaDataSource: ServiceDataSource {
     var quotaData: QuotaData {
         return data as! QuotaData
     }
+    override var router: Router {
+        return currentRouter
+    }
+    private var currentRouter = Router.Quota(username: "")
 
-    override func fetchData(completion: DataRequestCompletion) {
-        fatalError("Use the argument form of fetchData")
+    override func updateWithArgument(argument: String?, completion: DataSourceCompletion?) {
+        configureRouter(argument!)
+        super.updateWithArgument(argument, completion: completion)
     }
 
-    func fetchData(username: String, completion: DataRequestCompletion) {
-        Alamofire.request(Router.Quota(username: username)).responseJSON { response -> Void in
-            guard response.result.isSuccess else {
-                // For debugging purposes: Print the raw string
-                //let string = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
-                completion(nil, nil, response.result.error)
-                return
-            }
-            let swiftyJSON = JSON(response.result.value!)
-            completion(swiftyJSON["meta"], swiftyJSON["values"], nil)
-            
-        }
-
+    private func configureRouter(userName: String) {
+        currentRouter = Router.Quota(username: userName)
     }
 
 }

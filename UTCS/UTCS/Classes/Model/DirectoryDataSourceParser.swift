@@ -10,7 +10,7 @@ let lastNameKey = "lname"
 let fullNameKey = "name"
 
 // Key for the person's office location
-let officeKey = "office"
+let officeKey = "location"
 
 // Key for the person's phone number
 let phoneKey = "phone"
@@ -23,10 +23,8 @@ let imageURLKey = "image"
 
 
 class DirectoryDataSourceParser: DataSourceParser {
-    var parsedDirectory: [DirectoryPerson] {
-        return parsed as? [DirectoryPerson] ?? [DirectoryPerson]()
-    }
-    override func parseValues(values: JSON) {
+
+    func parseValues(values: JSON) -> Any! {
         var directory = [DirectoryPerson]()
         for personData in values.arrayValue {
             let person = DirectoryPerson()
@@ -40,6 +38,6 @@ class DirectoryDataSourceParser: DataSourceParser {
             directory.append(person)
 
         }
-        parsed = directory
+        return directory
     }
 }

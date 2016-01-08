@@ -1,15 +1,11 @@
 import SwiftyJSON
 
 class LabsDataSourceParser: DataSourceParser {
-    var parsedMachines: [String: [String: UTCSLabMachine]] {
-    get {
-        return parsed as? [String: [String: UTCSLabMachine]] ?? [String: [String: UTCSLabMachine]]()
-    }
-    }
-    override func parseValues(values: JSON) {
+
+    func parseValues(values: JSON) -> Any! {
         let thirdData = values[0, "machines"].array
         let basementData = values[1, "machines"].array
-        parsed = ["third": parseFloor(thirdData!, labName: "third"),
+        return ["third": parseFloor(thirdData!, labName: "third"),
             "basement": parseFloor(basementData!, labName: "basement")]
     }
 

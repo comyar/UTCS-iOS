@@ -9,11 +9,7 @@ class NewsDataSourceParser: DataSourceParser {
     private static let minHeaderImageWidth: CGFloat = 300.0
     private static let minHeaderImageHeight: CGFloat = 250.0
 
-    var parsedArticles: [NewsArticle] {
-        return parsed as! [NewsArticle]
-    }
-
-    override func parseValues(values: JSON) {
+    func parseValues(values: JSON) -> Any! {
         var articles = [NewsArticle]()
         for articleData in values.array! {
             let article = NewsArticle()
@@ -27,12 +23,12 @@ class NewsDataSourceParser: DataSourceParser {
                 }
             }
 
-            article.date = DataSourceParser.dateFormatter.dateFromString(articleData[NewsDataSourceParser.dateKey].string!)
+            article.date = serviceDateFormatter.dateFromString(articleData[NewsDataSourceParser.dateKey].string!)
             setHeaderImageForArticle(article)
             articles.append(article)
 
         }
-        parsed = articles
+        return articles
     }
 
     func setHeaderImageForArticle(article: NewsArticle) {
