@@ -3,18 +3,20 @@ import AlamofireImage
 class DirectoryDetailViewController: TableViewController {
     let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
     var person: DirectoryPerson? {
-        didSet(newValue){
+        didSet(newValue) {
             tableView.reloadData()
         }
     }
 
-    init(){
+    init() {
         super.init(style: .Grouped)
+        needsSectionHeaders = true
+        backgroundImageName = "Directory"
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        fullScreen = false
+        navigationBarBackgroundVisible = false
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -58,75 +60,70 @@ class DirectoryDetailViewController: TableViewController {
         }
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
-            cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.8)
-            cell?.textLabel?.numberOfLines = 2
-            cell?.detailTextLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
-            cell?.imageView?.contentMode = .ScaleAspectFill
-            cell?.imageView?.autoresizingMask = .None
-            cell?.backgroundColor = UIColor.clearColor()
-            cell?.selectionStyle = .None
-            cell?.textLabel?.textAlignment = .Left
+        var oldCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        if oldCell == nil {
+            let newCell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+            newCell.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.8)
+            newCell.textLabel?.numberOfLines = 2
+            newCell.detailTextLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
+            newCell.imageView?.contentMode = .ScaleAspectFill
+            newCell.imageView?.autoresizingMask = .None
+            newCell.backgroundColor = UIColor.clearColor()
+            newCell.selectionStyle = .None
+            newCell.textLabel?.textAlignment = .Left
             let callButton = UIButton.bouncyButton()
 
             callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
             callButton.setTitle("Call", forState: .Normal)
             callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            callButton.center = CGPoint(x: cell!.frame.width - callButton.frame.width, y: cell!.center.y)
             callButton.tintColor = UIColor.whiteColor()
             callButton.layer.masksToBounds = true
             callButton.layer.cornerRadius = 4.0
             callButton.layer.borderWidth = 1.0
+            callButton.layer.borderColor = UIColor.whiteColor().CGColor
             callButton.tag = Int.min
-            cell?.contentView.addSubview(callButton)
+            newCell.accessoryView = callButton
+            newCell.accessoryView?.hidden = true
+            oldCell = newCell
         }
-        let button = cell?.contentView.viewWithTag(Int.min) as! UIButton
-        button.hidden = true
+        if let cell = oldCell {
+
         if indexPath.section == 0 {
-            cell?.textLabel?.text = person?.fullName
-            cell?.detailTextLabel?.text = person?.type
+            cell.textLabel?.text = person?.fullName
+            cell.detailTextLabel?.text = person?.type
 
             if let url = person?.imageURL {
-                cell?.imageView?.af_setImageWithURL(url, placeholderImage: nil, imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
-                cell?.imageView?.layer.cornerRadius = 32.0
-                cell?.imageView?.layer.masksToBounds = true
-                cell?.imageView?.contentMode = .ScaleAspectFill
-                cell?.setNeedsLayout()
+                cell.imageView?.af_setImageWithURL(url, placeholderImage: nil,
+                    imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20),
+                    runImageTransitionIfCached: false)
+                cell.imageView?.layer.cornerRadius = cell.imageView?.bounds.width ?? 0 / 2.0
+                cell.imageView?.layer.masksToBounds = true
+                cell.imageView?.contentMode = .ScaleAspectFill
+                cell.setNeedsLayout()
             }
         } else if indexPath.section == 1 {
-            if indexPath.row == 0 {
-                var text = person?.office
-                var subtitle = "Office"
-                text = text?.characters.count != 0 ? text : formattedPhoneNumberWithString((person?.phoneNumber)!)
-                subtitle = text?.characters.count != 0 ? subtitle : "Phone"
-                cell?.textLabel?.text = text
-                cell?.detailTextLabel?.text = subtitle
-            } else if indexPath == 1 {
-                cell?.textLabel?.text = formattedPhoneNumberWithString((person?.phoneNumber)!)
-                cell?.detailTextLabel?.text = "Phone"
+            if indexPath.row == 0,
+               let office = person?.office {
+                cell.textLabel?.text = office
+                cell.detailTextLabel?.text = "Office"
+            } else if indexPath.row == 1,
+                    let number = person?.phoneNumber {
+                cell.textLabel?.text = formattedPhoneNumberWithString(number)
+                cell.detailTextLabel?.text = "Phone"
+                cell.accessoryView?.hidden = false
+
             }
 
-            if cell?.detailTextLabel?.text == "Phone" {
-                button.hidden = false
-            }
         }
-        return cell!
+        }
+        return oldCell!
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else if section == 1 {
-            var count = 0
-            if person?.office != nil {
-                count++
-            }
-            if person?.phoneNumber != nil {
-                count++
-            }
-            return count
+            return 2
         }
         return 0
     }
@@ -141,10 +138,16 @@ class DirectoryDetailViewController: TableViewController {
         }
         return nil
     }
-    
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 && indexPath.section == 0 {
-            return 64.0
+        if indexPath.section == 0 && indexPath.row == 0 {
+            return 84.0
+        } else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                return person?.office != nil ? 64.0 : 0.0
+            } else if indexPath.row == 1 {
+                return person?.phoneNumber != nil ? 64.0 : 0.0
+            }
         }
         return 50.0
     }

@@ -1,21 +1,21 @@
 
-class NewsViewController: HeaderTableViewController, DataSourceDelegate {
+final class NewsViewController: HeaderTableViewController {
 
     static let headerTitleText = "UTCS News"
     static let headerSubtitleText = "What Starts Here Changes the World"
-    
+
     let newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
     var newsDataSource: NewsDataSource! {
         return dataSource as! NewsDataSource!
     }
 
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
+    init() {
+        super.init(style: .Plain)
         dataSource = NewsDataSource()
         tableView.dataSource = newsDataSource
         backgroundImageName = "News"
+        title = "News"
 
-        activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = NewsViewController.headerTitleText
         activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
 
@@ -25,7 +25,7 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
     }
 
     required convenience init?(coder: NSCoder) {
-        self.init(style: .Plain)
+        self.init()
     }
 
     override func viewDidLoad() {
@@ -38,13 +38,12 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
         update()
     }
 
-    func update(){
+    func update() {
         activeHeaderView.showActiveAnimation(true)
         newsDataSource.updateWithArgument(nil) { success, cacheHit in
             self.activeHeaderView.showActiveAnimation(false)
-            if self.newsDataSource.articleData.count > 0 {
-                let updateString = NSDateFormatter.localizedStringFromDate(self.newsDataSource.updated!, dateStyle: .LongStyle, timeStyle: .MediumStyle)
-                self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
+            if self.newsDataSource.articleData?.count ?? 0 > 0 {
+                self.lastUpdated = self.newsDataSource.updated!
             } else {
                 if !success {
                     self.activeHeaderView.updatedLabel.text = "Please check your network connection."
@@ -63,9 +62,11 @@ class NewsViewController: HeaderTableViewController, DataSourceDelegate {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
-        newsDetailViewController.newsArticle = newsDataSource.articleData[indexPath.row]
+        guard let article = newsDataSource.articleData?[indexPath.row] else {
+            return
+        }
+        newsDetailViewController.newsArticle = article
         navigationController?.pushViewController(newsDetailViewController, animated: true)
     }
-    
+
 }

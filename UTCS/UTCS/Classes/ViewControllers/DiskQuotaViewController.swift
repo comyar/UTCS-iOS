@@ -48,7 +48,6 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
 
-
         view.backgroundColor = UIColor.blackColor()
         usernameTextField.floatingLabelTextColor = UIColor(white: 1.0, alpha: 0.5)
         usernameTextField.autocapitalizationType = .None
@@ -75,6 +74,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
 
         //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
         backgroundImageName = "Disk Quota"
+        title = "Disk Quota"
     }
 
     @IBAction func didPressGo(sender: UIButton) {

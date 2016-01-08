@@ -7,7 +7,7 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
         return dataSource as? EventsDataSource
     }
     var filterSegmentedControl: UISegmentedControl!
-    var filters = [(EventsDataSource.EventType.All, UIColor.whiteColor()), (.Talks, UIColor.utcsEventTalkColor()), (.Careers, UIColor.utcsEventCareersColor()), (.Orgs, UIColor.utcsEventStudentOrgsColor())]
+    var segments = [Event.Category.All, .Orgs, .Talks, .Careers]
     var filterButtonImageView: UIImageView!
     var starListButton: UIBarButtonItem!
     var starredEventsViewController: StarredEventsViewController!
@@ -16,14 +16,14 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
     init() {
         super.init(style: .Plain)
         dataSource = EventsDataSource()
-        
+
         tableView.dataSource = eventsDataSource
         tableView.estimatedRowHeight = 48
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: EventsTableViewCellIdentifier)
         backgroundImageName = "Events"
+        title = "Events"
 
-        activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
         activeHeaderView.sectionHeadLabel.text = "UTCS Events"
         activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
     }
@@ -32,14 +32,11 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         update()
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
@@ -74,23 +71,20 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
     func didChangeValueForControl(control: UIControl) {
         if control == filterSegmentedControl {
             let index = filterSegmentedControl.selectedSegmentIndex
-            let filterType = filters[index].0
-            let filterColor = filters[index].1
+            let filterType = segments[index]
+            let filterColor = EventsDataSource.typeColorMapping[filterType]
             filterEventsWithType(filterType)
             filterSegmentedControl.tintColor = filterColor
         }
     }
 
-    func filterEventsWithType(type: EventsDataSource.EventType) {
-        if type != eventsDataSource!.currentFilterType {
-            let indexPaths = eventsDataSource!.filterEventsWithType(type)
-            let addIndexPaths = indexPaths.0
-            let removeIndexPaths = indexPaths.1
-            tableView.beginUpdates()
-            tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
-            tableView.endUpdates()
-        }
+    func filterEventsWithType(type: Event.Category) {
+        let (addIndexPaths, removeIndexPaths) = eventsDataSource!.filterEventsWithType(type)
+        tableView.beginUpdates()
+        tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
+        tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
+        tableView.endUpdates()
+
     }
 
     func update() {
@@ -115,44 +109,42 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
         }
     }
 
-    func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: UTCSEvent) {
+    func starredEventsViewController(starredEventsViewController: StarredEventsViewController, didSelectEvent event: Event) {
         eventDetailViewController.event = event
         navigationController?.pushViewController(eventDetailViewController, animated: true)
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 && dataSource!.data!.count > 0 {
-            if filterSegmentedControl == nil {
+    // MARK:- UITableView
 
-                filterSegmentedControl = {
-                    let unzipped: [String] = {
-                        var keys = [String]()
-                        for item in filters {
-                            keys.append(item.0.rawValue)
-                        }
-                        return keys
-                    }()
-                    let segmentedControl = UISegmentedControl(items: unzipped)
-                    segmentedControl.backgroundColor = UIColor(white: 0.0, alpha: 0.725)
-                    segmentedControl.addTarget(self, action: "didChangeValueForControl:", forControlEvents: .ValueChanged)
-                    segmentedControl.frame = CGRect(x: 8.0, y: 8.0, width: view.frame.width - 16.0, height: 32.0)
-                    segmentedControl.tintColor = UIColor.whiteColor()
-                    segmentedControl.selectedSegmentIndex = 0
-                    segmentedControl.layer.cornerRadius = 4.0
-                    segmentedControl.layer.masksToBounds = true
-                    return segmentedControl
-                }()
-            }
-            return {
-                let newView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 32.0))
-                newView.addSubview(filterSegmentedControl)
-                return newView
-                }()
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 && eventsDataSource?.filteredEvents?.count > 0 else {
+            return nil
         }
-        return nil
+        if filterSegmentedControl == nil {
+
+            filterSegmentedControl = {
+                let segmentNames = segments.map({ (category) -> String in
+                    return category.rawValue
+                })
+                let segmentedControl = UISegmentedControl(items: segmentNames)
+                segmentedControl.backgroundColor = UIColor(white: 0.0, alpha: 0.725)
+                segmentedControl.addTarget(self, action: "didChangeValueForControl:", forControlEvents: .ValueChanged)
+                segmentedControl.frame = CGRect(x: 8.0, y: 8.0, width: view.frame.width - 16.0, height: 32.0)
+                segmentedControl.tintColor = UIColor.whiteColor()
+                segmentedControl.selectedSegmentIndex = 0
+                segmentedControl.layer.cornerRadius = 4.0
+                segmentedControl.layer.masksToBounds = true
+                return segmentedControl
+            }()
+        }
+        return {
+            let newView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 32.0))
+            newView.addSubview(filterSegmentedControl)
+            return newView
+        }()
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && dataSource?.data?.count ?? 0 > 0 {
+        if section == 0 && eventsDataSource?.filteredEvents?.count ?? 0 > 0 {
             return 48.0
         }
         return 0.0
@@ -160,7 +152,9 @@ final class EventsViewController: HeaderTableViewController, StarredEventsViewCo
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let event = eventsDataSource!.filteredEvents[indexPath.row]
+        guard let event = eventsDataSource?.filteredEvents?[indexPath.row] else {
+            return
+        }
         eventDetailViewController.event = event
         navigationController?.pushViewController(eventDetailViewController, animated: true)
     }

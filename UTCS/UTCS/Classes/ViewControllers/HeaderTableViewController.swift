@@ -1,5 +1,7 @@
 class HeaderTableViewController: TableViewController {
-
+    private let customTitle = UILabel()
+    var blursBackground = true
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
     var activeHeaderView: ActiveHeaderView! {
         didSet(oldValue) {
             activeHeaderView.frame = tableView.bounds
@@ -7,10 +9,20 @@ class HeaderTableViewController: TableViewController {
         }
     }
 
+    var lastUpdated: NSDate? {
+        didSet(oldValue) {
+            guard let updated = lastUpdated else {
+                return
+            }
+            let updateString = NSDateFormatter.localizedStringFromDate(updated, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+            self.activeHeaderView.updatedLabel.text = "Updated \(updateString)"
+        }
+    }
+
     override init(style: UITableViewStyle) {
         super.init(style: style)
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
-
+        self.addObserver(self, forKeyPath: "title", options: .New, context: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -20,11 +32,26 @@ class HeaderTableViewController: TableViewController {
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         // Ensure that the header is always the correct size
-        tableView.tableHeaderView!.frame = tableView.bounds
+        tableView.tableHeaderView?.frame = tableView.bounds
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.insertSubview(blurView, aboveSubview: backgroundImageView)
+        activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
+        customTitle.text = title
+        customTitle.font = UIFont.systemFontOfSize(18.0, weight: UIFontWeightMedium)
+        customTitle.textColor = UIColor.whiteColor()
+        customTitle.frame = CGRect(x: 100.0, y: 100.0, width: 30.0, height: 50.0)
+        navigationItem.titleView = customTitle
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        blurView.frame = view.bounds
+        view.sendSubviewToBack(blurView)
+        view.sendSubviewToBack(backgroundImageView)
+
     }
 
     // MARK:- KVO
@@ -40,10 +67,15 @@ class HeaderTableViewController: TableViewController {
             }
             blurView.alpha = normalizedOffsetDelta
             tableView.tableHeaderView?.alpha = 1.0 - normalizedOffsetDelta
+
+            customTitle.alpha = normalizedOffsetDelta
+        } else if keyPath == "title" {
+            customTitle.text = title
         }
     }
 
-    deinit{
+    deinit {
         tableView.removeObserver(self, forKeyPath: contentOffsetPropertyString)
+        removeObserver(self, forKeyPath: "title")
     }
 }

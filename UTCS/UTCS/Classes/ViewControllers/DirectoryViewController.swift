@@ -1,6 +1,6 @@
 import MBProgressHUD
 
-class DirectoryViewController: TableViewController, DataSourceDelegate {
+class DirectoryViewController: TableViewController {
     var appeared = false
     var errorView: ServiceErrorView!
     var detailViewController: DirectoryDetailViewController?
@@ -8,19 +8,20 @@ class DirectoryViewController: TableViewController, DataSourceDelegate {
         return dataSource as? DirectoryDataSource
     }
 
+    // MARK:- Initialization
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
         dataSource = DirectoryDataSource()
-        directoryDataSource?.delegate = self
+        tableView.dataSource = directoryDataSource
 
         backgroundImageName = "Directory"
-        view.backgroundColor = UIColor.clearColor()
+        title = "Directory"
         showsNavigationBarSeparatorLine = false
         searchController = UISearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
         //searchController.searchBar.scopeButtonTitles = ["All", "Faculty", "Staff", "Graduate"]
-        searchController.searchBar.backgroundImage = UIImage()
+        needsSectionHeaders = true
         searchController.searchBar.tintColor = UIColor.whiteColor()
         searchController.searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 8.0, vertical: 0.0)
         searchController.searchBar.setSearchFieldBackgroundImage(UIImage(named: searchBarBackgroundImageName), forState: .Normal)
@@ -40,13 +41,6 @@ class DirectoryViewController: TableViewController, DataSourceDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
@@ -62,11 +56,6 @@ class DirectoryViewController: TableViewController, DataSourceDelegate {
         update()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         detailViewController = nil
@@ -79,7 +68,7 @@ class DirectoryViewController: TableViewController, DataSourceDelegate {
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progressHUD.mode = .Indeterminate
         progressHUD.labelText = "Syncing"
-        dataSource.updateWithArgument(nil){ (success, cacheHit) -> Void in
+        dataSource.updateWithArgument(nil) { (success, cacheHit) -> Void in
             if success && !cacheHit {
                dataSource.directoryPeopleSections = dataSource.directoryPeople.createSectionedRepresentation()
                 self.tableView.reloadData()
@@ -94,6 +83,8 @@ class DirectoryViewController: TableViewController, DataSourceDelegate {
 
     }
 
+    // MARK:- UITableViewDelegate
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 64.0
     }
@@ -107,24 +98,14 @@ class DirectoryViewController: TableViewController, DataSourceDelegate {
         navigationController?.pushViewController(detailViewController!, animated: true)
    }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func textForHeaderInSection(section: Int) -> String {
         guard let person = directoryDataSource?.directoryPeopleSections?[section][0] else {
-            return UIView()
+            return ""
         }
+
         let lastName = person.lastName as NSString
         let letter = lastName.substringWithRange(NSRange(location: 0, length: 1))
-        return {
-            let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
-            label.font = UIFont.systemFontOfSize(16.0)
-            label.text = letter
-            label.textColor = UIColor(white: 1.0, alpha: 1.0)
-            label.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
-            return label
-        }()
+        return letter
     }
 
-    //Required for viewForHeaderInSection to be called
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 24.0
-    }
 }

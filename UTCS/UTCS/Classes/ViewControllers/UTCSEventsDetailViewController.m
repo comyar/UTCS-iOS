@@ -9,11 +9,9 @@
 
 #pragma mark - Imports
 
-#import "UTCSEvent.h"
 #import "UTCSStateManager.h"
 #import "UIColor+UTCSColors.h"
 #import "UIView+CZPositioning.h"
-#import "UTCSStarredEventsManager.h"
 #import "UITextView+CZTextViewHeight.h"
 #import "UTCSEventsDetailViewController.h"
 
@@ -245,7 +243,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
 #pragma mark Using an Events Detail View Controller
 
-- (void)configureWithEvent:(UTCSEvent *)event
+- (void)configureWithEvent:(Event *)event
 {
     self.dateLabel.text     = [self dateStringForEvent:event];
     if (!self.dateLabel.text) {
@@ -266,12 +264,12 @@ static const CGFloat dateLabelFontSize          = 18.0;
     self.parallaxBlurHeaderScrollView.headerImage           = [UIImage imageNamed:headerImageName];
     
     // Configure star button
-    if ([[UTCSStarredEventsManager sharedManager]containsEvent:event]) {
-        self.starButtonImageView.image = [[UIImage imageNamed:starActiveImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    } else {
-        self.starButtonImageView.image = [[UIImage imageNamed:starImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    
+//    if ([[UTCSStarredEventsManager sharedManager]containsEvent:event]) {
+//        self.starButtonImageView.image = [[UIImage imageNamed:starActiveImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    } else {
+//        self.starButtonImageView.image = [[UIImage imageNamed:starImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    }
+
     // Configure name label
     self.nameLabel.frame = CGRectMake(8.0, kUTCSParallaxBlurNavigationBarHeight, self.view.width - 16.0, 0.0); // Reset the frame, then downsize again with sizeToFit
     self.nameLabel.text = event.name;
@@ -306,7 +304,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
 #pragma mark Setters
 
-- (void)setEvent:(UTCSEvent *)event
+- (void)setEvent:(Event *)event
 {
     _event = event;
     
@@ -320,7 +318,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
 #pragma mark Share Event
 
-- (void)shareEvent:(UTCSEvent *)event
+- (void)shareEvent:(Event *)event
 {
     NSMutableArray *activityItems = [NSMutableArray new];
     
@@ -348,10 +346,10 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
 #pragma mark Star Event
 
-- (void)updateEventStar:(UTCSEvent *)event
+- (void)updateEventStar:(Event *)event
 {
         self.starButtonImageView.image = [[UIImage imageNamed:starImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [[UTCSStarredEventsManager sharedManager]removeEvent:event];
+       // [[UTCSStarredEventsManager sharedManager]removeEvent:event];
 }
 
 #pragma mark Buttons
@@ -369,7 +367,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
 
 #pragma mark Helper
 
-- (NSAttributedString *)descriptionForEvent:(UTCSEvent *)event
+- (NSAttributedString *)descriptionForEvent:(Event *)event
 {
     NSMutableAttributedString *attributedDescription = [NSMutableAttributedString new];
     
@@ -404,19 +402,19 @@ static const CGFloat dateLabelFontSize          = 18.0;
     return attributedDescription;
 }
 
-- (NSString *)dateStringForEvent:(UTCSEvent *)event
+- (NSString *)dateStringForEvent:(Event *)event
 {
-    // All day event
-    if (event.allDay) {
-        
-        NSString *startDateString = [NSDateFormatter localizedStringFromDate:event.startDate
-                                                                   dateStyle:NSDateFormatterLongStyle
-                                                                   timeStyle:NSDateFormatterNoStyle];
-        
-        NSString *combinedDateString = [NSString stringWithFormat:@"%@ - All Day", startDateString];
-        return combinedDateString;
-    }
-    
+//    // All day event
+//    if (event.allDay) {
+//        
+//        NSString *startDateString = [NSDateFormatter localizedStringFromDate:event.startDate
+//                                                                   dateStyle:NSDateFormatterLongStyle
+//                                                                   timeStyle:NSDateFormatterNoStyle];
+//        
+//        NSString *combinedDateString = [NSString stringWithFormat:@"%@ - All Day", startDateString];
+//        return combinedDateString;
+//    }
+
     // Initialize calendar
     if (!self.calendar) {
         self.calendar = [NSCalendar currentCalendar];
@@ -447,7 +445,7 @@ static const CGFloat dateLabelFontSize          = 18.0;
     return combinedDateString;
 }
 
-- (NSString *)headerImageNameForEvent:(UTCSEvent *)event
+- (NSString *)headerImageNameForEvent:(Event *)event
 {
     NSString *location = event.location;
     

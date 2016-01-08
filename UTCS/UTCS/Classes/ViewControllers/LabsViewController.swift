@@ -7,19 +7,19 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
     var basementLabViewController: UTCSLabMachineViewController!
     var thirdFloorLabViewController: UTCSLabMachineViewController!
     var labsDataSource: LabsDataSource! {
-        get{
-            return dataSource as! LabsDataSource!
-        }
+        return dataSource as! LabsDataSource!
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         dataSource = LabsDataSource()
+        title = "Labs"
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
@@ -103,11 +103,11 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
             self.thirdFloorLabViewController.shimmeringView.shimmering = false
             self.basementLabViewController.shimmeringView.shimmering = false
 
-            if success {
-                let third = self.labsDataSource!.data!["third"]
-                let basement = self.labsDataSource!.data!["basement"]
-                self.thirdFloorLabViewController.machines = third as! [NSObject: AnyObject]!
-                self.basementLabViewController.machines = basement as! [NSObject: AnyObject]!
+            if success,
+               let third = self.labsDataSource.third,
+               let basement = self.labsDataSource.basement {
+                self.thirdFloorLabViewController.machines = third
+                self.basementLabViewController.machines = basement
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 let successValue: CGFloat = success ? 1.0 : 0.0

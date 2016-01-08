@@ -14,7 +14,7 @@
 
 #pragma mark - Forward Declarations
 
-@class UTCSEvent;
+@class Event;
 
 
 #pragma mark - UTCSEventsDetailViewController Interface
@@ -36,6 +36,6 @@
  
  Should be set before presenting this view controller.
  */
-@property (nonatomic) UTCSEvent *event;
+@property (nonatomic) Event *event;
 
 @end
