@@ -77,6 +77,7 @@ class HeaderTableViewController: TableViewController {
             customTitle.alpha = normalizedOffsetDelta
         } else if keyPath == "title" {
             customTitle.text = title
+            activeHeaderView.titleLabel.text = title
         }
     }
 

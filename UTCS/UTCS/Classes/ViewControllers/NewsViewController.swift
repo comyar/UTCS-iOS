@@ -1,7 +1,8 @@
+import UIKit
+import Foundation
 
 final class NewsViewController: HeaderTableViewController {
 
-    static let headerTitleText = "News"
     static let headerSubtitleText = "What Starts Here Changes the World"
 
     let newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
@@ -16,7 +17,6 @@ final class NewsViewController: HeaderTableViewController {
         backgroundImageName = "News"
         title = "News"
 
-        activeHeaderView.sectionHeadLabel.text = NewsViewController.headerTitleText
         activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
 
         tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: UTCSNewsTableViewCellIdentifier)

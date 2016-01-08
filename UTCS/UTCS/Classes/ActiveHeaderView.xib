@@ -80,9 +80,9 @@
             <connections>
                 <outlet property="activityIndicatorView" destination="CJx-OH-sf0" id="pGE-7r-A5n"/>
                 <outlet property="downArrowImageView" destination="VzN-kh-gcL" id="yQt-a6-gbX"/>
-                <outlet property="sectionHeadLabel" destination="Mg4-8j-vO1" id="bk3-Rk-oI1"/>
                 <outlet property="shimmeringView" destination="b3Z-Yd-rfQ" id="NPr-8j-7vJ"/>
                 <outlet property="subtitleLabel" destination="TIs-d3-2uJ" id="9PC-6R-RW2"/>
+                <outlet property="titleLabel" destination="Mg4-8j-vO1" id="2uK-Qs-ZtT"/>
                 <outlet property="updatedLabel" destination="DTz-s0-eLd" id="hUd-hW-G3T"/>
             </connections>
             <point key="canvasLocation" x="325" y="323"/>

@@ -1,5 +1,5 @@
-let serviceName = "events"
-
+import UIKit
+import Foundation
 
 final class EventsViewController: HeaderTableViewController {
 
@@ -22,7 +22,6 @@ final class EventsViewController: HeaderTableViewController {
         backgroundImageName = "Events"
         title = "Events"
 
-        activeHeaderView.sectionHeadLabel.text = "Events"
         activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
     }
 

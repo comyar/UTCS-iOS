@@ -59,6 +59,7 @@
 		D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F11B5F1179006E03CD /* DirectoryPerson.swift */; };
 		D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */; };
 		D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */; };
+		D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */; };
 		D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
 		D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */; };
 		D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */; };
@@ -179,6 +180,7 @@
 		D4D8C1F11B5F1179006E03CD /* DirectoryPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryPerson.swift; path = Model/DirectoryPerson.swift; sourceTree = "<group>"; };
 		D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSourceParser.swift; path = Model/DirectoryDataSourceParser.swift; sourceTree = "<group>"; };
 		D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSource.swift; path = Model/DirectoryDataSource.swift; sourceTree = "<group>"; };
+		D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDataSource.swift; path = Model/NewsDataSource.swift; sourceTree = "<group>"; };
 		D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -379,6 +381,7 @@
 				D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */,
 				DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */,
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
+				D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */,
 			);
 			name = Navigation;
 			path = ViewControllers;
@@ -959,6 +962,7 @@
 				DD8989A61903141C000F1041 /* DataSourceCacheMetaData.swift in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
+				D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */,
 				D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */,

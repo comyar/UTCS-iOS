@@ -14,7 +14,7 @@ class ActiveHeaderView: UIView {
     // Label used to display the time the news stories were updated
     @IBOutlet var updatedLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var sectionHeadLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
