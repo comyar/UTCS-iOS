@@ -22,7 +22,7 @@ final class EventsViewController: HeaderTableViewController {
         backgroundImageName = "Events"
         title = "Events"
 
-        activeHeaderView.sectionHeadLabel.text = "UTCS Events"
+        activeHeaderView.sectionHeadLabel.text = "Events"
         activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
     }
 

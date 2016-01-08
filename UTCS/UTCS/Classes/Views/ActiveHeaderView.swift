@@ -3,19 +3,6 @@ import Shimmer
 // Duration of animations performed by this view
 let animationDuration = 0.3
 
-// Font size of the shimmering view
-let shimmeringViewFontSize: CGFloat = 50.0
-
-// Font size of the updated label
-let updatedLabelFontSize = 14.0
-
-// Font size of the subtitle label
-let subtitleLabelFontSize = 17.0
-
-
-// Name of the down arrow image
-let downArrowImageName = "downArrow"
-
 class ActiveHeaderView: UIView {
 
     // Shimmering view used to indicate loading of news articles

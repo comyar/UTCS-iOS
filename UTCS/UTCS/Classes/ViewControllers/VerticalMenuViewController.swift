@@ -9,7 +9,8 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
     private var contentItemBehavior: UIDynamicItemBehavior?
     private var contentSnapBehavior: UISnapBehavior?
 
-    var menuViewController: UIViewController! {
+    var showingMenu = false
+    var menuViewController: MenuViewController! {
         didSet(oldValue) {
 
             menuViewController.view.removeFromSuperview()
@@ -53,9 +54,7 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         }
     }
 
-    var showingMenu = false
-
-    init(menuViewController: UIViewController, contentViewController: UIViewController) {
+    init(menuViewController: MenuViewController, contentViewController: UIViewController) {
         defer {
             self.menuViewController = menuViewController
             self.contentViewController = contentViewController
@@ -70,6 +69,8 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK:- Gestures
+
     func didRecognizeTap(recognizer: UITapGestureRecognizer) {
         if showingMenu {
             hideMenu()
@@ -82,6 +83,8 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         }
         return showingMenu
     }
+
+    // MARK:- Menu Display
 
     func didReceiveMenuDisplayNotification() {
         if showingMenu {
@@ -103,8 +106,9 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         let animator = UIDynamicAnimator(referenceView: view)
         let itemBehavior = UIDynamicItemBehavior(items: [contentController.view])
         itemBehavior.allowsRotation = false
-        let oldFrame = contentController.navigationController?.navigationBar.frame
-        let snapBehavior = UISnapBehavior(item: contentController.view, snapToPoint: CGPoint(x: view.center.x, y: view.frame.height))
+
+        let targetY = menuViewController.bottomExtent + contentController.view.center.y
+        let snapBehavior = UISnapBehavior(item: contentController.view, snapToPoint: CGPoint(x: view.center.x, y: targetY))
         snapBehavior.damping = 0.15
         animator.addBehavior(itemBehavior)
         animator.addBehavior(snapBehavior)
@@ -115,14 +119,15 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         showingMenu = true
         // [self enableUserInteraction:NO forViewController:self.contentViewController]
         setNeedsStatusBarAppearanceUpdate()
-        // Twiddle navigation bar
-        /*
-        [_contentViewController.navigationController.navigationBar setFrame: CGRectOffset(oldFrame, 50.0, 700.0)];
-        _contentViewController.edgesForExtendedLayout = UIRectEdgeNone;
-        [_contentViewController.navigationController.navigationBar setNeedsLayout ];
-        _contentViewController.extendedLayoutIncludesOpaqueBars = YES;
-        [_contentViewController.view layoutSubviews];
-        */
+
+        // Navigation controllers will think that they need to accomodate the status bar appearing.
+        // We'll compensate by shifting it back up.
+        if let navController = contentController as? UINavigationController {
+            let oldFrame = navController.navigationBar.frame
+            navController.navigationBar.frame = CGRectOffset(oldFrame, 0.0, -20.0)
+        }
+
+        contentController.view.layoutSubviews()
     }
 
     func hideMenu() {
@@ -153,9 +158,12 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         //    [self enableUserInteraction:YES forViewController:self.contentViewController]
         setNeedsStatusBarAppearanceUpdate()
     }
+
+    // MARK:- Status Bar
     override func prefersStatusBarHidden() -> Bool {
         return !showingMenu
     }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }

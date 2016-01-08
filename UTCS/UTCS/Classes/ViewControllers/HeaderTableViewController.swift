@@ -19,15 +19,21 @@ class HeaderTableViewController: TableViewController {
         }
     }
 
+    // MARK:- Initialization
+
     override init(style: UITableViewStyle) {
         super.init(style: style)
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
         self.addObserver(self, forKeyPath: "title", options: .New, context: nil)
+        // Shift the tableview under the navbar
+        tableView.contentInset = UIEdgeInsets(top: -44.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK:- Lifecycle
 
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
@@ -55,8 +61,8 @@ class HeaderTableViewController: TableViewController {
     }
 
     // MARK:- KVO
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         if keyPath == contentOffsetPropertyString {
             let windowHeight = UIScreen.mainScreen().bounds.height
             let normalizedOffsetDelta = min(tableView.contentOffset.y * 1.5, windowHeight) / windowHeight

@@ -15,7 +15,7 @@ class TableViewController: UITableViewController {
             if navigationBarBackgroundVisible {
                 navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
             } else {
-                navigationController?.navigationBar.backgroundColor = UIColor.redColor()
+                navigationController?.navigationBar.backgroundColor = UIColor(white: 1.0, alpha: 0.4)
             }
         }
     }
@@ -42,14 +42,6 @@ class TableViewController: UITableViewController {
         }
     }
 
-    // View to represent the navigation bar separator line
-    var navigationBarSeparatorLineView: UIView = {
-        let view = UIView(frame: CGRectZero)
-        view.backgroundColor = UIColor.whiteColor()
-        view.alpha = 0.0
-        return view
-    }()
-
     // MARK:- Initialization
 
     convenience init() {
@@ -61,7 +53,7 @@ class TableViewController: UITableViewController {
         super.init(style: style)
 
         navigationBarBackgroundVisible = false
-        tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
+        extendedLayoutIncludesOpaqueBars = true
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.05)
         tableView.backgroundColor = UIColor.clearColor()
         tableView.sectionIndexColor = UIColor.whiteColor()
@@ -78,7 +70,6 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(backgroundImageView)
-        view.insertSubview(navigationBarSeparatorLineView, aboveSubview: tableView)
         tableView.addLayoutGuide(tableView.readableContentGuide)
         tableView.cellLayoutMarginsFollowReadableWidth = true
     }
@@ -88,21 +79,6 @@ class TableViewController: UITableViewController {
         backgroundImageView.frame = view.bounds
 
         view.sendSubviewToBack(backgroundImageView)
-        let navbarHeight = navigationController?.navigationBar.bounds.height ?? 0
-        let navigationBarHeight = max(navbarHeight, 44.0)
-        navigationBarSeparatorLineView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: navigationBarSeparatorLineHeight)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        super.willMoveToParentViewController(parent)
-        let navigationBarHeight = CGRectGetHeight(navigationController!.navigationBar.bounds)
-
-        navigationBarSeparatorLineView.frame = CGRect(x: 0.0, y: navigationBarHeight, width: view.bounds.width, height: navigationBarSeparatorLineHeight)
-        view.bringSubviewToFront(navigationBarSeparatorLineView)
     }
 
     // MARK:- UITableViewController
@@ -126,18 +102,6 @@ class TableViewController: UITableViewController {
     //Required for viewForHeaderInSection to be called
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return needsSectionHeaders ? 24.0 : 0.0
-    }
-
-    // MARK:- KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String:AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == contentOffsetPropertyString {
-            let normalizedOffsetDelta = max(tableView.contentOffset.y / tableView.bounds.height, 0.0)
-            navigationBarSeparatorLineView.alpha = showsNavigationBarSeparatorLine ? min(maximumNavigationBarSeparatorLineAlpha, normalizedOffsetDelta) : 0.0
-        }
-    }
-
-    deinit {
-        tableView.removeObserver(self, forKeyPath: contentOffsetPropertyString)
     }
 
 }

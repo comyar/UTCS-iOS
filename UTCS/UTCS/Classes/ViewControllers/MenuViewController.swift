@@ -1,4 +1,4 @@
-@objc enum MenuOption: Int {
+enum MenuOption: Int {
     case News = 0,
     Events,
     Labs,
@@ -7,7 +7,7 @@
     Settings
 }
 
-@objc protocol MenuViewControllerDelegate {
+protocol MenuViewControllerDelegate {
     func didSelectMenuOption(option: MenuOption)
 }
 
@@ -15,10 +15,12 @@ class MenuViewController: UITableViewController {
     let menuOptions = ["News", "Events", "Labs", "Directory", "Disk Quota", "Settings"]
     var activeRow: Int?
     var delegate: MenuViewControllerDelegate?
+    var bottomExtent: CGFloat  {
+        return tableView.rowHeight * CGFloat(menuOptions.count) + 50.0
+    }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        title = "Menu"
         edgesForExtendedLayout = .None
         view.backgroundColor = UIColor(white: 0.08, alpha: 1.0)
 
@@ -38,12 +40,17 @@ class MenuViewController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
+
+    // MARK:- Status Bar
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     override func prefersStatusBarHidden() -> Bool {
         return false
     }
+
+    // MARK:- UITableView
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell")
@@ -63,29 +70,15 @@ class MenuViewController: UITableViewController {
         cell?.imageView?.image = UIImage(named: imageName!)?.imageWithRenderingMode(.AlwaysTemplate)
         return cell!
     }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuOptions.count
     }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         activeRow = indexPath.row
         tableView.reloadData()
-        let option: MenuOption
-        switch indexPath.row {
-        case 0:
-            option = .News
-        case 1:
-            option = .Events
-        case 2:
-            option = .Labs
-        case 3:
-            option = .Directory
-        case 4:
-            option = .DiskQuota
-        case 5:
-            option = .Settings
-        default:
-            option = .News
-        }
+        let option = MenuOption(rawValue: indexPath.row) ?? .News
         delegate?.didSelectMenuOption(option)
     }
 

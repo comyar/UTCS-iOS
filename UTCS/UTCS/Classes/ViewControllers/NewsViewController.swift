@@ -1,7 +1,7 @@
 
 final class NewsViewController: HeaderTableViewController {
 
-    static let headerTitleText = "UTCS News"
+    static let headerTitleText = "News"
     static let headerSubtitleText = "What Starts Here Changes the World"
 
     let newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
