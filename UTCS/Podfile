@@ -6,9 +6,12 @@ pod 'NMSSH'
 pod "RQShineLabel"
 pod 'DPMeterView'
 pod 'MBProgressHUD'
-pod "AFNetworking"
+pod 'Alamofire', '~> 3.0'
+pod 'AlamofireImage', '~> 2.0'
 pod "JVFloatLabeledTextField"
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
+pod "SwiftyJSON", :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+use_frameworks!
 
 end
 

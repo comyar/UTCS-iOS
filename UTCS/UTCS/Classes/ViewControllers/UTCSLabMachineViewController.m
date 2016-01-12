@@ -9,7 +9,6 @@
 #import "UTCSLabMachineViewController.h"
 #import "UIView+CZPositioning.h"
 #import "UTCSLabMachine.h"
-#import "UTCSParallaxBlurHeaderScrollView.h"
 
 
 #pragma mark - UTCSLabMachineViewController Class Extension
@@ -20,7 +19,7 @@
 
 @property (nonatomic) UTCSLabView           *labView;
 
-@property (nonatomic) UTCSServiceErrorView  *serviceErrorView;
+@property (nonatomic) ServiceErrorView  *serviceErrorView;
 
 @end
 
@@ -66,7 +65,7 @@
         
         
         self.serviceErrorView = ({
-            UTCSServiceErrorView *view = [[UTCSServiceErrorView alloc]initWithFrame:CGRectZero];
+            ServiceErrorView *view = [[ServiceErrorView alloc]initWithFrame:CGRectZero];
             view.errorLabel.text = @"Ouch! Something went wrong.\n\nPlease check your network connection.";
             view.alpha = 0.0;
             view;
@@ -126,7 +125,7 @@
     if (!machine) {
         machineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.8];
     } else {
-        if (![[machine.status lowercaseString] isEqualToString:@"up"]) {
+        if (!machine.status) {
             machineView.backgroundColor= [UIColor colorWithWhite:0.5 alpha:0.25];
         } else if (machine.occupied) {
             machineView.backgroundColor = [UIColor colorWithRed:0.863 green:0.000 blue:0.052 alpha:1.000];

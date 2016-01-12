@@ -1,5 +1,7 @@
 ![](/Meta/readme_header.png)
 
+[![Build Status](https://magnum.travis-ci.com/utcsmad/UTCS-iOS.svg?token=1o9Avy4mGixFuRg9knBP&branch=ios9)](https://magnum.travis-ci.com/utcsmad/UTCS-iOS)
+
 # Introduction
 
 The UTCS iOS app is a collaborative project between the Department of Computer Science and Mobile App Development (MAD). The app represents the efforts of students at a top-ten computer science institution and should attempt to achieve the same level of innovation, creativity, and perfection as the most well-made iOS apps on the App Store. Examples of such apps include [Paper | Stories from Facebook](https://www.facebook.com/paper) and [Yahoo Weather](https://itunes.apple.com/us/app/yahoo-weather/id628677149?mt=8).

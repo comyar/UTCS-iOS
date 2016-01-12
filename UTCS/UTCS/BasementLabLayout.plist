@@ -11,413 +11,378 @@
 	</dict>
 	<key>values</key>
 	<dict>
-		<key>monitor-5</key>
-		<dict>
-			<key>x</key>
-			<integer>194</integer>
-			<key>y</key>
-			<integer>362</integer>
-		</dict>
-		<key>titanothere</key>
+		<key>bluebeards-castle</key>
 		<dict>
 			<key>x</key>
 			<integer>170</integer>
 			<key>y</key>
 			<integer>362</integer>
 		</dict>
-		<key>monitor-4</key>
-		<dict>
-			<key>x</key>
-			<integer>76</integer>
-			<key>y</key>
-			<integer>362</integer>
-		</dict>
-		<key>adorable-seal-larva</key>
+		<key>yellowjacket</key>
 		<dict>
 			<key>x</key>
 			<integer>100</integer>
 			<key>y</key>
 			<integer>362</integer>
 		</dict>
-		<key>monitor-3</key>
-		<dict>
-			<key>x</key>
-			<integer>200</integer>
-			<key>y</key>
-			<integer>314</integer>
-		</dict>
-		<key>tinning-kit</key>
+		<key>cosi-fan-tutte</key>
 		<dict>
 			<key>x</key>
 			<integer>200</integer>
 			<key>y</key>
 			<integer>290</integer>
 		</dict>
-		<key>twoflower</key>
+		<key>carmen</key>
 		<dict>
 			<key>x</key>
 			<integer>130</integer>
 			<key>y</key>
 			<integer>290</integer>
 		</dict>
-		<key>monitor-2</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>314</integer>
-		</dict>
-		<key>monitor-1</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>314</integer>
-		</dict>
-		<key>wand-of-wishing</key>
+		<key>aida</key>
 		<dict>
 			<key>x</key>
 			<integer>106</integer>
 			<key>y</key>
 			<integer>290</integer>
 		</dict>
-		<key>hobopolis</key>
+		<key>iron-clad-beetle</key>
 		<dict>
 			<key>x</key>
 			<integer>269</integer>
 			<key>y</key>
 			<integer>248</integer>
 		</dict>
-		<key>handsome-mariachi</key>
-		<dict>
-			<key>x</key>
-			<integer>269</integer>
-			<key>y</key>
-			<integer>224</integer>
-		</dict>
-		<key>goth-giant</key>
-		<dict>
-			<key>x</key>
-			<integer>269</integer>
-			<key>y</key>
-			<integer>200</integer>
-		</dict>
-		<key>enraged-cow</key>
-		<dict>
-			<key>x</key>
-			<integer>269</integer>
-			<key>y</key>
-			<integer>176</integer>
-		</dict>
-		<key>emo-squid</key>
-		<dict>
-			<key>x</key>
-			<integer>269</integer>
-			<key>y</key>
-			<integer>152</integer>
-		</dict>
-		<key>shrieker</key>
-		<dict>
-			<key>x</key>
-			<integer>224</integer>
-			<key>y</key>
-			<integer>152</integer>
-		</dict>
-		<key>ring-of-slow-digestion</key>
-		<dict>
-			<key>x</key>
-			<integer>224</integer>
-			<key>y</key>
-			<integer>176</integer>
-		</dict>
-		<key>quivering-blob</key>
-		<dict>
-			<key>x</key>
-			<integer>224</integer>
-			<key>y</key>
-			<integer>200</integer>
-		</dict>
-		<key>pyrolisk</key>
-		<dict>
-			<key>x</key>
-			<integer>224</integer>
-			<key>y</key>
-			<integer>224</integer>
-		</dict>
-		<key>paper-golem</key>
-		<dict>
-			<key>x</key>
-			<integer>200</integer>
-			<key>y</key>
-			<integer>224</integer>
-		</dict>
-		<key>oilskin-sack</key>
-		<dict>
-			<key>x</key>
-			<integer>200</integer>
-			<key>y</key>
-			<integer>200</integer>
-		</dict>
-		<key>marilith</key>
-		<dict>
-			<key>x</key>
-			<integer>200</integer>
-			<key>y</key>
-			<integer>176</integer>
-		</dict>
-		<key>ettin-mummy</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>152</integer>
-		</dict>
-		<key>barrow-wight</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>176</integer>
-		</dict>
-		<key>baby-purple-worm</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>200</integer>
-		</dict>
-		<key>pastamancer</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>224</integer>
-		</dict>
-		<key>vermincelli</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>224</integer>
-		</dict>
-		<key>weretaco</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>200</integer>
-		</dict>
-		<key>undead-elbow-macaroni</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>176</integer>
-		</dict>
-		<key>swamp-duck</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>152</integer>
-		</dict>
-		<key>disco-bandit</key>
-		<dict>
-			<key>x</key>
-			<integer>269</integer>
-			<key>y</key>
-			<integer>98</integer>
-		</dict>
-		<key>cuddlefish</key>
-		<dict>
-			<key>x</key>
-			<integer>269</integer>
-			<key>y</key>
-			<integer>74</integer>
-		</dict>
-		<key>stinking-cloud</key>
-		<dict>
-			<key>x</key>
-			<integer>224</integer>
-			<key>y</key>
-			<integer>74</integer>
-		</dict>
-		<key>steam-vortex</key>
-		<dict>
-			<key>x</key>
-			<integer>224</integer>
-			<key>y</key>
-			<integer>98</integer>
-		</dict>
-		<key>little-dog</key>
-		<dict>
-			<key>x</key>
-			<integer>200</integer>
-			<key>y</key>
-			<integer>98</integer>
-		</dict>
-		<key>ki-rin</key>
-		<dict>
-			<key>x</key>
-			<integer>200</integer>
-			<key>y</key>
-			<integer>74</integer>
-		</dict>
-		<key>floating-eye</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>98</integer>
-		</dict>
-		<key>fumble-boots</key>
-		<dict>
-			<key>x</key>
-			<integer>130</integer>
-			<key>y</key>
-			<integer>74</integer>
-		</dict>
-		<key>stab-bat</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>98</integer>
-		</dict>
-		<key>spectral-jellyfish</key>
-		<dict>
-			<key>x</key>
-			<integer>106</integer>
-			<key>y</key>
-			<integer>74</integer>
-		</dict>
-		<key>hockey-elemental</key>
+		<key>katydid</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>248</integer>
 		</dict>
-		<key>hostile-amoeba</key>
+		<key>horse-lubber</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>224</integer>
+		</dict>
+		<key>pagliacci</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>224</integer>
+		</dict>
+		<key>nixon-in-china</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>224</integer>
+		</dict>
+		<key>walking-stick</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>224</integer>
+		</dict>
+		<key>velvetworm</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>224</integer>
+		</dict>
+		<key>luna-moth</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>224</integer>
 		</dict>
-		<key>hovering-sombrero</key>
+		<key>giant-mesquite-bug</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>200</integer>
+		</dict>
+		<key>parsifal</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>200</integer>
+		</dict>
+		<key>madama-butterfly</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>200</integer>
+		</dict>
+		<key>die-zauberflote</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>200</integer>
+		</dict>
+		<key>silverfish</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>200</integer>
+		</dict>
+		<key>mealybug</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>200</integer>
 		</dict>
-		<key>octopus-gardener</key>
+		<key>firefly</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>176</integer>
+		</dict>
+		<key>rigoletto</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>176</integer>
+		</dict>
+		<key>le-nozze-di-figaro</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>176</integer>
+		</dict>
+		<key>don-giovanni</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>176</integer>
+		</dict>
+		<key>scarab-beetle</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>176</integer>
+		</dict>
+		<key>mrs-bugly</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>176</integer>
 		</dict>
-		<key>pickle-on-a-stick</key>
+		<key>fire-ant</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>152</integer>
+		</dict>
+		<key>salome</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>152</integer>
+		</dict>
+		<key>eugene-onegin</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>152</integer>
+		</dict>
+		<key>sandfly</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>152</integer>
+		</dict>
+		<key>mud-dauber</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>152</integer>
 		</dict>
-		<key>sabretoothed-lime</key>
+		<key>earwig</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>tosca</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>la-traviata</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>falstaff</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>roly-poly</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>98</integer>
+		</dict>
+		<key>peanut-head-bug</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>98</integer>
 		</dict>
-		<key>skeletal-sommelier</key>
+		<key>dung-beetle</key>
+		<dict>
+			<key>x</key>
+			<integer>269</integer>
+			<key>y</key>
+			<integer>74</integer>
+		</dict>
+		<key>turandot</key>
+		<dict>
+			<key>x</key>
+			<integer>224</integer>
+			<key>y</key>
+			<integer>74</integer>
+		</dict>
+		<key>la-boheme</key>
+		<dict>
+			<key>x</key>
+			<integer>200</integer>
+			<key>y</key>
+			<integer>74</integer>
+		</dict>
+		<key>fidelio</key>
+		<dict>
+			<key>x</key>
+			<integer>130</integer>
+			<key>y</key>
+			<integer>74</integer>
+		</dict>
+		<key>robber-fly</key>
+		<dict>
+			<key>x</key>
+			<integer>106</integer>
+			<key>y</key>
+			<integer>74</integer>
+		</dict>
+		<key>planthopper</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
-			<integer>76</integer>
+			<integer>74</integer>
 		</dict>
-		<key>comma-chameleon</key>
+		<key>deaths-head-hawkmoth</key>
 		<dict>
 			<key>x</key>
 			<integer>269</integer>
 			<key>y</key>
 			<integer>50</integer>
 		</dict>
-		<key>tin-of-spinach</key>
+		<key>wozzeck</key>
 		<dict>
 			<key>x</key>
 			<integer>224</integer>
 			<key>y</key>
 			<integer>50</integer>
 		</dict>
-		<key>hezrou</key>
+		<key>il-trovatore</key>
 		<dict>
 			<key>x</key>
 			<integer>200</integer>
 			<key>y</key>
 			<integer>50</integer>
 		</dict>
-		<key>glass-piercer</key>
+		<key>idomeneo</key>
 		<dict>
 			<key>x</key>
 			<integer>130</integer>
 			<key>y</key>
 			<integer>50</integer>
 		</dict>
-		<key>spaghetti-elemental</key>
+		<key>rhinoceros-beetle</key>
 		<dict>
 			<key>x</key>
 			<integer>106</integer>
 			<key>y</key>
 			<integer>50</integer>
 		</dict>
-		<key>smarmy-pirate</key>
+		<key>praying-mantis</key>
 		<dict>
 			<key>x</key>
 			<integer>45</integer>
 			<key>y</key>
 			<integer>50</integer>
 		</dict>
-		<key>boba-fettucini</key>
+		<key>damselfly</key>
 		<dict>
 			<key>x</key>
 			<integer>234</integer>
 			<key>y</key>
 			<integer>16</integer>
 		</dict>
-		<key>clockwork-grapefruit</key>
+		<key>cicada-killer-wasp</key>
 		<dict>
 			<key>x</key>
 			<integer>210</integer>
 			<key>y</key>
 			<integer>16</integer>
 		</dict>
-		<key>bazookafish</key>
+		<key>bumblebee</key>
 		<dict>
 			<key>x</key>
 			<integer>152</integer>
 			<key>y</key>
 			<integer>16</integer>
 		</dict>
-		<key>astral-badger</key>
+		<key>blow-fly</key>
 		<dict>
 			<key>x</key>
 			<integer>128</integer>
 			<key>y</key>
 			<integer>16</integer>
 		</dict>
-		<key>apathetic-lizardman</key>
+		<key>atlas-moth</key>
 		<dict>
 			<key>x</key>
 			<integer>104</integer>
 			<key>y</key>
 			<integer>16</integer>
 		</dict>
-		<key>angry-goat</key>
+		<key>assassin-bug</key>
 		<dict>
 			<key>x</key>
 			<integer>80</integer>

@@ -1,0 +1,16 @@
+language: objective-c
+
+xcode_project: UTCS/UTCS.xcodeproj
+xcode_scheme: UTCS
+podfile: UTCS/Podfile
+osx_image: xcode7.2
+
+script:
+- xctool  -workspace UTCS/UTCS.xcworkspace
+  -scheme UTCS
+  -sdk iphonesimulator 
+  build
+  CODE_SIGNING_REQUIRED=NO
+
+email:
+    on_failure: change

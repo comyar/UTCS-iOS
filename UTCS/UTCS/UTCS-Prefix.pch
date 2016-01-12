@@ -13,4 +13,15 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "UTCS-Swift.h"
+    // Height of the header image
+static const CGFloat kUTCSParallaxBlurHeaderHeight = 284.0;
+
+// Height of the pseudo navigation bar of this view
+    static const CGFloat kUTCSParallaxBlurNavigationBarHeight = 44.0;
+    typedef NS_ENUM(u_int16_t, UTCSAuthenticationAlertViewTag) {
+        /** Tag for the labs service */
+        UTCSLabsAuthenticationAlertViewTag = 1
+    };
+
 #endif

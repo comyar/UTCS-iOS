@@ -11,9 +11,7 @@
 
 #import "UTCSStateManager.h"
 #import "UTCSSettingsDataSource.h"
-#import "UTCSBouncyTableViewCell.h"
 #import "UTCSSwitchTableViewCell.h"
-#import "UTCSStarredEventsManager.h"
 #import "UTCSSegmentedControlTableViewCell.h"
 
 
@@ -148,9 +146,9 @@ static NSString * const UTCSSettingsSegmentedControlTableViewCellIdentifier = @"
     if (control.tag == 0) {
         [UTCSStateManager sharedManager].eventNotifications = ((UISwitch *)control).selected;
         if ([UTCSStateManager sharedManager].eventNotifications) {
-            [[UTCSStarredEventsManager sharedManager]enableNotifications];
+           // [[UTCSStarredEventsManager sharedManager]enableNotifications];
         } else {
-            [[UTCSStarredEventsManager sharedManager]disableNotifications];
+            //[[UTCSStarredEventsManager sharedManager]disableNotifications];
         }
     } else if (control.tag == 1) {
         [UTCSStateManager sharedManager].preferredLab = ((UISegmentedControl *)control).selectedSegmentIndex;
