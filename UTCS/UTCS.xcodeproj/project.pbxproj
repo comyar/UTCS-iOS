@@ -430,6 +430,7 @@
 			children = (
 				D45FE5341B508F47000F2D59 /* EventsViewController.swift */,
 				DD44659818E8254C00ED1153 /* EventsDetailViewController.swift */,
+				D4EB63441C447E4E00C34774 /* EventView.xib */,
 				DD87616318FDFE9F005FEE4E /* Models */,
 			);
 			name = Events;
@@ -641,7 +642,6 @@
 				D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */,
 				D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */,
 				D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */,
-				D4EB63441C447E4E00C34774 /* EventView.xib */,
 				D42485881C40988E0031734D /* ArticleView.xib */,
 				D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */,
 			);

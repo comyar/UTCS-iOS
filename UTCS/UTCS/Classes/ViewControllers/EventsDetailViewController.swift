@@ -2,7 +2,8 @@ import Foundation
 import UIKit
 
 class EventsDetailViewController: ArticleViewController {
-
+    @IBOutlet weak var headerContainer: UIView!
+    private var noImageConstraint: NSLayoutConstraint?
     private static let headerImageMapping = ["1.304":"gdc-1,304",
     "1.406":"gdc-1,406",
     "2.410":"gdc-2,410",
@@ -17,6 +18,7 @@ class EventsDetailViewController: ArticleViewController {
 
     init() {
         super.init(nibName: "EventView", bundle: nil)
+        automaticallyAdjustsScrollViewInsets = true
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -27,8 +29,10 @@ class EventsDetailViewController: ArticleViewController {
         guard event != self.event else {
             return
         }
-        activityItems.append(event.name)
+        removeNoImageConstraint()
+        scrollView.contentOffset = CGPointZero
 
+        activityItems.append(event.name)
         activityItems.append(event.location)
 
         if let dateText = dateLabel.text {
@@ -45,9 +49,11 @@ class EventsDetailViewController: ArticleViewController {
         if let headerImageName = headerImageNameForEvent(event),
            let image = UIImage(named: headerImageName){
             imageView.image = image
+            dateLabel.textColor = UIColor.whiteColor()
+            titleLabel.textColor = UIColor.whiteColor()
             configureImageHeightConstraint(image)
         } else {
-
+            configureHeaderForNoImage()
         }
         self.event = event
     }
@@ -55,16 +61,33 @@ class EventsDetailViewController: ArticleViewController {
     private func configureHeaderForNoImage() {
         dateLabel.textColor = UIColor.blackColor()
         titleLabel.textColor = UIColor.blackColor()
-        
+        imageView.backgroundColor = UIColor.clearColor()
+        imageView.image = nil
+        if let constraint = imageHeightConstraint {
+            imageView.removeConstraint(constraint)
+        }
+        let constraint = NSLayoutConstraint(item: titlingContainer, attribute: .Height, relatedBy: .Equal, toItem: headerContainer, attribute: .Height, multiplier: 1.0, constant: 0.0)
+        headerContainer.addConstraint(constraint)
+        noImageConstraint = constraint
+    }
+
+    private func removeNoImageConstraint() {
+        if let constraint = noImageConstraint {
+            headerContainer.removeConstraint(constraint)
+        }
     }
 
     private func headerImageNameForEvent(event: Event) -> String? {
-        if event.location.containsString("GDC") {
+        let lowerLocation = event.location.lowercaseString
+        if lowerLocation.containsString("gdc") {
             let matches = EventsDetailViewController.headerImageMapping.keys.filter({ (key) -> Bool in
-                return event.location.containsString(key)
+                return lowerLocation.containsString(key)
             })
             if let match = matches.first {
                 return EventsDetailViewController.headerImageMapping[match]
+            } else {
+                // Default image for GDC events
+                return "gdc-speedway"
             }
         }
         return nil

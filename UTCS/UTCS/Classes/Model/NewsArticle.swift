@@ -25,13 +25,13 @@ final class NewsArticle: NSObject, NSCoding {
     }()
 
     private static let bodyFont: UIFont = {
-        return UIFont(name: "Georgia", size: 16.0)!
+        return UIFont.systemFontOfSize(16.0)
     }()
     private static let boldBodyFont: UIFont = {
-        return UIFont(name: "Georgia-Bold", size: 16.0)!
+        return UIFont.boldSystemFontOfSize(16.0)
     }()
     private static let italicBodyFont: UIFont = {
-        return UIFont(name: "Georgia-Italic", size: 16.0)!
+        return UIFont.italicSystemFontOfSize(16.0)
     }()
 
     override init() {

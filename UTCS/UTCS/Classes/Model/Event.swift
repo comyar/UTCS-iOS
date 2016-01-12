@@ -45,15 +45,19 @@ class Event: NSObject, NSCoding {
                 return nil
         }
         self.name = name
-        contactName = json["contactname"].string
-        contactEmail = json["contactemail"].string
-        allDay = json["allday"].bool!
         self.location = location
-        descriptionText = json["description"].string
         self.startDate = startDate
         self.endDate = endDate
         self.id = id
 
+        contactName = json["contactname"].string
+        contactEmail = json["contactemail"].string
+        allDay = json["allday"].bool!
+        descriptionText = json["description"].string
+        link = json["link"].URL
+        if let typeString = json["type"].string {
+            type = Category(rawValue: typeString)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -70,11 +74,17 @@ class Event: NSObject, NSCoding {
         self.startDate = startDate
         self.endDate = endDate
         self.id = id
-        self.allDay = aDecoder.decodeBoolForKey("food")
 
+        allDay = aDecoder.decodeBoolForKey("food")
         contactEmail = aDecoder.decodeObjectForKey("contactEmail") as? String
         contactName = aDecoder.decodeObjectForKey("contactName") as? String
         food = aDecoder.decodeBoolForKey("food")
+        descriptionText = aDecoder.decodeObjectForKey("description") as? String
+        link = aDecoder.decodeObjectForKey("link") as? NSURL
+        if let typeString = aDecoder.decodeObjectForKey(type.rawValue) as? String {
+            type = Category(rawValue: typeString)
+        }
+
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -118,7 +128,6 @@ class Event: NSObject, NSCoding {
         }
 
         // Combine the date strings and create attributed string
-
         return startDateString + " - " + endDateString
     }
     override func isEqual(object: AnyObject?) -> Bool {

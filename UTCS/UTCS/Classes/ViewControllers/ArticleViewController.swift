@@ -5,9 +5,10 @@ class ArticleViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    private var imageHeightConstraint: NSLayoutConstraint? = nil
+    var imageHeightConstraint: NSLayoutConstraint? = nil
     // Label used to display the title of a news story
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titlingContainer: UIView!
 
     // Label used to display the date of a news story
     @IBOutlet weak var dateLabel: UILabel!
