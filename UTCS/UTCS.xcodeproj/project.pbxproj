@@ -17,12 +17,12 @@
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
 		D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C697B1B7D363B005E3719 /* QuotaData.swift */; };
 		D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A79201B5B38190049C683 /* NewsTableViewCell.xib */; };
+		D42485891C40988E0031734D /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42485881C40988E0031734D /* ArticleView.xib */; };
 		D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */; };
 		D4280C191B2E11130090F8C6 /* ActiveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */; };
 		D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */; };
 		D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */; };
 		D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */; };
-		D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */; };
 		D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43377F91B4CBB1D00942581 /* TableViewController.swift */; };
 		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
 		D43C8B0A1B79049F0049C4D6 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B091B79049F0049C4D6 /* DataSource.swift */; };
@@ -60,13 +60,16 @@
 		D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */; };
 		D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */; };
 		D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */; };
+		D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63401C442F3A00C34774 /* NavigationBar.swift */; };
+		D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63421C443FDF00C34774 /* ArticleViewController.swift */; };
+		D4EB63451C447E4E00C34774 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EB63441C447E4E00C34774 /* EventView.xib */; };
 		D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
 		D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */; };
 		D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */; };
 		D68437038A8333327A802B81 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
-		DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */; };
+		DD44659918E8254C00ED1153 /* EventsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* EventsDetailViewController.swift */; };
 		DD5B585418D239F900EEB474 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* Event.swift */; };
 		DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */; };
 		DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */; };
@@ -134,13 +137,13 @@
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
 		D40C697B1B7D363B005E3719 /* QuotaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotaData.swift; path = Model/QuotaData.swift; sourceTree = "<group>"; };
 		D41A79201B5B38190049C683 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsTableViewCell.xib; path = Views/NewsTableViewCell.xib; sourceTree = "<group>"; };
+		D42485881C40988E0031734D /* ArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleView.xib; path = Views/ArticleView.xib; sourceTree = "<group>"; };
 		D4280C151B2E0E770090F8C6 /* UTCS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UTCS-Bridging-Header.h"; path = "Classes/UTCS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveHeaderView.swift; path = Views/ActiveHeaderView.swift; sourceTree = "<group>"; };
 		D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHeaderView.xib; sourceTree = "<group>"; };
 		D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BouncyTableViewCell.swift; path = Views/BouncyTableViewCell.swift; sourceTree = "<group>"; };
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
-		D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxBlurHeaderScrollView.swift; path = Views/ParallaxBlurHeaderScrollView.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
@@ -181,13 +184,15 @@
 		D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSourceParser.swift; path = Model/DirectoryDataSourceParser.swift; sourceTree = "<group>"; };
 		D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSource.swift; path = Model/DirectoryDataSource.swift; sourceTree = "<group>"; };
 		D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		D4EB63401C442F3A00C34774 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		D4EB63421C443FDF00C34774 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleViewController.swift; path = ViewControllers/ArticleViewController.swift; sourceTree = "<group>"; };
+		D4EB63441C447E4E00C34774 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventView.xib; path = Views/EventView.xib; sourceTree = "<group>"; };
 		D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDataSource.swift; path = Model/NewsDataSource.swift; sourceTree = "<group>"; };
 		D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD44659118E7EA6C00ED1153 /* UIImage+CZTinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZTinting.h"; path = "Categories/UIImage+CZTinting.h"; sourceTree = "<group>"; };
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
-		DD44659718E8254B00ED1153 /* UTCSEventsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSEventsDetailViewController.h; path = ViewControllers/UTCSEventsDetailViewController.h; sourceTree = "<group>"; };
-		DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSEventsDetailViewController.m; path = ViewControllers/UTCSEventsDetailViewController.m; sourceTree = "<group>"; };
+		DD44659818E8254C00ED1153 /* EventsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsDetailViewController.swift; path = ViewControllers/EventsDetailViewController.swift; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
 		DD5CAF76190A087E0051F637 /* UTCSSettingsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsDataSource.h; path = Model/UTCSSettingsDataSource.h; sourceTree = "<group>"; };
 		DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsDataSource.m; path = Model/UTCSSettingsDataSource.m; sourceTree = "<group>"; };
@@ -342,6 +347,7 @@
 				D46C7C481B4DFD14009F1EA1 /* HeaderTableViewController.swift */,
 				D43377F91B4CBB1D00942581 /* TableViewController.swift */,
 				D4BA71CD1B421819007C09F6 /* ContentViewController.swift */,
+				D4EB63421C443FDF00C34774 /* ArticleViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 				DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */,
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
 				D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */,
+				D4EB63401C442F3A00C34774 /* NavigationBar.swift */,
 			);
 			name = Navigation;
 			path = ViewControllers;
@@ -422,8 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				D45FE5341B508F47000F2D59 /* EventsViewController.swift */,
-				DD44659718E8254B00ED1153 /* UTCSEventsDetailViewController.h */,
-				DD44659818E8254C00ED1153 /* UTCSEventsDetailViewController.m */,
+				DD44659818E8254C00ED1153 /* EventsDetailViewController.swift */,
 				DD87616318FDFE9F005FEE4E /* Models */,
 			);
 			name = Events;
@@ -634,8 +640,9 @@
 				D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */,
 				D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */,
 				D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */,
-				D43116141B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift */,
 				D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */,
+				D4EB63441C447E4E00C34774 /* EventView.xib */,
+				D42485881C40988E0031734D /* ArticleView.xib */,
 				D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */,
 			);
 			name = Views;
@@ -831,12 +838,14 @@
 				DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */,
 				DDA758901904D313007CD0DB /* App.xcassets in Resources */,
 				DD95E7891926305C0062F4E9 /* NMSSH-license.txt in Resources */,
+				D42485891C40988E0031734D /* ArticleView.xib in Resources */,
 				DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */,
 				886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */,
 				DD95E7881926305C0062F4E9 /* MBProgressHUD-license.txt in Resources */,
 				DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
+				D4EB63451C447E4E00C34774 /* EventView.xib in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */,
 				0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */,
@@ -924,7 +933,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */,
-				DD44659918E8254C00ED1153 /* UTCSEventsDetailViewController.m in Sources */,
+				DD44659918E8254C00ED1153 /* EventsDetailViewController.swift in Sources */,
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */,
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
@@ -958,7 +967,6 @@
 				DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */,
 				DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */,
 				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
-				D43116151B3BA9E800B91737 /* ParallaxBlurHeaderScrollView.swift in Sources */,
 				DD8989A61903141C000F1041 /* DataSourceCacheMetaData.swift in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
@@ -969,6 +977,8 @@
 				DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */,
 				D46439061B7C627D007BA5D0 /* EventsDataSourceParser.swift in Sources */,
 				DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */,
+				D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */,
+				D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */,
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,
 				D43C8B0A1B79049F0049C4D6 /* DataSource.swift in Sources */,
 				D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */,

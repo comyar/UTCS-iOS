@@ -1,10 +1,8 @@
-
 // Space between lines in the article text
 let lineSpacing: CGFloat = 6.0
 
 // Space between paragraphs in the article text
 let paragraphSpacing: CGFloat  = 16.0
-
 
 final class NewsArticle: NSObject, NSCoding {
     var title: String!
@@ -35,7 +33,6 @@ final class NewsArticle: NSObject, NSCoding {
     private static let italicBodyFont: UIFont = {
         return UIFont(name: "Georgia-Italic", size: 16.0)!
     }()
-
 
     override init() {
         super.init()
@@ -120,4 +117,12 @@ final class NewsArticle: NSObject, NSCoding {
         }
         return desiredFont
     }
+
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let asSelf = object as? NewsArticle {
+            return asSelf.title == title
+        }
+        return false
+    }
+
 }

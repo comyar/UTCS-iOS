@@ -20,10 +20,11 @@ final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
     }
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier) as? NewsTableViewCell,
-            let article = articleData?[indexPath.row] else {
+        guard let article = articleData?[indexPath.row],
+        let cell = tableView.dequeueReusableCellWithIdentifier(UTCSNewsTableViewCellIdentifier, forIndexPath: indexPath) as? NewsTableViewCell else {
                 return UITableViewCell()
         }
+
         cell.title!.text = article.title
         cell.detailLabel!.text = article.attributedContent.string
         return cell
