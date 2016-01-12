@@ -18,17 +18,7 @@ class DirectoryViewController: TableViewController {
         backgroundImageName = "Directory"
         title = "Directory"
         showsNavigationBarSeparatorLine = false
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.dimsBackgroundDuringPresentation = false
-        //searchController.searchBar.scopeButtonTitles = ["All", "Faculty", "Staff", "Graduate"]
-        needsSectionHeaders = true
-        searchController.searchBar.tintColor = UIColor.whiteColor()
-        searchController.searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 8.0, vertical: 0.0)
-        searchController.searchBar.setSearchFieldBackgroundImage(UIImage(named: searchBarBackgroundImageName), forState: .Normal)
 
-        directoryDataSource.searchController = searchController
-
-        tableView.tableHeaderView = searchController.searchBar
         tableView.sectionIndexColor = UIColor.whiteColor()
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
         tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
