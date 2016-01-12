@@ -8,7 +8,7 @@ class NavigationBar: UINavigationBar {
         super.init(frame: frame)
         addSubview(background)
         backgroundColor = UIColor.clearColor()
-        background.backgroundColor = UIColor(white: 0.2, alpha: 0.85)
+        background.backgroundColor = UIColor.utcsBarTintColor()
         background.userInteractionEnabled = false
     }
     

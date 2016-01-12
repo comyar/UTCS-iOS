@@ -10,7 +10,6 @@
 #import "UTCSLabMachine.h"
 #import "UTCSLabMachineView.h"
 #import "UTCSLabMachineViewController.h"
-#import "UIColor+UTCSColors.h"
 
 #import "UTCSSwitchTableViewCell.h"
 #import "UTCSSegmentedControlTableViewCell.h"

@@ -17,13 +17,10 @@ class DirectoryViewController: TableViewController {
 
         backgroundImageName = "Directory"
         title = "Directory"
-        showsNavigationBarSeparatorLine = false
+        needsSectionHeaders = true
 
         tableView.sectionIndexColor = UIColor.whiteColor()
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
-        tableView.tableHeaderView?.backgroundColor = UIColor.clearColor()
-        tableView.dataSource = directoryDataSource
-        backgroundImageName = "directoryBackground"
         update()
     }
 
@@ -74,10 +71,6 @@ class DirectoryViewController: TableViewController {
     }
 
     // MARK:- UITableViewDelegate
-
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 64.0
-    }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let person = directoryDataSource?.directoryPeopleSections![indexPath.section][indexPath.row]

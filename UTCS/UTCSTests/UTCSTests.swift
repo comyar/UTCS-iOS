@@ -23,7 +23,7 @@ class UTCSTests: XCTestCase {
     func testDateParsing() {
         // Backend returns ISO8601 dates
         let testString = "2015-01-29T23:59:59+00:00"
-        let result = DataSourceParser.dateFormatter.dateFromString(testString)
+        let result = serviceDateFormatter.dateFromString(testString)
         XCTAssertNotNil(result)
         let components = NSDateComponents()
         components.setValue(2015, forComponent: .Year)

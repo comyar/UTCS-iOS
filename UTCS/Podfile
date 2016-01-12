@@ -1,9 +1,6 @@
 target "UTCS" do
-pod 'pop', :git => 'https://github.com/facebook/pop.git'
-pod 'Tweaks'
-pod 'Shimmer'
+pod 'pop', '~> 1.0'
 pod 'NMSSH'
-pod "RQShineLabel"
 pod 'DPMeterView'
 pod 'MBProgressHUD'
 pod 'Alamofire', '~> 3.0'

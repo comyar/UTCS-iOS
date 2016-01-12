@@ -24,6 +24,8 @@
 		D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */; };
 		D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */; };
 		D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43377F91B4CBB1D00942581 /* TableViewController.swift */; };
+		D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */; };
+		D43950291C45947E007AA192 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
 		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
 		D43C8B0A1B79049F0049C4D6 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B091B79049F0049C4D6 /* DataSource.swift */; };
 		D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */; };
@@ -42,7 +44,6 @@
 		D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */; };
 		D46C7C491B4DFD14009F1EA1 /* HeaderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C481B4DFD14009F1EA1 /* HeaderTableViewController.swift */; };
 		D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4A1B4F454F009F1EA1 /* NewsViewController.swift */; };
-		D46C7C4D1B4F4F2E009F1EA1 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
 		D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482C1AA1B3CDE8E00645C23 /* NewsArticleViewController.swift */; };
 		D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */; };
 		D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */; };
@@ -101,12 +102,10 @@
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
 		DDA758951904D7C4007CD0DB /* DataSourceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* DataSourceCache.swift */; };
 		DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */; };
-		DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
 		DDC404721917D42400D17CBF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC404711917D42400D17CBF /* Icons.xcassets */; };
 		DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDC4047C1918875200D17CBF /* AFNetworking-license.txt */; };
-		DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */; };
 		DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +144,7 @@
 		D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BouncyTableViewCell.swift; path = Views/BouncyTableViewCell.swift; sourceTree = "<group>"; };
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
+		D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+UTCSColors.swift"; path = "Categories/UIColor+UTCSColors.swift"; sourceTree = "<group>"; };
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
 		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -237,15 +237,11 @@
 		DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStateManager.m; path = Model/UTCSStateManager.m; sourceTree = "<group>"; };
 		DDA758E21906661D007CD0DB /* UTCSLabMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewController.h; path = ViewControllers/UTCSLabMachineViewController.h; sourceTree = "<group>"; };
 		DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineViewController.m; path = ViewControllers/UTCSLabMachineViewController.m; sourceTree = "<group>"; };
-		DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UTCSColors.h"; path = "Categories/UIColor+UTCSColors.h"; sourceTree = "<group>"; };
-		DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+UTCSColors.m"; path = "Categories/UIColor+UTCSColors.m"; sourceTree = "<group>"; };
 		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
 		DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CZPositioning.m"; path = "Categories/UIView+CZPositioning.m"; sourceTree = "<group>"; };
 		DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Event Headers.xcassets"; path = "Resources/Event Headers.xcassets"; sourceTree = "<group>"; };
 		DDC404711917D42400D17CBF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDC4047C1918875200D17CBF /* AFNetworking-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AFNetworking-license.txt"; path = "Resources/Licenses/AFNetworking-license.txt"; sourceTree = "<group>"; };
-		DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CZTextViewHeight.h"; path = "Categories/UITextView+CZTextViewHeight.h"; sourceTree = "<group>"; };
-		DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CZTextViewHeight.m"; path = "Categories/UITextView+CZTextViewHeight.m"; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -648,25 +644,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */ = {
-			isa = PBXGroup;
-			children = (
-				DDA94B6518C1D1BC00DDF949 /* UIColor+UTCSColors.h */,
-				DDA94B6618C1D1BC00DDF949 /* UIColor+UTCSColors.m */,
-			);
-			name = "UIColor+UTCSColors";
-			sourceTree = "<group>";
-		};
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */,
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
 				DDA94B7D18C1FD8700DDF949 /* UIView+CZPositioning */,
-				DDA94B6418C1D1A000DDF949 /* UIColor+UTCSColors */,
-				DDCA58E518BE4BA5001F543D /* UITextView+CZTextViewHeight */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -724,15 +710,6 @@
 				DDC4047C1918875200D17CBF /* AFNetworking-license.txt */,
 			);
 			name = Licenses;
-			sourceTree = "<group>";
-		};
-		DDCA58E518BE4BA5001F543D /* UITextView+CZTextViewHeight */ = {
-			isa = PBXGroup;
-			children = (
-				DDCA58E618BE4BE0001F543D /* UITextView+CZTextViewHeight.h */,
-				DDCA58E718BE4BE0001F543D /* UITextView+CZTextViewHeight.m */,
-			);
-			name = "UITextView+CZTextViewHeight";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -940,7 +917,6 @@
 				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
-				DDA94B6718C1D1BC00DDF949 /* UIColor+UTCSColors.m in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */,
@@ -949,12 +925,11 @@
 				D4D5F5031B53076E005974A7 /* DirectoryViewController.swift in Sources */,
 				D46439041B7C5CEA007BA5D0 /* DataSourceParser.swift in Sources */,
 				D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */,
-				DDCA58E818BE4BE0001F543D /* UITextView+CZTextViewHeight.m in Sources */,
 				D46C7C491B4DFD14009F1EA1 /* HeaderTableViewController.swift in Sources */,
 				D4D5F5081B530B7A005974A7 /* SettingsViewController.swift in Sources */,
 				DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */,
 				D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */,
-				D46C7C4D1B4F4F2E009F1EA1 /* LabsViewController.swift in Sources */,
+				D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */,
 				DD5CAF81190A325D0051F637 /* SettingsLegalViewController.swift in Sources */,
 				D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */,
 				D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */,
@@ -998,6 +973,7 @@
 				DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */,
 				D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
+				D43950291C45947E007AA192 /* LabsViewController.swift in Sources */,
 				D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */,
 				DD95E74A191F4EE00062F4E9 /* NSAttributedString+Trim.m in Sources */,
 			);
