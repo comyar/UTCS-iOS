@@ -1,43 +1,49 @@
-import Shimmer
-//MARK: Constants
-// Duration of animations performed by this view
-let animationDuration = 0.3
+import UIKit
+import Foundation
 
 class ActiveHeaderView: UIView {
 
-    // Shimmering view used to indicate loading of news articles
-    @IBOutlet var shimmeringView: FBShimmeringView!
     // Image view used to render the down arrow
     @IBOutlet var downArrowImageView: UIImageView!
-    // Activity indicator used to indicate the news stories are updating
+    // Activity indicator used to indicate the items are updating
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
-    // Label used to display the time the news stories were updated
+    // Label used to display the time the items were updated
     @IBOutlet var updatedLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        downArrowImageView.tintColor = UIColor.whiteColor()
-    }
+    //MARK: Constants
+    // Duration of animations performed by this view
+    let animationDuration = 0.3
+
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    func showActiveAnimation(show: Bool) {
+    func configure() {
         downArrowImageView.tintColor = UIColor.whiteColor()
-        if show {
-            activityIndicatorView.startAnimating()
-        } else {
-            activityIndicatorView.stopAnimating()
-        }
+        downArrowImageView.alpha = 0.0
+    }
 
-        self.shimmeringView.shimmering = show
+
+    func startActiveAnimation() {
+        activityIndicatorView.startAnimating()
+
         UIView.animateWithDuration(animationDuration) {
-            self.updatedLabel.alpha = show ? 0.0 : 0.45
-            self.downArrowImageView.alpha   = show ? 0.0 : 0.45
-            self.activityIndicatorView.alpha = show ? 1.0 : 0.0
+            self.updatedLabel.alpha = 0.0
+            self.downArrowImageView.alpha = 0.0
+            self.activityIndicatorView.alpha =  1.0
+        }
+    }
+
+    func endActiveAnimation(success: Bool) {
+        activityIndicatorView.stopAnimating()
+
+        UIView.animateWithDuration(animationDuration) {
+            self.updatedLabel.alpha = 0.45
+            self.downArrowImageView.alpha   = success ? 0.45 : 0.0
+            self.activityIndicatorView.alpha =  0.0
         }
     }
 }

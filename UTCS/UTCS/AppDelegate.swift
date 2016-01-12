@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
 
     func menuOptionWillTransitionToState(option: MenuOption, state: MenuViewController.MenuOptionState) -> MenuViewController.MenuOptionState {
         if option == .Labs && !AuthenticationManager.authenticated {
-            AuthenticationManager.presentAuthenticationAlert(menuViewController, reason:  "You must log into your CS account to view lab status information.") { error -> () in
+            AuthenticationManager.presentAuthenticationAlert(menuViewController,
+                reason:  "You must log into your CS account to view lab status information.") { error -> () in
                 guard error == nil else {
                     AuthenticationManager.presentErrorAlert(self.menuViewController)
                     return

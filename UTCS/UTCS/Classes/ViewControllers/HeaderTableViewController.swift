@@ -25,8 +25,6 @@ class HeaderTableViewController: TableViewController {
         super.init(style: style)
         tableView.addObserver(self, forKeyPath: contentOffsetPropertyString, options: .New, context: nil)
         self.addObserver(self, forKeyPath: "title", options: .New, context: nil)
-        // Shift the tableview under the navbar
-        tableView.contentInset = UIEdgeInsets(top: -44.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,13 +36,16 @@ class HeaderTableViewController: TableViewController {
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         // Ensure that the header is always the correct size
-        tableView.tableHeaderView?.frame = tableView.bounds
+        let frame = tableView.bounds
+        tableView.tableHeaderView?.frame = CGRect(x: frame.origin.x, y: frame.origin.y + 44.0, width: frame.width, height: frame.height - 44.0)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.insertSubview(blurView, aboveSubview: backgroundImageView)
         activeHeaderView = NSBundle.mainBundle().loadNibNamed("ActiveHeaderView", owner: self, options: [:])[0] as! ActiveHeaderView
+
+        activeHeaderView .configure()
         customTitle.text = title
         customTitle.font = UIFont.systemFontOfSize(18.0, weight: UIFontWeightMedium)
         customTitle.textColor = UIColor.whiteColor()
@@ -57,13 +58,32 @@ class HeaderTableViewController: TableViewController {
         blurView.frame = view.bounds
         view.sendSubviewToBack(blurView)
         view.sendSubviewToBack(backgroundImageView)
+    }
 
+    // MARK:- Scrolling
+
+    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard let headerHeight = tableView.tableHeaderView?.frame.height where
+               targetContentOffset.memory.y < headerHeight else {
+            return
+        }
+        let velocityThresholdMet = 3.0 > velocity.y && velocity.y > 0.3
+        if  velocityThresholdMet {
+            targetContentOffset.memory.y = headerHeight - 44.0
+        }
+        let reverseThresholdMet = -0.3 > velocity.y && velocity.y > -3.0
+        if reverseThresholdMet {
+            targetContentOffset.memory.y = -44.0
+        }
     }
 
     // MARK:- KVO
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == contentOffsetPropertyString {
+            guard blursBackground else {
+                return
+            }
             let windowHeight = UIScreen.mainScreen().bounds.height
             let normalizedOffsetDelta = min(tableView.contentOffset.y * 1.5, windowHeight) / windowHeight
 
@@ -71,9 +91,13 @@ class HeaderTableViewController: TableViewController {
             if blurView.alpha == normalizedOffsetDelta {
                 return
             }
+
+            if let navBar = navigationController?.navigationBar as? NavigationBar {
+                navBar.background.alpha = normalizedOffsetDelta
+            }
+
             blurView.alpha = normalizedOffsetDelta
             tableView.tableHeaderView?.alpha = 1.0 - normalizedOffsetDelta
-
             customTitle.alpha = normalizedOffsetDelta
         } else if keyPath == "title" {
             customTitle.text = title

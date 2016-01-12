@@ -1,14 +1,15 @@
 import UIKit
 
 class NavigationController: UINavigationController {
-    var backgroundImageView: UIImageView?
+    let backgroundImageView = UIImageView()
+
+    override init(rootViewController: UIViewController) {
+        super.init(navigationBarClass: NavigationBar.self, toolbarClass: nil)
+        pushViewController(rootViewController, animated: false)
+    }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    override init(rootViewController: UIViewController) {
-        super.init(rootViewController: rootViewController)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -17,6 +18,7 @@ class NavigationController: UINavigationController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        backgroundImageView?.frame = view.bounds
+        backgroundImageView.frame = view.bounds
     }
+
 }

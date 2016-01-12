@@ -5,7 +5,7 @@ final class NewsViewController: HeaderTableViewController {
 
     static let headerSubtitleText = "What Starts Here Changes the World"
 
-    let newsDetailViewController = NewsDetailViewController(nibName: nil, bundle: nil)
+    let newsDetailViewController = NewsDetailViewController()
     var newsDataSource: NewsDataSource! {
         return dataSource as! NewsDataSource!
     }
@@ -39,9 +39,9 @@ final class NewsViewController: HeaderTableViewController {
     }
 
     func update() {
-        activeHeaderView.showActiveAnimation(true)
+        activeHeaderView.startActiveAnimation()
         newsDataSource.updateWithArgument(nil) { success, cacheHit in
-            self.activeHeaderView.showActiveAnimation(false)
+            self.activeHeaderView.endActiveAnimation(success)
             if self.newsDataSource.articleData?.count ?? 0 > 0 {
                 self.lastUpdated = self.newsDataSource.updated!
             } else {
@@ -65,7 +65,7 @@ final class NewsViewController: HeaderTableViewController {
         guard let article = newsDataSource.articleData?[indexPath.row] else {
             return
         }
-        newsDetailViewController.newsArticle = article
+        newsDetailViewController.configureWithNewsArticle(article)
         navigationController?.pushViewController(newsDetailViewController, animated: true)
     }
 

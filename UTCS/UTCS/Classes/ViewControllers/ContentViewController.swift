@@ -1,5 +1,5 @@
-@objc class ContentViewController: UIViewController {
-    var menuButton = UIBarButtonItem.menuButton()
+class ContentViewController: UIViewController {
+    let menuButton = UIBarButtonItem.menuButton()
     var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFill
@@ -32,12 +32,7 @@
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Ensure that we get the fullscreen. This is important so that we don't get a 20px
-        // offset when the status bar becomes visible.
-        extendedLayoutIncludesOpaqueBars = true
-        edgesForExtendedLayout = .None
         view.addSubview(backgroundImageView)
-
     }
 
     override func viewDidLayoutSubviews() {

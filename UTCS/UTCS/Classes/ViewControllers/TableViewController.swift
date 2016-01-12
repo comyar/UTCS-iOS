@@ -32,8 +32,6 @@ class TableViewController: UITableViewController {
         }
     }
     var dataSource: DataSource?
-    // Button used to scroll table view to top.
-    var gestureButton: UIButton!
 
     var showsNavigationBarSeparatorLine = true
     var needsSectionHeaders = false {
@@ -87,7 +85,7 @@ class TableViewController: UITableViewController {
         guard needsSectionHeaders else {
             return nil
         }
-        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
+        let label = UILabel(frame: CGRect(x: 8.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
         label.font = UIFont.systemFontOfSize(16.0)
         label.text = textForHeaderInSection(section)
         label.textColor = UIColor(white: 1.0, alpha: 1.0)

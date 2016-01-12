@@ -120,7 +120,7 @@ class MenuViewController: UITableViewController {
         cell.textLabel?.textColor =  cellTint
         cell.imageView?.tintColor = cellTint
         cell.textLabel?.text = option.title()
-        
+
         var imageName = option.title().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "")
         if state == .Selected {
             imageName = "\(imageName)-active"

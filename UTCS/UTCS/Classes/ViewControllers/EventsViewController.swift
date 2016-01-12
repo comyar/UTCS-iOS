@@ -9,7 +9,7 @@ final class EventsViewController: HeaderTableViewController {
     var filterSegmentedControl: UISegmentedControl!
     var segments = [Event.Category.All, .Orgs, .Talks, .Careers]
     var filterButtonImageView: UIImageView!
-    let eventDetailViewController = UTCSEventsDetailViewController()
+    let eventDetailViewController = EventsDetailViewController()
 
     init() {
         super.init(style: .Plain)
@@ -37,7 +37,6 @@ final class EventsViewController: HeaderTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
-
     }
 
     func didChangeValueForControl(control: UIControl) {
@@ -60,9 +59,9 @@ final class EventsViewController: HeaderTableViewController {
     }
 
     func update() {
-        activeHeaderView.showActiveAnimation(true)
+        activeHeaderView.startActiveAnimation()
         eventsDataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
-            self.activeHeaderView.showActiveAnimation(false)
+            self.activeHeaderView.endActiveAnimation(success)
             if self.eventsDataSource?.eventData?.count ?? 0 > 0 {
                 self.lastUpdated = self.dataSource?.updated
                 if !cacheHit {
@@ -75,9 +74,6 @@ final class EventsViewController: HeaderTableViewController {
                     }
                 }
             }
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.activeHeaderView.downArrowImageView.alpha = success ? 1.0 : 0.0
-            })
         }
     }
 
@@ -123,7 +119,7 @@ final class EventsViewController: HeaderTableViewController {
         guard let event = eventsDataSource?.filteredEvents?[indexPath.row] else {
             return
         }
-        eventDetailViewController.event = event
+        eventDetailViewController.configure(event)
         navigationController?.pushViewController(eventDetailViewController, animated: true)
     }
 
