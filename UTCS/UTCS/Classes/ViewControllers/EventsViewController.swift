@@ -9,7 +9,7 @@ final class EventsViewController: HeaderTableViewController {
     var filterSegmentedControl: UISegmentedControl!
     var segments = [Event.Category.All, .Orgs, .Talks, .Careers]
     var filterButtonImageView: UIImageView!
-    let eventDetailViewController = EventsDetailViewController()
+    let eventDetailViewController = EventViewController()
 
     init() {
         super.init(style: .Plain)

@@ -5,7 +5,7 @@ final class NewsViewController: HeaderTableViewController {
 
     static let headerSubtitleText = "What Starts Here Changes the World"
 
-    let newsDetailViewController = NewsDetailViewController()
+    let newsDetailViewController = NewsArticleViewController()
     var newsDataSource: NewsDataSource! {
         return dataSource as! NewsDataSource!
     }

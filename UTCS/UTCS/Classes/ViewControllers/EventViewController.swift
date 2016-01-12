@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class EventsDetailViewController: ArticleViewController {
+class EventViewController: ArticleViewController {
     @IBOutlet weak var headerContainer: UIView!
     private var noImageConstraint: NSLayoutConstraint?
     private static let headerImageMapping = ["1.304":"gdc-1,304",
@@ -80,11 +80,11 @@ class EventsDetailViewController: ArticleViewController {
     private func headerImageNameForEvent(event: Event) -> String? {
         let lowerLocation = event.location.lowercaseString
         if lowerLocation.containsString("gdc") {
-            let matches = EventsDetailViewController.headerImageMapping.keys.filter({ (key) -> Bool in
+            let matches = EventViewController.headerImageMapping.keys.filter({ (key) -> Bool in
                 return lowerLocation.containsString(key)
             })
             if let match = matches.first {
-                return EventsDetailViewController.headerImageMapping[match]
+                return EventViewController.headerImageMapping[match]
             } else {
                 // Default image for GDC events
                 return "gdc-speedway"

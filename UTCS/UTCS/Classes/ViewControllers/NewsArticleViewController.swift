@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-class NewsDetailViewController: ArticleViewController {
+class NewsArticleViewController: ArticleViewController {
 
     private var newsArticle: NewsArticle?
 
@@ -30,7 +30,7 @@ class NewsDetailViewController: ArticleViewController {
             imageView.image = articleImage
         } else {
             let randomIndex = Int(arc4random_uniform(UInt32(ArticleViewController.defaultHeaderIdentifiers.count)))
-            let image = UIImage(named: NewsDetailViewController.defaultHeaderIdentifiers[randomIndex])
+            let image = UIImage(named: NewsArticleViewController.defaultHeaderIdentifiers[randomIndex])
             imageView.image = image
         }
         contentTextView.attributedText = article.attributedContent
