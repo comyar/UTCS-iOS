@@ -108,8 +108,8 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hud.mode = .Indeterminate
         hud.labelText = "Fetching"
-        quotaDataSource.updateWithArgument(usernameTextField.text!) { success, cacheHit in
-            if success {
+        quotaDataSource.updateWithArgument(usernameTextField.text!) { result in
+            if result.successful {
                 self.nameLabel.text = self.quotaDataSource.quotaData.name
                 let limit = self.quotaDataSource.quotaData.limit
                 let usage = self.quotaDataSource.quotaData.usage
@@ -124,7 +124,7 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
                 self.updatedLabel.text = "Update failed"
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                let success: CGFloat = success ? 1.0 : 0.0
+                let success: CGFloat = result.successful ? 1.0 : 0.0
                 self.serviceErrorView.alpha = 1.0 - success
                 self.quotaDetailLabel.alpha = success - 0.3
                 self.percentLabel.alpha = success

@@ -35,17 +35,20 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
         attributedName.addAttribute(NSFontAttributeName, value: remainingWeight, range: remainingRange)
         cell.indentationLevel = 1
         cell.textLabel?.attributedText = attributedName
-        cell.detailTextLabel?.text = person.type
+        cell.detailTextLabel?.text = person.title
 
         return cell
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return directoryPeopleSections?[section].count ?? 0
     }
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return directoryPeopleSections?.count ?? 0
     }
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+
+    @objc func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         guard directoryPeopleSections != nil else {
             return nil
         }

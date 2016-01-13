@@ -1,34 +1,59 @@
-@objc class DirectoryPerson: NSObject, NSCoding, Binnable {
+import Foundation
+import UIKit
+import SwiftyJSON
+
+class DirectoryPerson: NSObject, NSCoding, Binnable {
     var fullName: String!
     var firstName: String!
     var lastName: String!
     var office: String?
     var phoneNumber: String?
-    var type: String?
+    var title: String?
     var imageURL: NSURL?
 
-    override init() {
+    init?(json: JSON) {
         super.init()
+        guard let firstName = json["fname"].string,
+            let lastName = json["lname"].string,
+            let fullName = json["name"].string else {
+                return nil
+        }
+        self.fullName = fullName
+        self.firstName = firstName
+        self.lastName = lastName
+
+        office = json["office"].string
+        phoneNumber = json["phone"].string
+        title  = json["title"].string
+        imageURL = json["image"].URL
     }
+
     required init?(coder aDecoder: NSCoder) {
-        fullName = aDecoder.decodeObjectForKey("name") as! String
-        firstName = aDecoder.decodeObjectForKey("fName") as! String
-        lastName = aDecoder.decodeObjectForKey("lName") as! String
+        super.init()
+        guard let fullName = aDecoder.decodeObjectForKey("name") as? String,
+            let firstName = aDecoder.decodeObjectForKey("fname") as? String,
+            let lastName = aDecoder.decodeObjectForKey("lname") as? String else {
+                return nil
+        }
+        self.fullName = fullName
+        self.firstName = firstName
+        self.lastName = lastName
         office = aDecoder.decodeObjectForKey("office") as? String
         phoneNumber = aDecoder.decodeObjectForKey("phone") as? String
-        type = aDecoder.decodeObjectForKey("type") as? String
-        imageURL = aDecoder.decodeObjectForKey("imageURL") as? NSURL
-        super.init()
+        title = aDecoder.decodeObjectForKey("title") as? String
+        imageURL = aDecoder.decodeObjectForKey("image") as? NSURL
     }
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(fullName, forKey: "name")
-        aCoder.encodeObject(firstName, forKey: "fName")
-        aCoder.encodeObject(lastName, forKey: "lName")
+        aCoder.encodeObject(firstName, forKey: "fname")
+        aCoder.encodeObject(lastName, forKey: "lname")
         aCoder.encodeObject(office, forKey: "office")
         aCoder.encodeObject(phoneNumber, forKey: "phone")
-        aCoder.encodeObject(type, forKey: "type")
-        aCoder.encodeObject(imageURL, forKey: "imageURL")
+        aCoder.encodeObject(title, forKey: "title")
+        aCoder.encodeObject(imageURL, forKey: "image")
     }
+
     func shouldBeSeparated(from: DirectoryPerson) -> Bool {
         let first = lastName as NSString
         let second = from.lastName as NSString

@@ -1,7 +1,7 @@
 import SwiftyJSON
 
 protocol DataSourceParser {
-    func parseValues(values: JSON) -> Any!
+    func parseValues(values: JSON) -> AnyObject?
 }
 
 let serviceDateFormatter: NSDateFormatter = {

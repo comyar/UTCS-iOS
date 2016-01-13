@@ -19,7 +19,7 @@ class Event: NSObject, NSCoding {
         }
     }
     var attributedDescription: NSAttributedString?
-    var type: Category!
+    var type: Category?
     var startDate: NSDate!
     var endDate: NSDate!
     var food: Bool!
@@ -50,9 +50,10 @@ class Event: NSObject, NSCoding {
         self.endDate = endDate
         self.id = id
 
+        allDay = json["allday"].bool
         contactName = json["contactname"].string
         contactEmail = json["contactemail"].string
-        allDay = json["allday"].bool!
+        food = json["food"].bool
         descriptionText = json["description"].string
         link = json["link"].URL
         if let typeString = json["type"].string {
@@ -64,9 +65,9 @@ class Event: NSObject, NSCoding {
         super.init()
         guard let name = aDecoder.decodeObjectForKey("name") as? String,
                let location = aDecoder.decodeObjectForKey("location") as? String,
-               let startDate = aDecoder.decodeObjectForKey("startDate") as? NSDate,
-               let endDate = aDecoder.decodeObjectForKey("endDate") as? NSDate,
-               let id = aDecoder.decodeObjectForKey("id") as? String else {
+               let startDate = aDecoder.decodeObjectForKey("startdate") as? NSDate,
+               let endDate = aDecoder.decodeObjectForKey("enddate") as? NSDate,
+               let id = aDecoder.decodeObjectForKey("eventID") as? String else {
                 return nil
         }
         self.name = name
@@ -75,27 +76,32 @@ class Event: NSObject, NSCoding {
         self.endDate = endDate
         self.id = id
 
-        allDay = aDecoder.decodeBoolForKey("food")
-        contactEmail = aDecoder.decodeObjectForKey("contactEmail") as? String
-        contactName = aDecoder.decodeObjectForKey("contactName") as? String
+        allDay = aDecoder.decodeBoolForKey("allDay")
         food = aDecoder.decodeBoolForKey("food")
+        contactEmail = aDecoder.decodeObjectForKey("contactemail") as? String
+        contactName = aDecoder.decodeObjectForKey("contactname") as? String
         descriptionText = aDecoder.decodeObjectForKey("description") as? String
         link = aDecoder.decodeObjectForKey("link") as? NSURL
-        if let typeString = aDecoder.decodeObjectForKey(type.rawValue) as? String {
+        if let typeString = aDecoder.decodeObjectForKey("type") as? String {
             type = Category(rawValue: typeString)
         }
 
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(allDay, forKey: "allDay")
-        aCoder.encodeBool(food, forKey: "food")
         aCoder.encodeObject(name, forKey: "name")
-        aCoder.encodeObject(contactName, forKey: "contactName")
         aCoder.encodeObject(location, forKey: "location")
-        aCoder.encodeObject(descriptionText, forKey: "descriptionText")
-        aCoder.encodeObject(attributedDescription, forKey: "attributedDescription")
+        aCoder.encodeObject(startDate, forKey: "startdate")
+        aCoder.encodeObject(endDate, forKey: "enddate")
+        aCoder.encodeObject(id, forKey: "eventID")
 
+        aCoder.encodeBool(allDay, forKey: "allday")
+        aCoder.encodeBool(food, forKey: "food")
+        aCoder.encodeObject(contactName, forKey: "contactname")
+        aCoder.encodeObject(contactEmail, forKey: "contactemail")
+        aCoder.encodeObject(descriptionText, forKey: "description")
+        aCoder.encodeObject(link, forKey: "link")
+        aCoder.encodeObject(type?.rawValue ?? nil, forKey: "type")
     }
 
     private func updateAttributedDescription() {

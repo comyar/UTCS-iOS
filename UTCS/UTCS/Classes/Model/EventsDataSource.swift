@@ -3,7 +3,7 @@ let EventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
 
 final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
-    override var data: Any! {
+    override var data: AnyObject! {
         didSet(oldValue) {
             filteredEvents = eventData
         }
@@ -23,7 +23,6 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
     // MARK:- Initialization
     init() {
         super.init(service: .Events, parser: EventsDataSourceParser())
-        minimumTimeBetweenUpdates = 3 * 60 * 60
     }
     /**
      <#Description#>
@@ -69,11 +68,11 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
     // MARK:- UITableViewDataSource
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredEvents?.count ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let dequeued = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier),
             let cell = dequeued as? NewsTableViewCell else {
                 return UITableViewCell()

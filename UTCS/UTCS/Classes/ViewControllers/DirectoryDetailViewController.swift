@@ -90,7 +90,7 @@ class DirectoryDetailViewController: TableViewController {
 
         if indexPath.section == 0 {
             cell.textLabel?.text = person?.fullName
-            cell.detailTextLabel?.text = person?.type
+            cell.detailTextLabel?.text = person?.title
 
             if let url = person?.imageURL {
                 cell.imageView?.af_setImageWithURL(url, placeholderImage: nil,

@@ -31,7 +31,7 @@ class TableViewController: UITableViewController {
             backgroundImageView.image = UIImage(named: newValue)
         }
     }
-    var dataSource: DataSource?
+    var dataSource: ServiceDataSource?
 
     var showsNavigationBarSeparatorLine = true
     var needsSectionHeaders = false {

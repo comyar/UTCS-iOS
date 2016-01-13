@@ -13,7 +13,7 @@ class ContentViewController: UIViewController {
         }
     }
 
-    var dataSource: DataSource?
+    var dataSource: ServiceDataSource?
 
     // MARK:- Initialization
 

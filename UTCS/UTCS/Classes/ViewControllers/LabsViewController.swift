@@ -99,18 +99,18 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
         hud.mode = .Indeterminate
 
 
-        labsDataSource!.updateWithArgument(nil) { success, cachehit in
+        labsDataSource!.updateWithArgument(nil) { result in
             self.thirdFloorLabViewController.shimmeringView.shimmering = false
             self.basementLabViewController.shimmeringView.shimmering = false
 
-            if success,
+            if result.successful,
                let third = self.labsDataSource.third,
                let basement = self.labsDataSource.basement {
                 self.thirdFloorLabViewController.machines = third
                 self.basementLabViewController.machines = basement
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                let successValue: CGFloat = success ? 1.0 : 0.0
+                let successValue: CGFloat = result.successful ? 1.0 : 0.0
                 self.thirdFloorLabViewController.shimmeringView.alpha = successValue
                 self.basementLabViewController.shimmeringView.alpha = successValue
                 self.thirdFloorLabViewController.serviceErrorView.alpha = 1.0 - successValue

@@ -7,54 +7,99 @@ public enum Service: String {
     case Events = "events"
     case News = "news"
     case Directory = "directory"
+
+    func cacheExpirationTime() -> NSTimeInterval{
+        switch self {
+        case .Labs:
+            return 30
+        case .DiskQuota:
+            return 30
+        case .Events:
+            return 3600 * 24
+        case .News:
+            return 3600 * 24
+        case .Directory:
+            return 3600 * 24 * 7
+        }
+    }
+
+    func cacheExpired(metadata: ServiceMetadata) -> Bool {
+        let expiryTime = self.cacheExpirationTime()
+        let expiryDate = metadata.updated.dateByAddingTimeInterval(expiryTime)
+        return NSDate().compare(expiryDate) == .OrderedDescending
+    }
 }
 
-class ServiceDataSource: DataSource {
+typealias DataSourceCompletion = (ServiceDataSource.UpdateResult) -> ()
+
+class ServiceDataSource: NSObject {
+    var data: AnyObject!
     var parser: DataSourceParser!
     let service: Service
-    var cache: DataSourceCache!
+    var cache: ServiceCache!
+    
+    var updated: NSDate?
     var router: Router {
         fatalError("Subclasses must provide their own Routers")
     }
 
+    enum UpdateResult {
+        case Failed,
+        SuccessFresh,
+        SuccessFromCache
+
+        var successful: Bool {
+            return self == .SuccessFromCache || self == .SuccessFresh
+        }
+    }
+
     init(service: Service) {
         self.service = service
-        self.cache = DataSourceCache(service: service)
+        self.cache = ServiceCache(service: service)
     }
 
     init(service: Service, parser: DataSourceParser) {
         self.service = service
         self.parser = parser
-        self.cache = DataSourceCache(service: service)
-    }
-
-    private func hasMinimumTimeElapsed(since: NSDate) -> Bool {
-        return true
+        self.cache = ServiceCache(service: service)
     }
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?) {
         // Attempt to load from cache
-        if let (cacheMeta, cacheValues) = cache.load(argument) where hasMinimumTimeElapsed(cacheMeta.timestamp) {
-            updated = cacheMeta.timestamp
-            data = cacheValues as! AnyObject
-            completion?(true, true)
+        let fromCache = cache.load(argument)
+        if let (cacheMeta, cacheValues) = fromCache {
+            print("Cache available")
+            if !cacheMeta.service.cacheExpired(cacheMeta){
+                updated = cacheMeta.updated
+                data = cacheValues
+                completion?(.SuccessFromCache)
+                return
+            }
         }
 
         fetchData { (meta, values, error) -> () in
-            if let values = values,
-                let meta = meta where
-                (meta["service"].string == self.service.rawValue && meta["success"].boolValue) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-
-                        self.data = self.parser.parseValues(values)
-                        self.updated = NSDate()
-                        dispatch_sync(dispatch_get_main_queue()) { () -> Void in
-                            completion?(true, false)
-
-                        }
-                    }
-            } else {
-                completion?(false, false)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                let result: UpdateResult
+                // Make sure the respones makes sense
+                if let values = values,
+                    let meta = meta,
+                    let parsedMeta = ServiceMetadata(json: meta),
+                    let parsed = self.parser.parseValues(values)
+                    where parsedMeta.service == self.service {
+                    // Cache the response
+                    self.cache.store(argument, metadata: parsedMeta, values: parsed)
+                    self.data = parsed
+                    result = .SuccessFresh
+                } else if let (_, cacheValues) = fromCache {
+                    self.data = cacheValues
+                    result = .SuccessFromCache
+                } else {
+                    result = .Failed
+                }
+                self.updated = NSDate()
+                dispatch_sync(dispatch_get_main_queue()) {
+                    completion?(result)
+                }
             }
         }
 

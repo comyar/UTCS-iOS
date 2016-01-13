@@ -55,13 +55,13 @@ class DirectoryViewController: TableViewController {
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progressHUD.mode = .Indeterminate
         progressHUD.labelText = "Syncing"
-        dataSource.updateWithArgument(nil) { (success, cacheHit) -> Void in
-            if success && !cacheHit {
+        dataSource.updateWithArgument(nil) { result in
+            if result.successful {
                dataSource.directoryPeopleSections = dataSource.directoryPeople.createSectionedRepresentation()
                 self.tableView.reloadData()
             }
             UIView.animateWithDuration(0.3) {
-                let successValue: CGFloat = success ? 1.0 : 0.0
+                let successValue: CGFloat = result.successful ? 1.0 : 0.0
                 self.tableView.alpha = successValue
                 self.errorView.alpha = successValue - 1.0
             }

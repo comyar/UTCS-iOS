@@ -16,7 +16,6 @@ final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
 
     init() {
         super.init(service: .News, parser: NewsDataSourceParser())
-        minimumTimeBetweenUpdates = 24 * 60 * 60
     }
 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -26,7 +25,9 @@ final class NewsDataSource: ServiceDataSource, UITableViewDataSource {
         }
 
         cell.title!.text = article.title
-        cell.detailLabel!.text = article.attributedContent.string
+        if let cellDescription = article.cleanedText {
+            cell.detailLabel.text = cellDescription
+        }
         return cell
     }
 

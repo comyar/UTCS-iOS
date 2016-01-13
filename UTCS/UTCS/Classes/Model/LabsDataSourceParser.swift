@@ -2,7 +2,7 @@ import SwiftyJSON
 
 class LabsDataSourceParser: DataSourceParser {
 
-    func parseValues(values: JSON) -> Any! {
+    func parseValues(values: JSON) -> AnyObject? {
         let thirdData = values[0, "machines"].array
         let basementData = values[1, "machines"].array
         return ["third": parseFloor(thirdData!, labName: "third"),

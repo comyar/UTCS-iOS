@@ -40,12 +40,12 @@ final class NewsViewController: HeaderTableViewController {
 
     func update() {
         activeHeaderView.startActiveAnimation()
-        newsDataSource.updateWithArgument(nil) { success, cacheHit in
-            self.activeHeaderView.endActiveAnimation(success)
+        newsDataSource.updateWithArgument(nil) { result in
+            self.activeHeaderView.endActiveAnimation(result.successful)
             if self.newsDataSource.articleData?.count ?? 0 > 0 {
                 self.lastUpdated = self.newsDataSource.updated!
             } else {
-                if !success {
+                if !result.successful {
                     self.activeHeaderView.updatedLabel.text = "Please check your network connection."
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         self.activeHeaderView.downArrowImageView.alpha = 0.0
@@ -54,9 +54,7 @@ final class NewsViewController: HeaderTableViewController {
                     self.activeHeaderView.updatedLabel.text = "No articles available."
                 }
             }
-            if success && !cacheHit {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
 

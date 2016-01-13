@@ -1,7 +1,7 @@
 import SwiftyJSON
 class DiskQuotaDataSourceParser: DataSourceParser {
 
-    func parseValues(values: JSON) -> Any! {
+    func parseValues(values: JSON) -> AnyObject? {
         return QuotaData(json: values)
     }
 }

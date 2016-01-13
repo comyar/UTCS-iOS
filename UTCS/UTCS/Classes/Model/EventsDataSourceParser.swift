@@ -2,13 +2,10 @@ import SwiftyJSON
 
 final class EventsDataSourceParser: DataSourceParser {
 
-    func parseValues(values: JSON) -> Any! {
-        var events = [Event]()
-        for eventData in values.array! {
-            if let event = Event(json:eventData) {
-                events.append(event)
-            }
+    func parseValues(values: JSON) -> AnyObject? {
+        if let jsonArray = values.array {
+            return jsonArray.map{Event(json: $0)}.flatMap{$0}
         }
-        return events
+        return nil
     }
 }

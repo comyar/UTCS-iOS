@@ -27,7 +27,6 @@
 		D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */; };
 		D43950291C45947E007AA192 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
 		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
-		D43C8B0A1B79049F0049C4D6 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B091B79049F0049C4D6 /* DataSource.swift */; };
 		D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */; };
 		D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */; };
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
@@ -78,7 +77,7 @@
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
-		DD8989A61903141C000F1041 /* DataSourceCacheMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */; };
+		DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* ServiceMetadata.swift */; };
 		DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */; };
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
 		DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475C6190B38AC0049FB8B /* UTCSLabView.m */; };
@@ -100,7 +99,7 @@
 		DD95E78C1926305C0062F4E9 /* RQShineLabel-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */; };
 		DD9DF74318B4B09600DDC1DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */; };
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
-		DDA758951904D7C4007CD0DB /* DataSourceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* DataSourceCache.swift */; };
+		DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* ServiceCache.swift */; };
 		DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */; };
 		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
@@ -148,7 +147,6 @@
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
 		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D43C8B091B79049F0049C4D6 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Model/DataSource.swift; sourceTree = "<group>"; };
 		D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabsDataSource.swift; path = Model/LabsDataSource.swift; sourceTree = "<group>"; };
 		D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsDataSource.swift; path = Model/EventsDataSource.swift; sourceTree = "<group>"; };
 		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
@@ -204,7 +202,7 @@
 		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
 		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachine.h; path = Model/UTCSLabMachine.h; sourceTree = "<group>"; };
 		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachine.m; path = Model/UTCSLabMachine.m; sourceTree = "<group>"; };
-		DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSourceCacheMetaData.swift; path = Model/DataSourceCacheMetaData.swift; sourceTree = "<group>"; };
+		DD8989A51903141C000F1041 /* ServiceMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceMetadata.swift; path = Model/ServiceMetadata.swift; sourceTree = "<group>"; };
 		DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
 		DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabViewLayout.m; path = Model/UTCSLabViewLayout.m; sourceTree = "<group>"; };
 		DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThirdFloorLabLayout.plist; path = UTCS/ThirdFloorLabLayout.plist; sourceTree = SOURCE_ROOT; };
@@ -232,7 +230,7 @@
 		DD95E7831926305C0062F4E9 /* RQShineLabel-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "RQShineLabel-license.txt"; path = "Resources/Licenses/RQShineLabel-license.txt"; sourceTree = "<group>"; };
 		DD9DF74218B4B09600DDC1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DDA7588F1904D313007CD0DB /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = App.xcassets; path = Resources/App.xcassets; sourceTree = "<group>"; };
-		DDA758941904D7C4007CD0DB /* DataSourceCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSourceCache.swift; path = Model/DataSourceCache.swift; sourceTree = "<group>"; };
+		DDA758941904D7C4007CD0DB /* ServiceCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceCache.swift; path = Model/ServiceCache.swift; sourceTree = "<group>"; };
 		DDA758B61905FDD0007CD0DB /* UTCSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSStateManager.h; path = Model/UTCSStateManager.h; sourceTree = "<group>"; };
 		DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStateManager.m; path = Model/UTCSStateManager.m; sourceTree = "<group>"; };
 		DDA758E21906661D007CD0DB /* UTCSLabMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewController.h; path = ViewControllers/UTCSLabMachineViewController.h; sourceTree = "<group>"; };
@@ -590,8 +588,8 @@
 		DDA758A61905E78D007CD0DB /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				DD8989A51903141C000F1041 /* DataSourceCacheMetaData.swift */,
-				DDA758941904D7C4007CD0DB /* DataSourceCache.swift */,
+				DD8989A51903141C000F1041 /* ServiceMetadata.swift */,
+				DDA758941904D7C4007CD0DB /* ServiceCache.swift */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -619,7 +617,6 @@
 		DDA758EF19081DF3007CD0DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D43C8B091B79049F0049C4D6 /* DataSource.swift */,
 				D46439031B7C5CEA007BA5D0 /* DataSourceParser.swift */,
 				D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */,
 				DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */,
@@ -942,7 +939,7 @@
 				DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */,
 				DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */,
 				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
-				DD8989A61903141C000F1041 /* DataSourceCacheMetaData.swift in Sources */,
+				DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
 				D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */,
@@ -955,13 +952,12 @@
 				D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */,
 				D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */,
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,
-				D43C8B0A1B79049F0049C4D6 /* DataSource.swift in Sources */,
 				D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */,
 				D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */,
 				D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */,
 				D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
-				DDA758951904D7C4007CD0DB /* DataSourceCache.swift in Sources */,
+				DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
 				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,

@@ -80,9 +80,9 @@ class EventViewController: ArticleViewController {
     private func headerImageNameForEvent(event: Event) -> String? {
         let lowerLocation = event.location.lowercaseString
         if lowerLocation.containsString("gdc") {
-            let matches = EventViewController.headerImageMapping.keys.filter({ (key) -> Bool in
-                return lowerLocation.containsString(key)
-            })
+            let matches = EventViewController.headerImageMapping.keys.filter{
+                lowerLocation.containsString($0)
+            }
             if let match = matches.first {
                 return EventViewController.headerImageMapping[match]
             } else {

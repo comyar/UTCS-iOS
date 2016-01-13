@@ -2,7 +2,7 @@ let settingSwitchCellIdentifier = "switchCell"
 let settingsCellIdentifier = "settingsCell"
 let settingsSegmentedCellIdentifier = "segmentedCell"
 
-class SettingsDataSource: DataSource, UITableViewDataSource {
+class SettingsDataSource: NSObject, UITableViewDataSource {
     let sectionTitles = ["Settings", "Info", "Legal"]
     let infoTitles = ["Legal", "About"]
     let socialTitles = ["Facebook", "Twitter"]
@@ -10,9 +10,11 @@ class SettingsDataSource: DataSource, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionTitles.count
     }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:

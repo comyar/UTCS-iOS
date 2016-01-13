@@ -60,23 +60,22 @@ final class EventsViewController: HeaderTableViewController {
 
     func update() {
         activeHeaderView.startActiveAnimation()
-        eventsDataSource!.updateWithArgument(nil) { (success, cacheHit) -> Void in
-            self.activeHeaderView.endActiveAnimation(success)
+        eventsDataSource!.updateWithArgument(nil) { result in
             if self.eventsDataSource?.eventData?.count ?? 0 > 0 {
+                self.activeHeaderView.endActiveAnimation(true)
                 self.lastUpdated = self.dataSource?.updated
-                if !cacheHit {
-                    self.tableView.reloadData()
+
+            } else {
+                self.activeHeaderView.endActiveAnimation(false)
+                if result.successful {
+                    self.activeHeaderView.updatedLabel.text = "No events available"
                 } else {
-                    if success {
-                        self.activeHeaderView.updatedLabel.text = "No events available"
-                    } else {
-                        self.activeHeaderView.updatedLabel.text = "Please check your network connection."
-                    }
+                    self.activeHeaderView.updatedLabel.text = "Please check your network connection."
                 }
             }
+            self.tableView.reloadData()
         }
     }
-
 
     // MARK:- UITableView
 
@@ -87,9 +86,7 @@ final class EventsViewController: HeaderTableViewController {
         if filterSegmentedControl == nil {
 
             filterSegmentedControl = {
-                let segmentNames = segments.map({ (category) -> String in
-                    return category.rawValue
-                })
+                let segmentNames = segments.map{$0.rawValue}
                 let segmentedControl = UISegmentedControl(items: segmentNames)
                 segmentedControl.backgroundColor = UIColor(white: 0.0, alpha: 0.725)
                 segmentedControl.addTarget(self, action: "didChangeValueForControl:", forControlEvents: .ValueChanged)
@@ -107,6 +104,7 @@ final class EventsViewController: HeaderTableViewController {
             return newView
         }()
     }
+
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 && eventsDataSource?.filteredEvents?.count ?? 0 > 0 {
             return 48.0

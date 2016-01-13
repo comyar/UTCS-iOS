@@ -2,7 +2,8 @@ import UIKit
 import Foundation
 
 class NewsArticleViewController: ArticleViewController {
-
+    private static let minHeaderImageWidth: CGFloat = 300.0
+    private static let minHeaderImageHeight: CGFloat = 250.0
     private var newsArticle: NewsArticle?
 
     init() {
@@ -44,6 +45,27 @@ class NewsArticleViewController: ArticleViewController {
         }
         if let url = newsArticle?.url {
             activityItems.append(url.description)
+        }
+    }
+
+    func selectHeaderImageForArticle(article: NewsArticle) {
+        var tasks = [NSURLSessionDataTask]()
+        for url in article.imageURLs! {
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithURL(url){ (data, response, error) -> Void in
+                if let data = data,
+                   let image = UIImage(data: data)
+                    where image.size.width >= NewsArticleViewController.minHeaderImageWidth &&
+                        image.size.height >= NewsArticleViewController.minHeaderImageHeight {
+                            for task in tasks {
+                                task.cancel()
+                            }
+                            article.headerImage = image
+                    }
+
+                }
+            task.resume()
+            tasks.append(task)
         }
     }
 

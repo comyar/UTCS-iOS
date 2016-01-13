@@ -1,3 +1,7 @@
+import Foundation
+import UIKit
+import SwiftyJSON
+
 // Space between lines in the article text
 let lineSpacing: CGFloat = 6.0
 
@@ -8,14 +12,11 @@ final class NewsArticle: NSObject, NSCoding {
     var title: String!
     var url: NSURL!
     var date: NSDate!
-    var html: String! {
-        didSet(oldValue) {
-            configureNewsStoryWithHTML(html)
-        }
-    }
-    var attributedContent: NSAttributedString!
+    var html: String!
+    var cleanedText: String!
+    lazy var attributedContent: NSAttributedString? = self.initializeAttributedContent()
     var headerImage: UIImage?
-    var imageURLs: [NSURL]?
+    var imageURLs: [NSURL]!
 
     private static let paragraphStyle: NSMutableParagraphStyle = {
         let style = NSMutableParagraphStyle()
@@ -34,47 +35,68 @@ final class NewsArticle: NSObject, NSCoding {
         return UIFont.italicSystemFontOfSize(16.0)
     }()
 
-    override init() {
+    init?(json: JSON) {
         super.init()
+        guard let title = json["title"].string,
+            let url = json["url"].URL,
+            let dateString = json["date"].string,
+            let date = serviceDateFormatter.dateFromString(dateString),
+            let html = json["html"].string,
+            let cleanedText = json["cleanedText"].string,
+            let imageURLs = json["imageUrls"].array else {
+                return nil
+        }
+        self.title = title
+        self.url = url
+        self.date = date
+        self.html = html
+        self.cleanedText = cleanedText
+        self.imageURLs = imageURLs.map{$0.URL}.flatMap{$0}
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init()
-        title = aDecoder.decodeObjectForKey("title") as! String
-        url = aDecoder.decodeObjectForKey("url") as! NSURL
-        date = aDecoder.decodeObjectForKey("date") as! NSDate
-        html = aDecoder.decodeObjectForKey("html") as! String
-        attributedContent = aDecoder.decodeObjectForKey("attributedContent") as! NSAttributedString
+        guard let title = aDecoder.decodeObjectForKey("title") as? String,
+            let url = aDecoder.decodeObjectForKey("url") as? NSURL,
+            let date = aDecoder.decodeObjectForKey("date") as? NSDate,
+            let html = aDecoder.decodeObjectForKey("html") as? String,
+            let cleanedText = aDecoder.decodeObjectForKey("cleanedText") as? String else {
+                return nil
+        }
+        self.title = title
+        self.url = url
+        self.date = date
+        self.html = html
+        self.cleanedText = cleanedText
         headerImage = aDecoder.decodeObjectForKey("headerImage") as? UIImage
-        imageURLs = aDecoder.decodeObjectForKey("imageURLs") as! [NSURL]?
+        imageURLs = aDecoder.decodeObjectForKey("imageURLs") as? [NSURL] ?? []
     }
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(title, forKey: "title")
         aCoder.encodeObject(url, forKey: "url")
         aCoder.encodeObject(date, forKey: "date")
         aCoder.encodeObject(html, forKey: "html")
-        aCoder.encodeObject(attributedContent, forKey: "attributedContent")
+        aCoder.encodeObject(cleanedText, forKey: "cleanedText")
         aCoder.encodeObject(headerImage, forKey: "headerImage")
         aCoder.encodeObject(imageURLs, forKey: "imageURLs")
     }
-    func configureNewsStoryWithHTML(html: String) {
+
+    func initializeAttributedContent() -> NSAttributedString? {
         guard html.characters.count > 0 else {
-            return
+            return nil
         }
         var attributedHTML: NSMutableAttributedString?
 
-        dispatch_sync(dispatch_get_main_queue()) { () -> Void in
-            do {
-            try attributedHTML = NSAttributedString(data: html.dataUsingEncoding(NSUTF32StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil).mutableCopy() as? NSMutableAttributedString
-            } catch {
-                print("failed to parse html")
-            }
+        do {
+            try attributedHTML = NSAttributedString(data: self.html.dataUsingEncoding(NSUTF32StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil).mutableCopy() as? NSMutableAttributedString
+        } catch {
+            print("failed to parse html")
         }
         guard attributedHTML != nil else {
-            return
+            return nil
         }
-        // TODO: This is pretty heavy to keep around in the model for all articles. This should be calculated
-        // lazily on demand.
+
         let newAttributedContent = NSMutableAttributedString()
         attributedHTML!.enumerateAttributesInRange(NSRange(location: 0, length: attributedHTML!.length), options: .LongestEffectiveRangeNotRequired, usingBlock: { (attrs, range, stop) -> Void in
             if attrs[NSAttachmentAttributeName] != nil {
@@ -89,11 +111,8 @@ final class NewsArticle: NSObject, NSCoding {
                 attributedHTML?.addAttribute(NSFontAttributeName, value: desiredFont, range: range)
                 attributedHTML?.addAttribute(NSParagraphStyleAttributeName, value: NewsArticle.paragraphStyle, range: range)
             }
-
-
             newAttributedContent.appendAttributedString(attributedHTML!.attributedSubstringFromRange(range))
             newAttributedContent.mutableString.replaceOccurrencesOfString(" ", withString: " ", options: .LiteralSearch, range: NSRange(location: 0, length: newAttributedContent.mutableString.length))
-
 
         })
         do {
@@ -103,7 +122,7 @@ final class NewsArticle: NSObject, NSCoding {
         } catch {
             print("Regex failed")
         }
-        attributedContent = newAttributedContent.attributedStringByTrimming(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return newAttributedContent.attributedStringByTrimming(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 
     private func fontForName(fontName: String) -> UIFont {
