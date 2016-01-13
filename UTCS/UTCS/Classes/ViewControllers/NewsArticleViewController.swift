@@ -6,6 +6,8 @@ class NewsArticleViewController: ArticleViewController {
     private static let minHeaderImageHeight: CGFloat = 250.0
     private var newsArticle: NewsArticle?
 
+    private var images = [UIImage]()
+
     init() {
        super.init(nibName: "ArticleView", bundle: nil)
     }
@@ -25,15 +27,7 @@ class NewsArticleViewController: ArticleViewController {
         }
         scrollView.contentOffset = CGPointZero
         newsArticle = article
-
-        if let articleImage = article.headerImage {
-            configureImageHeightConstraint(articleImage)
-            imageView.image = articleImage
-        } else {
-            let randomIndex = Int(arc4random_uniform(UInt32(ArticleViewController.defaultHeaderIdentifiers.count)))
-            let image = UIImage(named: NewsArticleViewController.defaultHeaderIdentifiers[randomIndex])
-            imageView.image = image
-        }
+        selectHeaderImageForArticle(article)
         contentTextView.attributedText = article.attributedContent
 
         dateLabel.text = NSDateFormatter.localizedStringFromDate(article.date, dateStyle: .LongStyle, timeStyle: .NoStyle)
@@ -48,22 +42,42 @@ class NewsArticleViewController: ArticleViewController {
         }
     }
 
+    func headerImageSelected(image: UIImage?) {
+        let finalImage: UIImage
+        if image == nil {
+            let randomIndex = Int(arc4random_uniform(UInt32(ArticleViewController.defaultHeaderIdentifiers.count)))
+            finalImage = UIImage(named: NewsArticleViewController.defaultHeaderIdentifiers[randomIndex])!
+
+        } else {
+            finalImage = image!
+        }
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.configureImageHeightConstraint(finalImage)
+            self.imageView.image = finalImage
+        }
+    }
+
     func selectHeaderImageForArticle(article: NewsArticle) {
         var tasks = [NSURLSessionDataTask]()
-        for url in article.imageURLs! {
+        var remaining = article.imageURLs.count
+        if remaining == 0 {
+            self.headerImageSelected(nil)
+        }
+        for url in article.imageURLs {
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithURL(url){ (data, response, error) -> Void in
+                remaining -= 1
                 if let data = data,
                    let image = UIImage(data: data)
                     where image.size.width >= NewsArticleViewController.minHeaderImageWidth &&
                         image.size.height >= NewsArticleViewController.minHeaderImageHeight {
-                            for task in tasks {
-                                task.cancel()
-                            }
-                            article.headerImage = image
-                    }
-
+                            tasks.forEach{$0.cancel()}
+                            self.headerImageSelected(image)
+                } else if remaining == 0 {
+                    self.headerImageSelected(nil)
                 }
+            }
             task.resume()
             tasks.append(task)
         }

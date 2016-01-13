@@ -15,7 +15,6 @@ final class NewsArticle: NSObject, NSCoding {
     var html: String!
     var cleanedText: String!
     lazy var attributedContent: NSAttributedString? = self.initializeAttributedContent()
-    var headerImage: UIImage?
     var imageURLs: [NSURL]!
 
     private static let paragraphStyle: NSMutableParagraphStyle = {
@@ -68,8 +67,7 @@ final class NewsArticle: NSObject, NSCoding {
         self.date = date
         self.html = html
         self.cleanedText = cleanedText
-        headerImage = aDecoder.decodeObjectForKey("headerImage") as? UIImage
-        imageURLs = aDecoder.decodeObjectForKey("imageURLs") as? [NSURL] ?? []
+        imageURLs = aDecoder.decodeObjectForKey("imageUrls") as? [NSURL] ?? []
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -78,8 +76,7 @@ final class NewsArticle: NSObject, NSCoding {
         aCoder.encodeObject(date, forKey: "date")
         aCoder.encodeObject(html, forKey: "html")
         aCoder.encodeObject(cleanedText, forKey: "cleanedText")
-        aCoder.encodeObject(headerImage, forKey: "headerImage")
-        aCoder.encodeObject(imageURLs, forKey: "imageURLs")
+        aCoder.encodeObject(imageURLs, forKey: "imageUrls")
     }
 
     func initializeAttributedContent() -> NSAttributedString? {
