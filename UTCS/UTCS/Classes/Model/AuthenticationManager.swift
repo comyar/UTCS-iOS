@@ -26,7 +26,7 @@ class AuthenticationManager {
             let loginTextField = self.alertController.textFields![0]
             let passwordTextField = self.alertController.textFields![1]
             guard let username = loginTextField.text,
-                let password = passwordTextField.text else {
+                 password = passwordTextField.text else {
                     AuthenticationManager.completion?(nil)
                     return
             }

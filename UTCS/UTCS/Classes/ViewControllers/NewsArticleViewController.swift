@@ -69,7 +69,7 @@ class NewsArticleViewController: ArticleViewController {
             let task = session.dataTaskWithURL(url){ (data, response, error) -> Void in
                 remaining -= 1
                 if let data = data,
-                   let image = UIImage(data: data)
+                   image = UIImage(data: data)
                     where image.size.width >= NewsArticleViewController.minHeaderImageWidth &&
                         image.size.height >= NewsArticleViewController.minHeaderImageHeight {
                             tasks.forEach{$0.cancel()}

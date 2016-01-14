@@ -9,9 +9,9 @@ class QuotaData: NSObject, NSCoding {
     init?(json: JSON) {
         super.init()
         guard let limit = json["limit"].int,
-            let usage = json["usage"].double,
-            let user = json["user"].string,
-            let name = json["name"].string else {
+            usage = json["usage"].double,
+            user = json["user"].string,
+            name = json["name"].string else {
             return nil
         }
         self.limit = limit
@@ -24,9 +24,9 @@ class QuotaData: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         super.init()
         guard let user = aDecoder.decodeObjectForKey("user") as? String,
-            let name = aDecoder.decodeObjectForKey("name") as? String,
-            let limit = aDecoder.decodeObjectForKey("limit") as? Int,
-            let usage = aDecoder.decodeObjectForKey("usage") as? Double else {
+            name = aDecoder.decodeObjectForKey("name") as? String,
+            limit = aDecoder.decodeObjectForKey("limit") as? Int,
+            usage = aDecoder.decodeObjectForKey("usage") as? Double else {
                 return nil
         }
         self.user = user

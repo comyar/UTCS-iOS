@@ -14,8 +14,8 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
     init?(json: JSON) {
         super.init()
         guard let firstName = json["fname"].string,
-            let lastName = json["lname"].string,
-            let fullName = json["name"].string else {
+            lastName = json["lname"].string,
+            fullName = json["name"].string else {
                 return nil
         }
         self.fullName = fullName
@@ -31,8 +31,8 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
     required init?(coder aDecoder: NSCoder) {
         super.init()
         guard let fullName = aDecoder.decodeObjectForKey("name") as? String,
-            let firstName = aDecoder.decodeObjectForKey("fname") as? String,
-            let lastName = aDecoder.decodeObjectForKey("lname") as? String else {
+            firstName = aDecoder.decodeObjectForKey("fname") as? String,
+            lastName = aDecoder.decodeObjectForKey("lname") as? String else {
                 return nil
         }
         self.fullName = fullName

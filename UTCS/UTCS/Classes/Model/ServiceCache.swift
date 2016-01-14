@@ -14,9 +14,9 @@ class ServiceCache {
         }
 
         if let data = fromCache as? NSData,
-           let asDict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary,
-           let meta = asDict["meta"] as? ServiceMetadata,
-           let cacheData = asDict["values"] {
+           asDict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary,
+           meta = asDict["meta"] as? ServiceMetadata,
+           cacheData = asDict["values"] {
             return (meta, cacheData)
         } else {
             clear(argument)

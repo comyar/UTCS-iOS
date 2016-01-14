@@ -99,7 +99,7 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
             return
         }
         if let animator = contentAnimator,
-            let snapBehavior = contentSnapBehavior {
+            snapBehavior = contentSnapBehavior {
                 animator.removeBehavior(snapBehavior)
         }
 
@@ -132,13 +132,13 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
 
     func hideMenu() {
         guard let contentController = contentViewController,
-               let animator = contentAnimator else {
+               animator = contentAnimator else {
             return
         }
 
         // These behaviors were attached to the last content controller
         if let snapBehavior = contentSnapBehavior,
-           let contentBehavior = contentItemBehavior {
+           contentBehavior = contentItemBehavior {
             animator.removeBehavior(contentBehavior)
             animator.removeBehavior(snapBehavior)
         }

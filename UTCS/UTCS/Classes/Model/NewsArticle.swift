@@ -37,12 +37,12 @@ final class NewsArticle: NSObject, NSCoding {
     init?(json: JSON) {
         super.init()
         guard let title = json["title"].string,
-            let url = json["url"].URL,
-            let dateString = json["date"].string,
-            let date = serviceDateFormatter.dateFromString(dateString),
-            let html = json["html"].string,
-            let cleanedText = json["cleanedText"].string,
-            let imageURLs = json["imageUrls"].array else {
+            url = json["url"].URL,
+            dateString = json["date"].string,
+            date = serviceDateFormatter.dateFromString(dateString),
+            html = json["html"].string,
+            cleanedText = json["cleanedText"].string,
+            imageURLs = json["imageUrls"].array else {
                 return nil
         }
         self.title = title
@@ -56,10 +56,10 @@ final class NewsArticle: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         super.init()
         guard let title = aDecoder.decodeObjectForKey("title") as? String,
-            let url = aDecoder.decodeObjectForKey("url") as? NSURL,
-            let date = aDecoder.decodeObjectForKey("date") as? NSDate,
-            let html = aDecoder.decodeObjectForKey("html") as? String,
-            let cleanedText = aDecoder.decodeObjectForKey("cleanedText") as? String else {
+            url = aDecoder.decodeObjectForKey("url") as? NSURL,
+            date = aDecoder.decodeObjectForKey("date") as? NSDate,
+            html = aDecoder.decodeObjectForKey("html") as? String,
+            cleanedText = aDecoder.decodeObjectForKey("cleanedText") as? String else {
                 return nil
         }
         self.title = title

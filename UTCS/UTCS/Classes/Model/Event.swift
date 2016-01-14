@@ -64,10 +64,10 @@ class Event: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         super.init()
         guard let name = aDecoder.decodeObjectForKey("name") as? String,
-               let location = aDecoder.decodeObjectForKey("location") as? String,
-               let startDate = aDecoder.decodeObjectForKey("startdate") as? NSDate,
-               let endDate = aDecoder.decodeObjectForKey("enddate") as? NSDate,
-               let id = aDecoder.decodeObjectForKey("eventID") as? String else {
+               location = aDecoder.decodeObjectForKey("location") as? String,
+               startDate = aDecoder.decodeObjectForKey("startdate") as? NSDate,
+               endDate = aDecoder.decodeObjectForKey("enddate") as? NSDate,
+               id = aDecoder.decodeObjectForKey("eventID") as? String else {
                 return nil
         }
         self.name = name

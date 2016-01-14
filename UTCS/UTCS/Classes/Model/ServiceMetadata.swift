@@ -10,10 +10,10 @@ class ServiceMetadata: NSObject, NSCoding {
     init?(json: JSON) {
         super.init()
         if let serviceString = json["service"].string,
-           let service = Service(rawValue: serviceString),
-           let updatedString = json["updated"].string,
-           let updated = serviceDateFormatter.dateFromString(updatedString),
-            let success = json["success"].bool {
+           service = Service(rawValue: serviceString),
+           updatedString = json["updated"].string,
+           updated = serviceDateFormatter.dateFromString(updatedString),
+           success = json["success"].bool {
                 self.service = service
                 self.updated = updated
                 self.success = success

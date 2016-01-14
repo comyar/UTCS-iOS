@@ -80,11 +80,11 @@ class ServiceDataSource: NSObject {
         fetchData { (meta, values, error) -> () in
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 let result: UpdateResult
-                // Make sure the respones makes sense
+                // Make sure the response makes sense
                 if let values = values,
-                    let meta = meta,
-                    let parsedMeta = ServiceMetadata(json: meta),
-                    let parsed = self.parser.parseValues(values)
+                    meta = meta,
+                    parsedMeta = ServiceMetadata(json: meta),
+                    parsed = self.parser.parseValues(values)
                     where parsedMeta.service == self.service {
                     // Cache the response
                     self.cache.store(argument, metadata: parsedMeta, values: parsed)
