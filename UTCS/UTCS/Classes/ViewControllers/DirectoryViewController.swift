@@ -15,12 +15,13 @@ class DirectoryViewController: TableViewController {
         dataSource = DirectoryDataSource()
         tableView.dataSource = directoryDataSource
 
-        backgroundImageName = "Directory"
         title = "Directory"
         needsSectionHeaders = true
 
         tableView.sectionIndexColor = UIColor.whiteColor()
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
+        tableView.registerClass(DirectoryTableViewCell.self, forCellReuseIdentifier: "directory")
+        tableView.rowHeight = 66.0
         update()
     }
 
@@ -80,15 +81,5 @@ class DirectoryViewController: TableViewController {
         detailViewController!.person = person
         navigationController?.pushViewController(detailViewController!, animated: true)
    }
-
-    override func textForHeaderInSection(section: Int) -> String {
-        guard let person = directoryDataSource?.directoryPeopleSections?[section][0] else {
-            return ""
-        }
-
-        let lastName = person.lastName as NSString
-        let letter = lastName.substringWithRange(NSRange(location: 0, length: 1))
-        return letter
-    }
 
 }

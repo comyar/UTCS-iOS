@@ -15,31 +15,15 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCellWithIdentifier(UTCSDirectoryTableViewCellIdentifier)
-        let cell = BouncyTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
-        cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.selectionStyle = .None
-        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
-        let person = directoryPeopleSections![indexPath.section][indexPath.row]
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("directory") as? DirectoryTableViewCell,
+            person = directoryPeopleSections?[indexPath.section][indexPath.row] else {
+            return UITableViewCell()
+        }
 
-        let attributedName = NSMutableAttributedString(string: person.fullName)
-
-        let firstNameLength = person.firstName.characters.count
-        let firstNameRange = NSRange(location: 0, length: firstNameLength)
-        let remainingRange = NSRange(location: firstNameLength + 1, length: person.fullName.characters.count - 1 - firstNameLength)
-
-        let firstNameWeight = UIFont.systemFontOfSize(cell.textLabel!.font.pointSize, weight: UIFontWeightBold)
-        let remainingWeight = UIFont.systemFontOfSize(cell.textLabel!.font.pointSize, weight: UIFontWeightLight)
-        attributedName.addAttribute(NSFontAttributeName, value: firstNameWeight, range: firstNameRange)
-        attributedName.addAttribute(NSFontAttributeName, value: remainingWeight, range: remainingRange)
-        cell.indentationLevel = 1
-        cell.textLabel?.attributedText = attributedName
-        cell.detailTextLabel?.text = person.title
-
+        cell.configure(person)
         return cell
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return directoryPeopleSections?[section].count ?? 0
     }
@@ -48,7 +32,7 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
         return directoryPeopleSections?.count ?? 0
     }
 
-    @objc func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         guard directoryPeopleSections != nil else {
             return nil
         }
@@ -58,6 +42,16 @@ final class DirectoryDataSource: ServiceDataSource, UITableViewDataSource {
             letters.append(asString.substringToIndex(1))
         }
         return letters
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let person = directoryPeopleSections?[section][0] else {
+            return ""
+        }
+
+        let lastName = person.lastName as NSString
+        let letter = lastName.substringWithRange(NSRange(location: 0, length: 1))
+        return letter
     }
 
 }
