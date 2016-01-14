@@ -74,11 +74,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 case .Labs:
                     return NavigationController(rootViewController: LabsViewController())
                 case .Directory:
-                    return NavigationController(rootViewController: DirectoryViewController())
+                    let controller = NavigationController(rootViewController: DirectoryViewController())
+                    controller.backgroundImageName = "Directory"
+                    return controller
                 case .DiskQuota:
                     return NavigationController(rootViewController: DiskQuotaViewController(nibName: "DiskQuotaView", bundle: NSBundle.mainBundle() ))
                 case .Settings:
-                    return NavigationController(rootViewController: SettingsViewController())
+                    let controller = NavigationController(rootViewController: SettingsViewController())
+                    controller.backgroundImageName = "Settings"
+                    return controller
                 }
                 }()
         }

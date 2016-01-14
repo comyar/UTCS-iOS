@@ -11,16 +11,15 @@ class DirectoryDetailViewController: TableViewController {
     init() {
         super.init(style: .Grouped)
         needsSectionHeaders = true
-        backgroundImageName = "Directory"
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationBarBackgroundVisible = false
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     func formattedPhoneNumberWithString(phoneNumber: String) -> (String) {

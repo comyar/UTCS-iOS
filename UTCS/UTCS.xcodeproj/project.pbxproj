@@ -16,6 +16,8 @@
 		D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409244C1C3CD93E00A81EBA /* Constants.swift */; };
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
 		D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C697B1B7D363B005E3719 /* QuotaData.swift */; };
+		D40F95421C47603C003232A0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */; };
+		D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F95431C477A75003232A0 /* DirectoryTableViewCell.swift */; };
 		D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A79201B5B38190049C683 /* NewsTableViewCell.xib */; };
 		D42485891C40988E0031734D /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42485881C40988E0031734D /* ArticleView.xib */; };
 		D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */; };
@@ -31,7 +33,7 @@
 		D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */; };
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
-		D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34871B57DC9800D84D0B /* SettingsAboutViewController.swift */; };
+		D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34871B57DC9800D84D0B /* AboutViewController.swift */; };
 		D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */; };
 		D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FE5341B508F47000F2D59 /* EventsViewController.swift */; };
 		D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */; };
@@ -60,6 +62,7 @@
 		D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */; };
 		D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */; };
 		D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */; };
+		D4EA6B811C473EF400D12294 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4EA6B801C473EF400D12294 /* Settings.bundle */; };
 		D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63401C442F3A00C34774 /* NavigationBar.swift */; };
 		D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63421C443FDF00C34774 /* ArticleViewController.swift */; };
 		D4EB63451C447E4E00C34774 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EB63441C447E4E00C34774 /* EventView.xib */; };
@@ -71,9 +74,7 @@
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* EventViewController.swift */; };
 		DD5B585418D239F900EEB474 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* Event.swift */; };
-		DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */; };
 		DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */; };
-		DD5CAF81190A325D0051F637 /* SettingsLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF80190A325D0051F637 /* SettingsLegalViewController.swift */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
@@ -134,6 +135,8 @@
 		D409244C1C3CD93E00A81EBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
 		D40C697B1B7D363B005E3719 /* QuotaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotaData.swift; path = Model/QuotaData.swift; sourceTree = "<group>"; };
+		D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = Views/SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		D40F95431C477A75003232A0 /* DirectoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryTableViewCell.swift; path = Views/DirectoryTableViewCell.swift; sourceTree = "<group>"; };
 		D41A79201B5B38190049C683 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsTableViewCell.xib; path = Views/NewsTableViewCell.xib; sourceTree = "<group>"; };
 		D42485881C40988E0031734D /* ArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleView.xib; path = Views/ArticleView.xib; sourceTree = "<group>"; };
 		D4280C151B2E0E770090F8C6 /* UTCS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UTCS-Bridging-Header.h"; path = "Classes/UTCS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -151,7 +154,7 @@
 		D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsDataSource.swift; path = Model/EventsDataSource.swift; sourceTree = "<group>"; };
 		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
 		D43E864B1B37142700F6EA70 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		D44F34871B57DC9800D84D0B /* SettingsAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsAboutViewController.swift; path = ViewControllers/SettingsAboutViewController.swift; sourceTree = "<group>"; };
+		D44F34871B57DC9800D84D0B /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ViewControllers/AboutViewController.swift; sourceTree = "<group>"; };
 		D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLicenseViewController.swift; path = ViewControllers/SettingsLicenseViewController.swift; sourceTree = "<group>"; };
 		D45FE5341B508F47000F2D59 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsViewController.swift; path = ViewControllers/EventsViewController.swift; sourceTree = "<group>"; };
 		D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceErrorView.swift; path = Views/ServiceErrorView.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 		D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSourceParser.swift; path = Model/DirectoryDataSourceParser.swift; sourceTree = "<group>"; };
 		D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSource.swift; path = Model/DirectoryDataSource.swift; sourceTree = "<group>"; };
 		D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		D4EA6B801C473EF400D12294 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D4EB63401C442F3A00C34774 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		D4EB63421C443FDF00C34774 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleViewController.swift; path = ViewControllers/ArticleViewController.swift; sourceTree = "<group>"; };
 		D4EB63441C447E4E00C34774 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventView.xib; path = Views/EventView.xib; sourceTree = "<group>"; };
@@ -192,11 +196,8 @@
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
 		DD44659818E8254C00ED1153 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = ViewControllers/EventViewController.swift; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
-		DD5CAF76190A087E0051F637 /* UTCSSettingsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSettingsDataSource.h; path = Model/UTCSSettingsDataSource.h; sourceTree = "<group>"; };
-		DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSettingsDataSource.m; path = Model/UTCSSettingsDataSource.m; sourceTree = "<group>"; };
 		DD5CAF79190A2B7C0051F637 /* UTCSSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSwitchTableViewCell.h; path = Views/UTCSSwitchTableViewCell.h; sourceTree = "<group>"; };
 		DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSwitchTableViewCell.m; path = Views/UTCSSwitchTableViewCell.m; sourceTree = "<group>"; };
-		DD5CAF80190A325D0051F637 /* SettingsLegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLegalViewController.swift; path = ViewControllers/SettingsLegalViewController.swift; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
 		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
@@ -326,6 +327,7 @@
 		0B9A263D1891D5E30032DA03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D4EA6B801C473EF400D12294 /* Settings.bundle */,
 				D4280C151B2E0E770090F8C6 /* UTCS-Bridging-Header.h */,
 				0B9A263E1891D5E30032DA03 /* UTCS-Info.plist */,
 				0B9A263F1891D5E30032DA03 /* InfoPlist.strings */,
@@ -492,8 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				D4D5F5071B530B7A005974A7 /* SettingsViewController.swift */,
-				DD5CAF80190A325D0051F637 /* SettingsLegalViewController.swift */,
-				D44F34871B57DC9800D84D0B /* SettingsAboutViewController.swift */,
+				D44F34871B57DC9800D84D0B /* AboutViewController.swift */,
 				D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */,
 				DDC206FA190A04B0001DD1A5 /* Models */,
 				DDC206F9190A04AA001DD1A5 /* Views */,
@@ -519,6 +520,7 @@
 				D4678A4A1B34CD2A00CC82E4 /* DirectoryDetailViewController.swift */,
 				D4D5F5021B53076E005974A7 /* DirectoryViewController.swift */,
 				DD8761701900FD02005FEE4E /* Models */,
+				D40F95431C477A75003232A0 /* DirectoryTableViewCell.swift */,
 			);
 			name = Directory;
 			sourceTree = "<group>";
@@ -670,6 +672,7 @@
 				DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */,
 				DD9475D0190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.h */,
 				DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */,
+				D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -678,8 +681,6 @@
 			isa = PBXGroup;
 			children = (
 				D4A89CFA1B81AD7700B9D7A5 /* SettingsDataSource.swift */,
-				DD5CAF76190A087E0051F637 /* UTCSSettingsDataSource.h */,
-				DD5CAF77190A087E0051F637 /* UTCSSettingsDataSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -827,6 +828,7 @@
 				D46B22BC1B2F9F8600C90116 /* Launch Screen.storyboard in Resources */,
 				D4280C191B2E11130090F8C6 /* ActiveHeaderView.xib in Resources */,
 				DDC404721917D42400D17CBF /* Icons.xcassets in Resources */,
+				D4EA6B811C473EF400D12294 /* Settings.bundle in Resources */,
 				DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -917,6 +919,7 @@
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */,
+				D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */,
 				D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */,
 				DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */,
 				D4D5F5031B53076E005974A7 /* DirectoryViewController.swift in Sources */,
@@ -924,10 +927,10 @@
 				D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */,
 				D46C7C491B4DFD14009F1EA1 /* HeaderTableViewController.swift in Sources */,
 				D4D5F5081B530B7A005974A7 /* SettingsViewController.swift in Sources */,
+				D40F95421C47603C003232A0 /* SettingsTableViewCell.swift in Sources */,
 				DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */,
 				D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */,
 				D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */,
-				DD5CAF81190A325D0051F637 /* SettingsLegalViewController.swift in Sources */,
 				D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */,
 				D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */,
 				D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */,
@@ -948,7 +951,6 @@
 				D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */,
 				DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */,
 				D46439061B7C627D007BA5D0 /* EventsDataSourceParser.swift in Sources */,
-				DD5CAF78190A087E0051F637 /* UTCSSettingsDataSource.m in Sources */,
 				D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */,
 				D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */,
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,
@@ -967,7 +969,7 @@
 				D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */,
 				D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */,
-				D44F34881B57DC9800D84D0B /* SettingsAboutViewController.swift in Sources */,
+				D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
 				D43950291C45947E007AA192 /* LabsViewController.swift in Sources */,
 				D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */,

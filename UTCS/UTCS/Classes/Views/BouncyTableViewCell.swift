@@ -27,12 +27,12 @@ enum BouncyTableViewCellBounceDirection: Int {
 class BouncyTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        self.detailTextLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        self.detailTextLabel?.textColor  = UIColor(white:1.0, alpha:0.5)
-        self.selectionStyle = .None
-        self.backgroundColor = UIColor.clearColor()
-        self.textLabel?.textColor = UIColor.whiteColor()
+        textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        detailTextLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+        detailTextLabel?.textColor  = UIColor(white:1.0, alpha:0.5)
+        selectionStyle = .None
+        backgroundColor = UIColor.clearColor()
+        textLabel?.textColor = UIColor.whiteColor()
     }
 
     required init?(coder aDecoder: NSCoder) {

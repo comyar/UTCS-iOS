@@ -1,11 +1,16 @@
 import UIKit
 
 class NavigationController: UINavigationController {
-    let backgroundImageView = UIImageView()
-
+    private let backgroundImageView = UIImageView()
+    var backgroundImageName = "" {
+        didSet(oldValue) {
+            backgroundImageView.image = UIImage(named: backgroundImageName)
+        }
+    }
     override init(rootViewController: UIViewController) {
         super.init(navigationBarClass: NavigationBar.self, toolbarClass: nil)
         pushViewController(rootViewController, animated: false)
+        view.addSubview(backgroundImageView)
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -19,6 +24,8 @@ class NavigationController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backgroundImageView.frame = view.bounds
+        backgroundImageView.backgroundColor = UIColor.redColor()
+        view.sendSubviewToBack(backgroundImageView)
     }
 
 }

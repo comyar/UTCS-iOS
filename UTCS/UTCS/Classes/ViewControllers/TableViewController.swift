@@ -85,16 +85,13 @@ class TableViewController: UITableViewController {
         guard needsSectionHeaders else {
             return nil
         }
-        let label = UILabel(frame: CGRect(x: 8.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
+        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 8.0, height: 24.0))
         label.font = UIFont.systemFontOfSize(16.0)
-        label.text = textForHeaderInSection(section)
+        // Hack to get left margin
+        label.text = "     " + (tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section) ?? "")
         label.textColor = UIColor(white: 1.0, alpha: 1.0)
-        label.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        label.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
         return label
-    }
-
-    func textForHeaderInSection(section: Int) -> String {
-        return ""
     }
 
     //Required for viewForHeaderInSection to be called

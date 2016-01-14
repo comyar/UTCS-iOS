@@ -5,8 +5,7 @@ class SettingsViewController: TableViewController {
     let twitterWebURL = NSURL(string: "https://twitter.com/UTCompSci")!
 
     var settingsDataSource: SettingsDataSource!
-    var legalViewController: SettingsLegalViewController?
-    var aboutViewController: SettingsAboutViewController?
+    var aboutViewController: AboutViewController?
 
     convenience init() {
         self.init(style: .Grouped)
@@ -16,7 +15,9 @@ class SettingsViewController: TableViewController {
         super.init(style: style)
         settingsDataSource = SettingsDataSource()
         tableView.dataSource = settingsDataSource
-        backgroundImageName = "Settings"
+        title = "Settings"
+        tableView.registerClass(SettingsTableViewCell.self, forCellReuseIdentifier: "settings")
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -29,29 +30,22 @@ class SettingsViewController: TableViewController {
     }
 
     override func didReceiveMemoryWarning() {
-        legalViewController = nil
         aboutViewController = nil
     }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        switch indexPath.section {
-        case 1:
-            switch indexPath.row {
-            case 0:
-                if legalViewController == nil {
-                    legalViewController = SettingsLegalViewController()
-                }
-                navigationController?.pushViewController(legalViewController!, animated: true)
-            case 1:
-                if aboutViewController == nil {
-                    aboutViewController = SettingsAboutViewController()
-                }
-                navigationController?.pushViewController(aboutViewController!, animated: true)
-            default:
-                ()
+        guard let section = SettingsDataSource.Section(rawValue: indexPath.section) else {
+            return
+        }
+        switch section {
+        case .Info:
+            if aboutViewController == nil {
+                aboutViewController = AboutViewController()
             }
+            navigationController?.pushViewController(aboutViewController!, animated: true)
 
-        case 2:
+        case .Social:
             switch indexPath.row {
             case 0:
                 if UIApplication.sharedApplication().canOpenURL(facebookAppURL) {
@@ -73,6 +67,13 @@ class SettingsViewController: TableViewController {
         }
     }
 
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        guard let section = SettingsDataSource.Section(rawValue: indexPath.section) else {
+            return false
+        }
+        return section == .Info
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             switch indexPath.row {
