@@ -28,6 +28,9 @@
 		D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43377F91B4CBB1D00942581 /* TableViewController.swift */; };
 		D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */; };
 		D43950291C45947E007AA192 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
+		D439F0B21C991FB600536C99 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D439F0B11C991FB600536C99 /* SwitchTableViewCell.swift */; };
+		D439F0B41C99225000536C99 /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D439F0B31C99225000536C99 /* SegmentedControlTableViewCell.xib */; };
+		D439F0B61C9922D000536C99 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D439F0B51C9922D000536C99 /* SegmentedControlTableViewCell.swift */; };
 		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
 		D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */; };
 		D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */; };
@@ -64,19 +67,18 @@
 		D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */; };
 		D4E78C661C98E3F000E0FB8C /* SlideNavigationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E78C651C98E3F000E0FB8C /* SlideNavigationAnimator.swift */; };
 		D4E78C681C98E91500E0FB8C /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E78C671C98E91500E0FB8C /* NavigationControllerDelegate.swift */; };
+		D4E78C6A1C98F71900E0FB8C /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E78C691C98F71900E0FB8C /* NewsTableViewCell.swift */; };
 		D4EA6B811C473EF400D12294 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4EA6B801C473EF400D12294 /* Settings.bundle */; };
 		D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63401C442F3A00C34774 /* NavigationBar.swift */; };
 		D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63421C443FDF00C34774 /* ArticleViewController.swift */; };
 		D4EB63451C447E4E00C34774 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EB63441C447E4E00C34774 /* EventView.xib */; };
 		D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */; };
 		D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */; };
-		D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */; };
 		D68437038A8333327A802B81 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */; };
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */ = {isa = PBXBuildFile; fileRef = DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */; };
 		DD44659918E8254C00ED1153 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* EventViewController.swift */; };
 		DD5B585418D239F900EEB474 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* Event.swift */; };
-		DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */; };
 		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
@@ -87,7 +89,6 @@
 		DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475C9190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m */; };
 		DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */; };
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
-		DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
 		DD95E74A191F4EE00062F4E9 /* NSAttributedString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = DD95E749191F4EE00062F4E9 /* NSAttributedString+Trim.m */; };
 		DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */; };
@@ -143,12 +144,15 @@
 		D42485881C40988E0031734D /* ArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleView.xib; path = Views/ArticleView.xib; sourceTree = "<group>"; };
 		D4280C151B2E0E770090F8C6 /* UTCS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UTCS-Bridging-Header.h"; path = "Classes/UTCS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4280C161B2E0E780090F8C6 /* ActiveHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveHeaderView.swift; path = Views/ActiveHeaderView.swift; sourceTree = "<group>"; };
-		D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHeaderView.xib; sourceTree = "<group>"; };
+		D4280C181B2E11130090F8C6 /* ActiveHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActiveHeaderView.xib; path = Views/ActiveHeaderView.xib; sourceTree = "<group>"; };
 		D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C1D1B2E29530090F8C6 /* BouncyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BouncyTableViewCell.swift; path = Views/BouncyTableViewCell.swift; sourceTree = "<group>"; };
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
 		D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+UTCSColors.swift"; path = "Categories/UIColor+UTCSColors.swift"; sourceTree = "<group>"; };
+		D439F0B11C991FB600536C99 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = Views/SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		D439F0B31C99225000536C99 /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SegmentedControlTableViewCell.xib; path = Views/SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
+		D439F0B51C9922D000536C99 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
 		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -189,19 +193,17 @@
 		D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		D4E78C651C98E3F000E0FB8C /* SlideNavigationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideNavigationAnimator.swift; sourceTree = "<group>"; };
 		D4E78C671C98E91500E0FB8C /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		D4E78C691C98F71900E0FB8C /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsTableViewCell.swift; path = Views/NewsTableViewCell.swift; sourceTree = "<group>"; };
 		D4EA6B801C473EF400D12294 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D4EB63401C442F3A00C34774 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		D4EB63421C443FDF00C34774 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleViewController.swift; path = ViewControllers/ArticleViewController.swift; sourceTree = "<group>"; };
 		D4EB63441C447E4E00C34774 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventView.xib; path = Views/EventView.xib; sourceTree = "<group>"; };
 		D4F2B9C61B5AFB6400D28C1D /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDataSource.swift; path = Model/NewsDataSource.swift; sourceTree = "<group>"; };
-		D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD44659118E7EA6C00ED1153 /* UIImage+CZTinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZTinting.h"; path = "Categories/UIImage+CZTinting.h"; sourceTree = "<group>"; };
 		DD44659218E7EA6C00ED1153 /* UIImage+CZTinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZTinting.m"; path = "Categories/UIImage+CZTinting.m"; sourceTree = "<group>"; };
 		DD44659818E8254C00ED1153 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = ViewControllers/EventViewController.swift; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
-		DD5CAF79190A2B7C0051F637 /* UTCSSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSwitchTableViewCell.h; path = Views/UTCSSwitchTableViewCell.h; sourceTree = "<group>"; };
-		DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSwitchTableViewCell.m; path = Views/UTCSSwitchTableViewCell.m; sourceTree = "<group>"; };
 		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
 		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
 		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
@@ -218,8 +220,6 @@
 		DD9475CB190B3B250049FB8B /* UTCSLabMachineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineView.h; path = Views/UTCSLabMachineView.h; sourceTree = "<group>"; };
 		DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineView.m; path = Views/UTCSLabMachineView.m; sourceTree = "<group>"; };
 		DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BasementLabLayout.plist; path = UTCS/BasementLabLayout.plist; sourceTree = SOURCE_ROOT; };
-		DD9475D0190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSSegmentedControlTableViewCell.h; path = Views/UTCSSegmentedControlTableViewCell.h; sourceTree = "<group>"; };
-		DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSSegmentedControlTableViewCell.m; path = Views/UTCSSegmentedControlTableViewCell.m; sourceTree = "<group>"; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		DD95E748191F4EE00062F4E9 /* NSAttributedString+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Trim.h"; path = "Categories/NSAttributedString+Trim.h"; sourceTree = "<group>"; };
 		DD95E749191F4EE00062F4E9 /* NSAttributedString+Trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Trim.m"; path = "Categories/NSAttributedString+Trim.m"; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				D41A79201B5B38190049C683 /* NewsTableViewCell.xib */,
-				D4F2B9CA1B5B024300D28C1D /* NewsTableViewCell.swift */,
+				D4E78C691C98F71900E0FB8C /* NewsTableViewCell.swift */,
 				D46C7C4A1B4F454F009F1EA1 /* NewsViewController.swift */,
 				D482C1AA1B3CDE8E00645C23 /* NewsArticleViewController.swift */,
 				DD87615F18FDFE4A005FEE4E /* Models */,
@@ -674,10 +674,9 @@
 		DDC206F9190A04AA001DD1A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DD5CAF79190A2B7C0051F637 /* UTCSSwitchTableViewCell.h */,
-				DD5CAF7A190A2B7C0051F637 /* UTCSSwitchTableViewCell.m */,
-				DD9475D0190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.h */,
-				DD9475D1190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m */,
+				D439F0B51C9922D000536C99 /* SegmentedControlTableViewCell.swift */,
+				D439F0B31C99225000536C99 /* SegmentedControlTableViewCell.xib */,
+				D439F0B11C991FB600536C99 /* SwitchTableViewCell.swift */,
 				D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */,
 			);
 			name = Views;
@@ -826,6 +825,7 @@
 				DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
+				D439F0B41C99225000536C99 /* SegmentedControlTableViewCell.xib in Resources */,
 				D4EB63451C447E4E00C34774 /* EventView.xib in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */,
@@ -917,10 +917,10 @@
 				D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */,
 				DD44659918E8254C00ED1153 /* EventViewController.swift in Sources */,
 				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
-				D4F2B9CB1B5B024300D28C1D /* NewsTableViewCell.swift in Sources */,
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
 				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
+				D439F0B61C9922D000536C99 /* SegmentedControlTableViewCell.swift in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
@@ -929,6 +929,7 @@
 				D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */,
 				DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */,
 				D4D5F5031B53076E005974A7 /* DirectoryViewController.swift in Sources */,
+				D4E78C6A1C98F71900E0FB8C /* NewsTableViewCell.swift in Sources */,
 				D46439041B7C5CEA007BA5D0 /* DataSourceParser.swift in Sources */,
 				D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */,
 				D46C7C491B4DFD14009F1EA1 /* HeaderTableViewController.swift in Sources */,
@@ -940,7 +941,6 @@
 				D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */,
 				D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */,
 				D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */,
-				DD9475D2190C73CB0049FB8B /* UTCSSegmentedControlTableViewCell.m in Sources */,
 				DD5B585418D239F900EEB474 /* Event.swift in Sources */,
 				D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */,
 				D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */,
@@ -950,7 +950,6 @@
 				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
 				DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
-				DD5CAF7B190A2B7C0051F637 /* UTCSSwitchTableViewCell.m in Sources */,
 				D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */,
 				D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */,
 				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
@@ -966,6 +965,7 @@
 				D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */,
 				D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
+				D439F0B21C991FB600536C99 /* SwitchTableViewCell.swift in Sources */,
 				D4E78C661C98E3F000E0FB8C /* SlideNavigationAnimator.swift in Sources */,
 				DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,

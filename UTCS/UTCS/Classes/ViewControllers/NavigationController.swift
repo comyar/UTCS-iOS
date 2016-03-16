@@ -27,7 +27,6 @@ class NavigationController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backgroundImageView.frame = view.bounds
-        backgroundImageView.backgroundColor = UIColor.redColor()
         view.sendSubviewToBack(backgroundImageView)
     }
 

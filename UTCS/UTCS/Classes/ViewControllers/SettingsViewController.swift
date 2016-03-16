@@ -17,7 +17,8 @@ class SettingsViewController: TableViewController {
         tableView.dataSource = settingsDataSource
         title = "Settings"
         tableView.registerClass(SettingsTableViewCell.self, forCellReuseIdentifier: "settings")
-
+        tableView.registerNib(UINib(nibName: "SegmentedControlTableViewCell", bundle: nil), forCellReuseIdentifier: "segmented")
+        tableView.registerClass(SwitchTableViewCell.self, forCellReuseIdentifier: "switch")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -71,7 +72,7 @@ class SettingsViewController: TableViewController {
         guard let section = SettingsDataSource.Section(rawValue: indexPath.section) else {
             return false
         }
-        return section == .Info
+        return section == .Info || section == .Social
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -70,14 +70,26 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
             return cell
         case .Settings:
             if indexPath.row == 0 {
-                let cell = UTCSSwitchTableViewCell()
+                guard let cell =
+                    tableView.dequeueReusableCellWithIdentifier("switch", forIndexPath: indexPath)
+                        as? SwitchTableViewCell else {
+                            return UITableViewCell()
+                }
                 cell.textLabel?.text = "Event Notifications"
                 cell.detailTextLabel?.text = "Get notifications an hour before the start of starred events"
                 return cell
             } else {
-                let cell = UTCSSegmentedControlTableViewCell()
+                guard let cell =
+                    tableView.dequeueReusableCellWithIdentifier("segmented", forIndexPath: indexPath)
+                        as? SegmentedControlTableViewCell else {
+                        return UITableViewCell()
+                }
+
                 cell.textLabel?.text = "Preferred Lab"
-                cell.segmentedControl = UISegmentedControl(items: ["Third Floor", "Basement"])
+                cell.segmentedControl.removeAllSegments()
+                cell.segmentedControl.insertSegmentWithTitle("Third Floor", atIndex: 0, animated: false)
+                cell.segmentedControl.insertSegmentWithTitle("Basement", atIndex: 1, animated: false)
+
                 return cell
             }
         }
