@@ -1,6 +1,6 @@
 ![](/Meta/readme_header.png)
 
-[![Build Status](https://travis-ci.com/utcsmad/UTCS-iOS.svg?token=1o9Avy4mGixFuRg9knBP&branch=master)](https://magnum.travis-ci.com/utcsmad/UTCS-iOS)
+[![Build Status](https://travis-ci.com/txcsmad/UTCS-iOS.svg?token=1o9Avy4mGixFuRg9knBP&branch=master)](https://magnum.travis-ci.com/utcsmad/UTCS-iOS)
 
 # Introduction
 

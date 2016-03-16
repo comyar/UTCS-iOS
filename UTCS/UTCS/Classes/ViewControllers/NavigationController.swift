@@ -2,6 +2,7 @@ import UIKit
 
 class NavigationController: UINavigationController {
     private let backgroundImageView = UIImageView()
+    private let navigationDelegate = NavigationControllerDelegate()
     var backgroundImageName = "" {
         didSet(oldValue) {
             backgroundImageView.image = UIImage(named: backgroundImageName)
@@ -11,6 +12,8 @@ class NavigationController: UINavigationController {
         super.init(navigationBarClass: NavigationBar.self, toolbarClass: nil)
         pushViewController(rootViewController, animated: false)
         view.addSubview(backgroundImageView)
+        delegate = navigationDelegate
+        navigationDelegate.navigationController = self
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {

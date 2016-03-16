@@ -62,6 +62,8 @@
 		D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */; };
 		D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */; };
 		D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */; };
+		D4E78C661C98E3F000E0FB8C /* SlideNavigationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E78C651C98E3F000E0FB8C /* SlideNavigationAnimator.swift */; };
+		D4E78C681C98E91500E0FB8C /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E78C671C98E91500E0FB8C /* NavigationControllerDelegate.swift */; };
 		D4EA6B811C473EF400D12294 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4EA6B801C473EF400D12294 /* Settings.bundle */; };
 		D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63401C442F3A00C34774 /* NavigationBar.swift */; };
 		D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB63421C443FDF00C34774 /* ArticleViewController.swift */; };
@@ -185,6 +187,8 @@
 		D4D8C1F31B5F28CC006E03CD /* DirectoryDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSourceParser.swift; path = Model/DirectoryDataSourceParser.swift; sourceTree = "<group>"; };
 		D4D8C1F51B5F2BD4006E03CD /* DirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryDataSource.swift; path = Model/DirectoryDataSource.swift; sourceTree = "<group>"; };
 		D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		D4E78C651C98E3F000E0FB8C /* SlideNavigationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideNavigationAnimator.swift; sourceTree = "<group>"; };
+		D4E78C671C98E91500E0FB8C /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		D4EA6B801C473EF400D12294 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D4EB63401C442F3A00C34774 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		D4EB63421C443FDF00C34774 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleViewController.swift; path = ViewControllers/ArticleViewController.swift; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 				D43E864B1B37142700F6EA70 /* NavigationController.swift */,
 				D4E77F511C405DC7007E2A42 /* MenuTableViewCell.swift */,
 				D4EB63401C442F3A00C34774 /* NavigationBar.swift */,
+				D4E78C651C98E3F000E0FB8C /* SlideNavigationAnimator.swift */,
+				D4E78C671C98E91500E0FB8C /* NavigationControllerDelegate.swift */,
 			);
 			name = Navigation;
 			path = ViewControllers;
@@ -956,9 +962,11 @@
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,
 				D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */,
 				D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */,
+				D4E78C681C98E91500E0FB8C /* NavigationControllerDelegate.swift in Sources */,
 				D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */,
 				D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
+				D4E78C661C98E3F000E0FB8C /* SlideNavigationAnimator.swift in Sources */,
 				DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
