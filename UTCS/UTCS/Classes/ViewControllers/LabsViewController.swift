@@ -76,7 +76,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
             imageView.tintColor = UIColor.whiteColor()
             imageView.frame = button.bounds
             button.addSubview(imageView)
-            button.addTarget(self, action: "didTouchUpInsideButton:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(didTouchUpInsideButton(_:)), forControlEvents: .TouchUpInside)
             return button
         }()
     }

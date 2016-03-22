@@ -29,7 +29,7 @@ class ArticleViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
 
         automaticallyAdjustsScrollViewInsets = true
-        let button = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "share:")
+        let button = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(share(_:)))
         navigationItem.rightBarButtonItem = button
 
         contentTextView.scrollEnabled = false

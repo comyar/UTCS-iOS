@@ -3,10 +3,10 @@ import pop
 extension UIButton {
     class func bouncyButton() -> UIButton {
         let button = UIButton(type: .Custom)
-        button.addTarget(button, action: "bounceDown", forControlEvents: .TouchDown)
+        button.addTarget(button, action: #selector(UIView.bounceDown), forControlEvents: .TouchDown)
         let resetTriggers = [UIControlEvents.TouchCancel, .TouchDragExit, .TouchDragOutside, .TouchUpInside, .TouchUpOutside]
         for trigger in resetTriggers {
-            button.addTarget(button, action: "reset", forControlEvents: trigger)
+            button.addTarget(button, action: #selector(UIView.reset), forControlEvents: trigger)
         }
         return button
     }
@@ -21,7 +21,7 @@ extension UIBarButtonItem {
         let button = UIButton.bouncyButton()
         button.tag = NSIntegerMax
         button.frame = CGRect(x: 0.0, y: 0.0, width: 44.0, height: 44.0)
-        button.addTarget(button, action: "menuNotification", forControlEvents: .TouchUpInside)
+        button.addTarget(button, action: #selector(UIButton.menuNotification), forControlEvents: .TouchUpInside)
         let image = UIImage(named: "menu")
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 0.0, y: 0.0, width: image!.size.width, height: image!.size.height)
