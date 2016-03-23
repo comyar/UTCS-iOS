@@ -60,9 +60,9 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
             self.contentViewController = contentViewController
         }
         super.init(nibName: nil, bundle: nil)
-        tapRecognizer = UITapGestureRecognizer(target: self, action: "didRecognizeTap:")
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didRecognizeTap(_:)))
         tapRecognizer.delegate = self
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveMenuDisplayNotification", name:"menuDisplay", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didReceiveMenuDisplayNotification), name:"menuDisplay", object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

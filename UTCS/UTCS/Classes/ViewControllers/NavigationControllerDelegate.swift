@@ -12,7 +12,7 @@
 
     override init(){
         super.init()
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "didRecognizePanGesture:")
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didRecognizePanGesture(_:)))
     }
     public func didRecognizePanGesture(recognizer: UIPanGestureRecognizer) {
         if recognizer != panGestureRecognizer {

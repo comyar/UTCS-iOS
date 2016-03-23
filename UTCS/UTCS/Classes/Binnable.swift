@@ -16,10 +16,10 @@ extension Array where Element: Binnable {
         var newSection = [Element]()
         newSection.append(comparison)
         newSections.append(newSection)
-        for var i = 1; i < count; i++ {
+        for i in 1 ..< count {
             let current = self[i]
             if current.shouldBeSeparated(comparison) {
-                currentSection++
+                currentSection += 1
                 var newSection = [Element]()
                 newSection.append(current)
                 newSections.append(newSection)

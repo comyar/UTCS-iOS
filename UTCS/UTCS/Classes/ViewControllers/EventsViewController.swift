@@ -89,7 +89,7 @@ final class EventsViewController: HeaderTableViewController {
                 let segmentNames = segments.map{$0.rawValue}
                 let segmentedControl = UISegmentedControl(items: segmentNames)
                 segmentedControl.backgroundColor = UIColor(white: 0.0, alpha: 0.725)
-                segmentedControl.addTarget(self, action: "didChangeValueForControl:", forControlEvents: .ValueChanged)
+                segmentedControl.addTarget(self, action: #selector(didChangeValueForControl(_:)), forControlEvents: .ValueChanged)
                 segmentedControl.frame = CGRect(x: 8.0, y: 8.0, width: view.frame.width - 16.0, height: 32.0)
                 segmentedControl.tintColor = UIColor.whiteColor()
                 segmentedControl.selectedSegmentIndex = 0
