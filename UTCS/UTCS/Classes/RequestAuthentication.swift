@@ -1,5 +1,4 @@
 import Foundation
-import CommonCrypto
 
 func generateHMAC(key: String, data: String) -> String {
 
