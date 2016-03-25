@@ -78,7 +78,6 @@
 		DD44656018E4A04E00ED1153 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD44655F18E4A04E00ED1153 /* CoreText.framework */; };
 		DD44659918E8254C00ED1153 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* EventViewController.swift */; };
 		DD5B585418D239F900EEB474 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* Event.swift */; };
-		DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */; };
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
 		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
 		DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* ServiceMetadata.swift */; };
@@ -201,8 +200,6 @@
 		DD44655F18E4A04E00ED1153 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DD44659818E8254C00ED1153 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = ViewControllers/EventViewController.swift; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
-		DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CZScaling.h"; path = "Categories/UIImage+CZScaling.h"; sourceTree = "<group>"; };
-		DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CZScaling.m"; path = "Categories/UIImage+CZScaling.m"; sourceTree = "<group>"; };
 		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
 		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachine.h; path = Model/UTCSLabMachine.h; sourceTree = "<group>"; };
 		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachine.m; path = Model/UTCSLabMachine.m; sourceTree = "<group>"; };
@@ -382,15 +379,6 @@
 			);
 			name = Navigation;
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */ = {
-			isa = PBXGroup;
-			children = (
-				DD724E0F18DF8AAA00AAE4F0 /* UIImage+CZScaling.h */,
-				DD724E1018DF8AAA00AAE4F0 /* UIImage+CZScaling.m */,
-			);
-			name = "UIImage+CZScaling";
 			sourceTree = "<group>";
 		};
 		DD87615E18FDFE45005FEE4E /* News */ = {
@@ -643,7 +631,6 @@
 				D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */,
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
-				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
 				DDA94B7D18C1FD8700DDF949 /* UIView+CZPositioning */,
 			);
 			name = Categories;
@@ -939,7 +926,6 @@
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
 				D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */,
 				D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */,
-				DD724E1118DF8AAA00AAE4F0 /* UIImage+CZScaling.m in Sources */,
 				D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */,
 				DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */,
 				D46439061B7C627D007BA5D0 /* EventsDataSourceParser.swift in Sources */,
