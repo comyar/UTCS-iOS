@@ -103,7 +103,6 @@
 		DDA758901904D313007CD0DB /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDA7588F1904D313007CD0DB /* App.xcassets */; };
 		DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA758941904D7C4007CD0DB /* ServiceCache.swift */; };
 		DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */; };
-		DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */; };
 		DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */; };
 		DDC404721917D42400D17CBF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC404711917D42400D17CBF /* Icons.xcassets */; };
 		DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDC4047C1918875200D17CBF /* AFNetworking-license.txt */; };
@@ -234,8 +233,6 @@
 		DDA758B71905FDD0007CD0DB /* UTCSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSStateManager.m; path = Model/UTCSStateManager.m; sourceTree = "<group>"; };
 		DDA758E21906661D007CD0DB /* UTCSLabMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineViewController.h; path = ViewControllers/UTCSLabMachineViewController.h; sourceTree = "<group>"; };
 		DDA758E31906661D007CD0DB /* UTCSLabMachineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineViewController.m; path = ViewControllers/UTCSLabMachineViewController.m; sourceTree = "<group>"; };
-		DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CZPositioning.h"; path = "Categories/UIView+CZPositioning.h"; sourceTree = "<group>"; };
-		DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CZPositioning.m"; path = "Categories/UIView+CZPositioning.m"; sourceTree = "<group>"; };
 		DDC4046B1917CC8C00D17CBF /* Event Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Event Headers.xcassets"; path = "Resources/Event Headers.xcassets"; sourceTree = "<group>"; };
 		DDC404711917D42400D17CBF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDC4047C1918875200D17CBF /* AFNetworking-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AFNetworking-license.txt"; path = "Resources/Licenses/AFNetworking-license.txt"; sourceTree = "<group>"; };
@@ -631,18 +628,8 @@
 				D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */,
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
-				DDA94B7D18C1FD8700DDF949 /* UIView+CZPositioning */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		DDA94B7D18C1FD8700DDF949 /* UIView+CZPositioning */ = {
-			isa = PBXGroup;
-			children = (
-				DDA94B7E18C1FD9F00DDF949 /* UIView+CZPositioning.h */,
-				DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */,
-			);
-			name = "UIView+CZPositioning";
 			sourceTree = "<group>";
 		};
 		DDC206F9190A04AA001DD1A5 /* Views */ = {
@@ -897,7 +884,6 @@
 				D439F0B61C9922D000536C99 /* SegmentedControlTableViewCell.swift in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
-				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
 				D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */,
 				D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */,
 				D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */,

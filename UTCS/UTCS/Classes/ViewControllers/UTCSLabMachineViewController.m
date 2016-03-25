@@ -7,7 +7,6 @@
 //
 
 #import "UTCSLabMachineViewController.h"
-#import "UIView+CZPositioning.h"
 #import "UTCSLabMachine.h"
 
 
@@ -46,7 +45,7 @@
 
         
         self.labView = [[UTCSLabView alloc]initWithFrame:CGRectZero layout:self.layout];
-        self.labView.frame = CGRectMake(0.0, 44.0, self.view.width, self.view.height - 44.0);
+        self.labView.frame = CGRectMake(0.0, 44.0, self.view.bounds.size.width, self.view.bounds.size.height - 44.0);
         self.labView.backgroundColor = [UIColor clearColor];
         self.labView.alpha = 0.0;
         self.labView.dataSource = self;
@@ -71,7 +70,7 @@
             view;
         });
         
-        self.serviceErrorView.frame     = CGRectMake(0.0, 0.0, self.view.width, 0.5 * self.view.height);
+        self.serviceErrorView.frame     = CGRectMake(0.0, 0.0, self.view.bounds.size.width, 0.5 * self.view.bounds.size.height);
         self.serviceErrorView.center    = CGPointMake(self.view.center.x, 0.9 * self.view.center.y);
         
         [self.view addSubview:self.serviceErrorView];
