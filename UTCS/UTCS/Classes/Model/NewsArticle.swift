@@ -119,7 +119,7 @@ final class NewsArticle: NSObject, NSCoding {
         } catch {
             print("Regex failed")
         }
-        return newAttributedContent.attributedStringByTrimming(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return newAttributedContent.attributedStringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 
     private func fontForName(fontName: String) -> UIFont {

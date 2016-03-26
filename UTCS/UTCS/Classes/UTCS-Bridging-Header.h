@@ -4,8 +4,6 @@
 
 #import "UTCSStateManager.h"
 
-#import "NSAttributedString+Trim.h"
-
 #import "UTCSLabMachine.h"
 #import "UTCSLabMachineView.h"
 #import "UTCSLabMachineViewController.h"
