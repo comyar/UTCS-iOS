@@ -23,12 +23,8 @@ class SettingsViewController: TableViewController {
     var settingsDataSource: SettingsDataSource!
     var aboutViewController: AboutViewController?
 
-    convenience init() {
-        self.init(style: .Grouped)
-    }
-
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
+    init() {
+        super.init(style: .Grouped)
         settingsDataSource = SettingsDataSource()
         tableView.dataSource = settingsDataSource
         title = "Settings"
@@ -37,8 +33,8 @@ class SettingsViewController: TableViewController {
         tableView.registerClass(SwitchTableViewCell.self, forCellReuseIdentifier: "switch")
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    convenience required init?(coder aDecoder: NSCoder) {
+        self.init()
     }
 
     override func viewDidLoad() {
