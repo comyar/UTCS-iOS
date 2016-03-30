@@ -1,8 +1,24 @@
+
+import UIKit
+
+enum SocialLink: String {
+    
+    case FacebookApp = "fb://page/272565539464226"
+    case FacebookWeb = "https://fb.me/UTCompSci"
+    case TwitterApp = "twitter://user?screen_name=utcompsci"
+    case TwitterWeb = "https://twitter.com/UTCompSci"
+    
+}
+
+extension NSURL {
+    
+    convenience init(_ link: SocialLink) {
+        self.init(string: link.rawValue)!
+    }
+    
+}
+
 class SettingsViewController: TableViewController {
-    let facebookAppURL = NSURL(string: "fb://page/272565539464226")!
-    let facebookWebURL = NSURL(string: "https://fb.me/UTCompSci")!
-    let twitterAppURL = NSURL(string: "twitter://user?screen_name=utcompsci")!
-    let twitterWebURL = NSURL(string: "https://twitter.com/UTCompSci")!
 
     var settingsDataSource: SettingsDataSource!
     var aboutViewController: AboutViewController?
@@ -49,16 +65,16 @@ class SettingsViewController: TableViewController {
         case .Social:
             switch indexPath.row {
             case 0:
-                if UIApplication.sharedApplication().canOpenURL(facebookAppURL) {
-                    UIApplication.sharedApplication().openURL(facebookAppURL)
+                if UIApplication.sharedApplication().canOpenURL(NSURL(.FacebookApp)) {
+                    UIApplication.sharedApplication().openURL(NSURL(.FacebookApp))
                 } else {
-                    UIApplication.sharedApplication().openURL(facebookWebURL)
+                    UIApplication.sharedApplication().openURL(NSURL(.FacebookWeb))
                 }
             case 1:
-                if UIApplication.sharedApplication().canOpenURL(twitterAppURL) {
-                    UIApplication.sharedApplication().openURL(twitterAppURL)
+                if UIApplication.sharedApplication().canOpenURL(NSURL(.TwitterApp)) {
+                    UIApplication.sharedApplication().openURL(NSURL(.TwitterApp))
                 } else {
-                    UIApplication.sharedApplication().openURL(twitterWebURL)
+                    UIApplication.sharedApplication().openURL(NSURL(.TwitterWeb))
                 }
             default:
                 ()
