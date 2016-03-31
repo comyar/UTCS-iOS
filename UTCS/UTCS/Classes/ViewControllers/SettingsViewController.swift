@@ -8,11 +8,12 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var preferredLabSegmentedControl: UISegmentedControl!
     
     @IBAction func receiveEventNotifications(sender: UISwitch) {
-        UTCSStateManager.sharedManager().eventNotifications = sender.on
+        Preferences.starredEventNotificationsEnabled = sender.on
     }
     
     @IBAction func setPreferredLab(sender: UISegmentedControl) {
-        UTCSStateManager.sharedManager().preferredLab = sender.selectedSegmentIndex
+        guard let lab = ComputerLab(rawValue: sender.selectedSegmentIndex) else { return }
+        Preferences.preferredLab = lab
     }
     
     override func viewDidLoad() {
@@ -24,8 +25,8 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        eventNotificationsSwitch.on = UTCSStateManager.sharedManager().eventNotifications
-        preferredLabSegmentedControl.selectedSegmentIndex = UTCSStateManager.sharedManager().preferredLab
+        eventNotificationsSwitch.on = Preferences.starredEventNotificationsEnabled
+        preferredLabSegmentedControl.selectedSegmentIndex = Preferences.preferredLab.rawValue
     }
     
     // MARK: - UITableViewDelegate
