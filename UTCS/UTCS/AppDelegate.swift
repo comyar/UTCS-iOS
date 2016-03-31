@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 case .DiskQuota:
                     return NavigationController(rootViewController: DiskQuotaViewController(nibName: "DiskQuotaView", bundle: NSBundle.mainBundle() ))
                 case .Settings:
-                    let controller = NavigationController(rootViewController: SettingsViewController())
+                    let controller = NavigationController(rootViewController: UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!)
                     controller.backgroundImageName = "Settings"
                     return controller
                 }

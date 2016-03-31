@@ -11,12 +11,15 @@
 		0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A26381891D5E30032DA03 /* CoreGraphics.framework */; };
 		0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
+		883B80EE1CACB2F400810C52 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883B80ED1CACB2F400810C52 /* Settings.storyboard */; };
+		883B80F01CACC2FB00810C52 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80EF1CACC2FB00810C52 /* Social.swift */; };
+		883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */; };
+		883B80F41CACC98000810C52 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80F31CACC98000810C52 /* UIApplication+Version.swift */; };
 		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
 		D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */; };
 		D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409244C1C3CD93E00A81EBA /* Constants.swift */; };
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
 		D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C697B1B7D363B005E3719 /* QuotaData.swift */; };
-		D40F95421C47603C003232A0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */; };
 		D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F95431C477A75003232A0 /* DirectoryTableViewCell.swift */; };
 		D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41A79201B5B38190049C683 /* NewsTableViewCell.xib */; };
 		D42485891C40988E0031734D /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42485881C40988E0031734D /* ArticleView.xib */; };
@@ -28,16 +31,12 @@
 		D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43377F91B4CBB1D00942581 /* TableViewController.swift */; };
 		D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */; };
 		D43950291C45947E007AA192 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
-		D439F0B21C991FB600536C99 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D439F0B11C991FB600536C99 /* SwitchTableViewCell.swift */; };
-		D439F0B41C99225000536C99 /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D439F0B31C99225000536C99 /* SegmentedControlTableViewCell.xib */; };
-		D439F0B61C9922D000536C99 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D439F0B51C9922D000536C99 /* SegmentedControlTableViewCell.swift */; };
 		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
 		D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */; };
 		D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */; };
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
 		D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34871B57DC9800D84D0B /* AboutViewController.swift */; };
-		D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */; };
 		D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FE5341B508F47000F2D59 /* EventsViewController.swift */; };
 		D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */; };
 		D463C86E1B338E5E00E6A767 /* ServiceErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */; };
@@ -51,7 +50,6 @@
 		D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482C1AA1B3CDE8E00645C23 /* NewsArticleViewController.swift */; };
 		D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */; };
 		D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */; };
-		D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CFA1B81AD7700B9D7A5 /* SettingsDataSource.swift */; };
 		D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */; };
 		D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */; };
 		D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA71CD1B421819007C09F6 /* ContentViewController.swift */; };
@@ -132,13 +130,16 @@
 		0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
 		2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
+		883B80ED1CACB2F400810C52 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		883B80EF1CACC2FB00810C52 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Social.swift; path = Classes/Social.swift; sourceTree = "<group>"; };
+		883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticDimensionTableViewController.swift; sourceTree = "<group>"; };
+		883B80F31CACC98000810C52 /* UIApplication+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
 		D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAuthentication.swift; sourceTree = "<group>"; };
 		D409244C1C3CD93E00A81EBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
 		D40C697B1B7D363B005E3719 /* QuotaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotaData.swift; path = Model/QuotaData.swift; sourceTree = "<group>"; };
-		D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = Views/SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		D40F95431C477A75003232A0 /* DirectoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryTableViewCell.swift; path = Views/DirectoryTableViewCell.swift; sourceTree = "<group>"; };
 		D41A79201B5B38190049C683 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsTableViewCell.xib; path = Views/NewsTableViewCell.xib; sourceTree = "<group>"; };
 		D42485881C40988E0031734D /* ArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleView.xib; path = Views/ArticleView.xib; sourceTree = "<group>"; };
@@ -150,9 +151,6 @@
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
 		D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+UTCSColors.swift"; path = "Categories/UIColor+UTCSColors.swift"; sourceTree = "<group>"; };
-		D439F0B11C991FB600536C99 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = Views/SwitchTableViewCell.swift; sourceTree = "<group>"; };
-		D439F0B31C99225000536C99 /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SegmentedControlTableViewCell.xib; path = Views/SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
-		D439F0B51C9922D000536C99 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
 		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSourceParser.swift; path = Model/DiskQuotaDataSourceParser.swift; sourceTree = "<group>"; };
 		D43E864B1B37142700F6EA70 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		D44F34871B57DC9800D84D0B /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ViewControllers/AboutViewController.swift; sourceTree = "<group>"; };
-		D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLicenseViewController.swift; path = ViewControllers/SettingsLicenseViewController.swift; sourceTree = "<group>"; };
 		D45FE5341B508F47000F2D59 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsViewController.swift; path = ViewControllers/EventsViewController.swift; sourceTree = "<group>"; };
 		D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceErrorView.swift; path = Views/ServiceErrorView.swift; sourceTree = "<group>"; };
 		D463C86D1B338E5E00E6A767 /* ServiceErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceErrorView.xib; path = Views/ServiceErrorView.xib; sourceTree = "<group>"; };
@@ -177,7 +174,6 @@
 		D482C1AA1B3CDE8E00645C23 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticleViewController.swift; path = ViewControllers/NewsArticleViewController.swift; sourceTree = "<group>"; };
 		D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButton+UTCSButton.swift"; path = "UTCS/Classes/Model/UIBarButton+UTCSButton.swift"; sourceTree = SOURCE_ROOT; };
 		D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticle.swift; path = Model/NewsArticle.swift; sourceTree = "<group>"; };
-		D4A89CFA1B81AD7700B9D7A5 /* SettingsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsDataSource.swift; path = Model/SettingsDataSource.swift; sourceTree = "<group>"; };
 		D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceDataSource.swift; path = Model/ServiceDataSource.swift; sourceTree = "<group>"; };
 		D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D4BA71CD1B421819007C09F6 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentViewController.swift; path = ViewControllers/ContentViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +317,7 @@
 			children = (
 				D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */,
 				D409244C1C3CD93E00A81EBA /* Constants.swift */,
+				883B80EF1CACC2FB00810C52 /* Social.swift */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
 				DD5B583818D239F900EEB474 /* Classes */,
 				D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */,
@@ -344,6 +341,7 @@
 		D409244B1C3CD1B600A81EBA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */,
 				D46C7C481B4DFD14009F1EA1 /* HeaderTableViewController.swift */,
 				D43377F91B4CBB1D00942581 /* TableViewController.swift */,
 				D4BA71CD1B421819007C09F6 /* ContentViewController.swift */,
@@ -501,9 +499,7 @@
 			children = (
 				D4D5F5071B530B7A005974A7 /* SettingsViewController.swift */,
 				D44F34871B57DC9800D84D0B /* AboutViewController.swift */,
-				D44F34891B57DEAA00D84D0B /* SettingsLicenseViewController.swift */,
-				DDC206FA190A04B0001DD1A5 /* Models */,
-				DDC206F9190A04AA001DD1A5 /* Views */,
+				883B80ED1CACB2F400810C52 /* Settings.storyboard */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -654,6 +650,7 @@
 			children = (
 				D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */,
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
+				883B80F31CACC98000810C52 /* UIApplication+Version.swift */,
 				DD95E747191F4ECC0062F4E9 /* NSAttributedString+Trim */,
 				DD44659018E7EA5500ED1153 /* UIColor+CZTinting */,
 				DD724E0E18DF8A9000AAE4F0 /* UIImage+CZScaling */,
@@ -669,25 +666,6 @@
 				DDA94B7F18C1FD9F00DDF949 /* UIView+CZPositioning.m */,
 			);
 			name = "UIView+CZPositioning";
-			sourceTree = "<group>";
-		};
-		DDC206F9190A04AA001DD1A5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D439F0B51C9922D000536C99 /* SegmentedControlTableViewCell.swift */,
-				D439F0B31C99225000536C99 /* SegmentedControlTableViewCell.xib */,
-				D439F0B11C991FB600536C99 /* SwitchTableViewCell.swift */,
-				D40F95411C47603C003232A0 /* SettingsTableViewCell.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		DDC206FA190A04B0001DD1A5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D4A89CFA1B81AD7700B9D7A5 /* SettingsDataSource.swift */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		DDC2F5D219047748006011F0 /* Abstract */ = {
@@ -812,6 +790,7 @@
 				DD95E78C1926305C0062F4E9 /* RQShineLabel-license.txt in Resources */,
 				DDC4046C1917CC8C00D17CBF /* Event Headers.xcassets in Resources */,
 				DD95E7861926305C0062F4E9 /* FBTweaks-license.txt in Resources */,
+				883B80EE1CACB2F400810C52 /* Settings.storyboard in Resources */,
 				DD95E78B1926305C0062F4E9 /* pop-license.txt in Resources */,
 				D41A79211B5B38190049C683 /* NewsTableViewCell.xib in Resources */,
 				DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */,
@@ -825,7 +804,6 @@
 				DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */,
 				DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */,
 				DD95E78A1926305C0062F4E9 /* PocketSVG-license.txt in Resources */,
-				D439F0B41C99225000536C99 /* SegmentedControlTableViewCell.xib in Resources */,
 				D4EB63451C447E4E00C34774 /* EventView.xib in Resources */,
 				DDC4047D1918875200D17CBF /* AFNetworking-license.txt in Resources */,
 				DD95E7871926305C0062F4E9 /* JVFloatLabeledTextField-license.txt in Resources */,
@@ -920,7 +898,6 @@
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
 				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
-				D439F0B61C9922D000536C99 /* SegmentedControlTableViewCell.swift in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
 				DDA94B8018C1FD9F00DDF949 /* UIView+CZPositioning.m in Sources */,
@@ -934,13 +911,13 @@
 				D42D4DC81B704C9B00D4FD6D /* DataRequest.swift in Sources */,
 				D46C7C491B4DFD14009F1EA1 /* HeaderTableViewController.swift in Sources */,
 				D4D5F5081B530B7A005974A7 /* SettingsViewController.swift in Sources */,
-				D40F95421C47603C003232A0 /* SettingsTableViewCell.swift in Sources */,
 				DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */,
 				D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */,
 				D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */,
 				D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */,
 				D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */,
 				D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */,
+				883B80F01CACC2FB00810C52 /* Social.swift in Sources */,
 				DD5B585418D239F900EEB474 /* Event.swift in Sources */,
 				D40C697C1B7D363B005E3719 /* QuotaData.swift in Sources */,
 				D4280C211B2E38D50090F8C6 /* AppDelegate.swift in Sources */,
@@ -959,16 +936,14 @@
 				D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */,
 				D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */,
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,
-				D44F348A1B57DEAA00D84D0B /* SettingsLicenseViewController.swift in Sources */,
 				D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */,
 				D4E78C681C98E91500E0FB8C /* NavigationControllerDelegate.swift in Sources */,
 				D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */,
-				D4A89CFB1B81AD7700B9D7A5 /* SettingsDataSource.swift in Sources */,
 				DD44659318E7EA6C00ED1153 /* UIImage+CZTinting.m in Sources */,
-				D439F0B21C991FB600536C99 /* SwitchTableViewCell.swift in Sources */,
 				D4E78C661C98E3F000E0FB8C /* SlideNavigationAnimator.swift in Sources */,
 				DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
+				883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
 				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,
 				D464390A1B7C6451007BA5D0 /* LabsDataSourceParser.swift in Sources */,
@@ -977,6 +952,7 @@
 				D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */,
 				D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */,
 				DDA758B81905FDD0007CD0DB /* UTCSStateManager.m in Sources */,
+				883B80F41CACC98000810C52 /* UIApplication+Version.swift in Sources */,
 				D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
 				D43950291C45947E007AA192 /* LabsViewController.swift in Sources */,
