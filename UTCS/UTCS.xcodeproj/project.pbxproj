@@ -312,7 +312,10 @@
 				D409244C1C3CD93E00A81EBA /* Constants.swift */,
 				883B80EF1CACC2FB00810C52 /* Social.swift */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
-				DD5B583818D239F900EEB474 /* Classes */,
+				DDA758EE19081DE4007CD0DB /* General */,
+				DD5B586C18D23DD200EEB474 /* Navigation */,
+				DDA7589C1904F60A007CD0DB /* Services */,
+				DD87616A1900FCA4005FEE4E /* Settings */,
 				D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */,
 			);
 			path = UTCS;
@@ -353,17 +356,6 @@
 			path = UTCSTests;
 			sourceTree = "<group>";
 		};
-		DD5B583818D239F900EEB474 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				DDA758EE19081DE4007CD0DB /* General */,
-				DD5B586C18D23DD200EEB474 /* Navigation */,
-				DDA7589C1904F60A007CD0DB /* Services */,
-				DD87616A1900FCA4005FEE4E /* Settings */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		DD5B586C18D23DD200EEB474 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +368,7 @@
 				D4E78C671C98E91500E0FB8C /* NavigationControllerDelegate.swift */,
 			);
 			name = Navigation;
-			path = ViewControllers;
+			path = Classes/ViewControllers;
 			sourceTree = "<group>";
 		};
 		DD87615E18FDFE45005FEE4E /* News */ = {
@@ -479,6 +471,7 @@
 				886209D11CAD6DBC009180AD /* Preferences.swift */,
 			);
 			name = Settings;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		DD87616D1900FCD5005FEE4E /* Disk Quota */ = {
@@ -555,6 +548,7 @@
 				DD87616F1900FCEF005FEE4E /* Directory */,
 			);
 			name = Services;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		DDA758A61905E78D007CD0DB /* Cache */ = {
@@ -575,6 +569,7 @@
 				DDA758EF19081DF3007CD0DB /* Models */,
 			);
 			name = General;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		DDA758EF19081DF3007CD0DB /* Models */ = {
