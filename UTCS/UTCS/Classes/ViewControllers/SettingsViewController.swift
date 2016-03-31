@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: PhotoBackgroundTableViewController {
     
     @IBOutlet weak var eventNotificationsSwitch: UISwitch!
     

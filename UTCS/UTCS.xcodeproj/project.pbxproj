@@ -15,7 +15,9 @@
 		883B80F01CACC2FB00810C52 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80EF1CACC2FB00810C52 /* Social.swift */; };
 		883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */; };
 		883B80F81CACCEBB00810C52 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */; };
+		886209D01CACD183009180AD /* PhotoBackgroundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886209CF1CACD183009180AD /* PhotoBackgroundTableViewController.swift */; };
 		886209D21CAD6DBC009180AD /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886209D11CAD6DBC009180AD /* Preferences.swift */; };
+		886209D41CAD8669009180AD /* UIImageView+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886209D31CAD8669009180AD /* UIImageView+Tinting.swift */; };
 		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
 		88F088651CA607B2008BFB65 /* NSAttributedString+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */; };
 		D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */; };
@@ -131,7 +133,9 @@
 		883B80EF1CACC2FB00810C52 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Social.swift; path = Classes/Social.swift; sourceTree = "<group>"; };
 		883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticDimensionTableViewController.swift; sourceTree = "<group>"; };
 		883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = SOURCE_ROOT; };
+		886209CF1CACD183009180AD /* PhotoBackgroundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoBackgroundTableViewController.swift; path = ViewControllers/PhotoBackgroundTableViewController.swift; sourceTree = "<group>"; };
 		886209D11CAD6DBC009180AD /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		886209D31CAD8669009180AD /* UIImageView+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Tinting.swift"; sourceTree = "<group>"; };
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Trim.swift"; path = "Categories/NSAttributedString+Trim.swift"; sourceTree = "<group>"; };
 		9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -307,7 +311,6 @@
 				D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */,
 				D409244C1C3CD93E00A81EBA /* Constants.swift */,
 				883B80EF1CACC2FB00810C52 /* Social.swift */,
-				883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */,
 				DDA94B6818C1D1C600DDF949 /* Categories */,
 				DD5B583818D239F900EEB474 /* Classes */,
 				D46B22BB1B2F9F8600C90116 /* Launch Screen.storyboard */,
@@ -334,6 +337,7 @@
 				883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */,
 				D46C7C481B4DFD14009F1EA1 /* HeaderTableViewController.swift */,
 				D43377F91B4CBB1D00942581 /* TableViewController.swift */,
+				886209CF1CACD183009180AD /* PhotoBackgroundTableViewController.swift */,
 				D4BA71CD1B421819007C09F6 /* ContentViewController.swift */,
 				D4EB63421C443FDF00C34774 /* ArticleViewController.swift */,
 			);
@@ -602,9 +606,11 @@
 		DDA94B6818C1D1C600DDF949 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */,
 				D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */,
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */,
+				886209D31CAD8669009180AD /* UIImageView+Tinting.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -840,6 +846,7 @@
 				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
+				886209D41CAD8669009180AD /* UIImageView+Tinting.swift in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
 				D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */,
 				D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */,
@@ -885,6 +892,7 @@
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */,
 				D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */,
+				886209D01CACD183009180AD /* PhotoBackgroundTableViewController.swift in Sources */,
 				D4A89CF91B818B3600B9D7A5 /* NewsArticle.swift in Sources */,
 				886209D21CAD6DBC009180AD /* Preferences.swift in Sources */,
 				D464390A1B7C6451007BA5D0 /* LabsDataSourceParser.swift in Sources */,

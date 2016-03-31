@@ -37,6 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         appearance.shadowImage = UIImage()
         appearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        UITableViewCell.appearance().backgroundColor = .clearColor()
+        UILabel.appearance().textColor = .whiteColor()
+        
+        UISegmentedControl.appearance().tintColor = .utcsBurntOrangeColor()
+        UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
     }
 
     func menuOptionWillTransitionToState(option: MenuOption, state: MenuViewController.MenuOptionState) -> MenuViewController.MenuOptionState {
