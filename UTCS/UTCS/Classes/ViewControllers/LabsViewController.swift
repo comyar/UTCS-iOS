@@ -82,7 +82,7 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if UTCSStateManager.sharedManager().preferredLab == 0 {
+        if Preferences.preferredLab == .ThirdFloor {
             scrollView.contentOffset = CGPoint(x: 0, y: 0)
         } else {
             scrollView.contentOffset = CGPoint(x: CGRectGetWidth(view.bounds), y: 0.0)

@@ -37,6 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         appearance.shadowImage = UIImage()
         appearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        UITableViewCell.appearance().backgroundColor = .clearColor()
+        UILabel.appearance().textColor = .whiteColor()
+        
+        UISegmentedControl.appearance().tintColor = .utcsBurntOrangeColor()
+        UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
     }
 
     func menuOptionWillTransitionToState(option: MenuOption, state: MenuViewController.MenuOptionState) -> MenuViewController.MenuOptionState {
@@ -80,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 case .DiskQuota:
                     return NavigationController(rootViewController: DiskQuotaViewController(nibName: "DiskQuotaView", bundle: NSBundle.mainBundle() ))
                 case .Settings:
-                    let controller = NavigationController(rootViewController: SettingsViewController())
+                    let controller = NavigationController(rootViewController: UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle()).instantiateInitialViewController()!)
                     controller.backgroundImageName = "Settings"
                     return controller
                 }
