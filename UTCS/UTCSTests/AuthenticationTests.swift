@@ -1,7 +1,7 @@
 import XCTest
 @testable import UTCS
 
-class UTCSTests: XCTestCase {
+class AuthenticationTests: XCTestCase {
 
     override func setUp() {
         super.setUp()

@@ -3,10 +3,14 @@ import SwiftyJSON
 class LabsDataSourceParser: DataSourceParser {
 
     func parseValues(values: JSON) -> AnyObject? {
+        return parseValues(values)
+    }
+
+    func parseValues(values: JSON) -> [String: Lab] {
         let thirdData = values[0, "machines"].array
         let basementData = values[1, "machines"].array
         return ["third": parseFloor(thirdData!, labName: "third"),
-            "basement": parseFloor(basementData!, labName: "basement")]
+                "basement": parseFloor(basementData!, labName: "basement")]
     }
 
     private func parseFloor(floor: [JSON], labName: String) -> [String: UTCSLabMachine] {

@@ -8,6 +8,8 @@ public enum Service: String {
     case News = "news"
     case Directory = "directory"
 
+    public static let allValues: [Service] = [.Labs, .DiskQuota, .Events, .News, .Directory]
+
     func cacheExpirationTime() -> NSTimeInterval{
         switch self {
         case .Labs:
