@@ -29,14 +29,14 @@
                                                         <action selector="receiveEventNotifications:" destination="ZV1-Dy-bh4" eventType="valueChanged" id="VkQ-Te-DKm"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3g-1k-Ro7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Event notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3g-1k-Ro7">
                                                     <rect key="frame" x="16" y="8" width="511" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notifications an hour before starred events begin" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnI-NB-zk9">
-                                                    <rect key="frame" x="16" y="28" width="511" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Get notifications an hour before starred events begin" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnI-NB-zk9">
+                                                    <rect key="frame" x="16" y="30" width="511" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                                                 <constraint firstItem="t6x-sw-vuv" firstAttribute="centerY" secondItem="BRK-ye-3Gk" secondAttribute="centerY" id="5D0-9g-Dq6"/>
                                                 <constraint firstAttribute="trailing" secondItem="t6x-sw-vuv" secondAttribute="trailing" constant="16" id="A9y-DN-OSp"/>
                                                 <constraint firstItem="h3g-1k-Ro7" firstAttribute="top" secondItem="BRK-ye-3Gk" secondAttribute="top" constant="8" id="HMF-Bg-Yuq"/>
-                                                <constraint firstItem="hnI-NB-zk9" firstAttribute="top" secondItem="h3g-1k-Ro7" secondAttribute="bottom" id="IV0-Y5-ouh"/>
+                                                <constraint firstItem="hnI-NB-zk9" firstAttribute="top" secondItem="h3g-1k-Ro7" secondAttribute="bottom" constant="2" id="IV0-Y5-ouh"/>
                                                 <constraint firstItem="h3g-1k-Ro7" firstAttribute="centerY" secondItem="BRK-ye-3Gk" secondAttribute="centerY" constant="-10" id="dMg-en-N4P"/>
                                                 <constraint firstItem="h3g-1k-Ro7" firstAttribute="leading" secondItem="BRK-ye-3Gk" secondAttribute="leading" constant="16" id="hQ5-B2-JJ3"/>
                                                 <constraint firstItem="t6x-sw-vuv" firstAttribute="leading" secondItem="hnI-NB-zk9" secondAttribute="trailing" constant="8" id="oEe-hI-AkT"/>
@@ -62,11 +62,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Event Notifications"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="switchState" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitle" value="Get notifications an hour before starred events start"/>
-                                        </userDefinedRuntimeAttributes>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -96,11 +91,6 @@
                                                 <constraint firstItem="cb7-om-HGQ" firstAttribute="width" secondItem="Lfi-kj-9n0" secondAttribute="width" multiplier="0.75" id="nYG-qv-dbg"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Event Notifications"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="switchState" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitle" value="Get notifications an hour before starred events start"/>
-                                        </userDefinedRuntimeAttributes>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -228,12 +218,29 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dCW-jo-8ay" style="IBUITableViewCellStyleDefault" id="BrG-E3-1P0">
+                                        <rect key="frame" x="0.0" y="79" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BrG-E3-1P0" id="nTp-vI-ZDf">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="About MAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dCW-jo-8ay">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Contributers" id="SCO-eM-3AT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="3b7-Uh-GmX" style="IBUITableViewCellStyleDefault" id="m7o-9i-PMX">
-                                        <rect key="frame" x="0.0" y="130" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="174" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m7o-9i-PMX" id="6WE-Eu-bYD">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -249,14 +256,31 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="RFp-Nw-uBS" style="IBUITableViewCellStyleDefault" id="GWp-3Y-DkE">
+                                        <rect key="frame" x="0.0" y="218" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GWp-3Y-DkE" id="scH-Yx-Thn">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="🐻 Jesse Tipton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RFp-Nw-uBS">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="dS0-D9-2Pc" style="IBUITableViewCellStyleDefault" id="wPt-Wc-FcD">
-                                        <rect key="frame" x="0.0" y="174" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="262" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wPt-Wc-FcD" id="wbn-mH-A6m">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="🐻 Jesse Tipton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dS0-D9-2Pc">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="⛅️ Comyar Zaheri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dS0-D9-2Pc">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -271,7 +295,7 @@
                             <tableViewSection headerTitle="Version" id="1Vf-Fk-tfm">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="bcw-zI-L1L" detailTextLabel="Pi8-L5-GTZ" style="IBUITableViewCellStyleValue1" id="twO-T6-xmP">
-                                        <rect key="frame" x="0.0" y="269" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="357" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="twO-T6-xmP" id="pGC-Sl-EFb">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>

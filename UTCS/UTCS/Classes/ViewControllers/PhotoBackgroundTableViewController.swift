@@ -1,11 +1,3 @@
-//
-//  PhotoBackgroundTableViewController.swift
-//  UTCS
-//
-//  Created by Jesse Tipton on 3/30/16.
-//  Copyright © 2016 UTCS. All rights reserved.
-//
-
 import UIKit
 
 class PhotoBackgroundTableViewController: AutomaticDimensionTableViewController {
@@ -47,7 +39,7 @@ class PhotoBackgroundTableViewController: AutomaticDimensionTableViewController 
         
         navigationBarBackgroundVisible = false
         extendedLayoutIncludesOpaqueBars = true
-        tableView.separatorColor = .whiteColor()
+        tableView.separatorColor = UIColor(white: 1.0, alpha: 0.1)
         tableView.backgroundColor = .clearColor()
         tableView.sectionIndexColor = .whiteColor()
         tableView.sectionIndexBackgroundColor = .clearColor()
@@ -76,10 +68,18 @@ class PhotoBackgroundTableViewController: AutomaticDimensionTableViewController 
         label.font = UIFont.systemFontOfSize(16.0)
         // Hack to get left margin
         label.text = "     " + (tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section) ?? "")
-        label.textColor = UIColor(white: 1.0, alpha: 1.0)
+        label.textColor = UIColor(white: 1.0, alpha: 0.5)
         label.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
         label.sizeToFit()
         return label
+    }
+
+    // Will override storyboard headers
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
+
+        }
     }
     
     //Required for viewForHeaderInSection to be called

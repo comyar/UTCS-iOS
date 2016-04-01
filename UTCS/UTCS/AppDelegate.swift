@@ -40,8 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         
         UITableViewCell.appearance().backgroundColor = .clearColor()
         UILabel.appearance().textColor = .whiteColor()
-        
-        UISegmentedControl.appearance().tintColor = .utcsBurntOrangeColor()
+
+        UISegmentedControl.appearance().tintColor = .whiteColor()
         UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
     }
 
