@@ -20,6 +20,14 @@
 		886209D41CAD8669009180AD /* UIImageView+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886209D31CAD8669009180AD /* UIImageView+Tinting.swift */; };
 		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
 		88F088651CA607B2008BFB65 /* NSAttributedString+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */; };
+		D40654691CAF1681002D98A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40654681CAF1681002D98A3 /* AuthenticationTests.swift */; };
+		D406546B1CAF16AC002D98A3 /* ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D406546A1CAF16AC002D98A3 /* ParseTests.swift */; };
+		D406546D1CAF1ACA002D98A3 /* directory.json in Resources */ = {isa = PBXBuildFile; fileRef = D406546C1CAF1ACA002D98A3 /* directory.json */; };
+		D406546E1CAF1B4E002D98A3 /* labs-layout.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654601CAF15E8002D98A3 /* labs-layout.json */; };
+		D406546F1CAF1B4E002D98A3 /* labs.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654611CAF15E8002D98A3 /* labs.json */; };
+		D40654701CAF1B4E002D98A3 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654621CAF15E8002D98A3 /* news.json */; };
+		D40654711CAF1B4E002D98A3 /* quota.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654631CAF15E8002D98A3 /* quota.json */; };
+		D40654721CAF1B4E002D98A3 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D406545E1CAF1598002D98A3 /* events.json */; };
 		D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */; };
 		D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409244C1C3CD93E00A81EBA /* Constants.swift */; };
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
@@ -35,7 +43,6 @@
 		D43377FA1B4CBB1D00942581 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43377F91B4CBB1D00942581 /* TableViewController.swift */; };
 		D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */; };
 		D43950291C45947E007AA192 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */; };
-		D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B011B7851F90049C4D6 /* UTCSTests.swift */; };
 		D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */; };
 		D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */; };
 		D43E864A1B36874800F6EA70 /* DiskQuotaDataSourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E86481B36869900F6EA70 /* DiskQuotaDataSourceParser.swift */; };
@@ -139,6 +146,14 @@
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Trim.swift"; path = "Categories/NSAttributedString+Trim.swift"; sourceTree = "<group>"; };
 		9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
+		D406545E1CAF1598002D98A3 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = events.json; path = "Sample Responses/events.json"; sourceTree = "<group>"; };
+		D40654601CAF15E8002D98A3 /* labs-layout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "labs-layout.json"; path = "Sample Responses/labs-layout.json"; sourceTree = "<group>"; };
+		D40654611CAF15E8002D98A3 /* labs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = labs.json; path = "Sample Responses/labs.json"; sourceTree = "<group>"; };
+		D40654621CAF15E8002D98A3 /* news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = news.json; path = "Sample Responses/news.json"; sourceTree = "<group>"; };
+		D40654631CAF15E8002D98A3 /* quota.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = quota.json; path = "Sample Responses/quota.json"; sourceTree = "<group>"; };
+		D40654681CAF1681002D98A3 /* AuthenticationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		D406546A1CAF16AC002D98A3 /* ParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTests.swift; sourceTree = "<group>"; };
+		D406546C1CAF1ACA002D98A3 /* directory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = directory.json; path = "Sample Responses/directory.json"; sourceTree = "<group>"; };
 		D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAuthentication.swift; sourceTree = "<group>"; };
 		D409244C1C3CD93E00A81EBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
@@ -155,7 +170,6 @@
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
 		D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+UTCSColors.swift"; path = "Categories/UIColor+UTCSColors.swift"; sourceTree = "<group>"; };
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D43C8B011B7851F90049C4D6 /* UTCSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCSTests.swift; sourceTree = "<group>"; };
 		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabsDataSource.swift; path = Model/LabsDataSource.swift; sourceTree = "<group>"; };
 		D43C8B0D1B79197C0049C4D6 /* EventsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsDataSource.swift; path = Model/EventsDataSource.swift; sourceTree = "<group>"; };
@@ -276,7 +290,7 @@
 				DDA758891904D28D007CD0DB /* Resources */,
 				0B9A263C1891D5E30032DA03 /* UTCS */,
 				0B9A263D1891D5E30032DA03 /* Supporting Files */,
-				D43C8B001B7851F90049C4D6 /* UTCSTests */,
+				D43C8B001B7851F90049C4D6 /* Tests */,
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
 				019061F4F94D09DABF339C08 /* Pods */,
@@ -334,6 +348,19 @@
 			path = UTCS;
 			sourceTree = "<group>";
 		};
+		D406545D1CAF14EC002D98A3 /* Sample Responses */ = {
+			isa = PBXGroup;
+			children = (
+				D406546C1CAF1ACA002D98A3 /* directory.json */,
+				D40654601CAF15E8002D98A3 /* labs-layout.json */,
+				D40654611CAF15E8002D98A3 /* labs.json */,
+				D40654621CAF15E8002D98A3 /* news.json */,
+				D40654631CAF15E8002D98A3 /* quota.json */,
+				D406545E1CAF1598002D98A3 /* events.json */,
+			);
+			name = "Sample Responses";
+			sourceTree = "<group>";
+		};
 		D409244B1C3CD1B600A81EBA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,12 +374,15 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		D43C8B001B7851F90049C4D6 /* UTCSTests */ = {
+		D43C8B001B7851F90049C4D6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D43C8B011B7851F90049C4D6 /* UTCSTests.swift */,
+				D406546A1CAF16AC002D98A3 /* ParseTests.swift */,
+				D40654681CAF1681002D98A3 /* AuthenticationTests.swift */,
+				D406545D1CAF14EC002D98A3 /* Sample Responses */,
 				D43C8B031B7851F90049C4D6 /* Info.plist */,
 			);
+			name = Tests;
 			path = UTCSTests;
 			sourceTree = "<group>";
 		};
@@ -684,7 +714,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = UTCS;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = UTCS;
 				TargetAttributes = {
@@ -763,6 +793,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D406546D1CAF1ACA002D98A3 /* directory.json in Resources */,
+				D406546E1CAF1B4E002D98A3 /* labs-layout.json in Resources */,
+				D40654721CAF1B4E002D98A3 /* events.json in Resources */,
+				D40654711CAF1B4E002D98A3 /* quota.json in Resources */,
+				D40654701CAF1B4E002D98A3 /* news.json in Resources */,
+				D406546F1CAF1B4E002D98A3 /* labs.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,7 +942,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43C8B021B7851F90049C4D6 /* UTCSTests.swift in Sources */,
+				D40654691CAF1681002D98A3 /* AuthenticationTests.swift in Sources */,
+				D406546B1CAF16AC002D98A3 /* ParseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,8 +1135,10 @@
 		};
 		D43C8B071B7851F90049C4D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B7FDEFE89BF180E600EAAF2 /* Pods-UTCS.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1118,8 +1157,10 @@
 		};
 		D43C8B081B7851F90049C4D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
