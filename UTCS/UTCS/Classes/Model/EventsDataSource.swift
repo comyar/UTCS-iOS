@@ -1,8 +1,10 @@
-// Events table view cell identifier.
-let EventsTableViewCellIdentifier  = "UTCSEventTableViewCell"
+
+let EventsTableViewCellIdentifier = "UTCSEventTableViewCell"
 
 final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
+    typealias EventCategoryFilterResult = (matching: [NSIndexPath], nonmatching: [NSIndexPath])
+    
     override var data: AnyObject! {
         didSet(oldValue) {
             filteredEvents = eventData
@@ -24,46 +26,28 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
     init() {
         super.init(service: .Events, parser: EventsDataSourceParser())
     }
-    /**
-     <#Description#>
 
-     - parameter type: <#type description#>
-
-     - returns: tuple with indexes to remove and indexes to add
-     */
-    func filterEventsWithType(type: Event.Category) -> ([NSIndexPath], [NSIndexPath]) {
-        guard let allEvents = eventData,
-               var filtered = filteredEvents else {
+    func filterEventsByCategory(category: Event.Category) -> EventCategoryFilterResult {
+        currentFilterType = category
+        
+        guard let events = eventData else {
             return ([], [])
         }
-        var newFiltered = [Event]()
-        var toAdd = [Int]()
-        var toRemove = [Int]()
-        if type != .All {
-            for i in 0..<filtered.count {
-                let event = filtered[i]
-                if event.type != type {
-                    toRemove.append(i)
-                }
-            }
-        }
-        var index = 0
-        for event in allEvents {
-            if event.type == type {
-                toAdd.append(index)
-                index += 1
-                newFiltered.append(event)
-            }
-        }
 
-        filteredEvents = newFiltered
-        let mapping = { (row) -> NSIndexPath in
-                return NSIndexPath(forRow: row, inSection: 0)
+        let matches = events.map { event in
+            return event.category == category
         }
-
-        let added = toAdd.map(mapping)
-        let removed = toRemove.map(mapping)
-        return (added, removed)
+        let intToIndexPath = { int in
+            return NSIndexPath(forRow: int, inSection: 0)
+        }
+        
+        let range = 0..<events.count
+        let matching = range.filter({ matches[$0] }).map(intToIndexPath)
+        let nonmatching = range.filter({ !matches[$0] }).map(intToIndexPath)
+        
+        filteredEvents = matching.map { events[$0.row] }
+    
+        return (matching, nonmatching)
     }
 
     // MARK:- UITableViewDataSource
@@ -78,7 +62,7 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
                 return UITableViewCell()
         }
         let event = filteredEvents![indexPath.row]
-        cell.detailLabel.text = event.dateString()
+        cell.detailLabel.text = event.dateString
         cell.title.text = event.name
 
         cell.textLabel?.numberOfLines = 0

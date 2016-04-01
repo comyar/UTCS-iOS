@@ -50,7 +50,7 @@ final class EventsViewController: HeaderTableViewController {
     }
 
     func filterEventsWithType(type: Event.Category) {
-        let (addIndexPaths, removeIndexPaths) = eventsDataSource!.filterEventsWithType(type)
+        let (addIndexPaths, removeIndexPaths) = eventsDataSource!.filterEventsByCategory(type)
         tableView.beginUpdates()
         tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
         tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
