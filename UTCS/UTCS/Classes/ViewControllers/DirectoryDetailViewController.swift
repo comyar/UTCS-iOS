@@ -92,13 +92,13 @@ class DirectoryDetailViewController: TableViewController {
             cell.detailTextLabel?.text = person?.title
 
             if let url = person?.imageURL {
-                cell.imageView?.af_setImageWithURL(url, placeholderImage: nil,
-                    imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20),
-                    runImageTransitionIfCached: false)
-                cell.imageView?.layer.cornerRadius = cell.imageView?.bounds.width ?? 0 / 2.0
-                cell.imageView?.layer.masksToBounds = true
-                cell.imageView?.contentMode = .ScaleAspectFill
-                cell.setNeedsLayout()
+                cell.imageView?.frame = CGRect(x: 0, y: 0, width: 40.0, height: 40.0)
+                let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+                    size: cell.imageView!.frame.size,
+                    radius: 20.0
+                )
+                cell.imageView?.af_setImageWithURL(url, placeholderImage: nil, filter: filter,
+                                                   imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0,
