@@ -33,19 +33,24 @@ class EventViewController: ArticleViewController {
         scrollView.contentOffset = CGPointZero
 
         activityItems.append(event.name)
-        activityItems.append(event.location)
+        if let location = event.location {
+            activityItems.append(location)
+        }
 
         if let dateText = dateLabel.text {
             activityItems.append(dateText)
         }
-
-        if let link = event.link {
-            activityItems.append(link.absoluteString)
-        }
+        
+        activityItems.append(event.link.absoluteString)
 
         titleLabel.text = event.name
         contentTextView.text = event.descriptionText
-        dateLabel.text = event.dateString() + "\n" + event.location
+        dateLabel.text = event.dateString
+        var dateLabelText = event.dateString
+        if let location = event.location {
+            dateLabelText += "\n\(location)"
+        }
+        dateLabel.text = dateLabelText
         if let headerImageName = headerImageNameForEvent(event),
            let image = UIImage(named: headerImageName){
             imageView.image = image
@@ -78,8 +83,7 @@ class EventViewController: ArticleViewController {
     }
 
     private func headerImageNameForEvent(event: Event) -> String? {
-        let lowerLocation = event.location.lowercaseString
-        if lowerLocation.containsString("gdc") {
+        if let lowerLocation = event.location?.lowercaseString where lowerLocation.containsString("gdc") {
             let matches = EventViewController.headerImageMapping.keys.filter{
                 lowerLocation.containsString($0)
             }

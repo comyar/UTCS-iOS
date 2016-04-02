@@ -1,8 +1,6 @@
 import Alamofire
 import SwiftyJSON
 
-
-
 typealias DataSourceCompletion = (ServiceDataSource.UpdateResult) -> ()
 
 class ServiceDataSource: NSObject {
@@ -50,7 +48,7 @@ class ServiceDataSource: NSObject {
             }
         }
 
-        fetchData { (meta, values, error) -> () in
+        fetchData { meta, values, error in
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 let result: UpdateResult
                 // Make sure the response makes sense

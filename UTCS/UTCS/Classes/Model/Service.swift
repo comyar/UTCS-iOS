@@ -14,7 +14,7 @@ public enum Service: String {
         case .DiskQuota:
             return 30
         case .Events:
-            return 3600 * 24
+            return 3600
         case .News:
             return 3600 * 24
         case .Directory:
