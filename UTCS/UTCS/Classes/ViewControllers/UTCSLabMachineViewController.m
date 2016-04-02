@@ -1,13 +1,5 @@
-//
-//  UTCSLabMachineViewController.m
-//  UTCS
-//
-//  Created by Comyar Zaheri on 4/22/14.
-//  Copyright (c) 2014 UTCS. All rights reserved.
-//
-
 #import "UTCSLabMachineViewController.h"
-#import "UTCSLabMachine.h"
+
 
 
 #pragma mark - UTCSLabMachineViewController Class Extension
@@ -120,7 +112,7 @@
 - (UTCSLabMachineView *)labView:(UTCSLabView *)labView machineViewForIndexPath:(NSIndexPath *)indexPath name:(NSString *)name
 {
     UTCSLabMachineView *machineView = [labView dequeueMachineViewForIndexPath:indexPath];
-    UTCSLabMachine *machine = self.machines[name];
+    LabMachine *machine = self.machines[name];
     if (!machine) {
         machineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.8];
     } else {

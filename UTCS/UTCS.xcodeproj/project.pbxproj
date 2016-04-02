@@ -28,6 +28,8 @@
 		D40654701CAF1B4E002D98A3 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654621CAF15E8002D98A3 /* news.json */; };
 		D40654711CAF1B4E002D98A3 /* quota.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654631CAF15E8002D98A3 /* quota.json */; };
 		D40654721CAF1B4E002D98A3 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D406545E1CAF1598002D98A3 /* events.json */; };
+		D40654731CB03C4C002D98A3 /* LabMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* LabMachine.swift */; };
+		D40654761CB04C5A002D98A3 /* CoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40654741CB04C55002D98A3 /* CoderTests.swift */; };
 		D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */; };
 		D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D409244C1C3CD93E00A81EBA /* Constants.swift */; };
 		D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */; };
@@ -88,7 +90,6 @@
 		DD44659918E8254C00ED1153 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD44659818E8254C00ED1153 /* EventViewController.swift */; };
 		DD5B585418D239F900EEB474 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B583B18D239F900EEB474 /* Event.swift */; };
 		DD7CADD4192E65BD00566D6A /* Default Headers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */; };
-		DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */; };
 		DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* ServiceMetadata.swift */; };
 		DD9475BF190B1EDD0049FB8B /* UTCSLabViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */; };
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
@@ -154,6 +155,7 @@
 		D40654681CAF1681002D98A3 /* AuthenticationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		D406546A1CAF16AC002D98A3 /* ParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTests.swift; sourceTree = "<group>"; };
 		D406546C1CAF1ACA002D98A3 /* directory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = directory.json; path = "Sample Responses/directory.json"; sourceTree = "<group>"; };
+		D40654741CB04C55002D98A3 /* CoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoderTests.swift; sourceTree = "<group>"; };
 		D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAuthentication.swift; sourceTree = "<group>"; };
 		D409244C1C3CD93E00A81EBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D40C69791B7D3572005E3719 /* DiskQuotaDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskQuotaDataSource.swift; path = Model/DiskQuotaDataSource.swift; sourceTree = "<group>"; };
@@ -216,8 +218,7 @@
 		DD44659818E8254C00ED1153 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = ViewControllers/EventViewController.swift; sourceTree = "<group>"; };
 		DD5B583B18D239F900EEB474 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
 		DD7CADD3192E65BD00566D6A /* Default Headers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Default Headers.xcassets"; path = "Resources/Default Headers.xcassets"; sourceTree = "<group>"; };
-		DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachine.h; path = Model/UTCSLabMachine.h; sourceTree = "<group>"; };
-		DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachine.m; path = Model/UTCSLabMachine.m; sourceTree = "<group>"; };
+		DD83B58D18F3631A00EBDE06 /* LabMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabMachine.swift; path = Model/LabMachine.swift; sourceTree = "<group>"; };
 		DD8989A51903141C000F1041 /* ServiceMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceMetadata.swift; path = Model/ServiceMetadata.swift; sourceTree = "<group>"; };
 		DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayout.h; path = Model/UTCSLabViewLayout.h; sourceTree = "<group>"; };
 		DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabViewLayout.m; path = Model/UTCSLabViewLayout.m; sourceTree = "<group>"; };
@@ -378,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				D406546A1CAF16AC002D98A3 /* ParseTests.swift */,
+				D40654741CB04C55002D98A3 /* CoderTests.swift */,
 				D40654681CAF1681002D98A3 /* AuthenticationTests.swift */,
 				D406545D1CAF14EC002D98A3 /* Sample Responses */,
 				D43C8B031B7851F90049C4D6 /* Info.plist */,
@@ -460,8 +462,7 @@
 			children = (
 				D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */,
 				D46439091B7C6451007BA5D0 /* LabsDataSourceParser.swift */,
-				DD83B58C18F3631A00EBDE06 /* UTCSLabMachine.h */,
-				DD83B58D18F3631A00EBDE06 /* UTCSLabMachine.m */,
+				DD83B58D18F3631A00EBDE06 /* LabMachine.swift */,
 				DD9475BD190B1EDD0049FB8B /* UTCSLabViewLayout.h */,
 				DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */,
 				DD9475C8190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.h */,
@@ -872,9 +873,9 @@
 			files = (
 				D4D8C1F41B5F28CC006E03CD /* DirectoryDataSourceParser.swift in Sources */,
 				DD44659918E8254C00ED1153 /* EventViewController.swift in Sources */,
-				DD83B58E18F3631A00EBDE06 /* UTCSLabMachine.m in Sources */,
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
 				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
+				D40654731CB03C4C002D98A3 /* LabMachine.swift in Sources */,
 				DD9475CA190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				886209D41CAD8669009180AD /* UIImageView+Tinting.swift in Sources */,
@@ -943,6 +944,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D40654691CAF1681002D98A3 /* AuthenticationTests.swift in Sources */,
+				D40654761CB04C5A002D98A3 /* CoderTests.swift in Sources */,
 				D406546B1CAF16AC002D98A3 /* ParseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
