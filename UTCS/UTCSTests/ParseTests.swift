@@ -6,14 +6,15 @@ class ParseTests: XCTestCase {
     var responses: [Service: JSON] = [:]
     override func setUp() {
         super.setUp()
+        let bundle = NSBundle(forClass: self.dynamicType)
         for service in Service.allValues {
             let serviceName = service.rawValue
-            let fileLocation = NSBundle(forClass: self.dynamicType).pathForResource(serviceName, ofType: "json")!
+            let fileLocation = bundle.pathForResource(serviceName, ofType: "json")!
             let text: String
             do {
                 text = try String(contentsOfFile: fileLocation)
             } catch {
-                text = ""
+                fatalError()
             }
             if let dataFromString = text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                 let json = JSON(data: dataFromString)
@@ -23,20 +24,52 @@ class ParseTests: XCTestCase {
             }
 
         }
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
 
     func testEventsParsing(){
-        guard let events: [Event] = EventsDataSourceParser().parseValues(responses[.Events]!) else {
+        guard let values = responses[.Events]?["values"],
+            events: [Event] = EventsDataSourceParser().parseValues(values) else {
             XCTFail()
             return
         }
-        XCTAssertEqual(events.count, 10)
+        XCTAssertEqual(events.count, 148)
     }
+
+    func testDiskQuotaParsing(){
+        guard let values = responses[.DiskQuota]?["values"],
+        quotaData: QuotaData = DiskQuotaDataSourceParser().parseValues(values) else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(quotaData.limit, 2048)
+        XCTAssertEqual(quotaData.name, "Nicholas Walker")
+        XCTAssertTrue(quotaData.usage - 1236.079 < 0.01)
+        XCTAssertEqual(quotaData.user, "nwalker")
+    }
+
+    func testNewsParsing(){
+        guard let values = responses[.News]?["values"],
+            articles: [NewsArticle] = NewsDataSourceParser().parseValues(values) else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(articles.count, 10)
+    }
+
+    func testLabsParsing(){
+        guard let values = responses[.Labs]?["values"],
+            labs: [String: Lab] = LabsDataSourceParser().parseValues(values),
+            third = labs["third"],
+            basement = labs["basement"] else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(labs.count, 2)
+
+        XCTAssertEqual(third.count, 88)
+        XCTAssertEqual(basement.count, 77)
+    }
+
+
 
 }
