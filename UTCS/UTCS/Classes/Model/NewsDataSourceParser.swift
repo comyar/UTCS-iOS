@@ -3,7 +3,8 @@ import SwiftyJSON
 class NewsDataSourceParser: NSObject, DataSourceParser {
 
     func parseValues(values: JSON) -> AnyObject? {
-        return parseValues(values)
+        let parsed: [NewsArticle]? = parseValues(values)
+        return parsed
     }
 
     func parseValues(values: JSON) -> [NewsArticle]? {

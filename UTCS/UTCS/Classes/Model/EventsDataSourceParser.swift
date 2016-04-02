@@ -3,7 +3,8 @@ import SwiftyJSON
 final class EventsDataSourceParser: DataSourceParser {
 
     func parseValues(values: JSON) -> AnyObject? {
-        return parseValues(values)
+        let parsed: [Event]? = parseValues(values)
+        return parsed
     }
 
     func parseValues(values: JSON) -> [Event]? {

@@ -5,7 +5,8 @@ import SwiftyJSON
 class DirectoryDataSourceParser: DataSourceParser {
 
     func parseValues(values: JSON) -> AnyObject? {
-        return parseValues(values)
+        let parsed: [DirectoryPerson]? = parseValues(values)
+        return parsed
     }
 
     func parseValues(values: JSON) -> [DirectoryPerson]? {
