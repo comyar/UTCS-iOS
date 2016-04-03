@@ -25,5 +25,3 @@ post_install do | installer |
   require 'fileutils'
   FileUtils.cp_r('Pods/Target Support Files/Pods-UTCS/Pods-UTCS-Acknowledgements.plist', 'UTCS/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
 end
-
-end

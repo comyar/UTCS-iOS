@@ -36,6 +36,10 @@ class ServiceDataSource: NSObject {
     }
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?) {
+        #if USE_OFFLINE_RESPONSES_ONLY
+            loadExampleData(argument, completion: completion)
+            return
+        #endif
         // Attempt to load from cache
         let fromCache = cache.load(argument)
         if let (cacheMeta, cacheValues) = fromCache {
