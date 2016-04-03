@@ -169,7 +169,6 @@
 		D406546C1CAF1ACA002D98A3 /* directory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = directory.json; path = "Sample Responses/directory.json"; sourceTree = "<group>"; };
 		D40654741CB04C55002D98A3 /* CoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoderTests.swift; sourceTree = "<group>"; };
 		D40654791CB06CDE002D98A3 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Model/Service.swift; sourceTree = "<group>"; };
-		D40654EC1CB070FE002D98A3 /* UTCS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UTCS copy-Info.plist"; path = "/Users/nickwalker/Documents/School/UT/MAD/UTCS-iOS/UTCS/UTCS copy-Info.plist"; sourceTree = "<absolute>"; };
 		D40654F31CB0741A002D98A3 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
 		D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAuthentication.swift; sourceTree = "<group>"; };
 		D409244C1C3CD93E00A81EBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -315,7 +314,6 @@
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
 				019061F4F94D09DABF339C08 /* Pods */,
-				D40654EC1CB070FE002D98A3 /* UTCS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
