@@ -1,15 +1,16 @@
 language: objective-c
 
 xcode_project: UTCS/UTCS.xcodeproj
-xcode_scheme: UTCSTests
+xcode_scheme: UTCS
 podfile: UTCS/Podfile
 osx_image: xcode7.3
 
 script:
 - xctool  -workspace UTCS/UTCS.xcworkspace
-  -scheme UTCSTests
+  -scheme UTCS
   -sdk iphonesimulator 
   build
+  test
   CODE_SIGNING_REQUIRED=NO
 
 email:
