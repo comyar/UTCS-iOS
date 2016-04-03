@@ -1,6 +1,6 @@
 ![](/Meta/readme_header.png)
 
-[![Build Status](https://travis-ci.com/txcsmad/UTCS-iOS.svg?token=1o9Avy4mGixFuRg9knBP&branch=master)](https://magnum.travis-ci.com/utcsmad/UTCS-iOS)
+[![Build Status](https://travis-ci.com/txcsmad/UTCS-iOS.svg?token=1o9Avy4mGixFuRg9knBP&branch=master)](https://magnum.travis-ci.com/txcsmad/UTCS-iOS)
 
 # Introduction
 
@@ -14,15 +14,12 @@ The app was built "design-first", meaning the user interface has been crafted in
 
 ### Features
 
-Currently, the app allows a user to do the following:
-
   * Read and share the most recent UTCS news articles
   * View upcoming events, receive notifications before they start, and share them with friends
-  * Search the UTCS directory for faculty, staff, and graduate students
+  * Search the UTCS directory for faculty
   * View the status of each the labs in the GDC
   * View a user's disk quota
 
 # Building the Project
 
 When working on the project, always open the project's workspace in Xcode rather than it's project file. The project uses [Cocoa Pods](http://cocoapods.org/) to manage project dependencies and can be installed using ```sudo gem install cocoapods```. To install all the project's dependencies, simply run ```pod install``` in the directory containing _Podfile_.
-
