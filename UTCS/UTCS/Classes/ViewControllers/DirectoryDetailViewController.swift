@@ -1,63 +1,66 @@
+
 import AlamofireImage
 
 class DirectoryDetailViewController: TableViewController {
+
     let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
+    
     var person: DirectoryPerson? {
-        didSet(newValue) {
+        didSet {
             tableView.reloadData()
         }
     }
 
     init() {
         super.init(style: .Grouped)
+        navigationBarBackgroundVisible = false
         needsSectionHeaders = true
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationBarBackgroundVisible = false
-    }
-
-    func formattedPhoneNumberWithString(phoneNumber: String) -> (String) {
+    func formattedPhoneNumberWithString(phoneNumber: String) -> String {
         if phoneNumber.characters.count == 10 {
             let asNS = phoneNumber as NSString
             return String(format: "(%@) %@ - %@", arguments:
                 [asNS.substringWithRange(NSRange(location: 0, length: 3)),
-            asNS.substringWithRange(NSRange(location: 0, length: 3)),
+                asNS.substringWithRange(NSRange(location: 0, length: 3)),
                 asNS.substringWithRange(NSRange(location: 3, length: 3)),
                 asNS.substringWithRange(NSRange(location: 6, length: 4))])
         }
         return phoneNumber
     }
-
-    func didTouchUpInsideButton(button: UIButton) {
-        if button.tag == Int.min,
-           let number = self.person?.phoneNumber {
-            let controller = UIAlertController(title: "Confirm", message: "Are you sure you want to call?", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            controller.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (_) -> Void in
-                self.callNumber(number)
-            }))
-            presentViewController(controller, animated: true, completion: nil)
-        }
-    }
-
-    func callNumber(number: String) {
-        let phoneURL = NSURL(string: "tel:\(number)")!
-        if UIApplication.sharedApplication().canOpenURL(phoneURL) {
-            UIApplication.sharedApplication().openURL(phoneURL)
+    
+    func callPerson() {
+        guard let phoneNumber = person?.phoneNumber?.stringByReplacingOccurrencesOfString(" ", withString: "-"),
+            callURL = NSURL(string: "tel:\(phoneNumber)") else { return }
+        
+        if UIApplication.sharedApplication().canOpenURL(callURL) {
+            let confirmationAlertController = UIAlertController(title: phoneNumber, message: nil, preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            confirmationAlertController.addAction(cancelAction)
+            
+            let callAction = UIAlertAction(title: "Call", style: .Default) { _ in
+                UIApplication.sharedApplication().openURL(callURL)
+            }
+            confirmationAlertController.addAction(callAction)
+            
+            presentViewController(confirmationAlertController, animated: true, completion: nil)
         } else {
-            let controller = UIAlertController(title: "Error", message: "Ouch! Looks like something went wrong. Please report a bug!", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "Meh, Okay", style: .Default, handler: { (UIAlertAction) -> Void in
-                controller.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            presentViewController(controller, animated: true, completion: nil)
+            let errorAlertController = UIAlertController(title: "Error", message: "Oops! Something went wrong. Please report a bug!", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            errorAlertController.addAction(okAction)
+            
+            presentViewController(errorAlertController, animated: true, completion: nil)
         }
     }
+    
+    // MARK - UITableViewDataSource
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var oldCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
         if oldCell == nil {
@@ -70,8 +73,8 @@ class DirectoryDetailViewController: TableViewController {
             newCell.backgroundColor = UIColor.clearColor()
             newCell.selectionStyle = .None
             newCell.textLabel?.textAlignment = .Left
-            let callButton = UIButton.bouncyButton()
-
+            
+            let callButton = UIButton(type: .Custom)
             callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
             callButton.setTitle("Call", forState: .Normal)
             callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -80,7 +83,8 @@ class DirectoryDetailViewController: TableViewController {
             callButton.layer.cornerRadius = 4.0
             callButton.layer.borderWidth = 1.0
             callButton.layer.borderColor = UIColor.whiteColor().CGColor
-            callButton.tag = Int.min
+            callButton.addTarget(self, action: #selector(callPerson), forControlEvents: .TouchUpInside)
+            
             newCell.accessoryView = callButton
             newCell.accessoryView?.hidden = true
             oldCell = newCell
@@ -109,45 +113,48 @@ class DirectoryDetailViewController: TableViewController {
                     let number = person?.phoneNumber {
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
                 cell.detailTextLabel?.text = "Phone"
-                cell.accessoryView?.hidden = false
-
+                if UIApplication.sharedApplication().canOpenURL(NSURL(string: "tel://")!) {
+                    cell.accessoryView?.hidden = false
+                }
             }
 
         }
         }
         return oldCell!
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 1 {
-            return 2
-        }
-        return 0
-    }
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return "Information"
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 2
+        default:
+            return 0
         }
-        return nil
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 1 ? "Information" : nil
     }
 
+    // MARK: - UITableViewDelegate
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            return 84.0
+        if indexPath == NSIndexPath(forRow: 0, inSection: 0) {
+            return 84
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                return person?.office != nil ? 64.0 : 0.0
-            } else if indexPath.row == 1 {
-                return person?.phoneNumber != nil ? 64.0 : 0.0
+                return person?.office != nil ? 64 : 0
+            } else {
+                return person?.phoneNumber != nil ? 64 : 0
             }
         }
-        return 50.0
+        return 50
     }
+    
 }
