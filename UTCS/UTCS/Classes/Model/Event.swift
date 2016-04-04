@@ -39,7 +39,7 @@ class Event: NSObject, NSCoding {
         // Get length of event in days
         let eventLength = calendar.components(.Day, fromDate: startDate, toDate: endDate, options: .WrapComponents)
         // Calculate string for start and end date
-        let startDateString = serviceDateFormatter.stringFromDate(startDate)
+        let startDateString = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .LongStyle, timeStyle: .ShortStyle)
         let endDateString: String
         if eventLength.day > 0 {
             endDateString = NSDateFormatter.localizedStringFromDate(endDate, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
