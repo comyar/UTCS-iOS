@@ -113,8 +113,9 @@ class DirectoryDetailViewController: TableViewController {
                     let number = person?.phoneNumber {
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
                 cell.detailTextLabel?.text = "Phone"
-                cell.accessoryView?.hidden = false
-
+                if UIApplication.sharedApplication().canOpenURL(NSURL(string: "tel://")!) {
+                    cell.accessoryView?.hidden = false
+                }
             }
 
         }
