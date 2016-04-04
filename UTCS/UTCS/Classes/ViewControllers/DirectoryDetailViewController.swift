@@ -74,7 +74,7 @@ class DirectoryDetailViewController: TableViewController {
             newCell.selectionStyle = .None
             newCell.textLabel?.textAlignment = .Left
             
-            let callButton = UIButton.bouncyButton()
+            let callButton = UIButton(type: .Custom)
             callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
             callButton.setTitle("Call", forState: .Normal)
             callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
