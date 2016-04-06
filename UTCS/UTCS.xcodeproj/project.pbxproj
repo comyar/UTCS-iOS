@@ -11,6 +11,9 @@
 		0B9A26391891D5E30032DA03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A26381891D5E30032DA03 /* CoreGraphics.framework */; };
 		0B9A263B1891D5E30032DA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A263A1891D5E30032DA03 /* UIKit.framework */; };
 		0B9A26411891D5E30032DA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A263F1891D5E30032DA03 /* InfoPlist.strings */; };
+		8262F03F1CB4E3A400DB074B /* UTCSLabMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F03E1CB4E3A400DB074B /* UTCSLabMachine.swift */; };
+		8262F0411CB4F13500DB074B /* UTCSLabViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F0401CB4F13500DB074B /* UTCSLabViewLayout.swift */; };
+		8262F0431CB5A3FD00DB074B /* UTCSLabViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F0421CB5A3FD00DB074B /* UTCSLabViewLayoutAttributes.swift */; };
 		883B80EE1CACB2F400810C52 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883B80ED1CACB2F400810C52 /* Settings.storyboard */; };
 		883B80F01CACC2FB00810C52 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80EF1CACC2FB00810C52 /* Social.swift */; };
 		883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */; };
@@ -129,6 +132,9 @@
 		0B9A26441891D5E30032DA03 /* UTCS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UTCS-Prefix.pch"; sourceTree = "<group>"; };
 		2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6624763B511C6DCB165F4512 /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
+		8262F03E1CB4E3A400DB074B /* UTCSLabMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCSLabMachine.swift; sourceTree = "<group>"; };
+		8262F0401CB4F13500DB074B /* UTCSLabViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCSLabViewLayout.swift; sourceTree = "<group>"; };
+		8262F0421CB5A3FD00DB074B /* UTCSLabViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCSLabViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		883B80ED1CACB2F400810C52 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		883B80EF1CACC2FB00810C52 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Social.swift; path = Classes/Social.swift; sourceTree = "<group>"; };
 		883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticDimensionTableViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +442,9 @@
 				DD9475BE190B1EDD0049FB8B /* UTCSLabViewLayout.m */,
 				DD9475C8190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.h */,
 				DD9475C9190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m */,
+				8262F03E1CB4E3A400DB074B /* UTCSLabMachine.swift */,
+				8262F0401CB4F13500DB074B /* UTCSLabViewLayout.swift */,
+				8262F0421CB5A3FD00DB074B /* UTCSLabViewLayoutAttributes.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -878,6 +887,7 @@
 				D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */,
 				88F088651CA607B2008BFB65 /* NSAttributedString+Trim.swift in Sources */,
 				D4EB63411C442F3A00C34774 /* NavigationBar.swift in Sources */,
+				8262F03F1CB4E3A400DB074B /* UTCSLabMachine.swift in Sources */,
 				D4D8C1F21B5F1179006E03CD /* DirectoryPerson.swift in Sources */,
 				D4D8C1F61B5F2BD4006E03CD /* DirectoryDataSource.swift in Sources */,
 				D4E78C681C98E91500E0FB8C /* NavigationControllerDelegate.swift in Sources */,
@@ -895,8 +905,10 @@
 				D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */,
 				D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */,
 				D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */,
+				8262F0431CB5A3FD00DB074B /* UTCSLabViewLayoutAttributes.swift in Sources */,
 				D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
+				8262F0411CB4F13500DB074B /* UTCSLabViewLayout.swift in Sources */,
 				D43950291C45947E007AA192 /* LabsViewController.swift in Sources */,
 				D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */,
 			);
