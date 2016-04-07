@@ -8,6 +8,8 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
     private var contentAnimator: UIDynamicAnimator?
     private var contentItemBehavior: UIDynamicItemBehavior?
     private var contentSnapBehavior: UISnapBehavior?
+    
+    private var damping: CGFloat = 0.50
 
     var showingMenu = false
     var menuViewController: MenuViewController! {
@@ -109,7 +111,7 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
 
         let targetY = menuViewController.bottomExtent + contentController.view.center.y
         let snapBehavior = UISnapBehavior(item: contentController.view, snapToPoint: CGPoint(x: view.center.x, y: targetY))
-        snapBehavior.damping = 0.15
+        snapBehavior.damping = damping
         animator.addBehavior(itemBehavior)
         animator.addBehavior(snapBehavior)
 
@@ -144,7 +146,7 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         }
 
         let snapBehavior = UISnapBehavior(item: contentController.view, snapToPoint: view.center)
-        snapBehavior.damping = 0.15
+        snapBehavior.damping = damping
 
         let itemBehavior = UIDynamicItemBehavior(items: [contentController.view])
         itemBehavior.allowsRotation = false
