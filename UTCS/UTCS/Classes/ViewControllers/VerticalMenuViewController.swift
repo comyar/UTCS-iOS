@@ -6,7 +6,7 @@ let VerticalMenuDisplayNotification = "menuDisplay"
 class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate {
     private var tapRecognizer: UITapGestureRecognizer!
     
-    private var showHideMenuDuration = 0.5
+    private var showHideMenuDuration = 0.3
 
     var showingMenu = false
     var menuViewController: MenuViewController! {

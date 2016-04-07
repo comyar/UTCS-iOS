@@ -3,7 +3,7 @@ class SlideNavigationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var pushing = true
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 0.5
+        return 0.3
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
