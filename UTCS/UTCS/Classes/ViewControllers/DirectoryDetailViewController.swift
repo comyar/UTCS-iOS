@@ -105,12 +105,17 @@ class DirectoryDetailViewController: TableViewController {
                let office = person?.office {
                 cell.textLabel?.text = office
                 cell.detailTextLabel?.text = "Office"
+                cell.accessoryView?.hidden = true
             } else if indexPath.row == 1,
                     let number = person?.phoneNumber {
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
                 cell.detailTextLabel?.text = "Phone"
                 cell.accessoryView?.hidden = false
 
+            } else {
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+                cell.accessoryView?.hidden = true
             }
 
         }
