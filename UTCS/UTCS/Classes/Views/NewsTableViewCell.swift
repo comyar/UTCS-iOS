@@ -9,6 +9,9 @@ class NewsTableViewCell: BouncyTableViewCell {
         super.init(coder: aDecoder)
         accessoryType = .DisclosureIndicator
         backgroundColor = .clearColor()
+        
+        selectionStyle = .Default
+        setSelectedBackgroundColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
     }
 
 }

@@ -21,6 +21,7 @@
 		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
 		88F088651CA607B2008BFB65 /* NSAttributedString+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */; };
 		C29ED2FBA03A831C89081BF5 /* Pods_UTCSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166C85C1C08FC0DC7595964E /* Pods_UTCSTests.framework */; };
+		C9ADAF011CB6CB160099D68B /* UITableViewCell+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ADAF001CB6CB160099D68B /* UITableViewCell+Helpers.swift */; };
 		D40654691CAF1681002D98A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40654681CAF1681002D98A3 /* AuthenticationTests.swift */; };
 		D406546B1CAF16AC002D98A3 /* ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D406546A1CAF16AC002D98A3 /* ParseTests.swift */; };
 		D406546D1CAF1ACA002D98A3 /* directory.json in Resources */ = {isa = PBXBuildFile; fileRef = D406546C1CAF1ACA002D98A3 /* directory.json */; };
@@ -159,6 +160,7 @@
 		B6844A8C349A16E0F07976EE /* Pods-UTCSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE5B70B9546C98012DD986FE /* Pods-UTCS.offline debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.offline debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.offline debug.xcconfig"; sourceTree = "<group>"; };
 		BF56D3113DB4D6BFD297D2FA /* Pods-UTCSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C9ADAF001CB6CB160099D68B /* UITableViewCell+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Helpers.swift"; sourceTree = "<group>"; };
 		D406545E1CAF1598002D98A3 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = events.json; path = "Sample Responses/events.json"; sourceTree = "<group>"; };
 		D40654601CAF15E8002D98A3 /* labs-layout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "labs-layout.json"; path = "Sample Responses/labs-layout.json"; sourceTree = "<group>"; };
 		D40654611CAF15E8002D98A3 /* labs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = labs.json; path = "Sample Responses/labs.json"; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */,
 				88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */,
 				886209D31CAD8669009180AD /* UIImageView+Tinting.swift */,
+				C9ADAF001CB6CB160099D68B /* UITableViewCell+Helpers.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				D4280C1E1B2E29530090F8C6 /* BouncyTableViewCell.swift in Sources */,
 				D43950291C45947E007AA192 /* LabsViewController.swift in Sources */,
 				D4F2B9C51B5AED5500D28C1D /* UTCSLabMachineViewController.m in Sources */,
+				C9ADAF011CB6CB160099D68B /* UITableViewCell+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
