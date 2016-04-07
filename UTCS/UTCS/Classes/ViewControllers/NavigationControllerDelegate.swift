@@ -1,8 +1,7 @@
 @objc public class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
-   
     var panGestureRecognizer: UIPanGestureRecognizer!
     var interactionController: UIPercentDrivenInteractiveTransition?
-
+    var animator = SlideNavigationAnimator()
     var navigationController: NavigationController? {
         willSet(newValue){
             self.navigationController?.view.removeGestureRecognizer(panGestureRecognizer)
@@ -15,7 +14,6 @@
         super.init()
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didRecognizePanGesture(_:)))
     }
-    
     public func didRecognizePanGesture(recognizer: UIPanGestureRecognizer) {
         if recognizer != panGestureRecognizer {
             return
@@ -25,6 +23,7 @@
         case .Began:
             let location = recognizer.locationInView(view)
             if location.x < CGRectGetMidX(view.bounds) {
+                //left half
                 interactionController = UIPercentDrivenInteractiveTransition()
                 navigationController?.popViewControllerAnimated(true)
             }
@@ -45,9 +44,18 @@
     }
 
     public func navigationController(navigationController: UINavigationController,
+        animationControllerForOperation operation: UINavigationControllerOperation,
+        fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .Pop || operation == .Push {
+            animator.pushing = operation == .Push
+            return animator
+        }
+        return nil
+    }
+
+    public func navigationController(navigationController: UINavigationController,
         interactionControllerForAnimationController
         animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactionController
     }
-    
 }
