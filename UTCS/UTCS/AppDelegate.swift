@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         UITableViewCell.appearance().backgroundColor = .clearColor()
-        UILabel.appearance().textColor = .whiteColor()
 
         UISegmentedControl.appearance().tintColor = .whiteColor()
         UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
