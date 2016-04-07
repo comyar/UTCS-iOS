@@ -15,7 +15,7 @@ typealias DataRequestCompletion = (JSON?, JSON?, NSError?)->()
 
 let requestURL = "http://www.cs.utexas.edu/users/mad/utcs-app-backend/"
 let requestPathCGI = "/cgi-bin/utcs.scgi"
-let apiVersion = "1.0"
+let apiVersion = "staging"
 
 enum Router: URLRequestConvertible {
     static let baseURLString = Router.baseURL()

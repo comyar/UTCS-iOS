@@ -14,7 +14,7 @@ class AboutViewController: PhotoBackgroundTableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard indexPath.section == 0 && indexPath.section == 1 else { return }
+        guard indexPath.section == 0 && indexPath.row == 1 else { return }
         UIApplication.sharedApplication().openURL(MAD_LINK)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
