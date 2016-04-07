@@ -12,7 +12,6 @@ class SlideNavigationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView()!
         let viewSize = containerView.bounds.size
         
-        containerView.backgroundColor = UIColor.blackColor()
         containerView.addSubview(toController.view)
 
         let directionMultiplier: CGFloat = pushing ? 1 : -1
