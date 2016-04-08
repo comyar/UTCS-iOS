@@ -14,9 +14,6 @@ class DirectoryTableViewCell: ClearTableViewCell {
     
     override func commonInit() {
         super.commonInit()
-        selectionStyle = .Default
-        
-        setSelectedBackgroundColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
         
         detailTextLabel?.textColor = .lightGrayColor()
     }

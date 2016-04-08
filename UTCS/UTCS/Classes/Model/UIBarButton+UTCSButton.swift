@@ -33,11 +33,8 @@ extension UIBarButtonItem {
 }
 
 protocol BouncyButton {
-
     func reset()
-    
     func bounceDown()
-    
 }
 
 extension UIView: BouncyButton {

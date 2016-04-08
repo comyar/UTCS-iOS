@@ -8,9 +8,6 @@ class NewsTableViewCell: ClearTableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         accessoryType = .DisclosureIndicator
-        selectionStyle = .Default
-        
-        setSelectedBackgroundColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
     }
 
 }
