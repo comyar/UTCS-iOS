@@ -63,8 +63,8 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         }
         let event = filteredEvents![indexPath.row]
         cell.detailLabel.text = event.dateString
-        cell.title.text = event.name
-
+        cell.title.text = event.name.sanitizeHTML()
+        
         cell.textLabel?.numberOfLines = 0
         cell.detailTextLabel?.numberOfLines = 0
         return cell
