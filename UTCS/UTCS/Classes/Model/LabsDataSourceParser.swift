@@ -12,14 +12,14 @@ class LabsDataSourceParser: DataSourceParser {
     private func parseFloor(floor: [JSON], labName: String) -> [String: UTCSLabMachine] {
         var machines = [String: UTCSLabMachine]()
         for machineData in floor {
-            let machine = UTCSLabMachine()
-            machine.lab = labName
-            machine.name = machineData["name"].string
-            machine.load = CGFloat(machineData["load"].float!)
-            machine.occupied = machineData["occupied"].bool!
-            machine.status = machineData["up"].bool!
-            machine.uptime = machineData["uptime"].string
-            machines[machine.name] = machine
+            let name = machineData["name"].string!
+            let load = Double(machineData["load"].float!)
+            let occupied = machineData["occupied"].bool!
+            let status = machineData["up"].bool!
+            let uptime = machineData["uptime"].string!
+            
+            let machine = UTCSLabMachine(lab: labName, name: name, uptime: uptime, status: status, occupied: occupied, load: load)
+            machines[machine!.name] = machine
         }
         return machines
     }
