@@ -97,8 +97,9 @@ class DirectoryDetailViewController: TableViewController {
                     size: cell.imageView!.frame.size,
                     radius: 20.0
                 )
-                cell.imageView?.af_setImageWithURL(url, placeholderImage: nil, filter: filter,
+                cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named: "directory-active"), filter: filter,
                                                    imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
+
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0,
