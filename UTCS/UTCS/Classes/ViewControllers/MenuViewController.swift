@@ -1,12 +1,12 @@
 enum MenuOption: Int {
-    case News = 0,
-    Events,
-    Labs,
-    Directory,
-    DiskQuota,
-    Settings
+    case News
+    case Events
+    case Labs
+    case Directory
+    case DiskQuota
+    case Settings
 
-    static let allValues = [MenuOption.News, .Events, .Labs, .Directory, .DiskQuota, .Settings]
+    static let allValues: [MenuOption] = [.News, .Events, .Labs, .Directory, .DiskQuota, .Settings]
 
     func title() -> String {
         switch self {
@@ -27,30 +27,21 @@ enum MenuOption: Int {
 }
 
 protocol MenuViewControllerDelegate {
-    func menuOptionWillTransitionToState(option: MenuOption, state: MenuViewController.MenuOptionState) -> MenuViewController.MenuOptionState
+    func menuOptionWillBeSelected(option: MenuOption) -> Bool
     func didSelectMenuOption(option: MenuOption)
 }
 
 class MenuViewController: UITableViewController {
-    private var optionStates = [MenuOption: MenuOptionState]()
     var delegate: MenuViewControllerDelegate?
-    var singleSelection = true
+    var selectedIndex: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+    let menuCellReuseIdentifier = "MenuTableViewCell"
+    
     var bottomExtent: CGFloat  {
         return tableView.rowHeight * CGFloat(MenuOption.allValues.count) + tableView.contentInset.top
     }
 
-    enum MenuOptionState {
-        case Selected,
-        Tentative,
-        Default
-    }
-
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
-        for option in MenuOption.allValues {
-            optionStates[option] = .Default
-        }
 
         edgesForExtendedLayout = .None
         view.backgroundColor = UIColor(white: 0.08, alpha: 1.0)
@@ -62,32 +53,18 @@ class MenuViewController: UITableViewController {
         tableView.separatorStyle = .None
         tableView.frame.size = CGSize(width: 0.75 * view.frame.width, height: tableView.frame.height)
 
-        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "MenuTableViewCell")
-
+        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: menuCellReuseIdentifier)
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK:-
-
-    func select(option: MenuOption) {
-        if singleSelection {
-            for otherOption in MenuOption.allValues where otherOption != option {
-                optionStates[otherOption] = .Default
-            }
-        }
-        optionStates[option] = .Selected
-        tableView.reloadData()
-    }
-
-    func clearTentative() {
-        for option in MenuOption.allValues
-            where optionStates[option] == .Tentative {
-                optionStates[option] = .Default
-        }
-        tableView.reloadData()
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let cell = tableView.cellForRowAtIndexPath(selectedIndex)
+        cell?.selected = true
     }
 
     // MARK:- Status Bar
@@ -100,32 +77,27 @@ class MenuViewController: UITableViewController {
     }
 
     // MARK:- UITableView
+    
+    func setSelection(option: MenuOption, selected: Bool) {
+        let indexPath = NSIndexPath(forRow: option.rawValue, inSection: 0)
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: option.rawValue, inSection: 0))
+        cell?.selected = selected
+        
+        if selected {
+            let oldCell = tableView.cellForRowAtIndexPath(selectedIndex)
+            oldCell?.selected = false
+            
+            selectedIndex = indexPath
+            delegate?.didSelectMenuOption(option)
+        }
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell", forIndexPath:  indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(menuCellReuseIdentifier, forIndexPath:  indexPath) as! MenuTableViewCell
         let option = MenuOption(rawValue: indexPath.row) ?? .News
-        let state = optionStates[option] ?? .Default
 
-        let cellTint: UIColor = {
-            switch state {
-            case .Selected:
-            return UIColor.whiteColor()
-            case .Default:
-            return UIColor(white: 1.0, alpha: 0.5)
-            case .Tentative:
-                return UIColor(white: 1.0, alpha: 0.7)
-            }
-        }()
-
-        cell.textLabel?.textColor =  cellTint
-        cell.imageView?.tintColor = cellTint
         cell.textLabel?.text = option.title()
-
-        var imageName = option.title().lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "")
-        if state == .Selected {
-            imageName = "\(imageName)-active"
-        }
-        cell.imageView?.image = UIImage(named: imageName)?.imageWithRenderingMode(.AlwaysTemplate)
+        cell.menuType = option
 
         return cell
     }
@@ -136,16 +108,20 @@ class MenuViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let option = MenuOption(rawValue: indexPath.row) ?? .News
-        let toState = delegate?.menuOptionWillTransitionToState(option, state: .Selected) ?? .Selected
-
-        if toState == .Selected {
-            select(option)
-            delegate?.didSelectMenuOption(option)
-        } else {
-            optionStates[option] = toState
-            tableView.reloadData()
-        }
-
+        let selected = delegate?.menuOptionWillBeSelected(option) ?? true
+        
+        setSelection(option, selected: selected)
     }
-
+    
+    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        cell?.highlighted = true
+    }
+    
+    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        cell?.highlighted = false
+    }
 }

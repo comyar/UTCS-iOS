@@ -6,7 +6,10 @@ class DirectoryTableViewCell: BouncyTableViewCell {
         super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor.clearColor()
         textLabel?.textColor = UIColor.whiteColor()
-        selectionStyle = .None
+        
+        selectionStyle = .Default
+        setSelectedBackgroundColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
+            
         detailTextLabel?.textColor = UIColor.lightGrayColor()
     }
 
