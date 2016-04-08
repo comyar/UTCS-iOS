@@ -13,6 +13,6 @@ script:
   test
   CODE_SIGNING_REQUIRED=NO
   CODE_SIGN_IDENTITY=""
-  -destination 'name=iPhone 6s,OS=9.3’
+  -destination 'name=iPhone 6s,OS=9.3'
 email:
     on_failure: change
