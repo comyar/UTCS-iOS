@@ -4,6 +4,8 @@ podfile: UTCS/Podfile
 osx_image: xcode7.3
 
 script:
+- brew uninstall xctool
+- brew install --HEAD xctool
 - xctool -workspace UTCS/UTCS.xcworkspace
   -scheme UTCS
   -sdk iphonesimulator9.3 
@@ -11,5 +13,6 @@ script:
   test
   CODE_SIGNING_REQUIRED=NO
   CODE_SIGN_IDENTITY=""
+  -destination 'name=iPhone 6s,OS=9.3’
 email:
     on_failure: change
