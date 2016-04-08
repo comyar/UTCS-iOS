@@ -32,7 +32,7 @@ class ParseTests: XCTestCase {
             XCTFail()
             return
         }
-        XCTAssertEqual(events.count, 148)
+        XCTAssertEqual(events.count, 52)
     }
 
     func testDiskQuotaParsing(){

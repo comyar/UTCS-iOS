@@ -89,7 +89,7 @@ class Event: NSObject, NSCoding {
             name = coder.decodeObjectForKey("name") as? String,
             descriptionText = coder.decodeObjectForKey("description") as? String,
             startDate = coder.decodeObjectForKey("startdate") as? NSDate,
-            link = coder.decodeObjectForKey("url") as? NSURL else { return nil }
+            link = coder.decodeObjectForKey("link") as? NSURL else { return nil }
         
         self.id = id
         self.name = name
@@ -119,12 +119,29 @@ class Event: NSObject, NSCoding {
         coder.encodeBool(allDay, forKey: "allday")
         coder.encodeBool(food, forKey: "food")
         
-        coder.encodeObject(category?.rawValue, forKey: "category")
+        coder.encodeObject(category?.rawValue ?? nil, forKey: "category")
         coder.encodeObject(location, forKey: "location")
         coder.encodeObject(endDate, forKey: "enddate")
         coder.encodeObject(contactName, forKey: "contactname")
         coder.encodeObject(contactEmail, forKey: "contactemail")
         coder.encodeObject(link, forKey: "link")
     }
-    
+
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let second = object as? Event where
+        second.id == id &&
+        second.name == name &&
+        second.descriptionText == descriptionText &&
+        second.startDate == startDate &&
+        second.allDay == allDay &&
+        second.food == food &&
+        second.location == location &&
+        second.endDate == endDate &&
+        second.contactName == contactName &&
+        second.contactEmail == contactEmail &&
+        second.link == link {
+            return true
+        }
+        return false
+    }
 }

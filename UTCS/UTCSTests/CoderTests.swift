@@ -46,4 +46,20 @@ class CoderTests: XCTestCase {
         XCTAssertEqual(fromJSON, unarchived)
 
     }
+
+    func testEventsCoder(){
+        guard let values = responses[.Events]?["values"],
+            fromJSON = Event(json: values[0]) else {
+                XCTFail()
+                return
+        }
+        let archive = NSKeyedArchiver.archivedDataWithRootObject(fromJSON)
+        guard let unarchived = NSKeyedUnarchiver.unarchiveObjectWithData(archive) as? Event else {
+            XCTFail()
+            return
+        }
+
+        XCTAssertEqual(fromJSON, unarchived)
+        
+    }
 }
