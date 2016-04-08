@@ -1,6 +1,6 @@
-import Foundation
+import UIKit
 
-class NewsTableViewCell: BouncyTableViewCell {
+class NewsTableViewCell: ClearTableViewCell {
 
     @IBOutlet var title: UILabel!
     @IBOutlet var detailLabel: UILabel!
@@ -8,10 +8,6 @@ class NewsTableViewCell: BouncyTableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         accessoryType = .DisclosureIndicator
-        backgroundColor = .clearColor()
-        
-        selectionStyle = .Default
-        setSelectedBackgroundColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
     }
 
 }
