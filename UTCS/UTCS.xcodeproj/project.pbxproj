@@ -19,6 +19,7 @@
 		886209D21CAD6DBC009180AD /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886209D11CAD6DBC009180AD /* Preferences.swift */; };
 		886209D41CAD8669009180AD /* UIImageView+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886209D31CAD8669009180AD /* UIImageView+Tinting.swift */; };
 		886C2D461C215D580026E0CE /* Backgrounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886C2D451C215D580026E0CE /* Backgrounds.xcassets */; };
+		888E7FB01CB7632D00EC75A6 /* HTMLSanitization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E7FAF1CB7632D00EC75A6 /* HTMLSanitization.swift */; };
 		88F088651CA607B2008BFB65 /* NSAttributedString+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */; };
 		C29ED2FBA03A831C89081BF5 /* Pods_UTCSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166C85C1C08FC0DC7595964E /* Pods_UTCSTests.framework */; };
 		C9ADAF011CB6CB160099D68B /* UITableViewCell+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ADAF001CB6CB160099D68B /* UITableViewCell+Helpers.swift */; };
@@ -156,6 +157,7 @@
 		886209D11CAD6DBC009180AD /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		886209D31CAD8669009180AD /* UIImageView+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Tinting.swift"; sourceTree = "<group>"; };
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
+		888E7FAF1CB7632D00EC75A6 /* HTMLSanitization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLSanitization.swift; sourceTree = "<group>"; };
 		88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Trim.swift"; path = "Categories/NSAttributedString+Trim.swift"; sourceTree = "<group>"; };
 		B6844A8C349A16E0F07976EE /* Pods-UTCSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE5B70B9546C98012DD986FE /* Pods-UTCS.offline debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.offline debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.offline debug.xcconfig"; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */,
 				886209D31CAD8669009180AD /* UIImageView+Tinting.swift */,
 				C9ADAF001CB6CB160099D68B /* UITableViewCell+Helpers.swift */,
+				888E7FAF1CB7632D00EC75A6 /* HTMLSanitization.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				D4E78C681C98E91500E0FB8C /* NavigationControllerDelegate.swift in Sources */,
 				D4D8C1F01B5F10F5006E03CD /* Binnable.swift in Sources */,
 				D4E78C661C98E3F000E0FB8C /* SlideNavigationAnimator.swift in Sources */,
+				888E7FB01CB7632D00EC75A6 /* HTMLSanitization.swift in Sources */,
 				DDA758951904D7C4007CD0DB /* ServiceCache.swift in Sources */,
 				D46439081B7C63EC007BA5D0 /* NewsDataSourceParser.swift in Sources */,
 				883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */,
