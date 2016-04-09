@@ -1,6 +1,17 @@
-
 import Foundation
 import SwiftyJSON
+
+// Does an event category match another?
+// .All matches anything, including nil
+// Otherwise, regular equality rules apply, including nil == nil
+infix operator ~~ {associativity left precedence 140 }
+func ~~(lhs: Event.Category?, rhs: Event.Category?) -> Bool {
+    if lhs == .All || rhs == .All {
+        return true
+    }
+    return lhs == rhs
+
+}
 
 class Event: NSObject, NSCoding {
     
@@ -9,6 +20,20 @@ class Event: NSObject, NSCoding {
         case Careers = "careers"
         case Talks = "talks"
         case Orgs = "orgs"
+
+        var color: UIColor {
+            switch self {
+            case .All:
+                return .whiteColor()
+            case .Careers:
+                return .utcsEventCareersColor()
+            case .Talks:
+                return .utcsEventTalkColor()
+            case .Orgs:
+                return .utcsEventStudentOrgsColor()
+            }
+        }
+
     }
     
     let id: String

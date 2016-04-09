@@ -1,10 +1,17 @@
 import UIKit
 
-class NewsTableViewCell: ClearTableViewCell {
+@IBDesignable class NewsTableViewCell: ClearTableViewCell {
 
-    @IBOutlet var title: UILabel!
-    @IBOutlet var detailLabel: UILabel!
-
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var stripe: UIView!
+    @IBInspectable var stripeColor: UIColor = .clearColor() {
+        didSet(oldValue) {
+            stripe.backgroundColor = stripeColor
+            setNeedsDisplay()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         accessoryType = .DisclosureIndicator
