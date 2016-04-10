@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
     }
     
     func didSelectMenuOption(option: MenuOption) {
-                if controllers[option] == nil {
+        if controllers[option] == nil {
             controllers[option] = {
                 switch option {
                 case .News:
