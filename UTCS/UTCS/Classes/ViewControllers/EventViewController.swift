@@ -43,7 +43,7 @@ class EventViewController: ArticleViewController {
         
         activityItems.append(event.link.absoluteString)
 
-        titleLabel.text = event.name
+        titleLabel.text = event.name.sanitizeHTML()
         contentTextView.text = event.descriptionText
         dateLabel.text = event.dateString
         var dateLabelText = event.dateString

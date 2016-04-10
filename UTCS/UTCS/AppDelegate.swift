@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         menuViewController.delegate = self
         controllers[.News] = NavigationController(rootViewController: NewsViewController())
         verticalMenuViewController = VerticalMenuViewController(menuViewController: menuViewController, contentViewController: controllers[.News]!)
-        menuViewController.select(.News)
         // Initialize view controllers. News is the default service
 
         window = UIWindow()
@@ -39,13 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         UITableViewCell.appearance().backgroundColor = .clearColor()
-        UILabel.appearance().textColor = .whiteColor()
 
         UISegmentedControl.appearance().tintColor = .whiteColor()
         UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
     }
 
-    func menuOptionWillTransitionToState(option: MenuOption, state: MenuViewController.MenuOptionState) -> MenuViewController.MenuOptionState {
+    func menuOptionWillBeSelected(option: MenuOption) -> Bool {
         if option == .Labs && !AuthenticationManager.authenticated {
             AuthenticationManager.presentAuthenticationAlert(menuViewController,
                 reason:  "You must log into your CS account to view lab status information.") { error -> () in
@@ -55,18 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
                 }
 
                 if AuthenticationManager.authenticated {
-                    self.menuViewController.select(.Labs)
-                    self.didSelectMenuOption(.Labs)
+                    self.menuViewController.setSelection(.Labs, selected: true)
                 } else {
-                    self.menuViewController.clearTentative()
+                    self.menuViewController.setSelection(.Labs, selected: false)
                 }
                 MBProgressHUD.hideHUDForView(self.verticalMenuViewController!.view, animated: true)
                 
             }
             
-            return .Tentative
+            return false
         }
-        return state
+        return true
     }
     
     func didSelectMenuOption(option: MenuOption) {

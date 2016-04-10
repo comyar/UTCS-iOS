@@ -1,6 +1,17 @@
-
 import Foundation
 import SwiftyJSON
+
+// Does an event category match another?
+// .All matches anything, including nil
+// Otherwise, regular equality rules apply, including nil == nil
+infix operator ~~ {associativity left precedence 140 }
+func ~~(lhs: Event.Category?, rhs: Event.Category?) -> Bool {
+    if lhs == .All || rhs == .All {
+        return true
+    }
+    return lhs == rhs
+
+}
 
 class Event: NSObject, NSCoding {
     
@@ -9,6 +20,20 @@ class Event: NSObject, NSCoding {
         case Careers = "careers"
         case Talks = "talks"
         case Orgs = "orgs"
+
+        var color: UIColor {
+            switch self {
+            case .All:
+                return .whiteColor()
+            case .Careers:
+                return .utcsEventCareersColor()
+            case .Talks:
+                return .utcsEventTalkColor()
+            case .Orgs:
+                return .utcsEventStudentOrgsColor()
+            }
+        }
+
     }
     
     let id: String
@@ -39,7 +64,7 @@ class Event: NSObject, NSCoding {
         // Get length of event in days
         let eventLength = calendar.components(.Day, fromDate: startDate, toDate: endDate, options: .WrapComponents)
         // Calculate string for start and end date
-        let startDateString = serviceDateFormatter.stringFromDate(startDate)
+        let startDateString = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .LongStyle, timeStyle: .ShortStyle)
         let endDateString: String
         if eventLength.day > 0 {
             endDateString = NSDateFormatter.localizedStringFromDate(endDate, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
@@ -89,7 +114,7 @@ class Event: NSObject, NSCoding {
             name = coder.decodeObjectForKey("name") as? String,
             descriptionText = coder.decodeObjectForKey("description") as? String,
             startDate = coder.decodeObjectForKey("startdate") as? NSDate,
-            link = coder.decodeObjectForKey("url") as? NSURL else { return nil }
+            link = coder.decodeObjectForKey("link") as? NSURL else { return nil }
         
         self.id = id
         self.name = name
@@ -119,12 +144,29 @@ class Event: NSObject, NSCoding {
         coder.encodeBool(allDay, forKey: "allday")
         coder.encodeBool(food, forKey: "food")
         
-        coder.encodeObject(category?.rawValue, forKey: "category")
+        coder.encodeObject(category?.rawValue ?? nil, forKey: "category")
         coder.encodeObject(location, forKey: "location")
         coder.encodeObject(endDate, forKey: "enddate")
         coder.encodeObject(contactName, forKey: "contactname")
         coder.encodeObject(contactEmail, forKey: "contactemail")
         coder.encodeObject(link, forKey: "link")
     }
-    
+
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let second = object as? Event where
+        second.id == id &&
+        second.name == name &&
+        second.descriptionText == descriptionText &&
+        second.startDate == startDate &&
+        second.allDay == allDay &&
+        second.food == food &&
+        second.location == location &&
+        second.endDate == endDate &&
+        second.contactName == contactName &&
+        second.contactEmail == contactEmail &&
+        second.link == link {
+            return true
+        }
+        return false
+    }
 }

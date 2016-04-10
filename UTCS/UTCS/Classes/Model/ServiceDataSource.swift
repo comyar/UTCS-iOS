@@ -1,35 +1,6 @@
 import Alamofire
 import SwiftyJSON
 
-public enum Service: String {
-    case Labs = "labs"
-    case DiskQuota = "quota"
-    case Events = "events"
-    case News = "news"
-    case Directory = "directory"
-
-    func cacheExpirationTime() -> NSTimeInterval{
-        switch self {
-        case .Labs:
-            return 30
-        case .DiskQuota:
-            return 30
-        case .Events:
-            return 3600
-        case .News:
-            return 3600 * 24
-        case .Directory:
-            return 3600 * 24 * 7
-        }
-    }
-
-    func cacheExpired(metadata: ServiceMetadata) -> Bool {
-        let expiryTime = self.cacheExpirationTime()
-        let expiryDate = metadata.updated.dateByAddingTimeInterval(expiryTime)
-        return NSDate().compare(expiryDate) == .OrderedDescending
-    }
-}
-
 typealias DataSourceCompletion = (ServiceDataSource.UpdateResult) -> ()
 
 class ServiceDataSource: NSObject {
@@ -65,6 +36,10 @@ class ServiceDataSource: NSObject {
     }
 
     func updateWithArgument(argument: String?, completion: DataSourceCompletion?) {
+        #if USE_OFFLINE_RESPONSES_ONLY
+            loadExampleData(argument, completion: completion)
+            return
+        #endif
         // Attempt to load from cache
         let fromCache = cache.load(argument)
         if let (cacheMeta, cacheValues) = fromCache {
@@ -118,4 +93,44 @@ class ServiceDataSource: NSObject {
 
         }
     }
+
+
+    func loadExampleData(argument: String?, completion: DataSourceCompletion?) {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let serviceName = service.rawValue
+        let fileLocation = bundle.pathForResource(serviceName, ofType: "json")!
+        let text: String
+        do {
+            text = try String(contentsOfFile: fileLocation)
+        } catch {
+            fatalError()
+        }
+        let json: JSON
+        if let dataFromString = text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+            json = JSON(data: dataFromString)
+        } else {
+            fatalError()
+        }
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let result: UpdateResult
+            // Make sure the response makes sense
+            if let parsedMeta = ServiceMetadata(json: json["meta"]),
+                parsed = self.parser.parseValues(json["values"])
+                where parsedMeta.service == self.service {
+
+                self.data = parsed
+                result = .SuccessFresh
+                self.updated = NSDate()
+
+            } else {
+                result = .Failed
+            }
+            dispatch_sync(dispatch_get_main_queue()) {
+                completion?(result)
+            }
+        }
+
+    }
+
 }

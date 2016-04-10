@@ -5,9 +5,8 @@ let VerticalMenuDisplayNotification = "menuDisplay"
 
 class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate {
     private var tapRecognizer: UITapGestureRecognizer!
-    private var contentAnimator: UIDynamicAnimator?
-    private var contentItemBehavior: UIDynamicItemBehavior?
-    private var contentSnapBehavior: UISnapBehavior?
+    
+    private var showHideMenuDuration = 0.3
 
     var showingMenu = false
     var menuViewController: MenuViewController! {
@@ -98,65 +97,28 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
         guard let contentController = contentViewController else {
             return
         }
-        if let animator = contentAnimator,
-            snapBehavior = contentSnapBehavior {
-                animator.removeBehavior(snapBehavior)
-        }
-
-        let animator = UIDynamicAnimator(referenceView: view)
-        let itemBehavior = UIDynamicItemBehavior(items: [contentController.view])
-        itemBehavior.allowsRotation = false
 
         let targetY = menuViewController.bottomExtent + contentController.view.center.y
-        let snapBehavior = UISnapBehavior(item: contentController.view, snapToPoint: CGPoint(x: view.center.x, y: targetY))
-        snapBehavior.damping = 0.15
-        animator.addBehavior(itemBehavior)
-        animator.addBehavior(snapBehavior)
-
-        contentAnimator = animator
-        contentItemBehavior = itemBehavior
-        contentSnapBehavior = snapBehavior
-        showingMenu = true
-        // [self enableUserInteraction:NO forViewController:self.contentViewController]
-        setNeedsStatusBarAppearanceUpdate()
-
-        // Navigation controllers will think that they need to accomodate the status bar appearing.
-        // We'll compensate by shifting it back up.
-        if let navController = contentController as? UINavigationController {
-            let oldFrame = navController.navigationBar.frame
-            navController.navigationBar.frame = CGRectOffset(oldFrame, 0.0, -20.0)
-        }
-
-        contentController.view.layoutSubviews()
+        self.showingMenu = true
+        
+        UIView.animateWithDuration(showHideMenuDuration, delay: 0, options: .CurveEaseInOut, animations: {
+            contentController.view.center = CGPoint(x: self.view.center.x, y: targetY)
+            self.setNeedsStatusBarAppearanceUpdate()
+        }, completion: nil)
     }
 
     func hideMenu() {
-        guard let contentController = contentViewController,
-               animator = contentAnimator else {
+        guard let contentController = contentViewController else {
             return
         }
 
-        // These behaviors were attached to the last content controller
-        if let snapBehavior = contentSnapBehavior,
-           contentBehavior = contentItemBehavior {
-            animator.removeBehavior(contentBehavior)
-            animator.removeBehavior(snapBehavior)
-        }
-
-        let snapBehavior = UISnapBehavior(item: contentController.view, snapToPoint: view.center)
-        snapBehavior.damping = 0.15
-
-        let itemBehavior = UIDynamicItemBehavior(items: [contentController.view])
-        itemBehavior.allowsRotation = false
-
-        animator.addBehavior(snapBehavior)
-        animator.addBehavior(itemBehavior)
-        contentSnapBehavior = snapBehavior
-        contentItemBehavior = itemBehavior
-
-        showingMenu = false
-        //    [self enableUserInteraction:YES forViewController:self.contentViewController]
-        setNeedsStatusBarAppearanceUpdate()
+        let targetY = contentController.view.center.y - menuViewController.bottomExtent
+        self.showingMenu = false
+        
+        UIView.animateWithDuration(showHideMenuDuration, delay: 0, options: .CurveEaseInOut, animations: {
+            contentController.view.center = CGPoint(x: self.view.center.x, y: targetY)
+            self.setNeedsStatusBarAppearanceUpdate()
+            }, completion: nil)
     }
 
     // MARK:- Status Bar

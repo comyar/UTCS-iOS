@@ -10,6 +10,7 @@ class NavigationController: UINavigationController {
     }
     override init(rootViewController: UIViewController) {
         super.init(navigationBarClass: NavigationBar.self, toolbarClass: nil)
+        backgroundImageView.backgroundColor = UIColor.blackColor()
         pushViewController(rootViewController, animated: false)
         view.addSubview(backgroundImageView)
         delegate = navigationDelegate

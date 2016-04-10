@@ -42,4 +42,14 @@ class QuotaData: NSObject, NSCoding {
         aCoder.encodeObject(name, forKey: "name")
     }
 
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let second = object as? QuotaData where
+           user == second.user &&
+            name == second.name &&
+           limit == second.limit &&
+            usage == second.usage {
+            return true
+        }
+        return false
+    }
 }

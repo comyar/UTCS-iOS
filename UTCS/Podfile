@@ -1,6 +1,5 @@
-target "UTCS" do
+def all_pods
 pod 'Shimmer'
-pod 'pop', '~> 1.0'
 pod 'NMSSH'
 pod 'DPMeterView'
 pod 'MBProgressHUD'
@@ -9,12 +8,19 @@ pod 'AlamofireImage', '~> 2.0'
 pod "JVFloatLabeledTextField"
 pod "PocketSVG", :git => "https://github.com/arielelkin/PocketSVG"
 pod "SwiftyJSON", :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+end
+
+target 'UTCS' do
+    all_pods
+end
+
+target 'UTCSTests' do
+    all_pods
+end
+
 use_frameworks!
 
 post_install do | installer |
   require 'fileutils'
   FileUtils.cp_r('Pods/Target Support Files/Pods-UTCS/Pods-UTCS-Acknowledgements.plist', 'UTCS/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
 end
-
-end
-

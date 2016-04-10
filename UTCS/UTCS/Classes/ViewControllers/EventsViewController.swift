@@ -43,7 +43,7 @@ final class EventsViewController: HeaderTableViewController {
         if control == filterSegmentedControl {
             let index = filterSegmentedControl.selectedSegmentIndex
             let filterType = segments[index]
-            let filterColor = EventsDataSource.typeColorMapping[filterType]
+            let filterColor = filterType.color
             filterEventsWithType(filterType)
             filterSegmentedControl.tintColor = filterColor
         }

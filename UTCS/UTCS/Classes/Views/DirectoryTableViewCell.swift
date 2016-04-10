@@ -1,17 +1,21 @@
-import Foundation
 import UIKit
 
-class DirectoryTableViewCell: BouncyTableViewCell {
+class DirectoryTableViewCell: ClearTableViewCell {
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.clearColor()
-        textLabel?.textColor = UIColor.whiteColor()
-        selectionStyle = .None
-        detailTextLabel?.textColor = UIColor.lightGrayColor()
+        commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    override func commonInit() {
+        super.commonInit()
+        
+        detailTextLabel?.textColor = .lightGrayColor()
     }
 
     func configure(person: DirectoryPerson) {
@@ -28,4 +32,5 @@ class DirectoryTableViewCell: BouncyTableViewCell {
         textLabel?.attributedText = attributedName
         detailTextLabel?.text = person.title
     }
+    
 }

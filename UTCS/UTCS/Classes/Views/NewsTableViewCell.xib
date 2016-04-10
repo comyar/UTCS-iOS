@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,31 +10,41 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTt-ei-So5">
-                    <rect key="frame" x="5" y="5" width="590" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" misplaced="YES" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTt-ei-So5">
+                    <rect key="frame" x="10" y="10" width="580" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-he-XbJ">
-                    <rect key="frame" x="5" y="31" width="590" height="564"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="999" verticalCompressionResistancePriority="250" misplaced="YES" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-he-XbJ">
+                    <rect key="frame" x="10" y="36" width="550" height="554"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="0.69694890202702697" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0Q-gc-lIZ">
+                    <rect key="frame" x="0.0" y="0.0" width="9" height="600"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="5" id="FYf-Hl-0sa"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="b0Q-gc-lIZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="31f-oh-xeU"/>
                 <constraint firstAttribute="trailing" secondItem="LPa-he-XbJ" secondAttribute="trailing" constant="40" id="4CK-ix-E2q"/>
-                <constraint firstItem="dTt-ei-So5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="6WM-xe-zau"/>
                 <constraint firstAttribute="trailing" secondItem="dTt-ei-So5" secondAttribute="trailing" constant="10" id="9VN-3U-fZ7"/>
-                <constraint firstItem="LPa-he-XbJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="ESS-bd-FeI"/>
                 <constraint firstItem="LPa-he-XbJ" firstAttribute="top" secondItem="dTt-ei-So5" secondAttribute="bottom" constant="5" id="PBd-h6-xic"/>
                 <constraint firstAttribute="bottom" secondItem="LPa-he-XbJ" secondAttribute="bottom" constant="10" id="eIu-UF-RE5"/>
+                <constraint firstItem="LPa-he-XbJ" firstAttribute="leading" secondItem="b0Q-gc-lIZ" secondAttribute="trailing" constant="6" id="gu4-29-aYX"/>
+                <constraint firstItem="b0Q-gc-lIZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oUf-cl-lho"/>
+                <constraint firstItem="dTt-ei-So5" firstAttribute="leading" secondItem="b0Q-gc-lIZ" secondAttribute="trailing" constant="6" id="w7z-ZZ-1XB"/>
                 <constraint firstItem="dTt-ei-So5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="xyL-RE-Wgj"/>
+                <constraint firstAttribute="bottom" secondItem="b0Q-gc-lIZ" secondAttribute="bottom" id="yiX-EJ-eim"/>
             </constraints>
             <connections>
                 <outlet property="detailLabel" destination="LPa-he-XbJ" id="AU7-WZ-APc"/>
+                <outlet property="stripe" destination="b0Q-gc-lIZ" id="6IK-K7-Agm"/>
                 <outlet property="title" destination="dTt-ei-So5" id="T5t-AU-vtF"/>
             </connections>
         </view>

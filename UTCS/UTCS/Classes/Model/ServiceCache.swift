@@ -8,6 +8,9 @@ class ServiceCache {
     }
 
     func load(argument: String?) -> (ServiceMetadata, AnyObject)? {
+        #if DISABLE_CACHE
+            return nil
+        #endif
         let cacheKey = primaryKey(self.service, argument: argument ?? "")
         guard let fromCache = NSUserDefaults.standardUserDefaults().objectForKey(cacheKey) else {
             return nil

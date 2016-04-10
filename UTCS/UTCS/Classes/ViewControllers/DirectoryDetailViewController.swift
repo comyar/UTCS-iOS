@@ -101,14 +101,16 @@ class DirectoryDetailViewController: TableViewController {
                     size: cell.imageView!.frame.size,
                     radius: 20.0
                 )
-                cell.imageView?.af_setImageWithURL(url, placeholderImage: nil, filter: filter,
+                cell.imageView?.af_setImageWithURL(url, placeholderImage: UIImage(named: "directory-active"), filter: filter,
                                                    imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
+
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0,
                let office = person?.office {
                 cell.textLabel?.text = office
                 cell.detailTextLabel?.text = "Office"
+                cell.accessoryView?.hidden = true
             } else if indexPath.row == 1,
                     let number = person?.phoneNumber {
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
@@ -116,6 +118,12 @@ class DirectoryDetailViewController: TableViewController {
                 if UIApplication.sharedApplication().canOpenURL(NSURL(string: "tel://")!) {
                     cell.accessoryView?.hidden = false
                 }
+
+            } else {
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+                cell.accessoryView?.hidden = true
+
             }
 
         }

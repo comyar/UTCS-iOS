@@ -1,16 +1,18 @@
 language: objective-c
 
-xcode_project: UTCS/UTCS.xcodeproj
-xcode_scheme: UTCS
 podfile: UTCS/Podfile
 osx_image: xcode7.3
 
 script:
-- xctool  -workspace UTCS/UTCS.xcworkspace
+- brew uninstall xctool
+- brew install --HEAD xctool
+- xctool -workspace UTCS/UTCS.xcworkspace
   -scheme UTCS
-  -sdk iphonesimulator 
+  -sdk iphonesimulator9.3 
   build
+  test
   CODE_SIGNING_REQUIRED=NO
-
+  CODE_SIGN_IDENTITY=""
+  -destination 'name=iPhone 6s,OS=9.3'
 email:
     on_failure: change
