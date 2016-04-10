@@ -1025,7 +1025,6 @@
 				D4280C171B2E0E780090F8C6 /* ActiveHeaderView.swift in Sources */,
 				D4A89CFD1B82F76900B9D7A5 /* ServiceDataSource.swift in Sources */,
 				D409244A1C3CD0EB00A81EBA /* RequestAuthentication.swift in Sources */,
-				D461E6241CBA087300D3AD91 /* DirectoryDetailTableViewCell.swift in Sources */,
 				D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */,
 				D4280C1E1B2E29530090F8C6 /* ClearTableViewCell.swift in Sources */,
 				D43950291C45947E007AA192 /* LabsViewController.swift in Sources */,
