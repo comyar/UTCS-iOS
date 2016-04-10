@@ -2,6 +2,13 @@ import AlamofireImage
 
 class DirectoryDetailViewController: TableViewController {
     let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
+
+    enum Section: Int {
+        case Head, Information
+    }
+    enum InformationRow: Int {
+        case Office, Homepage, Phone, ResearchInterests
+    }
     var person: DirectoryPerson? {
         didSet(newValue) {
             tableView.reloadData()
@@ -15,6 +22,10 @@ class DirectoryDetailViewController: TableViewController {
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        tableView.registerClass(DirectoryDetailTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -47,7 +58,7 @@ class DirectoryDetailViewController: TableViewController {
     }
 
     func callNumber(number: String) {
-        let phoneURL = NSURL(string: "tel:\(number)")!
+        let phoneURL = NSURL(string: "telprompt:\(number)")!
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
             UIApplication.sharedApplication().openURL(phoneURL)
         } else {
@@ -59,35 +70,13 @@ class DirectoryDetailViewController: TableViewController {
         }
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var oldCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        if oldCell == nil {
-            let newCell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
-            newCell.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.8)
-            newCell.textLabel?.numberOfLines = 2
-            newCell.detailTextLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
-            newCell.imageView?.contentMode = .ScaleAspectFill
-            newCell.imageView?.autoresizingMask = .None
-            newCell.backgroundColor = UIColor.clearColor()
-            newCell.selectionStyle = .None
-            newCell.textLabel?.textAlignment = .Left
-            let callButton = UIButton.bouncyButton()
-
-            callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
-            callButton.setTitle("Call", forState: .Normal)
-            callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            callButton.tintColor = UIColor.whiteColor()
-            callButton.layer.masksToBounds = true
-            callButton.layer.cornerRadius = 4.0
-            callButton.layer.borderWidth = 1.0
-            callButton.layer.borderColor = UIColor.whiteColor().CGColor
-            callButton.tag = Int.min
-            newCell.accessoryView = callButton
-            newCell.accessoryView?.hidden = true
-            oldCell = newCell
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            as? DirectoryDetailTableViewCell,
+            section = Section(rawValue: indexPath.section) else {
+            return UITableViewCell()
         }
-        if let cell = oldCell {
 
-        if indexPath.section == 0 {
+        if section == .Head {
             cell.textLabel?.text = person?.fullName
             cell.detailTextLabel?.text = person?.title
 
@@ -101,34 +90,63 @@ class DirectoryDetailViewController: TableViewController {
                                                    imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
 
             }
-        } else if indexPath.section == 1 {
-            if indexPath.row == 0,
-               let office = person?.office {
+        } else if section == .Information {
+            guard let row = InformationRow(rawValue: indexPath.row) else {
+                return cell
+            }
+            switch row {
+            case .Office:
+                guard let office = person?.office else {
+                    return cell
+                }
                 cell.textLabel?.text = office
                 cell.detailTextLabel?.text = "Office"
                 cell.accessoryView?.hidden = true
-            } else if indexPath.row == 1,
-                    let number = person?.phoneNumber {
+                break
+            case .Homepage:
+                guard let homepage = person?.homepageURL else {
+                    return cell
+                }
+                cell.textLabel?.text = homepage.absoluteString
+                cell.textLabel?.adjustsFontSizeToFitWidth = true
+                cell.textLabel?.numberOfLines = 1
+                cell.detailTextLabel?.text = "Homepage"
+                cell.accessoryType = .DisclosureIndicator
+                cell.accessoryView?.hidden = false
+                break
+            case .Phone:
+                guard let number = person?.phoneNumber else {
+                    return cell
+                }
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
                 cell.detailTextLabel?.text = "Phone"
                 cell.accessoryView?.hidden = false
-
-            } else {
-                cell.textLabel?.text = ""
-                cell.detailTextLabel?.text = ""
+                break
+            case .ResearchInterests:
+                guard let interests = person?.researchInterests else {
+                    return cell
+                }
+                var interestsString = interests.reduce(""){$0 + "; " + $1}
+                interestsString = interestsString.substringFromIndex(interestsString.startIndex.advancedBy(2))
+                cell.textLabel?.text = interestsString
+                cell.detailTextLabel?.text = "Research Interests"
                 cell.accessoryView?.hidden = true
-            }
+                break
 
+                }
         }
-        }
-        return oldCell!
+
+        return cell
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        guard let section = Section(rawValue: section) else {
+            return 0
+        }
+        if section == .Head {
             return 1
-        } else if section == 1 {
-            return 2
+        } else if section == .Information {
+            return 4
         }
         return 0
     }
@@ -150,10 +168,24 @@ class DirectoryDetailViewController: TableViewController {
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 return person?.office != nil ? 64.0 : 0.0
-            } else if indexPath.row == 1 {
+            }  else if indexPath.row == 1 {
+                return person?.homepageURL != nil ? 64.0 : 0.0
+            } else if indexPath.row == 2 {
                 return person?.phoneNumber != nil ? 64.0 : 0.0
+            } else if indexPath.row == 3 {
+                return person?.researchInterests != nil ? 64.0: 0.0
             }
         }
-        return 50.0
+        return 0.0
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let section = Section(rawValue: indexPath.section) where section == .Information else {
+            return
+        }
+        if let row = InformationRow(rawValue: indexPath.row),
+           homepage = person?.homepageURL where row == .Homepage {
+            UIApplication.sharedApplication().openURL(homepage)
+        }
     }
 }

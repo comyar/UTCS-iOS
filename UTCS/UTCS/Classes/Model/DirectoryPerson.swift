@@ -3,16 +3,18 @@ import UIKit
 import SwiftyJSON
 
 class DirectoryPerson: NSObject, NSCoding, Binnable {
-    var fullName: String!
-    var firstName: String!
-    var lastName: String!
+    var fullName: String
+    var firstName: String
+    var lastName: String
     var office: String?
     var phoneNumber: String?
     var title: String?
     var imageURL: NSURL?
+    var homepageURL: NSURL?
+    var researchInterests: [String]?
 
     init?(json: JSON) {
-        super.init()
+
         guard let firstName = json["fname"].string,
             lastName = json["lname"].string,
             fullName = json["name"].string else {
@@ -26,10 +28,12 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
         phoneNumber = json["phone"].string
         title  = json["title"].string
         imageURL = json["image"].URL
+        homepageURL = json["link"].URL
+        researchInterests = json["interests"].arrayObject as? [String]
+        super.init()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init()
         guard let fullName = aDecoder.decodeObjectForKey("name") as? String,
             firstName = aDecoder.decodeObjectForKey("fname") as? String,
             lastName = aDecoder.decodeObjectForKey("lname") as? String else {
@@ -42,6 +46,7 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
         phoneNumber = aDecoder.decodeObjectForKey("phone") as? String
         title = aDecoder.decodeObjectForKey("title") as? String
         imageURL = aDecoder.decodeObjectForKey("image") as? NSURL
+        super.init()
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
