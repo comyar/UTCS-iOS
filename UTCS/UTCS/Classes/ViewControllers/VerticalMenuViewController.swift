@@ -8,7 +8,12 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
     
     private var showHideMenuDuration = 0.3
 
-    var showingMenu = false
+    var showingMenu = false {
+        didSet {
+            menuViewController.tableView.allowsSelection = showingMenu
+        }
+    }
+    
     var menuViewController: MenuViewController! {
         didSet(oldValue) {
 
@@ -19,10 +24,12 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
             view.addSubview(menuViewController.view)
             addChildViewController(menuViewController)
             menuViewController.didMoveToParentViewController(self)
+            menuViewController.tableView.allowsSelection = showingMenu
 
             setNeedsStatusBarAppearanceUpdate()
         }
     }
+    
     var contentViewController: UIViewController? {
         didSet(oldValue) {
             if oldValue == contentViewController {
