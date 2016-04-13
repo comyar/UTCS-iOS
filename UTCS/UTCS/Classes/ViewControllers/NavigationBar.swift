@@ -7,8 +7,8 @@ class NavigationBar: UINavigationBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(background)
-        backgroundColor = UIColor.clearColor()
-        background.backgroundColor = UIColor.utcsBarTintColor()
+        backgroundColor = .clearColor()
+        background.backgroundColor = .utcsBarTint()
         background.userInteractionEnabled = false
     }
     

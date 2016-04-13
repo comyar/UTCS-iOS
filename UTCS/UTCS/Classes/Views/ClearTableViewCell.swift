@@ -15,7 +15,7 @@ class ClearTableViewCell: UITableViewCell {
     func commonInit() {
         backgroundColor = .clearColor()
         selectionStyle = .Default
-        setSelectedBackgroundColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
+        setSelectedBackgroundColor(.utcsCellHighlight())
         
         textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         textLabel?.textColor = .whiteColor()

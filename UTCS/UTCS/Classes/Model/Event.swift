@@ -26,11 +26,11 @@ class Event: NSObject, NSCoding {
             case .All:
                 return .whiteColor()
             case .Careers:
-                return .utcsEventCareersColor()
+                return .utcsEventCareers()
             case .Talks:
-                return .utcsEventTalkColor()
+                return .utcsEventTalk()
             case .Orgs:
-                return .utcsEventStudentOrgsColor()
+                return .utcsEventStudentOrgs()
             }
         }
 

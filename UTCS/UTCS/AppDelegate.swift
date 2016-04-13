@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         UITableViewCell.appearance().backgroundColor = .clearColor()
 
         UISegmentedControl.appearance().tintColor = .whiteColor()
-        UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
+        UISwitch.appearance().onTintColor = .utcsBurntOrange()
     }
 
     func menuOptionWillBeSelected(option: MenuOption) -> Bool {

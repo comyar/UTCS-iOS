@@ -40,5 +40,10 @@ class SettingsViewController: PhotoBackgroundTableViewController {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.setSelectedBackgroundColor(.utcsCellHighlight())
+        return cell
+    }
 }

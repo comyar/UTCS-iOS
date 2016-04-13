@@ -31,7 +31,7 @@ class ServiceCache {
         let cacheKey = primaryKey(self.service, argument: argument ?? "")
         let toStore = ["meta": metadata, "values": values]
         let data = NSKeyedArchiver.archivedDataWithRootObject(toStore)
-        print("Caching \(data.length) bytes for \(service.rawValue)")
+        //print("Caching \(data.length) bytes for \(service.rawValue)")
         NSUserDefaults.standardUserDefaults().setObject(data, forKey: cacheKey)
     }
 
