@@ -52,8 +52,12 @@ final class EventsViewController: HeaderTableViewController {
     func filterEventsWithType(type: Event.Category) {
         let (addIndexPaths, removeIndexPaths) = eventsDataSource!.filterEventsByCategory(type)
         tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
-        tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
+        tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Middle)
+        tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Middle)
+        if eventsDataSource?.filteredEvents?.count == 0 {
+            let path = NSIndexPath(forRow: 0, inSection: 0)
+            tableView.insertRowsAtIndexPaths([path], withRowAnimation: .Middle)
+        }
         tableView.endUpdates()
 
     }
@@ -106,12 +110,18 @@ final class EventsViewController: HeaderTableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && eventsDataSource?.filteredEvents?.count ?? 0 > 0 {
+        if section == 0 && eventsDataSource != nil {
             return 48.0
         }
         return 0.0
     }
 
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if eventsDataSource?.shouldDisplayNoEventsCell() ?? false {
+            return nil
+        }
+        return indexPath
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         guard let event = eventsDataSource?.filteredEvents?[indexPath.row] else {

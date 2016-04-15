@@ -42,6 +42,9 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
         // All currently visible events that will be hidden. They have the wrong category
         let toRemovePaths: [NSIndexPath] =  {
+            if shouldDisplayNoEventsCell() {
+                return [NSIndexPath(forRow: 0, inSection: 0)]
+            }
             let range = 0..<displaying.count
             return range.filter{ !visibleMatches[$0] }.map(intToIndexPath)
         }()
@@ -70,6 +73,10 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
     // MARK:- UITableViewDataSource
 
     @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = filteredEvents?.count where count == 0 {
+            // We'll display the no events cell
+            return 1
+        }
         return filteredEvents?.count ?? 0
     }
 
@@ -77,6 +84,13 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         guard let dequeued = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier),
             let cell = dequeued as? NewsTableViewCell else {
                 return UITableViewCell()
+        }
+        if shouldDisplayNoEventsCell()  {
+            cell.title?.text = "No events for this category "
+            cell.detailLabel.text = ""
+            cell.accessoryType = .None
+            cell.setSelectedBackgroundColor(.clearColor())
+            return cell
         }
         let event = filteredEvents![indexPath.row]
         cell.detailLabel.text = event.dateString
@@ -87,6 +101,13 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         cell.textLabel?.numberOfLines = 0
         cell.detailTextLabel?.numberOfLines = 0
         return cell
+    }
+
+    func shouldDisplayNoEventsCell() -> Bool {
+        if let count = filteredEvents?.count where count > 0 {
+            return false
+        }
+        return true
     }
 
 }
