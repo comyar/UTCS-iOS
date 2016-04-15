@@ -17,9 +17,9 @@ class LabsDataSourceParser: DataSourceParser {
                 "basement": parseFloor(basementData, labName: "basement")]
     }
 
-    private func parseFloor(floor: [JSON], labName: String) -> [String: LabMachine] {
-        let machines = floor.map{LabMachine(json: $0, lab: labName)}.flatMap{$0}
-        var floor = [String: LabMachine]()
+    private func parseFloor(floor: [JSON], labName: String) -> [String: UTCSLabMachine] {
+        let machines = floor.map{UTCSLabMachine(json: $0, lab: labName)}.flatMap{$0}
+        var floor = [String: UTCSLabMachine]()
         for machine in machines {
             floor[machine.name] = machine
         }

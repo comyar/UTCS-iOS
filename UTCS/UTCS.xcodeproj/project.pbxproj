@@ -34,7 +34,6 @@
 		D40654701CAF1B4E002D98A3 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654621CAF15E8002D98A3 /* news.json */; };
 		D40654711CAF1B4E002D98A3 /* quota.json in Resources */ = {isa = PBXBuildFile; fileRef = D40654631CAF15E8002D98A3 /* quota.json */; };
 		D40654721CAF1B4E002D98A3 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D406545E1CAF1598002D98A3 /* events.json */; };
-		D40654731CB03C4C002D98A3 /* LabMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD83B58D18F3631A00EBDE06 /* LabMachine.swift */; };
 		D40654761CB04C5A002D98A3 /* CoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40654741CB04C55002D98A3 /* CoderTests.swift */; };
 		D406547A1CB06CDE002D98A3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40654791CB06CDE002D98A3 /* Service.swift */; };
 		D40654F71CB07840002D98A3 /* directory.json in Resources */ = {isa = PBXBuildFile; fileRef = D406546C1CAF1ACA002D98A3 /* directory.json */; };
@@ -64,7 +63,6 @@
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
 		D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34871B57DC9800D84D0B /* AboutViewController.swift */; };
 		D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FE5341B508F47000F2D59 /* EventsViewController.swift */; };
-		D461E6251CBA1C0C00D3AD91 /* LabMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D5F5041B530A23005974A7 /* LabMachineViewController.swift */; };
 		D461E6271CBA1C1400D3AD91 /* UTCSLabMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F03E1CB4E3A400DB074B /* UTCSLabMachine.swift */; };
 		D461E6281CBA1C1400D3AD91 /* UTCSLabViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F0401CB4F13500DB074B /* UTCSLabViewLayout.swift */; };
 		D461E6291CBA1C1400D3AD91 /* UTCSLabViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202069E1CB9BD04004E958D /* UTCSLabViewLayoutAttributes.swift */; };
@@ -109,7 +107,6 @@
 		DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8989A51903141C000F1041 /* ServiceMetadata.swift */; };
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
 		DD9475C7190B38AC0049FB8B /* UTCSLabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475C6190B38AC0049FB8B /* UTCSLabView.m */; };
-		DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */; };
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
 		DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */; };
@@ -158,6 +155,8 @@
 		8202069E1CB9BD04004E958D /* UTCSLabViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCSLabViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		8262F03E1CB4E3A400DB074B /* UTCSLabMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCSLabMachine.swift; sourceTree = "<group>"; };
 		8262F0401CB4F13500DB074B /* UTCSLabViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCSLabViewLayout.swift; sourceTree = "<group>"; };
+		82D7BAF31CC19BBE0016C0D6 /* UTCSLabMachineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCSLabMachineView.h; sourceTree = "<group>"; };
+		82D7BAF41CC19BBE0016C0D6 /* UTCSLabMachineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCSLabMachineView.m; sourceTree = "<group>"; };
 		86553C0987C7FFBB2479437A /* Pods-UTCSTests.offline debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.offline debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.offline debug.xcconfig"; sourceTree = "<group>"; };
 		883B80ED1CACB2F400810C52 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		883B80EF1CACC2FB00810C52 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Social.swift; path = Classes/Social.swift; sourceTree = "<group>"; };
@@ -258,8 +257,6 @@
 		DD9475C6190B38AC0049FB8B /* UTCSLabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabView.m; path = Views/UTCSLabView.m; sourceTree = "<group>"; };
 		DD9475C8190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabViewLayoutAttributes.h; path = Model/UTCSLabViewLayoutAttributes.h; sourceTree = "<group>"; };
 		DD9475C9190B38FC0049FB8B /* UTCSLabViewLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabViewLayoutAttributes.m; path = Model/UTCSLabViewLayoutAttributes.m; sourceTree = "<group>"; };
-		DD9475CB190B3B250049FB8B /* UTCSLabMachineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTCSLabMachineView.h; path = Views/UTCSLabMachineView.h; sourceTree = "<group>"; };
-		DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineView.m; path = Views/UTCSLabMachineView.m; sourceTree = "<group>"; };
 		DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BasementLabLayout.plist; path = UTCS/BasementLabLayout.plist; sourceTree = SOURCE_ROOT; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = Model/AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -522,8 +519,8 @@
 				820206961CB9BC1D004E958D /* UTCSLabView.swift */,
 				DD9475C5190B38AC0049FB8B /* UTCSLabView.h */,
 				DD9475C6190B38AC0049FB8B /* UTCSLabView.m */,
-				DD9475CB190B3B250049FB8B /* UTCSLabMachineView.h */,
-				DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */,
+				82D7BAF31CC19BBE0016C0D6 /* UTCSLabMachineView.h */,
+				82D7BAF41CC19BBE0016C0D6 /* UTCSLabMachineView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -725,6 +722,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B9A265F1891D5E30032DA03 /* Build configuration list for PBXNativeTarget "UTCS" */;
 			buildPhases = (
+				1931AD96301274EBA0841B16 /* Check Pods Manifest.lock */,
 				4D324ECAD61D9709A4B09D0C /* 📦 Check Pods Manifest.lock */,
 				0B9A262F1891D5E30032DA03 /* Sources */,
 				0B9A26301891D5E30032DA03 /* Frameworks */,
@@ -732,6 +730,8 @@
 				D4F4CEDC1C2B222B00220E39 /* ShellScript */,
 				A90D23A41C7D3C085558F7AC /* 📦 Embed Pods Frameworks */,
 				F1B49AD7F913E6BF8DD091D0 /* 📦 Copy Pods Resources */,
+				38232178CA44E4A99D0FB2ED /* Embed Pods Frameworks */,
+				032009BBFE98CC8FDA41A122 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -746,12 +746,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D43C8B061B7851F90049C4D6 /* Build configuration list for PBXNativeTarget "UTCSTests" */;
 			buildPhases = (
+				0DB95B8DD1DA2F593DF26DFE /* Check Pods Manifest.lock */,
 				2CB70052BC386AC33D44666A /* 📦 Check Pods Manifest.lock */,
 				D43C8AFB1B7851F80049C4D6 /* Sources */,
 				D43C8AFC1B7851F80049C4D6 /* Frameworks */,
 				D43C8AFD1B7851F80049C4D6 /* Resources */,
 				60A2A1F1ABA62377BD3BE752 /* 📦 Embed Pods Frameworks */,
 				89368344182C121C580F892C /* 📦 Copy Pods Resources */,
+				AC3209FD81A0FB4314288CE1 /* Embed Pods Frameworks */,
+				0C265E2802E270EC51873716 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -867,6 +870,66 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		032009BBFE98CC8FDA41A122 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0C265E2802E270EC51873716 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0DB95B8DD1DA2F593DF26DFE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1931AD96301274EBA0841B16 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		2CB70052BC386AC33D44666A /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -880,6 +943,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		38232178CA44E4A99D0FB2ED /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4D324ECAD61D9709A4B09D0C /* 📦 Check Pods Manifest.lock */ = {
@@ -942,6 +1020,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCS/Pods-UTCS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AC3209FD81A0FB4314288CE1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D4F4CEDC1C2B222B00220E39 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -982,7 +1075,6 @@
 				D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */,
 				D461E6291CBA1C1400D3AD91 /* UTCSLabViewLayoutAttributes.swift in Sources */,
 				D40C697A1B7D3572005E3719 /* DiskQuotaDataSource.swift in Sources */,
-				D40654731CB03C4C002D98A3 /* LabMachine.swift in Sources */,
 				D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */,
 				886209D41CAD8669009180AD /* UIImageView+Tinting.swift in Sources */,
 				D482C1AB1B3CDE8E00645C23 /* NewsArticleViewController.swift in Sources */,
@@ -1015,13 +1107,11 @@
 				D4BA71CB1B42107A007C09F6 /* MenuViewController.swift in Sources */,
 				DD8989A61903141C000F1041 /* ServiceMetadata.swift in Sources */,
 				D4BA71CE1B421819007C09F6 /* ContentViewController.swift in Sources */,
-				D461E6251CBA1C0C00D3AD91 /* LabMachineViewController.swift in Sources */,
 				820206991CB9BC45004E958D /* UTCSLabMachineView.swift in Sources */,
 				D4E77F521C405DC7007E2A42 /* MenuTableViewCell.swift in Sources */,
 				D406547A1CB06CDE002D98A3 /* Service.swift in Sources */,
 				D4A89CF71B812AFA00B9D7A5 /* UIBarButton+UTCSButton.swift in Sources */,
 				D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */,
-				DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */,
 				D46439061B7C627D007BA5D0 /* EventsDataSourceParser.swift in Sources */,
 				D4EB63431C443FDF00C34774 /* ArticleViewController.swift in Sources */,
 				88F088651CA607B2008BFB65 /* NSAttributedString+Trim.swift in Sources */,

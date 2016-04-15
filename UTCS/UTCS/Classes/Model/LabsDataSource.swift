@@ -1,4 +1,4 @@
-typealias Lab = [String: LabMachine]
+typealias Lab = [String: UTCSLabMachine]
 final class LabsDataSource: ServiceDataSource {
     override var router: Router {
         return Router.Labs()

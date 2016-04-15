@@ -8,10 +8,18 @@
 
 import Foundation
 import UIKit
+func ==(lhs: UTCSLabViewLayoutAttributes, rhs: UTCSLabViewLayoutAttributes) -> Bool {
+    return lhs.center == rhs.center && lhs.size == rhs.size && lhs.indexPath == rhs.indexPath
+}
 
-/////////////// Should these be mutable? ///////////////
-protocol UTCSLabViewLayoutAttributes {
-    var size: CGSize { get set }
-    var center: CGPoint { get set }
-    var indexPath: NSIndexPath { get set }
+class UTCSLabViewLayoutAttributes {
+    var size: CGSize
+    var center: CGPoint
+    var indexPath: NSIndexPath
+    
+    init (size: CGSize, center: CGPoint, indexPath: NSIndexPath) {
+        self.size = size
+        self.center = center
+        self.indexPath = indexPath
+    }
 }

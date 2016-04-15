@@ -1,3 +1,4 @@
+/*
 //
 //  UTCSLabsCollectionViewLayout.h
 //  UTCS
@@ -23,3 +24,4 @@
 @property (nonatomic, readonly) NSInteger numberOfLabMachines;
 
 @end
+

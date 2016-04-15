@@ -1,3 +1,4 @@
+/*
 //
 //  UTCSLabMachineViewController.h
 //  UTCS
@@ -12,24 +13,15 @@
 #import "UTCSLabView.h"
 #import "Shimmer/FBShimmeringView.h"
 
-/**
- */
+ 
 @interface UTCSLabMachineViewController : UIViewController <UTCSLabViewDataSource>
 
-/**
- */
 - (instancetype)initWithLayout:(UTCSLabViewLayout *)layout;
 
-/**
- */
 @property (nonatomic) NSDictionary                  *machines;
 
-/**
- */
 @property (nonatomic) CGPoint                       imageOffset;
 
-/**
- */
 @property (nonatomic) FBShimmeringView              *shimmeringView;
 
 @property (nonatomic, readonly) ServiceErrorView    *serviceErrorView;
@@ -38,8 +30,8 @@
 
 @property (nonatomic) UIImageView                   *backgroundImageView;
 
-/**
- */
 @property (nonatomic, readonly) UTCSLabViewLayout   *layout;
 
 @end
+
+*/

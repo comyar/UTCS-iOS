@@ -1,3 +1,5 @@
+import UIKit
+import Foundation
 enum MenuOption: Int {
     case News
     case Events

@@ -40,15 +40,17 @@ class UTCSLabViewLayout {
     
     // not sure about this one. Will these types work out?
     func labMachineNameForIndexPath(indexPath: NSIndexPath) -> String? {
-        let layoutAttribute = layoutAttributesForIndexPath(indexPath)
+        guard let layoutAttribute = layoutAttributesForIndexPath(indexPath) else {
+            // some error code?
+            return nil
+        }
         for (key, _) in self.layoutAttributes {
             // Check this. I don't really know if this is correct
             guard let cur = self.layoutAttributes[key] else {
                 // some error code?
                 return nil
             }
-            // This equality check was especially dubious. Is this supposed to check identity?
-            if (layoutAttribute as! AnyObject).isEqual(cur) {
+            if layoutAttribute == cur {
                 return key
             }
         }

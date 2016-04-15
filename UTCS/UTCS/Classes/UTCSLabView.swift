@@ -9,33 +9,39 @@ import UIKit
 
 import Foundation
 
-class UTCSLabView {
-    var machineViews: [UTCSLabMachineView]
+protocol UTCSLabViewDataSource {
+    func labView(labView: UTCSLabView, machineViewForIndexPath: NSIndexPath, name: String) -> UTCSLabMachineView
+}
+
+class UTCSLabView : UIView {
+    var machineViews = [UTCSLabMachineView]()
     var layout: UTCSLabViewLayout
-    var dataSource: UTCSLabViewDataSource
+    var dataSource: UTCSLabViewDataSource?
     init(frame: CGRect, layout: UTCSLabViewLayout) {
-        super.init(frame: frame)
         self.layout = layout
+        super.init(frame: frame)
         self.prepareLayout()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func invalidateLayout() {
-        self.prepareLayout
+        self.prepareLayout()
     }
     
     func prepareLayout() {
         self.layout.prepareLayoutForLabView(self)
         for machineView in self.machineViews { machineView.removeFromSuperview() }
-        self.machineViews = nil
+        self.machineViews = []
         
-        var machineViews: [UTCSLabMachineView] = []
         for i in 0..<self.layout.numberOfLabMachines {
             let indexPath = NSIndexPath(forRow: i, inSection: 0)
             let labMachineView = UTCSLabMachineView()
             labMachineView.tag = indexPath.row
-            machineViews.append(labMachineView)
+            self.machineViews.append(labMachineView)
         }
-        self.machineViews = machineViews
     }
     
     func dequeueMachineViewForIndexPath(indexPath: NSIndexPath) -> UTCSLabMachineView {
@@ -47,8 +53,11 @@ class UTCSLabView {
         for i in 0..<count {
             let indexPath = NSIndexPath(forItem: i, inSection: 0) // should this be forRow?
             let machineName = self.layout.labMachineNameForIndexPath(indexPath)
-            let layoutAttributes = self.layout.layoutAttributesForIndexPath(indexPath)
-            let machineView = self.dataSource(labView: self, machineViewForIndexPath: indexPath, name: machineName)
+            guard let layoutAttributes = self.layout.layoutAttributesForIndexPath(indexPath) else {
+                // some error code?
+                return
+            }
+            let machineView = self.dataSource!.labView(self, machineViewForIndexPath: indexPath, name: machineName!)
             machineView.frame = CGRectMake(0.0, 0.0, layoutAttributes.size.width, layoutAttributes.size.height)
             machineView.center = layoutAttributes.center
             machineView.tag = indexPath.row

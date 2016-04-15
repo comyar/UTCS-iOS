@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct UTCSLabMachineKey {
     static let labKey      = "lab"
@@ -35,6 +36,22 @@ class UTCSLabMachine : NSObject, NSCoding {
         super.init()
     }
     
+    init?(json: JSON, lab: String) {
+        guard let name = json["name"].string,
+            status = json["up"].bool,
+            load = json["load"].double,
+        occupied = json["occupied"].bool,
+            uptime = json["uptime"].string else {
+                return nil
+        }
+        self.lab = lab
+        self.name = name
+        self.load = load
+        self.occupied = occupied
+        self.status = status
+        self.uptime = uptime
+    }
+
     required convenience init?(coder aDecoder: NSCoder) {
         let aLab = aDecoder.decodeObjectForKey(UTCSLabMachineKey.labKey) as! String
         let aName = aDecoder.decodeObjectForKey(UTCSLabMachineKey.nameKey) as! String

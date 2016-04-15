@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class UTCSLabMachineView : UIView {
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).CGColor
         self.layer.borderWidth = 1.0
@@ -18,9 +18,7 @@ class UTCSLabMachineView : UIView {
         self.layer.masksToBounds = true
     }
     
-    func setFrame(frame: CGRect) {
-        super.setFrame(frame)
-        self.layer.cornerRadius = 0.5 * frame.size.width
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
 }

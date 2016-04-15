@@ -35,39 +35,41 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
             return scrollView
         }()
         view.addSubview(scrollView)
-        let thirdLayout = UTCSLabViewLayout(filename: "ThirdFloorLabLayout")
-        thirdFloorLabViewController = UTCSLabMachineViewController(layout: thirdLayout)
-        thirdFloorLabViewController.backgroundImageView.image = UIImage(named: "Third Floor Lab")
-
-        thirdFloorLabViewController.view.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: view.frame.height)
-        scrollView.addSubview(thirdFloorLabViewController.view)
-        addChildViewController(thirdFloorLabViewController)
-        thirdFloorLabViewController.didMoveToParentViewController(self)
-        thirdFloorLabViewController.shimmeringView.frame = CGRect(x: 0.5 * view.frame.width, y: view.frame.height * 0.3, width: 0.4 * view.frame.width, height: 0.6 * view.frame.height)
-        thirdFloorLabViewController.shimmeringView.contentView.frame = thirdFloorLabViewController.shimmeringView.bounds
-        (thirdFloorLabViewController.shimmeringView.contentView as! UILabel).text = "Third Floor"
-
-        let basementLayout = UTCSLabViewLayout(filename: "BasementLabLayout")
-        basementLabViewController = UTCSLabMachineViewController(layout: basementLayout)
-
-        basementLabViewController.backgroundImageView.image = UIImage(named: "Basement Lab")
-        basementLabViewController.view.frame = CGRect(x: view.frame.width, y: 0.0, width: view.frame.width, height: view.frame.height)
-        scrollView.addSubview(basementLabViewController.view)
-        addChildViewController(basementLabViewController)
-        basementLabViewController.didMoveToParentViewController(self)
-
-        basementLabViewController.shimmeringView.frame = CGRect(x: 8.0, y: 0.72 * view.frame.height, width: view.frame.width - 16.0, height: 120.0)
-        basementLabViewController.shimmeringView.contentView.frame = basementLabViewController.shimmeringView.bounds
-        (basementLabViewController.shimmeringView.contentView as! UILabel).text = "Basement"
-
-        pageControl = {
+        if let thirdLayout = UTCSLabViewLayout(filename: "ThirdFloorLabLayout") {
+            self.thirdFloorLabViewController = UTCSLabMachineViewController(layout: thirdLayout)
+            self.thirdFloorLabViewController.backgroundImageView.image = UIImage(named: "Third Floor Lab")
+            
+            self.thirdFloorLabViewController.view.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: view.frame.height)
+            scrollView.addSubview(self.thirdFloorLabViewController.view)
+            addChildViewController(self.thirdFloorLabViewController)
+            self.thirdFloorLabViewController.didMoveToParentViewController(self)
+            self.thirdFloorLabViewController.shimmeringView.frame = CGRect(x: 0.5 * view.frame.width, y: view.frame.height * 0.3, width: 0.4 * view.frame.width, height: 0.6 * view.frame.height)
+            self.thirdFloorLabViewController.shimmeringView.contentView.frame = self.thirdFloorLabViewController.shimmeringView.bounds
+            (self.thirdFloorLabViewController.shimmeringView.contentView as! UILabel).text = "Third Floor"
+        }
+        
+        if let basementLayout = UTCSLabViewLayout(filename: "BasementLabLayout") {
+            self.basementLabViewController = UTCSLabMachineViewController(layout: basementLayout)
+            
+            self.basementLabViewController.backgroundImageView.image = UIImage(named: "Basement Lab")
+            self.basementLabViewController.view.frame = CGRect(x: view.frame.width, y: 0.0, width: view.frame.width, height: view.frame.height)
+            scrollView.addSubview(self.basementLabViewController.view)
+            addChildViewController(self.basementLabViewController)
+            self.basementLabViewController.didMoveToParentViewController(self)
+            
+            self.basementLabViewController.shimmeringView.frame = CGRect(x: 8.0, y: 0.72 * view.frame.height, width: view.frame.width - 16.0, height: 120.0)
+            self.basementLabViewController.shimmeringView.contentView.frame = self.basementLabViewController.shimmeringView.bounds
+            (self.basementLabViewController.shimmeringView.contentView as! UILabel).text = "Basement"
+        }
+        
+        self.pageControl = {
             let control = UIPageControl(frame: CGRect(x: 0.0, y: view.frame.height - 32.0, width: view.frame.width, height: 32.0))
             control.userInteractionEnabled = false
             control.numberOfPages = 2
             return control
         }()
-        view.addSubview(pageControl)
-        refreshButton = {
+        view.addSubview(self.pageControl)
+        self.refreshButton = {
             let button = UIButton.bouncyButton()
             button.frame = CGRect(x: 0.0, y: 0.0, width: 44.0, height: 44.0)
             button.center = CGPoint(x: view.frame.width - 33.0, y: 22.0)
@@ -113,8 +115,8 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
                 let successValue: CGFloat = result.successful ? 1.0 : 0.0
                 self.thirdFloorLabViewController.shimmeringView.alpha = successValue
                 self.basementLabViewController.shimmeringView.alpha = successValue
-                self.thirdFloorLabViewController.serviceErrorView.alpha = 1.0 - successValue
-                self.basementLabViewController.serviceErrorView.alpha = 1.0 - successValue
+                self.thirdFloorLabViewController.errorView.alpha = 1.0 - successValue
+                self.basementLabViewController.errorView.alpha = 1.0 - successValue
                 self.thirdFloorLabViewController.labView.alpha  = successValue
                 self.basementLabViewController.labView.alpha    = successValue
             })
