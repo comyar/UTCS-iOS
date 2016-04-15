@@ -2,11 +2,17 @@ import MBProgressHUD
 
 class DirectoryViewController: TableViewController {
     var appeared = false
-    var errorView: ServiceErrorView!
     var detailViewController: DirectoryDetailViewController?
     var directoryDataSource: DirectoryDataSource? {
         return dataSource as? DirectoryDataSource
     }
+    
+    var errorView: ServiceErrorView = {
+        let view = ServiceErrorView.loadFromNib()
+        view.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your network connection"
+        view.alpha = 0.0
+        return view
+    }()
 
     // MARK:- Initialization
 
@@ -32,13 +38,8 @@ class DirectoryViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = menuButton
-        errorView = {
-            let view = ServiceErrorView.loadFromNib()
-            view.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your network connection"
-            view.alpha = 0.0
-            return view
-        }()
-        errorView.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 0.5 * view.frame.height)
+        
+        errorView.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 230)
         errorView.center = CGPoint(x: view.center.x, y: 0.9 * view.center.y)
         view.addSubview(errorView)
         update()
@@ -63,8 +64,8 @@ class DirectoryViewController: TableViewController {
             }
             UIView.animateWithDuration(0.3) {
                 let successValue: CGFloat = result.successful ? 1.0 : 0.0
-                self.tableView.alpha = successValue
-                self.errorView.alpha = successValue - 1.0
+                self.errorView.alpha = 1 - successValue
+                self.tableView.bounces = result.successful
             }
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
