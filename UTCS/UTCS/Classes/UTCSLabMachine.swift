@@ -66,8 +66,8 @@ class UTCSLabMachine : NSObject, NSCoding {
         aCoder.encodeObject(self.lab, forKey: UTCSLabMachineKey.labKey)
         aCoder.encodeObject(self.name, forKey: UTCSLabMachineKey.nameKey)
         aCoder.encodeObject(self.uptime, forKey: UTCSLabMachineKey.uptimeKey)
-        aCoder.encodeObject(self.status, forKey: UTCSLabMachineKey.statusKey)
-        aCoder.encodeObject(self.occupied, forKey: UTCSLabMachineKey.occupiedKey)
+        aCoder.encodeBool(self.status, forKey: UTCSLabMachineKey.statusKey)
+        aCoder.encodeBool(self.occupied, forKey: UTCSLabMachineKey.occupiedKey)
         aCoder.encodeDouble(self.load, forKey: UTCSLabMachineKey.loadKey)
     }
 }
