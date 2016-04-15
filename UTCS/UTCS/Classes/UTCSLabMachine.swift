@@ -13,18 +13,18 @@ struct UTCSLabMachineKey {
     static let labKey      = "lab"
     static let nameKey     = "name"
     static let uptimeKey   = "uptime"
-    static let statusKey   = "status"
+    static let statusKey   = "up"
     static let occupiedKey = "occupied"
     static let loadKey     = "load"
 }
 
 class UTCSLabMachine : NSObject, NSCoding {
-    var lab: String
-    var name: String
-    var uptime: String
-    var status: Bool
-    var occupied: Bool
-    var load: Double
+    let lab: String
+    let name: String
+    let uptime: String
+    let status: Bool
+    let occupied: Bool
+    let load: Double
     
     init?(lab: String, name: String, uptime: String, status: Bool, occupied: Bool, load: Double) {
         self.lab = lab
@@ -37,11 +37,11 @@ class UTCSLabMachine : NSObject, NSCoding {
     }
     
     init?(json: JSON, lab: String) {
-        guard let name = json["name"].string,
-            status = json["up"].bool,
-            load = json["load"].double,
-        occupied = json["occupied"].bool,
-            uptime = json["uptime"].string else {
+        guard let name = json[UTCSLabMachineKey.nameKey].string,
+            status = json[UTCSLabMachineKey.statusKey].bool,
+            load = json[UTCSLabMachineKey.loadKey].double,
+        occupied = json[UTCSLabMachineKey.occupiedKey].bool,
+            uptime = json[UTCSLabMachineKey.uptimeKey].string else {
                 return nil
         }
         self.lab = lab
