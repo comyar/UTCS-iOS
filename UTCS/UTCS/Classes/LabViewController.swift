@@ -2,7 +2,13 @@ import UIKit
 import Shimmer
 
 class LabViewController: UIViewController {
-    var imageOffset: CGPoint!
+    var imageOffset: CGPoint = CGPointZero {
+        didSet(oldValue) {
+            let frame = backgroundContainer.bounds
+            let offsetFrame = CGRectOffset(frame, imageOffset.x, imageOffset.y)
+            backgroundImageView.frame = offsetFrame
+        }
+    }
     var shimmeringView: FBShimmeringView!
     var errorView: ServiceErrorView = {
         let view = ServiceErrorView.loadFromNib()
@@ -80,13 +86,7 @@ class LabViewController: UIViewController {
         backgroundImageView.frame = view.bounds
         labView.invalidateLayout()
     }
-    
-    func setImageOffset(imageOffset: CGPoint) {
-        self.imageOffset = imageOffset
-        let frame = backgroundContainer.bounds
-        let offsetFrame = CGRectOffset(frame, imageOffset.x, imageOffset.y)
-        backgroundImageView.frame = offsetFrame
-    }
+
 }
 
 extension LabViewController: LabViewDataSource {
