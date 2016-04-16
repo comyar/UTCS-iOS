@@ -25,8 +25,8 @@ class DirectoryTableViewCell: ClearTableViewCell {
         let firstNameRange = NSRange(location: 0, length: firstNameLength)
         let remainingRange = NSRange(location: firstNameLength + 1, length: person.fullName.characters.count - 1 - firstNameLength)
 
-        let firstNameWeight = UIFont.systemFontOfSize(textLabel!.font.pointSize, weight: UIFontWeightBold)
-        let remainingWeight = UIFont.systemFontOfSize(textLabel!.font.pointSize, weight: UIFontWeightLight)
+        let firstNameWeight = .systemFontOfSize(textLabel!.font.pointSize, weight: UIFontWeightLight)
+        let remainingWeight = .systemFontOfSize(textLabel!.font.pointSize, weight: UIFontWeightBold)
         attributedName.addAttribute(NSFontAttributeName, value: firstNameWeight, range: firstNameRange)
         attributedName.addAttribute(NSFontAttributeName, value: remainingWeight, range: remainingRange)
         textLabel?.attributedText = attributedName
