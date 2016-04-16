@@ -14,7 +14,7 @@
 		1D0AC6101D76B71305851265 /* Pods_UTCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 097B7179BACAA32A58363C02 /* Pods_UTCS.framework */; };
 		820206971CB9BC1D004E958D /* LabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820206961CB9BC1D004E958D /* LabView.swift */; };
 		820206991CB9BC45004E958D /* LabMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820206981CB9BC45004E958D /* LabMachineView.swift */; };
-		8202069B1CB9BC56004E958D /* LabMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202069A1CB9BC56004E958D /* LabMachineViewController.swift */; };
+		8202069B1CB9BC56004E958D /* LabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202069A1CB9BC56004E958D /* LabViewController.swift */; };
 		883B80EE1CACB2F400810C52 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883B80ED1CACB2F400810C52 /* Settings.storyboard */; };
 		883B80F01CACC2FB00810C52 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80EF1CACC2FB00810C52 /* Social.swift */; };
 		883B80F21CACC73900810C52 /* AutomaticDimensionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */; };
@@ -149,7 +149,7 @@
 		6FD365D91B9DE14BDE776CF8 /* Pods-UTCSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		820206961CB9BC1D004E958D /* LabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabView.swift; sourceTree = "<group>"; };
 		820206981CB9BC45004E958D /* LabMachineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabMachineView.swift; sourceTree = "<group>"; };
-		8202069A1CB9BC56004E958D /* LabMachineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabMachineViewController.swift; sourceTree = "<group>"; };
+		8202069A1CB9BC56004E958D /* LabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabViewController.swift; sourceTree = "<group>"; };
 		8262F03E1CB4E3A400DB074B /* LabMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabMachine.swift; sourceTree = "<group>"; };
 		8262F0401CB4F13500DB074B /* LabViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabViewLayout.swift; sourceTree = "<group>"; };
 		86553C0987C7FFBB2479437A /* Pods-UTCSTests.offline debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.offline debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.offline debug.xcconfig"; sourceTree = "<group>"; };
@@ -503,7 +503,7 @@
 		DD8761691900FC5D005FEE4E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8202069A1CB9BC56004E958D /* LabMachineViewController.swift */,
+				8202069A1CB9BC56004E958D /* LabViewController.swift */,
 				D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */,
 			);
 			name = Controllers;
@@ -1062,7 +1062,7 @@
 				DDE561E218DC0C0E00C46480 /* VerticalMenuViewController.swift in Sources */,
 				D43C8B0C1B7919680049C4D6 /* LabsDataSource.swift in Sources */,
 				D43950281C45942D007AA192 /* UIColor+UTCSColors.swift in Sources */,
-				8202069B1CB9BC56004E958D /* LabMachineViewController.swift in Sources */,
+				8202069B1CB9BC56004E958D /* LabViewController.swift in Sources */,
 				D409244D1C3CD93E00A81EBA /* Constants.swift in Sources */,
 				D46C7C4B1B4F454F009F1EA1 /* NewsViewController.swift in Sources */,
 				D4F2B9C71B5AFB6400D28C1D /* NewsDataSource.swift in Sources */,

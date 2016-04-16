@@ -52,7 +52,7 @@ class LabViewLayout {
 
     func prepareLayoutForLabView(labView: LabView) {
         let heightMultiplier = labView.bounds.height / CGFloat(maxGridHeight)
-        let widthMultiplier = labView.bounds.height / CGFloat(maxGridWidth)
+        let widthMultiplier = labView.bounds.width / CGFloat(maxGridWidth)
         
         let height = labView.bounds.height / 28.25
         let width = height

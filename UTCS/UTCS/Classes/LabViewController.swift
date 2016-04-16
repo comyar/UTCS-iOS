@@ -21,42 +21,53 @@ class LabViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.layout = layout
         
-        // Set up background's container
-        backgroundContainer = UIView(frame: view.bounds)
-        backgroundContainer.clipsToBounds = true
-        
-        // Set up background image
-        backgroundImageView = UIImageView(frame: view.bounds)
-
-        backgroundImageView.contentMode = .ScaleAspectFill
-        backgroundImageView.clipsToBounds = false
-        
-        // Add image to background container
-        backgroundContainer.addSubview(backgroundImageView)
-        view.addSubview(backgroundContainer)
-        
         // Set up the labview and add to self
-        labView = LabView(frame: CGRectZero, layout: layout)
-        labView.frame = CGRect(x: 0.0, y: 44.0, width: view.bounds.size.width, height: view.bounds.size.height - 44.0)
-        labView.backgroundColor = .clearColor()
-        labView.alpha = 0.0
-        labView.dataSource = self
+
+        labView = {
+            let frame = CGRect(x: 20.0, y: 44.0, width: self.view.bounds.size.width - 40.0, height: self.view.bounds.size.height - 44.0 - 100.0)
+            let view = LabView(frame: frame, layout: layout)
+            view.backgroundColor = .clearColor()
+            view.alpha = 0.0
+            view.dataSource = self
+            return view
+        }()
         view.addSubview(labView)
-        
-        shimmeringView = FBShimmeringView(frame: CGRectZero)
-        
-        let label = UILabel(frame: CGRectZero)
-        label.font = .systemFontOfSize(50.0)
-        label.textAlignment = .Center
-        label.textColor = .whiteColor()
-        label.numberOfLines = 0
-        
-        shimmeringView.contentView = label
+
+
+        shimmeringView = {
+            let frame = CGRect(x: 0.0, y: 44.0 + self.labView.frame.height, width: self.view.bounds.size.width, height: 100.0)
+            let view = FBShimmeringView(frame: CGRectZero)
+            let label = UILabel(frame: CGRectZero)
+            label.font = .systemFontOfSize(50.0, weight: UIFontWeightBold)
+            label.textAlignment = .Center
+            label.textColor = .whiteColor()
+            label.numberOfLines = 0
+            label.text = "TOHUSTNHU"
+            view.contentView = label
+            return view
+        }()
+        view.addSubview(shimmeringView)
+
         
         errorView.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.size.width, height: 0.5 * view.bounds.size.height)
         errorView.center = CGPoint(x: view.center.x, y: 0.9 * view.center.y)
         view.addSubview(errorView)
         labView.prepareLayout()
+
+        // Set up background's container
+        backgroundContainer = UIView(frame: view.bounds)
+        backgroundContainer.clipsToBounds = true
+
+        // Set up background image
+        backgroundImageView = UIImageView(frame: view.bounds)
+
+        backgroundImageView.contentMode = .ScaleAspectFill
+        backgroundImageView.clipsToBounds = false
+
+        // Add image to background container
+        backgroundContainer.addSubview(backgroundImageView)
+        view.addSubview(backgroundContainer)
+        view.sendSubviewToBack(backgroundContainer)
     }
     
     required init?(coder aDecoder: NSCoder) {
