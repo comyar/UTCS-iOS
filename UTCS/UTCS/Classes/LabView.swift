@@ -22,6 +22,7 @@ class LabView : UIView {
     
     func invalidateLayout() {
         prepareLayout()
+        reloadData()
     }
     
     func prepareLayout() {
