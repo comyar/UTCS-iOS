@@ -1,15 +1,7 @@
-//
-//  UTCSLabMachineView.swift
-//  UTCS
-//
-//  Created by Taylor Schmidt on 4/8/16.
-//  Copyright © 2016 UTCS. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
-class UTCSLabMachineView : UIView {
+class LabMachineView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).CGColor
