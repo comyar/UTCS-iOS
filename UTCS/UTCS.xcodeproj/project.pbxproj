@@ -109,7 +109,6 @@
 		DD9475CD190B3B250049FB8B /* UTCSLabMachineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */; };
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
-		DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */; };
 		DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */; };
 		DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */; };
 		DD95E7861926305C0062F4E9 /* FBTweaks-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */; };
@@ -255,7 +254,6 @@
 		DD9475CC190B3B250049FB8B /* UTCSLabMachineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTCSLabMachineView.m; path = Views/UTCSLabMachineView.m; sourceTree = "<group>"; };
 		DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BasementLabLayout.plist; path = UTCS/BasementLabLayout.plist; sourceTree = SOURCE_ROOT; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
-		DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = Model/AuthenticationManager.swift; sourceTree = "<group>"; };
 		DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "DPMeterView-license.txt"; path = "Resources/Licenses/DPMeterView-license.txt"; sourceTree = "<group>"; };
 		DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBShimmering-license.txt"; path = "Resources/Licenses/FBShimmering-license.txt"; sourceTree = "<group>"; };
 		DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBTweaks-license.txt"; path = "Resources/Licenses/FBTweaks-license.txt"; sourceTree = "<group>"; };
@@ -425,7 +423,6 @@
 		D4BD55271CBDC5E000C6FDA4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */,
 				D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */,
 				D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */,
 			);
@@ -983,7 +980,6 @@
 				D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */,
 				D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */,
 				D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */,
-				DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */,
 				D4D5F5031B53076E005974A7 /* DirectoryViewController.swift in Sources */,
 				D4E78C6A1C98F71900E0FB8C /* NewsTableViewCell.swift in Sources */,
 				D46439041B7C5CEA007BA5D0 /* DataSourceParser.swift in Sources */,
