@@ -11,7 +11,7 @@ import UIKit
 
 typealias SocialLink = (app: NSURL, web: NSURL)
 
-let FACEBOOK_SOCIAL_LINK = (NSURL(string: "fb://page/272565539464226")!, NSURL(string: "https://fb.me/UTCompSci")!)
+let FACEBOOK_SOCIAL_LINK = (NSURL(string: "fb://group?id=155607091223285")!, NSURL(string: "https://fb.me/UTCompSci")!)
 let TWITTER_SOCIAL_LINK = (NSURL(string: "twitter://user?screen_name=utcompsci")!, NSURL(string: "https://twitter.com/UTCompSci")!)
 
 func openSocialLink(link: SocialLink) {

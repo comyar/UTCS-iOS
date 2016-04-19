@@ -35,7 +35,7 @@ class SettingsViewController: PhotoBackgroundTableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard indexPath.section == 3 else { return }
+        guard indexPath.section == 2 else { return }
         switch indexPath.row {
         case 0: openSocialLink(FACEBOOK_SOCIAL_LINK)
         case 1: openSocialLink(TWITTER_SOCIAL_LINK)
