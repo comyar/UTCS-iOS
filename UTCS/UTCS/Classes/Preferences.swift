@@ -5,7 +5,7 @@
 //  Created by Jesse Tipton on 3/31/16.
 //  Copyright © 2016 UTCS. All rights reserved.
 //
-
+import Foundation
 enum ComputerLab: Int {
     case ThirdFloor, Basement
 }

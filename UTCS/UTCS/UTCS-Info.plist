@@ -24,6 +24,7 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>tel</string>
 		<string>twitter</string>
 		<string>fb</string>
 	</array>

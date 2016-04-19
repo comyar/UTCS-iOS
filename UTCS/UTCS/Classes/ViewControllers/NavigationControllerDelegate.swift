@@ -1,3 +1,5 @@
+import Foundation
+import UIKit
 @objc public class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
     var panGestureRecognizer: UIPanGestureRecognizer!
     var interactionController: UIPercentDrivenInteractiveTransition?
