@@ -1,5 +1,4 @@
 def all_pods
-pod 'NMSSH'
 pod 'DPMeterView'
 pod 'MBProgressHUD'
 pod 'Alamofire', '~> 3.0'

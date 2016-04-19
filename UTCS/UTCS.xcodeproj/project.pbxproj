@@ -107,7 +107,6 @@
 		DD9475C2190B26530049FB8B /* ThirdFloorLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */; };
 		DD9475CF190B8F830049FB8B /* BasementLabLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */; };
 		DD9475E8190CE5DF0049FB8B /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = DD9475E7190CE5DF0049FB8B /* cloud.svg */; };
-		DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */; };
 		DD95E7841926305C0062F4E9 /* DPMeterView-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */; };
 		DD95E7851926305C0062F4E9 /* FBShimmering-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */; };
 		DD95E7861926305C0062F4E9 /* FBTweaks-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */; };
@@ -147,6 +146,7 @@
 		0B9A26401891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		31E785E9EA273ECF22417B77 /* Pods-UTCSTests.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.no cache no network.xcconfig"; sourceTree = "<group>"; };
 		3B0D1FC9DB98146623AD7DAF /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
+		3F663DD94A62722FC1C885C0 /* Pods-UTCSTests.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.no cache no network.xcconfig"; sourceTree = "<group>"; };
 		6FD365D91B9DE14BDE776CF8 /* Pods-UTCSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		773CB963144C2FD0617694EA /* Pods-UTCS.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.no cache no network.xcconfig"; sourceTree = "<group>"; };
 		820206961CB9BC1D004E958D /* LabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabView.swift; sourceTree = "<group>"; };
@@ -247,7 +247,6 @@
 		DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThirdFloorLabLayout.plist; path = UTCS/ThirdFloorLabLayout.plist; sourceTree = SOURCE_ROOT; };
 		DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BasementLabLayout.plist; path = UTCS/BasementLabLayout.plist; sourceTree = SOURCE_ROOT; };
 		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
-		DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = Model/AuthenticationManager.swift; sourceTree = "<group>"; };
 		DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "DPMeterView-license.txt"; path = "Resources/Licenses/DPMeterView-license.txt"; sourceTree = "<group>"; };
 		DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBShimmering-license.txt"; path = "Resources/Licenses/FBShimmering-license.txt"; sourceTree = "<group>"; };
 		DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBTweaks-license.txt"; path = "Resources/Licenses/FBTweaks-license.txt"; sourceTree = "<group>"; };
@@ -264,6 +263,7 @@
 		DDC404711917D42400D17CBF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = Resources/Icons.xcassets; sourceTree = "<group>"; };
 		DDC4047C1918875200D17CBF /* AFNetworking-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AFNetworking-license.txt"; path = "Resources/Licenses/AFNetworking-license.txt"; sourceTree = "<group>"; };
 		DDE561E118DC0C0E00C46480 /* VerticalMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalMenuViewController.swift; sourceTree = "<group>"; };
+		E0F5906998E8EE76EE8341EF /* Pods-UTCS.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.no cache no network.xcconfig"; sourceTree = "<group>"; };
 		ECBE2FFCC496252108702BE1 /* Pods-UTCS.offline debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.offline debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.offline debug.xcconfig"; sourceTree = "<group>"; };
 		F842671B9D8D523C64613208 /* Pods-UTCSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -379,6 +379,8 @@
 				86553C0987C7FFBB2479437A /* Pods-UTCSTests.offline debug.xcconfig */,
 				9CE45763804872C251FC0B17 /* Pods-UTCSTests.no cache.xcconfig */,
 				F842671B9D8D523C64613208 /* Pods-UTCSTests.release.xcconfig */,
+				E0F5906998E8EE76EE8341EF /* Pods-UTCS.no cache no network.xcconfig */,
+				3F663DD94A62722FC1C885C0 /* Pods-UTCSTests.no cache no network.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -425,7 +427,6 @@
 		D4BD55271CBDC5E000C6FDA4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				DD95E7611922955E0062F4E9 /* AuthenticationManager.swift */,
 				D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */,
 				D40924491C3CD0EB00A81EBA /* RequestAuthentication.swift */,
 			);
@@ -1070,7 +1071,6 @@
 				D43C8B0E1B79197C0049C4D6 /* EventsDataSource.swift in Sources */,
 				D40F95441C477A75003232A0 /* DirectoryTableViewCell.swift in Sources */,
 				D4C39C341B364A320009AA25 /* DirectoryDetailViewController.swift in Sources */,
-				DD95E7621922955E0062F4E9 /* AuthenticationManager.swift in Sources */,
 				D4D5F5031B53076E005974A7 /* DirectoryViewController.swift in Sources */,
 				D4E78C6A1C98F71900E0FB8C /* NewsTableViewCell.swift in Sources */,
 				D46439041B7C5CEA007BA5D0 /* DataSourceParser.swift in Sources */,

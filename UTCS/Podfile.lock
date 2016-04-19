@@ -1,11 +1,10 @@
 PODS:
-  - Alamofire (3.3.0)
+  - Alamofire (3.3.1)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
   - DPMeterView (1.0.1)
   - JVFloatLabeledTextField (1.1.0)
   - MBProgressHUD (0.9.2)
-  - NMSSH (2.2.5)
   - PocketSVG (0.7)
   - SwiftyJSON (2.3.2)
 
@@ -15,7 +14,6 @@ DEPENDENCIES:
   - DPMeterView
   - JVFloatLabeledTextField
   - MBProgressHUD
-  - NMSSH
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -34,15 +32,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
   DPMeterView: f6a917eaec2b2ef7844cb43f2ce2c6ac4b4abc85
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  NMSSH: 8643df89d73b9a3e398a5a5971f6ea4bb1179ea7
   PocketSVG: b43ae630380635d10616939241f7d1290aef11dc
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: afdce0ca1b2baecdef97290292e3aee3b76809f9
+PODFILE CHECKSUM: d9189126a23ab9b3c91e8b76f72a65fb3f38fea2
 
 COCOAPODS: 1.0.0.beta.6
