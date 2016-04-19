@@ -158,13 +158,13 @@
 		883B80ED1CACB2F400810C52 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		883B80EF1CACC2FB00810C52 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Social.swift; path = Classes/Social.swift; sourceTree = "<group>"; };
 		883B80F11CACC73900810C52 /* AutomaticDimensionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticDimensionTableViewController.swift; sourceTree = "<group>"; };
-		883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = SOURCE_ROOT; };
+		883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+Version.swift"; path = "UTCS/Extensions/UIApplication+Version.swift"; sourceTree = SOURCE_ROOT; };
 		886209CF1CACD183009180AD /* PhotoBackgroundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoBackgroundTableViewController.swift; path = ViewControllers/PhotoBackgroundTableViewController.swift; sourceTree = "<group>"; };
 		886209D11CAD6DBC009180AD /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		886209D31CAD8669009180AD /* UIImageView+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Tinting.swift"; sourceTree = "<group>"; };
 		886C2D451C215D580026E0CE /* Backgrounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Backgrounds.xcassets; path = Resources/Backgrounds.xcassets; sourceTree = "<group>"; };
 		888E7FAF1CB7632D00EC75A6 /* HTMLSanitization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLSanitization.swift; sourceTree = "<group>"; };
-		88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Trim.swift"; path = "Categories/NSAttributedString+Trim.swift"; sourceTree = "<group>"; };
+		88F088641CA607B2008BFB65 /* NSAttributedString+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Trim.swift"; sourceTree = "<group>"; };
 		8BB0B286439F77F03C6FA9BD /* Pods-UTCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.release.xcconfig"; sourceTree = "<group>"; };
 		9CE45763804872C251FC0B17 /* Pods-UTCSTests.no cache.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.no cache.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.no cache.xcconfig"; sourceTree = "<group>"; };
 		C9ADAF001CB6CB160099D68B /* UITableViewCell+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Helpers.swift"; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		D4280C1D1B2E29530090F8C6 /* ClearTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClearTableViewCell.swift; path = Views/ClearTableViewCell.swift; sourceTree = "<group>"; };
 		D42D4DC71B704C9B00D4FD6D /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Model/DataRequest.swift; sourceTree = "<group>"; };
 		D43377F91B4CBB1D00942581 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewControllers/TableViewController.swift; sourceTree = "<group>"; };
-		D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+UTCSColors.swift"; path = "Categories/UIColor+UTCSColors.swift"; sourceTree = "<group>"; };
+		D43950271C45942D007AA192 /* UIColor+UTCSColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+UTCSColors.swift"; sourceTree = "<group>"; };
 		D43C8AFF1B7851F80049C4D6 /* UTCSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTCSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43C8B031B7851F90049C4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D43C8B0B1B7919680049C4D6 /* LabsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabsDataSource.swift; path = Model/LabsDataSource.swift; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 		D46C7C4A1B4F454F009F1EA1 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = ViewControllers/NewsViewController.swift; sourceTree = "<group>"; };
 		D46C7C4C1B4F4F2E009F1EA1 /* LabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabsViewController.swift; path = ViewControllers/LabsViewController.swift; sourceTree = "<group>"; };
 		D482C1AA1B3CDE8E00645C23 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticleViewController.swift; path = ViewControllers/NewsArticleViewController.swift; sourceTree = "<group>"; };
-		D4A3AA261CB8AA6500007D75 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Comparable.swift"; path = "Categories/NSDate+Comparable.swift"; sourceTree = "<group>"; };
-		D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButton+UTCSButton.swift"; path = "UTCS/Classes/Model/UIBarButton+UTCSButton.swift"; sourceTree = SOURCE_ROOT; };
+		D4A3AA261CB8AA6500007D75 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparable.swift"; sourceTree = "<group>"; };
+		D4A89CF51B811F9900B9D7A5 /* UIBarButton+UTCSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButton+UTCSButton.swift"; path = "UTCS/Extensions/UIBarButton+UTCSButton.swift"; sourceTree = SOURCE_ROOT; };
 		D4A89CF81B818B3600B9D7A5 /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticle.swift; path = Model/NewsArticle.swift; sourceTree = "<group>"; };
 		D4A89CFC1B82F76900B9D7A5 /* ServiceDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceDataSource.swift; path = Model/ServiceDataSource.swift; sourceTree = "<group>"; };
 		D4BA71CA1B42107A007C09F6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 		DD8989A51903141C000F1041 /* ServiceMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceMetadata.swift; path = Model/ServiceMetadata.swift; sourceTree = "<group>"; };
 		DD9475C1190B26530049FB8B /* ThirdFloorLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ThirdFloorLabLayout.plist; path = UTCS/ThirdFloorLabLayout.plist; sourceTree = SOURCE_ROOT; };
 		DD9475CE190B8F830049FB8B /* BasementLabLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BasementLabLayout.plist; path = UTCS/BasementLabLayout.plist; sourceTree = SOURCE_ROOT; };
-		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
+		DD9475E7190CE5DF0049FB8B /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = cloud.svg; path = Resources/SVGs/cloud.svg; sourceTree = "<group>"; };
 		DD95E77B1926305C0062F4E9 /* DPMeterView-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "DPMeterView-license.txt"; path = "Resources/Licenses/DPMeterView-license.txt"; sourceTree = "<group>"; };
 		DD95E77C1926305C0062F4E9 /* FBShimmering-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBShimmering-license.txt"; path = "Resources/Licenses/FBShimmering-license.txt"; sourceTree = "<group>"; };
 		DD95E77D1926305C0062F4E9 /* FBTweaks-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBTweaks-license.txt"; path = "Resources/Licenses/FBTweaks-license.txt"; sourceTree = "<group>"; };
@@ -336,7 +336,7 @@
 				D4280C1A1B2E1CC80090F8C6 /* AppDelegate.swift */,
 				D409244C1C3CD93E00A81EBA /* Constants.swift */,
 				883B80EF1CACC2FB00810C52 /* Social.swift */,
-				DDA94B6818C1D1C600DDF949 /* Categories */,
+				DDA94B6818C1D1C600DDF949 /* Extensions */,
 				DDA758EE19081DE4007CD0DB /* General */,
 				DD5B586C18D23DD200EEB474 /* Navigation */,
 				DDA7589C1904F60A007CD0DB /* Services */,
@@ -666,7 +666,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		DDA94B6818C1D1C600DDF949 /* Categories */ = {
+		DDA94B6818C1D1C600DDF949 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				883B80F71CACCEBB00810C52 /* UIApplication+Version.swift */,
@@ -678,7 +678,7 @@
 				888E7FAF1CB7632D00EC75A6 /* HTMLSanitization.swift */,
 				D4A3AA261CB8AA6500007D75 /* NSDate+Comparable.swift */,
 			);
-			name = Categories;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DDC2F5D219047748006011F0 /* Abstract */ = {
