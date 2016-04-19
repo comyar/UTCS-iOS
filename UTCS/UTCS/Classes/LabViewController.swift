@@ -1,5 +1,4 @@
 import UIKit
-import Shimmer
 
 class LabViewController: UIViewController {
     var imageOffset: CGPoint = CGPointZero {
@@ -9,7 +8,7 @@ class LabViewController: UIViewController {
             backgroundImageView.frame = offsetFrame
         }
     }
-    var shimmeringView: FBShimmeringView!
+    var labNameLabel: UILabel!
     var errorView: ServiceErrorView = {
         let view = ServiceErrorView.loadFromNib()
         view.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your network connection."
@@ -40,19 +39,17 @@ class LabViewController: UIViewController {
         view.addSubview(labView)
 
 
-        shimmeringView = {
+        labNameLabel = {
             let frame = CGRect(x: 0.0, y: 44.0 + self.labView.frame.height, width: self.view.bounds.size.width, height: 100.0)
-            let view = FBShimmeringView(frame: CGRectZero)
-            let label = UILabel(frame: CGRectZero)
+            let label = UILabel(frame: frame)
             label.font = .systemFontOfSize(50.0, weight: UIFontWeightBold)
             label.textAlignment = .Center
             label.textColor = .whiteColor()
             label.numberOfLines = 0
             label.text = "TOHUSTNHU"
-            view.contentView = label
-            return view
+            return label
         }()
-        view.addSubview(shimmeringView)
+        view.addSubview(labNameLabel)
 
         
         errorView.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.size.width, height: 0.5 * view.bounds.size.height)

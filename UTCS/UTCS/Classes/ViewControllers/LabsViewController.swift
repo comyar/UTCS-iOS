@@ -43,9 +43,8 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
             scrollView.addSubview(thirdFloorLabViewController.view)
             addChildViewController(thirdFloorLabViewController)
             thirdFloorLabViewController.didMoveToParentViewController(self)
-            thirdFloorLabViewController.shimmeringView.frame = CGRect(x: 0.5 * view.frame.width, y: view.frame.height * 0.3, width: 0.4 * view.frame.width, height: 0.6 * view.frame.height)
-            thirdFloorLabViewController.shimmeringView.contentView.frame = thirdFloorLabViewController.shimmeringView.bounds
-            (thirdFloorLabViewController.shimmeringView.contentView as! UILabel).text = "Third Floor"
+            thirdFloorLabViewController.labNameLabel.frame = CGRect(x: 0.5 * view.frame.width, y: view.frame.height * 0.3, width: 0.4 * view.frame.width, height: 0.6 * view.frame.height)
+            thirdFloorLabViewController.labNameLabel.text = "Third Floor"
         }
         
         if let basementLayout = LabViewLayout(filename: "BasementLabLayout") {
@@ -57,9 +56,8 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
             addChildViewController(basementLabViewController)
             basementLabViewController.didMoveToParentViewController(self)
             
-            basementLabViewController.shimmeringView.frame = CGRect(x: 8.0, y: 0.72 * view.frame.height, width: view.frame.width - 16.0, height: 120.0)
-            basementLabViewController.shimmeringView.contentView.frame = basementLabViewController.shimmeringView.bounds
-            (basementLabViewController.shimmeringView.contentView as! UILabel).text = "Basement"
+            basementLabViewController.labNameLabel.frame = CGRect(x: 8.0, y: 0.72 * view.frame.height, width: view.frame.width - 16.0, height: 120.0)
+            basementLabViewController.labNameLabel.text = "Basement"
         }
         
         pageControl = {
@@ -93,18 +91,12 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
     }
 
     func update(forced: Bool) {
-        thirdFloorLabViewController.shimmeringView.shimmering = true
-        basementLabViewController.shimmeringView.shimmering = true
-
         let hud = MBProgressHUD.showHUDAddedTo(scrollView, animated: true)
         hud.labelText = "Updating"
         hud.mode = .Indeterminate
 
 
         labsDataSource!.updateWithArgument(nil) { result in
-            self.thirdFloorLabViewController.shimmeringView.shimmering = false
-            self.basementLabViewController.shimmeringView.shimmering = false
-
             if result.successful,
                let third = self.labsDataSource.third,
                basement = self.labsDataSource.basement {
@@ -115,8 +107,8 @@ class LabsViewController: ContentViewController, UIScrollViewDelegate {
             }
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 let successValue: CGFloat = result.successful ? 1.0 : 0.0
-                self.thirdFloorLabViewController.shimmeringView.alpha = successValue
-                self.basementLabViewController.shimmeringView.alpha = successValue
+                self.thirdFloorLabViewController.labNameLabel.alpha = successValue // MAYBE?
+                self.basementLabViewController.labNameLabel.alpha = successValue
                 self.thirdFloorLabViewController.errorView.alpha = 1.0 - successValue
                 self.basementLabViewController.errorView.alpha = 1.0 - successValue
                 self.thirdFloorLabViewController.labView.alpha  = successValue

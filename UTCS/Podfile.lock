@@ -7,7 +7,6 @@ PODS:
   - MBProgressHUD (0.9.2)
   - NMSSH (2.2.5)
   - PocketSVG (0.7)
-  - Shimmer (1.0.2)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -18,7 +17,6 @@ DEPENDENCIES:
   - MBProgressHUD
   - NMSSH
   - PocketSVG (from `https://github.com/arielelkin/PocketSVG`)
-  - Shimmer
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -42,10 +40,9 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   NMSSH: 8643df89d73b9a3e398a5a5971f6ea4bb1179ea7
-  PocketSVG: b43ae630380635d10616939241f7d1290aef11dc
-  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  PocketSVG: e05e6b008c6232d7b6410bb1ff34db71957b776d
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 7dbded8a3f0fbb8c4854ed06daa3c0a68f698a14
+PODFILE CHECKSUM: afdce0ca1b2baecdef97290292e3aee3b76809f9
 
 COCOAPODS: 1.0.0.beta.6

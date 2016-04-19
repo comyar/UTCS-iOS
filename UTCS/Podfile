@@ -1,5 +1,4 @@
 def all_pods
-pod 'Shimmer'
 pod 'NMSSH'
 pod 'DPMeterView'
 pod 'MBProgressHUD'
