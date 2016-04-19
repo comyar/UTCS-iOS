@@ -110,7 +110,7 @@ final class EventsViewController: HeaderTableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && eventsDataSource != nil {
+        if section == 0 && eventsDataSource?.filteredEvents?.count > 0 {
             return 48.0
         }
         return 0.0
