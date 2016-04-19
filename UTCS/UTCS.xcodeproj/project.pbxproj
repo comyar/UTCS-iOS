@@ -145,16 +145,10 @@
 		0B9A263A1891D5E30032DA03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B9A263E1891D5E30032DA03 /* UTCS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UTCS-Info.plist"; sourceTree = "<group>"; };
 		0B9A26401891D5E30032DA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		166C85C1C08FC0DC7595964E /* Pods_UTCSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DFE1E505A777700D4F550A6 /* Pods-UTCS.no cache.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.no cache.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.no cache.xcconfig"; sourceTree = "<group>"; };
-		2F23FCE8E4742D1E5FE26E0E /* Pods_UTCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E785E9EA273ECF22417B77 /* Pods-UTCSTests.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.no cache no network.xcconfig"; sourceTree = "<group>"; };
-		5F8461BAC659D6CB8CF74CF6 /* Pods-UTCSTests.offline debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.offline debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.offline debug.xcconfig"; sourceTree = "<group>"; };
-		773CB963144C2FD0617694EA /* Pods-UTCS.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.no cache no network.xcconfig"; sourceTree = "<group>"; };
-		7B2E841AC48E8CD8F9170F88 /* Pods-UTCSTests.no cache.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.no cache.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.no cache.xcconfig"; sourceTree = "<group>"; };
-		7DB5C56FA610E1ED4C72FE70 /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
 		3B0D1FC9DB98146623AD7DAF /* Pods-UTCS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.debug.xcconfig"; sourceTree = "<group>"; };
 		6FD365D91B9DE14BDE776CF8 /* Pods-UTCSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTCSTests/Pods-UTCSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		773CB963144C2FD0617694EA /* Pods-UTCS.no cache no network.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTCS.no cache no network.xcconfig"; path = "Pods/Target Support Files/Pods-UTCS/Pods-UTCS.no cache no network.xcconfig"; sourceTree = "<group>"; };
 		820206961CB9BC1D004E958D /* LabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabView.swift; sourceTree = "<group>"; };
 		820206981CB9BC45004E958D /* LabMachineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabMachineView.swift; sourceTree = "<group>"; };
 		8202069A1CB9BC56004E958D /* LabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabViewController.swift; sourceTree = "<group>"; };
@@ -299,23 +293,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		019061F4F94D09DABF339C08 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7DB5C56FA610E1ED4C72FE70 /* Pods-UTCS.debug.xcconfig */,
-				BE5B70B9546C98012DD986FE /* Pods-UTCS.offline debug.xcconfig */,
-				0A98BBCB98334D9109245C99 /* Pods-UTCS.release.xcconfig */,
-				B6844A8C349A16E0F07976EE /* Pods-UTCSTests.debug.xcconfig */,
-				5F8461BAC659D6CB8CF74CF6 /* Pods-UTCSTests.offline debug.xcconfig */,
-				BF56D3113DB4D6BFD297D2FA /* Pods-UTCSTests.release.xcconfig */,
-				1DFE1E505A777700D4F550A6 /* Pods-UTCS.no cache.xcconfig */,
-				7B2E841AC48E8CD8F9170F88 /* Pods-UTCSTests.no cache.xcconfig */,
-				773CB963144C2FD0617694EA /* Pods-UTCS.no cache no network.xcconfig */,
-				31E785E9EA273ECF22417B77 /* Pods-UTCSTests.no cache no network.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		0B9A262A1891D5E30032DA03 = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +303,7 @@
 				0B9A26351891D5E30032DA03 /* Frameworks */,
 				0B9A26341891D5E30032DA03 /* Products */,
 				C2EEE51998772D1E1EF7A072 /* Pods */,
+				883561ED1CC5EEF500CFEF7C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -379,6 +357,15 @@
 			);
 			name = "Supporting Files";
 			path = UTCS;
+			sourceTree = "<group>";
+		};
+		883561ED1CC5EEF500CFEF7C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				773CB963144C2FD0617694EA /* Pods-UTCS.no cache no network.xcconfig */,
+				31E785E9EA273ECF22417B77 /* Pods-UTCSTests.no cache no network.xcconfig */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C2EEE51998772D1E1EF7A072 /* Pods */ = {
@@ -781,7 +768,7 @@
 				ORGANIZATIONNAME = UTCS;
 				TargetAttributes = {
 					0B9A26321891D5E30032DA03 = {
-						DevelopmentTeam = RB2R7U7P8Z;
+						DevelopmentTeam = 9F4JP5566P;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
