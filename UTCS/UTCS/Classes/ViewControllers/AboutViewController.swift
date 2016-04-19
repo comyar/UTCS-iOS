@@ -5,6 +5,11 @@ class AboutViewController: PhotoBackgroundTableViewController {
     @IBOutlet weak var buildLabel: UILabel!
     let MAD_LINK = NSURL(string: "https://www.cs.utexas.edu/users/mad/")!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        needsSectionHeaders = true
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

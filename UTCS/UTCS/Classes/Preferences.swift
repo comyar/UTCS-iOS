@@ -12,17 +12,7 @@ enum ComputerLab: Int {
 
 struct Preferences {
     
-    private static let EVENT_NOTIFICATIONS_KEY = "event_notifications"
     private static let PREFERRED_LAB_KEY = "preferred_lab"
-    
-    static var starredEventNotificationsEnabled: Bool {
-        get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(Preferences.EVENT_NOTIFICATIONS_KEY)
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: Preferences.EVENT_NOTIFICATIONS_KEY)
-        }
-    }
     
     static var preferredLab: ComputerLab {
         get {

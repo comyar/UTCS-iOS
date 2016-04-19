@@ -3,14 +3,8 @@ import UIKit
 
 class SettingsViewController: PhotoBackgroundTableViewController {
     
-    @IBOutlet weak var eventNotificationsSwitch: UISwitch!
-    
     @IBOutlet weak var preferredLabSegmentedControl: UISegmentedControl!
-    
-    @IBAction func receiveEventNotifications(sender: UISwitch) {
-        Preferences.starredEventNotificationsEnabled = sender.on
-    }
-    
+
     @IBAction func setPreferredLab(sender: UISegmentedControl) {
         guard let lab = ComputerLab(rawValue: sender.selectedSegmentIndex) else { return }
         Preferences.preferredLab = lab
@@ -19,14 +13,23 @@ class SettingsViewController: PhotoBackgroundTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        needsSectionHeaders = true
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem.menuButton()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        eventNotificationsSwitch.on = Preferences.starredEventNotificationsEnabled
+
         preferredLabSegmentedControl.selectedSegmentIndex = Preferences.preferredLab.rawValue
+    }
+    
+    // MARK: - UITableViewDataSource
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.setSelectedBackgroundColor(.utcsCellHighlight())
+        return cell
     }
     
     // MARK: - UITableViewDelegate
@@ -40,10 +43,5 @@ class SettingsViewController: PhotoBackgroundTableViewController {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        cell.setSelectedBackgroundColor(.utcsCellHighlight())
-        return cell
-    }
+    
 }
