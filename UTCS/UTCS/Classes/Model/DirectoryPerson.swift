@@ -23,7 +23,7 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
         self.firstName = firstName
         self.lastName = lastName
 
-        office = json["office"].string
+        office = json["location"].string
         phoneNumber = json["phone"].string
         title  = json["title"].string
         imageURL = json["image"].URL

@@ -45,18 +45,6 @@ class DirectoryDetailViewController: TableViewController {
         return phoneNumber
     }
 
-    func didTouchUpInsideButton(button: UIButton) {
-        if button.tag == Int.min,
-           let number = self.person?.phoneNumber {
-            let controller = UIAlertController(title: "Confirm", message: "Are you sure you want to call?", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            controller.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (_) -> Void in
-                self.callNumber(number)
-            }))
-            presentViewController(controller, animated: true, completion: nil)
-        }
-    }
-
     func callNumber(number: String) {
         
         let phoneURL = NSURL(string: "telprompt:\(number)")!
@@ -141,7 +129,6 @@ class DirectoryDetailViewController: TableViewController {
                 }
                 cell.textLabel?.text = office
                 cell.detailTextLabel?.text = "Office"
-                print(person?.office)
                 break
             case .Homepage:
                 guard person?.homepageURL != nil else {
@@ -152,7 +139,6 @@ class DirectoryDetailViewController: TableViewController {
                 cell.accessoryView?.hidden = false
                 cell.selectionStyle = .Default
                 cell.setSelectedBackgroundColor(UIColor.utcsCellHighlight())
-                print(person?.homepageURL)
                 break
             case .Phone:
                 guard let number = person?.phoneNumber else {
@@ -165,7 +151,6 @@ class DirectoryDetailViewController: TableViewController {
                     cell.accessoryView = callButton()
                 }
                 
-                print(person?.phoneNumber)
                 break
             case .ResearchInterests:
                 guard let interests = person?.researchInterests else {
@@ -176,7 +161,6 @@ class DirectoryDetailViewController: TableViewController {
                 cell.textLabel?.text = interestsString
                 cell.textLabel?.numberOfLines = 0
                 cell.detailTextLabel?.text = "Research Interests"
-                print(person?.researchInterests)
                 break
 
                 }
