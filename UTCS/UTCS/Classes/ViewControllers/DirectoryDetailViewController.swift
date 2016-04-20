@@ -28,10 +28,6 @@ class DirectoryDetailViewController: TableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        tableView.registerClass(DirectoryDetailTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-    }
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationBarBackgroundVisible = false
@@ -62,6 +58,7 @@ class DirectoryDetailViewController: TableViewController {
     }
 
     func callNumber(number: String) {
+        
         let phoneURL = NSURL(string: "telprompt:\(number)")!
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
             UIApplication.sharedApplication().openURL(phoneURL)
@@ -75,14 +72,49 @@ class DirectoryDetailViewController: TableViewController {
         }
     }
     
+    private func callButton() -> UIButton {
+        let callButton = UIButton(type: .Custom)
+        callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
+        callButton.setTitle("Call", forState: .Normal)
+        callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        callButton.tintColor = UIColor.whiteColor()
+        callButton.layer.masksToBounds = true
+        callButton.layer.cornerRadius = 4.0
+        callButton.layer.borderWidth = 1.0
+        callButton.layer.borderColor = UIColor.whiteColor().CGColor
+        callButton.addTarget(self, action: #selector(callPerson), forControlEvents: .TouchUpInside)
+        return callButton
+    }
+    
+    func callPerson() {
+        if let number = person?.phoneNumber?.stringByReplacingOccurrencesOfString(" ", withString: "-") {
+            callNumber(number)
+        }
+    }
+    
     // MARK - UITableViewDataSource
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-            as? DirectoryDetailTableViewCell,
-            section = Section(rawValue: indexPath.section) else {
+        var tempCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        
+        if tempCell == nil {
+            tempCell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+        }
+        
+        guard let section = Section(rawValue: indexPath.section), cell = tempCell else {
             return UITableViewCell()
         }
+        
+        //Default cell styling
+        cell.selectionStyle = .None
+        cell.textLabel?.text = ""
+        cell.detailTextLabel?.text = ""
+        cell.accessoryView?.hidden = true
+        cell.selectedBackgroundView = nil
+        cell.accessoryView = nil
+        cell.textLabel?.numberOfLines = 1
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
 
         if section == .Head {
             cell.textLabel?.text = person?.fullName
@@ -109,18 +141,18 @@ class DirectoryDetailViewController: TableViewController {
                 }
                 cell.textLabel?.text = office
                 cell.detailTextLabel?.text = "Office"
-                cell.accessoryView?.hidden = true
+                print(person?.office)
                 break
             case .Homepage:
-                guard let homepage = person?.homepageURL else {
+                guard person?.homepageURL != nil else {
                     return cell
                 }
-                cell.textLabel?.text = homepage.absoluteString
-                cell.textLabel?.adjustsFontSizeToFitWidth = true
-                cell.textLabel?.numberOfLines = 1
-                cell.detailTextLabel?.text = "Homepage"
+                cell.textLabel?.text = "Homepage"
                 cell.accessoryType = .DisclosureIndicator
                 cell.accessoryView?.hidden = false
+                cell.selectionStyle = .Default
+                cell.setSelectedBackgroundColor(UIColor.utcsCellHighlight())
+                print(person?.homepageURL)
                 break
             case .Phone:
                 guard let number = person?.phoneNumber else {
@@ -128,7 +160,12 @@ class DirectoryDetailViewController: TableViewController {
                 }
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
                 cell.detailTextLabel?.text = "Phone"
-                cell.accessoryView?.hidden = false
+                if UIApplication.sharedApplication().canOpenURL(NSURL(string: "tel://")!) {
+                    cell.accessoryView?.hidden = false
+                    cell.accessoryView = callButton()
+                }
+                
+                print(person?.phoneNumber)
                 break
             case .ResearchInterests:
                 guard let interests = person?.researchInterests else {
@@ -137,8 +174,9 @@ class DirectoryDetailViewController: TableViewController {
                 var interestsString = interests.reduce(""){$0 + "; " + $1}
                 interestsString = interestsString.substringFromIndex(interestsString.startIndex.advancedBy(2))
                 cell.textLabel?.text = interestsString
+                cell.textLabel?.numberOfLines = 0
                 cell.detailTextLabel?.text = "Research Interests"
-                cell.accessoryView?.hidden = true
+                print(person?.researchInterests)
                 break
 
                 }
@@ -159,6 +197,8 @@ class DirectoryDetailViewController: TableViewController {
             return 1
         } else if section == .Information {
             return 4
+        } else {
+            return 0
         }
     }
     
@@ -167,6 +207,21 @@ class DirectoryDetailViewController: TableViewController {
     }
 
     // MARK: - UITableViewDelegate
+    
+    func cellLabelHeightForText(string: String) -> CGFloat {
+        let text = NSString(string: string)
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
+        
+        if let inset = cell.textLabel?.frame.origin.x, font = cell.textLabel?.font {
+            let frame = text.boundingRectWithSize(CGSize(width: UIScreen.mainScreen().bounds.width - inset * 2, height: 0),
+                                                  options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+                                                  attributes: [NSFontAttributeName : font],
+                                                  context: nil)
+            return frame.height
+        }
+        
+        return 64.0
+    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath == NSIndexPath(forRow: 0, inSection: 0) {
@@ -179,16 +234,28 @@ class DirectoryDetailViewController: TableViewController {
             } else if indexPath.row == 2 {
                 return person?.phoneNumber != nil ? 64.0 : 0.0
             } else if indexPath.row == 3 {
-                return person?.researchInterests != nil ? 64.0: 0.0
+                if let interests = person?.researchInterests {
+                    var interestsString = interests.reduce(""){$0 + "; " + $1}
+                    interestsString = interestsString.substringFromIndex(interestsString.startIndex.advancedBy(2))
+                    let size = cellLabelHeightForText(interestsString) + 30
+                    return size > 64.0 ? size : 64.0
+                }
+                return 0.0
             }
         }
+        
+        
+        
         return 0.0
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let section = Section(rawValue: indexPath.section) where section == .Information else {
+        guard let section = Section(rawValue: indexPath.section), cell = tableView.cellForRowAtIndexPath(indexPath) where section == .Information else {
             return
         }
+        
+        cell.selected = false
+        
         if let row = InformationRow(rawValue: indexPath.row),
            homepage = person?.homepageURL where row == .Homepage {
             UIApplication.sharedApplication().openURL(homepage)

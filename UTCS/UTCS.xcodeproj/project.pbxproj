@@ -63,7 +63,6 @@
 		D43E864C1B37142700F6EA70 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43E864B1B37142700F6EA70 /* NavigationController.swift */; };
 		D44F34881B57DC9800D84D0B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F34871B57DC9800D84D0B /* AboutViewController.swift */; };
 		D45FE5351B508F47000F2D59 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FE5341B508F47000F2D59 /* EventsViewController.swift */; };
-		D461E6241CBA087300D3AD91 /* DirectoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D461E6231CBA087300D3AD91 /* DirectoryDetailTableViewCell.swift */; };
 		D461E6271CBA1C1400D3AD91 /* LabMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F03E1CB4E3A400DB074B /* LabMachine.swift */; };
 		D461E6281CBA1C1400D3AD91 /* LabViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262F0401CB4F13500DB074B /* LabViewLayout.swift */; };
 		D463C86C1B338E1C00E6A767 /* ServiceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463C86B1B338E1C00E6A767 /* ServiceErrorView.swift */; };
@@ -770,7 +769,7 @@
 				ORGANIZATIONNAME = UTCS;
 				TargetAttributes = {
 					0B9A26321891D5E30032DA03 = {
-						DevelopmentTeam = 9F4JP5566P;
+						DevelopmentTeam = RB2R7U7P8Z;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
