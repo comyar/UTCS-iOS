@@ -1,3 +1,5 @@
+import UIKit
+import Foundation
 class HeaderTableViewController: TableViewController {
     private let customTitle = UILabel()
     var blursBackground = true

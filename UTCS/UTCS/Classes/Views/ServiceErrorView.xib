@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8164.2" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,40 +10,57 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2CO-hu-Yge">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="frowny" translatesAutoresizingMaskIntoConstraints="NO" id="pLA-zk-vjB">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="164"/>
-                            <animations/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Whoops! Something went wrong." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Bg-ma-VWZ">
-                            <rect key="frame" x="0.0" y="164" width="600" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R75-Qm-nJj">
-                            <rect key="frame" x="0.0" y="185" width="600" height="415"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <animations/>
-                </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frowny" translatesAutoresizingMaskIntoConstraints="NO" id="pLA-zk-vjB">
+                    <rect key="frame" x="218" y="0.0" width="164" height="164"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="164" id="bur-oj-EWN"/>
+                        <constraint firstAttribute="width" constant="164" id="dMr-EV-Bjm"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="appliedTintColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R75-Qm-nJj">
+                    <rect key="frame" x="0.0" y="184" width="600" height="415.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="164" id="46o-5J-AtJ"/>
+                        <constraint firstAttribute="width" constant="164" id="9Rc-wc-4my"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="46o-5J-AtJ"/>
+                            <exclude reference="9Rc-wc-4my"/>
+                        </mask>
+                    </variation>
+                </label>
             </subviews>
-            <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="2CO-hu-Yge" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="525-jf-txK"/>
-                <constraint firstItem="2CO-hu-Yge" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Lu-Xr-LdR"/>
-                <constraint firstAttribute="trailing" secondItem="2CO-hu-Yge" secondAttribute="trailing" id="btK-84-8Jk"/>
-                <constraint firstAttribute="bottom" secondItem="2CO-hu-Yge" secondAttribute="bottom" id="lG0-YL-rR8"/>
+                <constraint firstItem="R75-Qm-nJj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="235-nu-euC"/>
+                <constraint firstItem="R75-Qm-nJj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="95B-RA-Bt0"/>
+                <constraint firstItem="pLA-zk-vjB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GZN-ij-QvX"/>
+                <constraint firstAttribute="trailing" secondItem="pLA-zk-vjB" secondAttribute="trailing" id="NS4-ky-ZYQ"/>
+                <constraint firstItem="R75-Qm-nJj" firstAttribute="top" secondItem="pLA-zk-vjB" secondAttribute="bottom" constant="20" id="aSD-El-3sb"/>
+                <constraint firstAttribute="bottom" secondItem="R75-Qm-nJj" secondAttribute="bottom" id="c1J-ZS-csZ"/>
+                <constraint firstItem="pLA-zk-vjB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iUb-bM-q07"/>
+                <constraint firstItem="pLA-zk-vjB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kv7-SN-6eA"/>
+                <constraint firstAttribute="trailing" secondItem="R75-Qm-nJj" secondAttribute="trailing" id="qe8-v3-5vy"/>
+                <constraint firstAttribute="trailing" secondItem="R75-Qm-nJj" secondAttribute="trailing" id="zVs-Fm-DIw"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="NS4-ky-ZYQ"/>
+                    <exclude reference="iUb-bM-q07"/>
+                    <exclude reference="235-nu-euC"/>
+                    <exclude reference="qe8-v3-5vy"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="errorLabel" destination="R75-Qm-nJj" id="Xr8-jD-ZjY"/>
             </connections>

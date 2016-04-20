@@ -21,9 +21,10 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>8</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>tel</string>
 		<string>twitter</string>
 		<string>fb</string>
 	</array>

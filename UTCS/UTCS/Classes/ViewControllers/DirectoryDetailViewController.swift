@@ -1,6 +1,8 @@
+
 import AlamofireImage
 
 class DirectoryDetailViewController: TableViewController {
+
     let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
 
     enum Section: Int {
@@ -9,14 +11,16 @@ class DirectoryDetailViewController: TableViewController {
     enum InformationRow: Int {
         case Office, Homepage, Phone, ResearchInterests
     }
+
     var person: DirectoryPerson? {
-        didSet(newValue) {
+        didSet {
             tableView.reloadData()
         }
     }
 
     init() {
         super.init(style: .Grouped)
+        navigationBarBackgroundVisible = false
         needsSectionHeaders = true
     }
 
@@ -33,12 +37,12 @@ class DirectoryDetailViewController: TableViewController {
         navigationBarBackgroundVisible = false
     }
 
-    func formattedPhoneNumberWithString(phoneNumber: String) -> (String) {
+    func formattedPhoneNumberWithString(phoneNumber: String) -> String {
         if phoneNumber.characters.count == 10 {
             let asNS = phoneNumber as NSString
             return String(format: "(%@) %@ - %@", arguments:
                 [asNS.substringWithRange(NSRange(location: 0, length: 3)),
-            asNS.substringWithRange(NSRange(location: 0, length: 3)),
+                asNS.substringWithRange(NSRange(location: 0, length: 3)),
                 asNS.substringWithRange(NSRange(location: 3, length: 3)),
                 asNS.substringWithRange(NSRange(location: 6, length: 4))])
         }
@@ -62,13 +66,17 @@ class DirectoryDetailViewController: TableViewController {
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
             UIApplication.sharedApplication().openURL(phoneURL)
         } else {
-            let controller = UIAlertController(title: "Error", message: "Ouch! Looks like something went wrong. Please report a bug!", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "Meh, Okay", style: .Default, handler: { (UIAlertAction) -> Void in
-                controller.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            presentViewController(controller, animated: true, completion: nil)
+            let errorAlertController = UIAlertController(title: "Error", message: "Oops! Something went wrong. Please report a bug!", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            errorAlertController.addAction(okAction)
+            
+            presentViewController(errorAlertController, animated: true, completion: nil)
         }
     }
+    
+    // MARK - UITableViewDataSource
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             as? DirectoryDetailTableViewCell,
@@ -138,7 +146,11 @@ class DirectoryDetailViewController: TableViewController {
 
         return cell
     }
-
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = Section(rawValue: section) else {
             return 0
@@ -148,23 +160,17 @@ class DirectoryDetailViewController: TableViewController {
         } else if section == .Information {
             return 4
         }
-        return 0
     }
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return "Information"
-        }
-        return nil
+        return section == 1 ? "Information" : nil
     }
 
+    // MARK: - UITableViewDelegate
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            return 84.0
+        if indexPath == NSIndexPath(forRow: 0, inSection: 0) {
+            return 84
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 return person?.office != nil ? 64.0 : 0.0
@@ -188,4 +194,5 @@ class DirectoryDetailViewController: TableViewController {
             UIApplication.sharedApplication().openURL(homepage)
         }
     }
+    
 }

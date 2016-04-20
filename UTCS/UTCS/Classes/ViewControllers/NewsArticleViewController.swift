@@ -34,8 +34,11 @@ class NewsArticleViewController: ArticleViewController {
         titleLabel.text = article.title
         titleLabel.sizeToFit()
 
+        // Remove activity items belonging to the previous article
+        activityItems.removeAll()
+        
         if let title = newsArticle?.title {
-            activityItems.append( title + "\n")
+            activityItems.append(title + "\n")
         }
         if let url = newsArticle?.url {
             activityItems.append(url.description)

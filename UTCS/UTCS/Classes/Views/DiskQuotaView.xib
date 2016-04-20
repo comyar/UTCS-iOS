@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeue.ttc">
@@ -17,7 +17,6 @@
                 <outlet property="nameLabel" destination="jyF-HD-36Q" id="Wym-CL-Qw7"/>
                 <outlet property="percentLabel" destination="5Cw-1B-aHm" id="si8-qS-BoJ"/>
                 <outlet property="quotaDetailLabel" destination="h0f-bV-hrj" id="ofF-gK-lpN"/>
-                <outlet property="serviceErrorView" destination="45F-Qk-3wC" id="5hI-5X-pQu"/>
                 <outlet property="updatedLabel" destination="lde-ys-iZv" id="p0E-1c-0hG"/>
                 <outlet property="usernameTextField" destination="DiA-Da-ptl" id="bJG-QB-yPp"/>
                 <outlet property="view" destination="iN0-l3-epB" id="2U1-HR-rB8"/>
@@ -39,8 +38,8 @@
                         <action selector="didPressGo:" destination="-1" eventType="touchUpInside" id="Yol-5n-Aw3"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdy-5X-Gtk">
-                    <rect key="frame" x="40" y="140" width="520" height="61"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdy-5X-Gtk">
+                    <rect key="frame" x="40" y="140" width="520" height="59.5"/>
                     <string key="text">Enter your CS username to check your available disk quota.Your disk quota represents the amount of available disk space on your Unix account.</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,10 +51,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="45F-Qk-3wC" customClass="ServiceErrorView" customModule="UTCS" customModuleProvider="target">
-                    <rect key="frame" x="300" y="31" width="0.0" height="34"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DiA-Da-ptl" customClass="JVFloatLabeledTextField">
                     <rect key="frame" x="40" y="60" width="455" height="40"/>
                     <constraints>
@@ -63,30 +58,30 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="euC-gT-Go5">
-                    <rect key="frame" x="180" y="220" width="170" height="187"/>
+                    <rect key="frame" x="151" y="220" width="170" height="187"/>
                     <subviews>
                         <view alpha="0.0" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t1K-UV-Rnh" customClass="DPMeterView">
-                            <rect key="frame" x="0.0" y="0.0" width="170" height="115.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="170" height="115"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="170" id="0ca-Zq-9Zf"/>
                                 <constraint firstAttribute="height" constant="115" id="LcC-Qb-7tS"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jonathan Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyF-HD-36Q">
-                            <rect key="frame" x="25.5" y="115.5" width="119" height="23"/>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jonathan Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyF-HD-36Q">
+                            <rect key="frame" x="26" y="115" width="119" height="23"/>
                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="86.56%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cw-1B-aHm">
-                            <rect key="frame" x="37" y="138.5" width="96.5" height="31.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="86.56%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cw-1B-aHm">
+                            <rect key="frame" x="37" y="138" width="97" height="32"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1834 / 2048 MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0f-bV-hrj">
-                            <rect key="frame" x="33.5" y="170" width="103" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1834 / 2048 MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0f-bV-hrj">
+                            <rect key="frame" x="34" y="170" width="103" height="17"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -104,7 +99,6 @@
                 <constraint firstItem="Igl-RR-JD8" firstAttribute="leading" secondItem="DiA-Da-ptl" secondAttribute="trailing" constant="20" id="DQb-Ke-cIo"/>
                 <constraint firstAttribute="trailing" secondItem="vdy-5X-Gtk" secondAttribute="trailing" constant="40" id="OiC-gu-brf"/>
                 <constraint firstItem="euC-gT-Go5" firstAttribute="top" secondItem="DiA-Da-ptl" secondAttribute="bottom" constant="120" id="Ql6-PV-FFx"/>
-                <constraint firstItem="45F-Qk-3wC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="U2w-uK-Yr1"/>
                 <constraint firstItem="vdy-5X-Gtk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="Ygc-CN-WX4"/>
                 <constraint firstItem="DiA-Da-ptl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="oQj-2r-O6I"/>
                 <constraint firstItem="lde-ys-iZv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ylF-n6-uSO"/>

@@ -8,7 +8,12 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
     
     private var showHideMenuDuration = 0.3
 
-    var showingMenu = false
+    var showingMenu = false {
+        didSet {
+            menuViewController.tableView.allowsSelection = showingMenu
+        }
+    }
+    
     var menuViewController: MenuViewController! {
         didSet(oldValue) {
 
@@ -19,10 +24,12 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
             view.addSubview(menuViewController.view)
             addChildViewController(menuViewController)
             menuViewController.didMoveToParentViewController(self)
+            menuViewController.tableView.allowsSelection = showingMenu
 
             setNeedsStatusBarAppearanceUpdate()
         }
     }
+    
     var contentViewController: UIViewController? {
         didSet(oldValue) {
             if oldValue == contentViewController {
@@ -94,12 +101,12 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
     }
 
     func showMenu() {
-        guard let contentController = contentViewController else {
+        guard let contentController = contentViewController where showingMenu == false else {
             return
         }
-
-        let targetY = menuViewController.bottomExtent + contentController.view.center.y
         self.showingMenu = true
+        
+        let targetY = menuViewController.bottomExtent + contentController.view.center.y
         
         UIView.animateWithDuration(showHideMenuDuration, delay: 0, options: .CurveEaseInOut, animations: {
             contentController.view.center = CGPoint(x: self.view.center.x, y: targetY)
@@ -108,12 +115,13 @@ class VerticalMenuViewController: UIViewController, UIGestureRecognizerDelegate 
     }
 
     func hideMenu() {
-        guard let contentController = contentViewController else {
+        guard let contentController = contentViewController where showingMenu == true else {
             return
         }
-
-        let targetY = contentController.view.center.y - menuViewController.bottomExtent
+        
         self.showingMenu = false
+        let targetY = contentController.view.center.y - menuViewController.bottomExtent
+        
         
         UIView.animateWithDuration(showHideMenuDuration, delay: 0, options: .CurveEaseInOut, animations: {
             contentController.view.center = CGPoint(x: self.view.center.x, y: targetY)

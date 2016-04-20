@@ -1,3 +1,4 @@
+import UIKit
 
 class SlideNavigationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var pushing = true

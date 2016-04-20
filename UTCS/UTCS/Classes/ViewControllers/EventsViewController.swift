@@ -23,6 +23,7 @@ final class EventsViewController: HeaderTableViewController {
         title = "Events"
 
         activeHeaderView.subtitleLabel.text = NewsViewController.headerSubtitleText
+        update()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +32,6 @@ final class EventsViewController: HeaderTableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        update()
     }
 
     override func viewDidLoad() {
@@ -52,21 +52,28 @@ final class EventsViewController: HeaderTableViewController {
     func filterEventsWithType(type: Event.Category) {
         let (addIndexPaths, removeIndexPaths) = eventsDataSource!.filterEventsByCategory(type)
         tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Fade)
-        tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Fade)
+        tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Middle)
+        tableView.insertRowsAtIndexPaths(addIndexPaths, withRowAnimation: .Middle)
+        if eventsDataSource?.filteredEvents?.count == 0 {
+            let path = NSIndexPath(forRow: 0, inSection: 0)
+            tableView.insertRowsAtIndexPaths([path], withRowAnimation: .Middle)
+        }
         tableView.endUpdates()
 
     }
 
     func update() {
+        // Can only update if we have a data source
+        guard let source = eventsDataSource else {
+            return
+        }
         activeHeaderView.startActiveAnimation()
-        eventsDataSource!.updateWithArgument(nil) { result in
-            if self.eventsDataSource?.eventData?.count ?? 0 > 0 {
-                self.activeHeaderView.endActiveAnimation(true)
+        source.updateWithArgument(nil) { result in
+            self.activeHeaderView.endActiveAnimation(true)
+            if self.eventsDataSource?.shouldDisplayTable() ?? false {
                 self.lastUpdated = self.dataSource?.updated
 
             } else {
-                self.activeHeaderView.endActiveAnimation(false)
                 if result.successful {
                     self.activeHeaderView.updatedLabel.text = "No events available"
                 } else {
@@ -76,11 +83,14 @@ final class EventsViewController: HeaderTableViewController {
             self.tableView.reloadData()
         }
     }
+}
 
-    // MARK:- UITableView
+
+// MARK:- UITableViewDelegate
+extension EventsViewController {
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 && eventsDataSource?.filteredEvents?.count > 0 else {
+        guard section == 0 && eventsDataSource?.shouldDisplayTable() ?? false else {
             return nil
         }
         if filterSegmentedControl == nil {
@@ -96,22 +106,29 @@ final class EventsViewController: HeaderTableViewController {
                 segmentedControl.layer.cornerRadius = 4.0
                 segmentedControl.layer.masksToBounds = true
                 return segmentedControl
-            }()
+                }()
         }
         return {
             let newView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 32.0))
             newView.addSubview(filterSegmentedControl)
             return newView
-        }()
+            }()
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && eventsDataSource?.filteredEvents?.count ?? 0 > 0 {
+        if section == 0 && eventsDataSource?.shouldDisplayTable() ?? false {
             return 48.0
         }
         return 0.0
     }
 
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        // Don't allow selection of the no events cell.
+        if eventsDataSource?.shouldDisplayNoEventsCell() ?? false {
+            return nil
+        }
+        return indexPath
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         guard let event = eventsDataSource?.filteredEvents?[indexPath.row] else {
@@ -120,5 +137,4 @@ final class EventsViewController: HeaderTableViewController {
         eventDetailViewController.configure(event)
         navigationController?.pushViewController(eventDetailViewController, animated: true)
     }
-
 }

@@ -40,34 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MenuViewControllerDelegat
         UITableViewCell.appearance().backgroundColor = .clearColor()
 
         UISegmentedControl.appearance().tintColor = .whiteColor()
-        UISwitch.appearance().onTintColor = .utcsBurntOrangeColor()
+        UISwitch.appearance().onTintColor = .utcsBurntOrange()
     }
 
     func menuOptionWillBeSelected(option: MenuOption) -> Bool {
-        if option == .Labs && !AuthenticationManager.authenticated {
-            AuthenticationManager.presentAuthenticationAlert(menuViewController,
-                reason:  "You must log into your CS account to view lab status information.") { error -> () in
-                guard error == nil else {
-                    AuthenticationManager.presentErrorAlert(self.menuViewController)
-                    return
-                }
-
-                if AuthenticationManager.authenticated {
-                    self.menuViewController.setSelection(.Labs, selected: true)
-                } else {
-                    self.menuViewController.setSelection(.Labs, selected: false)
-                }
-                MBProgressHUD.hideHUDForView(self.verticalMenuViewController!.view, animated: true)
-                
-            }
-            
-            return false
-        }
         return true
     }
     
     func didSelectMenuOption(option: MenuOption) {
-                if controllers[option] == nil {
+        if controllers[option] == nil {
             controllers[option] = {
                 switch option {
                 case .News:

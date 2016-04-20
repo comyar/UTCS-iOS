@@ -1,13 +1,15 @@
+import UIKit
+import Foundation
 
 let EventsTableViewCellIdentifier = "UTCSEventTableViewCell"
 
-final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
+final class EventsDataSource: ServiceDataSource {
 
     typealias EventCategoryFilterResult = (matching: [NSIndexPath], nonmatching: [NSIndexPath])
     
     override var data: AnyObject! {
         didSet(oldValue) {
-            filteredEvents = eventData
+            filterEventsByCategory(currentFilterType)
         }
     }
     var eventData: [Event]? {
@@ -42,6 +44,9 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
 
         // All currently visible events that will be hidden. They have the wrong category
         let toRemovePaths: [NSIndexPath] =  {
+            if shouldDisplayNoEventsCell() {
+                return [NSIndexPath(forRow: 0, inSection: 0)]
+            }
             let range = 0..<displaying.count
             return range.filter{ !visibleMatches[$0] }.map(intToIndexPath)
         }()
@@ -67,9 +72,31 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         return (toAddPaths, toRemovePaths)
     }
 
-    // MARK:- UITableViewDataSource
+    /**
 
+     - returns: true if the current filtered display has no events
+     */
+    func shouldDisplayNoEventsCell() -> Bool {
+        return filteredEvents?.count ?? 0 == 0
+    }
+
+    /**
+
+     - returns: true if there is data and the table should be displayed
+     */
+    func shouldDisplayTable() -> Bool {
+        return eventData?.count ?? 0 > 0
+    }
+
+}
+
+
+extension EventsDataSource: UITableViewDataSource {
     @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = filteredEvents?.count where count == 0 {
+            // We'll display the "no events cell"
+            return 1
+        }
         return filteredEvents?.count ?? 0
     }
 
@@ -77,6 +104,13 @@ final class EventsDataSource: ServiceDataSource, UITableViewDataSource {
         guard let dequeued = tableView.dequeueReusableCellWithIdentifier(EventsTableViewCellIdentifier),
             let cell = dequeued as? NewsTableViewCell else {
                 return UITableViewCell()
+        }
+        if shouldDisplayNoEventsCell()  {
+            cell.title?.text = "No events for this category "
+            cell.detailLabel.text = ""
+            cell.accessoryType = .None
+            cell.setSelectedBackgroundColor(.clearColor())
+            return cell
         }
         let event = filteredEvents![indexPath.row]
         cell.detailLabel.text = event.dateString

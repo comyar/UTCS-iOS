@@ -52,6 +52,11 @@ class ServiceDataSource: NSObject {
             }
         }
 
+        #if NO_NETWORK
+            completion?(.Failed)
+            return
+        #endif
+
         fetchData { meta, values, error in
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 let result: UpdateResult

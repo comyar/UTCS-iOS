@@ -1,3 +1,5 @@
+import UIKit
+import Foundation
 enum MenuOption: Int {
     case News
     case Events
@@ -81,7 +83,6 @@ class MenuViewController: UITableViewController {
     func setSelection(option: MenuOption, selected: Bool) {
         let indexPath = NSIndexPath(forRow: option.rawValue, inSection: 0)
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: option.rawValue, inSection: 0))
-        cell?.selected = selected
         
         if selected {
             let oldCell = tableView.cellForRowAtIndexPath(selectedIndex)
@@ -90,6 +91,8 @@ class MenuViewController: UITableViewController {
             selectedIndex = indexPath
             delegate?.didSelectMenuOption(option)
         }
+        
+        cell?.selected = selected
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

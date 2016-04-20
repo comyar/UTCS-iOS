@@ -17,4 +17,9 @@ import UIKit
         accessoryType = .DisclosureIndicator
     }
 
+    override func prepareForReuse() {
+        stripe.backgroundColor = .clearColor()
+        backgroundView = nil
+    }
+
 }

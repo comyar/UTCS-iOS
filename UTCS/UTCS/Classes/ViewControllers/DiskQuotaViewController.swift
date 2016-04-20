@@ -20,7 +20,12 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
     @IBOutlet var meterView: DPMeterView!
 
     //
-    @IBOutlet var serviceErrorView: ServiceErrorView!
+    var serviceErrorView: ServiceErrorView = {
+        let view = ServiceErrorView.loadFromNib()
+        view.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
+        view.alpha = 0.0
+        return view
+    }()
 
     // Label used to show more detailed disk quota information
     @IBOutlet var quotaDetailLabel: UILabel!
@@ -72,9 +77,12 @@ class DiskQuotaViewController: ContentViewController, UITextFieldDelegate {
 
         updatedLabel.alpha = 0.0
 
-        //serviceErrorView.errorLabel.text = "Ouch! Something went wrong.\n\nPlease check your CS username and network connection."
         backgroundImageName = "Disk Quota"
         title = "Disk Quota"
+        
+        serviceErrorView.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 230)
+        serviceErrorView.center = CGPoint(x: view.center.x, y: 0.9 * view.center.y)
+        view.addSubview(serviceErrorView)
     }
 
     @IBAction func didPressGo(sender: UIButton) {

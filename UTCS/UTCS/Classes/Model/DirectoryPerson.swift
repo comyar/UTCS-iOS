@@ -7,14 +7,13 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
     var firstName: String
     var lastName: String
     var office: String?
-    var phoneNumber: String?
+    let phoneNumber: String?
     var title: String?
     var imageURL: NSURL?
     var homepageURL: NSURL?
     var researchInterests: [String]?
 
     init?(json: JSON) {
-
         guard let firstName = json["fname"].string,
             lastName = json["lname"].string,
             fullName = json["name"].string else {

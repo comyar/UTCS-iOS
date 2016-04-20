@@ -1,3 +1,4 @@
+import Foundation
 public enum Service: String {
     case Labs = "labs"
     case DiskQuota = "quota"
