@@ -3,9 +3,9 @@ import UIKit
 import SwiftyJSON
 
 class DirectoryPerson: NSObject, NSCoding, Binnable {
-    var fullName: String
-    var firstName: String
-    var lastName: String
+    let fullName: String
+    let firstName: String
+    let lastName: String
     var office: String?
     let phoneNumber: String?
     var title: String?
@@ -45,6 +45,8 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
         phoneNumber = aDecoder.decodeObjectForKey("phone") as? String
         title = aDecoder.decodeObjectForKey("title") as? String
         imageURL = aDecoder.decodeObjectForKey("image") as? NSURL
+        homepageURL = aDecoder.decodeObjectForKey("homepage") as? NSURL
+        researchInterests = aDecoder.decodeObjectForKey("interests") as? [String]
         super.init()
     }
 
@@ -56,6 +58,8 @@ class DirectoryPerson: NSObject, NSCoding, Binnable {
         aCoder.encodeObject(phoneNumber, forKey: "phone")
         aCoder.encodeObject(title, forKey: "title")
         aCoder.encodeObject(imageURL, forKey: "image")
+        aCoder.encodeObject(homepageURL, forKey: "homepage")
+        aCoder.encodeObject(researchInterests, forKey: "interests")
     }
 
     func shouldBeSeparated(from: DirectoryPerson) -> Bool {

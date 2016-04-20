@@ -21,14 +21,14 @@ class DirectoryTableViewCell: ClearTableViewCell {
     func configure(person: DirectoryPerson) {
         let attributedName = NSMutableAttributedString(string: person.fullName)
 
-        let firstNameLength = person.firstName.characters.count
-        let firstNameRange = NSRange(location: 0, length: firstNameLength)
-        let remainingRange = NSRange(location: firstNameLength + 1, length: person.fullName.characters.count - 1 - firstNameLength)
+        let lastNameLength = person.lastName.characters.count
+        let lastNameRange = NSRange(location: person.fullName.characters.count - lastNameLength, length: lastNameLength)
+        let remainingRange = NSRange(location: 0, length: person.fullName.characters.count - lastNameLength)
 
         let firstNameWeight = UIFont.systemFontOfSize(textLabel!.font.pointSize, weight: UIFontWeightLight)
         let remainingWeight = UIFont.systemFontOfSize(textLabel!.font.pointSize, weight: UIFontWeightBold)
-        attributedName.addAttribute(NSFontAttributeName, value: firstNameWeight, range: firstNameRange)
-        attributedName.addAttribute(NSFontAttributeName, value: remainingWeight, range: remainingRange)
+        attributedName.addAttribute(NSFontAttributeName, value: firstNameWeight, range: remainingRange)
+        attributedName.addAttribute(NSFontAttributeName, value: remainingWeight, range: lastNameRange)
         textLabel?.attributedText = attributedName
         detailTextLabel?.text = person.title
     }
