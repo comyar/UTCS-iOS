@@ -228,9 +228,11 @@ class DirectoryDetailViewController: TableViewController {
             }
         }
         
-        
-        
         return 0.0
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -239,7 +241,7 @@ class DirectoryDetailViewController: TableViewController {
         }
         
         cell.selected = false
-        
+
         if let row = InformationRow(rawValue: indexPath.row),
            homepage = person?.homepageURL where row == .Homepage {
             UIApplication.sharedApplication().openURL(homepage)
