@@ -100,6 +100,7 @@ class DirectoryDetailViewController: TableViewController {
         cell.accessoryView?.hidden = true
         cell.selectedBackgroundView = nil
         cell.accessoryView = nil
+        cell.accessoryType = .None
         cell.textLabel?.numberOfLines = 1
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.detailTextLabel?.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
