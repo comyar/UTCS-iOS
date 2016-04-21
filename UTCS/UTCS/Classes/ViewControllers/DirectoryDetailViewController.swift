@@ -4,7 +4,14 @@ import AlamofireImage
 class DirectoryDetailViewController: TableViewController {
 
     let cellIdentifier = "UTCSDirectoryDetailTableViewCell"
-    
+
+    enum Section: Int {
+        case Head, Information
+    }
+    enum InformationRow: Int {
+        case Office, Homepage, Phone, ResearchInterests
+    }
+
     var person: DirectoryPerson? {
         didSet {
             tableView.reloadData()
@@ -17,8 +24,13 @@ class DirectoryDetailViewController: TableViewController {
         needsSectionHeaders = true
     }
 
-    required convenience init(coder aDecoder: NSCoder) {
-        self.init()
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarBackgroundVisible = false
     }
 
     func formattedPhoneNumberWithString(phoneNumber: String) -> String {
@@ -32,23 +44,12 @@ class DirectoryDetailViewController: TableViewController {
         }
         return phoneNumber
     }
-    
-    func callPerson() {
-        guard let phoneNumber = person?.phoneNumber?.stringByReplacingOccurrencesOfString(" ", withString: "-"),
-            callURL = NSURL(string: "tel:\(phoneNumber)") else { return }
+
+    func callNumber(number: String) {
         
-        if UIApplication.sharedApplication().canOpenURL(callURL) {
-            let confirmationAlertController = UIAlertController(title: phoneNumber, message: nil, preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            confirmationAlertController.addAction(cancelAction)
-            
-            let callAction = UIAlertAction(title: "Call", style: .Default) { _ in
-                UIApplication.sharedApplication().openURL(callURL)
-            }
-            confirmationAlertController.addAction(callAction)
-            
-            presentViewController(confirmationAlertController, animated: true, completion: nil)
+        let phoneURL = NSURL(string: "telprompt:\(number)")!
+        if UIApplication.sharedApplication().canOpenURL(phoneURL) {
+            UIApplication.sharedApplication().openURL(phoneURL)
         } else {
             let errorAlertController = UIAlertController(title: "Error", message: "Oops! Something went wrong. Please report a bug!", preferredStyle: .Alert)
             
@@ -59,39 +60,52 @@ class DirectoryDetailViewController: TableViewController {
         }
     }
     
+    private func callButton() -> UIButton {
+        let callButton = UIButton(type: .Custom)
+        callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
+        callButton.setTitle("Call", forState: .Normal)
+        callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        callButton.tintColor = UIColor.whiteColor()
+        callButton.layer.masksToBounds = true
+        callButton.layer.cornerRadius = 4.0
+        callButton.layer.borderWidth = 1.0
+        callButton.layer.borderColor = UIColor.whiteColor().CGColor
+        callButton.addTarget(self, action: #selector(callPerson), forControlEvents: .TouchUpInside)
+        return callButton
+    }
+    
+    func callPerson() {
+        if let number = person?.phoneNumber?.stringByReplacingOccurrencesOfString(" ", withString: "-") {
+            callNumber(number)
+        }
+    }
+    
     // MARK - UITableViewDataSource
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var oldCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        if oldCell == nil {
-            let newCell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
-            newCell.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.8)
-            newCell.textLabel?.numberOfLines = 2
-            newCell.detailTextLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
-            newCell.imageView?.contentMode = .ScaleAspectFill
-            newCell.imageView?.autoresizingMask = .None
-            newCell.backgroundColor = UIColor.clearColor()
-            newCell.selectionStyle = .None
-            newCell.textLabel?.textAlignment = .Left
-            
-            let callButton = UIButton(type: .Custom)
-            callButton.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 28.0)
-            callButton.setTitle("Call", forState: .Normal)
-            callButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            callButton.tintColor = UIColor.whiteColor()
-            callButton.layer.masksToBounds = true
-            callButton.layer.cornerRadius = 4.0
-            callButton.layer.borderWidth = 1.0
-            callButton.layer.borderColor = UIColor.whiteColor().CGColor
-            callButton.addTarget(self, action: #selector(callPerson), forControlEvents: .TouchUpInside)
-            
-            newCell.accessoryView = callButton
-            newCell.accessoryView?.hidden = true
-            oldCell = newCell
+        var tempCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        
+        if tempCell == nil {
+            tempCell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         }
-        if let cell = oldCell {
+        
+        guard let section = Section(rawValue: indexPath.section), cell = tempCell else {
+            return UITableViewCell()
+        }
+        
+        //Default cell styling
+        cell.selectionStyle = .None
+        cell.textLabel?.text = ""
+        cell.detailTextLabel?.text = ""
+        cell.accessoryView?.hidden = true
+        cell.selectedBackgroundView = nil
+        cell.accessoryView = nil
+        cell.accessoryType = .None
+        cell.textLabel?.numberOfLines = 1
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
 
-        if indexPath.section == 0 {
+        if section == .Head {
             cell.textLabel?.text = person?.fullName
             cell.detailTextLabel?.text = person?.title
 
@@ -105,30 +119,55 @@ class DirectoryDetailViewController: TableViewController {
                                                    imageTransition: UIImageView.ImageTransition.CrossDissolve(0.20), runImageTransitionIfCached: false)
 
             }
-        } else if indexPath.section == 1 {
-            if indexPath.row == 0,
-               let office = person?.office {
+        } else if section == .Information {
+            guard let row = InformationRow(rawValue: indexPath.row) else {
+                return cell
+            }
+            switch row {
+            case .Office:
+                guard let office = person?.office else {
+                    return cell
+                }
                 cell.textLabel?.text = office
                 cell.detailTextLabel?.text = "Office"
-                cell.accessoryView?.hidden = true
-            } else if indexPath.row == 1,
-                    let number = person?.phoneNumber {
+                break
+            case .Homepage:
+                guard person?.homepageURL != nil else {
+                    return cell
+                }
+                cell.textLabel?.text = "Homepage"
+                cell.accessoryType = .DisclosureIndicator
+                cell.accessoryView?.hidden = false
+                cell.selectionStyle = .Default
+                cell.setSelectedBackgroundColor(UIColor.utcsCellHighlight())
+                break
+            case .Phone:
+                guard let number = person?.phoneNumber else {
+                    return cell
+                }
                 cell.textLabel?.text = formattedPhoneNumberWithString(number)
                 cell.detailTextLabel?.text = "Phone"
                 if UIApplication.sharedApplication().canOpenURL(NSURL(string: "tel://")!) {
                     cell.accessoryView?.hidden = false
+                    cell.accessoryView = callButton()
                 }
+                
+                break
+            case .ResearchInterests:
+                guard let interests = person?.researchInterests else {
+                    return cell
+                }
+                var interestsString = interests.reduce(""){$0 + "; " + $1}
+                interestsString = interestsString.substringFromIndex(interestsString.startIndex.advancedBy(2))
+                cell.textLabel?.text = interestsString
+                cell.textLabel?.numberOfLines = 0
+                cell.detailTextLabel?.text = "Research Interests"
+                break
 
-            } else {
-                cell.textLabel?.text = ""
-                cell.detailTextLabel?.text = ""
-                cell.accessoryView?.hidden = true
-
-            }
-
+                }
         }
-        }
-        return oldCell!
+
+        return cell
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -136,12 +175,14 @@ class DirectoryDetailViewController: TableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        guard let section = Section(rawValue: section) else {
+            return 0
+        }
+        if section == .Head {
             return 1
-        case 1:
-            return 2
-        default:
+        } else if section == .Information {
+            return 4
+        } else {
             return 0
         }
     }
@@ -152,17 +193,60 @@ class DirectoryDetailViewController: TableViewController {
 
     // MARK: - UITableViewDelegate
     
+    func cellLabelHeightForText(string: String) -> CGFloat {
+        let text = NSString(string: string)
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
+        
+        if let inset = cell.textLabel?.frame.origin.x, font = cell.textLabel?.font {
+            let frame = text.boundingRectWithSize(CGSize(width: UIScreen.mainScreen().bounds.width - inset * 2, height: 0),
+                                                  options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+                                                  attributes: [NSFontAttributeName : font],
+                                                  context: nil)
+            return frame.height
+        }
+        
+        return 64.0
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath == NSIndexPath(forRow: 0, inSection: 0) {
             return 84
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                return person?.office != nil ? 64 : 0
-            } else {
-                return person?.phoneNumber != nil ? 64 : 0
+                return person?.office != nil ? 64.0 : 0.0
+            }  else if indexPath.row == 1 {
+                return person?.homepageURL != nil ? 64.0 : 0.0
+            } else if indexPath.row == 2 {
+                return person?.phoneNumber != nil ? 64.0 : 0.0
+            } else if indexPath.row == 3 {
+                if let interests = person?.researchInterests {
+                    var interestsString = interests.reduce(""){$0 + "; " + $1}
+                    interestsString = interestsString.substringFromIndex(interestsString.startIndex.advancedBy(2))
+                    let size = cellLabelHeightForText(interestsString) + 30
+                    return size > 64.0 ? size : 64.0
+                }
+                return 0.0
             }
         }
-        return 50
+        
+        return 0.0
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let section = Section(rawValue: indexPath.section), cell = tableView.cellForRowAtIndexPath(indexPath) where section == .Information else {
+            return
+        }
+        
+        cell.selected = false
+
+        if let row = InformationRow(rawValue: indexPath.row),
+           homepage = person?.homepageURL where row == .Homepage {
+            UIApplication.sharedApplication().openURL(homepage)
+        }
     }
     
 }

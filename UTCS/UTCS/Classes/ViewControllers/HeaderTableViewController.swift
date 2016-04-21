@@ -69,11 +69,11 @@ class HeaderTableViewController: TableViewController {
                targetContentOffset.memory.y < headerHeight else {
             return
         }
-        let velocityThresholdMet = 3.0 > velocity.y && velocity.y > 0.3
+        let velocityThresholdMet = 3.0 > velocity.y
         if  velocityThresholdMet {
             targetContentOffset.memory.y = headerHeight - 44.0
         }
-        let reverseThresholdMet = -0.3 > velocity.y && velocity.y > -3.0
+        let reverseThresholdMet = -0.01 > velocity.y && velocity.y > -3.0
         if reverseThresholdMet {
             targetContentOffset.memory.y = -44.0
         }
